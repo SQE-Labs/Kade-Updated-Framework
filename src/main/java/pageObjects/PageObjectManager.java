@@ -1,19 +1,17 @@
 package pageObjects;
 
 import pageEvents.*;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class PageObjectManager {
-    public static PageObjectManager pageObjectManager;
-    private LoginPageEvents loginPage;
-    private HomePageEvents homePage;
-    private DashboardPage dashboardPage;
-    private SidePannelPage sidePannelPage;
-    private MyStorePage myStorePage;
-    private SignUpPage signUpPage;
-//    private MyStorePage myStorePage;
+    private static PageObjectManager pageObjectManager;
+    private BasicInfoPage basicInfoPage;
+    private SecurityAndPasswordPage securityAndPasswordPage;
+    private RewardsProgramPage rewardsProgramPage;
+    private CustomersPage customersPage;
+    private ReportsPage reportsPage;
+    private RewardPointsPage rewardPointsPage;
 
     // Logger instance for logging messages
     private static final Logger log = LoggerFactory.getLogger(PageObjectManager.class);
@@ -25,31 +23,24 @@ public class PageObjectManager {
     public PageObjectManager() {
         log.info("Initializing PageObjectManager.");
 
-        // Initializing LoginPageEvents
-        loginPage = new LoginPageEvents();
-        log.debug("LoginPageEvents instance created.");
+        basicInfoPage = new BasicInfoPage();
+        log.debug("BasicInfoPage instance created.");
 
-        // Initializing HomePageEvents
-        homePage = new HomePageEvents();
-        log.debug("HomePageEvents instance created.");
+        securityAndPasswordPage = new SecurityAndPasswordPage();
+        log.debug("Security And Password instance created");
 
-        // Intializing DashboardEvents
-        dashboardPage = new DashboardPage();
-        log.debug("DashboardEvents instance created.");
+        rewardsProgramPage = new RewardsProgramPage();
+        log.debug("Rewards program page instance created");
 
+        customersPage = new CustomersPage();
+        log.debug("Customers Page instance created");
 
-        // Intializing SlidePannel
-        sidePannelPage = new SidePannelPage();
-        log.debug("Side Pannel instance created.");
+        reportsPage = new ReportsPage();
+        log.debug("Reports Page instance created");
 
-        // Intializing Mystore Page
-        myStorePage = new MyStorePage();
-        log.debug("MyStore  instance is created ");
-
-        signUpPage = new SignUpPage();
-        log.debug("Signup instanced is created ");
+        rewardPointsPage = new RewardPointsPage();
+        log.debug("Reward Ponts Page instance created");
     }
-
 
     /**
      * Singleton implementation for getting a single instance of PageObjectManager.
@@ -65,48 +56,41 @@ public class PageObjectManager {
         return pageObjectManager;
     }
 
-    /**
-     * Getter for LoginPageEvents object.
-     *
-     * @return LoginPageEvents object
-     */
-    public LoginPageEvents getLoginPage() {
-        log.debug("Returning LoginPageEvents instance.");
-        return loginPage;
-    }
+
 
     /**
-     * Getter for HomePageEvents object.
+     * Getter for BasicInfoPageEvents object.
      *
-     * @return HomePageEvents object
+     * @return BasicInfoPageEvents object
      */
-    public HomePageEvents getHomePage() {
-        log.debug("Returning HomePageEvents instance.");
-        return homePage;
+    public BasicInfoPage getbasicInfoPage() {
+        log.debug("Returning BasicInfoPageEvents instance.");
+        return basicInfoPage;
     }
 
-    public DashboardPage getDashboardPage() {
-        log.debug("Returning Dashboard instance.");
-        return dashboardPage;
+    public SecurityAndPasswordPage getSecurityAndPasswordPage() {
+        log.debug("Returning SecurityAndPassword instance.");
+        return securityAndPasswordPage;
     }
 
-    public SidePannelPage getSidePannel() {
-        log.debug("Returning Dashboard instance.");
-        return sidePannelPage;
+    public RewardsProgramPage getRewardsProgramPage() {
+        log.debug("Returning RewardsProgramPage Instance.");
+        return rewardsProgramPage;
     }
 
-    public MyStorePage getMyStorePage() {
-        log.debug("Returning the instance of My Store");
-        return myStorePage;
+    public CustomersPage getCustomersPage() {
+        log.debug("Returning Customers Page instance");
+        return customersPage;
     }
 
-    public SignUpPage getSignUpPage() {
-        log.debug("Returing the instance of SignUp page");
-        return signUpPage;
+    public ReportsPage getReportsPage() {
+        log.debug("Returning Reports Page instance");
+        return reportsPage;
     }
+
+    public RewardPointsPage getRewardPointsPage() {
+        log.debug("Reward Points page instance");
+        return rewardPointsPage;
+    }
+
 }
-
-
-
-
-
