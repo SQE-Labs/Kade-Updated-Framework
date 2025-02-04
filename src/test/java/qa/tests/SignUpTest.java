@@ -176,6 +176,7 @@ public class SignUpTest extends BaseTest {
 
         // Clicking on Profile Link
         pageObjectManager.getSidePannel().getProfileLink() ;
+        System.out.println("testing");
 
 
 
