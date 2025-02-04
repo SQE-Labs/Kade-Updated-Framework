@@ -175,7 +175,7 @@ public class SignUpTest extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(signUp.stripePageTitle));
 
         // Clicking on Profile Link
-        pageObjectManager.getSidePannel().getProfileLink();
+        pageObjectManager.getSidePannel().getProfileLink() ;
 
 
 
