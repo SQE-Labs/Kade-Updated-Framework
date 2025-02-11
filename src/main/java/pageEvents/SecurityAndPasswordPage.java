@@ -50,6 +50,8 @@ public class SecurityAndPasswordPage extends BaseTest {
     public By deletePhoneBtn = By.xpath("//button[@data-action='/users/_userProfile_deletePhone']");
     public By deletePhoneValidationMsg = By.xpath("//p[text()='You cannot remove the phone number from a Business account.']");
     public By deleteEmailValidationMsg = By.xpath("//p[text()='You cannot remove the email address from a Business account.']");
+    By closeAndDeletebtn = By.cssSelector(".btn.btn-danger");
+
 
     public void getSecurityAndPasswordPage(){
         click(userProfile);
@@ -71,6 +73,9 @@ public class SecurityAndPasswordPage extends BaseTest {
     public String generateRandomEmail() {
         String uniqueId = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
         return uniqueId + "@yopmail.com";
+    }
+    public void getCloseAndDeleteAccountbtn(){
+        click(closeAndDeletebtn);
     }
 
 

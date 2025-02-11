@@ -22,6 +22,7 @@ public class SidePannelPage extends BaseTest {
     By SearchBtn = By.cssSelector(".fa-search");
 
 
+
     // Methods
     public void getMangeBusinessTab(){
         click(manageBusinessAcc);

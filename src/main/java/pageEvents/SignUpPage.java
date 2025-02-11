@@ -37,8 +37,7 @@ public class SignUpPage extends BaseTest {
           By validation = By.xpath("//p[@class='alert-content']");
 
           // Locators for Business Account Option
-
-   public By phoneFieldLabel = By.xpath("//div[@class='mb-3 -row- pt-3']/label[1]");
+    public By phoneFieldLabel = By.xpath("//div[@class='mb-3 -row- pt-3']/label[1]");
    public By useEmailLink = By.xpath("//button[text()='Use email']");
    public By mobilePhoneField = By.cssSelector("[name='phone']");
    public By emailBusinessField = By.cssSelector("[name='email']");
@@ -51,8 +50,32 @@ public class SignUpPage extends BaseTest {
    public By stripePageTitle = By.cssSelector(".header-title.mb-0");
    public By businessSignInButton = By.xpath("//button[text()='Sign in']");
 
-   // Methods **********************
-   public void getpersonalAccountButton(){
+   // SignIn popup locators
+   public By signInTitle = By.xpath("//h5[text()='Sign-in']");
+   public By switchToEmailLinkSP = By.xpath("//button[text()='switch to email']");
+   public By continueBtnSignInP = By.xpath("//div[@class='text-center mt-3 px-2 mb-3']/button[text()='Continue']");
+   public By phoneNumberfieldLabelSP = By.xpath("//div[@class='-phone-div-   mb-2']/label");
+   public By phoneFieldSP = By.xpath("//input[@name='userName' and @data-f-type='phone']");
+   public By googleIconSP = By.cssSelector("[value='Google']");
+   public By appleIconSP = By.cssSelector("[aria-label='Sign in with Apple']");
+   public By pleaseReviewValidationSP = By.xpath("//p[text()='Please review the highlighted field(s)']");
+   public By changeLinkSP = By.cssSelector("[class='btn-link btn p-0 -change-']");
+   public By iDontKnowPasswordSP = By.cssSelector(".mx-3.-forgotpwd-");
+   public By passwordFieldSignP = By.cssSelector("[name='password']");
+   public By signInButtonSignInP = By.xpath("(//button[@class='btn btn-primary'])[4]");
+   public By showPasswordSignInP = By.xpath("//span[text()='Show password']");
+   public By informationMessageSP = By.cssSelector(".fw-bold.fst-italic");
+   public By securityCodeLabelsignInP = By.cssSelector("label[class='mb-2']");
+   public By newPasswordLabelSP= By.xpath("//label[text()='New password']");
+   public By securityCodeFieldSignInp = By.xpath("(//input[@name='otp'])[2]");
+   public By newPasswordFieldSP = By.xpath("//input[@name='password']");
+   public By emailFieldSP = By.xpath("//input[@name='userName' and @type='email']");
+   public By finalSignInbtn = By.cssSelector(".d-flex.justify-content-between.px-2 >button");
+
+
+
+    // Methods **********************
+         public void getpersonalAccountButton(){
     click(personalAccountButton);
 }
          public void getSignUpBtnPA(){
@@ -64,13 +87,38 @@ public class SignUpPage extends BaseTest {
          public void getCrossIcon(){
     click(crossIcon);
 }
-public void getSignInLink(){click(signInLink);}
+        public void getSignInLink(){click(signInLink);}
        public void getSubmitButton() {click(submitButton);}
        public void getContinueButton(){click(continueButton);}
        public void getBusinessAccount() {click(businessAccountButton);}
         public void getUseEmailLink(){click(useEmailLink);}
         public void getStartOverLink(){click(startOverLink);}
     public void getBusinessContinuebtn() {click(ContinueButtonBusiness);}
+     public void getSignInBtn(){click(signInButton);}
+
+    // Sign In Popup Methods
+    public void getContinueBtnSP(){
+             click(continueBtnSignInP);
+    }
+public void getsignInButtonSignInP(){
+             click(signInButtonSignInP);
+}
+public void getShowPasswordSP(){
+             click(showPasswordSignInP);
+}
+
+public void getFinalSignInbtn(){
+             click(finalSignInbtn);
+}
+public void getSwitchtoEmailLink(){
+             click(switchToEmailLinkSP);
+}
+public void getIdonkKnowPasswordLinkSP(){
+             click(iDontKnowPasswordSP);
+}
+
+
+
 
 
 

@@ -114,4 +114,52 @@ public class MyStorePage extends BaseTest {
     public By premiumMonthlyBtn = By.cssSelector(".flex-fill label[for='rdo_p3_0']");
     public By premiumYearlyBtn = By.cssSelector(".flex-fill label[for='rdo_p3_1']");
     public By premiumSignUpBtn = By.cssSelector("div#div_p3_0>a");
+
+    // Methods
+    public void getRegisterNewBusinessButton(){
+        click(registerNewBusinessBtn);
+    }
+
+    public void getSkipStripeAccountButton(){
+        click(skipStripeAccountBtn);
+    }
+
+    public void getSkipBtnOfStripe(){
+        click(skipStripeAccountPopUpBtn);
+    }
+    public void getDeleteStoreButton(){
+    click(deleteStoreBtn);
+    }
+
+    public void getDeleteStoreIcon(){
+        click(deleteStoreIcon);
+    }
+
+    public void getStripeAccountBtn(){
+        click(stripeBtn);
+    }
+    public void getTestStripeAccountButton(){
+        click(testStripeBtn);
+    }
+    public void getEditStoreButton(){
+        click(editStoreBtn);
+    }
+    public void getSaveButton(){
+        click(saveBtn);
+    }
+    public void getBankTransferToggleButton(){
+        click(bankTransferToggleBtn);
+    }
+    public void getContinueButton(){
+        click(continueBtn);
+    }
+    public void getSkipForNowButton(){
+        click(skipForNowBtn);
+    }
+
+
+
+
+
+
 }

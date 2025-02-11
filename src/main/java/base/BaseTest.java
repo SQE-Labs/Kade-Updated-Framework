@@ -2,6 +2,7 @@ package base;
 
 import java.io.File;
 import java.time.Duration;
+import java.util.Random;
 import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
@@ -69,6 +70,7 @@ public class BaseTest {
     @BeforeMethod
     @Parameters({"browser", "headless"})
     public void setupDriver(@Optional("chrome")String browser, @Optional("false")boolean headless) {
+        softAssert = new SoftAssert();
         log.info("Setting up WebDriver for browser: {}, headless: {}", browser, headless);
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions chromeOptions = new ChromeOptions();
@@ -569,6 +571,51 @@ public class BaseTest {
 
     }
 
+    //login as customer method
+    public static void LoginAsCustomer() {
+        log.info("Starting Login test - Entering username and password");
+
+        // Fetch the username and password from the configuration file
+        String username = configReader.getProperty("customer");
+        String password = configReader.getProperty("password");
+
+        // Validate if username and password are present in the config file
+        if (username == null || password == null) {
+            log.error("Username or password is missing in the configuration file.");
+            throw new RuntimeException("Username or password is missing in the configuration file.");
+        }
+
+        // Log the username and password for debug purposes (considering security)
+        log.debug("Attempting to login with username: {}", username);
+
+        // Perform login action using the provided credentials
+        pageObjectManager.getLoginPage().signIn(username, password);
+
+        // Log the status of the action after clicking SignIn
+        log.debug("User has successfully logged in and landed on the dashboard");
+
+        // Verify the landing page is correct after login
+        pageObjectManager.getHomePage().landingPage();
+    }
+    public static void LoginAsAdmin() {
+        log.info("Starting Login test");
+
+        // Fetch credentials
+        String username = configReader.getProperty("admin");
+        String password = configReader.getProperty("password");
+
+        // Validate credentials
+        if (username == null || password == null) {
+            throw new RuntimeException("Username or password is missing in the configuration file.");
+        }
+
+        // Perform login
+        pageObjectManager.getLoginPage().signIn(username, password);
+
+        // Verify successful login
+        pageObjectManager.getHomePage().landingPage();
+    }
+
     public void setTextByJS(By locator, String input){
         WebElement inputField =  getDriver().findElement(locator);
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -651,7 +698,32 @@ public class BaseTest {
             return "File not Present";
         }
     }
+    public String requiredDigits(int n) {
+        String AlphaNumericString = "1234567890";
+        StringBuilder s = new StringBuilder(n);
+        int y;
+        for (y = 0; y < n; y++) {
+            int index = (int) (AlphaNumericString.length() * Math.random());
+            s.append(AlphaNumericString.charAt(index));
+        }
+        return s.toString();
+    }
 
+    public static String requiredString(int n) {
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789" + "abcdefghijklmnopqrstuvxyz";
+        StringBuilder s = new StringBuilder(n);
+        int y;
+        for (y = 0; y < n; y++) {
+            int index = (int) (AlphaNumericString.length() * Math.random());
+            s.append(AlphaNumericString.charAt(index));
+        }
+        return s.toString();
+    }
+    public void cleanByJS(By locator) {
+        WebElement element = getDriver().findElement(locator);
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        js.executeScript("arguments[0].value = '';", element);
+    }
 
 
 
