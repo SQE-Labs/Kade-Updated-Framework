@@ -1,5 +1,6 @@
 package base;
 
+import java.io.File;
 import java.time.Duration;
 import java.util.Random;
 import java.util.Set;
@@ -11,9 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -24,13 +23,15 @@ import org.testng.asserts.SoftAssert;
 import pageObjects.PageObjectManager;
 import utils.ConfigFileReader;
 
-import static pageObjects.PageObjectManager.pageObjectManager;
+//import static pageObjects.PageObjectManager.pageObjectManager;
 
 public class BaseTest {
     private static final Logger log = LogManager.getLogger(BaseTest.class); // Logger instance
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     protected static ConfigFileReader configReader;
     protected SoftAssert softAssert;
+
+    private By target = null;
 
     /**
      * Set the environment from the test parameter.
@@ -116,7 +117,6 @@ public class BaseTest {
             driver.get().quit();
             driver.remove();
         }
-
     }
 
 
@@ -179,6 +179,16 @@ public class BaseTest {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
+    public WebElement waitForElementToBeInteractable(By locator, int timeout) {
+        log.info("Waiting for element to be interactable: {}", locator);
+        Wait<WebDriver> wait = new FluentWait<>(getDriver())
+                .withTimeout(Duration.ofSeconds(timeout))
+                .pollingEvery(Duration.ofMillis(500)) // Default polling interval
+                .ignoring(NoSuchElementException.class)
+                .ignoring(ElementNotInteractableException.class);
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
     /**
      * Clicks on an element after waiting for it to be clickable.
      *
@@ -186,7 +196,12 @@ public class BaseTest {
      */
     public void click(By locator) {
         log.info("Clicking on element: {}", locator);
-        waitForElementToBeClickable(locator, 10).click();
+        waitForElementToBeClickable(locator, 5).click();
+    }
+
+    public static void clickElementByJS(By element) {
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        js.executeScript("arguments[0].click();", getDriver().findElement(element));
     }
 
     /**
@@ -197,18 +212,9 @@ public class BaseTest {
      */
     public void enterText(By locator, String text) {
         log.info("Entering text '{}' into element: {}", text, locator);
-        WebElement element = waitForElementToBeVisible(locator, 10);
+        WebElement element = waitForElementToBeClickable(locator, 10);
         element.clear();
         element.sendKeys(text);
-    }
-
-    public void clickByJS(By locator) {
-        log.info("Scrolling to and clicking element using JavaScript: {}", locator);
-        WebElement element = waitForElementToBeVisible(locator, 10);
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-
-        // Scroll into view and click in one step
-        jsExecutor.executeScript("arguments[0].scrollIntoView(true); arguments[0].click();", element);
     }
 
     /**
@@ -221,7 +227,6 @@ public class BaseTest {
         log.info("Getting text from element: {}", locator);
         return waitForElementToBeVisible(locator, 10).getText();
     }
-
 
     /**
      * Scrolls to the specified element using JavaScript.
@@ -287,6 +292,12 @@ public class BaseTest {
             log.warn("Element not found: {}", locator);
             return false;
         }
+    }
+
+    public static void waitForElementInVisible(By locator, int waitTime) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(waitTime));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+
     }
 
     /**
@@ -530,13 +541,11 @@ public class BaseTest {
         waitForLoaderToDisappear(loaderLocator, timeout);
     }
 
-    private static PageObjectManager pageObjectManager = PageObjectManager.getInstance();
+    public static PageObjectManager pageObjectManager = PageObjectManager.getInstance();
 
 
     //login method
     public static void Login() {
-        log.info("Starting Login test - Entering username and password");
-
         // Fetch the username and password from the configuration file
         String username = configReader.getProperty("username");
         String password = configReader.getProperty("password");
@@ -561,6 +570,7 @@ public class BaseTest {
 
 
     }
+
     //login as customer method
     public static void LoginAsCustomer() {
         log.info("Starting Login test - Entering username and password");
@@ -586,9 +596,42 @@ public class BaseTest {
 
         // Verify the landing page is correct after login
         pageObjectManager.getHomePage().landingPage();
-
-
     }
+    public static void LoginAsAdmin() {
+        log.info("Starting Login test");
+
+        // Fetch credentials
+        String username = configReader.getProperty("admin");
+        String password = configReader.getProperty("password");
+
+        // Validate credentials
+        if (username == null || password == null) {
+            throw new RuntimeException("Username or password is missing in the configuration file.");
+        }
+
+        // Perform login
+        pageObjectManager.getLoginPage().signIn(username, password);
+
+        // Verify successful login
+        pageObjectManager.getHomePage().landingPage();
+    }
+
+    public void setTextByJS(By locator, String input){
+        WebElement inputField =  getDriver().findElement(locator);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].value='+input+';", inputField);
+    }
+
+    public void actionEnterText(By locator, String textToEnter){
+        Actions actions = new Actions(getDriver());
+        WebElement element = getDriver().findElement(locator);
+        actions.click(element).sendKeys(textToEnter).build().perform();
+    }
+
+    public String getElementText(By element) {
+        return getDriver().findElement(element).getText();
+    }
+
     public String getToolTipMessage(By locator) {
         WebElement element = getDriver().findElement(locator);
 
@@ -613,6 +656,48 @@ public class BaseTest {
             return "Tooltip not found or not visible";
         }
     }
+
+    public static String DeleteFile(String fileName) {
+        String home = System.getProperty("user.home");
+        String file_with_location;
+
+        if (System.getProperty("os.name").contains("Windows")) {
+            file_with_location = home + "Downloads" + fileName;
+        } else {
+            file_with_location = home + "/Downloads/" + fileName;
+        }
+        File file = new File(file_with_location);
+
+        if (file.exists()) {
+            if (file.delete()) {
+                return "File deleted successfully.";
+            } else {
+                return "Failed to delete the file.";
+            }
+        } else {
+            return "File does not exist.";
+        }
+    }
+
+    public static String isFileDownloaded(String fileName) {
+        String home = System.getProperty("user.home");
+        String file_with_location;
+
+        // Determine the Downloads folder based on OS
+        if (System.getProperty("os.name").contains("Windows")) {
+            file_with_location = home + "\\Downloads\\" + fileName;
+        } else {
+            file_with_location = home + "/Downloads/" + fileName;
+        }
+
+        // Check if the file exists
+        File file = new File(file_with_location);
+        if (file.exists()) {
+            return "File Present";
+        } else {
+            return "File not Present";
+        }
+    }
     public String requiredDigits(int n) {
         String AlphaNumericString = "1234567890";
         StringBuilder s = new StringBuilder(n);
@@ -634,5 +719,15 @@ public class BaseTest {
         }
         return s.toString();
     }
+    public void cleanByJS(By locator) {
+        WebElement element = getDriver().findElement(locator);
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        js.executeScript("arguments[0].value = '';", element);
+    }
+
+
+
+
+
 
 }

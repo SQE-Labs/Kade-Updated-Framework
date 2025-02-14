@@ -2,6 +2,9 @@ package pageEvents;
 
 import base.BaseTest;
 import org.openqa.selenium.By;
+import org.testng.Assert;
+import pageObjects.PageObjectManager;
+import utils.Constants;
 
 public class MyStorePage extends BaseTest {
     public By registerNewBusinessBtn = By.partialLinkText("Register new business");
@@ -114,4 +117,170 @@ public class MyStorePage extends BaseTest {
     public By premiumMonthlyBtn = By.cssSelector(".flex-fill label[for='rdo_p3_0']");
     public By premiumYearlyBtn = By.cssSelector(".flex-fill label[for='rdo_p3_1']");
     public By premiumSignUpBtn = By.cssSelector("div#div_p3_0>a");
+    public By storeLogoCreation = By.cssSelector(".d-flex.align-items-center>img");
+
+
+
+    // Methods
+    public void getRegisterNewBusinessButton(){
+        click(registerNewBusinessBtn);
+    }
+
+    public void getSkipStripeAccountButton(){
+        click(skipStripeAccountBtn);
+    }
+
+    public void getSkipBtnOfStripe(){
+        click(skipStripeAccountPopUpBtn);
+    }
+    public void getDeleteStoreButton(){
+    click(deleteStoreBtn);
+    }
+
+    public void getDeleteStoreIcon(){
+        click(deleteStoreIcon);
+    }
+
+    public void getStripeAccountBtn(){
+        click(stripeBtn);
+    }
+    public void getTestStripeAccountButton(){
+        click(testStripeBtn);
+    }
+    public void getEditStoreButton(){
+        click(editStoreBtn);
+    }
+    public void getSaveButton(){
+        click(saveBtn);
+    }
+    public void getBankTransferToggleButton(){
+        clickElementByJS(bankTransferToggleBtn);
+    }
+    public void getContinueButton(){
+        clickElementByJS(continueBtn);
+    }
+    public void getSkipForNowButton(){
+        click(skipForNowBtn);
+    }
+
+    public void getSubscriptionPlanTab(){
+        click(plansSubTab);
+    }
+    public void getPlansSignUpButton(){
+        click(planSignUpBtn);
+    }
+    public void getTermsCheckbox(){
+        click(termsCbx);
+    }
+    public void getChangePlanButton(){
+        click(changePlanBtn);
+    }
+    public void getYearlyPlanButton(){
+        click(yearlyBtn);
+    }
+    public void getChangePayMethodLink(){
+        click(changePayMethodBtn);
+    }
+    public void configureLinkWithStoreName(String storename){
+        click(configureLink);
+    }
+    public  String storeName;
+    public void getStoreCreation(){
+         storeName = "AutoStore" + requiredDigits(4);
+        String phone = requiredDigits(10);
+
+        //Step 1: Click on 'My Stores' Tab
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getMyStoreTab();
+
+        // Click on 'Register New Business' Button
+         getRegisterNewBusinessButton();
+        if (isElementDisplayed(storeLogoCreation)) {
+            getEditStoreButton();
+            scrollToElement(deleteStoreBtn);
+            waitForElementToBeClickable(deleteStoreBtn,5);
+            // click on delete button
+          getDeleteStoreButton();
+          getDeleteStoreIcon();
+          staticWait(3000);
+
+            scrollToElement(pageObjectManager.getSidePannel().manageBusinessAcc);
+            pageObjectManager.getSidePannel().getMangeBusinessTab();
+            waitForElementToBeClickable(pageObjectManager.getSidePannel().myStoreBtn,3);
+            pageObjectManager.getSidePannel().getMyStoreTab();
+            getRegisterNewBusinessButton();
+        }
+        // Click on 'Stripe Account' Button
+          getStripeAccountBtn();
+          scrollToElement(testStripeBtn);
+        //Click on 'Test Stripe Account' Button
+         getTestStripeAccountButton();
+
+        //Edit Store name
+         getEditStoreButton();
+
+        enterText(StoreNameTbx, storeName);
+        actionEnterText(phoneTbx, phone);
+        staticWait(2000);
+        scrollToElement(saveBtn);
+        waitForElementToBeVisible(saveBtn,3);
+        getSaveButton();
+        waitForElementToBeVisible(bankTransferToggleBtn,5);
+        scrollToElement(bankTransferToggleBtn);
+
+        // Click on 'Bank Transfer' toggle button
+        getBankTransferToggleButton();
+        getContinueButton();
+
+        // Click on 'Skip For Now' Button
+        getSkipForNowButton();
+        getContinueButton();
+        //verifying the default Values of the Store
+        String storenameactual = getText(addedStoreName);
+        String locationDescription = getText(addedLocationDescription);
+        String storeAddress = getText(addedStoreAddress);
+        String storePhoneno = getText(addedStorePhone).replaceAll("[+()\\s-]", "").substring(1, 11), phoneNumber;
+        String Currency = getText(addedCurrencyOfStore);
+        String Taxrate = getText(addedTaxRate);
+
+      Assert.assertEquals(storenameactual,storeName);
+      Assert.assertEquals(locationDescription, Constants.defaultLocationDescription);
+      Assert.assertEquals(storeAddress, Constants.storeAddress);
+      Assert.assertEquals(storePhoneno, phone);
+      Assert.assertEquals(Currency, Constants.defaultCurrency);
+      Assert.assertEquals(Taxrate, Constants.defaultTaxRate);
+
+    }
+
+    public void getStoreCreationWithoutStripePayment() {
+        // Click on 'Register New Business' Button
+        getRegisterNewBusinessButton();
+
+        if (isElementDisplayed(storeLogoCreation)) {
+            getEditStoreButton();
+            scrollToElement(deleteStoreBtn);
+            waitForElementToBeClickable(deleteStoreBtn, 5);
+            // click on delete button
+            getDeleteStoreButton();
+            getDeleteStoreIcon();
+            staticWait(3000);
+
+            scrollToElement(pageObjectManager.getSidePannel().manageBusinessAcc);
+            pageObjectManager.getSidePannel().getMangeBusinessTab();
+            waitForElementToBeClickable(pageObjectManager.getSidePannel().myStoreBtn, 3);
+            pageObjectManager.getSidePannel().getMyStoreTab();
+            getRegisterNewBusinessButton();
+        }
+        getSaveButton();
+        //Verify the validation message
+        String PleaseReviewMsg=getText(blankFieldWarningMsg);
+
+
+
+    }
+
+
+
+
+
 }
