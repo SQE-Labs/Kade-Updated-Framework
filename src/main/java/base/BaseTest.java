@@ -144,7 +144,7 @@ public class BaseTest {
      * @param millis - The wait time in milliseconds.
      */
     public void staticWait(long millis) {
-        log.debug("Static wait for {} ms.", millis);
+        log.debug("Static wait for {} ms.");
         try {
             Thread.sleep(millis);
         } catch (InterruptedException e) {
@@ -196,7 +196,7 @@ public class BaseTest {
      */
     public void click(By locator) {
         log.info("Clicking on element: {}", locator);
-        waitForElementToBeClickable(locator, 5).click();
+        waitForElementToBeClickable(locator, 10).click();
     }
 
     public static void clickElementByJS(By element) {
@@ -724,9 +724,6 @@ public class BaseTest {
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("arguments[0].value = '';", element);
     }
-
-
-
 
 
 

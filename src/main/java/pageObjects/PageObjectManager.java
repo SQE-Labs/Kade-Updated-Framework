@@ -1,19 +1,24 @@
 package pageObjects;
 
 import pageEvents.*;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class PageObjectManager {
-    public static PageObjectManager pageObjectManager;
+    private static PageObjectManager pageObjectManager;
     private LoginPageEvents loginPage;
     private HomePageEvents homePage;
     private DashboardPage dashboardPage;
     private SidePannelPage sidePannelPage;
     private MyStorePage myStorePage;
     private SignUpPage signUpPage;
-//    private MyStorePage myStorePage;
+    private BasicInfoPage basicInfoPage;
+    private SecurityAndPasswordPage securityAndPasswordPage;
+    private RewardsProgramPage rewardsProgramPage;
+    private CustomersPage customersPage;
+    private ReportsPage reportsPage;
+    private RewardPointsPage rewardPointsPage;
+    private AdminPage adminPage;
 
     // Logger instance for logging messages
     private static final Logger log = LoggerFactory.getLogger(PageObjectManager.class);
@@ -24,7 +29,6 @@ public class PageObjectManager {
      */
     public PageObjectManager() {
         log.info("Initializing PageObjectManager.");
-
         // Initializing LoginPageEvents
         loginPage = new LoginPageEvents();
         log.debug("LoginPageEvents instance created.");
@@ -48,8 +52,29 @@ public class PageObjectManager {
 
         signUpPage = new SignUpPage();
         log.debug("Signup instanced is created ");
-    }
 
+
+        basicInfoPage = new BasicInfoPage();
+        log.debug("BasicInfoPage instance created.");
+
+        securityAndPasswordPage = new SecurityAndPasswordPage();
+        log.debug("Security And Password instance created");
+
+        rewardsProgramPage = new RewardsProgramPage();
+        log.debug("Rewards program page instance created");
+
+        customersPage = new CustomersPage();
+        log.debug("Customers Page instance created");
+
+        reportsPage = new ReportsPage();
+        log.debug("Reports Page instance created");
+
+        rewardPointsPage = new RewardPointsPage();
+        log.debug("Reward Ponts Page instance created");
+
+        adminPage= new AdminPage();
+        log.debug("Admin page instance created ");
+    }
 
     /**
      * Singleton implementation for getting a single instance of PageObjectManager.
@@ -64,7 +89,6 @@ public class PageObjectManager {
         }
         return pageObjectManager;
     }
-
     /**
      * Getter for LoginPageEvents object.
      *
@@ -74,7 +98,6 @@ public class PageObjectManager {
         log.debug("Returning LoginPageEvents instance.");
         return loginPage;
     }
-
     /**
      * Getter for HomePageEvents object.
      *
@@ -84,7 +107,6 @@ public class PageObjectManager {
         log.debug("Returning HomePageEvents instance.");
         return homePage;
     }
-
     public DashboardPage getDashboardPage() {
         log.debug("Returning Dashboard instance.");
         return dashboardPage;
@@ -104,9 +126,46 @@ public class PageObjectManager {
         log.debug("Returing the instance of SignUp page");
         return signUpPage;
     }
+
+    /**
+     * Getter for BasicInfoPageEvents object.
+     *
+     * @return BasicInfoPageEvents object
+     */
+    public BasicInfoPage getbasicInfoPage() {
+        log.debug("Returning BasicInfoPageEvents instance.");
+        return basicInfoPage;
+    }
+
+    public SecurityAndPasswordPage getSecurityAndPasswordPage() {
+        log.debug("Returning SecurityAndPassword instance.");
+        return securityAndPasswordPage;
+    }
+
+    public RewardsProgramPage getRewardsProgramPage() {
+        log.debug("Returning RewardsProgramPage Instance.");
+        return rewardsProgramPage;
+    }
+
+    public CustomersPage getCustomersPage() {
+        log.debug("Returning Customers Page instance");
+        return customersPage;
+    }
+
+    public ReportsPage getReportsPage() {
+        log.debug("Returning Reports Page instance");
+        return reportsPage;
+    }
+
+    public AdminPage getAdminPage(){
+        log.debug("Admin page instance");
+        return adminPage;
+    }
+
+    public RewardPointsPage getRewardPointsPage() {
+        log.debug("Reward Points page instance");
+        return rewardPointsPage;
+    }
+
+
 }
-
-
-
-
-

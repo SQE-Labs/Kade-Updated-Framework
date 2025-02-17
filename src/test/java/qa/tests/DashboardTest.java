@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import pageEvents.DashboardPage;
 import pageObjects.PageObjectManager;
 import org.testng.Assert;
-import org.testng.asserts.SoftAssert;
+
 import utils.Constants;
 
 

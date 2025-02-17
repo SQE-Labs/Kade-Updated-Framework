@@ -121,6 +121,7 @@ public class MyStorePage extends BaseTest {
 
 
 
+
     // Methods
     public void getRegisterNewBusinessButton(){
         click(registerNewBusinessBtn);
@@ -154,15 +155,18 @@ public class MyStorePage extends BaseTest {
         click(saveBtn);
     }
     public void getBankTransferToggleButton(){
+
         clickElementByJS(bankTransferToggleBtn);
     }
     public void getContinueButton(){
         clickElementByJS(continueBtn);
+
+        click(bankTransferToggleBtn);
     }
+
     public void getSkipForNowButton(){
         click(skipForNowBtn);
     }
-
     public void getSubscriptionPlanTab(){
         click(plansSubTab);
     }
@@ -185,6 +189,7 @@ public class MyStorePage extends BaseTest {
         click(configureLink);
     }
     public  String storeName;
+
     public void getStoreCreation(){
          storeName = "AutoStore" + requiredDigits(4);
         String phone = requiredDigits(10);
@@ -274,13 +279,6 @@ public class MyStorePage extends BaseTest {
         getSaveButton();
         //Verify the validation message
         String PleaseReviewMsg=getText(blankFieldWarningMsg);
-
-
-
     }
-
-
-
-
 
 }

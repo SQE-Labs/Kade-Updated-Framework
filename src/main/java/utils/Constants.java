@@ -14,9 +14,6 @@ public interface Constants {
     // Constant for the "Sign out" text used in validation
     String SIGN_OUT = "Sign out";
 
-
-
-
     // Dashboard
     String YourBusinessTitle ="Your Businesses";
     String ProcessPayment = "Processed Payments";
@@ -54,14 +51,16 @@ public interface Constants {
     //BasicInformationPage constants
     String storeName = "Automation Customer Store";
     String storePhone = "12312312312";
-    String taxRate = "10000";
+    String taxRat = "10000";
     String storeAddress = "8 Glover Dr, Dix Hills, NY 11746, USA";
     String invalidStoreAddress = "New";
     String addressNotVerifiedToolTip = "Address cannot be verified";
     String invalidStorePhone = "1231";
     String invalidPhoneToolTip = "Invalid phone number";
     String invalidImageFile = "Not a valid image file";
+
     String description = "Without Stripe Account";
+
 
     //Security and Password page
     String requiredFieldValidation = "This field is required.";
@@ -137,8 +136,10 @@ public interface Constants {
     String defaultStoreAddress = "8 Glover Dr, Dix Hills, NY 11746, USA";
     String defaultCurrency = "USD";
     String defaultTaxRate = "0.000%";
+
     String currentPlan= "Current plan";
     String visavalue = "Visa1111";
+
 
 
 }
