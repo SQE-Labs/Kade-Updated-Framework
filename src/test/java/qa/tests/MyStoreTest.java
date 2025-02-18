@@ -19,6 +19,14 @@ public class MyStoreTest extends BaseTest {
     private PageObjectManager pageObjectManager = PageObjectManager.getInstance();
     private MyStorePage mystore = pageObjectManager.getMyStorePage();
 
+    @Test(description = "SC_01(A) Verifying creation of Store without Stripe Payment Account Configuration")
+    public void storeCreationWithoutStripeAccount(){
+        Login();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getMyStoreTab();
+        mystore.getStoreCreationWithoutStripePayment();
+    }
+
 
     @Test(enabled = true, description = "SC_01(B) Verifying deletion of Store when Stripe Account is not Registered Yet")
     public void sc01b_DeletionOfStore() {
@@ -108,14 +116,13 @@ public class MyStoreTest extends BaseTest {
     }
 
     @Test(description = "SC_01(A) Verifying creation of Store without Stripe Payment Account Configuration")
-    public void Tc1storeCreationWithoutStripeAccount() {
+    public void verifystoreCreationWithoutStripeAccount() {
         String storeName = "AutoStore" + requiredDigits(4);
         String phone = requiredDigits(10);
 
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
-
 
     }
 

@@ -51,7 +51,7 @@ public interface Constants {
     //BasicInformationPage constants
     String storeName = "Automation Customer Store";
     String storePhone = "12312312312";
-    String taxRat = "10000";
+    String taxRate = "10000";
     String storeAddress = "8 Glover Dr, Dix Hills, NY 11746, USA";
     String invalidStoreAddress = "New";
     String addressNotVerifiedToolTip = "Address cannot be verified";
@@ -79,7 +79,7 @@ public interface Constants {
     String validPhoneNumber2 = "1231231233";
     String LeastCharReqMessage = "Please enter at least 6 characters.";
     String diffCellNumber = "12334545676";
-    String pleaseReview = "Please review the highlighted field(s)";
+    String pleaseReviewValidation = "Please review the highlighted field(s)";
 
 
     //Rewards Program constants

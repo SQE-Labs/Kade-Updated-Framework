@@ -6,11 +6,12 @@ import org.testng.Assert;
 import pageObjects.PageObjectManager;
 import utils.Constants;
 
+
 public class MyStorePage extends BaseTest {
     public By registerNewBusinessBtn = By.partialLinkText("Register new business");
     public By skipPopUpTitle = By.xpath("//h5[text()='Skip']");
     public By skipStripeAccountBtn = By.cssSelector(".btn-lg.fw-bold.w-100.btn.btn-outline-primary");
-    public By skipStripeAccountPopUpBtn = By.xpath("//div[@class='modal-content']//button[text()='Skip']");
+    public By skipStripeAccountPopUpBtn = By.xpath("//div[@class='modal-footer justify-content-around']//button[text()='Skip']");
     public By deleteStoreBtn = By.xpath("//button[text()='Delete the store']");
   public By deleteStoreIcon = By.xpath("//i[@class='fal fa-thumbs-up text-white']");
   public By alertMessage = By.cssSelector("form.link-check.checked div.alert-message");
@@ -25,8 +26,8 @@ public class MyStorePage extends BaseTest {
   public By timeZoneField = By.xpath("//select[@name='timeZone']");
   public By timeZoneOption = By.xpath("//option[text()='(GMT-05:00) Eastern Time (US & Canada)']");
   public By taxRateTbx = By.xpath("//input[@name='taxRate']");
-  public By saveBtn = By.xpath("//button[text()='Save']");
-  public By saveVenmoPaymentBtn = By.xpath("//div[contains(@data-load,'/_venmoGatewayApplication')] //button[text()='Save']");
+  public By saveBtn = By.cssSelector(".-btn-save-.btn.btn-primary");
+  public By saveVenmoPaymentBtn = By.xpath("//div[co//button[text()='Save']ntains(@data-load,'/_venmoGatewayApplication')] //button[text()='Save']");
   public By stripeBtn = By.cssSelector(".img-fluid.h-100");
   public By connectStripePopUpTitle = By.xpath("//h5[text()='Connect to stripe']");
   public By testStripeBtn = By.partialLinkText("Create a test Stripe account");
@@ -155,13 +156,10 @@ public class MyStorePage extends BaseTest {
         click(saveBtn);
     }
     public void getBankTransferToggleButton(){
-
         clickElementByJS(bankTransferToggleBtn);
     }
     public void getContinueButton(){
         clickElementByJS(continueBtn);
-
-        click(bankTransferToggleBtn);
     }
 
     public void getSkipForNowButton(){
@@ -183,8 +181,21 @@ public class MyStorePage extends BaseTest {
         click(yearlyBtn);
     }
     public void getChangePayMethodLink(){
-        click(changePayMethodBtn);
+        click(changePayMethodBtn); }
+
+    // time zone
+    public void selectTimeZone() {
+        click(timeZoneField);
+        click(timeZoneOption);
     }
+
+        public void selectStoreAddress(String storeAddressName) {
+            waitForElementToBeVisible(storeAddressField, 2);
+            cleanByJS(storeAddressField);
+            pressKeys(storeAddressField, storeAddressName);
+            click(storeAddressField);
+            click(storeAddressOption);
+        }
     public void configureLinkWithStoreName(String storename){
         click(configureLink);
     }
@@ -258,11 +269,13 @@ public class MyStorePage extends BaseTest {
     }
 
     public void getStoreCreationWithoutStripePayment() {
+        storeName = "AutoStore" + requiredDigits(4);
+        String phone = requiredDigits(10);
+
         // Click on 'Register New Business' Button
         getRegisterNewBusinessButton();
 
-        if (isElementDisplayed(storeLogoCreation)) {
-            getEditStoreButton();
+        if (isElementDisplayed(storeLogo)) {
             scrollToElement(deleteStoreBtn);
             waitForElementToBeClickable(deleteStoreBtn, 5);
             // click on delete button
@@ -276,9 +289,53 @@ public class MyStorePage extends BaseTest {
             pageObjectManager.getSidePannel().getMyStoreTab();
             getRegisterNewBusinessButton();
         }
+        waitForElementToBeClickable(skipStripeAccountBtn,4);
+        getSkipStripeAccountButton();
+        staticWait(3000);
+//        waitForElementToBeClickable(skipStripeAccountPopUpBtn,5);
+        getSkipBtnOfStripe();
+        scrollToElement(saveBtn);
+        waitForElementToBeClickable(saveBtn,3);
         getSaveButton();
+        waitForElementToBeVisible(blankFieldWarningMsg,3);
+
         //Verify the validation message
-        String PleaseReviewMsg=getText(blankFieldWarningMsg);
+        String pleaseReviewMsg=getText(blankFieldWarningMsg);
+        Assert.assertEquals(pleaseReviewMsg,Constants.pleaseReviewValidation);
+
+        //Verifying maximum length of 'Store Name' field
+        Assert.assertEquals(getAttribute(StoreNameTbx,"maxlength"),"100");
+
+        // Enter Store Name
+        enterText(StoreNameTbx,storeName);
+        enterText(locationDescTbx,Constants.defaultLocationDescription);
+        selectStoreAddress(Constants.storeAddress);
+
+        //Verifying the maximum length of 'Phone' field
+        softAssert.assertEquals(getAttribute(phoneTbx,"maxlength"),"22");
+        actionEnterText(phoneTbx,Constants.validPhoneNumber);
+
+        // Select Time Zone
+
+        //Verifying the minimum, maximum and default values of taxRate field
+       softAssert.assertEquals(getAttribute(taxRateTbx,"min"),"0");
+       softAssert.assertEquals(getAttribute(taxRateTbx,"value"),"0.000");
+       softAssert.assertEquals(getAttribute(taxRateTbx,"max"),"100");
+
+       //  Enter Tax rate
+        actionEnterText(taxRateTbx,Constants.taxRate);
+        scrollToElement(saveBtn);
+        staticWait(3000);
+        getSaveButton();
+        waitForElementToBeVisible(continueBtn,5);
+        getContinueButton();
+        waitForPageLoad();
+        //  //Verify Created Store
+        softAssert.assertEquals(getText(addedStoreName),storeName);
+        softAssert.assertAll();
+
+        pageObjectManager.getSidePannel().getSignOut();
+        pageObjectManager.getAdminPage().selectedStoreDeleted(storeName);
     }
 
 }

@@ -29,7 +29,7 @@ public class BaseTest {
     private static final Logger log = LogManager.getLogger(BaseTest.class); // Logger instance
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     protected static ConfigFileReader configReader;
-    protected SoftAssert softAssert;
+    protected static SoftAssert softAssert;
 
     private By target = null;
 
@@ -724,7 +724,19 @@ public class BaseTest {
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("arguments[0].value = '';", element);
     }
+    public void pressKeys(By locator, String value) {
+        // Create PerformActions instance
+        Actions actions = new Actions(getDriver());
+        // Click the input field to focus
+        actions.click(getDriver().findElement(locator)).perform();
 
-
+        // Send each character of the string one by one
+        for (char ch : value.toCharArray()) {
+            actions.sendKeys(String.valueOf(ch)).perform();
+        }}
 
 }
+
+
+
+
