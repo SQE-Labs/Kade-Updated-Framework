@@ -29,7 +29,7 @@ public class BaseTest {
     private static final Logger log = LogManager.getLogger(BaseTest.class); // Logger instance
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     protected static ConfigFileReader configReader;
-    protected SoftAssert softAssert;
+    protected static SoftAssert softAssert;
 
     private By target = null;
 
@@ -144,7 +144,7 @@ public class BaseTest {
      * @param millis - The wait time in milliseconds.
      */
     public void staticWait(long millis) {
-        log.debug("Static wait for {} ms.", millis);
+        log.debug("Static wait for {} ms.");
         try {
             Thread.sleep(millis);
         } catch (InterruptedException e) {
@@ -198,6 +198,7 @@ public class BaseTest {
         log.info("Clicking on element: {}", locator);
         waitForElementToBeClickable(locator, 10).click();
     }
+
 
     public static void clickElementByJS(By element) {
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
@@ -541,7 +542,7 @@ public class BaseTest {
         waitForLoaderToDisappear(loaderLocator, timeout);
     }
 
-    private static PageObjectManager pageObjectManager = PageObjectManager.getInstance();
+    public static PageObjectManager pageObjectManager = PageObjectManager.getInstance();
 
 
     //login method
@@ -724,7 +725,20 @@ public class BaseTest {
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("arguments[0].value = '';", element);
     }
+    public void pressKeys(By locator, String value) {
+        // Create PerformActions instance
+        Actions actions = new Actions(getDriver());
+        // Click the input field to focus
+        actions.click(getDriver().findElement(locator)).perform();
 
+        // Send each character of the string one by one
+        for (char ch : value.toCharArray()) {
+            actions.sendKeys(String.valueOf(ch)).perform();
+        }}
 
 
 }
+
+
+
+

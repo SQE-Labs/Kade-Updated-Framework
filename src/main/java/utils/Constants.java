@@ -52,12 +52,15 @@ public interface Constants {
     String storeName = "Automation Customer Store";
     String storePhone = "12312312312";
     String taxRate = "10000";
-    String storeAddress = "New York Avenue Northwest, Washington, DC, USA";
+    String storeAddress = "8 Glover Dr, Dix Hills, NY 11746, USA";
     String invalidStoreAddress = "New";
     String addressNotVerifiedToolTip = "Address cannot be verified";
     String invalidStorePhone = "1231";
     String invalidPhoneToolTip = "Invalid phone number";
     String invalidImageFile = "Not a valid image file";
+
+    String description = "Without Stripe Account";
+
 
     //Security and Password page
     String requiredFieldValidation = "This field is required.";
@@ -76,6 +79,7 @@ public interface Constants {
     String validPhoneNumber2 = "1231231233";
     String LeastCharReqMessage = "Please enter at least 6 characters.";
     String diffCellNumber = "12334545676";
+    String pleaseReviewValidation = "Please review the highlighted field(s)";
 
 
     //Rewards Program constants
@@ -132,6 +136,10 @@ public interface Constants {
     String defaultStoreAddress = "8 Glover Dr, Dix Hills, NY 11746, USA";
     String defaultCurrency = "USD";
     String defaultTaxRate = "0.000%";
+
+    String currentPlan= "Current plan";
+    String visavalue = "Visa1111";
+
 
 
 }
