@@ -2,9 +2,12 @@ package pageEvents;
 
 import base.BaseTest;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pageObjects.PageObjectManager;
 import utils.Constants;
+
+import java.io.File;
 
 
 public class MyStorePage extends BaseTest {
@@ -121,9 +124,18 @@ public class MyStorePage extends BaseTest {
     public By storeLogoCreation = By.cssSelector(".d-flex.align-items-center>img");
 
 
+   public By fileInput2 = By.xpath("//input[@type='file' and @accept='image/*']");
+
+
+
+
+
 
 
     // Methods
+    public void getTickIconofImg(){
+        click(checkBtn);
+    }
     public void getRegisterNewBusinessButton(){
         click(registerNewBusinessBtn);
     }
@@ -161,7 +173,9 @@ public class MyStorePage extends BaseTest {
     public void getContinueButton(){
         clickElementByJS(continueBtn);
     }
-
+    public void getStorelogo(){
+        click(storeLogo);
+    }
     public void getSkipForNowButton(){
         click(skipForNowBtn);
     }
@@ -201,9 +215,11 @@ public class MyStorePage extends BaseTest {
     }
     public  String storeName;
 
+
+//*****************************
     public void getStoreCreation(){
          storeName = "AutoStore" + requiredDigits(4);
-        String phone = requiredDigits(10);
+         String phone = requiredDigits(10);
 
         //Step 1: Click on 'My Stores' Tab
         pageObjectManager.getSidePannel().getMangeBusinessTab();
@@ -265,8 +281,8 @@ public class MyStorePage extends BaseTest {
       Assert.assertEquals(storePhoneno, phone);
       Assert.assertEquals(Currency, Constants.defaultCurrency);
       Assert.assertEquals(Taxrate, Constants.defaultTaxRate);
-
     }
+// *************************************************************************************
 
     public void getStoreCreationWithoutStripePayment() {
         storeName = "AutoStore" + requiredDigits(4);
@@ -302,6 +318,20 @@ public class MyStorePage extends BaseTest {
         //Verify the validation message
         String pleaseReviewMsg=getText(blankFieldWarningMsg);
         Assert.assertEquals(pleaseReviewMsg,Constants.pleaseReviewValidation);
+
+        // uploding store image
+
+        WebElement fileInput = getDriver().findElement(By.xpath("//input[@type='file' and @accept='image/*']"));
+
+        // Set the file path to upload
+        String userDir = System.getProperty("user.dir");
+        String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator+ "ImageResources"+ File.separator + "image" + File.separator + "BillDummyImg.jpg";
+        fileInput.sendKeys(filePath);
+        getTickIconofImg();
+
+
+
+        staticWait(3000);
 
         //Verifying maximum length of 'Store Name' field
         Assert.assertEquals(getAttribute(StoreNameTbx,"maxlength"),"100");

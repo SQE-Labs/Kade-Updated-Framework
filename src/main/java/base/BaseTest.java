@@ -199,6 +199,7 @@ public class BaseTest {
         waitForElementToBeClickable(locator, 10).click();
     }
 
+
     public static void clickElementByJS(By element) {
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("arguments[0].click();", getDriver().findElement(element));
@@ -734,6 +735,7 @@ public class BaseTest {
         for (char ch : value.toCharArray()) {
             actions.sendKeys(String.valueOf(ch)).perform();
         }}
+
 
 }
 

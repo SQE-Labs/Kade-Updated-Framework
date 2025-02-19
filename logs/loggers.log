@@ -11423,3 +11423,672 @@
 [INFO ] 2025-02-18 17:23:37.063 [main] BaseTest - Getting text from element: By.cssSelector: .form-group.mb-3>h4
 [INFO ] 2025-02-18 17:23:37.064 [main] BaseTest - Waiting for element to be visible: By.cssSelector: .form-group.mb-3>h4
 [INFO ] 2025-02-18 17:23:39.261 [main] BaseTest - Tearing down WebDriver.
+[INFO ] 2025-02-19 15:35:52.738 [main] BaseTest - Environment set to: qa
+[INFO ] 2025-02-19 15:35:52.755 [main] ConfigFileReader - Reloading ConfigFileReader instance.
+[INFO ] 2025-02-19 15:35:52.755 [main] ConfigFileReader - Creating new instance of ConfigFileReader.
+[INFO ] 2025-02-19 15:35:52.755 [main] ConfigFileReader - Loading configuration for environment: qa
+[INFO ] 2025-02-19 15:35:52.755 [main] ConfigFileReader - Configuration file: config_qa.properties
+[INFO ] 2025-02-19 15:35:52.757 [main] ConfigFileReader - Configuration file loaded successfully: config_qa.properties
+[DEBUG] 2025-02-19 15:35:52.757 [main] BaseTest - Config file reloaded for environment: qa
+[INFO ] 2025-02-19 15:35:52.757 [main] ConfigFileReader - Retrieved property 'url': https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 15:35:52.757 [main] BaseTest - URL loaded from config: https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 15:35:52.789 [main] BaseTest - Setting up WebDriver for browser: chrome, headless: false
+[INFO ] 2025-02-19 15:35:58.996 [main] BaseTest - ChromeDriver initialized.
+[INFO ] 2025-02-19 15:35:59.123 [main] ConfigFileReader - Retrieved property 'url': https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 15:36:04.551 [main] BaseTest - Navigated to URL: https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 15:36:04.573 [main] BaseTest - Implicit wait set to 20 seconds.
+[INFO ] 2025-02-19 15:36:04.580 [main] ConfigFileReader - Retrieved property 'username': 6465551114
+[INFO ] 2025-02-19 15:36:04.580 [main] ConfigFileReader - Retrieved property 'password': Test@123
+[DEBUG] 2025-02-19 15:36:04.581 [main] BaseTest - Attempting to login with username: 6465551114
+[INFO ] 2025-02-19 15:36:04.581 [main] LoginPageEvents - Starting the sign-in process.
+[INFO ] 2025-02-19 15:36:04.582 [main] LoginPageEvents - Entering username: 6465551114
+[INFO ] 2025-02-19 15:36:04.582 [main] BaseTest - Entering text '6465551114' into element: By.cssSelector: input[name='userName']
+[INFO ] 2025-02-19 15:36:04.582 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='userName']
+[INFO ] 2025-02-19 15:36:04.902 [main] LoginPageEvents - Entering password: Test@123
+[INFO ] 2025-02-19 15:36:04.902 [main] BaseTest - Entering text 'Test@123' into element: By.cssSelector: input[name='passWord']
+[INFO ] 2025-02-19 15:36:04.902 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='passWord']
+[INFO ] 2025-02-19 15:36:05.095 [main] LoginPageEvents - Clicking on the Sign-In button.
+[INFO ] 2025-02-19 15:36:05.095 [main] BaseTest - Clicking on element: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[INFO ] 2025-02-19 15:36:05.095 [main] BaseTest - Waiting for element to be clickable: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[INFO ] 2025-02-19 15:36:05.262 [main] LoginPageEvents - Sign-in process completed.
+[DEBUG] 2025-02-19 15:36:05.263 [main] BaseTest - User has successfully logged in and landed on the dashboard
+[INFO ] 2025-02-19 15:36:05.267 [main] HomePageEvents - Verifying the landing page by checking the 'Sign Out' text.
+[INFO ] 2025-02-19 15:36:05.268 [main] BaseTest - Getting text from element: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[INFO ] 2025-02-19 15:36:05.268 [main] BaseTest - Waiting for element to be visible: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[DEBUG] 2025-02-19 15:36:08.236 [main] HomePageEvents - Retrieved 'Sign Out' text: Sign out
+[INFO ] 2025-02-19 15:36:08.241 [main] HomePageEvents - Landing page verified successfully. 'Sign Out' text matches the expected value.
+[INFO ] 2025-02-19 15:36:08.242 [main] BaseTest - Clicking on element: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 15:36:08.242 [main] BaseTest - Waiting for element to be clickable: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 15:36:08.430 [main] BaseTest - Clicking on element: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 15:36:08.430 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 15:36:14.167 [main] BaseTest - Clicking on element: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 15:36:14.167 [main] BaseTest - Waiting for element to be clickable: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 15:36:15.533 [main] BaseTest - Checking if element is displayed: By.xpath: //div[@class='display-none -update-div-']//a
+[WARN ] 2025-02-19 15:36:35.655 [main] BaseTest - Element not found: By.xpath: //div[@class='display-none -update-div-']//a
+[INFO ] 2025-02-19 15:36:35.656 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .btn-lg.fw-bold.w-100.btn.btn-outline-primary
+[INFO ] 2025-02-19 15:36:35.770 [main] BaseTest - Clicking on element: By.cssSelector: .btn-lg.fw-bold.w-100.btn.btn-outline-primary
+[INFO ] 2025-02-19 15:36:35.770 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .btn-lg.fw-bold.w-100.btn.btn-outline-primary
+[DEBUG] 2025-02-19 15:36:35.905 [main] BaseTest - Static wait for {} ms.
+[INFO ] 2025-02-19 15:36:38.908 [main] BaseTest - Clicking on element: By.xpath: //div[@class='modal-footer justify-content-around']//button[text()='Skip']
+[INFO ] 2025-02-19 15:36:38.908 [main] BaseTest - Waiting for element to be clickable: By.xpath: //div[@class='modal-footer justify-content-around']//button[text()='Skip']
+[INFO ] 2025-02-19 15:36:39.276 [main] BaseTest - Scrolling to element: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 15:36:41.378 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 15:36:41.424 [main] BaseTest - Clicking on element: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 15:36:41.424 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 15:36:41.638 [main] BaseTest - Waiting for element to be visible: By.xpath: //p[@class='alert-content']
+[INFO ] 2025-02-19 15:36:41.739 [main] BaseTest - Getting text from element: By.xpath: //p[@class='alert-content']
+[INFO ] 2025-02-19 15:36:41.739 [main] BaseTest - Waiting for element to be visible: By.xpath: //p[@class='alert-content']
+[INFO ] 2025-02-19 15:36:41.794 [main] BaseTest - Clicking on element: By.xpath: //div[@class='display-none -update-div-']//a
+[INFO ] 2025-02-19 15:36:41.794 [main] BaseTest - Waiting for element to be clickable: By.xpath: //div[@class='display-none -update-div-']//a
+[INFO ] 2025-02-19 15:36:41.934 [main] BaseTest - Entering text 'C:\Users\Caelius\IdeaProjects\Kade Updated Framework\src\main\resources\ImageResources\image\dummy-image.jpg' into element: By.xpath: //input[@type='file' and @accept='image/*']
+[INFO ] 2025-02-19 15:36:41.935 [main] BaseTest - Waiting for element to be clickable: By.xpath: //input[@type='file' and @accept='image/*']
+[INFO ] 2025-02-19 15:36:52.190 [main] BaseTest - Tearing down WebDriver.
+[INFO ] 2025-02-19 16:36:43.373 [main] BaseTest - Environment set to: qa
+[INFO ] 2025-02-19 16:36:43.383 [main] ConfigFileReader - Reloading ConfigFileReader instance.
+[INFO ] 2025-02-19 16:36:43.383 [main] ConfigFileReader - Creating new instance of ConfigFileReader.
+[INFO ] 2025-02-19 16:36:43.383 [main] ConfigFileReader - Loading configuration for environment: qa
+[INFO ] 2025-02-19 16:36:43.383 [main] ConfigFileReader - Configuration file: config_qa.properties
+[INFO ] 2025-02-19 16:36:43.385 [main] ConfigFileReader - Configuration file loaded successfully: config_qa.properties
+[DEBUG] 2025-02-19 16:36:43.385 [main] BaseTest - Config file reloaded for environment: qa
+[INFO ] 2025-02-19 16:36:43.385 [main] ConfigFileReader - Retrieved property 'url': https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 16:36:43.385 [main] BaseTest - URL loaded from config: https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 16:36:43.416 [main] BaseTest - Setting up WebDriver for browser: chrome, headless: false
+[INFO ] 2025-02-19 16:36:48.402 [main] BaseTest - ChromeDriver initialized.
+[INFO ] 2025-02-19 16:36:48.475 [main] ConfigFileReader - Retrieved property 'url': https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 16:36:53.168 [main] BaseTest - Navigated to URL: https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 16:36:53.182 [main] BaseTest - Implicit wait set to 20 seconds.
+[INFO ] 2025-02-19 16:36:53.185 [main] ConfigFileReader - Retrieved property 'username': 6465551114
+[INFO ] 2025-02-19 16:36:53.186 [main] ConfigFileReader - Retrieved property 'password': Test@123
+[DEBUG] 2025-02-19 16:36:53.186 [main] BaseTest - Attempting to login with username: 6465551114
+[INFO ] 2025-02-19 16:36:53.186 [main] LoginPageEvents - Starting the sign-in process.
+[INFO ] 2025-02-19 16:36:53.186 [main] LoginPageEvents - Entering username: 6465551114
+[INFO ] 2025-02-19 16:36:53.186 [main] BaseTest - Entering text '6465551114' into element: By.cssSelector: input[name='userName']
+[INFO ] 2025-02-19 16:36:53.187 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='userName']
+[INFO ] 2025-02-19 16:36:53.506 [main] LoginPageEvents - Entering password: Test@123
+[INFO ] 2025-02-19 16:36:53.506 [main] BaseTest - Entering text 'Test@123' into element: By.cssSelector: input[name='passWord']
+[INFO ] 2025-02-19 16:36:53.506 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='passWord']
+[INFO ] 2025-02-19 16:36:53.682 [main] LoginPageEvents - Clicking on the Sign-In button.
+[INFO ] 2025-02-19 16:36:53.682 [main] BaseTest - Clicking on element: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[INFO ] 2025-02-19 16:36:53.682 [main] BaseTest - Waiting for element to be clickable: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[INFO ] 2025-02-19 16:36:53.846 [main] LoginPageEvents - Sign-in process completed.
+[DEBUG] 2025-02-19 16:36:53.846 [main] BaseTest - User has successfully logged in and landed on the dashboard
+[INFO ] 2025-02-19 16:36:53.846 [main] HomePageEvents - Verifying the landing page by checking the 'Sign Out' text.
+[INFO ] 2025-02-19 16:36:53.847 [main] BaseTest - Getting text from element: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[INFO ] 2025-02-19 16:36:53.847 [main] BaseTest - Waiting for element to be visible: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[DEBUG] 2025-02-19 16:36:57.206 [main] HomePageEvents - Retrieved 'Sign Out' text: Sign out
+[INFO ] 2025-02-19 16:36:57.212 [main] HomePageEvents - Landing page verified successfully. 'Sign Out' text matches the expected value.
+[INFO ] 2025-02-19 16:36:57.213 [main] BaseTest - Clicking on element: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:36:57.214 [main] BaseTest - Waiting for element to be clickable: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:36:57.387 [main] BaseTest - Clicking on element: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:36:57.388 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:37:03.133 [main] BaseTest - Clicking on element: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 16:37:03.133 [main] BaseTest - Waiting for element to be clickable: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 16:37:04.349 [main] BaseTest - Checking if element is displayed: By.xpath: //div[@class='display-none -update-div-']//a
+[INFO ] 2025-02-19 16:37:06.028 [main] BaseTest - Scrolling to element: By.xpath: //button[text()='Delete the store']
+[INFO ] 2025-02-19 16:37:06.064 [main] BaseTest - Waiting for element to be clickable: By.xpath: //button[text()='Delete the store']
+[INFO ] 2025-02-19 16:37:06.131 [main] BaseTest - Clicking on element: By.xpath: //button[text()='Delete the store']
+[INFO ] 2025-02-19 16:37:06.132 [main] BaseTest - Waiting for element to be clickable: By.xpath: //button[text()='Delete the store']
+[INFO ] 2025-02-19 16:37:06.332 [main] BaseTest - Clicking on element: By.xpath: //i[@class='fal fa-thumbs-up text-white']
+[INFO ] 2025-02-19 16:37:06.333 [main] BaseTest - Waiting for element to be clickable: By.xpath: //i[@class='fal fa-thumbs-up text-white']
+[DEBUG] 2025-02-19 16:37:06.549 [main] BaseTest - Static wait for {} ms.
+[INFO ] 2025-02-19 16:37:09.563 [main] BaseTest - Scrolling to element: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:37:09.628 [main] BaseTest - Clicking on element: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:37:09.629 [main] BaseTest - Waiting for element to be clickable: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:37:09.895 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:37:09.960 [main] BaseTest - Clicking on element: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:37:09.963 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:37:17.130 [main] BaseTest - Clicking on element: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 16:37:17.130 [main] BaseTest - Waiting for element to be clickable: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 16:37:18.415 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .btn-lg.fw-bold.w-100.btn.btn-outline-primary
+[INFO ] 2025-02-19 16:37:20.674 [main] BaseTest - Clicking on element: By.cssSelector: .btn-lg.fw-bold.w-100.btn.btn-outline-primary
+[INFO ] 2025-02-19 16:37:20.675 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .btn-lg.fw-bold.w-100.btn.btn-outline-primary
+[DEBUG] 2025-02-19 16:37:20.830 [main] BaseTest - Static wait for {} ms.
+[INFO ] 2025-02-19 16:37:23.833 [main] BaseTest - Clicking on element: By.xpath: //div[@class='modal-footer justify-content-around']//button[text()='Skip']
+[INFO ] 2025-02-19 16:37:23.833 [main] BaseTest - Waiting for element to be clickable: By.xpath: //div[@class='modal-footer justify-content-around']//button[text()='Skip']
+[INFO ] 2025-02-19 16:37:24.073 [main] BaseTest - Scrolling to element: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:37:25.871 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:37:25.960 [main] BaseTest - Clicking on element: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:37:25.960 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:37:26.103 [main] BaseTest - Waiting for element to be visible: By.xpath: //p[@class='alert-content']
+[INFO ] 2025-02-19 16:37:26.152 [main] BaseTest - Getting text from element: By.xpath: //p[@class='alert-content']
+[INFO ] 2025-02-19 16:37:26.152 [main] BaseTest - Waiting for element to be visible: By.xpath: //p[@class='alert-content']
+[INFO ] 2025-02-19 16:37:26.203 [main] BaseTest - Clicking on element: By.xpath: //div[@class='display-none -update-div-']//a
+[INFO ] 2025-02-19 16:37:26.203 [main] BaseTest - Waiting for element to be clickable: By.xpath: //div[@class='display-none -update-div-']//a
+[INFO ] 2025-02-19 16:37:26.499 [main] BaseTest - Getting attribute 'maxlength' from element: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 16:37:26.499 [main] BaseTest - Waiting for element to be visible: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 16:37:26.565 [main] BaseTest - Entering text 'AutoStore8933' into element: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 16:37:26.566 [main] BaseTest - Waiting for element to be clickable: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 16:37:26.854 [main] BaseTest - Entering text 'Dix Hills' into element: By.xpath: //input[@name='description']
+[INFO ] 2025-02-19 16:37:26.854 [main] BaseTest - Waiting for element to be clickable: By.xpath: //input[@name='description']
+[INFO ] 2025-02-19 16:37:27.533 [main] BaseTest - Waiting for element to be visible: By.cssSelector: .form-control.pac-target-input
+[INFO ] 2025-02-19 16:37:28.718 [main] BaseTest - Clicking on element: By.cssSelector: .form-control.pac-target-input
+[INFO ] 2025-02-19 16:37:28.718 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .form-control.pac-target-input
+[INFO ] 2025-02-19 16:37:28.892 [main] BaseTest - Clicking on element: By.xpath: (//div[@class='pac-item'])[1]
+[INFO ] 2025-02-19 16:37:28.892 [main] BaseTest - Waiting for element to be clickable: By.xpath: (//div[@class='pac-item'])[1]
+[INFO ] 2025-02-19 16:37:29.852 [main] BaseTest - Getting attribute 'maxlength' from element: By.xpath: //input[@name='phone']
+[INFO ] 2025-02-19 16:37:29.852 [main] BaseTest - Waiting for element to be visible: By.xpath: //input[@name='phone']
+[INFO ] 2025-02-19 16:37:30.242 [main] BaseTest - Getting attribute 'min' from element: By.xpath: //input[@name='taxRate']
+[INFO ] 2025-02-19 16:37:30.242 [main] BaseTest - Waiting for element to be visible: By.xpath: //input[@name='taxRate']
+[INFO ] 2025-02-19 16:37:30.307 [main] BaseTest - Getting attribute 'value' from element: By.xpath: //input[@name='taxRate']
+[INFO ] 2025-02-19 16:37:30.307 [main] BaseTest - Waiting for element to be visible: By.xpath: //input[@name='taxRate']
+[INFO ] 2025-02-19 16:37:30.384 [main] BaseTest - Getting attribute 'max' from element: By.xpath: //input[@name='taxRate']
+[INFO ] 2025-02-19 16:37:30.384 [main] BaseTest - Waiting for element to be visible: By.xpath: //input[@name='taxRate']
+[INFO ] 2025-02-19 16:37:30.808 [main] BaseTest - Scrolling to element: By.cssSelector: .-btn-save-.btn.btn-primary
+[DEBUG] 2025-02-19 16:37:30.841 [main] BaseTest - Static wait for {} ms.
+[INFO ] 2025-02-19 16:37:33.843 [main] BaseTest - Clicking on element: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:37:33.844 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:37:34.115 [main] BaseTest - Waiting for element to be visible: By.xpath: //button[text()='Continue']
+[INFO ] 2025-02-19 16:37:35.622 [main] BaseTest - Waiting for page to load completely.
+[INFO ] 2025-02-19 16:37:35.641 [main] BaseTest - Getting text from element: By.cssSelector: .form-group.mb-3>h4
+[INFO ] 2025-02-19 16:37:35.641 [main] BaseTest - Waiting for element to be visible: By.cssSelector: .form-group.mb-3>h4
+[INFO ] 2025-02-19 16:37:38.258 [main] BaseTest - Clicking on element: By.xpath: //a[text()='Sign out']
+[INFO ] 2025-02-19 16:37:38.259 [main] BaseTest - Waiting for element to be clickable: By.xpath: //a[text()='Sign out']
+[INFO ] 2025-02-19 16:37:39.496 [main] BaseTest - Starting Login test
+[INFO ] 2025-02-19 16:37:39.496 [main] ConfigFileReader - Retrieved property 'admin': 6465551113
+[INFO ] 2025-02-19 16:37:39.497 [main] ConfigFileReader - Retrieved property 'password': Test@123
+[INFO ] 2025-02-19 16:37:39.497 [main] LoginPageEvents - Starting the sign-in process.
+[INFO ] 2025-02-19 16:37:39.497 [main] LoginPageEvents - Entering username: 6465551113
+[INFO ] 2025-02-19 16:37:39.498 [main] BaseTest - Entering text '6465551113' into element: By.cssSelector: input[name='userName']
+[INFO ] 2025-02-19 16:37:39.498 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='userName']
+[INFO ] 2025-02-19 16:37:39.706 [main] LoginPageEvents - Entering password: Test@123
+[INFO ] 2025-02-19 16:37:39.706 [main] BaseTest - Entering text 'Test@123' into element: By.cssSelector: input[name='passWord']
+[INFO ] 2025-02-19 16:37:39.706 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='passWord']
+[INFO ] 2025-02-19 16:37:39.893 [main] LoginPageEvents - Clicking on the Sign-In button.
+[INFO ] 2025-02-19 16:37:39.893 [main] BaseTest - Clicking on element: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[INFO ] 2025-02-19 16:37:39.893 [main] BaseTest - Waiting for element to be clickable: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[INFO ] 2025-02-19 16:37:40.043 [main] LoginPageEvents - Sign-in process completed.
+[INFO ] 2025-02-19 16:37:40.044 [main] HomePageEvents - Verifying the landing page by checking the 'Sign Out' text.
+[INFO ] 2025-02-19 16:37:40.044 [main] BaseTest - Getting text from element: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[INFO ] 2025-02-19 16:37:40.044 [main] BaseTest - Waiting for element to be visible: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[DEBUG] 2025-02-19 16:37:43.476 [main] HomePageEvents - Retrieved 'Sign Out' text: Sign out
+[INFO ] 2025-02-19 16:37:43.476 [main] HomePageEvents - Landing page verified successfully. 'Sign Out' text matches the expected value.
+[INFO ] 2025-02-19 16:37:43.476 [main] BaseTest - Clicking on element: By.xpath: //a[@href='/Admin/Stores']
+[INFO ] 2025-02-19 16:37:43.476 [main] BaseTest - Waiting for element to be clickable: By.xpath: //a[@href='/Admin/Stores']
+[INFO ] 2025-02-19 16:37:44.854 [main] BaseTest - Clicking on element: By.cssSelector: .ps-1.pt-2>a
+[INFO ] 2025-02-19 16:37:44.854 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .ps-1.pt-2>a
+[INFO ] 2025-02-19 16:37:45.089 [main] BaseTest - Entering text 'AutoStore8933' into element: By.cssSelector: input[name="name"].form-control.max-20c
+[INFO ] 2025-02-19 16:37:45.089 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name="name"].form-control.max-20c
+[INFO ] 2025-02-19 16:37:45.608 [main] BaseTest - Clicking on element: By.cssSelector: button.btn.btn-outline-primary.btn-sm
+[INFO ] 2025-02-19 16:37:45.609 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: button.btn.btn-outline-primary.btn-sm
+[INFO ] 2025-02-19 16:37:46.512 [main] BaseTest - Clicking on element: By.cssSelector: .d-flex.flex-column.overflow-hidden .ms-2.text-truncate
+[INFO ] 2025-02-19 16:37:46.512 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .d-flex.flex-column.overflow-hidden .ms-2.text-truncate
+[INFO ] 2025-02-19 16:37:49.016 [main] BaseTest - Clicking on element: By.cssSelector: .fal.fa-circle.custom-check-off 
+[INFO ] 2025-02-19 16:37:49.017 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .fal.fa-circle.custom-check-off 
+[INFO ] 2025-02-19 16:37:50.355 [main] BaseTest - Tearing down WebDriver.
+[INFO ] 2025-02-19 16:45:58.507 [main] BaseTest - Environment set to: qa
+[INFO ] 2025-02-19 16:45:58.515 [main] ConfigFileReader - Reloading ConfigFileReader instance.
+[INFO ] 2025-02-19 16:45:58.515 [main] ConfigFileReader - Creating new instance of ConfigFileReader.
+[INFO ] 2025-02-19 16:45:58.516 [main] ConfigFileReader - Loading configuration for environment: qa
+[INFO ] 2025-02-19 16:45:58.516 [main] ConfigFileReader - Configuration file: config_qa.properties
+[INFO ] 2025-02-19 16:45:58.517 [main] ConfigFileReader - Configuration file loaded successfully: config_qa.properties
+[DEBUG] 2025-02-19 16:45:58.517 [main] BaseTest - Config file reloaded for environment: qa
+[INFO ] 2025-02-19 16:45:58.517 [main] ConfigFileReader - Retrieved property 'url': https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 16:45:58.517 [main] BaseTest - URL loaded from config: https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 16:45:58.545 [main] BaseTest - Setting up WebDriver for browser: chrome, headless: false
+[INFO ] 2025-02-19 16:46:02.447 [main] BaseTest - ChromeDriver initialized.
+[INFO ] 2025-02-19 16:46:02.620 [main] ConfigFileReader - Retrieved property 'url': https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 16:46:07.322 [main] BaseTest - Navigated to URL: https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 16:46:07.335 [main] BaseTest - Implicit wait set to 20 seconds.
+[INFO ] 2025-02-19 16:46:07.340 [main] ConfigFileReader - Retrieved property 'username': 6465551114
+[INFO ] 2025-02-19 16:46:07.340 [main] ConfigFileReader - Retrieved property 'password': Test@123
+[DEBUG] 2025-02-19 16:46:07.340 [main] BaseTest - Attempting to login with username: 6465551114
+[INFO ] 2025-02-19 16:46:07.341 [main] LoginPageEvents - Starting the sign-in process.
+[INFO ] 2025-02-19 16:46:07.341 [main] LoginPageEvents - Entering username: 6465551114
+[INFO ] 2025-02-19 16:46:07.341 [main] BaseTest - Entering text '6465551114' into element: By.cssSelector: input[name='userName']
+[INFO ] 2025-02-19 16:46:07.342 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='userName']
+[INFO ] 2025-02-19 16:46:07.684 [main] LoginPageEvents - Entering password: Test@123
+[INFO ] 2025-02-19 16:46:07.685 [main] BaseTest - Entering text 'Test@123' into element: By.cssSelector: input[name='passWord']
+[INFO ] 2025-02-19 16:46:07.685 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='passWord']
+[INFO ] 2025-02-19 16:46:07.867 [main] LoginPageEvents - Clicking on the Sign-In button.
+[INFO ] 2025-02-19 16:46:07.867 [main] BaseTest - Clicking on element: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[INFO ] 2025-02-19 16:46:07.867 [main] BaseTest - Waiting for element to be clickable: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[INFO ] 2025-02-19 16:46:08.024 [main] LoginPageEvents - Sign-in process completed.
+[DEBUG] 2025-02-19 16:46:08.024 [main] BaseTest - User has successfully logged in and landed on the dashboard
+[INFO ] 2025-02-19 16:46:08.024 [main] HomePageEvents - Verifying the landing page by checking the 'Sign Out' text.
+[INFO ] 2025-02-19 16:46:08.030 [main] BaseTest - Getting text from element: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[INFO ] 2025-02-19 16:46:08.030 [main] BaseTest - Waiting for element to be visible: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[DEBUG] 2025-02-19 16:46:12.720 [main] HomePageEvents - Retrieved 'Sign Out' text: Sign out
+[INFO ] 2025-02-19 16:46:12.724 [main] HomePageEvents - Landing page verified successfully. 'Sign Out' text matches the expected value.
+[INFO ] 2025-02-19 16:46:12.724 [main] BaseTest - Clicking on element: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:46:12.724 [main] BaseTest - Waiting for element to be clickable: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:46:12.909 [main] BaseTest - Clicking on element: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:46:12.909 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:46:18.695 [main] BaseTest - Clicking on element: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 16:46:18.696 [main] BaseTest - Waiting for element to be clickable: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 16:46:20.074 [main] BaseTest - Checking if element is displayed: By.xpath: //div[@class='display-none -update-div-']//a
+[WARN ] 2025-02-19 16:46:40.122 [main] BaseTest - Element not found: By.xpath: //div[@class='display-none -update-div-']//a
+[INFO ] 2025-02-19 16:46:40.123 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .btn-lg.fw-bold.w-100.btn.btn-outline-primary
+[INFO ] 2025-02-19 16:46:40.181 [main] BaseTest - Clicking on element: By.cssSelector: .btn-lg.fw-bold.w-100.btn.btn-outline-primary
+[INFO ] 2025-02-19 16:46:40.181 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .btn-lg.fw-bold.w-100.btn.btn-outline-primary
+[DEBUG] 2025-02-19 16:46:40.314 [main] BaseTest - Static wait for {} ms.
+[INFO ] 2025-02-19 16:46:43.327 [main] BaseTest - Clicking on element: By.xpath: //div[@class='modal-footer justify-content-around']//button[text()='Skip']
+[INFO ] 2025-02-19 16:46:43.328 [main] BaseTest - Waiting for element to be clickable: By.xpath: //div[@class='modal-footer justify-content-around']//button[text()='Skip']
+[INFO ] 2025-02-19 16:46:43.637 [main] BaseTest - Scrolling to element: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:46:45.606 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:46:45.673 [main] BaseTest - Clicking on element: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:46:45.674 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:46:45.842 [main] BaseTest - Waiting for element to be visible: By.xpath: //p[@class='alert-content']
+[INFO ] 2025-02-19 16:46:45.889 [main] BaseTest - Getting text from element: By.xpath: //p[@class='alert-content']
+[INFO ] 2025-02-19 16:46:45.890 [main] BaseTest - Waiting for element to be visible: By.xpath: //p[@class='alert-content']
+[INFO ] 2025-02-19 16:46:46.079 [main] BaseTest - Getting attribute 'maxlength' from element: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 16:46:46.079 [main] BaseTest - Waiting for element to be visible: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 16:46:46.211 [main] BaseTest - Entering text 'AutoStore8479' into element: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 16:46:46.211 [main] BaseTest - Waiting for element to be clickable: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 16:46:46.474 [main] BaseTest - Entering text 'Dix Hills' into element: By.xpath: //input[@name='description']
+[INFO ] 2025-02-19 16:46:46.474 [main] BaseTest - Waiting for element to be clickable: By.xpath: //input[@name='description']
+[INFO ] 2025-02-19 16:46:48.036 [main] BaseTest - Tearing down WebDriver.
+[INFO ] 2025-02-19 16:48:55.133 [main] BaseTest - Environment set to: qa
+[INFO ] 2025-02-19 16:48:55.141 [main] ConfigFileReader - Reloading ConfigFileReader instance.
+[INFO ] 2025-02-19 16:48:55.141 [main] ConfigFileReader - Creating new instance of ConfigFileReader.
+[INFO ] 2025-02-19 16:48:55.142 [main] ConfigFileReader - Loading configuration for environment: qa
+[INFO ] 2025-02-19 16:48:55.142 [main] ConfigFileReader - Configuration file: config_qa.properties
+[INFO ] 2025-02-19 16:48:55.144 [main] ConfigFileReader - Configuration file loaded successfully: config_qa.properties
+[DEBUG] 2025-02-19 16:48:55.144 [main] BaseTest - Config file reloaded for environment: qa
+[INFO ] 2025-02-19 16:48:55.144 [main] ConfigFileReader - Retrieved property 'url': https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 16:48:55.144 [main] BaseTest - URL loaded from config: https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 16:48:55.167 [main] BaseTest - Setting up WebDriver for browser: chrome, headless: false
+[INFO ] 2025-02-19 16:48:59.186 [main] BaseTest - ChromeDriver initialized.
+[INFO ] 2025-02-19 16:48:59.337 [main] ConfigFileReader - Retrieved property 'url': https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 16:49:05.917 [main] BaseTest - Navigated to URL: https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 16:49:05.931 [main] BaseTest - Implicit wait set to 20 seconds.
+[INFO ] 2025-02-19 16:49:05.936 [main] ConfigFileReader - Retrieved property 'username': 6465551114
+[INFO ] 2025-02-19 16:49:05.936 [main] ConfigFileReader - Retrieved property 'password': Test@123
+[DEBUG] 2025-02-19 16:49:05.937 [main] BaseTest - Attempting to login with username: 6465551114
+[INFO ] 2025-02-19 16:49:05.938 [main] LoginPageEvents - Starting the sign-in process.
+[INFO ] 2025-02-19 16:49:05.938 [main] LoginPageEvents - Entering username: 6465551114
+[INFO ] 2025-02-19 16:49:05.938 [main] BaseTest - Entering text '6465551114' into element: By.cssSelector: input[name='userName']
+[INFO ] 2025-02-19 16:49:05.938 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='userName']
+[INFO ] 2025-02-19 16:49:06.283 [main] LoginPageEvents - Entering password: Test@123
+[INFO ] 2025-02-19 16:49:06.283 [main] BaseTest - Entering text 'Test@123' into element: By.cssSelector: input[name='passWord']
+[INFO ] 2025-02-19 16:49:06.283 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='passWord']
+[INFO ] 2025-02-19 16:49:06.509 [main] LoginPageEvents - Clicking on the Sign-In button.
+[INFO ] 2025-02-19 16:49:06.510 [main] BaseTest - Clicking on element: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[INFO ] 2025-02-19 16:49:06.510 [main] BaseTest - Waiting for element to be clickable: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[INFO ] 2025-02-19 16:49:06.686 [main] LoginPageEvents - Sign-in process completed.
+[DEBUG] 2025-02-19 16:49:06.686 [main] BaseTest - User has successfully logged in and landed on the dashboard
+[INFO ] 2025-02-19 16:49:06.688 [main] HomePageEvents - Verifying the landing page by checking the 'Sign Out' text.
+[INFO ] 2025-02-19 16:49:06.689 [main] BaseTest - Getting text from element: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[INFO ] 2025-02-19 16:49:06.689 [main] BaseTest - Waiting for element to be visible: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[DEBUG] 2025-02-19 16:49:10.106 [main] HomePageEvents - Retrieved 'Sign Out' text: Sign out
+[INFO ] 2025-02-19 16:49:10.112 [main] HomePageEvents - Landing page verified successfully. 'Sign Out' text matches the expected value.
+[INFO ] 2025-02-19 16:49:10.112 [main] BaseTest - Clicking on element: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:49:10.112 [main] BaseTest - Waiting for element to be clickable: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:49:10.315 [main] BaseTest - Clicking on element: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:49:10.315 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:49:18.995 [main] BaseTest - Clicking on element: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 16:49:18.995 [main] BaseTest - Waiting for element to be clickable: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 16:49:20.290 [main] BaseTest - Checking if element is displayed: By.xpath: //div[@class='display-none -update-div-']//a
+[INFO ] 2025-02-19 16:49:22.115 [main] BaseTest - Scrolling to element: By.xpath: //button[text()='Delete the store']
+[INFO ] 2025-02-19 16:49:22.210 [main] BaseTest - Waiting for element to be clickable: By.xpath: //button[text()='Delete the store']
+[INFO ] 2025-02-19 16:49:22.286 [main] BaseTest - Clicking on element: By.xpath: //button[text()='Delete the store']
+[INFO ] 2025-02-19 16:49:22.286 [main] BaseTest - Waiting for element to be clickable: By.xpath: //button[text()='Delete the store']
+[INFO ] 2025-02-19 16:49:22.510 [main] BaseTest - Clicking on element: By.xpath: //i[@class='fal fa-thumbs-up text-white']
+[INFO ] 2025-02-19 16:49:22.510 [main] BaseTest - Waiting for element to be clickable: By.xpath: //i[@class='fal fa-thumbs-up text-white']
+[DEBUG] 2025-02-19 16:49:22.669 [main] BaseTest - Static wait for {} ms.
+[INFO ] 2025-02-19 16:49:25.676 [main] BaseTest - Scrolling to element: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:49:25.724 [main] BaseTest - Clicking on element: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:49:25.724 [main] BaseTest - Waiting for element to be clickable: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:49:25.941 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:49:26.014 [main] BaseTest - Clicking on element: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:49:26.014 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:49:33.169 [main] BaseTest - Clicking on element: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 16:49:33.169 [main] BaseTest - Waiting for element to be clickable: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 16:49:34.304 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .btn-lg.fw-bold.w-100.btn.btn-outline-primary
+[INFO ] 2025-02-19 16:49:36.616 [main] BaseTest - Clicking on element: By.cssSelector: .btn-lg.fw-bold.w-100.btn.btn-outline-primary
+[INFO ] 2025-02-19 16:49:36.617 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .btn-lg.fw-bold.w-100.btn.btn-outline-primary
+[DEBUG] 2025-02-19 16:49:36.882 [main] BaseTest - Static wait for {} ms.
+[INFO ] 2025-02-19 16:49:39.898 [main] BaseTest - Clicking on element: By.xpath: //div[@class='modal-footer justify-content-around']//button[text()='Skip']
+[INFO ] 2025-02-19 16:49:39.899 [main] BaseTest - Waiting for element to be clickable: By.xpath: //div[@class='modal-footer justify-content-around']//button[text()='Skip']
+[INFO ] 2025-02-19 16:49:40.186 [main] BaseTest - Scrolling to element: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:49:41.957 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:49:42.018 [main] BaseTest - Clicking on element: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:49:42.018 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:49:42.186 [main] BaseTest - Waiting for element to be visible: By.xpath: //p[@class='alert-content']
+[INFO ] 2025-02-19 16:49:42.244 [main] BaseTest - Getting text from element: By.xpath: //p[@class='alert-content']
+[INFO ] 2025-02-19 16:49:42.244 [main] BaseTest - Waiting for element to be visible: By.xpath: //p[@class='alert-content']
+[DEBUG] 2025-02-19 16:49:42.360 [main] BaseTest - Static wait for {} ms.
+[INFO ] 2025-02-19 16:49:45.373 [main] BaseTest - Getting attribute 'maxlength' from element: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 16:49:45.374 [main] BaseTest - Waiting for element to be visible: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 16:49:45.473 [main] BaseTest - Entering text 'AutoStore4828' into element: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 16:49:45.473 [main] BaseTest - Waiting for element to be clickable: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 16:49:45.744 [main] BaseTest - Tearing down WebDriver.
+[INFO ] 2025-02-19 16:49:59.798 [main] BaseTest - Environment set to: qa
+[INFO ] 2025-02-19 16:49:59.806 [main] ConfigFileReader - Reloading ConfigFileReader instance.
+[INFO ] 2025-02-19 16:49:59.806 [main] ConfigFileReader - Creating new instance of ConfigFileReader.
+[INFO ] 2025-02-19 16:49:59.806 [main] ConfigFileReader - Loading configuration for environment: qa
+[INFO ] 2025-02-19 16:49:59.806 [main] ConfigFileReader - Configuration file: config_qa.properties
+[INFO ] 2025-02-19 16:49:59.808 [main] ConfigFileReader - Configuration file loaded successfully: config_qa.properties
+[DEBUG] 2025-02-19 16:49:59.808 [main] BaseTest - Config file reloaded for environment: qa
+[INFO ] 2025-02-19 16:49:59.808 [main] ConfigFileReader - Retrieved property 'url': https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 16:49:59.809 [main] BaseTest - URL loaded from config: https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 16:49:59.834 [main] BaseTest - Setting up WebDriver for browser: chrome, headless: false
+[INFO ] 2025-02-19 16:50:03.475 [main] BaseTest - ChromeDriver initialized.
+[INFO ] 2025-02-19 16:50:03.567 [main] ConfigFileReader - Retrieved property 'url': https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 16:50:08.268 [main] BaseTest - Navigated to URL: https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 16:50:08.290 [main] BaseTest - Implicit wait set to 20 seconds.
+[INFO ] 2025-02-19 16:50:08.293 [main] ConfigFileReader - Retrieved property 'username': 6465551114
+[INFO ] 2025-02-19 16:50:08.294 [main] ConfigFileReader - Retrieved property 'password': Test@123
+[DEBUG] 2025-02-19 16:50:08.294 [main] BaseTest - Attempting to login with username: 6465551114
+[INFO ] 2025-02-19 16:50:08.294 [main] LoginPageEvents - Starting the sign-in process.
+[INFO ] 2025-02-19 16:50:08.294 [main] LoginPageEvents - Entering username: 6465551114
+[INFO ] 2025-02-19 16:50:08.295 [main] BaseTest - Entering text '6465551114' into element: By.cssSelector: input[name='userName']
+[INFO ] 2025-02-19 16:50:08.295 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='userName']
+[INFO ] 2025-02-19 16:50:08.600 [main] LoginPageEvents - Entering password: Test@123
+[INFO ] 2025-02-19 16:50:08.600 [main] BaseTest - Entering text 'Test@123' into element: By.cssSelector: input[name='passWord']
+[INFO ] 2025-02-19 16:50:08.600 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='passWord']
+[INFO ] 2025-02-19 16:50:08.781 [main] LoginPageEvents - Clicking on the Sign-In button.
+[INFO ] 2025-02-19 16:50:08.782 [main] BaseTest - Clicking on element: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[INFO ] 2025-02-19 16:50:08.782 [main] BaseTest - Waiting for element to be clickable: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[INFO ] 2025-02-19 16:50:08.949 [main] LoginPageEvents - Sign-in process completed.
+[DEBUG] 2025-02-19 16:50:08.950 [main] BaseTest - User has successfully logged in and landed on the dashboard
+[INFO ] 2025-02-19 16:50:08.950 [main] HomePageEvents - Verifying the landing page by checking the 'Sign Out' text.
+[INFO ] 2025-02-19 16:50:08.950 [main] BaseTest - Getting text from element: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[INFO ] 2025-02-19 16:50:08.950 [main] BaseTest - Waiting for element to be visible: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[DEBUG] 2025-02-19 16:50:13.280 [main] HomePageEvents - Retrieved 'Sign Out' text: Sign out
+[INFO ] 2025-02-19 16:50:13.285 [main] HomePageEvents - Landing page verified successfully. 'Sign Out' text matches the expected value.
+[INFO ] 2025-02-19 16:50:13.285 [main] BaseTest - Clicking on element: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:50:13.285 [main] BaseTest - Waiting for element to be clickable: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:50:13.568 [main] BaseTest - Clicking on element: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:50:13.568 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:50:21.571 [main] BaseTest - Clicking on element: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 16:50:21.571 [main] BaseTest - Waiting for element to be clickable: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 16:50:22.906 [main] BaseTest - Checking if element is displayed: By.xpath: //div[@class='display-none -update-div-']//a
+[INFO ] 2025-02-19 16:50:24.653 [main] BaseTest - Scrolling to element: By.xpath: //button[text()='Delete the store']
+[INFO ] 2025-02-19 16:50:24.687 [main] BaseTest - Waiting for element to be clickable: By.xpath: //button[text()='Delete the store']
+[INFO ] 2025-02-19 16:50:24.732 [main] BaseTest - Clicking on element: By.xpath: //button[text()='Delete the store']
+[INFO ] 2025-02-19 16:50:24.732 [main] BaseTest - Waiting for element to be clickable: By.xpath: //button[text()='Delete the store']
+[INFO ] 2025-02-19 16:50:24.933 [main] BaseTest - Clicking on element: By.xpath: //i[@class='fal fa-thumbs-up text-white']
+[INFO ] 2025-02-19 16:50:24.933 [main] BaseTest - Waiting for element to be clickable: By.xpath: //i[@class='fal fa-thumbs-up text-white']
+[DEBUG] 2025-02-19 16:50:25.100 [main] BaseTest - Static wait for {} ms.
+[INFO ] 2025-02-19 16:50:28.115 [main] BaseTest - Scrolling to element: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:50:28.208 [main] BaseTest - Clicking on element: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:50:28.209 [main] BaseTest - Waiting for element to be clickable: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:50:28.456 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:50:28.521 [main] BaseTest - Clicking on element: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:50:28.521 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:50:35.814 [main] BaseTest - Clicking on element: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 16:50:35.815 [main] BaseTest - Waiting for element to be clickable: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 16:50:36.968 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .btn-lg.fw-bold.w-100.btn.btn-outline-primary
+[INFO ] 2025-02-19 16:50:38.843 [main] BaseTest - Clicking on element: By.cssSelector: .btn-lg.fw-bold.w-100.btn.btn-outline-primary
+[INFO ] 2025-02-19 16:50:38.844 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .btn-lg.fw-bold.w-100.btn.btn-outline-primary
+[DEBUG] 2025-02-19 16:50:38.991 [main] BaseTest - Static wait for {} ms.
+[INFO ] 2025-02-19 16:50:42.003 [main] BaseTest - Clicking on element: By.xpath: //div[@class='modal-footer justify-content-around']//button[text()='Skip']
+[INFO ] 2025-02-19 16:50:42.005 [main] BaseTest - Waiting for element to be clickable: By.xpath: //div[@class='modal-footer justify-content-around']//button[text()='Skip']
+[INFO ] 2025-02-19 16:50:42.356 [main] BaseTest - Scrolling to element: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:50:44.028 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:50:44.102 [main] BaseTest - Clicking on element: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:50:44.102 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:50:44.261 [main] BaseTest - Waiting for element to be visible: By.xpath: //p[@class='alert-content']
+[INFO ] 2025-02-19 16:50:44.313 [main] BaseTest - Getting text from element: By.xpath: //p[@class='alert-content']
+[INFO ] 2025-02-19 16:50:44.313 [main] BaseTest - Waiting for element to be visible: By.xpath: //p[@class='alert-content']
+[DEBUG] 2025-02-19 16:50:44.480 [main] BaseTest - Static wait for {} ms.
+[INFO ] 2025-02-19 16:50:47.493 [main] BaseTest - Getting attribute 'maxlength' from element: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 16:50:47.494 [main] BaseTest - Waiting for element to be visible: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 16:50:47.649 [main] BaseTest - Entering text 'AutoStore3385' into element: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 16:50:47.650 [main] BaseTest - Waiting for element to be clickable: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 16:50:48.009 [main] BaseTest - Tearing down WebDriver.
+[INFO ] 2025-02-19 16:55:18.294 [main] BaseTest - Environment set to: qa
+[INFO ] 2025-02-19 16:55:18.299 [main] ConfigFileReader - Reloading ConfigFileReader instance.
+[INFO ] 2025-02-19 16:55:18.300 [main] ConfigFileReader - Creating new instance of ConfigFileReader.
+[INFO ] 2025-02-19 16:55:18.300 [main] ConfigFileReader - Loading configuration for environment: qa
+[INFO ] 2025-02-19 16:55:18.300 [main] ConfigFileReader - Configuration file: config_qa.properties
+[INFO ] 2025-02-19 16:55:18.301 [main] ConfigFileReader - Configuration file loaded successfully: config_qa.properties
+[DEBUG] 2025-02-19 16:55:18.301 [main] BaseTest - Config file reloaded for environment: qa
+[INFO ] 2025-02-19 16:55:18.301 [main] ConfigFileReader - Retrieved property 'url': https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 16:55:18.301 [main] BaseTest - URL loaded from config: https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 16:55:18.321 [main] BaseTest - Setting up WebDriver for browser: chrome, headless: false
+[INFO ] 2025-02-19 16:55:22.217 [main] BaseTest - ChromeDriver initialized.
+[INFO ] 2025-02-19 16:55:22.328 [main] ConfigFileReader - Retrieved property 'url': https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 16:55:28.357 [main] BaseTest - Navigated to URL: https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 16:55:28.374 [main] BaseTest - Implicit wait set to 20 seconds.
+[INFO ] 2025-02-19 16:55:28.378 [main] ConfigFileReader - Retrieved property 'username': 6465551114
+[INFO ] 2025-02-19 16:55:28.379 [main] ConfigFileReader - Retrieved property 'password': Test@123
+[DEBUG] 2025-02-19 16:55:28.379 [main] BaseTest - Attempting to login with username: 6465551114
+[INFO ] 2025-02-19 16:55:28.380 [main] LoginPageEvents - Starting the sign-in process.
+[INFO ] 2025-02-19 16:55:28.382 [main] LoginPageEvents - Entering username: 6465551114
+[INFO ] 2025-02-19 16:55:28.383 [main] BaseTest - Entering text '6465551114' into element: By.cssSelector: input[name='userName']
+[INFO ] 2025-02-19 16:55:28.383 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='userName']
+[INFO ] 2025-02-19 16:55:28.700 [main] LoginPageEvents - Entering password: Test@123
+[INFO ] 2025-02-19 16:55:28.700 [main] BaseTest - Entering text 'Test@123' into element: By.cssSelector: input[name='passWord']
+[INFO ] 2025-02-19 16:55:28.700 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='passWord']
+[INFO ] 2025-02-19 16:55:28.890 [main] LoginPageEvents - Clicking on the Sign-In button.
+[INFO ] 2025-02-19 16:55:28.890 [main] BaseTest - Clicking on element: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[INFO ] 2025-02-19 16:55:28.890 [main] BaseTest - Waiting for element to be clickable: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[INFO ] 2025-02-19 16:55:29.045 [main] LoginPageEvents - Sign-in process completed.
+[DEBUG] 2025-02-19 16:55:29.045 [main] BaseTest - User has successfully logged in and landed on the dashboard
+[INFO ] 2025-02-19 16:55:29.046 [main] HomePageEvents - Verifying the landing page by checking the 'Sign Out' text.
+[INFO ] 2025-02-19 16:55:29.047 [main] BaseTest - Getting text from element: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[INFO ] 2025-02-19 16:55:29.051 [main] BaseTest - Waiting for element to be visible: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[DEBUG] 2025-02-19 16:55:32.664 [main] HomePageEvents - Retrieved 'Sign Out' text: Sign out
+[INFO ] 2025-02-19 16:55:32.669 [main] HomePageEvents - Landing page verified successfully. 'Sign Out' text matches the expected value.
+[INFO ] 2025-02-19 16:55:32.670 [main] BaseTest - Clicking on element: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:55:32.670 [main] BaseTest - Waiting for element to be clickable: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:55:32.872 [main] BaseTest - Clicking on element: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:55:32.872 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:55:38.817 [main] BaseTest - Clicking on element: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 16:55:38.818 [main] BaseTest - Waiting for element to be clickable: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 16:55:40.146 [main] BaseTest - Checking if element is displayed: By.xpath: //div[@class='display-none -update-div-']//a
+[INFO ] 2025-02-19 16:55:42.100 [main] BaseTest - Scrolling to element: By.xpath: //button[text()='Delete the store']
+[INFO ] 2025-02-19 16:55:42.148 [main] BaseTest - Waiting for element to be clickable: By.xpath: //button[text()='Delete the store']
+[INFO ] 2025-02-19 16:55:42.233 [main] BaseTest - Clicking on element: By.xpath: //button[text()='Delete the store']
+[INFO ] 2025-02-19 16:55:42.234 [main] BaseTest - Waiting for element to be clickable: By.xpath: //button[text()='Delete the store']
+[INFO ] 2025-02-19 16:55:42.496 [main] BaseTest - Clicking on element: By.xpath: //i[@class='fal fa-thumbs-up text-white']
+[INFO ] 2025-02-19 16:55:42.496 [main] BaseTest - Waiting for element to be clickable: By.xpath: //i[@class='fal fa-thumbs-up text-white']
+[DEBUG] 2025-02-19 16:55:42.746 [main] BaseTest - Static wait for {} ms.
+[INFO ] 2025-02-19 16:55:45.761 [main] BaseTest - Scrolling to element: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:55:45.879 [main] BaseTest - Clicking on element: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:55:45.879 [main] BaseTest - Waiting for element to be clickable: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 16:55:46.129 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:55:46.212 [main] BaseTest - Clicking on element: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:55:46.212 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 16:55:53.394 [main] BaseTest - Clicking on element: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 16:55:53.394 [main] BaseTest - Waiting for element to be clickable: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 16:55:54.748 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .btn-lg.fw-bold.w-100.btn.btn-outline-primary
+[INFO ] 2025-02-19 16:55:56.242 [main] BaseTest - Clicking on element: By.cssSelector: .btn-lg.fw-bold.w-100.btn.btn-outline-primary
+[INFO ] 2025-02-19 16:55:56.242 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .btn-lg.fw-bold.w-100.btn.btn-outline-primary
+[DEBUG] 2025-02-19 16:55:56.373 [main] BaseTest - Static wait for {} ms.
+[INFO ] 2025-02-19 16:55:59.383 [main] BaseTest - Clicking on element: By.xpath: //div[@class='modal-footer justify-content-around']//button[text()='Skip']
+[INFO ] 2025-02-19 16:55:59.384 [main] BaseTest - Waiting for element to be clickable: By.xpath: //div[@class='modal-footer justify-content-around']//button[text()='Skip']
+[INFO ] 2025-02-19 16:55:59.556 [main] BaseTest - Scrolling to element: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:56:01.101 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:56:01.178 [main] BaseTest - Clicking on element: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:56:01.178 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:56:01.368 [main] BaseTest - Waiting for element to be visible: By.xpath: //p[@class='alert-content']
+[INFO ] 2025-02-19 16:56:01.425 [main] BaseTest - Getting text from element: By.xpath: //p[@class='alert-content']
+[INFO ] 2025-02-19 16:56:01.426 [main] BaseTest - Waiting for element to be visible: By.xpath: //p[@class='alert-content']
+[INFO ] 2025-02-19 16:56:01.562 [main] BaseTest - Clicking on element: By.cssSelector: .btn.btn-dark.-crop-
+[INFO ] 2025-02-19 16:56:01.562 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .btn.btn-dark.-crop-
+[DEBUG] 2025-02-19 16:56:03.981 [main] BaseTest - Static wait for {} ms.
+[INFO ] 2025-02-19 16:56:06.983 [main] BaseTest - Getting attribute 'maxlength' from element: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 16:56:06.984 [main] BaseTest - Waiting for element to be visible: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 16:56:07.114 [main] BaseTest - Entering text 'AutoStore3235' into element: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 16:56:07.115 [main] BaseTest - Waiting for element to be clickable: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 16:56:07.473 [main] BaseTest - Entering text 'Dix Hills' into element: By.xpath: //input[@name='description']
+[INFO ] 2025-02-19 16:56:07.473 [main] BaseTest - Waiting for element to be clickable: By.xpath: //input[@name='description']
+[INFO ] 2025-02-19 16:56:07.655 [main] BaseTest - Waiting for element to be visible: By.cssSelector: .form-control.pac-target-input
+[INFO ] 2025-02-19 16:56:08.582 [main] BaseTest - Clicking on element: By.cssSelector: .form-control.pac-target-input
+[INFO ] 2025-02-19 16:56:08.583 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .form-control.pac-target-input
+[INFO ] 2025-02-19 16:56:08.708 [main] BaseTest - Clicking on element: By.xpath: (//div[@class='pac-item'])[1]
+[INFO ] 2025-02-19 16:56:08.709 [main] BaseTest - Waiting for element to be clickable: By.xpath: (//div[@class='pac-item'])[1]
+[INFO ] 2025-02-19 16:56:09.264 [main] BaseTest - Getting attribute 'maxlength' from element: By.xpath: //input[@name='phone']
+[INFO ] 2025-02-19 16:56:09.264 [main] BaseTest - Waiting for element to be visible: By.xpath: //input[@name='phone']
+[INFO ] 2025-02-19 16:56:09.578 [main] BaseTest - Getting attribute 'min' from element: By.xpath: //input[@name='taxRate']
+[INFO ] 2025-02-19 16:56:09.578 [main] BaseTest - Waiting for element to be visible: By.xpath: //input[@name='taxRate']
+[INFO ] 2025-02-19 16:56:09.634 [main] BaseTest - Getting attribute 'value' from element: By.xpath: //input[@name='taxRate']
+[INFO ] 2025-02-19 16:56:09.634 [main] BaseTest - Waiting for element to be visible: By.xpath: //input[@name='taxRate']
+[INFO ] 2025-02-19 16:56:09.679 [main] BaseTest - Getting attribute 'max' from element: By.xpath: //input[@name='taxRate']
+[INFO ] 2025-02-19 16:56:09.679 [main] BaseTest - Waiting for element to be visible: By.xpath: //input[@name='taxRate']
+[INFO ] 2025-02-19 16:56:10.013 [main] BaseTest - Scrolling to element: By.cssSelector: .-btn-save-.btn.btn-primary
+[DEBUG] 2025-02-19 16:56:10.036 [main] BaseTest - Static wait for {} ms.
+[INFO ] 2025-02-19 16:56:13.044 [main] BaseTest - Clicking on element: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:56:13.046 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 16:56:13.421 [main] BaseTest - Waiting for element to be visible: By.xpath: //button[text()='Continue']
+[INFO ] 2025-02-19 16:56:14.687 [main] BaseTest - Waiting for page to load completely.
+[INFO ] 2025-02-19 16:56:14.701 [main] BaseTest - Getting text from element: By.cssSelector: .form-group.mb-3>h4
+[INFO ] 2025-02-19 16:56:14.701 [main] BaseTest - Waiting for element to be visible: By.cssSelector: .form-group.mb-3>h4
+[INFO ] 2025-02-19 16:56:16.991 [main] BaseTest - Clicking on element: By.xpath: //a[text()='Sign out']
+[INFO ] 2025-02-19 16:56:16.992 [main] BaseTest - Waiting for element to be clickable: By.xpath: //a[text()='Sign out']
+[INFO ] 2025-02-19 16:56:18.310 [main] BaseTest - Starting Login test
+[INFO ] 2025-02-19 16:56:18.310 [main] ConfigFileReader - Retrieved property 'admin': 6465551113
+[INFO ] 2025-02-19 16:56:18.311 [main] ConfigFileReader - Retrieved property 'password': Test@123
+[INFO ] 2025-02-19 16:56:18.311 [main] LoginPageEvents - Starting the sign-in process.
+[INFO ] 2025-02-19 16:56:18.311 [main] LoginPageEvents - Entering username: 6465551113
+[INFO ] 2025-02-19 16:56:18.311 [main] BaseTest - Entering text '6465551113' into element: By.cssSelector: input[name='userName']
+[INFO ] 2025-02-19 16:56:18.312 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='userName']
+[INFO ] 2025-02-19 16:56:18.549 [main] LoginPageEvents - Entering password: Test@123
+[INFO ] 2025-02-19 16:56:18.549 [main] BaseTest - Entering text 'Test@123' into element: By.cssSelector: input[name='passWord']
+[INFO ] 2025-02-19 16:56:18.550 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='passWord']
+[INFO ] 2025-02-19 16:56:18.732 [main] LoginPageEvents - Clicking on the Sign-In button.
+[INFO ] 2025-02-19 16:56:18.732 [main] BaseTest - Clicking on element: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[INFO ] 2025-02-19 16:56:18.732 [main] BaseTest - Waiting for element to be clickable: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[INFO ] 2025-02-19 16:56:18.895 [main] LoginPageEvents - Sign-in process completed.
+[INFO ] 2025-02-19 16:56:18.895 [main] HomePageEvents - Verifying the landing page by checking the 'Sign Out' text.
+[INFO ] 2025-02-19 16:56:18.895 [main] BaseTest - Getting text from element: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[INFO ] 2025-02-19 16:56:18.895 [main] BaseTest - Waiting for element to be visible: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[DEBUG] 2025-02-19 16:56:21.660 [main] HomePageEvents - Retrieved 'Sign Out' text: Sign out
+[INFO ] 2025-02-19 16:56:21.660 [main] HomePageEvents - Landing page verified successfully. 'Sign Out' text matches the expected value.
+[INFO ] 2025-02-19 16:56:21.660 [main] BaseTest - Clicking on element: By.xpath: //a[@href='/Admin/Stores']
+[INFO ] 2025-02-19 16:56:21.660 [main] BaseTest - Waiting for element to be clickable: By.xpath: //a[@href='/Admin/Stores']
+[INFO ] 2025-02-19 16:56:23.003 [main] BaseTest - Clicking on element: By.cssSelector: .ps-1.pt-2>a
+[INFO ] 2025-02-19 16:56:23.003 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .ps-1.pt-2>a
+[INFO ] 2025-02-19 16:56:23.334 [main] BaseTest - Entering text 'AutoStore3235' into element: By.cssSelector: input[name="name"].form-control.max-20c
+[INFO ] 2025-02-19 16:56:23.334 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name="name"].form-control.max-20c
+[INFO ] 2025-02-19 16:56:23.845 [main] BaseTest - Clicking on element: By.cssSelector: button.btn.btn-outline-primary.btn-sm
+[INFO ] 2025-02-19 16:56:23.847 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: button.btn.btn-outline-primary.btn-sm
+[INFO ] 2025-02-19 16:56:24.725 [main] BaseTest - Clicking on element: By.cssSelector: .d-flex.flex-column.overflow-hidden .ms-2.text-truncate
+[INFO ] 2025-02-19 16:56:24.725 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .d-flex.flex-column.overflow-hidden .ms-2.text-truncate
+[INFO ] 2025-02-19 16:56:27.107 [main] BaseTest - Scrolling to element: By.cssSelector: .fal.fa-circle.custom-check-off
+[DEBUG] 2025-02-19 16:56:27.175 [main] BaseTest - Static wait for {} ms.
+[INFO ] 2025-02-19 16:56:30.179 [main] BaseTest - Clicking on element: By.cssSelector: .fal.fa-circle.custom-check-off
+[INFO ] 2025-02-19 16:56:30.180 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .fal.fa-circle.custom-check-off
+[INFO ] 2025-02-19 16:56:30.466 [main] BaseTest - Entering text 'deleted the store' into element: By.cssSelector: .form-control[maxlength="250"]
+[INFO ] 2025-02-19 16:56:30.467 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .form-control[maxlength="250"]
+[INFO ] 2025-02-19 16:56:30.689 [main] BaseTest - Clicking on element: By.xpath: //button[text()='Update Status']
+[INFO ] 2025-02-19 16:56:30.689 [main] BaseTest - Waiting for element to be clickable: By.xpath: //button[text()='Update Status']
+[INFO ] 2025-02-19 16:56:31.957 [main] BaseTest - Tearing down WebDriver.
+[INFO ] 2025-02-19 17:00:26.895 [main] BaseTest - Environment set to: qa
+[INFO ] 2025-02-19 17:00:26.900 [main] ConfigFileReader - Reloading ConfigFileReader instance.
+[INFO ] 2025-02-19 17:00:26.900 [main] ConfigFileReader - Creating new instance of ConfigFileReader.
+[INFO ] 2025-02-19 17:00:26.900 [main] ConfigFileReader - Loading configuration for environment: qa
+[INFO ] 2025-02-19 17:00:26.900 [main] ConfigFileReader - Configuration file: config_qa.properties
+[INFO ] 2025-02-19 17:00:26.902 [main] ConfigFileReader - Configuration file loaded successfully: config_qa.properties
+[DEBUG] 2025-02-19 17:00:26.902 [main] BaseTest - Config file reloaded for environment: qa
+[INFO ] 2025-02-19 17:00:26.902 [main] ConfigFileReader - Retrieved property 'url': https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 17:00:26.902 [main] BaseTest - URL loaded from config: https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 17:00:26.922 [main] BaseTest - Setting up WebDriver for browser: chrome, headless: false
+[INFO ] 2025-02-19 17:00:30.326 [main] BaseTest - ChromeDriver initialized.
+[INFO ] 2025-02-19 17:00:30.412 [main] ConfigFileReader - Retrieved property 'url': https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 17:00:35.829 [main] BaseTest - Navigated to URL: https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-02-19 17:00:35.839 [main] BaseTest - Implicit wait set to 20 seconds.
+[INFO ] 2025-02-19 17:00:35.843 [main] ConfigFileReader - Retrieved property 'username': 6465551114
+[INFO ] 2025-02-19 17:00:35.844 [main] ConfigFileReader - Retrieved property 'password': Test@123
+[DEBUG] 2025-02-19 17:00:35.844 [main] BaseTest - Attempting to login with username: 6465551114
+[INFO ] 2025-02-19 17:00:35.845 [main] LoginPageEvents - Starting the sign-in process.
+[INFO ] 2025-02-19 17:00:35.846 [main] LoginPageEvents - Entering username: 6465551114
+[INFO ] 2025-02-19 17:00:35.847 [main] BaseTest - Entering text '6465551114' into element: By.cssSelector: input[name='userName']
+[INFO ] 2025-02-19 17:00:35.847 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='userName']
+[INFO ] 2025-02-19 17:00:36.123 [main] LoginPageEvents - Entering password: Test@123
+[INFO ] 2025-02-19 17:00:36.123 [main] BaseTest - Entering text 'Test@123' into element: By.cssSelector: input[name='passWord']
+[INFO ] 2025-02-19 17:00:36.123 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='passWord']
+[INFO ] 2025-02-19 17:00:36.298 [main] LoginPageEvents - Clicking on the Sign-In button.
+[INFO ] 2025-02-19 17:00:36.298 [main] BaseTest - Clicking on element: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[INFO ] 2025-02-19 17:00:36.299 [main] BaseTest - Waiting for element to be clickable: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[INFO ] 2025-02-19 17:00:36.440 [main] LoginPageEvents - Sign-in process completed.
+[DEBUG] 2025-02-19 17:00:36.441 [main] BaseTest - User has successfully logged in and landed on the dashboard
+[INFO ] 2025-02-19 17:00:36.442 [main] HomePageEvents - Verifying the landing page by checking the 'Sign Out' text.
+[INFO ] 2025-02-19 17:00:36.442 [main] BaseTest - Getting text from element: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[INFO ] 2025-02-19 17:00:36.442 [main] BaseTest - Waiting for element to be visible: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[DEBUG] 2025-02-19 17:00:39.629 [main] HomePageEvents - Retrieved 'Sign Out' text: Sign out
+[INFO ] 2025-02-19 17:00:39.634 [main] HomePageEvents - Landing page verified successfully. 'Sign Out' text matches the expected value.
+[INFO ] 2025-02-19 17:00:39.634 [main] BaseTest - Clicking on element: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 17:00:39.634 [main] BaseTest - Waiting for element to be clickable: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[INFO ] 2025-02-19 17:00:39.761 [main] BaseTest - Clicking on element: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 17:00:39.762 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .fa-fw.fas.fa-store
+[INFO ] 2025-02-19 17:00:47.425 [main] BaseTest - Clicking on element: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 17:00:47.425 [main] BaseTest - Waiting for element to be clickable: By.partialLinkText: Register new business
+[INFO ] 2025-02-19 17:00:48.621 [main] BaseTest - Checking if element is displayed: By.xpath: //div[@class='display-none -update-div-']//a
+[WARN ] 2025-02-19 17:01:08.696 [main] BaseTest - Element not found: By.xpath: //div[@class='display-none -update-div-']//a
+[INFO ] 2025-02-19 17:01:08.696 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .btn-lg.fw-bold.w-100.btn.btn-outline-primary
+[INFO ] 2025-02-19 17:01:08.745 [main] BaseTest - Clicking on element: By.cssSelector: .btn-lg.fw-bold.w-100.btn.btn-outline-primary
+[INFO ] 2025-02-19 17:01:08.745 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .btn-lg.fw-bold.w-100.btn.btn-outline-primary
+[DEBUG] 2025-02-19 17:01:08.883 [main] BaseTest - Static wait for {} ms.
+[INFO ] 2025-02-19 17:01:11.886 [main] BaseTest - Clicking on element: By.xpath: //div[@class='modal-footer justify-content-around']//button[text()='Skip']
+[INFO ] 2025-02-19 17:01:11.886 [main] BaseTest - Waiting for element to be clickable: By.xpath: //div[@class='modal-footer justify-content-around']//button[text()='Skip']
+[INFO ] 2025-02-19 17:01:11.998 [main] BaseTest - Scrolling to element: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 17:01:14.085 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 17:01:14.130 [main] BaseTest - Clicking on element: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 17:01:14.131 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 17:01:14.260 [main] BaseTest - Waiting for element to be visible: By.xpath: //p[@class='alert-content']
+[INFO ] 2025-02-19 17:01:14.299 [main] BaseTest - Getting text from element: By.xpath: //p[@class='alert-content']
+[INFO ] 2025-02-19 17:01:14.300 [main] BaseTest - Waiting for element to be visible: By.xpath: //p[@class='alert-content']
+[INFO ] 2025-02-19 17:01:14.414 [main] BaseTest - Clicking on element: By.cssSelector: .btn.btn-dark.-crop-
+[INFO ] 2025-02-19 17:01:14.414 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .btn.btn-dark.-crop-
+[DEBUG] 2025-02-19 17:01:16.419 [main] BaseTest - Static wait for {} ms.
+[INFO ] 2025-02-19 17:01:19.423 [main] BaseTest - Getting attribute 'maxlength' from element: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 17:01:19.423 [main] BaseTest - Waiting for element to be visible: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 17:01:19.479 [main] BaseTest - Entering text 'AutoStore7295' into element: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 17:01:19.479 [main] BaseTest - Waiting for element to be clickable: By.xpath: //input[@name='name']
+[INFO ] 2025-02-19 17:01:19.761 [main] BaseTest - Entering text 'Dix Hills' into element: By.xpath: //input[@name='description']
+[INFO ] 2025-02-19 17:01:19.762 [main] BaseTest - Waiting for element to be clickable: By.xpath: //input[@name='description']
+[INFO ] 2025-02-19 17:01:19.933 [main] BaseTest - Waiting for element to be visible: By.cssSelector: .form-control.pac-target-input
+[INFO ] 2025-02-19 17:01:20.898 [main] BaseTest - Clicking on element: By.cssSelector: .form-control.pac-target-input
+[INFO ] 2025-02-19 17:01:20.899 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .form-control.pac-target-input
+[INFO ] 2025-02-19 17:01:21.032 [main] BaseTest - Clicking on element: By.xpath: (//div[@class='pac-item'])[1]
+[INFO ] 2025-02-19 17:01:21.032 [main] BaseTest - Waiting for element to be clickable: By.xpath: (//div[@class='pac-item'])[1]
+[INFO ] 2025-02-19 17:01:21.790 [main] BaseTest - Getting attribute 'maxlength' from element: By.xpath: //input[@name='phone']
+[INFO ] 2025-02-19 17:01:21.791 [main] BaseTest - Waiting for element to be visible: By.xpath: //input[@name='phone']
+[INFO ] 2025-02-19 17:01:22.093 [main] BaseTest - Getting attribute 'min' from element: By.xpath: //input[@name='taxRate']
+[INFO ] 2025-02-19 17:01:22.093 [main] BaseTest - Waiting for element to be visible: By.xpath: //input[@name='taxRate']
+[INFO ] 2025-02-19 17:01:22.133 [main] BaseTest - Getting attribute 'value' from element: By.xpath: //input[@name='taxRate']
+[INFO ] 2025-02-19 17:01:22.134 [main] BaseTest - Waiting for element to be visible: By.xpath: //input[@name='taxRate']
+[INFO ] 2025-02-19 17:01:22.167 [main] BaseTest - Getting attribute 'max' from element: By.xpath: //input[@name='taxRate']
+[INFO ] 2025-02-19 17:01:22.168 [main] BaseTest - Waiting for element to be visible: By.xpath: //input[@name='taxRate']
+[INFO ] 2025-02-19 17:01:22.477 [main] BaseTest - Scrolling to element: By.cssSelector: .-btn-save-.btn.btn-primary
+[DEBUG] 2025-02-19 17:01:22.503 [main] BaseTest - Static wait for {} ms.
+[INFO ] 2025-02-19 17:01:25.504 [main] BaseTest - Clicking on element: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 17:01:25.504 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .-btn-save-.btn.btn-primary
+[INFO ] 2025-02-19 17:01:25.634 [main] BaseTest - Waiting for element to be visible: By.xpath: //button[text()='Continue']
+[INFO ] 2025-02-19 17:01:27.089 [main] BaseTest - Waiting for page to load completely.
+[INFO ] 2025-02-19 17:01:27.107 [main] BaseTest - Getting text from element: By.cssSelector: .form-group.mb-3>h4
+[INFO ] 2025-02-19 17:01:27.108 [main] BaseTest - Waiting for element to be visible: By.cssSelector: .form-group.mb-3>h4
+[INFO ] 2025-02-19 17:01:29.483 [main] BaseTest - Clicking on element: By.xpath: //a[text()='Sign out']
+[INFO ] 2025-02-19 17:01:29.483 [main] BaseTest - Waiting for element to be clickable: By.xpath: //a[text()='Sign out']
+[INFO ] 2025-02-19 17:01:30.661 [main] BaseTest - Starting Login test
+[INFO ] 2025-02-19 17:01:30.662 [main] ConfigFileReader - Retrieved property 'admin': 6465551113
+[INFO ] 2025-02-19 17:01:30.662 [main] ConfigFileReader - Retrieved property 'password': Test@123
+[INFO ] 2025-02-19 17:01:30.666 [main] LoginPageEvents - Starting the sign-in process.
+[INFO ] 2025-02-19 17:01:30.667 [main] LoginPageEvents - Entering username: 6465551113
+[INFO ] 2025-02-19 17:01:30.668 [main] BaseTest - Entering text '6465551113' into element: By.cssSelector: input[name='userName']
+[INFO ] 2025-02-19 17:01:30.669 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='userName']
+[INFO ] 2025-02-19 17:01:30.838 [main] LoginPageEvents - Entering password: Test@123
+[INFO ] 2025-02-19 17:01:30.838 [main] BaseTest - Entering text 'Test@123' into element: By.cssSelector: input[name='passWord']
+[INFO ] 2025-02-19 17:01:30.838 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='passWord']
+[INFO ] 2025-02-19 17:01:31.004 [main] LoginPageEvents - Clicking on the Sign-In button.
+[INFO ] 2025-02-19 17:01:31.004 [main] BaseTest - Clicking on element: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[INFO ] 2025-02-19 17:01:31.004 [main] BaseTest - Waiting for element to be clickable: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[INFO ] 2025-02-19 17:01:31.135 [main] LoginPageEvents - Sign-in process completed.
+[INFO ] 2025-02-19 17:01:31.135 [main] HomePageEvents - Verifying the landing page by checking the 'Sign Out' text.
+[INFO ] 2025-02-19 17:01:31.135 [main] BaseTest - Getting text from element: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[INFO ] 2025-02-19 17:01:31.135 [main] BaseTest - Waiting for element to be visible: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[DEBUG] 2025-02-19 17:01:33.678 [main] HomePageEvents - Retrieved 'Sign Out' text: Sign out
+[INFO ] 2025-02-19 17:01:33.678 [main] HomePageEvents - Landing page verified successfully. 'Sign Out' text matches the expected value.
+[INFO ] 2025-02-19 17:01:33.678 [main] BaseTest - Clicking on element: By.xpath: //a[@href='/Admin/Stores']
+[INFO ] 2025-02-19 17:01:33.678 [main] BaseTest - Waiting for element to be clickable: By.xpath: //a[@href='/Admin/Stores']
+[INFO ] 2025-02-19 17:01:34.773 [main] BaseTest - Clicking on element: By.cssSelector: .ps-1.pt-2>a
+[INFO ] 2025-02-19 17:01:34.774 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .ps-1.pt-2>a
+[INFO ] 2025-02-19 17:01:34.928 [main] BaseTest - Entering text 'AutoStore7295' into element: By.cssSelector: input[name="name"].form-control.max-20c
+[INFO ] 2025-02-19 17:01:34.930 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name="name"].form-control.max-20c
+[INFO ] 2025-02-19 17:01:35.513 [main] BaseTest - Clicking on element: By.cssSelector: button.btn.btn-outline-primary.btn-sm
+[INFO ] 2025-02-19 17:01:35.513 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: button.btn.btn-outline-primary.btn-sm
+[INFO ] 2025-02-19 17:01:36.303 [main] BaseTest - Clicking on element: By.cssSelector: .d-flex.flex-column.overflow-hidden .ms-2.text-truncate
+[INFO ] 2025-02-19 17:01:36.304 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .d-flex.flex-column.overflow-hidden .ms-2.text-truncate
+[INFO ] 2025-02-19 17:01:38.810 [main] BaseTest - Scrolling to element: By.cssSelector: .fal.fa-circle.custom-check-off
+[DEBUG] 2025-02-19 17:01:38.840 [main] BaseTest - Static wait for {} ms.
+[INFO ] 2025-02-19 17:01:41.843 [main] BaseTest - Clicking on element: By.cssSelector: .fal.fa-circle.custom-check-off
+[INFO ] 2025-02-19 17:01:41.844 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .fal.fa-circle.custom-check-off
+[INFO ] 2025-02-19 17:01:41.961 [main] BaseTest - Entering text 'deleted the store' into element: By.cssSelector: .form-control[maxlength="250"]
+[INFO ] 2025-02-19 17:01:41.961 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .form-control[maxlength="250"]
+[INFO ] 2025-02-19 17:01:42.196 [main] BaseTest - Scrolling to element: By.cssSelector: button[href=".-deleteStore-"]
+[INFO ] 2025-02-19 17:01:44.435 [main] BaseTest - Entering text 'Final Delete' into element: By.cssSelector: input[name="name"][required]
+[INFO ] 2025-02-19 17:01:44.435 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name="name"][required]
+[INFO ] 2025-02-19 17:01:45.256 [main] BaseTest - Tearing down WebDriver.
