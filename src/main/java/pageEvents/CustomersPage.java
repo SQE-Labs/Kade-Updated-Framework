@@ -16,12 +16,12 @@ public class CustomersPage extends BaseTest {
     public By nameAddress = By.xpath("//div[@class='d-flex flex-column  overflow-hidden']");
     public By findAddCustomer = By.xpath("//button[@class='-addnew- btn btn-outline-dark']");
     public By filter = By.cssSelector(".far.fa-2x.fa-sliders-h-square");
-    public By phoneNumber = By.xpath("//input[@placeholder='Phone number']");
-    public By goBtn = By.xpath("//button[text()=\"Go\"]");
-    public By emailGoBtn = By.xpath("(//button[text()=\"Go\"])[2]");
+    public By phoneNumber = By.xpath("//input[@placeholder='Phone number. Existing or new']");
+    public By goBtn = By.xpath("//input[@placeholder='Phone number. Existing or new']/..//button");
+    public By emailGoBtn = By.xpath("(//input[@placeholder='Email. Existing or new' and @name='email']/..//button");
     public By customerName = By.xpath("(//input[@lbl-title=\"Customer's name?\"])[2]");
     public By done = By.xpath("//button[text()=\"Done\"]");
-    public By emailField = By.xpath("//input[@placeholder='Email']");
+    public By emailField = By.xpath("//input[@placeholder='Email. Existing or new' and @name='email']/..//button");
     public By filterPhoneNumber = By.xpath("(//input[@class='form-control'])[1]");
     public By filterPhonenumberInvalid = By.xpath("(//input[@class='form-control is-invalid'])[1]");
     public By filterEmail = By.xpath("(//input[@class='form-control'])[2]");
@@ -60,8 +60,8 @@ public class CustomersPage extends BaseTest {
     public By billSendBtn = By.xpath("//div[@class='d-none -link-cust-d-block']");
     public By customerDisplayed = By.xpath("//span[text()=\"Santa\"]");
     public By customerDisplayed2 = By.xpath("//span[text()=\"yonro\"]");
-    public By searchField = By.xpath("//input[@placeholder=\"Search\"]");
-    public By searchBtn = By.xpath("(//button[@class=\"btn btn-primary\"])[3]");
+    public By searchField = By.xpath("//input[@placeholder=\"Search by name\"]");
+    public By searchBtn = By.cssSelector("([name='phrase']+button");
     public By alertValidation = By.xpath("//h4[@class=\"alert-heading\"]");
     public By noResult = By.xpath("//div[@class='no-result-icon']");
     public By selectCustomerinFilter = By.xpath("//div[@class='d-flex align-items-center position-relative mb-3 rounded border']");

@@ -29,7 +29,7 @@ public class BaseTest {
     private static final Logger log = LogManager.getLogger(BaseTest.class); // Logger instance
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     protected static ConfigFileReader configReader;
-    protected SoftAssert softAssert;
+    protected static SoftAssert softAssert;
 
     private By target = null;
 
@@ -144,7 +144,7 @@ public class BaseTest {
      * @param millis - The wait time in milliseconds.
      */
     public void staticWait(long millis) {
-        log.debug("Static wait for {} ms.", millis);
+        log.debug("Static wait for {} ms.");
         try {
             Thread.sleep(millis);
         } catch (InterruptedException e) {
@@ -198,6 +198,7 @@ public class BaseTest {
         log.info("Clicking on element: {}", locator);
         waitForElementToBeClickable(locator, 10).click();
     }
+
 
     public static void clickElementByJS(By element) {
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
@@ -290,6 +291,18 @@ public class BaseTest {
             return getDriver().findElement(locator).isDisplayed();
         } catch (NoSuchElementException e) {
             log.warn("Element not found: {}", locator);
+            return false;
+        }
+    }
+    public boolean isToggleEnabled(By locator) {
+        log.info("Checking if toggle is enabled: {}", locator);
+        try {
+            WebElement toggle = getDriver().findElement(locator);
+            boolean isEnabled = toggle.isSelected();
+            log.info("Toggle state: {}", isEnabled);
+            return isEnabled;
+        } catch (NoSuchElementException e) {
+            log.warn("Toggle not found: {}", locator);
             return false;
         }
     }
@@ -541,7 +554,7 @@ public class BaseTest {
         waitForLoaderToDisappear(loaderLocator, timeout);
     }
 
-    private static PageObjectManager pageObjectManager = PageObjectManager.getInstance();
+    public static PageObjectManager pageObjectManager = PageObjectManager.getInstance();
 
 
     //login method
@@ -709,6 +722,10 @@ public class BaseTest {
         return s.toString();
     }
 
+    public static String requiredDigits(float value1, float value2) {
+        return String.format("%.2f", value2); // Formats to 2 decimal places
+    }
+
     public static String requiredString(int n) {
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789" + "abcdefghijklmnopqrstuvxyz";
         StringBuilder s = new StringBuilder(n);
@@ -724,7 +741,20 @@ public class BaseTest {
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("arguments[0].value = '';", element);
     }
+    public void pressKeys(By locator, String value) {
+        // Create PerformActions instance
+        Actions actions = new Actions(getDriver());
+        // Click the input field to focus
+        actions.click(getDriver().findElement(locator)).perform();
 
+        // Send each character of the string one by one
+        for (char ch : value.toCharArray()) {
+            actions.sendKeys(String.valueOf(ch)).perform();
+        }}
 
 
 }
+
+
+
+
