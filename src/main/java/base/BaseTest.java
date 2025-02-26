@@ -294,6 +294,18 @@ public class BaseTest {
             return false;
         }
     }
+    public boolean isToggleEnabled(By locator) {
+        log.info("Checking if toggle is enabled: {}", locator);
+        try {
+            WebElement toggle = getDriver().findElement(locator);
+            boolean isEnabled = toggle.isSelected();
+            log.info("Toggle state: {}", isEnabled);
+            return isEnabled;
+        } catch (NoSuchElementException e) {
+            log.warn("Toggle not found: {}", locator);
+            return false;
+        }
+    }
 
     public static void waitForElementInVisible(By locator, int waitTime) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(waitTime));
@@ -708,6 +720,10 @@ public class BaseTest {
             s.append(AlphaNumericString.charAt(index));
         }
         return s.toString();
+    }
+
+    public static String requiredDigits(float value1, float value2) {
+        return String.format("%.2f", value2); // Formats to 2 decimal places
     }
 
     public static String requiredString(int n) {

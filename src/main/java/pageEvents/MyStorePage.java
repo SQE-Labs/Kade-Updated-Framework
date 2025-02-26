@@ -38,6 +38,7 @@ public class MyStorePage extends BaseTest {
   public By skipForNowBtn = By.xpath("//button[text()='Skip for now']");
   public By continueBtn = By.xpath("//button[text()='Continue']");
   public By configureLink = By.xpath("(//h6[text()='Automation Flow 3']/../..//a)[1]");
+
   public By configureLink2 = By.xpath("/html/body/div[4]/div/div/main/div/div[3]/div/div/div[4]/div[1]/a");
   public By modifyBtn = By.xpath("//button[text()='Modify']");
   public By plansSubTab = By.partialLinkText("Plans");
@@ -58,7 +59,7 @@ public class MyStorePage extends BaseTest {
    public By changePayMethodBtn = By.xpath("//button[text()='change']");
    public By nextBillDate = By.xpath("(//div[@class='d-flex'])[2]");
    public By configureBtnWithoutStripe = By.xpath("(//h6[text()='Automation Flow 3']/../..//a)[1]");
-   public By settingsSubTab = By.xpath("//a[text()='Settings']");
+   public By settingsSubTab = By.xpath("//div[text()='Settings']");
    public By maxBillAmountTbx = By.xpath("//input[@name='maxBillAmountThreshold']");
    public By tipGratuityToggleBtn = By.xpath("//span[@class='ms-2 custom-check-on'][text()='No']");
    public By tipGratuityToggleOffBtn = By.xpath("//span[@class='ms-2 custom-check-off' and text()='Yes']");
@@ -81,9 +82,9 @@ public class MyStorePage extends BaseTest {
    public By checkDeleteUser = By.xpath("//button[@class='btn btn-link ms-5 -yes-']");
    public By storeLinksBtn = By.xpath("//button[text()='Store links']");
    public By websiteURLField = By.xpath("//input[@name='StoreURLTypes[0].url']");
-   public By earnRewardsToggleBtn = By.xpath("//label[text()=' Website']/../..//i[@class='far fa-toggle-off custom-check-off ']");
+   public By earnRewardsToggleBtn = By.xpath("//label[@class='custom-checkbox fs-3'][1]");
    public By earnRewardsToggleOffBtn = By.xpath("//label[text()=' Website']/../..//i[@class='far fa-toggle-on custom-check-on ']");
-   public By enterInPercentToggleBtn = By.xpath("//label[text()=' Enter in percentage']");
+   public By enterInPercentToggleBtn = By.cssSelector(".custom-checkbox.mb-2>span");
     public By paymentProcessingSubTab = By.xpath("//a[text()='Payment Processing']");
    public By acceptVenmoToggleBtn = By.xpath("(//span[text()='Accept Venmo'])[1]");
    public By acceptZelleToggleBtn = By.xpath("//span[text()='Accept Zelle']");
@@ -122,8 +123,7 @@ public class MyStorePage extends BaseTest {
     public By premiumYearlyBtn = By.cssSelector(".flex-fill label[for='rdo_p3_1']");
     public By premiumSignUpBtn = By.cssSelector("div#div_p3_0>a");
     public By storeLogoCreation = By.cssSelector(".d-flex.align-items-center>img");
-
-
+    public By configureLinkofStoreName = By.xpath("//tr[td[contains(text(),'\" + storename + \"')]]//a[text()='Configure']");
    public By fileInput2 = By.xpath("//input[@type='file' and @accept='image/*']");
 
 
@@ -165,7 +165,7 @@ public class MyStorePage extends BaseTest {
         click(editStoreBtn);
     }
     public void getSaveButton(){
-        click(saveBtn);
+        clickElementByJS(saveBtn);
     }
     public void getBankTransferToggleButton(){
         clickElementByJS(bankTransferToggleBtn);
@@ -197,6 +197,11 @@ public class MyStorePage extends BaseTest {
     public void getChangePayMethodLink(){
         click(changePayMethodBtn); }
 
+
+    public void getStoreLinksButton() {
+        clickElementByJS(storeLinksBtn);
+    }
+
     // time zone
     public void selectTimeZone() {
         click(timeZoneField);
@@ -210,15 +215,45 @@ public class MyStorePage extends BaseTest {
             click(storeAddressField);
             click(storeAddressOption);
         }
-    public void configureLinkWithStoreName(String storename){
+    public void getConfigureLink(){
         click(configureLink);
     }
-    public  String storeName;
+    public void getModifyButton(){
+        click(modifyBtn);
+    }
+    public void getSettingSubTab(){
+        click(settingsSubTab);
+    }
+    public void getTipConfigureBtn(){
+        click(tipConfigureBtn);
+    }
+
+    public void getTipGratuityToggleOnButton(){
+        clickElementByJS(tipGratuityToggleBtn);
+    }
+    public void getEnterInPerCentToggleButton(){
+        clickElementByJS(enterInPercentToggleBtn);
+    }
+    public void getSaveChangesButton(){
+        clickElementByJS(saveChangesBtn);
+    }
+    public void getRewardConfigureButton(){
+        clickElementByJS(rewardConfigureBtn);
+    }
+    public void getRewardPointToggleOnButton(){
+        click(rewardPointToggleBtn);
+    }
+
+    public void getEarnRewardsPointsToggleButton(){
+        click(earnRewardsToggleBtn);
+    }
+
+    public  String storeNamewithstripe;
 
 
 //*****************************
     public void getStoreCreation(){
-         storeName = "AutoStore" + requiredDigits(4);
+         storeNamewithstripe = "AutoStore" + requiredDigits(4);
          String phone = requiredDigits(10);
 
         //Step 1: Click on 'My Stores' Tab
@@ -251,7 +286,7 @@ public class MyStorePage extends BaseTest {
         //Edit Store name
          getEditStoreButton();
 
-        enterText(StoreNameTbx, storeName);
+        enterText(StoreNameTbx, storeNamewithstripe);
         actionEnterText(phoneTbx, phone);
         staticWait(2000);
         scrollToElement(saveBtn);
@@ -275,7 +310,7 @@ public class MyStorePage extends BaseTest {
         String Currency = getText(addedCurrencyOfStore);
         String Taxrate = getText(addedTaxRate);
 
-      Assert.assertEquals(storenameactual,storeName);
+      Assert.assertEquals(storenameactual,storeNamewithstripe);
       Assert.assertEquals(locationDescription, Constants.defaultLocationDescription);
       Assert.assertEquals(storeAddress, Constants.storeAddress);
       Assert.assertEquals(storePhoneno, phone);
@@ -285,7 +320,7 @@ public class MyStorePage extends BaseTest {
 // *************************************************************************************
 
     public void getStoreCreationWithoutStripePayment() {
-        storeName = "AutoStore" + requiredDigits(4);
+       String  storeName = "AutoStore" + requiredDigits(4);
         String phone = requiredDigits(10);
 
         // Click on 'Register New Business' Button
@@ -329,8 +364,6 @@ public class MyStorePage extends BaseTest {
         fileInput.sendKeys(filePath);
         getTickIconofImg();
 
-
-
         staticWait(3000);
 
         //Verifying maximum length of 'Store Name' field
@@ -366,6 +399,59 @@ public class MyStorePage extends BaseTest {
 
         pageObjectManager.getSidePannel().getSignOut();
         pageObjectManager.getAdminPage().selectedStoreDeleted(storeName);
+    }
+   // **********************************************************
+    public void editStoreFields(){
+        // uploding store image
+
+        WebElement fileInput = getDriver().findElement(By.xpath("//input[@type='file' and @accept='image/*']"));
+
+        // Set the file path to upload
+        String userDir = System.getProperty("user.dir");
+        String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator+ "ImageResources"+ File.separator + "image" + File.separator + "BillDummyImg.jpg";
+        fileInput.sendKeys(filePath);
+        getTickIconofImg();
+
+        staticWait(3000);
+
+        //Verifying maximum length of 'Store Name' field
+        Assert.assertEquals(getAttribute(StoreNameTbx,"maxlength"),"100");
+
+        // Enter Store Name
+        enterText(StoreNameTbx,Constants.editdefaultStoreName);
+        enterText(locationDescTbx,Constants.defaultLocationDescription);
+        selectStoreAddress(Constants.storeAddress);
+
+        //Verifying the maximum length of 'Phone' field
+        softAssert.assertEquals(getAttribute(phoneTbx,"maxlength"),"22");
+        actionEnterText(phoneTbx,Constants.validPhoneNumber);
+
+        // Select Time Zone
+
+        //Verifying the minimum, maximum and default values of taxRate field
+        softAssert.assertEquals(getAttribute(taxRateTbx,"min"),"0");
+        softAssert.assertEquals(getAttribute(taxRateTbx,"value"),"0.000");
+        softAssert.assertEquals(getAttribute(taxRateTbx,"max"),"100");
+
+        //  Enter Tax rate
+        actionEnterText(taxRateTbx,Constants.taxRate);
+        scrollToElement(saveBtn);
+        staticWait(3000);
+        getSaveButton();
+        softAssert.assertAll();
+
+        ////Reset Store to default
+        getModifyButton();
+
+        // Enter Store Name
+        enterText(StoreNameTbx,Constants.reverseStoreName);
+        enterText(locationDescTbx,Constants.defaultLocationDescription);
+        actionEnterText(phoneTbx,Constants.validPhoneNumber2);
+        actionEnterText(taxRateTbx,Constants.defaultTaxRate);
+        waitForElementToBeClickable(saveBtn,3);
+        getSaveButton();
+
+
     }
 
 }

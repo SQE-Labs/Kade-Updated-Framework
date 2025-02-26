@@ -136,9 +136,22 @@ public interface Constants {
     String defaultStoreAddress = "8 Glover Dr, Dix Hills, NY 11746, USA";
     String defaultCurrency = "USD";
     String defaultTaxRate = "0.000%";
-
     String currentPlan= "Current plan";
     String visavalue = "Visa1111";
+
+
+    //Verifying Modified Details
+    String editdefaultStoreName = "My Store MSC Final";
+    String editdefaultStorePhone = "+1 (918) 065 2341";
+    String reverseStoreName = "Automation Flow 3";
+
+
+    // Store Configuration
+
+    String maximumBillAmount = "50000.00";
+    String minimumBillAmount = "50.00";
+    String tipConfigurationTitle = "Tip configuration";
+    String rewardConfigurationpopup = "Rewards Program Configuration";
 
 
 

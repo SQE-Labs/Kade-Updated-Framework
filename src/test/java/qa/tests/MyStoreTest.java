@@ -14,6 +14,7 @@ import utils.Constants;
 import java.io.File;
 
 import static base.BaseTest.Login;
+import static java.lang.Float.*;
 import static utils.Constants.storeName;
 
 public class MyStoreTest extends BaseTest {
@@ -24,7 +25,7 @@ public class MyStoreTest extends BaseTest {
     private MyStorePage mystore = pageObjectManager.getMyStorePage();
 
     @Test(description = "SC_01(A) Verifying creation of Store without Stripe Payment Account Configuration")
-    public void storeCreationWithoutStripeAccount(){
+    public void storeCreationWithoutStripeAccount() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
@@ -57,18 +58,27 @@ public class MyStoreTest extends BaseTest {
     }
 
 
-    @Test(description = "SC_02 Verify creation of Store with Stripe Payment Account")
+    @Test(description = "SC_02  Verify creation of Store with Stripe Payment Account")
     public void c1creationOfStoreWithStripeAccount() {
 
         Login();
         mystore.getStoreCreation();
         pageObjectManager.getSidePannel().getSignOut();
-//        pageObjectManager.getAdminPage().selectedStoreDeleted(storeName);
+        pageObjectManager.getAdminPage().selectedStoreDeleted(storeName);
     }
 
+    @Test(description = "SC_03 Verifying modification of existing created Store")
+    public void c2verifyingModificationOfExistingCreatedStore() {
+        Login();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getMyStoreTab();
+        // Click on 'Configure' Link
+        mystore.getConfigureLink();
 
-
-
+        //step 3: Click on 'Modify' Button
+        mystore.getModifyButton();
+        mystore.editStoreFields();
+    }
 
 
     @Test(description = "SC_04(A) Verifying buying Monthly Business Plan for already created Store")
@@ -101,6 +111,114 @@ public class MyStoreTest extends BaseTest {
         //Verifying that next bill date is generated
         softAssert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
     }
+
+    @Test(description = "SC_05(A) Verifying the Configuration of already created Store using Settings Sub-Tabs")
+    public void verifyingConfigurationsOfStoreUsingSettings() {
+        String tipAmountPercent1 = requiredDigits(2);
+        String tipAmountPercent2 = requiredDigits(2);
+        String tipAmountPercent3 = requiredDigits(2);
+        String rewardPoints = requiredDigits(4);
+
+
+        Login();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getMyStoreTab();
+        // Click on 'Configure' Link
+        mystore.getConfigureLink();
+
+        // Click on 'Settings' Sub-Tab
+        mystore.getSettingSubTab();
+
+        //Verifying Minimum, Maximum and Default values of 'Maximum Bill Amount' Field
+        String maxBillAmount = requiredDigits(parseFloat(Constants.minimumBillAmount), parseFloat(Constants.maximumBillAmount));
+        softAssert.assertEquals(getAttribute(mystore.maxBillAmountTbx, "max"), Constants.maximumBillAmount);
+        softAssert.assertEquals(getAttribute(mystore.maxBillAmountTbx, "min"), Constants.minimumBillAmount);
+
+        //  Enter amount in 'Maximum Bill Amount' field
+        actionEnterText(mystore.maxBillAmountTbx, maxBillAmount);
+        staticWait(3000);
+
+        if (!isElementDisplayed(mystore.tipGratuityToggleOffBtn)) {
+
+            // Click on 'Tip & Gratuity' Toggle Button
+            mystore.getTipGratuityToggleOnButton();
+        }
+        // Click on 'Configure' button
+        mystore.getTipConfigureBtn();
+
+        //Verifying the 'Tip Configuration' Pop-up Title
+        softAssert.assertEquals(mystore.tipConfigPopUpTitle, Constants.tipConfigurationTitle);
+        staticWait(3000);
+
+        if (!isElementDisplayed(mystore.alertMessage)) {
+
+            // Click on 'Enter in Percentage' Toggle button
+            mystore.getEnterInPerCentToggleButton();
+        }
+
+        //Verifying the Default and maximum values of 'Tip Amount' fieltipPercentField1d
+        softAssert.assertEquals(getAttribute(mystore.tipPercentField1, "max"), tipAmountPercent1);
+
+        //  Enter Tip Values
+        actionEnterText(mystore.tipPercentField1, tipAmountPercent1);
+        actionEnterText(mystore.tipPercentField2, tipAmountPercent2);
+        actionEnterText(mystore.tipPercentField3, tipAmountPercent3);
+
+        // Click on 'Save Changes' button
+        mystore.getSaveChangesButton();
+
+        // Click on 'Configure' button
+        mystore.getRewardConfigureButton();
+
+        //Verifying the 'Rewards Configuration' Pop-Up Title
+        softAssert.assertEquals(getText(mystore.rewardConfigPopUpTitle), Constants.rewardConfigurationpopup);
+
+        // Click on 'Reward Point' Toggle button
+        if (!isElementDisplayed(mystore.rewardPointsField)) {
+            mystore.getRewardPointToggleOnButton();
+        }
+
+        //Verifying the Minimum and Maximum Values of 'Reward Points' Field
+        softAssert.assertEquals(getAttribute(mystore.rewardPointsField, "max"), "99999");
+        softAssert.assertEquals(getAttribute(mystore.rewardPointsField, "min"), "100");
+
+        // Enter Reward Points
+        actionEnterText(mystore.rewardPointsField, rewardPoints);
+
+        // Click on 'Save Changes' Button
+        mystore.getSaveChangesButton();
+
+        scrollToElement(mystore.storeLinksBtn);
+
+        waitForElementToBeVisible(mystore.storeLinksBtn, 3);
+
+        // Click on 'Store Links' button
+        mystore.getStoreLinksButton();
+        waitForElementToBeClickable(mystore.rewardPtsValue, 3);
+
+        // Enter Reward Points
+        actionEnterText(mystore.rewardPtsValue, rewardPoints);
+
+        // Enter Website URL
+        cleanByJS(mystore.websiteURLField);
+        actionEnterText(mystore.websiteURLField, "www.KadePay" + requiredString(4) + ".com");
+
+        // Click on 'Earn Rewards Points' Toggle Button
+        System.out.println("testse2: "+isToggleEnabled(mystore.earnRewardsToggleBtn));
+        if (!isToggleEnabled(mystore.earnRewardsToggleBtn)) {
+            mystore.getEarnRewardsPointsToggleButton();
+        }
+        else {
+            scrollToElement(mystore.saveChangesBtn);
+            waitForElementToBeClickable(mystore.saveChangesBtn, 3);
+
+            // Click on 'Save Changes' Button
+            mystore.getSaveChangesButton();
+        }
+
+
+        }
+
 }
 
 
