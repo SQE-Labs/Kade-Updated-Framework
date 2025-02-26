@@ -13,8 +13,8 @@ public class MyStoreTest extends BaseTest {
     // Logger instance for logging messages
     private static final Logger log = LogManager.getLogger(MyStorePage.class);
 
-    private PageObjectManager pageObjectManager = PageObjectManager.getInstance();
-    private MyStorePage mystore = pageObjectManager.getMyStorePage();
+     PageObjectManager pageObjectManager = PageObjectManager.getInstance();
+     MyStorePage mystore = pageObjectManager.getMyStorePage();
 
 
     @Test(enabled = true, description = "SC_01(B) Verifying deletion of Store when Stripe Account is not Registered Yet")

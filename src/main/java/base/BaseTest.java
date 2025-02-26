@@ -30,6 +30,7 @@ public class BaseTest {
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     protected static ConfigFileReader configReader;
     protected SoftAssert softAssert;
+    private static PageObjectManager pageObjectManager = PageObjectManager.getInstance();
 
     private By target = null;
 
@@ -297,7 +298,6 @@ public class BaseTest {
     public static void waitForElementInVisible(By locator, int waitTime) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(waitTime));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
-
     }
 
     /**
@@ -541,7 +541,7 @@ public class BaseTest {
         waitForLoaderToDisappear(loaderLocator, timeout);
     }
 
-    private static PageObjectManager pageObjectManager = PageObjectManager.getInstance();
+
 
 
     //login method
