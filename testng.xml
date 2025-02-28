@@ -7,7 +7,7 @@
     </listeners>
     <test thread-count="2" name="Test">
         <parameter name="env" value="qa" />
-        <parameter name="browser" value="chrome" />
+        <parameter name="browser" value="firefox" />
         <parameter name="headless" value="false" />
         <classes>
             <class name="qa.tests.DashboardTest" />
