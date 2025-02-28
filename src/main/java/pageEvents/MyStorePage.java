@@ -29,7 +29,7 @@ public class MyStorePage extends BaseTest {
   public By timeZoneField = By.xpath("//select[@name='timeZone']");
   public By timeZoneOption = By.xpath("//option[text()='(GMT-05:00) Eastern Time (US & Canada)']");
   public By taxRateTbx = By.xpath("//input[@name='taxRate']");
-  public By saveBtn = By.cssSelector(".-btn-save-.btn.btn-primary");
+  public By saveBtn = By.xpath("//button[text()='Save']");
   public By saveVenmoPaymentBtn = By.xpath("//div[co//button[text()='Save']ntains(@data-load,'/_venmoGatewayApplication')] //button[text()='Save']");
   public By stripeBtn = By.cssSelector(".img-fluid.h-100");
   public By connectStripePopUpTitle = By.xpath("//h5[text()='Connect to stripe']");
@@ -85,7 +85,7 @@ public class MyStorePage extends BaseTest {
    public By earnRewardsToggleBtn = By.xpath("//label[@class='custom-checkbox fs-3'][1]");
    public By earnRewardsToggleOffBtn = By.xpath("//label[text()=' Website']/../..//i[@class='far fa-toggle-on custom-check-on ']");
    public By enterInPercentToggleBtn = By.cssSelector(".custom-checkbox.mb-2>span");
-    public By paymentProcessingSubTab = By.xpath("//a[text()='Payment Processing']");
+    public By paymentProcessingSubTab = By.xpath("//div[text()='Payment Processing']");
    public By acceptVenmoToggleBtn = By.xpath("(//span[text()='Accept Venmo'])[1]");
    public By acceptZelleToggleBtn = By.xpath("//span[text()='Accept Zelle']");
    public By venmoIDField = By.xpath("//label[text()='Venmo ID']/following-sibling::input");
@@ -95,7 +95,7 @@ public class MyStorePage extends BaseTest {
     public By creditCardTerminalBtn = By.xpath("//a[text()='Credit Card Terminals']");
  public By addNewTerminalBtn = By.xpath("//button[text()='Add new terminal']");
  public By newTerminalPopUpTitle = By.xpath("//h5[text()='New Terminal']");
- public By creditCardTerminalOption = By.xpath("//label[text()='Select your terminal']/../div[1]/label/i[2]");
+ public By creditCardTerminalOption = By.xpath("//label[text()='Select your terminal']/../div[4]/label/i[2]");
  public By manageUserSubTab = By.xpath("//a[text()='Manage Users']");
  public By addUserButton = By.xpath("//button[text()='Add User']");
  public By manageUserNameField = By.xpath("//div[@class='mb-2']//div[@class='input-group']//input");
@@ -125,8 +125,10 @@ public class MyStorePage extends BaseTest {
     public By storeLogoCreation = By.cssSelector(".d-flex.align-items-center>img");
     public By configureLinkofStoreName = By.xpath("//tr[td[contains(text(),'\" + storename + \"')]]//a[text()='Configure']");
    public By fileInput2 = By.xpath("//input[@type='file' and @accept='image/*']");
-
-
+   public By configureATerminalTitle = By.cssSelector(".text-danger.mb-3");
+    public By addACreditCardTerminal = By.xpath("//h4[text()='Configure a terminal']/../div//button");
+    public By terminalEditIcon = By.cssSelector(".far.fa-edit.fa-2x");
+    public By terminalDeleteBtn = By.cssSelector(".d-flex.mt-3>button:nth-child(2)");
 
 
 
@@ -247,6 +249,47 @@ public class MyStorePage extends BaseTest {
     public void getEarnRewardsPointsToggleButton(){
         click(earnRewardsToggleBtn);
     }
+    public void getPaymentProcessingSubTab(){
+        click(paymentProcessingSubTab);
+    }
+
+    public void  getAcceptVenmoToggleButton() {
+        click(acceptVenmoToggleBtn);
+    }
+    public void getAcceptZelleToggleButton() {
+    click(acceptZelleToggleBtn);
+    }
+    public void getAddaTerminalLink(){
+        clickElementByJS(addACreditCardTerminal);
+    }
+    public void getCreditCardTerminalButton(){
+        click(creditCardTerminalBtn);
+    }
+    public void getAddNewTerminalButton(){
+        scrollToElement(addNewTerminalBtn);
+        clickElementByJS(addNewTerminalBtn);
+    }
+    public void getCreditTerminalOption(){
+        scrollToElement(creditCardTerminalOption);
+//        waitForElementToBeClickable(creditCardTerminalOption,5);
+        clickElementByJS(creditCardTerminalOption);
+        waitForElementToBeClickable(saveBtn,3);
+        getSaveButton();
+        waitForElementToBeClickable(terminalDeleteBtn,5);
+//        getTerminalEditIcon();
+//        scrollToElement(terminalDeleteBtn);
+//        getDeleteTerminalBtn();
+    }
+
+    public void getTerminalEditIcon(){
+        clickElementByJS(terminalEditIcon);
+    }
+    public void getDeleteTerminalBtn(){
+        scrollToElement(terminalDeleteBtn);
+        click(terminalDeleteBtn);
+    }
+
+
 
     public  String storeNamewithstripe;
 

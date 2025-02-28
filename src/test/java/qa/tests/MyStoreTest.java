@@ -204,22 +204,99 @@ public class MyStoreTest extends BaseTest {
         actionEnterText(mystore.websiteURLField, "www.KadePay" + requiredString(4) + ".com");
 
         // Click on 'Earn Rewards Points' Toggle Button
-        System.out.println("testse2: "+isToggleEnabled(mystore.earnRewardsToggleBtn));
+        System.out.println("testse2: " + isToggleEnabled(mystore.earnRewardsToggleBtn));
         if (!isToggleEnabled(mystore.earnRewardsToggleBtn)) {
             mystore.getEarnRewardsPointsToggleButton();
-        }
-        else {
+        } else {
             scrollToElement(mystore.saveChangesBtn);
             waitForElementToBeClickable(mystore.saveChangesBtn, 3);
 
             // Click on 'Save Changes' Button
             mystore.getSaveChangesButton();
         }
+    }
+
+    @Test(description = "SC_05(B) Verifying the Configuration of the Store using flat value in 'tip or gratuity' field")
+    public void verifyingConfigurationsOfStoreUsingFlatValueInTipField() {
+
+        String value1 = requiredDigits(Float.parseFloat("0.01"), Float.parseFloat("999.00"));
+        String value2 = requiredDigits(Float.parseFloat("0.01"), Float.parseFloat("999.00"));
+        String value3 = requiredDigits(Float.parseFloat("0.01"), Float.parseFloat("999.00"));
 
 
+        Login();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getMyStoreTab();
+        // Click on 'Configure' Link
+        mystore.getConfigureLink();
+
+        // Click on 'Settings' Sub-Tab
+        mystore.getSettingSubTab();
+
+        if (!isElementDisplayed(mystore.tipGratuityToggleOffBtn)) {
+
+            // Click on 'Tip & Gratuity' Toggle Button
+            mystore.getTipGratuityToggleOnButton();
+        }
+        // Click on 'Configure' button
+        mystore.getTipConfigureBtn();
+
+        //Verifying the 'Tip Configuration' Pop-up Title
+        softAssert.assertEquals(mystore.tipConfigPopUpTitle, Constants.tipConfigurationTitle);
+
+        if (getCountOfWebElements(mystore.alertMessage) > 0) {
+            // Click on 'Enter in Percentage' Toggle button
+            mystore.getEnterInPerCentToggleButton();
         }
 
+        // Verifying the maximum and minimum values of 'Tip Amount' field
+        softAssert.assertEquals(getAttribute(mystore.tipFlatValueField1, "max"), "999.00");
+        softAssert.assertEquals(getAttribute(mystore.tipFlatValueField1, "min"), "0.01");
+
+        enterText(mystore.tipFlatValueField1, value1);
+        enterText(mystore.tipFlatValueField2, value2);
+        enterText(mystore.tipFlatValueField3, value3);
+
+        // Click on 'Save Changes' Button
+        mystore.getSaveChangesButton();
+
+    }
+
+    @Test(description = "SC_06 Verifying the Configuration of the Store using Payment Processing Sub-Tab")
+    public void verifyingConfigurationOfStoreUsingPaymentProcessingSubTab() {
+        Login();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getMyStoreTab();
+
+        // Click on 'Configure' Link
+        mystore.getConfigureLink();
+        staticWait(3000);
+
+//       waitForElementToBeVisible(mystore.paymentProcessingSubTab,5);
+
+        // Click on 'Payment-Processing' Sub-Tab
+        mystore.getPaymentProcessingSubTab();
+
+        //  Click on 'Credit Card Terminal' button
+
+        if (isElementDisplayed(mystore.configureATerminalTitle)) {
+            mystore.getAddaTerminalLink();
+        } else {
+            mystore.getCreditCardTerminalButton();
+            // Click on 'Add new Terminal' button
+            mystore.getAddNewTerminalButton();
+        }
+
+        //Verifying the 'New Terminal' Pop-Up Title
+         Assert.assertEquals(getText(mystore.newTerminalPopUpTitle),Constants.newTerminalTitle);
+
+       // Select an option and save
+        mystore.getCreditTerminalOption();
+    }
+
+
 }
+
 
 
 

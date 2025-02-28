@@ -153,6 +153,8 @@ public interface Constants {
     String tipConfigurationTitle = "Tip configuration";
     String rewardConfigurationpopup = "Rewards Program Configuration";
 
+    String newTerminalTitle = "New Terminal";
+
 
 
 }

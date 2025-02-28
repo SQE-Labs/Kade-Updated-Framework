@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT" verbose="0">
+  <listeners>
+    <listener class-name="utils.SuiteListener"/>
+    <listener class-name="com.aventstack.chaintest.plugins.ChainTestListener"/>
+  </listeners>
+  <test thread-count="5" name="Test(failed)" verbose="0">
+    <parameter name="headless" value="false"/>
+    <parameter name="browser" value="firefox"/>
+    <parameter name="env" value="qa"/>
+    <classes>
+      <class name="qa.tests.DashboardTest">
+        <methods>
+          <include name="setupDriver"/>
+          <include name="tearDown"/>
+          <include name="userGetDirectToMessagePage"/>
+          <include name="setEnvironment"/>
+          <include name="verifyCountOfAllStores"/>
+          <include name="verifyAllSection"/>
+          <include name="verifyRadarchartPaymentMethodOfSelectedStore"/>
+          <include name="verifyThatDirectedToDashboardPageOfSelectedStore"/>
+          <include name="verifyTheRadarChartPaymentMethods"/>
+        </methods>
+      </class> <!-- qa.tests.DashboardTest -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

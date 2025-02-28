@@ -2,6 +2,7 @@ package base;
 
 import java.io.File;
 import java.time.Duration;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -752,7 +753,11 @@ public class BaseTest {
             actions.sendKeys(String.valueOf(ch)).perform();
         }}
 
-
+    public int getCountOfWebElements(By locator) {
+        List<WebElement> webElements = getDriver().findElements(locator);
+        // Return the count of elements
+        return webElements.size();
+    }
 }
 
 
