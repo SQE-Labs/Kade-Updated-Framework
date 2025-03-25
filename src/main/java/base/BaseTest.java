@@ -28,8 +28,6 @@ import utils.PropertyUtils;
 
 
 
-
-
 //import static pageObjects.PageObjectManager.pageObjectManager;
 
 public class BaseTest {

@@ -227,6 +227,10 @@ public class BillPage extends BaseTest {
     public By expireDropDown = By.xpath("//option[text()='Minutes']/..");
     public By minutesTxt = By.xpath("//option[text()='Minutes']");
 
+    By paymentMethodLink=By.xpath("//button[text()='Add payment method']");
+    By shareLinkToCustomer=By.xpath("//button[normalize-space()='Send a link to the customer to add a payment method']");
+    By shareLinkSuccessMessage=By.xpath("//div[text()='We sent a link to the customer.']");
+
     By expCloseIcon = By.xpath("(//button[@class='btn-close'])[7]");
     By expiresInField = By.cssSelector(".form-control.flex-grow-1.me-1");
     By expDropDown = By.cssSelector(".form-control.form-select.max-10c");
@@ -343,6 +347,16 @@ public class BillPage extends BaseTest {
         selectDropdownByIndex(expireDropDown, minTxt);
         staticWait(2000);
 
+    }
+    public void clickOnshareLinkToCustomer(){
+
+        click(shareLinkToCustomer);
+        String successMsg=getText(shareLinkSuccessMessage);
+        softAssert.assertEquals(successMsg,"We sent a link to the customer.");
+    }
+    public void clickOnpaymentMethodLink(){
+        staticWait(3000);
+        click(paymentMethodLink);
     }
 
     public void clickOnDoneBtn() {

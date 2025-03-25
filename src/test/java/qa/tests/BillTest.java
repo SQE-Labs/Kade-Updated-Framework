@@ -324,7 +324,7 @@ public class BillTest extends BaseTest {
         bill.getConfirmButton();
 
         //Close popup
-       bill.closePopup();
+        bill.closePopup();
 
         // Asserting description
         bill.assertingDescription();
@@ -368,7 +368,7 @@ public class BillTest extends BaseTest {
 
 
         //Close popup
-       bill.closePaymentpopup();
+        bill.closePaymentpopup();
 
         //Deleting Created Bill
         staticWait(3000);
@@ -401,7 +401,7 @@ public class BillTest extends BaseTest {
         bill.getNewBillButton();
 
         //Enter amount
-        bill. amt = "300001";
+        bill.amt = "300001";
 
 
         bill.getAmountValue();
@@ -409,7 +409,7 @@ public class BillTest extends BaseTest {
         staticWait(3000);
         actionEnterText(bill.amtTbx, bill.amt);
 
-      bill.validatingEnteredAmount();
+        bill.validatingEnteredAmount();
 
 
         //Click Confirm
@@ -421,7 +421,7 @@ public class BillTest extends BaseTest {
 
 
         //Close popup
-       bill.closePaymentpopup();
+        bill.closePaymentpopup();
 
 
         //Deleting Created Bill
@@ -692,7 +692,7 @@ public class BillTest extends BaseTest {
         bill.clickOnMoreSection();
         bill.clickOnRepeatField();
         bill.getDailyFieldValue();
-      //  bill.activateAfterFirstElement();
+        //  bill.activateAfterFirstElement();
         bill.clickOnDoneBtn();
 
 
@@ -743,7 +743,7 @@ public class BillTest extends BaseTest {
         bill.clickOnMoreSection();
         bill.clickOnRepeatField();
         bill.getWeeklyFieldValue();
-      //  bill.activateAfterFirstElement();
+        //  bill.activateAfterFirstElement();
         bill.clickOnDoneBtn();
 
 
@@ -771,7 +771,8 @@ public class BillTest extends BaseTest {
         bill.getDeleteButton();
         bill.getDeleteIcon();
     }
-    @Test(priority = 14, enabled = true, description = "BC_18 Verify that creating a 'Monthly Recurring bill and Activate after the first payment, on 'Bill' popup.")
+
+    @Test(priority = 14, enabled = true, description = "BC_19 Verify that creating a 'Monthly Recurring bill and Activate after the first payment, on 'Bill' popup.")
     public void verifyBillCreationByAddingRecurringTransactionsMonthly() {
 
         Login();
@@ -822,7 +823,7 @@ public class BillTest extends BaseTest {
         bill.getDeleteIcon();
     }
 
-    @Test(priority = 15, enabled = true, description = "BC_18 Verify that creating a 'Monthly Recurring bill and Activate after the first payment, on 'Bill' popup.")
+    @Test(priority = 15, enabled = true, description = "BC_20 Verify that creating a 'Monthly Recurring bill and Activate after the first payment, on 'Bill' popup.")
     public void verifyBillCreationByAddingRecurringTransactionsYearly() {
 
         Login();
@@ -872,7 +873,37 @@ public class BillTest extends BaseTest {
         bill.getDeleteIcon();
     }
 
-}
+    @Test(priority = 21, enabled = true, description = "BC_20 Verify that creating a 'Monthly Recurring bill and Activate after the first payment, on 'Bill' popup.")
+    public void verifyBillCreationByAddingpaymentMethod() {
+        Login();
+        //Select Store
+        bill.clickOnNewBill();
+        bill.getStoresDropdown();
+        bill.selectStore(Constants.AutomationBillFlow);
+        bill.getContinueButton();
 
+        //Click on New Bill Button
+        bill.getNewBillButton();
+
+        //Enter amount
+        String amt = "1005.00";
+        staticWait(3000);
+        actionEnterText(bill.amtTbx, amt);
+
+        //Select Suggested Customer
+
+        bill.getCustomerButton();
+        bill.getCustomerEmailField("yonro@yopmail.com");
+        bill.getEmailGoButton();
+
+        //Share bill by clicking on Share link to customer button
+        bill.clickOnpaymentMethodLink();
+        bill.clickOnshareLinkToCustomer();
+
+        //Share bill by adding card details
+        bill.clickOnpaymentMethodLink();
+
+    }
+}
 
 
