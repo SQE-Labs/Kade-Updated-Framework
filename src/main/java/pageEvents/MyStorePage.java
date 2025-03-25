@@ -132,8 +132,6 @@ public class MyStorePage extends BaseTest {
 
 
 
-
-
     // Methods
     public void getTickIconofImg(){
         click(checkBtn);

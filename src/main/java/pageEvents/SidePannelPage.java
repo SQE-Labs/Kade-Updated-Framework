@@ -51,9 +51,4 @@ public class SidePannelPage extends BaseTest {
     public void getProfileLink(){
         click(profileLink);
     }
-
-
-
-
-
 }

@@ -32,6 +32,10 @@ public class BaseTest {
     protected static ConfigFileReader configReader;
     protected static SoftAssert softAssert;
 
+
+    public static PageObjectManager pageObjectManager = PageObjectManager.getInstance();
+
+
     private By target = null;
 
     /**
@@ -311,7 +315,6 @@ public class BaseTest {
     public static void waitForElementInVisible(By locator, int waitTime) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(waitTime));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
-
     }
 
     /**
@@ -554,8 +557,6 @@ public class BaseTest {
         // Wait until the loader disappears
         waitForLoaderToDisappear(loaderLocator, timeout);
     }
-
-    public static PageObjectManager pageObjectManager = PageObjectManager.getInstance();
 
 
     //login method

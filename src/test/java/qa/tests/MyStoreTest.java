@@ -21,8 +21,8 @@ public class MyStoreTest extends BaseTest {
     // Logger instance for logging messages
     private static final Logger log = LogManager.getLogger(MyStorePage.class);
 
-    private PageObjectManager pageObjectManager = PageObjectManager.getInstance();
-    private MyStorePage mystore = pageObjectManager.getMyStorePage();
+    PageObjectManager pageObjectManager = PageObjectManager.getInstance();
+    MyStorePage mystore = pageObjectManager.getMyStorePage();
 
     @Test(description = "SC_01(A) Verifying creation of Store without Stripe Payment Account Configuration")
     public void storeCreationWithoutStripeAccount() {
@@ -262,7 +262,7 @@ public class MyStoreTest extends BaseTest {
 
     }
 
-    @Test(description = "SC_06 Verifying the Configuration of the Store using Payment Processing Sub-Tab")
+    @Test(description = "SC_06 Verifying the Configuration of the Store using Payment Processing Sub-Tab with terminal configuration,")
     public void verifyingConfigurationOfStoreUsingPaymentProcessingSubTab() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
@@ -288,14 +288,33 @@ public class MyStoreTest extends BaseTest {
         }
 
         //Verifying the 'New Terminal' Pop-Up Title
-         Assert.assertEquals(getText(mystore.newTerminalPopUpTitle),Constants.newTerminalTitle);
+        Assert.assertEquals(getText(mystore.newTerminalPopUpTitle), Constants.newTerminalTitle);
 
-       // Select an option and save
+        // Select an option and save
         mystore.getCreditTerminalOption();
+
+    }
+    @Test(description ="Verifying the Configuration of the Store using Payment Processing Sub-Tabs on 'Store Configuration' Page")
+    public void verifyConfigurationOfStoreUsingPaymentProcessingSubTab(){
+        Login();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getMyStoreTab();
+
+        // Click on 'Configure' Link
+        mystore.getConfigureLink();
+
+    waitForElementToBeVisible(mystore.paymentProcessingSubTab,5);
+
+        // Click on 'Payment-Processing' Sub-Tab
+        mystore.getPaymentProcessingSubTab();
+
     }
 
 
+
+
 }
+
 
 
 
