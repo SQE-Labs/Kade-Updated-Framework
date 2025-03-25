@@ -22,7 +22,7 @@ public class SignUpTest extends BaseTest {
     @Test(description = "CA_TC 1: Verify the elements of 'Create New Account' page after selecting  'Personal Account' option, on 'Login' page..")
     public void VerifyTheSignUpPage() {
         pageObjectManager.getLoginPage().getSignUpLink();
-        waitForElementToBeVisible(signUp.businessAccountButton, 3);
+        waitForElementToBeVisible(signUp.businessAccountButton,10);
 
         // Verify the Business Account And Personal Account Button
         Assert.assertTrue(isElementDisplayed(signUp.businessAccountButton));
@@ -196,7 +196,7 @@ public class SignUpTest extends BaseTest {
         // Clicking on 'Sign In Button
         signUp.getSignInBtn();
 
-        waitForElementToBeVisible(signUp.signInTitle, 3);
+        waitForElementToBeVisible(signUp.signInTitle,10);
 
         // Verify the elements on 'Sign In' page
         softAssert.assertTrue(isElementDisplayed(signUp.signInTitle), "signInTitle");
@@ -222,7 +222,7 @@ public class SignUpTest extends BaseTest {
         // Entering valid phone number
         actionEnterText(signUp.phoneFieldSP, Constants.phone);
         signUp.getContinueBtnSP();
-        waitForElementToBeVisible(signUp.changeLinkSP, 3);
+        waitForElementToBeVisible(signUp.changeLinkSP,10);
 
         // Verify the link is displayed
         softAssert.assertTrue(isElementDisplayed(signUp.changeLinkSP), "FAILURE: 'Change' link  is NOT displayed!");

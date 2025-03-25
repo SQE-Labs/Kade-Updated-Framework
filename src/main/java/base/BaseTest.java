@@ -1,10 +1,13 @@
 package base;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.io.File;
-import java.time.Duration;
-import java.util.Random;
-import java.util.Set;
 
+import java.time.Duration;
+import java.util.Set;
+import logger.Log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -16,12 +19,16 @@ import org.openqa.selenium.support.ui.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.asserts.SoftAssert;
 import pageObjects.PageObjectManager;
 import utils.ConfigFileReader;
+import utils.PropertyUtils;
+
+
+
+
 
 //import static pageObjects.PageObjectManager.pageObjectManager;
 
@@ -29,10 +36,16 @@ public class BaseTest {
     private static final Logger log = LogManager.getLogger(BaseTest.class); // Logger instance
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     protected static ConfigFileReader configReader;
-    protected SoftAssert softAssert;
-    private static PageObjectManager pageObjectManager = PageObjectManager.getInstance();
+    protected static SoftAssert softAssert;
+    private By locator = null;
 
     private By target = null;
+
+
+
+    public BaseTest() {
+        this.locator = locator;
+    }
 
     /**
      * Set the environment from the test parameter.
@@ -145,7 +158,7 @@ public class BaseTest {
      * @param millis - The wait time in milliseconds.
      */
     public void staticWait(long millis) {
-        log.debug("Static wait for {} ms.", millis);
+        log.debug("Static wait for {} ms.");
         try {
             Thread.sleep(millis);
         } catch (InterruptedException e) {
@@ -165,6 +178,18 @@ public class BaseTest {
         log.info("Waiting for element to be visible: {}", locator);
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeout));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public static void WaitUntilElementVisible(By locator, int tries) {
+        try {
+            for (int i = 0; i < tries; i++) {
+                Wait<WebDriver> fluentWait1 = new FluentWait<WebDriver>(getDriver()).withTimeout(Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))))
+                        .pollingEvery(Duration.ofMillis(Long.parseLong(PropertyUtils.getPropertyValue("wait"))))
+                        .ignoring(TimeoutException.class);
+                fluentWait1.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            }
+        } catch (Exception e) {
+        }
     }
 
     /**
@@ -197,10 +222,14 @@ public class BaseTest {
      */
     public void click(By locator) {
         log.info("Clicking on element: {}", locator);
+       WebDriverWait wait = new WebDriverWait(getDriver(),Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))));
         waitForElementToBeClickable(locator, 10).click();
+
     }
 
+
     public static void clickElementByJS(By element) {
+        Log.info("Clicking on " +element);
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("arguments[0].click();", getDriver().findElement(element));
     }
@@ -218,6 +247,19 @@ public class BaseTest {
         element.sendKeys(text);
     }
 
+    public static void SendKeys(By element, String value) {
+
+         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))));
+        wait.until(ExpectedConditions.presenceOfElementLocated(element));
+        try {
+            WebElement ele = getDriver().findElement(element);
+            ele.sendKeys(value);
+
+        } catch (Exception E) {
+            throw new RuntimeException (E);
+        }
+    }
+
     /**
      * Retrieves the visible text of an element.
      *
@@ -232,12 +274,36 @@ public class BaseTest {
     /**
      * Scrolls to the specified element using JavaScript.
      *
-     * @param locator - The By locator for the element.
+     * @param element - The By locator for the element.
      */
-    public void scrollToElement(By locator) {
-        log.info("Scrolling to element: {}", locator);
-        WebElement element = getDriver().findElement(locator);
-        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+    public static void scrollToElement(By element) {
+        JavascriptExecutor jse = (JavascriptExecutor) getDriver() ;
+        WebElement ele = getDriver() .findElement(element);
+        try {
+            jse.executeScript("arguments[0].scrollIntoView(true);", ele);
+        } catch (Exception e) {
+            throw new RuntimeException (e);
+        }
+    }
+    public static void scrollToDown() {
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        try {
+            js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    // Scroll up to an element
+    public void scrollToUp(By element) {
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        WebElement ele = getDriver() .findElement(element);
+        try {
+            js.executeScript("window.scrollTo(0, 0);");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -295,9 +361,55 @@ public class BaseTest {
         }
     }
 
+    /**
+     * Checks whether the element is enabled.
+     *
+     * @return true if enabled, false otherwise
+     */
+    public boolean isEnabled(By locator) {
+        try {
+            return  getDriver().findElement(locator).isEnabled();
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
+    // Method to upload a file from local driver
+    public void uploadImageFile(String location) throws AWTException {
+        Robot rb = new Robot();
+        rb.setAutoDelay(2000);
+
+        // Copying file path to clipboard
+        StringSelection str = new StringSelection(location);
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(str, null);
+
+        // Determine the operating system
+        String os = System.getProperty("os.name").toLowerCase();
+
+        if (os.contains("win")) {
+            // Windows key combination for paste
+            rb.keyPress(KeyEvent.VK_CONTROL);
+            rb.keyPress(KeyEvent.VK_V);
+            rb.keyRelease(KeyEvent.VK_V);
+            rb.keyRelease(KeyEvent.VK_CONTROL);
+        } else if (os.contains("mac")) {
+            // macOS key combination for paste
+            rb.keyPress(KeyEvent.VK_TAB);
+            rb.keyPress(KeyEvent.VK_META);  // Command key
+            rb.keyPress(KeyEvent.VK_V);
+            rb.keyRelease(KeyEvent.VK_V);
+            rb.keyRelease(KeyEvent.VK_META);
+        }
+
+        // Press and release Enter key
+        rb.keyPress(KeyEvent.VK_ENTER);
+        rb.keyRelease(KeyEvent.VK_ENTER);
+    }
+
     public static void waitForElementInVisible(By locator, int waitTime) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(waitTime));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+
     }
 
     /**
@@ -541,7 +653,7 @@ public class BaseTest {
         waitForLoaderToDisappear(loaderLocator, timeout);
     }
 
-
+    public static PageObjectManager pageObjectManager = PageObjectManager.getInstance();
 
 
     //login method
@@ -719,12 +831,26 @@ public class BaseTest {
         }
         return s.toString();
     }
+
     public void cleanByJS(By locator) {
         WebElement element = getDriver().findElement(locator);
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("arguments[0].value = '';", element);
     }
+    public void pressKeys(By locator, String value) {
+        // Create PerformActions instance
+        Actions actions = new Actions(getDriver());
+        // Click the input field to focus
+        actions.click(getDriver().findElement(locator)).perform();
 
+        // Send each character of the string one by one
+        for (char ch : value.toCharArray()) {
+            actions.sendKeys(String.valueOf(ch)).perform();
+        }}
 
 
 }
+
+
+
+

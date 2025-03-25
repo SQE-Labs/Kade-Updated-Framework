@@ -2,22 +2,34 @@ package pageEvents;
 
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.nio.file.Paths;
 import java.text.NumberFormat;
+import java.util.List;
 import java.util.Locale;
 
 import base.BaseTest;
+import logger.Log;
 import org.openqa.selenium.*;
 
 
 public class BillPage extends BaseTest {
 
+    String descriptionTxt;
+    String referenceTxt;
+    String memoTxt;
+    public String amt;
+
+    public String  enteredamt;
+
+
+    public By newBillTxt = By.xpath("//div/child::div[text()='New Bill']");
     public By newBillBtn = By.cssSelector(".fs-p15>i+div");
     public By recurringBtn = By.xpath("//div[text()='Recurring']");
     public By alertMessage = By.xpath("//div[@class='alert-message']");
     public By transactionsLink = By.xpath("//div[text()='Transactions']");
     public By amtTbx = By.xpath("//input[@name='amount']");
-    public By selectedCustomer = By.xpath("(//div[@data-field='name']/../../../..  //div[@class='d-none empty-d-block'])[2]");
+    public By selectCustomer = By.xpath("//button[text()='Select a customer']");
     public By suggestionList = By.xpath("//div[@class='border rounded-3 mb-1 p-2 position-relative clone']");
     By customerField = By.xpath("//div[@class='modal-content']//label[text()='Customer']");
     By moreOptionsField = By.xpath("//div[@class='modal-body'] //label[text()='More options']");
@@ -25,7 +37,14 @@ public class BillPage extends BaseTest {
     By closeIcon = By.cssSelector("button.btn-close");
     By closeBillBtn = By.xpath("//span[text()='Bill']/../../../../.. //button");
     By userNumber = By.xpath("//input[@name='userPhone']");
-    By filterBtn = By.cssSelector(".far.fa-2x.fa-sliders-h-square");
+    public By filterBtn = By.cssSelector(".far.fa-2x.fa-sliders-h-square");
+    public By configureAmount = By.xpath("//div[@class='text-center fs-pn25']");
+    public By enteredAmount = By.cssSelector("span[data-field='total']");
+    public By tapToAddFiles = By.xpath("//div[text()='Tap to add files']/..");
+    public By camera = By.xpath("(//button[contains(@class,'btn btn-outline-dark mx-2')]/child::i[contains(@class,'fas fa-camera-retro fs-p50')])[2]/..");
+    public By pdfIcon = By.xpath("(//button[contains(@class,'btn btn-outline-dark mx-2')]/child::i[contains(@class,'fas fa-file-pdf fs-p50')])[2]/..");
+    public By okIcon = By.xpath("//button[@class='btn btn-dark -crop-']");
+
     By fromDatePicker = By.cssSelector("[name='dateRange']");
     By customerName = By.cssSelector("[name='custName']");
     By UserPhoneField = By.xpath("//input[@name='userPhone']");
@@ -38,7 +57,7 @@ public class BillPage extends BaseTest {
     By nextMonthArrow = By.xpath("//th[@class='next available']");
     By refNo = By.xpath("//tr[@class='none-workingEffect']/td[2]/p[1]");
     By toastCloseBtn = By.xpath("//button[@class='toast-close-button']");
-    public By toastMessage = By.xpath("//div[@class='toast-message']");
+    public By successMessage = By.xpath("//div[@class='toast-message']");
     By refundBtn = By.xpath("//button[@title='Refund']");
     By reasonField = By.xpath("(//input[@name='reason'])[3]");
     By processFullRefund = By.xpath("//button[@name='refundAll']");
@@ -52,12 +71,15 @@ public class BillPage extends BaseTest {
     By customerNames = By.xpath("//td[@class='text-nowrap']/p[1]");
     By bill = By.xpath("(//tr[@class='none-workingEffect'])[1]");
     By customerHeader = By.xpath("//span[text()='Customer']");
-    By popUpHeader = By.cssSelector(".modal-title span");
+    public By popUpHeader = By.cssSelector(".modal-title span");
     By subTotalBox = By.xpath("//input[@name='subTotal']");
-    By customerNumber = By.xpath("//input[@name='phone']");
+    public By customerNumber = By.xpath("//input[@name='phone']");
+    public By emailField = By.xpath("//input[@name='email']");
     By createBtn = By.xpath("//button[@class='btn btn-primary fs-p50']");
     By addBillDetails = By.xpath("//button[@class='p-0 btn btn-link collapsed auto-collapse']");
     public By addBillDescription = By.xpath("//textarea[@name='amount_description']");
+    public By customerDropdown = By.xpath("//div[contains(text(),'Select or create')]");
+    public By moreLabelTxt = By.xpath("//label[contains(text(),'More options')]");
     By addBillPrice = By.xpath("//th[text()='Price']");
     By addMoreRowLink = By.xpath("//button[@class='btn-sm btn btn-link']");
     By toolTipMessage = By.xpath("//div[@class='tooltip-inner']");
@@ -75,26 +97,34 @@ public class BillPage extends BaseTest {
     By description2 = By.xpath("//input[@name='items[1].description']");
     public By amtInput = By.xpath("//input[@name='amount']");
     By closeCustomerBtn = By.xpath("//span[text()='Customer']/../..//button");
-    By customerBtn = By.xpath("//span[text()='Bill']/../../../../../../div[2]/div/div/form/div[5]/div");
+    By customerBtn = By.xpath("//label[@class='mb-1' and text()='Customer']/../..");
     public By phoneNoTbx = By.xpath("//input[@placeholder='Phone number']");
-    public By emailTbx = By.xpath("//input[@placeholder='Email']");
+    public By emailTbx = By.xpath("//input[@placeholder='Email. Existing or new']");
     public By searchTbx = By.xpath("//input[@placeholder='Search']");
-    By goBtnPhnNo = By.xpath("//input[@placeholder='Phone number']/..//button");
-    By goBtnEmail = By.xpath("//input[@placeholder='Email']/..//button");
+    By goBtnPhnNo = By.xpath("//input[@name='phone']/following-sibling::button");
+    By goBtnEmail = By.xpath("//input[@name='email']/following-sibling::button");
+    By enterCustomernameDoneBtn = By.xpath("(//button[text()='Done'])[6]");
+    By enterUserNamePopUp = By.xpath("(//div[@class='modal-header']/h5)[8]");
+    public By customerNameField = By.xpath("(//div[@class='my-4']/input[@class='form-control'])[2]");
+    public By billDoneBtn = By.xpath("(//div[@class='modal-content']//button[@class='btn btn-link w-100 my-3'])[6]");
+    public By confirmBtnDisabled = By.xpath("(//button[@disabled='disabled'])[3]");
     By searcherName = By.xpath("(//div[@data-field='alias'])[2]");
     By discardBtn = By.xpath("(//*[contains(text(),'discard')])[5]/.. //button[text()='Discard']");
     public By confirmBtn = By.xpath("//button[@name='method']");
-    public By continueWithoutBtn = By.xpath("//*[@role='dialog'] //button[text()='Continue without']");
-    public By selectACustomerBtn = By.xpath("//*[@role=\"dialog\"] //button[text()='Select a customer']");
+    public By continueWithoutBtn = By.xpath("//button[text()='Continue without']");
+    public By closePopup = By.xpath("(//div[contains(@class, 'modal-content')]//button[@class='btn-close'])[2]");
+    public By crossPopUpIcon = By.xpath("//div[contains(@class, 'modal-content')]//button[@class='btn-close']");
+    public By crossIcon = By.xpath("(//div[contains(@class, 'modal-content')]//button[@class='btn-close'])[1]");
+    public By countinueWithoutTxt = By.xpath("//div//button[text()='Continue without']");
+    public By selectACustomerBtn = By.xpath("(//div[@class='modal-content'])[8]//button[text()='Select a customer']");
     By whichStorePopup = By.xpath("//p[text()='Which store?']");
     By newBusinessCard = By.xpath("div.overflow-hidden.border.border-info");
     By storesCombobox = By.xpath("//span[@role='combobox']");
     By continueBtn = By.xpath("//button[@type='submit']");
-    By messagePopupHeader = By.xpath("//*[@role='dialog'] //h5[text()='Message']");
-    public By closeLogoPopupBtn = By.xpath("//div[@class='modal fade show' and not(@data-bs-keyboard='false')]" +
-            "//child::button");
-    By totalAmt = By.xpath("//span[@data-field='total']");
-    By tapToAddFiles = By.cssSelector(".flex-column-reverse > div:nth-child(3)");
+    public By messagePopupHeader = By.xpath("//h5[text()='Message']");
+    public By closeLogoPopupBtn = By.xpath("(//div[contains(@class, 'modal-content')]//button[@class='btn-close'])[3]");
+    public By totalAmt = By.xpath("//span[@data-field='total']");
+    // By tapToAddFiles = By.cssSelector(".flex-column-reverse > div:nth-child(3)");
     By cameraIcon = By.xpath("(//button[contains(@onclick,'image')])[2]");
     By documentIcon = By.xpath("(//button[contains(@onclick,'pdf')])[2]");
     By checkBtn = By.xpath("//button[@class='btn btn-dark -crop-']");
@@ -102,6 +132,11 @@ public class BillPage extends BaseTest {
     By notPaidBill = By.xpath("//div[contains(@class, 'row bg-white')][1]");
     By unPaidBill = By.xpath("(//div[contains(@class,'row bg-white ')])[1]/div[2]");
     public By deleteButton = By.cssSelector(".btn-outline-danger");
+    public By notPaid = By.xpath("//div[contains(@class, 'row bg-white')][1]");
+    public By billsection = By.xpath("//*[@id=\"_16U\"]/div[2]");
+    public By billLabel = By.xpath("//div[contains(@class,'row bg-white border rounded')]");
+    public By reccuringBill = By.xpath("//div[contains(@class, 'bg-white mb-2 row')][1]");
+    public By reccuringAmount = By.xpath("//span[@class='display-6 ms-1 text-danger']");
     By deleteIcon = By.cssSelector(".fal.fa-thumbs-up.text-white");
     By moreOptions = By.cssSelector(".mb-3.border.p-2.py-3.rounded-3.advanced-d-none.position-relative");
     By referenceNo = By.xpath("(//div[@class='border p-2 py-3 mb-2 rounded-3  d-none advanced-d-block'])[1]");
@@ -132,25 +167,67 @@ public class BillPage extends BaseTest {
     By freezeIcon1 = By.xpath("(//button[@class='fs-pn15 m-1 btn btn-danger'])[1]");
     By freezeIcon2 = By.xpath("(//button[@class='fs-pn15 m-1 btn btn-danger'])[2]");
     By upgradePopUpTitle = By.xpath("//h3[text()='Upgrade your plan']");
-    By memoBtn = By.xpath("(//div[@class='text-nowrap d-flex align-items-center w-100'])[4]");
-    By memoField = By.xpath("(//textarea[@lbl-title='Memo'])[2]");
+    By memoBtn = By.xpath("//label[text()='Memo:']/..");
+    By memoField = By.xpath("//div[@class='my-4']//textarea[@lbl-title='Memo']");
     By doneBtn = By.xpath("(//button[text()='Done'])[5]");
     By doneBtn2 = By.xpath("//h5[text()='Repeat']/../..//button[text()='Done']");
     By memoFieldText = By.xpath("(//div[@class='d-none empty-d-block fst-italic w-100'])[4]");
-    By memoFieldMessage = By.xpath("//div[@class='text-muted fs-pn15 pt-3']");
+    By memoFieldMessage = By.xpath("//div[contains(text(),'Customer will not see this memo')]");
     By memoPopUpTitle = By.xpath("//h5[text()='Memo']");
     By addedMemoText = By.xpath("(//div[contains(text(),'Memo Text')])[1]");
-    By taxToggleBtn = By.xpath("//input[@name='applyTax']/../i[2]");
-    //    By paidRepeatField = By.xpath("//div[@class='border p-2 py-3 mb-2 rounded-3 position-relative']");
-    By paidRepeatField = By.xpath("(//div[contains(@class,'text-nowrap d-flex align-items-center w-100')])[3]");
-    //By paidExpiryField = By.xpath("//div[@class='border p-2 py-3 mb-2 rounded-3 position-relative -expdate-div-']");
+    public By taxToggleBtn = By.xpath("//input[@name='applyTax']/../i[2]");
+    public By moreSection = By.xpath("//label[text()='More options']/../..");
+    public By repeatLockIcon = By.xpath("(//i[@class='fas fa-lock'])[1]");
+    public By expireLockIcon = By.xpath("(//i[@class='fas fa-lock'])[2]");
+    public By memoNoneTxt = By.xpath("(//div[contains(@class,'text-nowrap d-flex')]//div[text()='None'])[4]");
+    public By expiryDateSection = By.xpath("//label[text()='Expiration Date:']/../..");
+    public By expirationDayPopUp = By.xpath("//h5[text()='Expiration Date']");
+    public By refNoneTxt = By.xpath("//label[text()='Ref No.:']/..//div[text()='None']/../../../../..");
+    public By DescriptionEnteredText = By.xpath("//label[text()='Description:']/..//div[text()='None']/../../../../..");
+    public By descriptionNoneTxt = By.xpath("//label[text()='Description:']/..//div[text()='None']/../../../../..");
+    public By refNoPopup = By.xpath("//h5[text()='Reference No.']");
+    public By enterTxtInRefNo = By.xpath("//h5[text()='Reference No.']/../../child::div/div/input");
+    public By refNopopupDoneBtn = By.xpath("//h5[text()='Reference No.']/../../child::div/button[text()='Done']");
+    public By descriptionSection = By.xpath("//label[text()='Description:']/..//div[text()='None']/../../../../..");
+    public By taxRateField = By.xpath("//input[@name='taxRate']");
+    public By descriptionTextField = By.xpath("//h5[text()='Description']/../following-sibling::div/child::div/textarea");
+    public By descriptionTitle = By.xpath("//h5[text()='Description']");
+    public By descriptionDoneButton = By.xpath("//h5[text()='Description']/../following-sibling::div/child::button[text()='Done']");
+    public By saveBtn = By.cssSelector("button[class='btn btn-primary']");
+    public By validationMsg = By.xpath("//p[text()='The amount is larger than acceptable amount (50,000.00) for this store']");
+    By paidRepeatField = By.xpath("//div[text()='No repeat']/../../../../..");
+    public By repeatUpgradePlan = By.xpath("//h3[text()='Upgrade your plan']");
+    By repeatUpgradePlanNotNowBtn = By.xpath("//button[text()='Not now']");
+    By repeatTxt = By.xpath("//h5[text()='Repeat']");
+    By timesTotalField = By.xpath("//label[text()='times total']");
+    By dailyCheckbox = By.xpath("//label[normalize-space()='Daily']/input");
+    By weeklyCheckbox=By.xpath("//label[normalize-space()='Weekly']/input");
+    By MonthlyCheckbox=By.xpath("//label[normalize-space()='Monthly']/input");
+    By yearlyCheckbox=By.xpath("//label[normalize-space()='Yearly']/input");
+    By repeatElements = By.xpath("//label[@class='list-group-item']");
     public By paidExpiryField = By.xpath("//label[text()='Expiration Date:']");
     public By repeatPopUpTitle = By.xpath("//h5[text()='Repeat']");
+    public By reccuringIcon = By.xpath("(//i[@title='Recurring transaction'])[1]");
+    public By reccuringMenu = By.xpath("//div[text()='Recurring']/..");
     By expiryDatePopUpTitle = By.xpath("//h5[text()='Expiration Date']");
     By unpaidAmount = By.cssSelector(".text-danger.fs-4");
+    public By enterInBillfield = By.xpath("(//div[@class='d-flex mb-2 clone']/div/input[@name='detail_amount'])[1]");
+    public By reEnterAmountInBillfield = By.xpath("(//div[@class='d-flex mb-2 clone']//input[@data-field='amount'])[1]");
+    public By enterInSecondBillfield = By.xpath("(//div[@class='d-flex mb-2 clone']/div/input[@name='detail_amount'])[2]");
+    public By enteredDescTxt = By.xpath("//div[@class='border rounded p-1 overflow-hidden']");
+    public By refGetTxt = By.xpath("//span[contains(text(),'Ref:')]");
+
+    // Expiration Date x-paths
+    public By noneTxt = By.xpath("//button[contains(text(),'None')]");
+    public By dayTxt = By.xpath("//button[contains(text(),'24 Hours')]");
+    public By quterDayTxt = By.xpath("//button[contains(text(),'24 Hours')]/following-sibling::button[contains(text(),'4 Hours')]");
+    public By oneHourTxt = By.xpath("//button[contains(text(),'1 Hour')]");
+    public By thirtyMinTxt = By.xpath("//button[contains(text(),'30')]");
+    public By expireInTxtField = By.xpath("//span[contains(text(),'Expires in:')]/following-sibling::input[@data-field='duration']");
+    public By expireDropDown = By.xpath("//option[text()='Minutes']/..");
+    public By minutesTxt = By.xpath("//option[text()='Minutes']");
 
     By expCloseIcon = By.xpath("(//button[@class='btn-close'])[7]");
-    By repeatCloseIcon = By.xpath("(//button[@class='btn-close'])[8]");
     By expiresInField = By.cssSelector(".form-control.flex-grow-1.me-1");
     By expDropDown = By.cssSelector(".form-control.form-select.max-10c");
     By expDropDownOption = By.xpath("//option[@value='minutes']");
@@ -159,10 +236,15 @@ public class BillPage extends BaseTest {
     By expPopUpBtn24Hr = By.xpath("(//button[contains(@class,'fs-inherit mb-4')])[2]");
     By expPopUpBtn4Hr = By.xpath("(//button[contains(@class,'fs-inherit mb-4')])[3]");
     By expPopUpBtn1Hr = By.xpath("(//button[contains(@class,'fs-inherit mb-4')])[4]");
-    By expPopUpBtn30Min = By.xpath("(//button[contains(@class,'fs-inherit mb-4')])[2]");
     By repeatOption = By.xpath("//input[@value='1']");
     By customerCancelOption = By.xpath("//span[text()='Customer can cancel at any time']");
-    By everyDayField = By.xpath("//input[@class='max-5c form-control']");
+    By everyDayField = By.xpath("(//div[@class='d-flex']/child::label/following-sibling::input)[1]");
+    By everyWeekField = By.xpath("(//div[@class='d-flex']/child::label/following-sibling::input)[2]");
+    By everyMonthField = By.xpath("(//div[@class='d-flex']/child::label/following-sibling::input)[3]");
+
+    By specificNumbers = By.xpath("//label[normalize-space()='Specific number of times']/input");
+    public By pecificNumberText = By.xpath("//div[@class='d-flex']/child::input[@lbl-title='Times']");
+    public By totalDays = By.xpath("//div[contains(@class,'mb-2 d-flex')]");
     By recurringBillText = By.xpath("//a[@class='btn btn-link']");
     public By billTag = By.xpath("//div[contains(@class,'col-5  text-end') ]//div[1]/span");
 
@@ -175,18 +257,27 @@ public class BillPage extends BaseTest {
     public By processPaymentBtn = By.xpath("//button[text()='Process Payment']");
     By deleteBillBtn = By.xpath("//button[text()='Delete']");
     By editBillBtn = By.xpath("//i[@class='far fa-edit']");
-    By uniqueRefNo = By.cssSelector(".badge.position-relative:first-child");
-    By notPaidLabel = By.cssSelector(".badge.bg-danger");
-    By billTimeOnPopup = By.cssSelector("div[role='document'] div.d-flex.justify-content-between div+div>div");
-    By taxValue = By.xpath("//input[@name='applyTax']/../span");
-    By taxToggleBtnDisable = By.xpath("//input[@name='applyTax']/../i[1]");
+    public By uniqueRefNo = By.xpath("(//span[contains(@class,'badge position-relative')])[1]");
+    public By notPaidLabel = By.xpath("(//span[text()='NOT PAID'])[1]");
+    public By billTimeOnPopup = By.xpath("(//div[@class='fs-pn25 mb-1'])[1]");
+    public By memoEnteredTxt = By.xpath("(//div[contains(text(),'Memo Text')])[1]");
+    public By expireDateTime = By.xpath("(//div[contains(@class,'col-5  text-end ')]/div/span)[1]");
+    public By taxValue = By.xpath("//input[@name='applyTax']/../child::div");
+    public By taxToggleBtnDisable = By.xpath("(//input[@name='applyTax']/../child::i)[2]");
     By customName = By.xpath("//*[@id=\"_B7O\"]/span");
     By activeBillAmmount = By.xpath("//span[@class='display-5 display-sm-2 fw-bold']");
     By doneButton = By.xpath(" //div[@id='_3FH']/button[@type='button'][normalize-space()='Done']");
+    public By amountTxtField = By.xpath("//label[text()='Amount']");
+    public By btnDisbled = By.xpath("(//button[@disabled='disabled'])[3]");
 
 
     public BillPage() {
         super();
+    }
+
+    public void clickOnNewBill() {
+        Log.info("Clicking on newBillTxt");
+        click(newBillTxt);
     }
 
     public void getStoresDropdown() {
@@ -197,25 +288,146 @@ public class BillPage extends BaseTest {
         click(By.xpath("//li[contains(text(),'" + store + "')]"));  // Select store
     }
 
-    public void getSelectACustomerButton() {
-        click(selectACustomerBtn);
-    }
 
     public void getEnableTaxToggleButton() {
         click(taxToggleBtn);
     }
 
-    public void getDisableTaxToggleButton() {
-        click(taxToggleBtnDisable);
+    public void clickOnTapToAddImageFiles() throws AWTException {
+        scrollToElement(tapToAddFiles);
+        click(tapToAddFiles);
+        hoverAndClick(camera, camera);
+        staticWait(1000);
+        uploadImageInStoreLogo();
+        staticWait(10000);
+        //  scrollToElement(okIcon);
+        hoverAndClick(okIcon, okIcon);
+
     }
 
-    public void getTotalAmt() {
-        click(totalAmt);
+    public void clickOnTapToAddPdfFiles() throws AWTException {
+        scrollToElement(tapToAddFiles);
+        click(tapToAddFiles);
+        hoverAndClick(pdfIcon, pdfIcon);
+        staticWait(1000);
+        uploadPdf();
+        staticWait(5000);
+
+
     }
 
-    public void getTaxValue() {
-        click(taxValue);
+    public void clickOnMoreSection() {
+        scrollToElement(moreSection);
+        staticWait(3000);
+        click(moreSection);
     }
+
+    public void verifyEnteredMemoText() {
+        //Verify not paid label for generated amount
+        softAssert.assertTrue(isElementDisplayed(notPaidLabel));
+        softAssert.assertTrue(isElementDisplayed(uniqueRefNo));
+        softAssert.assertTrue(isElementDisplayed(billTimeOnPopup));
+        softAssert.assertTrue(isElementDisplayed(memoEnteredTxt));
+    }
+
+    public void clickOnExpiryDateSection() {
+        staticWait(3000);
+        hoverAndClick(expiryDateSection, expiryDateSection);
+    }
+
+    public void sendTxtInexpireInTxtField(String hrs, int minTxt) {
+        staticWait(2000);
+        actionEnterText(expireInTxtField, hrs);
+        click(expireDropDown);
+        staticWait(2000);
+        selectDropdownByIndex(expireDropDown, minTxt);
+        staticWait(2000);
+
+    }
+
+    public void clickOnDoneBtn() {
+        scrollToElement(doneBtn);
+        click(doneBtn);
+    }
+
+    public void assertGetRefNotxt() {
+        WaitUntilElementVisible(refNoneTxt, 10);
+        scrollToUp(refNoneTxt);
+        softAssert.assertTrue(isElementDisplayed(refNoneTxt));
+    }
+
+    public void assertDescriptionNonetxt() {
+        softAssert.assertTrue(isElementDisplayed(descriptionNoneTxt));
+    }
+
+    public void clickOnGetRefNotxt() {
+        staticWait(4000);
+        click(refNoneTxt);
+        softAssert.assertTrue(isElementDisplayed(refNoPopup));
+        referenceTxt = "Kevin123" + requiredString(42);
+        staticWait(4000);
+        actionEnterText(enterTxtInRefNo, referenceTxt);
+        click(refNopopupDoneBtn);
+        staticWait(4000);
+    }
+
+    public void entertxtInDescriptiontxt() {
+        staticWait(4000);
+        click(descriptionSection);
+        Log.info("descriptionSection None text displayed");
+        softAssert.assertTrue(isElementDisplayed(descriptionTitle));
+        descriptionTxt = "Kevin123" + requiredString(192);
+        staticWait(4000);
+        actionEnterText(descriptionTextField, descriptionTxt);
+        click(descriptionDoneButton);
+        staticWait(4000);
+    }
+
+
+    public void assertEnteredText() {
+        Log.info("Validating text");
+        softAssert.assertEquals(referenceTxt, getText(refNoneTxt));
+        Log.info(getText(refNoneTxt));
+
+
+    }
+
+
+    public void assertEnteredTextInDescriptionField() {
+        Log.info("Validating text");
+        softAssert.assertEquals(descriptionTxt, getText(DescriptionEnteredText));
+        Log.info(getText(DescriptionEnteredText));
+    }
+
+    public void enterInBillTxtField(String maximumBill, String maximumSecondBill) {
+        actionEnterText(enterInBillfield, maximumBill);
+        actionEnterText(enterInSecondBillfield, maximumSecondBill);
+    }
+
+    public void reEnterAmountInBillTxtField(String maximumBill, String maximumSecondBill) {
+        scrollToUp(reEnterAmountInBillfield);
+        actionEnterText(reEnterAmountInBillfield, maximumBill);
+    }
+
+    public void assertingDescription() {
+        Log.info("Validating text");
+        softAssert.assertEquals(enteredDescTxt, descriptionTxt);
+        Log.info("Validating text : " + enteredDescTxt);
+        Log.info("Validating text");
+        softAssert.assertEquals(refGetTxt, referenceTxt);
+        Log.info("Validating text : " + refGetTxt);
+    }
+
+
+    public void enterTextInTaxRateField(String taxRateFieldText) {
+        staticWait(3000);
+        actionEnterText(taxRateField, taxRateFieldText);
+    }
+
+    public void clickOnSaveBtn() {
+        click(saveBtn);
+    }
+
 
     public String convertToNumberFormat(float num) {
         // Create a NumberFormat instance for the default locale
@@ -253,6 +465,7 @@ public class BillPage extends BaseTest {
 
     public void getNewBillButton() {
         click(newBillBtn);
+
     }
 
     public void getAmountTextbox() {
@@ -272,24 +485,40 @@ public class BillPage extends BaseTest {
     }
 
     public void getConfirmButton() {
+        staticWait(4000);
+        scrollToElement(confirmBtn);
         click(confirmBtn);
     }
 
-    public void getSelectCustomerButton() {
-        click(selectedCustomer);
-    }
-
     public void getContinueWithoutButton() {
-        click(continueWithoutBtn);
+        waitForElementToBeVisible(countinueWithoutTxt, 10);
+        hoverAndClick(countinueWithoutTxt, countinueWithoutTxt);
     }
 
-    public void getCustomerPhoneNoField() {
-        click(customerNumber);
+    public void getSelectACustomerButton() {
+        staticWait(3000);
+        click(selectACustomerBtn);
     }
 
-    public void getEmailField() {
-        click(emailTbx);
+    public void getCustomerPhoneNoField(String phone) {
+        actionEnterText(customerNumber, phone);
     }
+
+    public void getCustomerEmailField(String email) {
+        waitForElementToBeVisible(emailField, 10);
+        actionEnterText(emailField, email);
+    }
+
+    public void clickOnEnterNameDoneBtn() {
+        staticWait(2000);
+        if (isElementDisplayed(enterUserNamePopUp)) {
+            staticWait(2000);
+            click(enterCustomernameDoneBtn);
+        } else {
+            Log.info("POPup Not Displayed");
+        }
+    }
+
 
     public void getSearchField() {
         click(searchTbx);
@@ -299,8 +528,18 @@ public class BillPage extends BaseTest {
         click(goBtnPhnNo);
     }
 
-    public void getSuggestedCustomer() {
-        click(suggestionList);
+    public void BillClosePopup() {
+        waitForElementToBeClickable(closePopup, 10);
+        click(closePopup);
+    }
+
+    public void closePopupIcon() {
+        waitForElementToBeClickable(crossPopUpIcon, 10);
+        click(crossPopUpIcon);
+    }
+
+    public void clickOnCrossIcon() {
+        click(crossIcon);
     }
 
     public void getAmountField() {
@@ -308,84 +547,92 @@ public class BillPage extends BaseTest {
     }
 
     public void getCloseLogoPopupBtn() {
-        click(closeLogoPopupBtn);
+        hoverAndClick(closeLogoPopupBtn, closeLogoPopupBtn);
     }
 
     public void getPopupTitle() {
         click(popUpHeader);
     }
 
-    public void createBill(BillPage billObj) {
-        createBill(billObj, true);
-    }
+//    public void createBill(BillPage billObj) {
+//        createBill(billObj, true);
+//    }
 
-    public void createBill(BillPage billObj, boolean navigateToBillSection) {
-        if (navigateToBillSection) {
-            getStoresDropdown();
-            selectStore(billObj.getStore());
-            getContinueButton();
-        }
-
-        getNewBillButton();
-        if (billObj.getAmount() != null) {
-            getAmountField().setText(billObj.getAmount());
-        }
-        getDisableTaxToggleButton();
-        getDescriptionTextbox();
-        if (billObj.getCustomerPhnNo() != null) {
-            getCustomerButton();
-            getCustomerPhoneNoField().setText(billObj.getCustomerPhnNo());
-            getGoPhoneNumberButton();
-            getConfirmButton();
-        }
-        if (billObj.getCustomerEmail() != null) {
-            getCustomerButton();
-            getUserEmailField().setText(billObj.getCustomerEmail());
-            getEmailGoButton();
-        }
-        getConfirmButton();
-        WebdriverWaits.sleep(2000);
-        getContinueWithoutButton();
-    }
-
-    public void createBillForRT(BillPage billObj, boolean navigateToBillSection) {
-        if (navigateToBillSection) {
-            getStoresDropdown();
-            selectStore(billObj.getStore());
-            getContinueButton();
-        }
-
-        getNewBillButton();
-        if (billObj.getAmount() != null) {
-            getAmountField().setText(billObj.getAmount());
-        }
-        getDisableTaxToggleButton();
-        getDescriptionTextbox();
-        if (billObj.getCustomerPhnNo() != null) {
-            getCustomerButton();
-            getCustomerPhoneNoField().setText(billObj.getCustomerPhnNo());
-            getGoPhoneNumberButton();
-            getConfirmButton();
-        }
-        if (billObj.getCustomerEmail() != null) {
-            getCustomerButton();
-            getUserEmailField().setText(billObj.getCustomerEmail());
-            getEmailGoButton();
-
-            getMoreOption();
-
-            getRepeatField();
-            getRepeatOption();
-            getCustomerCancelOption();
-            getDoneBtn();
-        }
-        getConfirmButton();
-        getContinueWithoutButton();
-    }
+//    public void createBill(BillPage billObj, boolean navigateToBillSection) {
+//        if (navigateToBillSection) {
+//            getStoresDropdown();
+//            selectStore(billObj.getStore());
+//            getContinueButton();
+//        }
+//
+//        getNewBillButton();
+//        if (billObj.getAmount() != null) {
+//            getAmountField().setText(billObj.getAmount());
+//        }
+//        getDisableTaxToggleButton();
+//        getDescriptionTextbox();
+//        if (billObj.getCustomerPhnNo() != null) {
+//            getCustomerButton();
+//            getCustomerPhoneNoField().setText(billObj.getCustomerPhnNo());
+//            getGoPhoneNumberButton();
+//            getConfirmButton();
+//        }
+//        if (billObj.getCustomerEmail() != null) {
+//            getCustomerButton();
+//            getUserEmailField().setText(billObj.getCustomerEmail());
+//            getEmailGoButton();
+//        }
+//        getConfirmButton();
+//
+//        getContinueWithoutButton();
+//    }
+//
+//    public void createBillForRT(BillPage billObj, boolean navigateToBillSection) {
+//        if (navigateToBillSection) {
+//            getStoresDropdown();
+//            selectStore(billObj.getStore());
+//            getContinueButton();
+//        }
+//
+//        getNewBillButton();
+//        if (billObj.getAmount() != null) {
+//            getAmountField().setText(billObj.getAmount());
+//        }
+//        getDisableTaxToggleButton();
+//        getDescriptionTextbox();
+//        if (billObj.getCustomerPhnNo() != null) {
+//            getCustomerButton();
+//            getCustomerPhoneNoField().setText(billObj.getCustomerPhnNo());
+//            getGoPhoneNumberButton();
+//            getConfirmButton();
+//        }
+//        if (billObj.getCustomerEmail() != null) {
+//            getCustomerButton();
+//            getUserEmailField().setText(billObj.getCustomerEmail());
+//            getEmailGoButton();
+//
+//            getMoreOption();
+//
+//            getRepeatField();
+//            getRepeatOption();
+//            getCustomerCancelOption();
+//            getDoneBtn();
+//        }
+//        getConfirmButton();
+//        getContinueWithoutButton();
+//    }
 
 
     public void getEmailGoButton() {
         click(goBtnEmail);
+    }
+
+    public void enterCustomerDetail(String customerNameFieldText) {
+        actionEnterText(customerNameField, customerNameFieldText);
+    }
+
+    public void clickOnDoneButton() {
+        click(billDoneBtn);
     }
 
     public void getFilterButton() {
@@ -405,6 +652,7 @@ public class BillPage extends BaseTest {
     }
 
     public void getCustomerButton() {
+        staticWait(3000);
         click(customerBtn);
     }
 
@@ -412,17 +660,11 @@ public class BillPage extends BaseTest {
         click(customerHeader);
     }
 
-    public void GetGoButtonPhoneNo() {
-        click(goBtnPhnNo);
-    }
 
     public void getMessagePopupHeader() {
         click(messagePopupHeader);
     }
 
-    public void getToastMessage() {
-        click(toastMessage);
-    }
 
     public void getCustomerPhoneField() {
         click(customerNumber);
@@ -444,11 +686,11 @@ public class BillPage extends BaseTest {
     }
 
     public void uploadImageInStoreLogo() throws AWTException {
-        uploadImageAsAttachment("src/main/resources/image/BillDummyImg.jpg");
+        uploadImageAsAttachment("/src/main/resources/ImageResources/image/BillDummyImg");
     }
 
     public void uploadPdf() throws AWTException {
-        uploadImageAsAttachment("src/main/resources/Documents/Bills.pdf");
+        uploadImageAsAttachment("/src/main/resources/ImageResources/image/dummy");
     }
 
     public void getCheckButton() {
@@ -476,7 +718,37 @@ public class BillPage extends BaseTest {
     }
 
     public void getDeleteButton() {
+        waitForElementToBeClickable(deleteButton, 10);
         click(deleteButton);
+    }
+
+    public void clickOnNotPaidLabel() {
+        staticWait(3000);
+        hoverAndClick(notPaid, notPaid);
+    }
+
+    public void clickOnCreatedBill() {
+        staticWait(5000);
+        clickElementByJS(billsection);
+    }
+
+    public void clickOnBillLabel() {
+        staticWait(3000);
+        hoverAndClick(billLabel, billLabel);
+    }
+
+    public void reduceScreenResolution() throws AWTException {
+        Robot robot = new Robot();
+
+        // Press and hold the Control key
+        robot.keyPress(KeyEvent.VK_CONTROL);
+
+        // Press the Minus (-) key
+        robot.keyPress(KeyEvent.VK_MINUS);
+        robot.keyRelease(KeyEvent.VK_MINUS); // Release Minus key
+
+        // Release the Control key
+        robot.keyRelease(KeyEvent.VK_CONTROL);
     }
 
     public void getDeleteIcon() {
@@ -602,17 +874,19 @@ public class BillPage extends BaseTest {
         click(upgradePopUpTitle);
     }
 
-    public void getMemoButton() {
+    public void clickOnMemoButton() {
         click(memoBtn);
     }
 
     public void getMemoField() {
-        click(memoField);
+        String maxLengthValue = getAttribute(memoField, "maxlength");
+        Log.info(maxLengthValue);
+        softAssert.assertEquals(maxLengthValue, "200");
+        memoTxt = "Memo Text" + requiredString(5);
+        staticWait(4000);
+        actionEnterText(memoField, memoTxt);
     }
 
-    public void getDoneButton() {
-        click(doneBtn);
-    }
 
     public void getDefaultMemoFieldText() {
         click(memoFieldText);
@@ -620,12 +894,11 @@ public class BillPage extends BaseTest {
 
     public void getMemoFieldMessage() {
 
-        click(memoFieldMessage);
+        softAssert.assertEquals(memoFieldMessage, "Customer will not see this memo");
     }
 
     public void getMemoPopUpTitle() {
-
-        click(memoPopUpTitle);
+        softAssert.assertEquals(memoPopUpTitle, "Memo");
     }
 
     public void getAddedMemoText() {
@@ -633,12 +906,296 @@ public class BillPage extends BaseTest {
         click(addedMemoText);
     }
 
-    public void getRepeatField() {
+    public void getEveryDayFieldValue(String specificNumber) {
+        String attValue = getAttribute(everyDayField, "value");
+        softAssert.assertEquals(attValue, "1");
+        Log.info("Attribute value is fetched");
+        staticWait(2000);
+        actionEnterText(specificNumbers, specificNumber);
+        Log.info("specificNumberTxt:" + specificNumber);
+    }
+
+    public void getEveryWeekFieldValue(String specificNumber) {
+        String attValue = getAttribute(everyWeekField, "value");
+        softAssert.assertEquals(attValue, "1");
+        Log.info("Attribute value is fetched");
+        staticWait(2000);
+        actionEnterText(specificNumbers, specificNumber);
+        Log.info("specificNumberTxt:" + specificNumber);
+    }
+
+    public void getEveryMonthFieldValue(String specificNumber) {
+        String attValue = getAttribute(everyMonthField, "value");
+        softAssert.assertEquals(attValue, "1");
+        Log.info("Attribute value is fetched");
+        staticWait(2000);
+        actionEnterText(specificNumbers, specificNumber);
+        Log.info("specificNumberTxt:" + specificNumber);
+    }
+
+
+    public void clickOnRepeatField() {
+        staticWait(2000);
+        click(paidRepeatField);
+        softAssert.assertEquals(repeatTxt, "Repeat");
+    }
+    public void closePopup(){
+        staticWait(3000);
+        if (isElementDisplayed(crossIcon)) {
+            System.out.print(" pop-up showed and clicking");
+            staticWait(4000);
+            clickOnCrossIcon();
+        } else {
+            Log.info("No pop-up showed");
+        }
+
+    }
+    public void enableTaxToggleBtn(){
+        if (isElementDisplayed(taxToggleBtn)) {
+            getEnableTaxToggleButton();
+        } else {
+            clickOnMoreSection();
+            getEnableTaxToggleButton();
+            enterTextInTaxRateField("10.000");
+            clickOnSaveBtn();
+        }
+    }
+    public void closePaymentpopup(){
+        staticWait(3000);
+        if (isElementDisplayed(closePopup)) {
+            System.out.print(" pop-up showed and clicking");
+            staticWait(5000);
+            BillClosePopup();
+        } else {
+            Log.info("No pop-up showed");
+        }
+    }
+    public void removeNonNumericValueFromTheValue(){
+        amt = "1000.00";
+        String text = getText(reccuringAmount);  // Get text (e.g., "Maximum $50,000")
+        // Remove the dollar sign and commas using replaceAll()
+        String numericValue = text.replaceAll("[$,]", "");
+        Log.info("Numeric Value: " + numericValue); // Output: 1000.00// Remove non-numeric characters
+        softAssert.assertEquals(amt, reccuringAmount);
+    }
+
+    public void validatingEnteredAmount(){
+        String amount = getText(enteredAmount);
+        Log.info(amount);
+//        String emteredBillAmount=amount.replaceAll("[^0-9]", "");
+//        Log.info("Extracted Number: " + emteredBillAmount);
+
+        if (amt.equals(amount)) {  // Expected wrong behavior
+            Log.info("Restriction is working. Field changed to: " + amount);
+        } else {
+            Log.info("Entered: 3001, But field contains: " + amount);
+        }
+    }
+    public void validateEnteredAmount(){
+         enteredamt = "5000001";
+        String amount = getText(enteredAmount);
+        Log.info(amount);
+//        String emteredBillAmount=amount.replaceAll("[^0-9]", "");
+//        Log.info("Extracted Number: " + emteredBillAmount);
+
+        if (enteredamt.equals(amount)) {  // Expected wrong behavior
+            Log.info("Restriction is working. Field changed to: " + amount);
+        } else {
+            Log.info("Entered: 3001, But field contains: " + amount);
+        }
+    }
+
+    public void getAmountValue(){
+        String text = getText(configureAmount);  // Get text (e.g., "Maximum $50,000")
+        String numericValue = text.replaceAll("[^0-9]", ""); // Remove non-numeric characters
+        Log.info("Extracted Number: " + numericValue); // Output: 50000
+    }
+    public void clickOnCloseIcon(){
+        staticWait(3000);
+        if (isElementDisplayed(closeLogoPopupBtn)) {
+            System.out.print(" pop-up showed and clicking");
+            staticWait(4000);
+            getCloseLogoPopupBtn();
+        } else {
+            Log.info("No pop-up showed");
+        }
+
+    }
+    public void closePopupOnBillPage(){
+        staticWait(3000);
+        if (isElementDisplayed(crossPopUpIcon)) {
+            System.out.print(" pop-up showed and clicking");
+            staticWait(5000);
+            closePopupIcon();
+        } else {
+            Log.info("No pop-up showed");
+        }
+    }
+
+    public void getDailyFieldValue() {
+        List<WebElement> elements = getDriver().findElements(By.xpath("//div[@class='list-group mb-2']/child::label"));
+        for (WebElement element : elements) {
+            staticWait(2000);
+            String repeatTxt = element.getText();
+            Log.info(repeatTxt);
+            if (repeatTxt.equals("Daily")) {
+                staticWait(2000);
+                click(dailyCheckbox);
+                staticWait(2000);
+                getEveryDayFieldValue("3");
+                List<WebElement> dailyElements = getDriver().findElements(By.xpath("//div[@class='list-group-item']"));
+                for (WebElement dailyElement : dailyElements) {
+                    staticWait(2000);
+                    String dailyTxt = dailyElement.getText();
+                    Log.info(dailyTxt);
+                }
+                List<WebElement> selectedElements = getDriver().findElements(By.xpath("//div[@class='list-group-item']"));
+                for (WebElement selectedElement : selectedElements) {
+                    staticWait(2000);
+                    scrollToDown();
+                    String selectedTxt = selectedElement.getText();
+                    Log.info("Selected: " + selectedTxt);
+                }
+            }
+        }
+    }
+
+
+    public void getWeeklyFieldValue() {
+        List<WebElement> elements = getDriver().findElements(By.xpath("//div[@class='list-group mb-2']/child::label"));
+        for (WebElement element : elements) {
+            staticWait(2000);
+            String repeatTxt = element.getText();
+            Log.info(repeatTxt);
+            if (repeatTxt.equals("Weekly")) {
+                staticWait(2000);
+                click(weeklyCheckbox);
+                staticWait(2000);
+                getEveryWeekFieldValue("3");
+                List<WebElement> dailyElements = getDriver().findElements(By.xpath("//div[@class='list-group-item']"));
+                for (WebElement dailyElement : dailyElements) {
+                    staticWait(2000);
+                    String dailyTxt = dailyElement.getText();
+                    Log.info(dailyTxt);
+                }
+                List<WebElement> selectedElements = getDriver().findElements(By.xpath("//div[@class='list-group-item']"));
+                for (WebElement selectedElement : selectedElements) {
+                    staticWait(2000);
+                    scrollToDown();
+                    String selectedTxt = selectedElement.getText();
+                    Log.info("Selected: " + selectedTxt);
+                }
+            }
+        }
+    }
+
+    public void getMonthlyFieldValue() {
+        List<WebElement> elements = getDriver().findElements(By.xpath("//div[@class='list-group mb-2']/child::label"));
+        for (WebElement element : elements) {
+            staticWait(2000);
+            String repeatTxt = element.getText();
+            Log.info(repeatTxt);
+            if (repeatTxt.equals("Monthly")) {
+                staticWait(2000);
+                click(MonthlyCheckbox);
+                staticWait(2000);
+                getEveryMonthFieldValue("3");
+                List<WebElement> dailyElements = getDriver().findElements(By.xpath("//div[@class='list-group-item']"));
+                for (WebElement dailyElement : dailyElements) {
+                    staticWait(2000);
+                    String dailyTxt = dailyElement.getText();
+                    Log.info(dailyTxt);
+                }
+                List<WebElement> selectedElements = getDriver().findElements(By.xpath("//div[@class='list-group-item']"));
+                for (WebElement selectedElement : selectedElements) {
+                    staticWait(2000);
+                    scrollToDown();
+                    String selectedTxt = selectedElement.getText();
+                    Log.info("Selected: " + selectedTxt);
+                }
+            }
+        }
+    }
+    public void getYearlyFieldValue() {
+        List<WebElement> elements = getDriver().findElements(By.xpath("//div[@class='list-group mb-2']/child::label"));
+        for (WebElement element : elements) {
+            staticWait(2000);
+            String repeatTxt = element.getText();
+            Log.info(repeatTxt);
+            if (repeatTxt.equals("Yearly")) {
+                staticWait(2000);
+                click(yearlyCheckbox);
+                List<WebElement> dailyElements = getDriver().findElements(By.xpath("//div[@class='list-group-item']"));
+                for (WebElement dailyElement : dailyElements) {
+                    staticWait(2000);
+                    String dailyTxt = dailyElement.getText();
+                    Log.info(dailyTxt);
+                }
+            }
+        }
+    }
+        //        List<WebElement> elements = getDriver().findElements(By.xpath("//div[@class='list-group mb-2']/child::label"));
+//        for (WebElement element : elements) {
+//            staticWait(3000);
+//            String repeatTxt = element.getText();
+//            Log.info("Clicking on: " + repeatTxt);
+//            element.click();
+//            staticWait(2000);
+//
+//            switch (repeatTxt) {
+//                case "Daily":
+//                    getEveryDayFieldValue("1");
+//                    break;
+//                case "Weekly":
+//                    getEveryWeekFieldValue("1");
+//                    break;
+//                case "Monthly":
+//                    getEveryMonthFieldValue("1");
+//                    break;
+//                case "Yearly":
+//                     Log.info("Every month field is not displayed.");
+//                    break;
+//                default:
+//                    Log.info("No repeat selected");
+//                    break;
+//            }
+//    public void activateAfterFirstElement() {
+//        List<WebElement> selectedElements = getDriver().findElements(By.xpath("//div[@class='list-group-item']"));
+//        for (WebElement selectedElement : selectedElements) {
+//            staticWait(2000);
+//            scrollToDown();
+//            String selectedTxt = selectedElement.getText();
+//            Log.info("Selected: " + selectedTxt);
+////                selectedElement.click();
+////                if(isElementDisplayed(timesTotalField)){
+////                    Log.info("Time total field appears");
+////                }
+////                else{
+////                    Log.info("Ends on date field appears");
+////                }
+//
+//        }
+//    }
+
+    public void clickOnRepeatsection() {
+        staticWait(2000);
         click(paidRepeatField);
     }
 
-    public void getExpiryField() {
+    public void assertUpgradePlan() {
+        scrollToElement(repeatUpgradePlan);
+        softAssert.assertTrue(isElementDisplayed(repeatUpgradePlan));
+        click(repeatUpgradePlanNotNowBtn);
+    }
 
+    public void clickOnReccuring() {
+        scrollToUp(reccuringMenu);
+        staticWait(2000);
+        click(reccuringMenu);
+        click(reccuringBill);
+    }
+
+    public void getExpiryField() {
         click(paidExpiryField);
     }
 
@@ -671,9 +1228,6 @@ public class BillPage extends BaseTest {
         click(expDropDown);
     }
 
-    public void getExpiryDropDownOption() {
-        click(expDropDownOption);
-    }
 
     public void getAddedExpiryTimer() {
         click(addedExpTimer);
@@ -699,9 +1253,6 @@ public class BillPage extends BaseTest {
         click(expPopUpBtn24Hr);
     }
 
-    public void getExpiryNoneOption() {
-        click(expPopUpBtnNone);
-    }
 
     public void getRepeatOption() {
         click(repeatOption);
@@ -711,15 +1262,6 @@ public class BillPage extends BaseTest {
         click(customerCancelOption);
     }
 
-    public void getDoneBtn() {
-
-        click(doneBtn2);
-    }
-
-    public void getEveryDayFieldValue() {
-
-        click(everyDayField);
-    }
 
     public void getRecurringBillText() {
         click(recurringBillText);
@@ -753,11 +1295,6 @@ public class BillPage extends BaseTest {
     public void getBillTime() {
         click(billTimeOnPopup);
     }
-
-    public void getNotPaidLabel() {
-        click(notPaidLabel);
-    }
-
 
     public void getPaymentStatusOfLatestBill() {
         click(billTag);

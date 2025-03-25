@@ -46,7 +46,7 @@ public class RewardsProgramTest extends BaseTest {
         rewardsProgramPage.RewardsProgramPageOpen();
 
         click(rewardsProgramPage.settingsBtn);
-        waitForElementToBeVisible(rewardsProgramPage.rewardsProgPopupTitle,20);
+        waitForElementToBeVisible(rewardsProgramPage.rewardsProgPopupTitle,10);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.rewardsProgPopupTitle));
         click(rewardsProgramPage.toggleDisabled);
         click(rewardsProgramPage.saveChangesBtn);
@@ -101,7 +101,7 @@ public class RewardsProgramTest extends BaseTest {
         rewardsProgramPage.RewardsProgramPageOpen();
 
         click(rewardsProgramPage.filterBtn);
-        waitForElementToBeVisible(rewardsProgramPage.partialUsername,20);
+        waitForElementToBeVisible(rewardsProgramPage.partialUsername,10);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.partialUsername));
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.userPhnEmail));
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.lastVisit));
@@ -245,7 +245,7 @@ public class RewardsProgramTest extends BaseTest {
         Login();
         rewardsProgramPage.RewardsProgramPageOpen();
         click(rewardsProgramPage.filterBtn);
-        waitForElementToBeVisible(rewardsProgramPage.minRewardPts,20);
+        waitForElementToBeVisible(rewardsProgramPage.minRewardPts,10);
         actionEnterText(rewardsProgramPage.minRewardPts,Constants.minRewardPointsInput);
         click(rewardsProgramPage.applyBtn);
         waitForElementInVisible(rewardsProgramPage.applyBtn,20);

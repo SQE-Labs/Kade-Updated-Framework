@@ -1,0 +1,9 @@
+2025-03-19 11:24:57,235 [info]: Clicking on newBillTxt
+2025-03-19 11:25:10,153 [info]: No repeat
+2025-03-19 11:25:12,173 [info]: Daily
+2025-03-19 11:25:16,366 [info]: Attribute value is fetched
+2025-03-19 11:25:18,387 [info]: Specific number of times
+2025-03-19 11:25:20,427 [info]: Specific date
+2025-03-19 11:25:22,458 [info]: Weekly
+2025-03-19 11:25:24,498 [info]: Monthly
+2025-03-19 11:25:26,525 [info]: Yearly

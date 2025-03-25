@@ -137,7 +137,7 @@ public class ReportsTest extends BaseTest {
 
         click(reportsPage.payReceived);
         click(reportsPage.customDateFilter);
-        waitForElementToBeVisible(reportsPage.applyDateRangePayRec,20);
+        waitForElementToBeVisible(reportsPage.applyDateRangePayRec,10);
         enterText(reportsPage.dateRangePayReceived, Constants.dateRange);
         click(reportsPage.applyDateRangePayRec);
         System.out.println(getElementText(reportsPage.printTotalReceivedPay));

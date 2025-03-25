@@ -179,7 +179,7 @@ public class CustomersTest extends BaseTest {
         customersPage.navigateToCustomersPage();
 
         click(customersPage.filter);
-        waitForElementToBeVisible(customersPage.selectCustomerinFilter,20);
+        waitForElementToBeVisible(customersPage.selectCustomerinFilter,10);
         click(customersPage.selectCustomerinFilter);
         click(customersPage.customerSelection);
         staticWait(2000);
@@ -249,7 +249,7 @@ public class CustomersTest extends BaseTest {
         click(customersPage.addPaymentMethod);
         click(customersPage.permissionChkbx);
         click(customersPage.permissionCtnBtn);
-        waitForElementToBeVisible(customersPage.addCardNumberField,20);
+        waitForElementToBeVisible(customersPage.addCardNumberField,10);
         switchToFrame(customersPage.frame1);
         customersPage.saveNewByCreditCard();
     }

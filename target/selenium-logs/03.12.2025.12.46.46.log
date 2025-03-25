@@ -1,0 +1,5 @@
+2025-03-12 12:46:46,946 [info]: Clicking on newBillTxt
+2025-03-12 12:46:52,161 [info]: Extracted Number: 50000
+2025-03-12 12:46:55,699 [info]: 5,000.00
+2025-03-12 12:46:55,700 [info]: Extracted Number: 500000
+2025-03-12 12:46:55,701 [info]: Entered: 3001, But field contains: 500000

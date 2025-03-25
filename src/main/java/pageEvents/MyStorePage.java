@@ -2,12 +2,19 @@ package pageEvents;
 
 import base.BaseTest;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import pageObjects.PageObjectManager;
+import utils.Constants;
+
+import java.io.File;
+
 
 public class MyStorePage extends BaseTest {
     public By registerNewBusinessBtn = By.partialLinkText("Register new business");
     public By skipPopUpTitle = By.xpath("//h5[text()='Skip']");
     public By skipStripeAccountBtn = By.cssSelector(".btn-lg.fw-bold.w-100.btn.btn-outline-primary");
-    public By skipStripeAccountPopUpBtn = By.xpath("//div[@class='modal-content']//button[text()='Skip']");
+    public By skipStripeAccountPopUpBtn = By.xpath("//div[@class='modal-footer justify-content-around']//button[text()='Skip']");
     public By deleteStoreBtn = By.xpath("//button[text()='Delete the store']");
   public By deleteStoreIcon = By.xpath("//i[@class='fal fa-thumbs-up text-white']");
   public By alertMessage = By.cssSelector("form.link-check.checked div.alert-message");
@@ -22,8 +29,8 @@ public class MyStorePage extends BaseTest {
   public By timeZoneField = By.xpath("//select[@name='timeZone']");
   public By timeZoneOption = By.xpath("//option[text()='(GMT-05:00) Eastern Time (US & Canada)']");
   public By taxRateTbx = By.xpath("//input[@name='taxRate']");
-  public By saveBtn = By.xpath("//button[text()='Save']");
-  public By saveVenmoPaymentBtn = By.xpath("//div[contains(@data-load,'/_venmoGatewayApplication')] //button[text()='Save']");
+  public By saveBtn = By.cssSelector(".-btn-save-.btn.btn-primary");
+  public By saveVenmoPaymentBtn = By.xpath("//div[co//button[text()='Save']ntains(@data-load,'/_venmoGatewayApplication')] //button[text()='Save']");
   public By stripeBtn = By.cssSelector(".img-fluid.h-100");
   public By connectStripePopUpTitle = By.xpath("//h5[text()='Connect to stripe']");
   public By testStripeBtn = By.partialLinkText("Create a test Stripe account");
@@ -114,8 +121,21 @@ public class MyStorePage extends BaseTest {
     public By premiumMonthlyBtn = By.cssSelector(".flex-fill label[for='rdo_p3_0']");
     public By premiumYearlyBtn = By.cssSelector(".flex-fill label[for='rdo_p3_1']");
     public By premiumSignUpBtn = By.cssSelector("div#div_p3_0>a");
+    public By storeLogoCreation = By.cssSelector(".d-flex.align-items-center>img");
+
+
+   public By fileInput2 = By.xpath("//input[@type='file' and @accept='image/*']");
+
+
+
+
+
+
 
     // Methods
+    public void getTickIconofImg(){
+        click(checkBtn);
+    }
     public void getRegisterNewBusinessButton(){
         click(registerNewBusinessBtn);
     }
@@ -148,18 +168,204 @@ public class MyStorePage extends BaseTest {
         click(saveBtn);
     }
     public void getBankTransferToggleButton(){
-        click(bankTransferToggleBtn);
+        clickElementByJS(bankTransferToggleBtn);
     }
     public void getContinueButton(){
-        click(continueBtn);
+        clickElementByJS(continueBtn);
+    }
+    public void getStorelogo(){
+        click(storeLogo);
     }
     public void getSkipForNowButton(){
         click(skipForNowBtn);
     }
+    public void getSubscriptionPlanTab(){
+        click(plansSubTab);
+    }
+    public void getPlansSignUpButton(){
+        click(planSignUpBtn);
+    }
+    public void getTermsCheckbox(){
+        click(termsCbx);
+    }
+    public void getChangePlanButton(){
+        click(changePlanBtn);
+    }
+    public void getYearlyPlanButton(){
+        click(yearlyBtn);
+    }
+    public void getChangePayMethodLink(){
+        click(changePayMethodBtn); }
+
+    // time zone
+    public void selectTimeZone() {
+        click(timeZoneField);
+        click(timeZoneOption);
+    }
+
+        public void selectStoreAddress(String storeAddressName) {
+            waitForElementToBeVisible(storeAddressField,10);
+            cleanByJS(storeAddressField);
+            pressKeys(storeAddressField, storeAddressName);
+            click(storeAddressField);
+            click(storeAddressOption);
+        }
+    public void configureLinkWithStoreName(String storename){
+        click(configureLink);
+    }
+    public  String storeName;
+
+
+//*****************************
+    public void getStoreCreation(){
+         storeName = "AutoStore" + requiredDigits(4);
+         String phone = requiredDigits(10);
+
+        //Step 1: Click on 'My Stores' Tab
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getMyStoreTab();
+
+        // Click on 'Register New Business' Button
+         getRegisterNewBusinessButton();
+        if (isElementDisplayed(storeLogoCreation)) {
+            getEditStoreButton();
+            scrollToElement(deleteStoreBtn);
+            waitForElementToBeClickable(deleteStoreBtn,5);
+            // click on delete button
+          getDeleteStoreButton();
+          getDeleteStoreIcon();
+          staticWait(3000);
+
+            scrollToElement(pageObjectManager.getSidePannel().manageBusinessAcc);
+            pageObjectManager.getSidePannel().getMangeBusinessTab();
+            waitForElementToBeClickable(pageObjectManager.getSidePannel().myStoreBtn,3);
+            pageObjectManager.getSidePannel().getMyStoreTab();
+            getRegisterNewBusinessButton();
+        }
+        // Click on 'Stripe Account' Button
+          getStripeAccountBtn();
+          scrollToElement(testStripeBtn);
+        //Click on 'Test Stripe Account' Button
+         getTestStripeAccountButton();
+
+        //Edit Store name
+         getEditStoreButton();
+
+        enterText(StoreNameTbx, storeName);
+        actionEnterText(phoneTbx, phone);
+        staticWait(2000);
+        scrollToElement(saveBtn);
+        waitForElementToBeVisible(saveBtn,10);
+        getSaveButton();
+        waitForElementToBeVisible(bankTransferToggleBtn,10);
+        scrollToElement(bankTransferToggleBtn);
+
+        // Click on 'Bank Transfer' toggle button
+        getBankTransferToggleButton();
+        getContinueButton();
+
+        // Click on 'Skip For Now' Button
+        getSkipForNowButton();
+        getContinueButton();
+        //verifying the default Values of the Store
+        String storenameactual = getText(addedStoreName);
+        String locationDescription = getText(addedLocationDescription);
+        String storeAddress = getText(addedStoreAddress);
+        String storePhoneno = getText(addedStorePhone).replaceAll("[+()\\s-]", "").substring(1, 11), phoneNumber;
+        String Currency = getText(addedCurrencyOfStore);
+        String Taxrate = getText(addedTaxRate);
+
+      Assert.assertEquals(storenameactual,storeName);
+      Assert.assertEquals(locationDescription, Constants.defaultLocationDescription);
+      Assert.assertEquals(storeAddress, Constants.storeAddress);
+      Assert.assertEquals(storePhoneno, phone);
+      Assert.assertEquals(Currency, Constants.defaultCurrency);
+      Assert.assertEquals(Taxrate, Constants.defaultTaxRate);
+    }
+// *************************************************************************************
+
+    public void getStoreCreationWithoutStripePayment() {
+        storeName = "AutoStore" + requiredDigits(4);
+        String phone = requiredDigits(10);
+
+        // Click on 'Register New Business' Button
+        getRegisterNewBusinessButton();
+
+        if (isElementDisplayed(storeLogo)) {
+            scrollToElement(deleteStoreBtn);
+            waitForElementToBeClickable(deleteStoreBtn, 5);
+            // click on delete button
+            getDeleteStoreButton();
+            getDeleteStoreIcon();
+            staticWait(3000);
+
+            scrollToElement(pageObjectManager.getSidePannel().manageBusinessAcc);
+            pageObjectManager.getSidePannel().getMangeBusinessTab();
+            waitForElementToBeClickable(pageObjectManager.getSidePannel().myStoreBtn, 3);
+            pageObjectManager.getSidePannel().getMyStoreTab();
+            getRegisterNewBusinessButton();
+        }
+        waitForElementToBeClickable(skipStripeAccountBtn,4);
+        getSkipStripeAccountButton();
+        staticWait(3000);
+//        waitForElementToBeClickable(skipStripeAccountPopUpBtn,5);
+        getSkipBtnOfStripe();
+        scrollToElement(saveBtn);
+        waitForElementToBeClickable(saveBtn,3);
+        getSaveButton();
+        waitForElementToBeVisible(blankFieldWarningMsg,10);
+
+        //Verify the validation message
+        String pleaseReviewMsg=getText(blankFieldWarningMsg);
+        Assert.assertEquals(pleaseReviewMsg,Constants.pleaseReviewValidation);
+
+        // uploding store image
+
+        WebElement fileInput = getDriver().findElement(By.xpath("//input[@type='file' and @accept='image/*']"));
+
+        // Set the file path to upload
+        String userDir = System.getProperty("user.dir");
+        String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator+ "ImageResources"+ File.separator + "image" + File.separator + "BillDummyImg.jpg";
+        fileInput.sendKeys(filePath);
+        getTickIconofImg();
 
 
 
+        staticWait(3000);
 
+        //Verifying maximum length of 'Store Name' field
+        Assert.assertEquals(getAttribute(StoreNameTbx,"maxlength"),"100");
 
+        // Enter Store Name
+        enterText(StoreNameTbx,storeName);
+        enterText(locationDescTbx,Constants.defaultLocationDescription);
+        selectStoreAddress(Constants.storeAddress);
+
+        //Verifying the maximum length of 'Phone' field
+        softAssert.assertEquals(getAttribute(phoneTbx,"maxlength"),"22");
+        actionEnterText(phoneTbx,Constants.validPhoneNumber);
+
+        // Select Time Zone
+
+        //Verifying the minimum, maximum and default values of taxRate field
+       softAssert.assertEquals(getAttribute(taxRateTbx,"min"),"0");
+       softAssert.assertEquals(getAttribute(taxRateTbx,"value"),"0.000");
+       softAssert.assertEquals(getAttribute(taxRateTbx,"max"),"100");
+
+       //  Enter Tax rate
+        actionEnterText(taxRateTbx,Constants.taxRate);
+        scrollToElement(saveBtn);
+        staticWait(3000);
+        getSaveButton();
+        waitForElementToBeVisible(continueBtn,10);
+        getContinueButton();
+        waitForPageLoad();
+        //  //Verify Created Store
+        softAssert.assertEquals(getText(addedStoreName),storeName);
+        softAssert.assertAll();
+
+        pageObjectManager.getSidePannel().getSignOut();
+        pageObjectManager.getAdminPage().selectedStoreDeleted(storeName);
+    }
 
 }
