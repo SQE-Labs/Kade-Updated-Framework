@@ -19305,3 +19305,34 @@
 [INFO ] 2025-02-28 18:08:15.059 [main] BaseTest - Waiting for element to be clickable: By.xpath: //button[text()='Save']
 [INFO ] 2025-02-28 18:08:15.154 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: .d-flex.mt-3>button:nth-child(2)
 [INFO ] 2025-02-28 18:08:35.275 [main] BaseTest - Tearing down WebDriver.
+[INFO ] 2025-03-05 12:19:12.048 [main] SuiteListener - Retry logic applied for test: verifyTheRadarChartPaymentMethods
+[INFO ] 2025-03-05 12:19:12.054 [main] SuiteListener - Retry logic applied for test: verifyAllSection
+[INFO ] 2025-03-05 12:19:12.055 [main] SuiteListener - Retry logic applied for test: verifyRadarchartPaymentMethodOfSelectedStore
+[INFO ] 2025-03-05 12:19:12.056 [main] SuiteListener - Retry logic applied for test: verifyThatDirectedToDashboardPageOfSelectedStore
+[INFO ] 2025-03-05 12:19:12.057 [main] SuiteListener - Retry logic applied for test: userGetDirectToMessagePage
+[INFO ] 2025-03-05 12:19:12.058 [main] SuiteListener - Retry logic applied for test: verifyCountOfAllStores
+[INFO ] 2025-03-05 12:19:12.295 [main] SuiteListener - Test suite started: Test
+[INFO ] 2025-03-05 12:19:12.451 [main] BaseTest - Environment set to: qa
+[INFO ] 2025-03-05 12:19:12.455 [main] ConfigFileReader - Reloading ConfigFileReader instance.
+[INFO ] 2025-03-05 12:19:12.455 [main] ConfigFileReader - Creating new instance of ConfigFileReader.
+[INFO ] 2025-03-05 12:19:12.456 [main] ConfigFileReader - Loading configuration for environment: qa
+[INFO ] 2025-03-05 12:19:12.456 [main] ConfigFileReader - Configuration file: config_qa.properties
+[INFO ] 2025-03-05 12:19:12.458 [main] ConfigFileReader - Configuration file loaded successfully: config_qa.properties
+[DEBUG] 2025-03-05 12:19:12.458 [main] BaseTest - Config file reloaded for environment: qa
+[INFO ] 2025-03-05 12:19:12.459 [main] ConfigFileReader - Retrieved property 'url': https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-03-05 12:19:12.459 [main] BaseTest - URL loaded from config: https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-03-05 12:19:12.487 [main] BaseTest - Setting up WebDriver for browser: chrome, headless: false
+[INFO ] 2025-03-05 12:19:16.905 [main] BaseTest - ChromeDriver initialized.
+[INFO ] 2025-03-05 12:19:16.983 [main] ConfigFileReader - Retrieved property 'url': https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-03-05 12:19:18.151 [main] BaseTest - Navigated to URL: https://sibtestenv.azurewebsites.net/Account/Login
+[INFO ] 2025-03-05 12:19:18.182 [main] BaseTest - Implicit wait set to 20 seconds.
+[INFO ] 2025-03-05 12:19:18.186 [main] SuiteListener - Test started: userGetDirectToMessagePage
+[INFO ] 2025-03-05 12:19:18.192 [main] ConfigFileReader - Retrieved property 'username': 6465551114
+[INFO ] 2025-03-05 12:19:18.193 [main] ConfigFileReader - Retrieved property 'password': Test@123
+[DEBUG] 2025-03-05 12:19:18.193 [main] BaseTest - Attempting to login with username: 6465551114
+[INFO ] 2025-03-05 12:19:18.194 [main] LoginPageEvents - Starting the sign-in process.
+[INFO ] 2025-03-05 12:19:18.194 [main] LoginPageEvents - Entering username: 6465551114
+[INFO ] 2025-03-05 12:19:18.194 [main] BaseTest - Entering text '6465551114' into element: By.cssSelector: input[name='userName']
+[INFO ] 2025-03-05 12:19:18.194 [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='userName']
+[ERROR] 2025-03-05 12:19:18.325 [main] RetryAnalyzer - Test 'userGetDirectToMessagePage' failed after 0 retries
+[INFO ] 2025-03-05 12:19:18.495 [main] SuiteListener - Test suite finished: Test
