@@ -1,7 +1,9 @@
 package pageEvents;
 
 import base.BaseTest;
+import logger.Log;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pageObjects.PageObjectManager;
@@ -86,7 +88,8 @@ public class MyStorePage extends BaseTest {
    public By earnRewardsToggleOffBtn = By.xpath("//label[text()=' Website']/../..//i[@class='far fa-toggle-on custom-check-on ']");
    public By enterInPercentToggleBtn = By.cssSelector(".custom-checkbox.mb-2>span");
     public By paymentProcessingSubTab = By.xpath("//div[text()='Payment Processing']");
-   public By acceptVenmoToggleBtn = By.xpath("(//span[text()='Accept Venmo'])[1]");
+   public By acceptVenmoToggleBtn = By.xpath("(//div[@class='my-3 loaded']//label/i)[14]");
+   public By enableToggle=By.xpath("(//i[@class='far fa-toggle-on custom-check-on '])[8]");
    public By acceptZelleToggleBtn = By.xpath("//span[text()='Accept Zelle']");
    public By venmoIDField = By.xpath("//label[text()='Venmo ID']/following-sibling::input");
    public By venmoNameField = By.xpath("//label[text()='Venmo Name']/following-sibling::input");
@@ -96,8 +99,8 @@ public class MyStorePage extends BaseTest {
  public By addNewTerminalBtn = By.xpath("//button[text()='Add new terminal']");
  public By newTerminalPopUpTitle = By.xpath("//h5[text()='New Terminal']");
  public By creditCardTerminalOption = By.xpath("//label[text()='Select your terminal']/../div[4]/label/i[2]");
- public By manageUserSubTab = By.xpath("//a[text()='Manage Users']");
- public By addUserButton = By.xpath("//button[text()='Add User']");
+ public By manageUserSubTab = By.xpath("//div[text()='Manage Users']");
+ public By addUserButton = By.xpath("//div[@class='card-footer']//h6");
  public By manageUserNameField = By.xpath("//div[@class='mb-2']//div[@class='input-group']//input");
  public By userProfileDropDown = By.xpath("//select[@name='profileId']");
  public By managerProfileOption = By.xpath("//option[@value='3000']");
@@ -201,6 +204,7 @@ public class MyStorePage extends BaseTest {
     public void getStoreLinksButton() {
         clickElementByJS(storeLinksBtn);
     }
+    public void getAcceptVenmoHeader(){click(acceptVenmoHeader);}
 
     // time zone
     public void selectTimeZone() {
@@ -209,7 +213,7 @@ public class MyStorePage extends BaseTest {
     }
 
         public void selectStoreAddress(String storeAddressName) {
-            waitForElementToBeVisible(storeAddressField, 2);
+            waitForElementToBeVisible(storeAddressField,10);
             cleanByJS(storeAddressField);
             pressKeys(storeAddressField, storeAddressName);
             click(storeAddressField);
@@ -252,10 +256,50 @@ public class MyStorePage extends BaseTest {
     }
 
     public void  getAcceptVenmoToggleButton() {
-        click(acceptVenmoToggleBtn);
+       //hoverAndClick(acceptVenmoToggleBtn, acceptVenmoToggleBtn);
+//
+//        if(isElementDisplayed(acceptVenmoToggleBtn)){
+//            clickElementByJS(acceptVenmoToggleBtn);
+//        }
+//        else{
+//            hoverAndClick(enableToggle,enableToggle);
+//        }
+
+        staticWait(6000);
+        // Check if the toggle button is disabled
+        boolean isDisabled = !isEnabled(acceptVenmoToggleBtn); // isEnabled() returns false if disabled
+
+        if (isDisabled) {
+            System.out.println("Toggle button is disabled. Enabling it now...");
+
+            // Click the toggle button using JavaScript (in case normal click doesn't work)
+           clickElementByJS(acceptVenmoToggleBtn);
+
+            // Wait for toggle effect
+            staticWait(3000);
+
+            // Verify if the toggle button is now enabled
+            if (isEnabled(acceptVenmoToggleBtn)) {
+                System.out.println("Toggle button successfully enabled!");
+            } else {
+                System.out.println("Failed to enable the toggle button.");
+            }
+        } else {
+            System.out.println("Toggle button is already enabled.");
+        }
+
     }
     public void getAcceptZelleToggleButton() {
     click(acceptZelleToggleBtn);
+    }
+    public void getVenmoSaveButton(){
+        click(saveVenmoPaymentBtn);
+    }
+    public void getAcceptZelleHeader(){
+        click(acceptZelleHeader);
+    }
+    public void getZelleSaveButton(){
+        click(saveZellePaymentSettings);
     }
     public void getAddaTerminalLink(){
         clickElementByJS(addACreditCardTerminal);
@@ -286,7 +330,15 @@ public class MyStorePage extends BaseTest {
         scrollToElement(terminalDeleteBtn);
         click(terminalDeleteBtn);
     }
-
+    public void getManageUserSubTab(){
+        click(manageUserSubTab);
+    }
+    public void getAddUserBtn(){
+        click(addUserButton);
+    }
+    public void getUserProfileDropdown(){
+        click(userProfileDropDown);
+    }
 
 
     public  String storeNamewithstripe;
@@ -331,9 +383,9 @@ public class MyStorePage extends BaseTest {
         actionEnterText(phoneTbx, phone);
         staticWait(2000);
         scrollToElement(saveBtn);
-        waitForElementToBeVisible(saveBtn,3);
+        waitForElementToBeVisible(saveBtn,10);
         getSaveButton();
-        waitForElementToBeVisible(bankTransferToggleBtn,5);
+        waitForElementToBeVisible(bankTransferToggleBtn,10);
         scrollToElement(bankTransferToggleBtn);
 
         // Click on 'Bank Transfer' toggle button
@@ -389,7 +441,7 @@ public class MyStorePage extends BaseTest {
         scrollToElement(saveBtn);
         waitForElementToBeClickable(saveBtn,3);
         getSaveButton();
-        waitForElementToBeVisible(blankFieldWarningMsg,3);
+        waitForElementToBeVisible(blankFieldWarningMsg,10);
 
         //Verify the validation message
         String pleaseReviewMsg=getText(blankFieldWarningMsg);
@@ -431,7 +483,7 @@ public class MyStorePage extends BaseTest {
         scrollToElement(saveBtn);
         staticWait(3000);
         getSaveButton();
-        waitForElementToBeVisible(continueBtn,5);
+        waitForElementToBeVisible(continueBtn,10);
         getContinueButton();
         waitForPageLoad();
         //  //Verify Created Store
@@ -493,6 +545,24 @@ public class MyStorePage extends BaseTest {
         getSaveButton();
 
 
+    }
+    public void getActivateSubtab(){
+        click(activeSubTab);
+    }
+    public void getActiveButton(){
+        click(activateButton);
+    }
+    public void getDeactivateBtn(){
+        click(deactivateBtn);
+    }
+    public void getPremiumMonthlyBtn(){
+        click(premiumMonthlyBtn);
+    }
+    public void getPremiumYearlyBtn(){
+    click(premiumYearlyBtn);
+    }
+    public void getPremiumnSignUpBtn(){
+        click(premiumSignUpBtn);
     }
 
 }

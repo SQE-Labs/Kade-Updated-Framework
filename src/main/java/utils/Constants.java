@@ -139,6 +139,18 @@ public interface Constants {
     String currentPlan= "Current plan";
     String visavalue = "Visa1111";
 
+    //Store Names
+    public static String AutomationBillFlow = "Automation Bill Flow";  // Flow 1 without plan
+    public static String AutomationBillTest = "Automation Bill Test"; // New Buisness 2 with plan
+    public static String AutomationCustomerStore="Automation Customer Store";
+    public static String AutomationFlowBusiness = "Automation Flow Business";
+    public static String AutomationQRCode = "Automation QR Code";
+    public static String AutomationTransactions = "Automation Transactions";
+    public static String AutomationTransactions3 = "Automation Transaction 3";
+    public static String AutomationTransaction2 ="Automation Transaction 2";
+    public static String AutomationPaymentHistory = "Automation Payment History";  // Flow 1 without plan
+    public static String BillHeader="Bill";
+
 
     //Verifying Modified Details
     String editdefaultStoreName = "My Store MSC Final";
@@ -154,6 +166,9 @@ public interface Constants {
     String rewardConfigurationpopup = "Rewards Program Configuration";
 
     String newTerminalTitle = "New Terminal";
+    String addUserTitle = "Add user";
+    String deacticeStatus = "Store is NOT active (Deactivated)";
+    String activeStoreStatus ="Store is active and ready to receive payments";
 
 
 

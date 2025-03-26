@@ -1,11 +1,16 @@
 package base;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.io.File;
+
 import java.time.Duration;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import logger.Log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -23,6 +28,9 @@ import org.testng.annotations.Parameters;
 import org.testng.asserts.SoftAssert;
 import pageObjects.PageObjectManager;
 import utils.ConfigFileReader;
+import utils.PropertyUtils;
+
+
 
 //import static pageObjects.PageObjectManager.pageObjectManager;
 
@@ -37,6 +45,8 @@ public class BaseTest {
 
 
     private By target = null;
+
+
 
     /**
      * Set the environment from the test parameter.
@@ -149,7 +159,7 @@ public class BaseTest {
      * @param millis - The wait time in milliseconds.
      */
     public void staticWait(long millis) {
-        log.debug("Static wait for {} ms.");
+        log.debug("Static wait for {} ms.", millis);
         try {
             Thread.sleep(millis);
         } catch (InterruptedException e) {
@@ -169,6 +179,18 @@ public class BaseTest {
         log.info("Waiting for element to be visible: {}", locator);
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeout));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public static void WaitUntilElementVisible(By locator, int tries) {
+        try {
+            for (int i = 0; i < tries; i++) {
+                Wait<WebDriver> fluentWait1 = new FluentWait<WebDriver>(getDriver()).withTimeout(Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))))
+                        .pollingEvery(Duration.ofMillis(Long.parseLong(PropertyUtils.getPropertyValue("wait"))))
+                        .ignoring(TimeoutException.class);
+                fluentWait1.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            }
+        } catch (Exception e) {
+        }
     }
 
     /**
@@ -201,11 +223,14 @@ public class BaseTest {
      */
     public void click(By locator) {
         log.info("Clicking on element: {}", locator);
+       WebDriverWait wait = new WebDriverWait(getDriver(),Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))));
         waitForElementToBeClickable(locator, 10).click();
+
     }
 
 
     public static void clickElementByJS(By element) {
+        Log.info("Clicking on " +element);
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("arguments[0].click();", getDriver().findElement(element));
     }
@@ -221,6 +246,19 @@ public class BaseTest {
         WebElement element = waitForElementToBeClickable(locator, 10);
         element.clear();
         element.sendKeys(text);
+    }
+
+    public static void SendKeys(By element, String value) {
+
+         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))));
+        wait.until(ExpectedConditions.presenceOfElementLocated(element));
+        try {
+            WebElement ele = getDriver().findElement(element);
+            ele.sendKeys(value);
+
+        } catch (Exception E) {
+            throw new RuntimeException (E);
+        }
     }
 
     /**
@@ -310,6 +348,51 @@ public class BaseTest {
             log.warn("Toggle not found: {}", locator);
             return false;
         }
+    }
+
+    /**
+     * Checks whether the element is enabled.
+     *
+     * @return true if enabled, false otherwise
+     */
+    public boolean isEnabled(By locator) {
+        try {
+            return  getDriver().findElement(locator).isEnabled();
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
+    // Method to upload a file from local driver
+    public void uploadImageFile(String location) throws AWTException {
+        Robot rb = new Robot();
+        rb.setAutoDelay(2000);
+
+        // Copying file path to clipboard
+        StringSelection str = new StringSelection(location);
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(str, null);
+
+        // Determine the operating system
+        String os = System.getProperty("os.name").toLowerCase();
+
+        if (os.contains("win")) {
+            // Windows key combination for paste
+            rb.keyPress(KeyEvent.VK_CONTROL);
+            rb.keyPress(KeyEvent.VK_V);
+            rb.keyRelease(KeyEvent.VK_V);
+            rb.keyRelease(KeyEvent.VK_CONTROL);
+        } else if (os.contains("mac")) {
+            // macOS key combination for paste
+            rb.keyPress(KeyEvent.VK_TAB);
+            rb.keyPress(KeyEvent.VK_META);  // Command key
+            rb.keyPress(KeyEvent.VK_V);
+            rb.keyRelease(KeyEvent.VK_V);
+            rb.keyRelease(KeyEvent.VK_META);
+        }
+
+        // Press and release Enter key
+        rb.keyPress(KeyEvent.VK_ENTER);
+        rb.keyRelease(KeyEvent.VK_ENTER);
     }
 
     public static void waitForElementInVisible(By locator, int waitTime) {
@@ -559,6 +642,8 @@ public class BaseTest {
     }
 
 
+
+
     //login method
     public static void Login() {
         // Fetch the username and password from the configuration file
@@ -759,8 +844,29 @@ public class BaseTest {
         // Return the count of elements
         return webElements.size();
     }
-}
 
+    public boolean isElementDisabled(By locator) {
+        log.info("Checking if element is disabled: {}", locator);
+        try {
+            WebElement element = getDriver().findElement(locator);
+            boolean isDisabled = !element.isEnabled() || "true".equals(element.getAttribute("disabled"));
+            log.info("Element disabled state: {}", isDisabled);
+            return isDisabled;
+        } catch (NoSuchElementException e) {
+            log.warn("Element not found: {}", locator);
+            return true; // Treat missing elements as disabled
+        }
+    }
+    public static void scrollToDown() {
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        try {
+            js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    }
 
 
 

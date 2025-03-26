@@ -88,7 +88,7 @@ public class SecurityAndPasswordTest extends BaseTest {
         enterText(securityAndPasswordPage.currentSecurityCode,Constants.validSecurityCode);
         enterText(securityAndPasswordPage.newEmailSecurityCode,Constants.invalidSecurityCode);
         click(securityAndPasswordPage.saveBtn);
-        waitForElementToBeVisible(securityAndPasswordPage.securityVerificationError,20);
+        waitForElementToBeVisible(securityAndPasswordPage.securityVerificationError,10);
         Assert.assertTrue(isElementDisplayed(securityAndPasswordPage.securityVerificationError));
 
         enterText(securityAndPasswordPage.currentSecurityCode,Constants.incompleteSecurityCode);
@@ -112,7 +112,7 @@ public class SecurityAndPasswordTest extends BaseTest {
         Login();
         securityAndPasswordPage.getSecurityAndPasswordPage();
         click(securityAndPasswordPage.editPhoneBtn);
-        waitForElementToBeVisible(securityAndPasswordPage.updatePhoneNumberPopupTitle,20);
+        waitForElementToBeVisible(securityAndPasswordPage.updatePhoneNumberPopupTitle,10);
         Assert.assertTrue(isElementDisplayed(securityAndPasswordPage.updatePhoneNumberPopupTitle));
 
         click(securityAndPasswordPage.sendSecurityCodeForNewPhone);
@@ -131,7 +131,7 @@ public class SecurityAndPasswordTest extends BaseTest {
         securityAndPasswordPage.getSecurityAndPasswordPage();
         click(securityAndPasswordPage.editPhoneBtn);
 
-        waitForElementToBeVisible(securityAndPasswordPage.newPhoneInputField,20);
+        waitForElementToBeVisible(securityAndPasswordPage.newPhoneInputField,10);
         actionEnterText(securityAndPasswordPage.newPhoneInputField,Constants.validPhoneNumber);
         click(securityAndPasswordPage.sendSecurityCodeForNewPhone);
         click(securityAndPasswordPage.saveNewPhoneBtn);
@@ -151,7 +151,7 @@ public class SecurityAndPasswordTest extends BaseTest {
         Assert.assertTrue(isElementDisplayed(securityAndPasswordPage.systemAlertMessage));
 
         clickElementByJS(securityAndPasswordPage.differentCellPhone);
-        waitForElementToBeVisible(securityAndPasswordPage.newPhoneInputField,20);
+        waitForElementToBeVisible(securityAndPasswordPage.newPhoneInputField,10);
         actionEnterText(securityAndPasswordPage.newPhoneInputField,Constants.diffCellNumber);
         click(securityAndPasswordPage.sendSecurityCodeForNewPhone);
         enterText(securityAndPasswordPage.currentPhoneOTPField,Constants.validSecurityCode);
@@ -166,7 +166,7 @@ public class SecurityAndPasswordTest extends BaseTest {
         securityAndPasswordPage.getSecurityAndPasswordPage();
         click(securityAndPasswordPage.editPhoneBtn);
 
-        waitForElementToBeVisible(securityAndPasswordPage.newPhoneInputField,20);
+        waitForElementToBeVisible(securityAndPasswordPage.newPhoneInputField,10);
         actionEnterText(securityAndPasswordPage.newPhoneInputField,Constants.validPhoneNumber);
         click(securityAndPasswordPage.sendSecurityCodeForNewPhone);
         click(securityAndPasswordPage.differentCellPhone);
@@ -178,11 +178,11 @@ public class SecurityAndPasswordTest extends BaseTest {
         waitForElementInVisible(securityAndPasswordPage.closeNewPhonePopup,20);
 
         click(securityAndPasswordPage.editPhoneBtn);
-        waitForElementToBeVisible(securityAndPasswordPage.newPhoneInputField,20);
+        waitForElementToBeVisible(securityAndPasswordPage.newPhoneInputField,10);
         actionEnterText(securityAndPasswordPage.newPhoneInputField,Constants.validPhoneNumber);
         click(securityAndPasswordPage.sendSecurityCodeForNewPhone);
         click(securityAndPasswordPage.differentCellPhone);
-        waitForElementToBeVisible(securityAndPasswordPage.newPhoneInputField,20);
+        waitForElementToBeVisible(securityAndPasswordPage.newPhoneInputField,10);
         actionEnterText(securityAndPasswordPage.newPhoneInputField,Constants.validPhoneNumber2);
         click(securityAndPasswordPage.sendSecurityCodeForNewPhone);
         enterText(securityAndPasswordPage.currentPhoneOTPField,Constants.validSecurityCode);

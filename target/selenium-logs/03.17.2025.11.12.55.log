@@ -1,0 +1,27 @@
+2025-03-17 11:12:55,032 [info]: Clicking on newBillTxt
+2025-03-17 11:13:57,917 [info]: Clicking on newBillTxt
+2025-03-17 11:14:32,699 [info]: Phone number. Existing or new
+2025-03-17 11:14:32,730 [info]: Phone number. Existing or new
+2025-03-17 11:15:11,510 [info]: Clicking on newBillTxt
+2025-03-17 11:16:14,512 [info]: Clicking on newBillTxt
+2025-03-17 11:16:59,519 [info]: Clicking on newBillTxt
+2025-03-17 11:17:18,005 [info]: Validating text
+2025-03-17 11:17:18,064 [info]: Ref No.:
+Kevin123yIWGANNLAd13unFYTN7WjxYKvEEohIJTPsmty15sD2
+2025-03-17 11:17:22,156 [info]: descriptionSection None text displayed
+2025-03-17 11:17:31,005 [info]: Validating text
+2025-03-17 11:17:31,100 [info]: Description:
+Kevin123osxVzbJ81bVkHpQXY5DjRlG6myvsKmOUsPDOCIx2jtdQxGIpm5SSUdCsUPDTovR9iWtKD1kIxBc4BXtEe65vzhjDYSW0OJifkFGky4zQoyd5UaqNf8CEUj6V0FmbpCUfa6Hq2RCNBv7P6Xxh85preICgRy0vjRvHmgiGAfCSFTBmsYhLEjpybDNBTBy5gP4A
+2025-03-17 11:17:47,290 [info]: Validating text
+2025-03-17 11:17:47,291 [info]: Validating text : By.xpath: //div[@class='border rounded p-1 overflow-hidden']
+2025-03-17 11:17:47,291 [info]: Validating text
+2025-03-17 11:17:47,291 [info]: Validating text : By.xpath: //span[contains(text(),'Ref:')]
+2025-03-17 11:18:29,184 [info]: Clicking on newBillTxt
+2025-03-17 11:18:33,430 [info]: Extracted Number: 50000
+2025-03-17 11:18:36,644 [info]: 5,000.00
+2025-03-17 11:18:36,645 [info]: Entered: 50001, But field contains: 5,000.00
+2025-03-17 11:19:11,399 [info]: Clicking on newBillTxt
+2025-03-17 11:20:14,827 [info]: Clicking on newBillTxt
+2025-03-17 11:20:19,599 [info]: Extracted Number: 3000
+2025-03-17 11:20:22,825 [info]: 300.00
+2025-03-17 11:20:22,825 [info]: Entered: 3001, But field contains: 300.00

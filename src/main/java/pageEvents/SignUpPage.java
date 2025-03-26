@@ -133,7 +133,7 @@ public void getIdonkKnowPasswordLinkSP(){
 public void getValidationsOfPersonalAccountPage() {
     getpersonalAccountButton();
     getSignUpBtnPA();
-    waitForElementToBeVisible(validation,3);
+    waitForElementToBeVisible(validation,10);
 
     // Verify the Please review the highlighted field validation message and This field is required Tooltip
     softAssert.assertTrue(isElementDisplayed(validation));

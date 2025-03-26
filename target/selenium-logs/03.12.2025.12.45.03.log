@@ -1,0 +1,5 @@
+2025-03-12 12:45:03,475 [info]: Clicking on newBillTxt
+2025-03-12 12:45:08,819 [info]: Extracted Number: 50000
+2025-03-12 12:45:12,413 [info]: 50,000.00
+2025-03-12 12:45:12,415 [info]: Extracted Number: 5000000
+2025-03-12 12:45:12,416 [info]: Restriction is working. Field changed to: 5000000

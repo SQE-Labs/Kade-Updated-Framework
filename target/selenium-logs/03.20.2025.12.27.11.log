@@ -1,0 +1,3 @@
+2025-03-20 12:27:11,381 [info]: Clicking on newBillTxt
+2025-03-20 12:27:26,207 [info]: 200
+2025-03-20 12:27:47,931 [info]: Clicking on By.xpath: (//div[@class='container-fluid ']//div[@class='row bg-white rounded-2 g-2 m-0 mt-2 position-relative border overflow-hidden -tr-row- -unpaid-'])[1]
