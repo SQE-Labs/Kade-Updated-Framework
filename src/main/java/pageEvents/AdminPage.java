@@ -13,7 +13,7 @@ public class AdminPage extends BaseTest {
     By storeNameField = By.cssSelector("input[name=\"name\"].form-control.max-20c");
     By applyBtn = By.cssSelector("button.btn.btn-outline-primary.btn-sm");
     By clickStore = By.cssSelector(".d-flex.flex-column.overflow-hidden .ms-2.text-truncate");
-    By blockBtn = By.cssSelector(".fal.fa-circle.custom-check-off ");
+    By blockBtn = By.cssSelector(".fal.fa-circle.custom-check-off");
     By statusTextBox = By.cssSelector(".form-control[maxlength=\"250\"]");
     By updateStatusBtn = By.xpath("//button[text()='Update Status']");
     By deleteBtn = By.cssSelector("button[href=\".-deleteStore-\"]");
@@ -39,16 +39,16 @@ public class AdminPage extends BaseTest {
         click(blockBtn);
     }
     public void getUpdateStatusBtn(){
-        click(updateStatusBtn);
+        clickElementByJS(updateStatusBtn);
     }
     public void getDeleteBtn(){
-        click(deleteBtn);
+        clickElementByJS(deleteBtn);
     }
     public void getEditDeleteStoreNameBox(){
         click(deleteStoreNameField);
     }
     public void getPermanentDeleteBtn(){
-        click(clickPermanentDeleteBtn);
+        clickElementByJS(clickPermanentDeleteBtn);
     }
 
 
@@ -62,9 +62,12 @@ public class AdminPage extends BaseTest {
         System.out.println(storeName);
         getApplyBtn();
         getStoreBtn();
+        scrollToElement(blockBtn);
+        staticWait(3000);
         getBlockBtn();
         enterText(statusTextBox, "deleted the store");
         getUpdateStatusBtn();
+        scrollToElement(deleteBtn);
         getDeleteBtn();
         enterText(deleteStoreNameField,"Final Delete");
         getPermanentDeleteBtn();

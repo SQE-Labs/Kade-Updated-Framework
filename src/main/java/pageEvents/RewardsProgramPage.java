@@ -54,7 +54,7 @@ public class RewardsProgramPage extends BaseTest {
 
     public void tryCatchForFilter() {
         try {
-            waitForElementToBeVisible(userPhnEmail, 20);
+            waitForElementToBeVisible(userPhnEmail,10);
         } catch (Exception e) {
             click(filterBtn);
         }

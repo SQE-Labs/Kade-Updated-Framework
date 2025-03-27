@@ -121,6 +121,7 @@ public class CustomersTest extends BaseTest {
         waitForElementInVisible(customersPage.filterApplyBtn,20);
 
         customersPage.applyFilter(Constants.phnNumberInput2);
+        waitForElementToBeVisible(customersPage.noResult,3);
         Assert.assertTrue(isElementDisplayed(customersPage.noResult));
 
         customersPage.applyFilter(Constants.phnNumberInput3);
@@ -179,7 +180,7 @@ public class CustomersTest extends BaseTest {
         customersPage.navigateToCustomersPage();
 
         click(customersPage.filter);
-        waitForElementToBeVisible(customersPage.selectCustomerinFilter,20);
+        waitForElementToBeVisible(customersPage.selectCustomerinFilter,10);
         click(customersPage.selectCustomerinFilter);
         click(customersPage.customerSelection);
         staticWait(2000);
@@ -249,7 +250,7 @@ public class CustomersTest extends BaseTest {
         click(customersPage.addPaymentMethod);
         click(customersPage.permissionChkbx);
         click(customersPage.permissionCtnBtn);
-        waitForElementToBeVisible(customersPage.addCardNumberField,20);
+        waitForElementToBeVisible(customersPage.addCardNumberField,10);
         switchToFrame(customersPage.frame1);
         customersPage.saveNewByCreditCard();
     }

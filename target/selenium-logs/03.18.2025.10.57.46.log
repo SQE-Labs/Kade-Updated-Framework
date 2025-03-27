@@ -1,0 +1,2 @@
+2025-03-18 10:57:46,324 [info]: Clicking on newBillTxt
+2025-03-18 10:58:01,254 [info]: Clicking on By.xpath: //label[text()='Expiration Date:']/..

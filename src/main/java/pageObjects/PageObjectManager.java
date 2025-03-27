@@ -166,6 +166,4 @@ public class PageObjectManager {
         log.debug("Reward Points page instance");
         return rewardPointsPage;
     }
-
-
 }

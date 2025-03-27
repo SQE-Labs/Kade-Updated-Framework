@@ -52,12 +52,15 @@ public interface Constants {
     String storeName = "Automation Customer Store";
     String storePhone = "12312312312";
     String taxRate = "10000";
-    String storeAddress = "New York Avenue Northwest, Washington, DC, USA";
+    String storeAddress = "8 Glover Dr, Dix Hills, NY 11746, USA";
     String invalidStoreAddress = "New";
     String addressNotVerifiedToolTip = "Address cannot be verified";
     String invalidStorePhone = "1231";
     String invalidPhoneToolTip = "Invalid phone number";
     String invalidImageFile = "Not a valid image file";
+
+    String description = "Without Stripe Account";
+
 
     //Security and Password page
     String requiredFieldValidation = "This field is required.";
@@ -76,6 +79,7 @@ public interface Constants {
     String validPhoneNumber2 = "1231231233";
     String LeastCharReqMessage = "Please enter at least 6 characters.";
     String diffCellNumber = "12334545676";
+    String pleaseReviewValidation = "Please review the highlighted field(s)";
 
 
     //Rewards Program constants
@@ -132,6 +136,40 @@ public interface Constants {
     String defaultStoreAddress = "8 Glover Dr, Dix Hills, NY 11746, USA";
     String defaultCurrency = "USD";
     String defaultTaxRate = "0.000%";
+    String currentPlan= "Current plan";
+    String visavalue = "Visa1111";
+
+    //Store Names
+    public static String AutomationBillFlow = "Automation Bill Flow";  // Flow 1 without plan
+    public static String AutomationBillTest = "Automation Bill Test"; // New Buisness 2 with plan
+    public static String AutomationCustomerStore="Automation Customer Store";
+    public static String AutomationFlowBusiness = "Automation Flow Business";
+    public static String AutomationQRCode = "Automation QR Code";
+    public static String AutomationTransactions = "Automation Transactions";
+    public static String AutomationTransactions3 = "Automation Transaction 3";
+    public static String AutomationTransaction2 ="Automation Transaction 2";
+    public static String AutomationPaymentHistory = "Automation Payment History";  // Flow 1 without plan
+    public static String BillHeader="Bill";
+
+
+    //Verifying Modified Details
+    String editdefaultStoreName = "My Store MSC Final";
+    String editdefaultStorePhone = "+1 (918) 065 2341";
+    String reverseStoreName = "Automation Flow 3";
+
+
+    // Store Configuration
+
+    String maximumBillAmount = "50000.00";
+    String minimumBillAmount = "50.00";
+    String tipConfigurationTitle = "Tip configuration";
+    String rewardConfigurationpopup = "Rewards Program Configuration";
+
+    String newTerminalTitle = "New Terminal";
+    String addUserTitle = "Add user";
+    String deacticeStatus = "Store is NOT active (Deactivated)";
+    String activeStoreStatus ="Store is active and ready to receive payments";
+
 
 
 }

@@ -1,0 +1,12 @@
+2025-03-11 12:05:14,950 [info]: Clicking on newBillTxt
+2025-03-11 12:05:36,374 [info]: Validating text
+2025-03-11 12:05:36,618 [info]: Ref No.:
+Kevin123oYf0ADULNbiWfSlu8MEJIUz5Oo6mvoHX7asUXMoTzX
+2025-03-11 12:05:41,016 [info]: descriptionSection None text displayed
+2025-03-11 12:05:50,706 [info]: Validating text
+2025-03-11 12:05:50,944 [info]: Description:
+Kevin1232eAzyjNND9fhZ2LaVzR7eCjlykEBbEhhLZHSIKUNLhcsiRVOhrjohe33yv1hsuiuY32zN6qoelRaOxIzDFngKQBuu7QBGu2qxHG2TApdbMX0DCzRcKlVI4fUlqv2CPXoDfN4leVvIviHOK0oe5WGAfpagHRcEkGl9alK3giLoxoFEuSxmX50DNYG5OPudxrk
+2025-03-11 12:06:09,056 [info]: Validating text
+2025-03-11 12:06:09,056 [info]: Validating text : By.xpath: //div[@class='border rounded p-1 overflow-hidden']
+2025-03-11 12:06:09,056 [info]: Validating text
+2025-03-11 12:06:09,068 [info]: Validating text : By.xpath: //span[contains(text(),'Ref:')]

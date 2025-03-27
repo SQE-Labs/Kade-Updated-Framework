@@ -1,0 +1,12 @@
+2025-03-20 09:57:12,408 [info]: Clicking on newBillTxt
+2025-03-20 09:57:25,942 [info]: No repeat
+2025-03-20 09:57:27,958 [info]: Daily
+2025-03-20 09:57:32,123 [info]: Attribute value is fetched
+2025-03-20 09:57:34,298 [info]: specificNumberTxt:3
+2025-03-20 09:57:36,363 [info]: Specific number of times
+times total
+2025-03-20 09:57:38,379 [info]: Specific date
+2025-03-20 09:57:40,435 [info]: Weekly
+2025-03-20 09:57:42,461 [info]: Monthly
+2025-03-20 09:57:44,486 [info]: Yearly
+2025-03-20 09:58:05,239 [info]: Numeric Value: 1000.00
