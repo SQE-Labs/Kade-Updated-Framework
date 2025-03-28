@@ -2,12 +2,14 @@ package qa.tests;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.BaseTest;
 import pageEvents.HomePageEvents;
 import pageEvents.LoginPageEvents;
 import pageObjects.PageObjectManager;
+import utils.Constants;
 
 /**
  * Test class for the Login page functionality.
@@ -27,7 +29,7 @@ public class LoginPage extends BaseTest {
 
     /**
      * Test method for logging into the application.
-     * It enters the username and password, clicks the SignIn button, 
+     * It enters the username and password, clicks the SignIn button,
      * and verifies the landing page after login.
      */
     //@Test
@@ -56,4 +58,30 @@ public class LoginPage extends BaseTest {
 //        // Verify the landing page is correct after login
 //        homePage.landingPage();
 //    }
+    @Test(priority = 1, enabled = true, description = "Verify the Login Page Fields's Validations")
+    public void verifyLoginPage() {
+        loginPage.verifyLoginPageFields();
+    }
+
+    @Test(priority = 2, enabled = true, description = " Verify that user get directed to 'Create New Account' page")
+    public void validateSignUpLink() {
+        loginPage.getSignUpLink();
+        String popupTitle = getText(loginPage.popupTitle);
+        Assert.assertEquals(popupTitle, "New Account");
+    }
+
+    @Test(priority = 3, enabled = true, description =" Verify that Forgot Password page appears after clickin gon 'Forgot Password' link")
+    public void tc03_validateForgotPasswordLink(){
+        loginPage.getForgotPassowrdLink();
+        String actualTitle = getPageTitle();
+        Assert.assertEquals(actualTitle, Constants.ForgetPasswordtitle);
+    }
+
+    @Test(priority = 4,enabled = true, description = "Verify that  'User Agreement' page opens up, when  user clicks on 'Terms Of Use' link, on 'Login' page. & Verify that " + " 'Privacy' page opens up, when  user clicks on 'Privacy Policy' link, on 'Login' page.")
+        public void verifyPrivacyAndTermsOfUsePage(){
+        loginPage.getTermsofUseLink();
+        String title = getPageTitle();
+
+
+    }
 }

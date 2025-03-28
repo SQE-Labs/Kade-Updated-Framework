@@ -46,6 +46,8 @@ public interface Constants {
     String validPassword = "Test@123";
     String validLoginEmail = "test1114@yopmail.com";
     String phoneSecurityCodeForLogin = "777777";
+    String ForgetPasswordtitle = "Forget password";
+    String PrivacyPolicyTitle ="";
 
 
     //BasicInformationPage constants
@@ -169,6 +171,8 @@ public interface Constants {
     String addUserTitle = "Add user";
     String deacticeStatus = "Store is NOT active (Deactivated)";
     String activeStoreStatus ="Store is active and ready to receive payments";
+    String loginPageValidation = "Invalid phone number. Phone numbers must start with + and country code";
+    String credentialsValidationLP = "Invalid credentials. Check your username and/or password";
 
 
 

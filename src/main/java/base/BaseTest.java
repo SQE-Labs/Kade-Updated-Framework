@@ -471,6 +471,11 @@ public class BaseTest {
         log.info("Navigating to URL: {}", url);
         getDriver().navigate().to(url);
     }
+    public String getPageTitle() {
+        Log.info("Get the Current Page Title");
+        return getDriver().getTitle();
+    }
+
 
     /**
      * Switches to a specific frame by its locator.
