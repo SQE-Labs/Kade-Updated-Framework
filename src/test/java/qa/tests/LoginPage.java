@@ -70,18 +70,38 @@ public class LoginPage extends BaseTest {
         Assert.assertEquals(popupTitle, "New Account");
     }
 
-    @Test(priority = 3, enabled = true, description =" Verify that Forgot Password page appears after clickin gon 'Forgot Password' link")
-    public void tc03_validateForgotPasswordLink(){
+    @Test(priority = 3,enabled = true, description = "Verify that  'User Agreement' page opens up, when  user clicks on 'Terms Of Use' link, on 'Login' page. & Verify that " + " 'Privacy' page opens up, when  user clicks on 'Privacy Policy' link, on 'Login' page.")
+        public void verifyPrivacyAndTermsOfUsePage() {
+        loginPage.getTermsofUseLink();
+        // Store the parent window handle
+        String parentWindowHandle = getDriver().getWindowHandle();
+
+        Assert.assertTrue(isElementDisplayed(loginPage.termsOfUse));
+        loginPage.switchToWindow("Terms of Use Page");
+        String actualTitle = getPageTitle();
+        String expectedTitle = "Terms Of Use";
+        staticWait(3000);
+        switchToParentWindow(parentWindowHandle);
+        waitForElementToBeInteractable(loginPage.privacyPolicyLink,3);
+        loginPage.getPrivacyPolicylink();
+        loginPage.switchToWindow("Privacy Policy");
+        Assert.assertTrue(isElementDisplayed(loginPage.privacyPolicyTitle));
+    }
+    @Test(priority = 4, enabled = true, description =" Verify that Forgot Password page appears after clickin gon 'Forgot Password' link")
+    public void validateForgotPasswordLink(){
         loginPage.getForgotPassowrdLink();
         String actualTitle = getPageTitle();
         Assert.assertEquals(actualTitle, Constants.ForgetPasswordtitle);
-    }
+        loginPage.verifyForgetPassword();
 
-    @Test(priority = 4,enabled = true, description = "Verify that  'User Agreement' page opens up, when  user clicks on 'Terms Of Use' link, on 'Login' page. & Verify that " + " 'Privacy' page opens up, when  user clicks on 'Privacy Policy' link, on 'Login' page.")
-        public void verifyPrivacyAndTermsOfUsePage(){
-        loginPage.getTermsofUseLink();
+    }
+    @Test(priority = 6,enabled = true,description = "Verify that user is able to login successfully, after entering valid data in all the mandatory fields.")
+    public void successfulLogin(){
+        Login();
         String title = getPageTitle();
-
-
+        Assert.assertEquals(title,Constants.transactionsTitle);
     }
+
 }
+
+

@@ -871,7 +871,16 @@ public class BaseTest {
         }
     }
 
+    public void switchToWindow(String description) {
+        Log.info("Switch to window [" + description + "]");
+        String parentWindow = getDriver().getWindowHandle();
+        for (String windowHandle : getDriver().getWindowHandles())
+            if (!windowHandle.equals(parentWindow))
+                getDriver().switchTo().window(windowHandle);
     }
+}
+
+
 
 
 

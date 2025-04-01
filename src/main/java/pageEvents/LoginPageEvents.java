@@ -24,8 +24,25 @@ public class LoginPageEvents extends BaseTest {
     public By termsOfUse = By.linkText("Terms Of Use");
     public By popupTitle = By.xpath("//h5[normalize-space()='New Account']");
     By credentialsValidation  = By.cssSelector(".alert-content");
-    By privacyPolicyTitle = By.cssSelector(".mb-3.fs-pn15");
-    By privacyPolicyLink = By.cssSelector(" .p-2.fs-pn25.text-center>a+a");
+    public By privacyPolicyTitle = By.cssSelector(".mb-3.fs-pn15");
+    public By privacyPolicyLink = By.cssSelector(" .p-2.fs-pn25.text-center>a+a");
+
+    // Forget Password page locators
+    By continueBtn= By.cssSelector(".btn-lg.btn.btn-primary");
+    By emailPhoneField = By.cssSelector("[name='phone_email']");
+    By signInLinkFP = By.cssSelector(".fs-6>a");
+    By verifyAccountTitle = By.xpath("//h1[text()='Verify your account']");
+    By enteredEmailorPhone = By.cssSelector(".badge.bg-light");
+    By changeLinkFP = By.cssSelector(".badge.bg-light+a");
+    By securityCodeField = By.cssSelector(".form-control-lg.fs-3");
+    By recentSecurityCodeLink = By.cssSelector(".-resend-.btn.btn-link");
+    By securityCodeTostmsg = By.cssSelector(".toast-message");
+    By validationCrossIcon = By.cssSelector(".btn-close.autoclick-effect");
+    By alreadyHaveAccount = By.cssSelector(".fs-6 ");
+
+
+
+
 
     /**
      * Method to perform login by entering username and password and clicking the Sign-In button.
@@ -66,6 +83,13 @@ public class LoginPageEvents extends BaseTest {
     public void getPrivacyPolicyTitle(){
         click(privacyPolicyTitle);
     }
+    public void getValidationCrossIcon(){
+        click(validationCrossIcon);
+    }
+    public void getAlreadyHaveAccountLabel(){
+        waitForElementToBeClickable(alreadyHaveAccount,3);
+        click(alreadyHaveAccount);
+    }
 
     public void verifyLoginPageFields(){
 
@@ -92,6 +116,92 @@ public class LoginPageEvents extends BaseTest {
         String actualValidation = getText(credentialsValidation);
         softAssert.assertEquals(actualValidation, Constants.credentialsValidationLP);
         softAssert.assertAll();
+
+    }
+    public void getContinueBtnFP(){
+        click(continueBtn);
+    }
+    public void getSignInLinkFP(){
+        click(signInLinkFP);
+    }
+    public void getChangeLinkFP(){
+       click(changeLinkFP);
+    }
+
+
+    public void  verifyForgetPassword(){
+        getContinueBtnFP();
+        // verify the validation
+        getToolTipMessage(emailPhoneField);
+        getAlreadyHaveAccountLabel();
+
+        // Enter invalid data
+        enterText(emailPhoneField,Constants.invalidData);
+
+        waitForElementToBeInteractable(emailPhoneField,5);
+        getAlreadyHaveAccountLabel();
+        String text= getToolTipMessage(emailPhoneField);
+        softAssert.assertEquals(text,Constants.userPhnEmailTooltip);
+        cleanByJS(emailPhoneField);
+        waitForElementToBeClickable(emailPhoneField,5);
+
+        // enter invalid email
+        enterText(emailPhoneField,Constants.invalidEmail);
+        getAlreadyHaveAccountLabel();
+        String text2 = getToolTipMessage(emailPhoneField);
+        waitForElementToBeClickable(continueBtn,5);
+//        getContinueBtnFP();
+        softAssert.assertEquals(text2 ,Constants.invalidEmailValidation);
+        cleanByJS(emailPhoneField);
+        waitForElementToBeClickable(emailPhoneField,5);
+
+        // enter valid email address
+        enterText(emailPhoneField,Constants.validLoginEmail);
+        getContinueBtnFP();
+        softAssert.assertTrue(isElementDisplayed(verifyAccountTitle));
+
+        // click on change link
+        getChangeLinkFP();
+
+        // enter valid phone number
+        enterText(emailPhoneField,Constants.phone);
+        getContinueBtnFP();
+
+        // click on continue button
+        getContinueBtnFP();
+        waitForElementToBeInteractable(securityCodeField,3);
+        String tooltip = getToolTipMessage(securityCodeField);
+        softAssert.assertEquals(tooltip, Constants.requiredFldValidation);
+        enterText(securityCodeField,Constants.phoneSecurityCodeForLogin);
+        getContinueBtnFP();
+
+        waitForElementToBeInteractable(pageObjectManager.getSignUpPage().setYourPasswordTitle,5);
+        softAssert.assertTrue(isElementDisplayed(pageObjectManager.getSignUpPage().setYourPasswordTitle));
+
+        pageObjectManager.getSignUpPage().getSubmitButton();
+
+        getToolTipMessage(pageObjectManager.getSignUpPage().passwordField);
+        enterText(pageObjectManager.getSignUpPage().passwordField,Constants.validPassword);
+        enterText(pageObjectManager.getSignUpPage().confirmPasswordField,Constants.validPassword);
+        pageObjectManager.getSignUpPage().getSubmitButton();
+        softAssert.assertAll();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 

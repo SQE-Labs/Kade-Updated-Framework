@@ -13,6 +13,7 @@ public interface Constants {
 
     // Constant for the "Sign out" text used in validation
     String SIGN_OUT = "Sign out";
+    String transactionsTitle = "Transactions";
 
     // Dashboard
     String YourBusinessTitle ="Your Businesses";
@@ -47,7 +48,7 @@ public interface Constants {
     String validLoginEmail = "test1114@yopmail.com";
     String phoneSecurityCodeForLogin = "777777";
     String ForgetPasswordtitle = "Forget password";
-    String PrivacyPolicyTitle ="";
+    String  TermsOfUser ="User Agreement";
 
 
     //BasicInformationPage constants
