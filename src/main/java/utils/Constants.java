@@ -2,6 +2,7 @@ package utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.Assert;
 
 /**
  * The Constants interface holds constant values used throughout the application.
@@ -176,5 +177,11 @@ public interface Constants {
     String credentialsValidationLP = "Invalid credentials. Check your username and/or password";
 
 
+
+    // Transactions page
+    String noPaymentInfoMsg = "There are no payments available yet!";
+    String amount = "100.00";
+    String newChargeDescription = "New charge payment";
+    String terminalNotAcceptedAlert= "Your store is not configured to process any credit card";
 
 }

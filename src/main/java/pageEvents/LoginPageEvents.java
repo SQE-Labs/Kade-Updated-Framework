@@ -39,6 +39,9 @@ public class LoginPageEvents extends BaseTest {
     By securityCodeTostmsg = By.cssSelector(".toast-message");
     By validationCrossIcon = By.cssSelector(".btn-close.autoclick-effect");
     By alreadyHaveAccount = By.cssSelector(".fs-6 ");
+    By googleAccount = By.cssSelector("[value='Google']");
+    public By googleEmailField= By.cssSelector(".Xb9hP >[type='email']");
+    By nextBtn = By.xpath("//span[text()='Next']");
 
 
 
@@ -67,6 +70,9 @@ public class LoginPageEvents extends BaseTest {
 
         log.info("Sign-in process completed.");
     }
+    public void getNextButton(){
+        click(nextBtn);
+    }
     public void getSignUpLink(){
         click(signUpLink);
     }
@@ -85,6 +91,9 @@ public class LoginPageEvents extends BaseTest {
     }
     public void getValidationCrossIcon(){
         click(validationCrossIcon);
+    }
+    public void getSignInWithGoogle(){
+        click(googleAccount);
     }
     public void getAlreadyHaveAccountLabel(){
         waitForElementToBeClickable(alreadyHaveAccount,3);

@@ -878,6 +878,10 @@ public class BaseTest {
             if (!windowHandle.equals(parentWindow))
                 getDriver().switchTo().window(windowHandle);
     }
+
+    public void selectStore(String store) {
+        click(By.xpath("//li[contains(text(),'" + store + "')]"));  // Select store
+    }
 }
 
 

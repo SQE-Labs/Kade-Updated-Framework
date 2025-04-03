@@ -119,7 +119,7 @@ public class BillPage extends BaseTest {
     public By selectACustomerBtn = By.xpath("(//div[@class='modal-content'])[8]//button[text()='Select a customer']");
     By whichStorePopup = By.xpath("//p[text()='Which store?']");
     By newBusinessCard = By.xpath("div.overflow-hidden.border.border-info");
-    By storesCombobox = By.xpath("//span[@role='combobox']");
+    public By storesCombobox = By.xpath("//span[@role='combobox']");
     By continueBtn = By.xpath("//button[@type='submit']");
     public By messagePopupHeader = By.xpath("//h5[text()='Message']");
     public By closeLogoPopupBtn = By.xpath("(//div[contains(@class, 'modal-content')]//button[@class='btn-close'])[3]");

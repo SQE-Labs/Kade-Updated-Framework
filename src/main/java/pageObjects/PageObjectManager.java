@@ -19,6 +19,7 @@ public class PageObjectManager {
     private ReportsPage reportsPage;
     private RewardPointsPage rewardPointsPage;
     private AdminPage adminPage;
+    private TransactionsPage transactionsPage;
 
     // Logger instance for logging messages
     private static final Logger log = LoggerFactory.getLogger(PageObjectManager.class);
@@ -72,8 +73,11 @@ public class PageObjectManager {
         rewardPointsPage = new RewardPointsPage();
         log.debug("Reward Ponts Page instance created");
 
-        adminPage= new AdminPage();
+        adminPage = new AdminPage();
         log.debug("Admin page instance created ");
+
+        transactionsPage = new TransactionsPage();
+        log.debug("Transactions page");
     }
 
     /**
@@ -165,5 +169,9 @@ public class PageObjectManager {
     public RewardPointsPage getRewardPointsPage() {
         log.debug("Reward Points page instance");
         return rewardPointsPage;
+    }
+    public TransactionsPage getTransactionsPage(){
+        log.debug("Transactions page");
+        return transactionsPage;
     }
 }
