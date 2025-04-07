@@ -92,6 +92,7 @@ public class BillTest extends BaseTest {
     @Test(priority = 1, description = "BC_02 Verify that creating a bill by adding amount value only, with Selecting a Customer")
     public void verifyCreateBillBySelectingCustomer() {
 
+
         Login();
 
         //Select Store
