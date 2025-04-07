@@ -884,6 +884,20 @@ public class BaseTest {
         }
         return name;
     }
+    public boolean isDisplayed(By locator,int timeout) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeout));
+        log.info("Checking if element is displayed: {}", locator);
+        try {
+            wait.until(visibilityOfElementLocated(locator));
+            WebElement element = getDriver().findElement(locator);
+            boolean isDisplayed = element.isDisplayed();
+            log.info("Element displayed state: {}", isDisplayed);
+            return isDisplayed;
+        } catch (NoSuchElementException e) {
+            log.warn("Element not found: {}", locator);
+            return false; // Treat missing elements as not displayed
+        }
+    }
 
 
 }
