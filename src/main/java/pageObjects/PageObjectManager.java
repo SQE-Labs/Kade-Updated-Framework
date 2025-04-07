@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 public class PageObjectManager {
     private static PageObjectManager pageObjectManager;
+    public BillPage bill;
     private LoginPageEvents loginPage;
     private HomePageEvents homePage;
     private DashboardPage dashboardPage;

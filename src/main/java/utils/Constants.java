@@ -183,5 +183,6 @@ public interface Constants {
     String amount = "100.00";
     String newChargeDescription = "New charge payment";
     String terminalNotAcceptedAlert= "Your store is not configured to process any credit card";
+    String terminalSuccessMessage = "Processed successfully!";
 
 }

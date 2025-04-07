@@ -43,6 +43,24 @@ public class TransactionsTest extends BaseTest {
 
     }
 
+    @Test(description = "TRS5 (a) :Verify that store manager is able to charge a customer manually, after stripe payment is configured for a store.")
+    public void chargeManuallyAfterStripeConfigured() {
+
+    }
+
+    @Test(description = "TRS5 (b): Verify that store manager is able to charge a customer when terminal is configured for a store.")
+    public void newChargerWithTerminal() {
+        Login();
+        transaction.getTerminalcharge();
+
+    }
+    @Test(description = "TRS 5 (c): Verify that the store manager can manually do new charge payment, after cancelling the terminal automatic payment deduction process, on 'Transaction' page.")
+    public void newChargePaymentManuallyAfterCancelingTerminalAutomaticPaymentDeduction() {
+        Login();
+
+
+    }
+
 
 
 

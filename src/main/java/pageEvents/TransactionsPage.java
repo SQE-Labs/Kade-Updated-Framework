@@ -87,6 +87,14 @@ public class TransactionsPage extends BaseTest {
     By descriptionField = By.cssSelector("[name=\"memo\"]");
     By configureStoreLink = By.xpath("//a[text()='Configure your store']");
     By frame = By.cssSelector(".alert-danger.alert-outline-coloured.alert:nth-child(2)");
+    By selectCustomerbtn = By.cssSelector(".modal-content .stretched-link.-selectCustomer-");
+    public By sendReceiptTitle = By.xpath("//h5[text()='Send the receipt']");
+    By amountField = By.cssSelector("h3.text-success.display-3");
+    By successMessage = By.cssSelector("div.text-center > p");
+    public By emailField = By.xpath("//input[@name='email']");
+    By goBtnEmail = By.xpath("//input[@name='email']/following-sibling::button");
+    By doneBtn = By.cssSelector(".modal-content .btn.btn-link.w-100.my-3");
+
 
 
     public void getLegendLink() {
@@ -105,8 +113,20 @@ public class TransactionsPage extends BaseTest {
         click(newChargeConfirm);
     }
 
+    public void getCustomerBtn(){
+        clickElementByJS(selectCustomerbtn);
+    }
+    public void getGoButton(){
+        click(goBtnEmail);
+    }
+    public void getDoneBtnOfCNpopup(){click(doneBtn);}
+    public void getTerminalCancelButton(){click(terminalCancelButton);}
+    public void getManualChargeTab(){
+        click(manualChargeTab);
+    }
 
-// TRS3
+
+    // TRS3
     public void getLegendLabels(){
         // Find all elements using the stored locator
         List<WebElement> elements = getDriver().findElements(legendLabels);
@@ -140,7 +160,7 @@ public class TransactionsPage extends BaseTest {
     }
 
 // TRS4
-        public void verifyNewChargeWithoutStripeConfigured(){
+        public void verifyNewChargeWithoutStripeConfigured() {
             pageObjectManager.getSidePannel().getMangeBusinessTab();
             pageObjectManager.getSidePannel().getTransactionTab();
             getStoresDropdown();
@@ -149,23 +169,103 @@ public class TransactionsPage extends BaseTest {
 
             // clicking on new charge button
             getNewChargeBtn();
-            waitForElementToBeClickable(newChargeAmountField,3);
-            actionEnterText(newChargeAmountField,Constants.amount);
-            actionEnterText(descriptionField,Constants.description);
+            waitForElementToBeClickable(newChargeAmountField, 3);
+            actionEnterText(newChargeAmountField, Constants.amount);
+            actionEnterText(descriptionField, Constants.description);
 
             // Verify that configureStoreLink appears
             Assert.assertTrue(isElementDisplayed(configureStoreLink));
 
             // Verify Alert message is displayed
             String alertmsg = getText(terminalAlertMessage);
-            Assert.assertEquals(alertmsg,Constants.terminalNotAcceptedAlert);
+            Assert.assertEquals(alertmsg, Constants.terminalNotAcceptedAlert);
+        }
 
 
+// TRS 5 a
+            public void getManualCharge() {
+                pageObjectManager.getSidePannel().getMangeBusinessTab();
+                pageObjectManager.getSidePannel().getTransactionTab();
+                getStoresDropdown();
+                selectStore(Constants.AutomationTransaction2);
+                getContinueButton();
 
+                // clicking on new charge button
+                getNewChargeBtn();
+                waitForElementToBeClickable(newChargeAmountField, 3);
+                actionEnterText(newChargeAmountField, Constants.amount);
+                actionEnterText(descriptionField, Constants.description);
+                getNewChargeConfirmBtn();
+               // Making new charge payment manually with Credit Card
+            }
+
+    // TRS 5 b
+            public void getTerminalcharge(){
+                pageObjectManager.getSidePannel().getMangeBusinessTab();
+                pageObjectManager.getSidePannel().getTransactionTab();
+                getStoresDropdown();
+                selectStore(Constants.AutomationTransactions3);
+                getContinueButton();
+
+                // clicking on new charge button
+                getNewChargeBtn();
+                waitForElementToBeClickable(newChargeAmountField, 3);
+                actionEnterText(newChargeAmountField, Constants.amount);
+                actionEnterText(descriptionField, Constants.description);
+                waitForElementToBeInteractable(selectCustomerbtn,5);
+                getCustomerBtn();
+                staticWait(3000);
+                actionEnterText(emailField,Constants.custEmailInput);
+                getGoButton();
+                staticWait(3000);
+//                getDoneBtnOfCNpopup();
+//                waitForElementToBeClickable(newChargeConfirm,5);
+                getNewChargeConfirmBtn();
+
+                // Waiting for Automatic Terminal Payment
+                softAssert.assertTrue(isElementDisplayed(terminal));
+
+                // Verify the Send Receipt Popup is Displayed
+                softAssert.assertTrue(isElementDisplayed(sendReceiptTitle));
+                String text = getText(amountField);
+                softAssert.assertEquals(text, "$" + Constants.amount);
+                String successMsg= getText(successMessage);
+                softAssert.assertEquals(successMsg, "$" + Constants.terminalSuccessMessage);
+    }
+
+    public void getManualChargeAfterCancelingTerminal(){
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getTransactionTab();
+        getStoresDropdown();
+        selectStore(Constants.AutomationTransactions3);
+        getContinueButton();
+
+        // clicking on new charge button
+        getNewChargeBtn();
+        waitForElementToBeClickable(newChargeAmountField, 3);
+        actionEnterText(newChargeAmountField, Constants.amount);
+        actionEnterText(descriptionField, Constants.description);
+        waitForElementToBeInteractable(selectCustomerbtn,5);
+        getCustomerBtn();
+        staticWait(3000);
+        actionEnterText(emailField,Constants.custEmailInput);
+        getGoButton();
+//      getDoneBtnOfCNpopup();
+        waitForElementToBeInteractable(newChargeConfirm,5);
+        getNewChargeConfirmBtn();
+
+        // Waiting for Automatic Terminal Payment
+        softAssert.assertTrue(isElementDisplayed(terminal));
+        getTerminalCancelButton();
+
+        // Paying through credit card after canceling terminal payment
+        getManualChargeTab();
+
+    }
 
 
         }
 
 
 
-}
+

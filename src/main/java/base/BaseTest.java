@@ -882,6 +882,7 @@ public class BaseTest {
     public void selectStore(String store) {
         click(By.xpath("//li[contains(text(),'" + store + "')]"));  // Select store
     }
+
 }
 
 
