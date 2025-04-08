@@ -176,10 +176,12 @@ public class PaymentPage extends BaseTest {
     By amountField = By.xpath("(//form//input[@name='amount'])[2]");
     By updateBtn = By.xpath("(//button[text()='Update'])[2]");
     By swipeArrowBtn = By.xpath("//input[@type='range']/..//span[contains(text(),'$')]/..");
-    By zelleAccount=By.xpath("//span[text()='Zelle']/../../../..");
-    By makePayment=By.xpath("//button[text()='I made the payment']");
-    By selectCheckBox=By.xpath("(//span[text()='Confirm your payment by checking this box']/../i)[2]");
-    By zelleSaveBtn=By.xpath("//button[text()='Submit']");
+    By zelleAccount = By.xpath("//span[text()='Zelle']/../../../..");
+    By VenmoAccount = By.xpath("//span[text()='Venmo']/../../../..");
+
+    By makePayment = By.xpath("//button[text()='I made the payment']");
+    By selectCheckBox = By.xpath("(//span[text()='Confirm your payment by checking this box']/../i)[2]");
+    By zelleSaveBtn = By.xpath("//button[text()='Submit']");
 
 
     //        public void PaymentsPage() {
@@ -617,12 +619,20 @@ public class PaymentPage extends BaseTest {
 
     public void clickOnchangeBtn() {
         staticWait(5000);
+        scrollToDown();
         click(changeBtn);
     }
-public void clickOnZelleBank(){
+
+    public void clickOnZelleBank() {
         staticWait(4000);
-    click(zelleAccount);
-}
+        click(zelleAccount);
+    }
+
+    public void clickOnVenmoBank() {
+        staticWait(4000);
+        click(VenmoAccount);
+    }
+
     public void clickOncreditCards() {
         staticWait(3000);
         click(creditCards);
@@ -640,9 +650,9 @@ public void clickOnZelleBank(){
 
     public void swipeToPay() {
         staticWait(10000);
-         Actions actions = new Actions(getDriver());
+        Actions actions = new Actions(getDriver());
         WebElement elm = getDriver().findElement(swipeBtn);
-      //  scrollToElement(swipeBtn);
+        //  scrollToElement(swipeBtn);
         actions.moveToElement(elm).moveByOffset(-100, 0).clickAndHold().moveByOffset(200, 0).release().perform();
     }
 
@@ -653,6 +663,7 @@ public void clickOnZelleBank(){
     }
 
     public void clickOnBankAccountSection() {
+        staticWait(3000);
         click(bankAccountSection);
     }
 
@@ -669,21 +680,24 @@ public void clickOnZelleBank(){
         staticWait(5000);
         hoverAndClick(swipeArrowBtn, swipeArrowBtn);
     }
-    public void swipeCard(){
+
+    public void swipeCard() {
         staticWait(20000);
         softAssert.assertTrue(isElementDisplayed(storeName));
-     //   softAssert.assertTrue(isElementDisplayed(debitCardName));
+        //   softAssert.assertTrue(isElementDisplayed(debitCardName));
         swipeToPay();
     }
 
-    public void clickOnMakePaymentBtn(){
+    public void clickOnMakePaymentBtn() {
         staticWait(3000);
-        click(makePayment);
+        hoverAndClick(makePayment, makePayment);
     }
-    public void clickOnCheckBox(){
+
+    public void clickOnCheckBox() {
         click(selectCheckBox);
     }
-    public void zelleSaveBtn(){
+
+    public void zelleSaveBtn() {
         click(zelleSaveBtn);
     }
 
@@ -1123,7 +1137,7 @@ public void clickOnZelleBank(){
         clickOnBillIcon();
         clickOnBill();
         clickOnPayNowBtn();
-      //  softAssert.assertTrue(isElementDisplayed(storeName));
+        //  softAssert.assertTrue(isElementDisplayed(storeName));
         softAssert.assertTrue(isElementDisplayed(visaCardName));
         clickOnchangeBtn();
         clickOncreditCards();
@@ -1134,6 +1148,7 @@ public void clickOnZelleBank(){
         clickOnSaveBtn();
 
     }
+
 
     public void paymentThrouhBankAccount() {
         clickOnSignOut();
@@ -1147,7 +1162,7 @@ public void clickOnZelleBank(){
         clickOnBankAccountSection();
     }
 
-    public void billPaymentByVariousPaymentMethods(String enterTextInAmountField,String cardNameTxt, String expiryDateTxt, String cvcTxt, String countryName) {
+    public void billPaymentByVariousPaymentMethods(String enterTextInAmountField, String cardNameTxt, String expiryDateTxt, String cvcTxt, String countryName) {
         clickOnSignOut();
         LoginAsCustomer();
         clickOnBillIcon();
@@ -1167,17 +1182,49 @@ public void clickOnZelleBank(){
         clickOnSaveBtn();
 
     }
-    public void paymentByBankAccount(String enterTextInAmountField){
+
+    public void paymentByBankAccount(String enterTextInAmountField) {
         clickOnchangeBtn();
         clickOnBankAccountSection();
         clickOnswipeArrowBtn();
         enterTextInAmountField(enterTextInAmountField);
         clickOnupdateBtn();
     }
-    public void clickOnZelleAccount(){
+
+    public void clickOnZelleAccount() {
         clickOnchangeBtn();
         clickOnZelleBank();
-
     }
+
+    public void clickOnVenmoAccount() {
+        clickOnchangeBtn();
+        clickOnVenmoBank();
+    }
+
+    public void paymentByZelleAccount() {
+        clickOnZelleAccount();
+        clickOnMakePaymentBtn();
+        clickOnCheckBox();
+        zelleSaveBtn();
+        billPayment();
+    }
+
+
+    public void paymentThrouhVenmoAccount() {
+        clickOnSignOut();
+        LoginAsCustomer();
+        clickOnBillIcon();
+        clickOnBill();
+        clickOnPayNowBtn();
+       // softAssert.assertTrue(isElementDisplayed(storeName));
+        softAssert.assertTrue(isElementDisplayed(visaCardName));
+        clickOnchangeBtn();
+        clickOnVenmoAccount();
+        clickOnMakePaymentBtn();
+        clickOnCheckBox();
+        zelleSaveBtn();
+        billPayment();
+    }
+
 
 }
