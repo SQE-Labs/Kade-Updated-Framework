@@ -1,6 +1,7 @@
 package qa.tests;
 
 import base.BaseTest;
+import logger.Log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
@@ -45,6 +46,8 @@ public class TransactionsTest extends BaseTest {
 
     @Test(description = "TRS5 (a) :Verify that store manager is able to charge a customer manually, after stripe payment is configured for a store.")
     public void chargeManuallyAfterStripeConfigured() {
+        Login();
+        transaction.getManualCharge();
 
     }
 
@@ -57,11 +60,40 @@ public class TransactionsTest extends BaseTest {
     @Test(description = "TRS 5 (c): Verify that the store manager can manually do new charge payment, after cancelling the terminal automatic payment deduction process, on 'Transaction' page.")
     public void newChargePaymentManuallyAfterCancelingTerminalAutomaticPaymentDeduction() {
         Login();
+        transaction.getManualChargeAfterCancelingTerminal();
+    }
+
+    @Test(description = "TRS6 Verify that 'Transaction details' popup opens up after clicking on any transaction of 'Transaction' page.")
+    public void verifyThatElementsOfTransactionDetailsPopup() {
+        Login();
+        transaction.getAllElementsOfTransactionsPopup();
+    }
+
+
+    @Test(description = "TRS7 (a): Verify that store manager is able to refund full transaction on 'Transaction details' popup of 'Transaction' page.")
+    public void verifyRefundFullTransactionOnTransactionPage() {
+        transaction.getFullRefund();
+    }
+
+    @Test(description = "TRS7 (b): Verify that store manager is able to refund partial transaction on 'Transaction details' popup of 'Transaction' page.")
+    public void verifyThatStoreMangerIsAbleToRefundPartialPayment() {
+        transaction.getPartialRefund();
+
+    }
+
+    @Test(description = "TRS8 Verify that store manager is able to verify the transactions on 'Transaction details' popup of 'Transaction' page.")
+    public void verifyThatStoreMangerIsAbleToVerifyTransaction() {
+        Login();
+        transaction.verifyTheTransaction();
+    }
+
+    @Test(description = " TRS 12 Verify that Question mark icon gets removed, when store manager manually marked the payment as 'Captured'.")
+    public void verifyQuestionmarkIconRemovedWhenStoreManagerManuallyMarkedPaymentAsCaptured() {
+        transaction.getQuestionMarkIcon();
 
 
     }
 
 
-
-
 }
+

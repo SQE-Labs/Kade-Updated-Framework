@@ -185,4 +185,9 @@ public interface Constants {
     String terminalNotAcceptedAlert= "Your store is not configured to process any credit card";
     String terminalSuccessMessage = "Processed successfully!";
 
+    // Verify Message
+    String verifyInfoMsg = "Each transaction can be verified only once.";
+    String verifyByStore = "Verified by the store";
+
+
 }

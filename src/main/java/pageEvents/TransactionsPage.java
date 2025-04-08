@@ -9,6 +9,7 @@ import utils.Constants;
 import java.util.List;
 
 public class TransactionsPage extends BaseTest {
+    PaymentPage payments = new PaymentPage();
     //Locators
     public By transactionRow = By.xpath("//div[contains(@class,'bg-white border')]");
     public By billAmount = By.xpath("//div[@class='display-6 fw-bold pt-2']");
@@ -94,8 +95,9 @@ public class TransactionsPage extends BaseTest {
     public By emailField = By.xpath("//input[@name='email']");
     By goBtnEmail = By.xpath("//input[@name='email']/following-sibling::button");
     By doneBtn = By.cssSelector(".modal-content .btn.btn-link.w-100.my-3");
+    By creditCardInfoFrame = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[1]");
 
-
+    BillPage bills = new BillPage();
 
     public void getLegendLink() {
         click(legend);
@@ -124,6 +126,15 @@ public class TransactionsPage extends BaseTest {
     public void getManualChargeTab(){
         click(manualChargeTab);
     }
+    public void switchToCreditCardFrame() {switchToFrame(creditCardInfoFrame);}
+    public void getRefundBtn(){click(refundButton);}
+    public void getFullRefundBtn(){ click(processFullRefund);}
+    public void getPartialRefundbtn(){click(partialRefundLink);}
+    public void getProcessRefundBtn(){click(processRefundButton);}
+    public void getVisaPaymentCheckbox(){click(paymentCheckBox);}
+    public void getVerifyButton(){ click(verifyButton);}
+    public void getVerifyButtonOnPopup(){click(verifyButtonOnPopup);}
+
 
 
     // TRS3
@@ -187,7 +198,7 @@ public class TransactionsPage extends BaseTest {
                 pageObjectManager.getSidePannel().getMangeBusinessTab();
                 pageObjectManager.getSidePannel().getTransactionTab();
                 getStoresDropdown();
-                selectStore(Constants.AutomationTransaction2);
+                selectStore(Constants.AutomationTransactions);
                 getContinueButton();
 
                 // clicking on new charge button
@@ -197,6 +208,12 @@ public class TransactionsPage extends BaseTest {
                 actionEnterText(descriptionField, Constants.description);
                 getNewChargeConfirmBtn();
                // Making new charge payment manually with Credit Card
+
+                staticWait(6000);
+                getManualChargeTab();
+                staticWait(5000);
+                switchToCreditCardFrame();
+                payments.getPayThroughCreditCard();
             }
 
     // TRS 5 b
@@ -232,7 +249,7 @@ public class TransactionsPage extends BaseTest {
                 String successMsg= getText(successMessage);
                 softAssert.assertEquals(successMsg, "$" + Constants.terminalSuccessMessage);
     }
-
+    // TRS 5 c
     public void getManualChargeAfterCancelingTerminal(){
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getTransactionTab();
@@ -250,9 +267,8 @@ public class TransactionsPage extends BaseTest {
         staticWait(3000);
         actionEnterText(emailField,Constants.custEmailInput);
         getGoButton();
-//      getDoneBtnOfCNpopup();
-        waitForElementToBeInteractable(newChargeConfirm,5);
-        getNewChargeConfirmBtn();
+         staticWait(3000);
+         getNewChargeConfirmBtn();
 
         // Waiting for Automatic Terminal Payment
         softAssert.assertTrue(isElementDisplayed(terminal));
@@ -260,6 +276,167 @@ public class TransactionsPage extends BaseTest {
 
         // Paying through credit card after canceling terminal payment
         getManualChargeTab();
+        staticWait(6000);
+        switchToCreditCardFrame();
+        payments.getPayThroughCreditCard();
+    }
+
+
+    public void getCurrentPaidBill(){
+        click(currentPaidBill);
+    }
+
+    //  TRS 06
+        public void getAllElementsOfTransactionsPopup(){
+            pageObjectManager.getSidePannel().getMangeBusinessTab();
+            pageObjectManager.getSidePannel().getTransactionTab();
+            getStoresDropdown();
+            selectStore(Constants.AutomationTransactions3);
+            getContinueButton();
+
+            waitForElementToBeClickable(currentPaidBill,5);
+            getCurrentPaidBill();
+
+            // Verifying the elements on Transaction Popup
+            softAssert.assertTrue(isElementDisplayed(transactionID));
+            softAssert.assertTrue(isElementDisplayed(verifyButton));
+            softAssert.assertTrue(isElementDisplayed(payment));
+            softAssert.assertTrue(isElementDisplayed(time));
+            softAssert.assertTrue(isElementDisplayed(uniqueTransactionId));
+            softAssert.assertTrue(isElementDisplayed(customerName));
+            softAssert.assertTrue(isElementDisplayed(refundButton));
+            softAssert.assertTrue(isElementDisplayed(paidLabelOnPopup));
+            softAssert.assertAll();
+
+    }
+
+
+    // TRS 7 a
+    public void getFullRefund(){
+        // Making payment
+        bills.createBillWithCustomer("636045278965", "saybo@yopmail.com");
+        payments.billPaymentByThroughDebitCard("4111111111111111", "0930", "794", "Australia");
+        payments.swipeCard();
+
+
+
+        pageObjectManager.getSidePannel().getSignOut();
+        staticWait(3000);
+
+        // login as store manager
+        Login();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getTransactionTab();
+        getStoresDropdown();
+        selectStore(Constants.AutomationBillFlow);
+        getContinueButton();
+
+        // Clicking on Current Paid bill
+        getCurrentPaidBill();
+        Assert.assertTrue(isElementDisplayed(refundButton));
+        getRefundBtn();
+        enterText(refundRefenceNo,"1111");
+        enterText(refundReason,"refund full amount");
+        getFullRefundBtn();
+        String getAmt= getText(refundAmountOnReceipt);
+        softAssert.assertEquals(getAmt, "$" + bills.amount);
+        staticWait(3000);
+        softAssert.assertTrue(isElementDisplayed(refundLabel));
+        softAssert.assertTrue(isElementDisplayed(verifyButton));
+
+      // Clicking on transaction tab to verify the refunded transaction
+        pageObjectManager.getSidePannel().getTransactionTab();
+        getStoresDropdown();
+        selectStore(Constants.AutomationBillFlow);
+        getContinueButton();
+        softAssert.assertTrue(isElementDisplayed(returnSymbol));
+    }
+
+    // TRS 07 b
+    public void getPartialRefund(){
+        String refundReasonn = "Extra fair testing";
+        String refundAmmount = "50.00";
+        String refundReferenceNo = requiredDigits(4);
+
+        // Making payment
+        bills.createBillWithCustomer("636045278965", "saybo@yopmail.com");
+        payments.billPaymentByThroughDebitCard("4111111111111111", "0930", "794", "Australia");
+        payments.swipeCard();
+        payments.billPayment();
+
+        pageObjectManager.getSidePannel().getSignOut();
+        staticWait(3000);
+
+        // login as store manager
+        Login();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getTransactionTab();
+        getStoresDropdown();
+        selectStore(Constants.AutomationBillFlow);
+        getContinueButton();
+
+        // Clicking on Current Paid bill
+        getCurrentPaidBill();
+        Assert.assertTrue(isElementDisplayed(refundButton));
+        getRefundBtn();
+        enterText(refundRefenceNo,refundReferenceNo);
+        enterText(refundReason,refundReasonn);
+
+        // Clicking on partial refund link.
+        getPartialRefundbtn();
+        waitForElementToBeClickable(processRefundButton,3);
+
+
+        // Verify the validation message when no payment checkbox is selected.
+        getProcessRefundBtn();
+        String actual = getText(validationMessage);
+        softAssert.assertEquals(actual,"Select at least one payment to refund");
+        getVisaPaymentCheckbox();
+
+        // Verify that Refund Amount field is displayed after selecting the checkbox
+        softAssert.assertTrue(isElementDisplayed(refundAmountField));
+        getProcessRefundBtn();
+        scrollToElement(refundAmountField);
+        waitForElementToBeClickable(refundAmountField,3);
+        actionEnterText(refundAmountField,refundAmmount);
+       staticWait(3000);
+        getProcessRefundBtn();
+    }
+
+    // TRS 08
+    public void verifyTheTransaction(){
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getTransactionTab();
+        getStoresDropdown();
+        selectStore(Constants.AutomationBillFlow);
+        getContinueButton();
+
+        // Clicking on Current Paid bill
+        getCurrentPaidBill();
+        waitForElementToBeClickable(verifyButton,3);
+        getVerifyButton();
+
+        // Assertions on Verify Assertion Popup
+        softAssert.assertTrue(isElementDisplayed(verifyButtonOnPopup));
+        String actualmsg = getElementText(informationMessageOnVerifyPopup);
+        softAssert.assertEquals(actualmsg,Constants.verifyInfoMsg);
+
+        getVerifyButtonOnPopup();
+        String verifyByStoreMsg= getText(verifyByStoreMssg);
+        softAssert.assertEquals(verifyByStoreMsg,Constants.verifyByStore);
+    }
+
+    // TRS 12
+    public void getQuestionMarkIcon(){
+        bills.createBillWithCustomer("636045278965", "saybo@yopmail.com");
+        payments.paymentThroughVenomo();
+
+
+
+
+
+
+
 
     }
 

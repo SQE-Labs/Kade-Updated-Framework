@@ -11,6 +11,7 @@ import java.util.Random;
 import java.util.Set;
 
 import logger.Log;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -18,6 +19,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.support.ui.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -102,7 +106,7 @@ public class BaseTest {
             ChromeOptions chromeOptions = new ChromeOptions();
             if (headless) {
                 chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
-            }
+             }
             driver.set(new ChromeDriver(chromeOptions));
             log.info("ChromeDriver initialized.");
         }
@@ -549,6 +553,7 @@ public class BaseTest {
         WebElement dropdownElement = getDriver().findElement(locator);
         Select select = new Select(dropdownElement);
         select.selectByVisibleText(visibleText);
+
     }
 
     /**
@@ -881,6 +886,9 @@ public class BaseTest {
 
     public void selectStore(String store) {
         click(By.xpath("//li[contains(text(),'" + store + "')]"));  // Select store
+    }
+    public void switchToDefaultWindow(){
+        getDriver().switchTo().defaultContent();
     }
 
 }
