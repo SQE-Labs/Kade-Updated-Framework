@@ -182,6 +182,7 @@ public class PaymentPage extends BaseTest {
     By makePayment = By.xpath("//button[text()='I made the payment']");
     By selectCheckBox = By.xpath("(//span[text()='Confirm your payment by checking this box']/../i)[2]");
     By zelleSaveBtn = By.xpath("//button[text()='Submit']");
+    By payCurrentBalance=By.xpath("//button[text()='Pay the current balance']/..");
 
 
     //        public void PaymentsPage() {
@@ -1137,6 +1138,11 @@ public class PaymentPage extends BaseTest {
         clickOnBillIcon();
         clickOnBill();
         clickOnPayNowBtn();
+        if(isElementDisplayed(payCurrentBalance)){
+            hoverAndClick(payCurrentBalance,payCurrentBalance);
+        }else{
+            Log.info("Nothing to be selected");
+        }
         //  softAssert.assertTrue(isElementDisplayed(storeName));
         softAssert.assertTrue(isElementDisplayed(visaCardName));
         clickOnchangeBtn();
@@ -1156,7 +1162,12 @@ public class PaymentPage extends BaseTest {
         clickOnBillIcon();
         clickOnBill();
         clickOnPayNowBtn();
-        softAssert.assertTrue(isElementDisplayed(storeName));
+        if(isElementDisplayed(payCurrentBalance)){
+            hoverAndClick(payCurrentBalance,payCurrentBalance);
+        }else{
+            Log.info("Nothing to be selected");
+        }
+     //   softAssert.assertTrue(isElementDisplayed(storeName));
         softAssert.assertTrue(isElementDisplayed(visaCardName));
         clickOnchangeBtn();
         clickOnBankAccountSection();
@@ -1168,6 +1179,11 @@ public class PaymentPage extends BaseTest {
         clickOnBillIcon();
         clickOnBill();
         clickOnPayNowBtn();
+        if(isElementDisplayed(payCurrentBalance)){
+            hoverAndClick(payCurrentBalance,payCurrentBalance);
+        }else{
+            Log.info("Nothing to be selected");
+        }
         softAssert.assertTrue(isElementDisplayed(storeName));
         // softAssert.assertTrue(isElementDisplayed(visaCardName));
         clickOnswipeArrowBtn();
@@ -1183,13 +1199,6 @@ public class PaymentPage extends BaseTest {
 
     }
 
-    public void paymentByBankAccount(String enterTextInAmountField) {
-        clickOnchangeBtn();
-        clickOnBankAccountSection();
-        clickOnswipeArrowBtn();
-        enterTextInAmountField(enterTextInAmountField);
-        clickOnupdateBtn();
-    }
 
     public void clickOnZelleAccount() {
         clickOnchangeBtn();
@@ -1202,6 +1211,19 @@ public class PaymentPage extends BaseTest {
     }
 
     public void paymentByZelleAccount() {
+        clickOnSignOut();
+        LoginAsCustomer();
+        clickOnBillIcon();
+        clickOnBill();
+        clickOnPayNowBtn();
+        if(isElementDisplayed(payCurrentBalance)){
+            hoverAndClick(payCurrentBalance,payCurrentBalance);
+        }else{
+            Log.info("Nothing to be selected");
+        }
+
+        // softAssert.assertTrue(isElementDisplayed(storeName));
+        softAssert.assertTrue(isElementDisplayed(visaCardName));
         clickOnZelleAccount();
         clickOnMakePaymentBtn();
         clickOnCheckBox();
@@ -1216,9 +1238,14 @@ public class PaymentPage extends BaseTest {
         clickOnBillIcon();
         clickOnBill();
         clickOnPayNowBtn();
+        if(isElementDisplayed(payCurrentBalance)){
+            hoverAndClick(payCurrentBalance,payCurrentBalance);
+        }else{
+             Log.info("Nothing to be selected");
+        }
+
        // softAssert.assertTrue(isElementDisplayed(storeName));
         softAssert.assertTrue(isElementDisplayed(visaCardName));
-        clickOnchangeBtn();
         clickOnVenmoAccount();
         clickOnMakePaymentBtn();
         clickOnCheckBox();

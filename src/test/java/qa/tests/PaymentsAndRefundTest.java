@@ -5,6 +5,8 @@ import org.testng.annotations.Test;
 import pageEvents.BillPage;
 import pageEvents.PaymentPage;
 
+import java.awt.*;
+
 
 public class PaymentsAndRefundTest extends BaseTest {
     BillPage bill = new BillPage();
@@ -98,93 +100,23 @@ public class PaymentsAndRefundTest extends BaseTest {
 
         bill.createBillWithCustomer("636045278965", "saybo@yopmail.com");
         payment.paymentThrouhVenmoAccount();
-
-
-
-
-
-
-
-
-//        KadeSession session = KadeSession.login(KadeUserAccount.Default);
-//
-//        //Step 1: Click on 'Bill' sub-Tab
-//        session.getSidePannel().getBillButton().click();
-//
-//        //Step 2: Enter Amount
-//        String amt = "4999.00";
-//
-//        //Step 3: Enter Customer Email
-//        String customerEmail = "yonro@yopmail.com";
-//        BillsPage bills = ObjectBuilder.BillDetails.getDefaultBillDetails().setAmount(amt).setCustomerEmail(customerEmail);
-//
-//        //Step 4: Create Bill
-//        session.getBillPage().createBill(bills);
-//        session.getBillPage().getCloseLogoPopupBtn().clickIfExist(true,2);
-//
-//        //Step 5: Logout as Store manager
-//        session.getSidePannel().getSignOutButton().click();
-//
-//        //Step 6: Login as Customer
-//        session.getLoginPage().performSignIn(customerEmail, "Test@123");
-//
-//        //Step 7: Click on Notification icon
-//        session.getNotificationPage().getNotificationIcon().click();
-//
-//        //Step 8: click on first notification
-//        session.getNotificationPage().getFirstNotification().click();
-//
-//        //Step 9: click 'pay now' button
-//        session.getPaymentsPage().getPayNowButton().click();
-//
-//        //Step 10: Click on 'Change Payment' Button
-//        session.getPaymentsPage().getChangePaymentMethodButton().clickbyJS();
-//        WebdriverWaits.sleep(2000);
-//        //Step 11:  Selecting Venmo Card
-//        session.getPaymentsPage().getSavedVenmoCard().clickByMouse();
-//        //Verifying that Venmo PopUp is displayed
-//        Assertions.assertTrue(session.getPaymentsPage().getVenmoPopup().isDisplayed());
-//
-//        //Verifying that Copy link is visible
-//        Assertions.assertTrue(session.getPaymentsPage().getCopyLink().isDisplayed());
-//
-//        //Verifying that 'Made my Payment' button is visible
-//        Assertions.assertTrue(session.getPaymentsPage().getIMadeMyPaymentButton().isDisplayed());
-//
-//        //Step 12: Click on 'Made my Payment' Button
-//        session.getPaymentsPage().getIMadeMyPaymentButton().clickbyJS();
-//
-//        //Verifying that Venmo Payment Text is displayed
-//        Assertions.assertTrue(session.getPaymentsPage().getVenmoPaymentText().isDisplayed());
-//
-//        //Step 13: Enter Text
-//        session.getPaymentsPage().getVenmoPaymentText().setText("Paid the bill");
-//
-//        //Verify that Screenshot button is Displayed
-//        Assertions.assertTrue(session.getPaymentsPage().getScreenshotButton().isDisplayed());
-//
-//        //Step 14: Upload Screenshot
-//        session.getPaymentsPage().getScreenshotButton ().click();
-//        WebdriverWaits.sleep(1000);
-//        session.getPaymentsPage().uploadVenmoImageScreenshot();
-//        session.getPaymentsPage().getCheckButton().click();
-//
-//        //Verify that attached image is displayed
-//        Assertions.assertTrue(session.getPaymentsPage().getUploadedImage().isDisplayed());
-//        WebdriverWaits.sleep(2000);
-//
-//        //Step 15: Click on 'Confirm Venmo' Checkbox
-//        session.getPaymentsPage().getConfirmVenmoCheckbox().click();
-//
-//        //Step 16: Click on 'Submit' Button
-//        session.getPaymentsPage().getVenmoSubmitButton().click();
-//
-//        //Step 17: Click on 'Close' Icon
-//        session.getPaymentsPage().getCloseButton().clickbyJS();
     }
 
-//    @Test(description = "PYMT15 : Create Bill for a customer and pay using Zelle.")
-//    public void CreateBillForCustomerAndPayUsingZelle() throws AWTException {
+
+    @Test(priority = 11, enabled = true,description = "PYMT15 : Create Bill for a customer and pay using Zelle.")
+    public void CreateBillForCustomerAndPayUsingZelle() throws AWTException {
+
+        bill.createBillWithCustomer("636045278965", "saybo@yopmail.com");
+        payment.paymentByZelleAccount();
+
+
+
+
+
+
+
+
+
 //        KadeSession session = KadeSession.login(KadeUserAccount.Default);
 //        session.getSidePannel().getBillButton().click();
 //
@@ -238,7 +170,7 @@ public class PaymentsAndRefundTest extends BaseTest {
 //
 //        //Step 17: Click on 'Close' Icon
 //        session.getPaymentsPage().getCloseButton().clickbyJS();
-//    }
+    }
 //
 //   /* @Test(description="PYMT12:Bill Payment by Customer through Credit Card, Pay more amount after paying full bill")
 //    public void BillPaymentByCustomerThroughCreditCardPayMoreAmountAfterFullBillPayment() throws InterruptedException {
