@@ -860,7 +860,6 @@ public void clickOnZelleBank(){
         softAssert.assertTrue(isElementDisplayed(verifyIcon));
 
         clickOncrossIconOnTransactionpage();
-
     }
 
     public void paymentThroughZelle() {

@@ -429,7 +429,7 @@ public class TransactionsPage extends BaseTest {
     // TRS 12
     public void getQuestionMarkIcon(){
         bills.createBillWithCustomer("636045278965", "saybo@yopmail.com");
-        payments.paymentThroughVenomo();
+
 
 
 

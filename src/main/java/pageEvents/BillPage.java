@@ -1621,7 +1621,7 @@ public class BillPage extends BaseTest {
         //Close popup
         closePaymentpopup();
 
-//Verify not paid label for generated amount
+        //Verify not paid label for generated amount
         softAssert.assertTrue(isElementDisplayed(notPaidLabel));
         softAssert.assertTrue(isElementDisplayed(uniqueRefNo));
         softAssert.assertTrue(isElementDisplayed(billTimeOnPopup));
@@ -1678,7 +1678,7 @@ public class BillPage extends BaseTest {
         closePaymentpopup();
 
 
-//Verify not paid label for generated amount
+       //Verify not paid label for generated amount
         softAssert.assertTrue(isElementDisplayed(notPaidLabel));
         softAssert.assertTrue(isElementDisplayed(uniqueRefNo));
         softAssert.assertTrue(isElementDisplayed(billTimeOnPopup));
@@ -1734,8 +1734,6 @@ public class BillPage extends BaseTest {
 
         //Deleting Created Bill
         staticWait(3000);
-
-
     }
 
     public void verifyBillCreationByAddingRecurringTransactionsWeekly() {

@@ -90,9 +90,14 @@ public class TransactionsTest extends BaseTest {
     @Test(description = " TRS 12 Verify that Question mark icon gets removed, when store manager manually marked the payment as 'Captured'.")
     public void verifyQuestionmarkIconRemovedWhenStoreManagerManuallyMarkedPaymentAsCaptured() {
         transaction.getQuestionMarkIcon();
+    }
 
+    @Test(description = "TRS 09Verify that store manager is able to filter the transaction on 'Transactions' page.")
+    public void verifyThatTransactionListAppears() {
 
     }
+
+
 
 
 }
