@@ -1198,8 +1198,7 @@ public class BillPage extends BaseTest {
         //Close popup
         closePaymentpopup();
 
-         staticWait(3000);
-        clickOnNotPaidLabel();
+
 
 
     }
@@ -1282,7 +1281,7 @@ public class BillPage extends BaseTest {
         //Deleting Created Bill
         waitForElementToBeClickable(notPaid, 5);
         staticWait(3000);
-
+        clickOnNotPaidLabel();
     }
 
     public void verifyCreateBillForSuggestedCustomer(String emailID) {
@@ -1807,7 +1806,6 @@ public class BillPage extends BaseTest {
         getMonthlyFieldValue();
         //  bill.activateAfterFirstElement();
         clickOnDoneBtn();
-
 
         //Click Confirm
         staticWait(2000);

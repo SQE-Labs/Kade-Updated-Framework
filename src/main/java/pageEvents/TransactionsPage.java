@@ -60,7 +60,7 @@ public class TransactionsPage extends BaseTest {
     public By pendingPayments = By.xpath("//option[@value='pending']");
     public By failedPayments = By.xpath("//option[@value='failed']");
     public By unverifiedPayments = By.xpath("//option[@value='unverified']");
-    public By pendingPaymentIcon = By.xpath("//i[contains(@class,'fas fa-hourglass-half text-warning fs-5 me-2')]");
+    public By pendingPaymentIcon = By.xpath("(//i[contains(@class,'fas fa-hourglass-half text-warning mx-1')])[2]");
     public By excalamatrySign = By.xpath("//i[contains(@class,'fas fa-exclamation-circle text-danger fs-5 me-2')]");
     public By quotionmarkSign = By.xpath("//i[@class='fas fa-question-square text-info fs-5 me-2']");
     public By qrCodeSign = By.xpath("//i[contains(@class,'fa fa-qrcode me-2')]");
@@ -72,7 +72,7 @@ public class TransactionsPage extends BaseTest {
     public By ammountList = By.xpath("((//div[contains(@class,'d-flex align-items-center')])//span)");
     public By paidLabelOnPopup = By.cssSelector("span.bg-success");
     public By returnSymbol = By.xpath("//div[span[text()='Refunded']]/following::div[4]/i");
-    public By questionMarkIcon = By.cssSelector(".align-items-end>i");
+    public By questionMarkIcon = By.cssSelector("div.d-flex>span [title='Unverified']");
     public By capturedButton = By.cssSelector("[value='captured']");
     public By failedButton = By.cssSelector(".mx-3");
     public By recurringIcon = By.cssSelector(".fa.fa-repeat.me-1");
@@ -96,6 +96,7 @@ public class TransactionsPage extends BaseTest {
     By goBtnEmail = By.xpath("//input[@name='email']/following-sibling::button");
     By doneBtn = By.cssSelector(".modal-content .btn.btn-link.w-100.my-3");
     By creditCardInfoFrame = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[1]");
+    By amount = By.cssSelector(".d-flex.flex-column.align-items-end");
 
     BillPage bills = new BillPage();
 
@@ -134,6 +135,35 @@ public class TransactionsPage extends BaseTest {
     public void getVisaPaymentCheckbox(){click(paymentCheckBox);}
     public void getVerifyButton(){ click(verifyButton);}
     public void getVerifyButtonOnPopup(){click(verifyButtonOnPopup);}
+    public void getQuestionMarkIcon(){click(questionMarkIcon);}
+    public void getCaptureButton(){click(capturedButton);}
+    public void clickOnAmount(){click(amount);}
+
+
+    // TRS 01 - a
+    public void verifyAllElementsOnTransactionPopup(){
+        Login();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getTransactionTab();
+        getStoresDropdown();
+        selectStore(Constants.AutomationBillFlow);
+        getContinueButton();
+
+        waitForElementToBeVisible(customerName,3);
+        softAssert.assertTrue(isElementDisplayed(customerName),"customer name");
+        softAssert.assertTrue(isElementDisplayed(payment),"payment");
+        softAssert.assertTrue(isElementDisplayed(time)," time");
+        softAssert.assertTrue(isElementDisplayed(transactionAmmount),"Transaction Amount ");
+        softAssert.assertTrue(isElementDisplayed(transactionID),"transaction Id ");
+        softAssert.assertAll();
+    }
+
+    // Trs 01 b
+    public void verifyByStoreLabel(){
+        bills.createBillWithCustomer("636045278965","Saybo@yopmail.com");
+        payments.paymentPopup("Enter Bill Amount");
+
+    }
 
 
 
@@ -427,18 +457,79 @@ public class TransactionsPage extends BaseTest {
     }
 
     // TRS 12
-    public void getQuestionMarkIcon(){
+    public void verifyQuestionMarkIcon(){
         bills.createBillWithCustomer("636045278965", "saybo@yopmail.com");
+        payments.paymentThrouhVenmoAccount();
+        pageObjectManager.getSidePannel().getSignOut();
+        Login();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getTransactionTab();
+        getStoresDropdown();
+        selectStore(Constants.AutomationBillFlow);
+        getContinueButton();
+        getCurrentPaidBill();
+
+        // Clicking on the paid amount and verify the question mark icon is displayed
+        softAssert.assertTrue(isElementDisplayed(questionMarkIcon));
+//        waitForElementToBeClickable(amount,4);
+        staticWait(5000);
+        clickOnAmount();
+
+        // Verify Capture and Failed Button is visible
+        softAssert.assertTrue(isElementDisplayed(capturedButton),"captured button");
+        softAssert.assertTrue(isElementDisplayed(failedButton),"Failed button");
+
+        // clicking on capture button
+        getCaptureButton();
+
+        waitForElementInVisible(questionMarkIcon,5);
+        softAssert.assertFalse(isElementDisplayed(questionMarkIcon),"Question mark removed");
+        softAssert.assertAll();
+
+    }
+    // TRS 15
+    public void recurringIconCheck(){
+        bills.verifyBillCreationByAddingRecurringTransactionsWeekly();
+//        pageObjectManager.getSidePannel().getSignOut();
+//        Login();
+//        pageObjectManager.getSidePannel().getMangeBusinessTab();
+//        pageObjectManager.getSidePannel().getTransactionTab();
+//        getStoresDropdown();
+//        selectStore(Constants.AutomationBillFlow);
+//        getContinueButton();
+//        getCurrentPaidBill();
+
+    }
+
+// TRS16 Pending processing icon
+    public void verifyPaymentProcessingIcon(){
+        bills.createBillWithCustomer("636045278965", "saybo@yopmail.com");
+        payments.paymentThrouhBankAccount();
+        payments.swipeCard();
+        payments.billPayment();
+
+        pageObjectManager.getSidePannel().getSignOut();
+        staticWait(3000);
+
+        // login as store manager
+        Login();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getTransactionTab();
+        getStoresDropdown();
+        selectStore(Constants.AutomationBillFlow);
+        getContinueButton();
+
+        // Clicking on Current Paid bill
+        getCurrentPaidBill();
 
 
-
-
-
-
-
+        // verify the Pending processing Icon
+            Assert.assertTrue(isElementDisplayed(pendingPaymentIcon),"pending icon");
+            getToolTipMessage(pendingPaymentIcon);
 
 
     }
+
 
 
         }

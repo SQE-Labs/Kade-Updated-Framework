@@ -15,10 +15,16 @@ public class TransactionsTest extends BaseTest {
     private PageObjectManager pageObjectManager = PageObjectManager.getInstance();
     private TransactionsPage transaction  = pageObjectManager.getTransactionsPage();
 
-//    @Test(description = "Verify that list of transactions appears on 'Transaction' page.")
-//    public void verifyThatListOfTransactionsAppears(){
-//
-//    }
+    @Test(description = "TRS 01 a: Verify that list of transactions appears on 'Transaction' page.")
+    public void verifyThatListOfTransactionsAppears(){
+        transaction.verifyAllElementsOnTransactionPopup();
+    }
+
+    @Test(description = "TRS 01 b: Verify that 'By store' appears on each transaction when transaction is completed by the store manager, on 'Transaction' page.")
+    public void verifyByStoreLabelOnTransactionPage(){
+        transaction.verifyByStoreLabel();
+    }
+
 
     @Test(description = "TRS2 : Verify that appropriate information message appears when no transaction is available, on 'Transaction' page.")
     public void verifyInfoMessageAppearsWhenNoTransactionIsAvailable() {
@@ -87,13 +93,26 @@ public class TransactionsTest extends BaseTest {
         transaction.verifyTheTransaction();
     }
 
-    @Test(description = " TRS 12 Verify that Question mark icon gets removed, when store manager manually marked the payment as 'Captured'.")
+    @Test(description = " TRS 11 & 12 Verify that Question mark icon gets removed, when store manager manually marked the payment as 'Captured'.")
     public void verifyQuestionmarkIconRemovedWhenStoreManagerManuallyMarkedPaymentAsCaptured() {
-        transaction.getQuestionMarkIcon();
+        transaction.verifyQuestionMarkIcon();
     }
 
-    @Test(description = "TRS 09Verify that store manager is able to filter the transaction on 'Transactions' page.")
-    public void verifyThatTransactionListAppears() {
+//    @Test(description = "TRS 15 : Recurring icon appears for RT enable bill transaction, on 'Transaction' page.")
+//    public void a1verifyRecurringIconAppearsForRTEnabledBillTransactions() {
+//        transaction.recurringIconCheck();
+//
+//    }
+
+
+//    @Test(description = "TRS 09 Verify that store manager is able to filter the transaction on 'Transactions' page.")
+//    public void verifyThatTransactionListAppears() {
+//
+//    }
+
+    @Test(description = "TRS 16 verify That processing payment icon appears, after making bank transfer payment")
+    public void verifyProcessingPaymentIcon(){
+        transaction.verifyPaymentProcessingIcon();
 
     }
 

@@ -5,23 +5,26 @@ import org.testng.annotations.Test;
 import pageEvents.BillPage;
 import pageEvents.PaymentPage;
 
+import java.awt.*;
+
 
 public class PaymentsAndRefundTest extends BaseTest {
     BillPage bill = new BillPage();
     PaymentPage payment = new PaymentPage();
 
 
+
     @Test(priority = 0, enabled = true, description = "PYMT1 Bill Creation and Successful Bill Payment by Cash through Store Manager.")
     public void cashPaymentThroughStoreManager() {
 
-        bill.createBillWithoutCustomer();
+        bill.createBillWithCustomer("636045278965","Saybo@yopmail.com");
         payment.paymentPopup("Enter Bill Amount");
 
     }
 
     @Test(priority = 1, enabled = true, description = "PYMT2 : Bill Creation and Successful Bill Payment by Credit Card through Store manager.")
     public void cardPaymentThroughStoreManager() {
-        bill.createBillWithoutCustomer();
+        bill.createBillWithCustomer("636045278965","Saybo@yopmail.com");
         payment.paymentByCreditCard("4111111111111111", "0930", "794", "Australia");
 
     }
@@ -29,36 +32,38 @@ public class PaymentsAndRefundTest extends BaseTest {
     @Test(priority = 2, enabled = true, description = "PYMT3 : Bill Creation and Successful Bill Payment by Venmo through Store manager.")
     public void payByVenmoThroughStoreManager() {
 
-        bill.createBillWithoutCustomer();
+        bill.createBillWithCustomer("636045278965","Saybo@yopmail.com");
         payment.paymentThroughVenomo();
 
     }
 
     @Test(priority = 3, enabled = true, description = "PYMT4 : Bill Creation and Successful Bill Payment by Zelle through Store manager.")
     public void payByZelleThroughStoreManager() {
-        bill.createBillWithoutCustomer();
+        bill.createBillWithCustomer("636045278965","Saybo@yopmail.com");
+
         payment.paymentThroughZelle();
     }
 
     @Test(priority = 4, enabled = true, description = "PYMT6 : Bill Creation and pay the bill by multiple payment mode through Store manager.")
     public void verifyPaymentByMultipleModeThroughStoreManager() {
 
-        bill.createBillWithoutCustomer();
-        payment.PaymentByMultipleMode("1000.00", "1000.00", "999.00");
+        bill.createBillWithCustomer("636045278965","Saybo@yopmail.com");
+
+        payment.PaymentByMultipleMode("500.00", "500.00", "1000.00");
 
     }
 
     @Test(priority = 5, enabled = true, description = "PYMT5 : Bill Creation and partial payment of the bill through Store manager.")
     public void partialPaymentThroughStoreManager() {
 
-        bill.createBillWithoutCustomer();
+        bill.createBillWithCustomer("636045278965","Saybo@yopmail.com");
         payment.partialPayment("1500.00");
     }
 
     @Test(priority = 6, enabled = true, description = "PYMT7 : Bill Creation and mark payment as Void by Store manager.")
     public void markSuccessfulPaymentAsVoid() {
 
-        bill.createBillWithoutCustomer();
+        bill.createBillWithCustomer("636045278965","Saybo@yopmail.com");
         payment.markSuccessfulPaymentAsVoid("Paying Bill");
     }
 
@@ -82,213 +87,37 @@ public class PaymentsAndRefundTest extends BaseTest {
         payment.billPayment();
     }
 
-    @Test(description = "PYMT10 :Create Bill and Pay Bills Partially/Multiple payment type")
+    @Test(priority = 9, enabled = true,description = "PYMT10 :Create Bill and Pay Bills Partially/Multiple payment type")
     public void BillPaymentByVariousPaymentMethods() {
 
         bill.createBillWithCustomer("636045278965", "saybo@yopmail.com");
         payment.billPaymentByVariousPaymentMethods("500.00", "4111111111111111", "0930", "794", "Australia");
         payment.swipeCard();
-        payment.paymentByBankAccount("500.00");
-        payment.swipeCard();
-        payment.clickOnZelleAccount();
-        payment.swipeCard();
-        payment.clickOnMakePaymentBtn();
-        payment.clickOnCheckBox();
-        payment.zelleSaveBtn();
-        payment.billPayment();
-
-
-//
-//        //Step 5: Logout as Store manager
-//        session.getSidePannel().getSignOutButton().click();
-//        WebdriverWaits.sleep(3000);
-//
-//        //Step 6: Login as Customer
-//        session.getLoginPage().performSignIn(customerEmail, "Test@123");
-//
-//        //Step 7: Click on Notification Icon
-//        session.getNotificationPage().getNotificationIcon().click();
-//
-//        //Step 8: Click on First Notification
-//        session.getNotificationPage().getFirstNotification().click();
-//
-//        //Step 9: Click on 'Pay Now' Button
-//        session.getPaymentsPage().getPayNowButton().click();
-//
-//        //Step 10: Click on 'Swipe to Pay; field
-//        session.getPaymentsPage().getSwipeToPayButton().click();
-//        WebdriverWaits.waitForElementUntilVisible(By.xpath("//input[@lbl-title='Amount']"), 5);
-//
-//        //Step 11: Enter Amount
-//        session.getPaymentsPage().getMoreAmountField().setText("1000.00");
-//
-//        //Step 12: Click on 'Update' Button
-//        session.getPaymentsPage().getAmountUpdateButton().click();
-//
-//        //Step 13: Swipe to Pay the Partial Amount
-//        session.getPaymentsPage().swipeToPay();
-//        WebdriverWaits.sleep(5000);
-//
-//        //Step 14: Click on 'Swipe to Pay' field
-//        session.getPaymentsPage().getSwipeToPayButton().clickbyJS();
-//        WebdriverWaits.sleep(2000);
-//
-//        //Step 15: Enter Amount
-//        session.getPaymentsPage().getMoreAmountField().setText("1000.00");
-//
-//        //Step 16: Click on 'Update' Button
-//        session.getPaymentsPage().getAmountUpdateButton().clickByMouse();
-//        WebdriverWaits.sleep(2000);
-//
-//        //Step 17: Click on 'Change' Button
-//        session.getPaymentsPage().getChangePaymentMethodButton().clickbyJS();
-//
-//        //Step 18: Select the 'Bank Account' Method
-//        session.getPaymentsPage().getSavedBankAccount().clickbyJS();
-//
-//        //Step 19: Swipe to Pay the Partial amount
-//        session.getPaymentsPage().swipeToPay();
-//        WebdriverWaits.sleep(5000);
-//
-//        //Step 20: Click on 'Swipe to pay' field
-//        session.getPaymentsPage().getSwipeToPayButton().clickbyJS();
-//        WebdriverWaits.sleep(5000);
-//
-//        //Step 21: Enter Amount
-//        session.getPaymentsPage().getMoreAmountField().setText("1000.00");
-//
-//        //Step 22: Click on 'Update' Button
-//        session.getPaymentsPage().getAmountUpdateButton().click();
-//        WebdriverWaits.sleep(2000);
-//
-//        //Step 23: Click on 'Change' Button
-//        session.getPaymentsPage().getChangePaymentMethodButton().clickbyJS();
-//        //Step 24: Select 'Venmo' Method
-//        WebdriverWaits.sleep(2000);
-//        session.getPaymentsPage().getSavedVenmoCard().clickbyJS();
-//        WebdriverWaits.sleep(2000);
-//
-//        //Verifying that Venmo PopUp is displayed
-//        Assertions.assertTrue(session.getPaymentsPage().getVenmoPopup().isDisplayed());
-//
-//        //Verifying that Copy link is visible
-//        Assertions.assertTrue(session.getPaymentsPage().getCopyLink().isDisplayed());
-//
-//        //Verifying that 'Made my Payment' button is visible
-//        Assertions.assertTrue(session.getPaymentsPage().getIMadeMyPaymentButton().isDisplayed());
-//
-//        //Step 25: Click on 'Made my Payment' Button
-//        session.getPaymentsPage().getIMadeMyPaymentButton().clickbyJS();
-//
-//        //Verifying that Venmo Payment Text is displayed
-//        Assertions.assertTrue(session.getPaymentsPage().getVenmoPaymentText().isDisplayed());
-//
-//        //Step 26: Enter Text
-//        session.getPaymentsPage().getVenmoPaymentText().setText("Paid the bill");
-//
-//        //Verify that Screenshot button is Displayed
-//        Assertions.assertTrue(session.getPaymentsPage().getScreenshotButton().isDisplayed());
-//
-//        //Step 27: Upload Screenshot
-//        session.getPaymentsPage().getScreenshotButton().click();
-//        session.getPaymentsPage().uploadVenmoImageScreenshot();
-//        session.getPaymentsPage().getCheckButton().clickbyJS();
-//
-//        //Verify that attached image is displayed
-//        Assertions.assertTrue(session.getPaymentsPage().getUploadedImage().isDisplayed());
-//        WebdriverWaits.sleep(2000);
-//
-//        //Step 28: Click on 'Confirm Venmo' Checkbox
-//        session.getPaymentsPage().getConfirmVenmoCheckbox().clickbyJS();
-//
-//        //Step 29: Click on 'Submit' Button
-//        session.getPaymentsPage().getVenmoSubmitButton().click();
-//
-//        //Step 30: Click on 'Close' Icon
-//        session.getPaymentsPage().getCloseButton().click();
+        payment.paymentByZelleAccount();
     }
 
-//    @Test(description = "PYMT13 : Create Bill for a customer and pay using Venmo.")
-//    public void pyCreateBillForCustomerPayUsingVenmo () throws AWTException {
-//        KadeSession session = KadeSession.login(KadeUserAccount.Default);
-//
-//        //Step 1: Click on 'Bill' sub-Tab
-//        session.getSidePannel().getBillButton().click();
-//
-//        //Step 2: Enter Amount
-//        String amt = "4999.00";
-//
-//        //Step 3: Enter Customer Email
-//        String customerEmail = "yonro@yopmail.com";
-//        BillsPage bills = ObjectBuilder.BillDetails.getDefaultBillDetails().setAmount(amt).setCustomerEmail(customerEmail);
-//
-//        //Step 4: Create Bill
-//        session.getBillPage().createBill(bills);
-//        session.getBillPage().getCloseLogoPopupBtn().clickIfExist(true,2);
-//
-//        //Step 5: Logout as Store manager
-//        session.getSidePannel().getSignOutButton().click();
-//
-//        //Step 6: Login as Customer
-//        session.getLoginPage().performSignIn(customerEmail, "Test@123");
-//
-//        //Step 7: Click on Notification icon
-//        session.getNotificationPage().getNotificationIcon().click();
-//
-//        //Step 8: click on first notification
-//        session.getNotificationPage().getFirstNotification().click();
-//
-//        //Step 9: click 'pay now' button
-//        session.getPaymentsPage().getPayNowButton().click();
-//
-//        //Step 10: Click on 'Change Payment' Button
-//        session.getPaymentsPage().getChangePaymentMethodButton().clickbyJS();
-//        WebdriverWaits.sleep(2000);
-//        //Step 11:  Selecting Venmo Card
-//        session.getPaymentsPage().getSavedVenmoCard().clickByMouse();
-//        //Verifying that Venmo PopUp is displayed
-//        Assertions.assertTrue(session.getPaymentsPage().getVenmoPopup().isDisplayed());
-//
-//        //Verifying that Copy link is visible
-//        Assertions.assertTrue(session.getPaymentsPage().getCopyLink().isDisplayed());
-//
-//        //Verifying that 'Made my Payment' button is visible
-//        Assertions.assertTrue(session.getPaymentsPage().getIMadeMyPaymentButton().isDisplayed());
-//
-//        //Step 12: Click on 'Made my Payment' Button
-//        session.getPaymentsPage().getIMadeMyPaymentButton().clickbyJS();
-//
-//        //Verifying that Venmo Payment Text is displayed
-//        Assertions.assertTrue(session.getPaymentsPage().getVenmoPaymentText().isDisplayed());
-//
-//        //Step 13: Enter Text
-//        session.getPaymentsPage().getVenmoPaymentText().setText("Paid the bill");
-//
-//        //Verify that Screenshot button is Displayed
-//        Assertions.assertTrue(session.getPaymentsPage().getScreenshotButton().isDisplayed());
-//
-//        //Step 14: Upload Screenshot
-//        session.getPaymentsPage().getScreenshotButton ().click();
-//        WebdriverWaits.sleep(1000);
-//        session.getPaymentsPage().uploadVenmoImageScreenshot();
-//        session.getPaymentsPage().getCheckButton().click();
-//
-//        //Verify that attached image is displayed
-//        Assertions.assertTrue(session.getPaymentsPage().getUploadedImage().isDisplayed());
-//        WebdriverWaits.sleep(2000);
-//
-//        //Step 15: Click on 'Confirm Venmo' Checkbox
-//        session.getPaymentsPage().getConfirmVenmoCheckbox().click();
-//
-//        //Step 16: Click on 'Submit' Button
-//        session.getPaymentsPage().getVenmoSubmitButton().click();
-//
-//        //Step 17: Click on 'Close' Icon
-//        session.getPaymentsPage().getCloseButton().clickbyJS();
-//    }
-//
-//    @Test(description = "PYMT15 : Create Bill for a customer and pay using Zelle.")
-//    public void CreateBillForCustomerAndPayUsingZelle() throws AWTException {
+    @Test(priority = 10, enabled = true,description = "PYMT13 : Create Bill for a customer and pay using Venmo.")
+    public void CreateBillForCustomerPayUsingVenmo ()  {
+
+        bill.createBillWithCustomer("636045278965", "saybo@yopmail.com");
+        payment.paymentThrouhVenmoAccount();
+    }
+
+
+    @Test(priority = 11, enabled = true,description = "PYMT15 : Create Bill for a customer and pay using Zelle.")
+    public void CreateBillForCustomerAndPayUsingZelle() throws AWTException {
+
+        bill.createBillWithCustomer("636045278965", "saybo@yopmail.com");
+        payment.paymentByZelleAccount();
+
+
+
+
+
+
+
+
+
 //        KadeSession session = KadeSession.login(KadeUserAccount.Default);
 //        session.getSidePannel().getBillButton().click();
 //
@@ -342,7 +171,7 @@ public class PaymentsAndRefundTest extends BaseTest {
 //
 //        //Step 17: Click on 'Close' Icon
 //        session.getPaymentsPage().getCloseButton().clickbyJS();
-//    }
+    }
 //
 //   /* @Test(description="PYMT12:Bill Payment by Customer through Credit Card, Pay more amount after paying full bill")
 //    public void BillPaymentByCustomerThroughCreditCardPayMoreAmountAfterFullBillPayment() throws InterruptedException {
