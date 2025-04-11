@@ -1,5 +1,0 @@
-2025-03-27 17:47:16,580 [info]: test1114@yopmail.com
-2025-03-27 17:47:22,124 [info]: Clicking on By.cssSelector: .fal.fa-circle.custom-check-off
-2025-03-27 17:47:22,412 [info]: Clicking on By.xpath: //button[text()='Update Status']
-2025-03-27 17:47:24,522 [info]: Clicking on By.cssSelector: button[href=".-deleteStore-"]
-2025-03-27 17:47:25,478 [info]: Clicking on By.xpath: //button[text()='Delete Permanently']

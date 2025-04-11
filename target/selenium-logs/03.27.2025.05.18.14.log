@@ -1,3 +1,0 @@
-2025-03-27 17:18:14,675 [info]: test1114@yopmail.com
-2025-03-27 17:18:20,949 [info]: Clicking on By.xpath: //button[text()='Update Status']
-2025-03-27 17:18:21,039 [info]: Clicking on By.cssSelector: button[href=".-deleteStore-"]
