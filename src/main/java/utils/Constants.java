@@ -48,6 +48,8 @@ public interface Constants {
     String validPassword = "Test@123";
     String validLoginEmail = "test1114@yopmail.com";
     String phoneSecurityCodeForLogin = "777777";
+    String PaymentHistoryTitle = "Payment History";
+    String NoPaymentsMessage = "There are no payments available yet!";
 
 
     //BasicInformationPage constants

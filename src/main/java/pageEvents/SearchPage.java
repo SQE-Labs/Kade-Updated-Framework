@@ -48,10 +48,7 @@ public class SearchPage extends BaseTest {
 
 
 
-    public SearchPage()
-    {
-        super();
-    }
+
 
     public void clickonSearch(){
         log.info("CLicking on Search button");
