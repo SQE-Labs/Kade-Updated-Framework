@@ -5,23 +5,28 @@ import logger.Log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
+import pageEvents.BillPage;
+import pageEvents.PaymentPage;
 import pageEvents.SignUpPage;
 import pageEvents.TransactionsPage;
 import pageObjects.PageObjectManager;
 import utils.Constants;
 
 public class TransactionsTest extends BaseTest {
+    BillPage bill = new BillPage();
+    PaymentPage payment = new PaymentPage();
     private static final Logger log = LogManager.getLogger(SignUpPage.class);
     private PageObjectManager pageObjectManager = PageObjectManager.getInstance();
-    private TransactionsPage transaction  = pageObjectManager.getTransactionsPage();
+    private TransactionsPage transaction = pageObjectManager.getTransactionsPage();
+
 
     @Test(description = "TRS 01 a: Verify that list of transactions appears on 'Transaction' page.")
-    public void verifyThatListOfTransactionsAppears(){
+    public void verifyThatListOfTransactionsAppears() {
         transaction.verifyAllElementsOnTransactionPopup();
     }
 
     @Test(description = "TRS 01 b: Verify that 'By store' appears on each transaction when transaction is completed by the store manager, on 'Transaction' page.")
-    public void verifyByStoreLabelOnTransactionPage(){
+    public void verifyByStoreLabelOnTransactionPage() {
         transaction.verifyByStoreLabel();
     }
 
@@ -33,7 +38,7 @@ public class TransactionsTest extends BaseTest {
         pageObjectManager.getSidePannel().getTransactionTab();
         selectStore(Constants.AutomationTransaction2);
         String informsg = getText(transaction.informationMessage);
-        softAssert.assertEquals(informsg,Constants.noPaymentInfoMsg);
+        softAssert.assertEquals(informsg, Constants.noPaymentInfoMsg);
     }
 
     @Test(description = "TRS3 : Verify that 'New Bill' and 'New Charge' buttons and filter icon, appear on 'Transaction' page.")
@@ -63,6 +68,7 @@ public class TransactionsTest extends BaseTest {
         transaction.getTerminalcharge();
 
     }
+
     @Test(description = "TRS 5 (c): Verify that the store manager can manually do new charge payment, after cancelling the terminal automatic payment deduction process, on 'Transaction' page.")
     public void newChargePaymentManuallyAfterCancelingTerminalAutomaticPaymentDeduction() {
         Login();
@@ -84,7 +90,6 @@ public class TransactionsTest extends BaseTest {
     @Test(description = "TRS7 (b): Verify that store manager is able to refund partial transaction on 'Transaction details' popup of 'Transaction' page.")
     public void verifyThatStoreMangerIsAbleToRefundPartialPayment() {
         transaction.getPartialRefund();
-
     }
 
     @Test(description = "TRS8 Verify that store manager is able to verify the transactions on 'Transaction details' popup of 'Transaction' page.")
@@ -98,26 +103,40 @@ public class TransactionsTest extends BaseTest {
         transaction.verifyQuestionMarkIcon();
     }
 
-//    @Test(description = "TRS 15 : Recurring icon appears for RT enable bill transaction, on 'Transaction' page.")
-//    public void a1verifyRecurringIconAppearsForRTEnabledBillTransactions() {
-//        transaction.recurringIconCheck();
-//
-//    }
+    @Test(description = "TRS 15 : Recurring icon appears for RT enable bill transaction, on 'Transaction' page.")
+    public void verifyRecurringIconAppearsForRTEnabledBillTransactions() {
 
+        bill.verifyBillCreationByAddingRecurringTransactionsWeekly("6356789657", "saybo@yopmail.com");
+        staticWait(3000);
+        bill.clickOnCrossIcon();
+        staticWait(3000);
+        payment.billPaymentByThroughDebitCard("4111111111111111", "0930", "794", "Australia");
+        payment.swipeCard();
+        payment.billPayment();
 
-//    @Test(description = "TRS 09 Verify that store manager is able to filter the transaction on 'Transactions' page.")
-//    public void verifyThatTransactionListAppears() {
-//
-//    }
+    }
+
+    @Test(description = "TRS10: Verify that Fail payment icon appears, when payment is failed manually on 'Transaction detail' popup of 'Transaction' page.")
+    public void getFailedPaymentIcon() {
+        Login();
+        transaction.verifyTheFailedIcon();
+
+    }
 
     @Test(description = "TRS 16 verify That processing payment icon appears, after making bank transfer payment")
-    public void verifyProcessingPaymentIcon(){
+    public void verifyProcessingPaymentIcon() {
         transaction.verifyPaymentProcessingIcon();
 
     }
 
+    @Test(description = "TRS 09- A Verify that store manager is able to filter the transaction on 'Transactions' page.")
+    public void verifyThatTransactionListAppears() {
+        transaction.getFilterAllTheElements();
+    }
 
-
-
+    @Test(description = "TRS 09- A Verify that store manager is able to Download the transactions on 'Transactions' page.")
+    public void verifyThatTransactionsGetsDownloaded() {
+        transaction.FilterGetsDownloadTransactions();
+    }
 }
 

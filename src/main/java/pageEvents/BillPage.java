@@ -112,13 +112,13 @@ public class BillPage extends BaseTest {
     public By customerNameField = By.xpath("(//div[@class='my-4']/input[@class='form-control'])[2]");
     public By billDoneBtn = By.xpath("(//div[@class='modal-content']//button[@class='btn btn-link w-100 my-3'])[6]");
     public By confirmBtnDisabled = By.xpath("(//button[@disabled='disabled'])[3]");
-    By searcherName = By.xpath("(//div[@data-field='alias'])[2]");
+    By customerSection = By.xpath("(//div[@class='border p-2 mb-2 rounded-3 position-relative'])");
     By discardBtn = By.xpath("(//*[contains(text(),'discard')])[5]/.. //button[text()='Discard']");
     public By confirmBtn = By.xpath("//button[@name='method']");
     public By continueWithoutBtn = By.xpath("//button[text()='Continue without']");
     public By closePopup = By.xpath("(//div[contains(@class, 'modal-content')]//button[@class='btn-close'])[2]");
-    public By crossPopUpIcon = By.xpath("//div[contains(@class, 'modal-content')]//button[@class='btn-close']");
-    public By crossIcon = By.xpath("(//div[contains(@class, 'modal-content')]//button[@class='btn-close'])[1]");
+    public By crossPopUpIcon = By.xpath("(//div[contains(@class, 'modal-content')]//button[@class='btn-close'])[1]");
+    public By crossIcon = By.xpath("(//div[contains(@class, 'modal-content')] //button[@class='btn-close'])[4]");
     public By countinueWithoutTxt = By.xpath("//div//button[text()='Continue without']");
     public By selectACustomerBtn = By.xpath("(//div[@class='modal-content'])[8]//button[text()='Select a customer']");
     By whichStorePopup = By.xpath("//p[text()='Which store?']");
@@ -288,9 +288,7 @@ public class BillPage extends BaseTest {
     public By btnDisbled = By.xpath("(//button[@disabled='disabled'])[3]");
 
 
-    public BillPage() {
-        super();
-    }
+
     String amount = "2000.00";
 
     public void clickOnNewBill() {
@@ -338,6 +336,9 @@ public class BillPage extends BaseTest {
         scrollToElement(moreSection);
         staticWait(3000);
         click(moreSection);
+    }
+    public void clickOnCustomerSec(){
+        click(customerSection);
     }
 
     public void verifyEnteredMemoText() {
@@ -550,6 +551,7 @@ public class BillPage extends BaseTest {
     }
 
     public void getCustomerPhoneNoField(String phone) {
+        staticWait(3000);
         actionEnterText(customerNumber, phone);
     }
 
@@ -588,6 +590,7 @@ public class BillPage extends BaseTest {
     }
 
     public void clickOnCrossIcon() {
+        staticWait(3000);
         click(crossIcon);
     }
 
@@ -899,10 +902,10 @@ public class BillPage extends BaseTest {
 
     public void closePaymentpopup() {
         staticWait(3000);
-        if (isElementDisplayed(closePopup)) {
+        if (isElementDisplayed(crossPopUpIcon)) {
             System.out.print(" pop-up showed and clicking");
             staticWait(5000);
-            BillClosePopup();
+            closePopupOnBillPage();
         } else {
             Log.info("No pop-up showed");
         }
@@ -1735,7 +1738,7 @@ public class BillPage extends BaseTest {
         staticWait(3000);
     }
 
-    public void verifyBillCreationByAddingRecurringTransactionsWeekly() {
+    public void verifyBillCreationByAddingRecurringTransactionsWeekly(String phoneNumber, String emailID) {
 
         Login();
         //Select Store
@@ -1752,10 +1755,22 @@ public class BillPage extends BaseTest {
         staticWait(3000);
         actionEnterText(amtTbx, amt);
 
+        //Click On Continue Button
+        staticWait(4000);
+
+        //click on select customer button.
+        clickOnCustomerSec();
+
+        //   Select Customer
+        getCustomerPhoneNoField(phoneNumber);
+        getCustomerEmailField( emailID);
+        getEmailGoButton();
+
         //Click on More Option
         clickOnMoreSection();
         clickOnRepeatField();
         getWeeklyFieldValue();
+
         //  bill.activateAfterFirstElement();
         clickOnDoneBtn();
 
@@ -1764,14 +1779,11 @@ public class BillPage extends BaseTest {
         staticWait(2000);
         getConfirmButton();
 
-        //Click On Continue Button
-        staticWait(4000);
-        getContinueWithoutButton();
-
         //Close popup
         closePaymentpopup();
 
         softAssert.assertTrue(isElementDisplayed(reccuringIcon));
+        staticWait(3000);
         clickOnReccuring();
 
         removeNonNumericValueFromTheValue();

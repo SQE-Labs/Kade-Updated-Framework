@@ -96,7 +96,7 @@ public class BillTest extends BaseTest {
     @Test(priority = 13, enabled = true, description = "BC_18 Verify that creating a 'Weekly Recurring bill and Activate after the first payment, on 'Bill' popup.")
     public void verifyBillCreationByAddingRecurringTransactionsWeekly() {
 
-        bill.verifyBillCreationByAddingRecurringTransactionsWeekly();
+        bill.verifyBillCreationByAddingRecurringTransactionsWeekly("6356789657","saybo@yopmail.com");
         bill.deleteBill();
     }
 

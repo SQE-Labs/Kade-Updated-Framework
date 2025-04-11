@@ -286,7 +286,10 @@ public class BaseTest {
         WebElement element = getDriver().findElement(locator);
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
-
+    public void scrollToWebElement(WebElement locator) {
+        log.info("Scrolling to element: {}", locator);
+         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", locator);
+    }
     /**
      * Hovers over an element using Actions.
      *
@@ -890,6 +893,44 @@ public class BaseTest {
     public void switchToDefaultWindow(){
         getDriver().switchTo().defaultContent();
     }
+    public static String deleteFile(String fileName) {
+        String home = System.getProperty("user.home");
+        String file_with_location;
+
+        if (System.getProperty("os.name").contains("Windows")) {
+            file_with_location = home + "\\Downloads\\" + fileName;
+        } else {
+            file_with_location = home + "/Downloads/" + fileName;
+        }
+
+        File file = new File(file_with_location);
+
+        if (file.exists()) {
+            boolean deleted = file.delete();
+            if (deleted) {
+                return "File deleted successfully";
+            } else {
+                return "Failed to delete file";
+            }
+        } else {
+            return "File not found";
+        }
+    }
+    public WebElement getElement(By locator) {
+        try {
+            return getDriver().findElement(locator);
+        } catch (Exception e) {
+            System.out.println("Element not found: " + locator.toString());
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<WebElement> getListOfWebElement(By locator) {
+        return getDriver().findElements(locator);
+    }
+
+
 
 }
 
