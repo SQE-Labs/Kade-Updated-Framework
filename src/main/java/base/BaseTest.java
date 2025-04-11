@@ -93,10 +93,13 @@ public class BaseTest {
         log.info("Setting up WebDriver for browser: {}, headless: {}", browser, headless);
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions chromeOptions = new ChromeOptions();
+
             if (headless) {
-                chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
+                chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080","--disable-notifications");
+
             }
             driver.set(new ChromeDriver(chromeOptions));
+
             log.info("ChromeDriver initialized.");
         } else if (browser.equalsIgnoreCase("firefox")) {
             driver.set(new FirefoxDriver());
@@ -268,7 +271,7 @@ public class BaseTest {
     /**
      * Retrieves the visible text of an element.
      *
-     * @param locator - The By locator for the element.
+     * @param locator - The By locator for the element.send
      * @return The text of the element.
      */
     public String getText(By locator) {
@@ -534,7 +537,7 @@ public class BaseTest {
      * @param locator The WebElement to interact with.
      * @param key The Keys value to simulate (e.g., Keys.ENTER, Keys.TAB).
      */
-    public void sendKeysToElement(WebElement element, Keys key) {
+    public void KeysToElement(WebElement element, Keys key) {
         element.sendKeys(key);
     }
 
@@ -610,6 +613,7 @@ public class BaseTest {
 
     /**
      * Wait for the loader to finish loading before interacting with the page.
+     *
      * @param loaderLocator The locator for the loader element (e.g., ID, class, or CSS selector).
      * @param timeout The maximum time to wait for the loader to disappear.
      */
@@ -675,6 +679,32 @@ public class BaseTest {
 
 
     }
+    public static void LoginAsNewUser() {
+        log.info("Starting Login test - Entering username and password");
+
+        // Fetch the username and password from the configuration file
+        String username = configReader.getProperty("newuser");
+        String password = configReader.getProperty("newpass");
+
+        // Validate if username and password are present in the config file
+        if (username == null || password == null) {
+            log.error("Username or password is missing in the configuration file.");
+            throw new RuntimeException("Username or password is missing in the configuration file.");
+        }
+
+        // Log the username and password for debug purposes (considering security)
+        log.debug("Attempting to login with username: {}", username);
+
+        // Perform login action using the provided credentials
+        pageObjectManager.getLoginPage().signIn(username, password);
+
+        // Log the status of the action after clicking SignIn
+        log.debug("User has successfully logged in and landed on the dashboard");
+
+        // Verify the landing page is correct after login
+        pageObjectManager.getHomePage().landingPage();
+    }
+
 
     //login as customer method
     public static void LoginAsCustomer() {

@@ -38,6 +38,8 @@ public interface Constants {
     String existingEmailValidation ="This email is already registered.";
     String securityCode ="123456";
     String validPhonenumber = "6465551105";
+    String ValidPhone = "+1 (646) 555 1118";
+    String expectedSearchValidation = "Nothing found!";
     String TooltipForLessDigit ="Please enter at least 6 characters.";
     String invalidSecurityCodeMsg = "Invalid security code";
     String invalidSecurityCode ="332434";
