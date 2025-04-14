@@ -154,6 +154,7 @@ public interface Constants {
     public static String AutomationTransaction2 ="Automation Transaction 2";
     public static String AutomationPaymentHistory = "Automation Payment History";  // Flow 1 without plan
     public static String BillHeader="Bill";
+    public static String TerminalChargeStore ="TerminalNewCharges";
 
 
     //Verifying Modified Details

@@ -17,7 +17,7 @@ public class SidePannelPage extends BaseTest {
     By qrCodeDashboardBtn = By.xpath("//a[text()='QR Code Dashboard']");
     public By manageBusinessAcc = By.xpath("//li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']");
     By CustomersBtn = By.cssSelector(".fa-fw.fas.fa-user-friends");
-    public By dashboardTab = By.cssSelector("[href=\"/Stores/dashboard\"]");
+    public By dashboardTab = By.cssSelector("[href='/Stores/dashboard']");
     By RewardsProgramPage = By.xpath("//a[text()='Rewards Program']");
     By SearchBtn = By.cssSelector(".fa-search");
 

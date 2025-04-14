@@ -168,7 +168,7 @@ public class PaymentPage extends BaseTest {
     By thankTxt = By.xpath("//span[text()='Thank']");
     By youTxt = By.xpath("//span[text()='You!']");
     By rateYourExpTxt = By.xpath("//div[normalize-space()='Rate your experience']");
-    By viewReciptTxt = By.xpath("//a[text()='View the receipt']");
+    public By viewReciptTxt = By.xpath("//a[text()='View the receipt']");
     By transactionHeader = By.xpath("//h1[normalize-space()='Transaction Detail']");
     By tarnsactionUniqueId = By.xpath("(//span[contains(text(),'TR-')])[2]");
     By paymentMethodIcon = By.xpath("//span[text()='Visa 1111']");

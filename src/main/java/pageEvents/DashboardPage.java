@@ -27,7 +27,7 @@ public class DashboardPage extends BaseTest {
     public By todayPaymentTitle = By.xpath("//h5[text()='Today’s Payments']");
     public By todayPayment = By.xpath("(//h1[contains(@class, 'display-5 mt-2 mb-4')])[3]");
     public By recentTransactionsTitle = By.cssSelector("a +h5.card-title.mb-0");
-    public By customerNameUnderRTSection = By.cssSelector(".row.g-1.p-1 >div> div:nth-child(2)");
+    public By customerNameUnderRTSection = By.cssSelector(".card-body .row.g-1.p-1 >div> div:nth-child(2)");
     public By recentAmountUnderRT = By.cssSelector(" div:nth-child(4) strong");
     public By recentRTTime = By.cssSelector(" div:nth-child(4) strong+a");
     public By refreshIcon = By.cssSelector(".card-title.mb-0 .btn >i");
@@ -57,7 +57,7 @@ public class DashboardPage extends BaseTest {
     public By customerCount = By.cssSelector(" div.apexcharts-tooltip.apexcharts-theme-light div.apexcharts-tooltip-y-group >span");
     public By custGraphLine = By.xpath("(//*[name()='rect' and @class='apexcharts-grid-row'])[4]");
     By lastDEC = By.xpath("(//*[contains(@id,'SvgjsText')])[6]");
-
+    public By timeUnderRT = By.xpath("//a[@class='text-truncate ms-auto mt-1 stretched-link']");
     // Methods
 
 
@@ -82,7 +82,7 @@ public class DashboardPage extends BaseTest {
     }
 
     public void getCustomerNameUnderRTSection() {
-        click(customerNameUnderRTSection);
+        clickElementByJS(customerNameUnderRTSection);
     }
 
     public void getRTpopupCrossIcon() {
@@ -171,6 +171,16 @@ public class DashboardPage extends BaseTest {
 
         }
     }
+public void getRefreshBtn(){
+        click(refreshIcon);
+}
+public void getFullListLink(){
+        click(fullListLink);
+}
+public void getTimeUnderRT(){
+        click(timeUnderRT);
+}
+
 
 }
 

@@ -117,7 +117,7 @@ public class BillPage extends BaseTest {
     public By confirmBtn = By.xpath("//button[@name='method']");
     public By continueWithoutBtn = By.xpath("//button[text()='Continue without']");
     public By closePopup = By.xpath("(//div[contains(@class, 'modal-content')]//button[@class='btn-close'])[2]");
-    public By crossPopUpIcon = By.xpath("(//div[contains(@class, 'modal-content')]//button[@class='btn-close'])[1]");
+    public By crossPopUpIcon = By.xpath("(//div[contains(@class, 'modal-content')]//button[@class='btn-close'])[2]");
     public By crossIcon = By.xpath("(//div[contains(@class, 'modal-content')] //button[@class='btn-close'])[4]");
     public By countinueWithoutTxt = By.xpath("//div//button[text()='Continue without']");
     public By selectACustomerBtn = By.xpath("(//div[@class='modal-content'])[8]//button[text()='Select a customer']");
@@ -1279,7 +1279,7 @@ public class BillPage extends BaseTest {
 
 
         //Close popup
-        closePaymentpopup();
+        closePopupOnBillPage();
 
         //Deleting Created Bill
         waitForElementToBeClickable(notPaid, 5);

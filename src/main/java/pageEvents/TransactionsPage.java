@@ -83,6 +83,8 @@ public class TransactionsPage extends BaseTest {
     public By recurringIcon = By.cssSelector(".fa.fa-repeat.me-1");
     public By legend = By.cssSelector(".text-end.p-2>button");
     By legendLabels = By.cssSelector("#_PR >div >div");
+    By manualServiceFeeValue = By.xpath("//div[@class='text-warning']//span[2]");
+
 
 
     // New charge popup locators
@@ -104,6 +106,8 @@ public class TransactionsPage extends BaseTest {
     By creditCardInfoFrame = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[1]");
     By amount = By.cssSelector(".d-flex.flex-column.align-items-end");
     By dropdown = By.xpath("//select[@name='paymentStatus']");
+    By crossIconOfCurrentPaid = By.xpath("//button[@class='btn-close']");
+
 
     BillPage bills = new BillPage();
     private BaseTest ActionEngine;
@@ -228,6 +232,9 @@ public class TransactionsPage extends BaseTest {
     }
     public void getApplyButtonOnPopup(){
         click(applyButton);
+    }
+    public void getCrossIconOfCurrentPaidBill(){
+        click(crossIconOfCurrentPaid);
     }
 
 
@@ -379,7 +386,7 @@ public class TransactionsPage extends BaseTest {
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getTransactionTab();
         getStoresDropdown();
-        selectStore(Constants.AutomationTransactions3);
+        selectStore(Constants.TerminalChargeStore);
         getContinueButton();
 
         // clicking on new charge button
@@ -392,15 +399,22 @@ public class TransactionsPage extends BaseTest {
         staticWait(3000);
         actionEnterText(emailField, Constants.custEmailInput);
         getGoButton();
-        staticWait(3000);
+//        getDoneBtnOfCNpopup();
+        staticWait(5000);
         getNewChargeConfirmBtn();
 
         // Waiting for Automatic Terminal Payment
         softAssert.assertTrue(isElementDisplayed(terminal));
+        String terminalValue = getText(manualServiceFeeValue);
+        softAssert.assertEquals(terminalValue,"$3.39");
+        staticWait(3000);
         getTerminalCancelButton();
 
         // Paying through credit card after canceling terminal payment
         getManualChargeTab();
+        String manualValue = getText(manualServiceFeeValue);
+        softAssert.assertEquals(terminalValue,"$3.86");
+        staticWait(3000);
         staticWait(6000);
         switchToCreditCardFrame();
         payments.getPayThroughCreditCard();

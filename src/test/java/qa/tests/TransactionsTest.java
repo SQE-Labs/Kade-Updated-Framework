@@ -137,6 +137,9 @@ public class TransactionsTest extends BaseTest {
     @Test(description = "TRS 09- A Verify that store manager is able to Download the transactions on 'Transactions' page.")
     public void verifyThatTransactionsGetsDownloaded() {
         transaction.FilterGetsDownloadTransactions();
+
     }
+
+
 }
 
