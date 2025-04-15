@@ -171,5 +171,26 @@ public interface Constants {
     String activeStoreStatus ="Store is active and ready to receive payments";
 
 
+    // Gift Card DashBoard
+
+    String GiftCardHeader ="Gift Cards Dashboard";
+    String infoMessage= "Gift cards is currently disabled.";
+    String configurationPopupTitle = "Gift Cards Configuration";
+    String DisabledText="Disabled";
+    String EnableText="Enabled";
+    String referenceNoDisabledText ="Reference No. is optional";
+    String referenceNoEnabledText="Reference No. is mandatory";
+    String sourceFundingDisabledText = "Funding source is optional";
+    String getSourceFundingEnabledText="Funding source is restricted";
+    String ValidationMsg ="Please review the highlighted field(s)";
+    String giftCardHeaderText = "Issue a new gift card";
+    String customerPopupTitle = "Customer";
+    String emailValidationToolTip ="Please enter a valid email address.";
+    String phoneValidationToolTip = "Invalid phone number";
+    String noResultText ="There are no results";
+
+
+
+
 
 }

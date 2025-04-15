@@ -19,6 +19,7 @@ public class PageObjectManager {
     private ReportsPage reportsPage;
     private RewardPointsPage rewardPointsPage;
     private AdminPage adminPage;
+    private GiftCardDashboardPage giftCardPage;
 
     // Logger instance for logging messages
     private static final Logger log = LoggerFactory.getLogger(PageObjectManager.class);
@@ -74,6 +75,10 @@ public class PageObjectManager {
 
         adminPage= new AdminPage();
         log.debug("Admin page instance created ");
+
+        giftCardPage= new GiftCardDashboardPage();
+        log.debug("Gift Card DashBoard page instance created.");
+
     }
 
     /**
@@ -121,7 +126,10 @@ public class PageObjectManager {
         log.debug("Returning the instance of My Store");
         return myStorePage;
     }
-
+   public GiftCardDashboardPage getGiftCardPage(){
+        log.debug("Returning Gift Card Dashboard Page");
+        return giftCardPage;
+   }
     public SignUpPage getSignUpPage() {
         log.debug("Returing the instance of SignUp page");
         return signUpPage;

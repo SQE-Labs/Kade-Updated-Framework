@@ -10,7 +10,7 @@ public class SidePannelPage extends BaseTest {
     public By billBtn = By.cssSelector(".sidebar-nav > li:nth-child(5)");
     By transactionsButton=By.cssSelector(".sidebar-nav > li:nth-child(4)");
     public By myStoreBtn=By.cssSelector(".fa-fw.fas.fa-store");
-    By giftCardsDashboardTab=By.xpath("//a[text()='Gift Cards Dashboard']");
+    By giftCardsDashboardTab=By.xpath("//div[text()='Gift Cards Dashboard']");
     By pageHeader=By.xpath("//h1[@class='header-title mb-0']");
     By reportBtn=By.xpath("(//a[@class='sidebar-link'])[11]");
     By signOutBtn = By.xpath("//a[text()='Sign out']");
@@ -51,4 +51,5 @@ public class SidePannelPage extends BaseTest {
     public void getProfileLink(){
         click(profileLink);
     }
+    public void getGiftCardsDashboardTab(){clickElementByJS(giftCardsDashboardTab);}
 }
