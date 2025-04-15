@@ -1,0 +1,3 @@
+2025-04-14 22:04:01,680 [info]: Clicking on By.xpath: //button[contains(text(), 'selected bill')]
+2025-04-14 22:04:08,843 [info]: Clicking on By.xpath: //a[@class='stretched-link position-absolute h-100 -updateamount-']
+2025-04-14 22:04:13,945 [info]: Clicking on By.xpath: //input[@lbl-title='Amount']

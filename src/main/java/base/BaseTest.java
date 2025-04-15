@@ -478,6 +478,11 @@ public class BaseTest {
         log.info("Navigating to URL: {}", url);
         getDriver().navigate().to(url);
     }
+    public String getPageTitle() {
+        Log.info("Get the Current Page Title");
+        return getDriver().getTitle();
+    }
+
 
     /**
      * Switches to a specific frame by its locator.
@@ -901,7 +906,24 @@ public class BaseTest {
         }
     }
 
+    public void switchToWindow(String description) {
+        Log.info("Switch to window [" + description + "]");
+        String parentWindow = getDriver().getWindowHandle();
+        for (String windowHandle : getDriver().getWindowHandles())
+            if (!windowHandle.equals(parentWindow))
+                getDriver().switchTo().window(windowHandle);
     }
+
+    public void selectStore(String store) {
+        click(By.xpath("//li[contains(text(),'" + store + "')]"));  // Select store
+    }
+    public void switchToDefaultWindow(){
+        getDriver().switchTo().defaultContent();
+    }
+
+}
+
+
 
 
 

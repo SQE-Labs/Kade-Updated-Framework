@@ -123,7 +123,7 @@ public class BillPage extends BaseTest {
     public By selectACustomerBtn = By.xpath("(//div[@class='modal-content'])[8]//button[text()='Select a customer']");
     By whichStorePopup = By.xpath("//p[text()='Which store?']");
     By newBusinessCard = By.xpath("div.overflow-hidden.border.border-info");
-    By storesCombobox = By.xpath("//span[@role='combobox']");
+    public By storesCombobox = By.xpath("//span[@role='combobox']");
     By continueBtn = By.xpath("//button[@type='submit']");
     public By messagePopupHeader = By.xpath("//h5[text()='Message']");
     public By closeLogoPopupBtn = By.xpath("(//div[contains(@class, 'modal-content')]//button[@class='btn-close'])[3]");
@@ -291,6 +291,7 @@ public class BillPage extends BaseTest {
     public BillPage() {
         super();
     }
+    String amount = "2000.00";
 
     public void clickOnNewBill() {
         Log.info("Clicking on newBillTxt");
@@ -1229,9 +1230,9 @@ public class BillPage extends BaseTest {
 
 
         //Enter amount
-        String amt = "2,000.00";
+
         staticWait(3000);
-        actionEnterText(amtTbx, amt);
+        actionEnterText(amtTbx, amount);
 
         //Verify Default Confirm button is enabled after entering amount
         softAssert.assertTrue(isElementDisplayed(btnDisbled));
@@ -1297,7 +1298,7 @@ public class BillPage extends BaseTest {
         getNewBillButton();
 
         //Enter amount
-        String amt = "105.00";
+        String amt = "1050.00";
         staticWait(3000);
         actionEnterText(amtTbx, amt);
 
@@ -1620,7 +1621,7 @@ public class BillPage extends BaseTest {
         //Close popup
         closePaymentpopup();
 
-//Verify not paid label for generated amount
+        //Verify not paid label for generated amount
         softAssert.assertTrue(isElementDisplayed(notPaidLabel));
         softAssert.assertTrue(isElementDisplayed(uniqueRefNo));
         softAssert.assertTrue(isElementDisplayed(billTimeOnPopup));
@@ -1677,7 +1678,7 @@ public class BillPage extends BaseTest {
         closePaymentpopup();
 
 
-//Verify not paid label for generated amount
+       //Verify not paid label for generated amount
         softAssert.assertTrue(isElementDisplayed(notPaidLabel));
         softAssert.assertTrue(isElementDisplayed(uniqueRefNo));
         softAssert.assertTrue(isElementDisplayed(billTimeOnPopup));
@@ -1733,8 +1734,6 @@ public class BillPage extends BaseTest {
 
         //Deleting Created Bill
         staticWait(3000);
-
-
     }
 
     public void verifyBillCreationByAddingRecurringTransactionsWeekly() {

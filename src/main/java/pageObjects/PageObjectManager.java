@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 public class PageObjectManager {
     private static PageObjectManager pageObjectManager;
+    public BillPage bill;
     private LoginPageEvents loginPage;
     private HomePageEvents homePage;
     private DashboardPage dashboardPage;
@@ -19,6 +20,7 @@ public class PageObjectManager {
     private ReportsPage reportsPage;
     private RewardPointsPage rewardPointsPage;
     private AdminPage adminPage;
+    private TransactionsPage transactionsPage;
     private SearchPage searchPage;
 
     // Logger instance for logging messages
@@ -73,8 +75,11 @@ public class PageObjectManager {
         rewardPointsPage = new RewardPointsPage();
         log.debug("Reward Ponts Page instance created");
 
-        adminPage= new AdminPage();
+        adminPage = new AdminPage();
         log.debug("Admin page instance created ");
+
+        transactionsPage = new TransactionsPage();
+        log.debug("Transactions page");
 
         searchPage= new SearchPage();
         log.debug("Search page instance created");
@@ -173,5 +178,9 @@ public class PageObjectManager {
     public SearchPage getSearchPage(){
         log.debug("Search page instance");
         return searchPage;
+    }
+    public TransactionsPage getTransactionsPage(){
+        log.debug("Transactions page");
+        return transactionsPage;
     }
 }

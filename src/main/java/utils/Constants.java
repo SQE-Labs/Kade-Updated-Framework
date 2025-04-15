@@ -2,6 +2,7 @@ package utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.Assert;
 
 /**
  * The Constants interface holds constant values used throughout the application.
@@ -13,6 +14,7 @@ public interface Constants {
 
     // Constant for the "Sign out" text used in validation
     String SIGN_OUT = "Sign out";
+    String transactionsTitle = "Transactions";
 
     // Dashboard
     String YourBusinessTitle ="Your Businesses";
@@ -48,6 +50,8 @@ public interface Constants {
     String validPassword = "Test@123";
     String validLoginEmail = "test1114@yopmail.com";
     String phoneSecurityCodeForLogin = "777777";
+    String ForgetPasswordtitle = "Forget password";
+    String  TermsOfUser ="User Agreement";
     String PaymentHistoryTitle = "Payment History";
     String NoPaymentsMessage = "There are no payments available yet!";
 
@@ -173,7 +177,21 @@ public interface Constants {
     String addUserTitle = "Add user";
     String deacticeStatus = "Store is NOT active (Deactivated)";
     String activeStoreStatus ="Store is active and ready to receive payments";
+    String loginPageValidation = "Invalid phone number. Phone numbers must start with + and country code";
+    String credentialsValidationLP = "Invalid credentials. Check your username and/or password";
 
+
+
+    // Transactions page
+    String noPaymentInfoMsg = "There are no payments available yet!";
+    String amount = "100.00";
+    String newChargeDescription = "New charge payment";
+    String terminalNotAcceptedAlert= "Your store is not configured to process any credit card";
+    String terminalSuccessMessage = "Processed successfully!";
+
+    // Verify Message
+    String verifyInfoMsg = "Each transaction can be verified only once.";
+    String verifyByStore = "Verified by the store";
 
 
 }

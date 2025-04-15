@@ -5,6 +5,7 @@ import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.Test;
 import utils.Constants;
 
 import java.awt.*;
@@ -21,10 +22,10 @@ public class PaymentPage extends BaseTest {
      */
     public By paymentPopupTitle = By.xpath("//h5[text()='Receive Payment']");
     By closeIcon = By.xpath("(//button[@class=\"btn-close\"])[1]");
-    By cardNumberTbx = By.id("Field-numberInput");
-    By expirationDateTbx = By.id("Field-expiryInput");
-    By cvcTbx = By.id("Field-cvcInput");
-    By countryDropDown = By.id("Field-countryInput");
+    By cardNumberTbx = By.xpath("//input[@id='Field-numberInput']");
+    By expirationDateTbx = By.xpath("//input[@id='Field-expiryInput']");
+    By cvcTbx = By.xpath("//input[@id='Field-cvcInput']");
+    By countryDropDown = By.xpath("//select[@id='Field-countryInput']");
     By processBtn = By.xpath("//button[@type=\"submit\" and contains(text(),'Process')]");
     By voidBtn = By.xpath("//button[text()='Void']");
     By paymentLogo = By.xpath("//span[@class='payment-logo-bg me-1']");
@@ -134,7 +135,7 @@ public class PaymentPage extends BaseTest {
     public By uniqueId = By.xpath("//span[contains(@class,'badge position-relative bg-light text-dark p-1 px-2 text-truncate f')]");
     public By refundIcon = By.xpath("//button[text()='Refund']");
     public By verifyIcon = By.xpath("//button[text()='Verify']");
-    public By creditCardInfoFrame = By.xpath("//h5[text()='Credit card information']/../..//iframe");
+    public By creditCardInfoFrame = By.xpath("(//iframe[contains(@name, '__privateStripeFrame')])[1]");
     public By expiryDate = By.xpath("//input[@name='expiry']");
     public By cvc = By.xpath("//input[@name='cvc']");
     By PaymentProcessBtn = By.xpath("//button[contains(text(),'Process')]");
@@ -487,6 +488,9 @@ public class PaymentPage extends BaseTest {
         staticWait(2000);
         click(processPaymentBtn);
     }
+    public void clickProcessBtn() {
+        click(processBtn);
+    }
 
     public void clickOnProcessPayment() {
         staticWait(5000);
@@ -761,6 +765,10 @@ public void clickOnZelleBank(){
         softAssert.assertTrue(isElementDisplayed(BillCreatedTime));
         softAssert.assertTrue(isElementDisplayed(NotPaid));
         softAssert.assertTrue(isElementDisplayed(tapToAddFile));
+        enterText(cardNumberTbx,cardNumber);
+        enterText(expirationDateTbx,expiryDateTxt);
+        enterText(cvcTbx,cvcTxt);
+        enterText(countryDropDown,countryName);
 
         // Click on Process payment button in Bill popup
         clickOnProcessPayment();
@@ -853,7 +861,6 @@ public void clickOnZelleBank(){
         softAssert.assertTrue(isElementDisplayed(verifyIcon));
 
         clickOncrossIconOnTransactionpage();
-
     }
 
     public void paymentThroughZelle() {
@@ -1103,13 +1110,14 @@ public void clickOnZelleBank(){
 
     public void billPayment() {
 
-        staticWait(5000);
+        staticWait(3000);
         softAssert.assertTrue(isElementDisplayed(thankTxt));
         softAssert.assertTrue(isElementDisplayed(youTxt));
         scrollToDown();
         softAssert.assertTrue(isElementDisplayed(rateYourExpTxt));
         softAssert.assertTrue(isElementDisplayed(viewReciptTxt));
         staticWait(2000);
+   scrollToElement(viewReciptTxt);
         clickOnViewReciptLink();
         softAssert.assertTrue(isElementDisplayed(transactionHeader));
         softAssert.assertTrue(isElementDisplayed(tarnsactionUniqueId));
@@ -1177,6 +1185,16 @@ public void clickOnZelleBank(){
     public void clickOnZelleAccount(){
         clickOnchangeBtn();
         clickOnZelleBank();
+
+    }
+    public void getPayThroughCreditCard(){
+        //switchToCreditCardFrame();
+        actionEnterText(cardNumberTbx,"4111111111111111");
+        actionEnterText(expirationDateTbx,"0230");
+        actionEnterText(cvcTbx,"123");
+        actionEnterText(countryDropDown,"Australia");
+        switchToDefaultWindow();
+        clickProcessBtn();
 
     }
 
