@@ -2,10 +2,16 @@ package pageEvents;
 
 import base.BaseTest;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+import java.time.LocalDate;
 
 
 public class GiftCardDashboardPage extends BaseTest {
+    public By systemMsg = By.cssSelector("p.h2");
     public By giftCardDashBoardHeaderText = By.cssSelector("h1.header-title");
     public By whichStoreText = By.cssSelector("p.header-subtitle");
     public By storeDropDown = By.cssSelector("span.select2-selection__rendered[role='textbox']");
@@ -48,8 +54,23 @@ public class GiftCardDashboardPage extends BaseTest {
     public By customerPhoneToolTip = By.cssSelector("input[name='phone'].form-control.is-invalid");
     public By  noSearchResultText = By.cssSelector("div.p-2>div.w-100>div~p");
     public By customerNameSearchBtn = By.cssSelector("input[name='phrase']~button.btn>i.far");
-
-
+    public By doneBtn = By.cssSelector("button.btn.btn-link.w-100.my-3");
+    public By intialAmount = By.cssSelector("input[name='initialAmount']");
+    public By createButton = By.cssSelector("button.btn.btn-success.btn-lg.w-100");
+    public By referenceNoField = By.cssSelector("input[name='referenceNo']");
+    public By moreOptionsBtn = By.cssSelector("div.d-flex.justify-content-between ~ a.p-0.mb-1");
+    public By cardNoText = By.xpath("//label[text()='Card No']");
+    public By CardNoField = By.cssSelector("label.optional~input[name='cardNo']");
+    public By validationMsg = By.cssSelector("div.alert-message>p");
+    public By memoField = By.cssSelector("textarea[name='greetingMessage']");
+    public By fundSourceList = By.cssSelector("textarea[name='fundSourceList']");
+    public By fundSourceOption = By.cssSelector("select[name='fundSource']>option:nth-child(2)");
+    public By startDate = By.cssSelector("div.input-group>input[name='startDate']");
+    public By endDate = By.cssSelector("div.input-group>input[name='endDate']");
+    public By giftCardDetailCardLink = By.xpath("(//tr/td/a[@class='btn btn-link btn btn-link'])[1]");
+    public By giftCardHeaderText = By.cssSelector("h3.text-info");
+    public By issueNewGiftcardForm = By.cssSelector("div.modal-body");
+    public By infoIcon = By.cssSelector("i.fal.fa-info-square");
 
 
    public String selectStore(int index){
@@ -57,6 +78,8 @@ public class GiftCardDashboardPage extends BaseTest {
        String getStoreName = clickElementFromList(storeDropDownList,index);
        return getStoreName;
    }
+   public String getNoActiveStoreInfoMsg(){return getText(systemMsg);}
+   public String getSourceFundOption(){return getText(fundSourceOption);}
     public void clickWhichStoreContinueBtn(){ click(whichStoreContinueBtn);}
     public void clickConfigurationButton(){click(configurationBtn);}
     public String getConfigurationPopupText(){return getText(configurationPopupHeader);}
@@ -69,14 +92,14 @@ public class GiftCardDashboardPage extends BaseTest {
     public void disableReferenceNoEnableToggleBtn(){ click(referenceNoEnableToggleBtn);}
     public String getFundingSourceDisabledText(){ return getText(fundingSourceDisableText);}
     public String getFundingSourceEnabledText(){ return getText(fundingSourceEnabledText);}
-    public void enableFundingSourceEnableToggleBtn(){ click(fundingSourceEnableToggleBtn);}
+    public void enableFundingSourceEnableToggleBtn(){ click(fundingSourceDiableToggleBtn);}
     public void disableFundingSourceEnableToggleBtn(){ click(fundingSourceDiableToggleBtn);}
     public void clickSaveConfigurationBtn(){ click(saveConfiguration);}
-    public void enterAmount(){waitForElementToBeVisible(amountField,1000);actionEnterText(amountField,"10000");}
+    public void enterAmount(){waitForElementToBeVisible(amountField,1000);actionEnterText(amountField,"100000");}
     public void enterTextSourceFunding(){SendKeys(sourceFundingText,"");}
     public String getCardAmountValidationMeg(){return getText(cardAmountValidationMsg);}
     public void clickCrossIcon(){click(crossBtn);}
-    public void clickIssueNewGiftCardBtn(){click(issueNewGiftCardBtn);}
+    public void clickIssueNewGiftCardBtn(){staticWait(1000);waitForElementToBeVisible(issueNewGiftCardBtn,1000); click(issueNewGiftCardBtn);}
     public String getGiftCardHeader(){return getText(giftCardHeader);}
     public String getCustomerTitle(){return getText(customerTitleText);}
     public void clickCustomerField(){waitForElementToBeClickable(customerField,1000);clickElementByJS(customerField);}
@@ -91,6 +114,64 @@ public class GiftCardDashboardPage extends BaseTest {
     public void clickCustomerNameSearchBtn(){waitForElementToBeVisible(customerNameSearchBtn,10000);click(customerNameSearchBtn);}
     public String getEmailValidationToolTip(){return getToolTipMessage(customerEmailToolTip);}
     public String getPhoneValidationToolTip(){return getToolTipMessage(customerPhoneToolTip);}
+    public void clickCreateBtn(){waitForElementToBeVisible(createButton,1000);click(createButton);}
+    public void clickDoneBtn(){waitForElementToBeVisible(doneBtn,1000);click(doneBtn);}
+    public void setIntialAmount(String amt){staticWait(10000);   waitForElementToBeVisible(intialAmount,1000);actionEnterText(intialAmount,amt);}
+    public  String getReferenceNoToolTip(){ return getToolTipMessage(referenceNoField);}
+    public void clickMoreOptionsBtn(){staticWait(10000);waitForElementToBeVisible(moreOptionsBtn,1000);clickElementByJS(moreOptionsBtn);}
+    public String getCardNoText(){waitForElementToBeVisible(cardNoText,1000);return getText(cardNoText);}
+    public void setCardNo(String No){staticWait(10000);actionEnterText(CardNoField,No);}
+    public String getCardNoValidationToolTip(){return getToolTipMessage(CardNoField);}
+    public String getCardNoValidationMsg(){return getText(validationMsg);}
+    public void clickStartDate(){click(startDate);}
+    public void clickEndDate(){click(endDate);}
+    public void enterTextStartDate(){actionEnterText(startDate,requiredString(5));}
+    public void enterTextEndDate(){actionEnterText(endDate,requiredString(5));}
+    public String getStartDateTooltipMsg(){return getToolTipMessage(startDate);}
+    public String getEndDateTooltipMsg(){return getToolTipMessage(endDate);}
+    public void clickGiftCardLink(){staticWait(10000);waitForElementInVisible(issueNewGiftcardForm,1000)  ;click(giftCardDetailCardLink);}
+    public String getGiftCardText(){staticWait(10000);;return getText(giftCardDetailCardLink);}
+    public String getGiftCardTextHeaders(){staticWait(10000);String noText = getText(giftCardHeaderText);
+        String numberOnly = noText.split(":")[1].trim(); return numberOnly;}
+    public void clickInfoIcon(){staticWait(10000); click(infoIcon);}
+
+
+    public void setFundingSourceList() {
+        WebElement textArea = getWebElement(fundSourceList);
+        String currentValue = textArea.getAttribute("value");
+        if (currentValue != null && !currentValue.trim().isEmpty()) {
+            System.out.println("Existing text found: " + currentValue);
+            textArea.clear();
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+            }
+            textArea.sendKeys("HSBC");
+            System.out.println("New text entered.");
+        } else {
+            System.out.println("Textarea was already empty.");
+            textArea.sendKeys("HSBC");
+        }
+    }
+        public void selectDateTwoDaysAgo(){
+
+            LocalDate twoDaysAgo = LocalDate.now().minusDays(2);
+            int day = twoDaysAgo.getDayOfMonth();
+            String xpath = "//td[contains(@class, 'off') and contains(@class, 'disabled') and normalize-space(text())='" + day + "']";
+            getDriver().findElement(By.xpath(xpath));
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+            WebElement dateElement = getDriver().findElement(By.xpath(xpath));
+            String classes = dateElement.getAttribute("class");
+            if (classes.contains("disabled")) {
+                System.out.println("The date " + twoDaysAgo + " is disabled.");
+            } else {
+                dateElement.click();
+                System.out.println("Selected date: " + twoDaysAgo);
+            }
+        }
+
+    }
 
 
 
@@ -100,4 +181,4 @@ public class GiftCardDashboardPage extends BaseTest {
 
 
 
-}
+
