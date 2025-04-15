@@ -405,6 +405,7 @@ public class MyStoreTest extends BaseTest {
 
         //Verifying 'Add User' Pop-Up Title
         softAssert.assertEquals(getText(mystore.addUserPopUpTitle), Constants.addUserTitle);
+        // need to update  due to UI changes
     }
 
     @Test(description = "SC_08 Verify deactivating an activated Store")
@@ -491,6 +492,7 @@ public class MyStoreTest extends BaseTest {
     }
 
 
+// This method is used to delete unwanted stores from the account
 //    @Test(description = "Delete unwanted store")
 //    public void deleteUnwantedStore(){
 //        pageObjectManager.getAdminPage().ToDeleteStores();

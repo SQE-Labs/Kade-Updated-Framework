@@ -152,7 +152,7 @@ public class DashboardPage extends BaseTest {
         for (WebElement graphLine : graphLines) {
             // Hover over the graph point
             actions.moveToElement(graphLine).pause(java.time.Duration.ofSeconds(2)).perform();
-            staticWait(2000); 
+            staticWait(2000);
 
             // Re-fetch customer data inside the loop (in case of dynamic changes)
             List<WebElement> updatedCustomerData = getDriver().findElements(customerCount);
@@ -171,18 +171,62 @@ public class DashboardPage extends BaseTest {
 
         }
     }
-public void getRefreshBtn(){
+
+    public void getRefreshBtn() {
         click(refreshIcon);
-}
-public void getFullListLink(){
+    }
+
+    public void getFullListLink() {
         click(fullListLink);
-}
-public void getTimeUnderRT(){
+    }
+
+    public void getTimeUnderRT() {
         click(timeUnderRT);
-}
+    }
+
+    public void HoverToGraph() {
+        Actions actions = new Actions(getDriver());
+        WebElement hover = getDriver().findElement(custGraphLine);
+        WebElement last = getDriver().findElement(lastDEC);
+
+//        actions.moveToElement(hover).moveByOffset(0, -10).clickAndHold().moveByOffset(1, -100).release().perform();
+        actions.moveToElement(hover).dragAndDrop(hover, last).build().perform();
+
+    }
+
+    public void getCustomerTrend() {
+
+        List<WebElement> Months = getListOfWebElement(monthsLabel);
+
+        for (WebElement label : Months) {
+//      // Hover over the Elements to capture data for each month
+            System.out.println("******");
+            System.out.println(label.getText());
+
+            List<WebElement> customerData = getListOfWebElement(customerCount);
+            List<WebElement> graphLines = getListOfWebElement(custGraphLine);
+
+            // Capture the customer data for each month and print it
+            // Capture the customer data for each month and print it
+            for (WebElement GraphLine : graphLines) {
+                HoverToGraph();
+                staticWait(3000);
+                System.out.println("Graph Line: " + GraphLine.getText());
+
+                // Retrieve and print the customer data for the current graph
+                for (WebElement data : customerData) {
+                    String dataText = data.getText();
+                    System.out.println("Customer Data: " + dataText);
+                }
+            }
+
+        }}}
 
 
-}
+
+
+
+
 
 
 

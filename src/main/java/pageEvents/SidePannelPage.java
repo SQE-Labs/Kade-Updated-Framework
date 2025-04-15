@@ -20,6 +20,9 @@ public class SidePannelPage extends BaseTest {
     public By dashboardTab = By.cssSelector("[href='/Stores/dashboard']");
     By RewardsProgramPage = By.xpath("//a[text()='Rewards Program']");
     By SearchBtn = By.cssSelector(".fa-search");
+    public By myStuff = By.xpath("//a[text()='My Stuff']");
+    public By giftCardsTab = By.cssSelector("[href='/Giftcards/GiftCardsSummary']");
+
 
 
 
@@ -50,5 +53,11 @@ public class SidePannelPage extends BaseTest {
     }
     public void getProfileLink(){
         click(profileLink);
+    }
+    public void getMyStuff(){
+        click(myStuff);
+    }
+    public void getGiftCardTab(){
+        click(giftCardsTab);
     }
 }
