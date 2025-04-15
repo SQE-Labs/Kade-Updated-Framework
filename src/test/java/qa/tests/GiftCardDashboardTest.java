@@ -1,6 +1,7 @@
 package qa.tests;
 
 import base.BaseTest;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import pageEvents.GiftCardDashboardPage;
 import pageEvents.SidePannelPage;
@@ -304,12 +305,12 @@ public class GiftCardDashboardTest extends BaseTest {
         softAssert.assertEquals(giftCardPage.getCustomerTitle(), Constants.customerPopupTitle);
         giftCardPage.setCustomerPhoneNo("1");
         giftCardPage.clickPhoneSearchBtn();
-        softAssert.assertEquals(giftCardPage.getPhoneValidationMsgText(),Constants.ValidationMsg);
-        softAssert.assertEquals(giftCardPage.getPhoneValidationToolTip(),Constants.phoneValidationToolTip);
-
+        softAssert.assertEquals(giftCardPage.getPhoneValidationMsgText(), Constants.ValidationMsg);
+        softAssert.assertEquals(giftCardPage.getPhoneValidationToolTip(), Constants.phoneValidationToolTip);
 
 
     }
+
     @Test(priority = 13, enabled = true, description = "Verify that appropriate validation message appears on entering invalid phone number in  'Customer phone/email' field, on 'Create gift card' popup.")
     public void verifyInvalidCustomerEmailField() {
         SidePannelPage pannel = new SidePannelPage();
@@ -323,9 +324,8 @@ public class GiftCardDashboardTest extends BaseTest {
         softAssert.assertEquals(giftCardPage.getCustomerTitle(), Constants.customerPopupTitle);
         giftCardPage.setCustomerEmail("r");
         giftCardPage.clickEmailSearchBtn();
-        softAssert.assertEquals(giftCardPage.geEmailValidationMsgText(),Constants.ValidationMsg);
-        softAssert.assertEquals(giftCardPage.getEmailValidationToolTip(),Constants.emailValidationToolTip);
-
+        softAssert.assertEquals(giftCardPage.geEmailValidationMsgText(), Constants.ValidationMsg);
+        softAssert.assertEquals(giftCardPage.getEmailValidationToolTip(), Constants.emailValidationToolTip);
 
 
     }
@@ -343,11 +343,12 @@ public class GiftCardDashboardTest extends BaseTest {
         giftCardPage.clickCustomerField();
         giftCardPage.setCustomerName("ty");
         giftCardPage.clickCustomerNameSearchBtn();
-        softAssert.assertEquals(giftCardPage.getNoSearchResultText(),Constants.noResultText);
+        softAssert.assertEquals(giftCardPage.getNoSearchResultText(), Constants.noResultText);
 
     }
-    @Test(priority = 15, enabled = true, description = "Verify Maximum gift card amount allowed' field.")
-    public void verifyInitialAmountField()  {
+
+    @Test(priority = 15, enabled = true, description = "Verify that user is able to create gift card only after entering value in 'Initial amount' field, on 'Create gift card' popup.")
+    public void verifyInitialAmountField() {
         SidePannelPage pannel = new SidePannelPage();
         Login();
         pannel.getMangeBusinessTab();
@@ -358,11 +359,329 @@ public class GiftCardDashboardTest extends BaseTest {
         giftCardPage.clickCustomerField();
         giftCardPage.setCustomerEmail("beanBliss@yopmail.com");
         giftCardPage.clickEmailSearchBtn();
+        giftCardPage.setIntialAmount("100");
+        giftCardPage.clickCreateBtn();
+
+    }
+
+    @Test(priority = 16, enabled = true, description = "Verify that value for 'Initial amount' field' cannot be greater than the value set in 'Maximum gift card amount allowed' field during Gift Cards Configuration")
+    public void verifyInitialAmountLessThenMaxGiftAmount() {
+        SidePannelPage pannel = new SidePannelPage();
+        Login();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        giftCardPage.selectStore(5);
+        giftCardPage.clickWhichStoreContinueBtn();
+        giftCardPage.clickConfigurationButton();
+
+        if (isDisplayed(giftCardPage.enabledToggleBth, 10000)) {
+            giftCardPage.disableToggleButton();
+            giftCardPage.enableToggleButton();
+            giftCardPage.enterAmount();
+            giftCardPage.clickSaveConfigurationBtn();
+            giftCardPage.clickIssueNewGiftCardBtn();
+            giftCardPage.clickCustomerField();
+            giftCardPage.setCustomerEmail("beanBliss@yopmail.com");
+            giftCardPage.clickEmailSearchBtn();
+            giftCardPage.setIntialAmount("10000");
+            giftCardPage.clickCreateBtn();
+
+        } else {
+            giftCardPage.enableToggleButton();
+            giftCardPage.enterAmount();
+            giftCardPage.clickSaveConfigurationBtn();
+            giftCardPage.clickIssueNewGiftCardBtn();
+            giftCardPage.clickCustomerField();
+            giftCardPage.setCustomerEmail("beanBliss@yopmail.com");
+            giftCardPage.clickEmailSearchBtn();
+            giftCardPage.setIntialAmount("10000");
+            giftCardPage.clickCreateBtn();
+        }
+
+
+    }
+
+
+    @Test(priority = 17, enabled = true, description = "Verify that value for 'Initial amount' field' cannot be greater than the value set in 'Maximum gift card amount allowed' field during Gift Cards Configuration")
+    public void verifyRefrenceNoMandatory() {
+        SidePannelPage pannel = new SidePannelPage();
+        Login();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        giftCardPage.selectStore(5);
+        giftCardPage.clickWhichStoreContinueBtn();
+        giftCardPage.clickConfigurationButton();
+
+        if (isDisplayed(giftCardPage.enabledToggleBth, 10000)) {
+            if (isDisplayed(giftCardPage.referenceNoEnableToggleBtn, 1000)) {
+                giftCardPage.enterAmount();
+                giftCardPage.clickSaveConfigurationBtn();
+                giftCardPage.clickIssueNewGiftCardBtn();
+                giftCardPage.clickCustomerField();
+                giftCardPage.setCustomerEmail("beanBliss@yopmail.com");
+                giftCardPage.clickEmailSearchBtn();
+                giftCardPage.setIntialAmount("10000");
+                giftCardPage.clickCreateBtn();
+                softAssert.assertEquals(giftCardPage.getReferenceNoToolTip(), Constants.referenceNoTooltipMsg);
+            } else {
+                giftCardPage.enableReferenceNoEnableToggleBtn();
+                giftCardPage.enterAmount();
+                giftCardPage.clickSaveConfigurationBtn();
+                giftCardPage.clickIssueNewGiftCardBtn();
+                giftCardPage.clickCustomerField();
+                giftCardPage.setCustomerEmail("beanBliss@yopmail.com");
+                giftCardPage.clickEmailSearchBtn();
+                giftCardPage.setIntialAmount("10000");
+                giftCardPage.clickCreateBtn();
+                softAssert.assertEquals(giftCardPage.getReferenceNoToolTip(), Constants.referenceNoTooltipMsg);
+
+            }
+
+        } else {
+            giftCardPage.enableToggleButton();
+            if (isDisplayed(giftCardPage.referenceNoEnableToggleBtn, 1000)) {
+                giftCardPage.enterAmount();
+                giftCardPage.clickSaveConfigurationBtn();
+                giftCardPage.clickIssueNewGiftCardBtn();
+                giftCardPage.clickCustomerField();
+                giftCardPage.setCustomerEmail("beanBliss@yopmail.com");
+                giftCardPage.clickEmailSearchBtn();
+                giftCardPage.setIntialAmount("10000");
+                giftCardPage.clickCreateBtn();
+                softAssert.assertEquals(giftCardPage.getReferenceNoToolTip(), Constants.referenceNoTooltipMsg);
+            } else {
+                giftCardPage.enableReferenceNoEnableToggleBtn();
+                giftCardPage.enterAmount();
+                giftCardPage.clickSaveConfigurationBtn();
+                giftCardPage.clickIssueNewGiftCardBtn();
+                giftCardPage.clickCustomerField();
+                giftCardPage.setCustomerEmail("beanBliss@yopmail.com");
+                giftCardPage.clickEmailSearchBtn();
+                giftCardPage.setIntialAmount("10000");
+                softAssert.assertEquals(giftCardPage.getReferenceNoToolTip(), Constants.referenceNoTooltipMsg);
+            }
+        }
+
+
+    }
+
+    @Test(priority = 18, enabled = true, description = "Verify that 5 additional options appear after clicking on 'Advanced' link , on 'Create gift card' popup.")
+    public void verifyAdditionalFields() {
+        SidePannelPage pannel = new SidePannelPage();
+        Login();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        giftCardPage.selectStore(5);
+        giftCardPage.clickWhichStoreContinueBtn();
+        giftCardPage.clickConfigurationButton();
+        if (isDisplayed(giftCardPage.enabledToggleBth, 10000)) {
+            giftCardPage.enterAmount();
+            giftCardPage.clickSaveConfigurationBtn();
+            giftCardPage.clickIssueNewGiftCardBtn();
+            giftCardPage.clickCustomerField();
+            giftCardPage.setCustomerEmail("beanBliss@yopmail.com");
+            giftCardPage.clickEmailSearchBtn();
+            scrollToElement(giftCardPage.moreOptionsBtn);
+            giftCardPage.clickMoreOptionsBtn();
+            softAssert.assertEquals(giftCardPage.getCardNoText(), Constants.cardNoText);
+        } else {
+            giftCardPage.enableToggleButton();
+            giftCardPage.enterAmount();
+            giftCardPage.clickSaveConfigurationBtn();
+            giftCardPage.clickIssueNewGiftCardBtn();
+            giftCardPage.clickCustomerField();
+            giftCardPage.setCustomerEmail("beanBliss@yopmail.com");
+            giftCardPage.clickEmailSearchBtn();
+            scrollToElement(giftCardPage.moreOptionsBtn);
+            giftCardPage.clickMoreOptionsBtn();
+            softAssert.assertEquals(giftCardPage.getCardNoText(), Constants.cardNoText);
+        }
+
+    }
+
+
+    @Test(priority = 19, enabled = true, description = "Verify that 5 additional options appear after clicking on 'Advanced' link , on 'Create gift card' popup.")
+    public void verifyGiftCardCreationWithOptionalFields() {
+        SidePannelPage pannel = new SidePannelPage();
+        Login();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        giftCardPage.selectStore(5);
+        giftCardPage.clickWhichStoreContinueBtn();
+        giftCardPage.clickConfigurationButton();
+        if (isDisplayed(giftCardPage.enabledToggleBth, 10000)) {
+            giftCardPage.enterAmount();
+            giftCardPage.clickSaveConfigurationBtn();
+            giftCardPage.clickIssueNewGiftCardBtn();
+            giftCardPage.clickCustomerField();
+            giftCardPage.setCustomerEmail("beanBliss@yopmail.com");
+            giftCardPage.clickEmailSearchBtn();
+            giftCardPage.setIntialAmount("10000");
+            scrollToElement(giftCardPage.moreOptionsBtn);
+            giftCardPage.clickMoreOptionsBtn();
+            softAssert.assertEquals(giftCardPage.getCardNoText(), Constants.cardNoText);
+            giftCardPage.clickCreateBtn();
+        } else {
+            giftCardPage.enableToggleButton();
+            giftCardPage.enterAmount();
+            giftCardPage.clickSaveConfigurationBtn();
+            giftCardPage.clickIssueNewGiftCardBtn();
+            giftCardPage.clickCustomerField();
+            giftCardPage.setCustomerEmail("beanBliss@yopmail.com");
+            giftCardPage.clickEmailSearchBtn();
+            giftCardPage.setIntialAmount("10000");
+            scrollToElement(giftCardPage.moreOptionsBtn);
+            giftCardPage.clickMoreOptionsBtn();
+            softAssert.assertEquals(giftCardPage.getCardNoText(), Constants.cardNoText);
+            giftCardPage.clickCreateBtn();
+        }
+
+    }
+
+
+    @Test(priority = 20, enabled = true, description = "Verify that 'Card No' field accepts only numeric value, on' Create gift card' popup.")
+    public void verifyCardNoRejectLessThan4NumericValues() {
+        SidePannelPage pannel = new SidePannelPage();
+        Login();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        giftCardPage.selectStore(5);
+        giftCardPage.clickWhichStoreContinueBtn();
+        giftCardPage.clickConfigurationButton();
+        if (isDisplayed(giftCardPage.enabledToggleBth, 10000)) {
+            giftCardPage.enterAmount();
+            giftCardPage.clickSaveConfigurationBtn();
+            giftCardPage.clickIssueNewGiftCardBtn();
+            giftCardPage.clickCustomerField();
+            giftCardPage.setCustomerPhoneNo("6465551113");
+            giftCardPage.clickPhoneSearchBtn();
+            giftCardPage.setIntialAmount("10000");
+            scrollToElement(giftCardPage.moreOptionsBtn);
+            giftCardPage.clickMoreOptionsBtn();
+            giftCardPage.setCardNo("12");
+            scrollToElement(giftCardPage.createButton);
+            giftCardPage.clickCreateBtn();
+            softAssert.assertEquals(giftCardPage.getCardNoValidationToolTip(), Constants.cardMinLendthMsg);
+            softAssert.assertEquals(giftCardPage.getCardNoValidationMsg(), Constants.ValidationMsg);
+
+
+        } else {
+            giftCardPage.enableToggleButton();
+            giftCardPage.enterAmount();
+            giftCardPage.clickSaveConfigurationBtn();
+            giftCardPage.clickIssueNewGiftCardBtn();
+            giftCardPage.clickCustomerField();
+            giftCardPage.setCustomerPhoneNo("6465551113");
+            giftCardPage.clickPhoneSearchBtn();
+            giftCardPage.setIntialAmount("10000");
+            scrollToElement(giftCardPage.moreOptionsBtn);
+            giftCardPage.clickMoreOptionsBtn();
+            giftCardPage.setCardNo("12");
+            scrollToElement(giftCardPage.createButton);
+            giftCardPage.clickCreateBtn();
+            softAssert.assertEquals(giftCardPage.getCardNoValidationMsg(), Constants.cardMinLendthMsg);
+            softAssert.assertEquals(giftCardPage.getCardNoValidationMsg(), Constants.ValidationMsg);
+
+        }
+    }
+
+
+        @Test(priority = 21, enabled = true, description = "Verify that 'Card No' field accepts only numeric value, on' Create gift card' popup.")
+        public void verifyCardNoAccepts18NumericValues () {
+            SidePannelPage pannel = new SidePannelPage();
+            Login();
+            pannel.getMangeBusinessTab();
+            pannel.getGiftCardsDashboardTab();
+            giftCardPage.selectStore(5);
+            giftCardPage.clickWhichStoreContinueBtn();
+            giftCardPage.clickConfigurationButton();
+            if (isDisplayed(giftCardPage.enabledToggleBth, 10000)) {
+                giftCardPage.enterAmount();
+                giftCardPage.clickSaveConfigurationBtn();
+                giftCardPage.clickIssueNewGiftCardBtn();
+                giftCardPage.clickCustomerField();
+                giftCardPage.setCustomerPhoneNo("6465551113");
+                giftCardPage.clickPhoneSearchBtn();
+                giftCardPage.setIntialAmount("10000");
+                scrollToElement(giftCardPage.moreOptionsBtn);
+                giftCardPage.clickMoreOptionsBtn();
+                WebElement element = getWebElement(giftCardPage.CardNoField);
+                String maxLength = element.getAttribute("maxlength");
+                softAssert.assertEquals(maxLength,Constants.maxLength);
+
+
+
+            } else {
+                giftCardPage.enableToggleButton();
+                giftCardPage.enterAmount();
+                giftCardPage.clickSaveConfigurationBtn();
+                giftCardPage.clickIssueNewGiftCardBtn();
+                giftCardPage.clickCustomerField();
+                giftCardPage.setCustomerPhoneNo("6465551113");
+                giftCardPage.clickPhoneSearchBtn();
+                giftCardPage.setIntialAmount("10000");
+                scrollToElement(giftCardPage.moreOptionsBtn);
+                giftCardPage.clickMoreOptionsBtn();
+                WebElement element = getWebElement(giftCardPage.CardNoField);
+                String maxLength = element.getAttribute("maxlength");
+                softAssert.assertEquals(maxLength,Constants.maxLength);
+
+
+            }
+
+        }
+    @Test(priority = 22, enabled = true, description = "Verify that 'Memo' field accepts value up to 500 characters, on' Create gift card' popup.")
+    public void verifyMemoAccepts500Values () {
+        SidePannelPage pannel = new SidePannelPage();
+        Login();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        giftCardPage.selectStore(5);
+        giftCardPage.clickWhichStoreContinueBtn();
+        giftCardPage.clickConfigurationButton();
+        if (isDisplayed(giftCardPage.enabledToggleBth, 10000)) {
+            giftCardPage.enterAmount();
+            giftCardPage.clickSaveConfigurationBtn();
+            giftCardPage.clickIssueNewGiftCardBtn();
+            giftCardPage.clickCustomerField();
+            giftCardPage.setCustomerPhoneNo("6465551113");
+            giftCardPage.clickPhoneSearchBtn();
+            giftCardPage.setIntialAmount("10000");
+            scrollToElement(giftCardPage.moreOptionsBtn);
+            giftCardPage.clickMoreOptionsBtn();
+            WebElement element = getWebElement(giftCardPage.memoField);
+            String maxLength = element.getAttribute("maxlength");
+            softAssert.assertEquals(maxLength,Constants.memoMaxLength);
+
+
+
+        } else {
+            giftCardPage.enableToggleButton();
+            giftCardPage.enterAmount();
+            giftCardPage.clickSaveConfigurationBtn();
+            giftCardPage.clickIssueNewGiftCardBtn();
+            giftCardPage.clickCustomerField();
+            giftCardPage.setCustomerPhoneNo("6465551113");
+            giftCardPage.clickPhoneSearchBtn();
+            giftCardPage.setIntialAmount("10000");
+            scrollToElement(giftCardPage.moreOptionsBtn);
+            giftCardPage.clickMoreOptionsBtn();
+            WebElement element = getWebElement(giftCardPage.memoField);
+            String maxLength = element.getAttribute("maxlength");
+            softAssert.assertEquals(maxLength,Constants.memoMaxLength);
+
+
+        }
+
+    }
+
+
 
 
 
     }
-}
+
+
 
 
 

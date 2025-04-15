@@ -48,8 +48,15 @@ public class GiftCardDashboardPage extends BaseTest {
     public By customerPhoneToolTip = By.cssSelector("input[name='phone'].form-control.is-invalid");
     public By  noSearchResultText = By.cssSelector("div.p-2>div.w-100>div~p");
     public By customerNameSearchBtn = By.cssSelector("input[name='phrase']~button.btn>i.far");
-
-
+    public By doneBtn = By.cssSelector("button.btn.btn-link.w-100.my-3");
+    public By intialAmount = By.cssSelector("input[name='initialAmount']");
+    public By createButton = By.cssSelector("button.btn.btn-success.btn-lg.w-100");
+    public By referenceNoField = By.cssSelector("input[name='referenceNo']");
+    public By moreOptionsBtn = By.cssSelector("div.d-flex.justify-content-between ~ a.p-0.mb-1");
+    public By cardNoText = By.xpath("//label[text()='Card No']");
+    public By CardNoField = By.cssSelector("label.optional~input[name='cardNo']");
+    public By validationMsg = By.cssSelector("div.alert-message>p");
+    public By memoField = By.cssSelector("textarea[name='greetingMessage']");
 
 
    public String selectStore(int index){
@@ -72,11 +79,11 @@ public class GiftCardDashboardPage extends BaseTest {
     public void enableFundingSourceEnableToggleBtn(){ click(fundingSourceEnableToggleBtn);}
     public void disableFundingSourceEnableToggleBtn(){ click(fundingSourceDiableToggleBtn);}
     public void clickSaveConfigurationBtn(){ click(saveConfiguration);}
-    public void enterAmount(){waitForElementToBeVisible(amountField,1000);actionEnterText(amountField,"10000");}
+    public void enterAmount(){waitForElementToBeVisible(amountField,1000);actionEnterText(amountField,"100000");}
     public void enterTextSourceFunding(){SendKeys(sourceFundingText,"");}
     public String getCardAmountValidationMeg(){return getText(cardAmountValidationMsg);}
     public void clickCrossIcon(){click(crossBtn);}
-    public void clickIssueNewGiftCardBtn(){click(issueNewGiftCardBtn);}
+    public void clickIssueNewGiftCardBtn(){staticWait(1000);waitForElementToBeVisible(issueNewGiftCardBtn,1000); click(issueNewGiftCardBtn);}
     public String getGiftCardHeader(){return getText(giftCardHeader);}
     public String getCustomerTitle(){return getText(customerTitleText);}
     public void clickCustomerField(){waitForElementToBeClickable(customerField,1000);clickElementByJS(customerField);}
@@ -91,7 +98,15 @@ public class GiftCardDashboardPage extends BaseTest {
     public void clickCustomerNameSearchBtn(){waitForElementToBeVisible(customerNameSearchBtn,10000);click(customerNameSearchBtn);}
     public String getEmailValidationToolTip(){return getToolTipMessage(customerEmailToolTip);}
     public String getPhoneValidationToolTip(){return getToolTipMessage(customerPhoneToolTip);}
-
+    public void clickCreateBtn(){waitForElementToBeVisible(createButton,1000);click(createButton);}
+    public void clickDoneBtn(){waitForElementToBeVisible(doneBtn,1000);click(doneBtn);}
+    public void setIntialAmount(String amt){staticWait(10000);   waitForElementToBeVisible(intialAmount,1000);actionEnterText(intialAmount,amt);}
+    public  String getReferenceNoToolTip(){ return getToolTipMessage(referenceNoField);}
+    public void clickMoreOptionsBtn(){staticWait(10000);waitForElementToBeVisible(moreOptionsBtn,1000);clickElementByJS(moreOptionsBtn);}
+    public String getCardNoText(){waitForElementToBeVisible(cardNoText,1000);return getText(cardNoText);}
+    public void setCardNo(String No){staticWait(10000);actionEnterText(CardNoField,No);}
+    public String getCardNoValidationToolTip(){return getToolTipMessage(CardNoField);}
+    public String getCardNoValidationMsg(){return getText(validationMsg);}
 
 
 
