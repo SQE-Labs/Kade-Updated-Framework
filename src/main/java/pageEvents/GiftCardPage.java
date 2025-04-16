@@ -11,8 +11,8 @@ public class GiftCardPage extends BaseTest {
     public By purchaseGCButton = By.cssSelector("[href='/Giftcards/publicpurchaseGC']");
     public By showUnavaibleGCLink = By.cssSelector(".collapsed.auto-collapse");
     public By giftCards = By.cssSelector(" .d-flex.flex-wrap.gap-2 >div");
-    By firstCardLink = By.cssSelector("(//a[@class='stretched-link'])[1]");
-    By sendArrow = By.cssSelector(".fas.fa-external-link");
+    public By firstCardLink = By.xpath("(//div[@class=' d-flex flex-wrap gap-2 mb-3']//div[@class='d-flex flex-column']/a)[1]");
+    public By sendArrow = By.cssSelector(".fas.fa-external-link");
     By crossIcon = By.cssSelector(".btn-close.ms-2");
 
 
@@ -21,6 +21,10 @@ public void getFirstCardLink(){
 }
 public void getCrossIconGCpopup(){
     click(crossIcon);
+}
+
+public void getSendArrow(){
+    click(sendArrow);
 }
 
 

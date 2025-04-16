@@ -190,5 +190,9 @@ public interface Constants {
     String verifyInfoMsg = "Each transaction can be verified only once.";
     String verifyByStore = "Verified by the store";
 
+    // Gift Card
+    String GiftCardSummaryURL = "https://sibtestenv.azurewebsites.net/Giftcards/GiftCardsSummary";
+    String giftCardDetailURL = "https://sibtestenv.azurewebsites.net/Giftcards/giftcardDetail?Id=2935";
+
 
 }

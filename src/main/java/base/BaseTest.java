@@ -285,6 +285,7 @@ public class BaseTest {
         log.info("Scrolling to element: {}", locator);
         WebElement element = getDriver().findElement(locator);
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+        staticWait(2000);
     }
     public void scrollToWebElement(WebElement locator) {
         log.info("Scrolling to element: {}", locator);

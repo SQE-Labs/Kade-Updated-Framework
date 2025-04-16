@@ -6,8 +6,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageEvents.GiftCardPage;
 import pageObjects.PageObjectManager;
+import utils.Constants;
 
 import java.util.List;
+import java.util.Set;
 
 public class GiftCardsTest extends BaseTest {
 
@@ -44,16 +46,69 @@ public class GiftCardsTest extends BaseTest {
         //  Loop through gift cards and validate details
         for (WebElement card : giftCards) {
             System.out.println("Card Details are "+ card.getText());
-
-
-
-
         }
+    }
+    @Test(priority = 3, enabled = true, description = "GC 12, 13 and GC 14, Verify that Gift Card Summary popup opens up, after clicking on any Gift card, on 'Gift Cards' page.")
+      public void verifyGCSummaryPopupOpensUpAfterClickingOnGC(){
+        LoginAsCustomer();
+        staticWait(3000);
+        scrollToDown();
+        scrollToElement(pageObjectManager.getSidePannel().myStuff);
+        pageObjectManager.getSidePannel().getMyStuff();
+        scrollToElement(pageObjectManager.getSidePannel().giftCardsTab);
+        waitForElementToBeClickable( pageObjectManager.getSidePannel().giftCardsTab,6);
+        pageObjectManager.getSidePannel().getGiftCardTab();
 
+       waitForElementToBeClickable(giftcard.firstCardLink,5);
 
+        // Clicking on FirstGC link
+        giftcard.getFirstCardLink();
+        staticWait(3000);
+
+        String currentUrl = getDriver().getCurrentUrl();
+        softAssert.assertEquals(currentUrl, Constants.GiftCardSummaryURL);
+
+        // clicking on cross icon to close the popup
+        giftcard.getCrossIconGCpopup();
 
 
     }
+    @Test(priority = 4,enabled = false, description = "GC 15: Verify that 'Gift card detail' page opens in a new tab, after clicking on 'Open in a new tab' icon , on Gift Card Summary popup")
+    public void verifyGCOpenInNewTab(){
+        LoginAsCustomer();
+        staticWait(3000);
+        scrollToDown();
+        scrollToElement(pageObjectManager.getSidePannel().myStuff);
+        pageObjectManager.getSidePannel().getMyStuff();
+        scrollToElement(pageObjectManager.getSidePannel().giftCardsTab);
+        waitForElementToBeClickable( pageObjectManager.getSidePannel().giftCardsTab,6);
+        pageObjectManager.getSidePannel().getGiftCardTab();
 
+        waitForElementToBeClickable(giftcard.firstCardLink,5);
 
+        // Clicking on FirstGC link
+        giftcard.getFirstCardLink();
+        staticWait(3000);
+
+        String currentUrl = getDriver().getCurrentUrl();
+        softAssert.assertEquals(currentUrl, Constants.GiftCardSummaryURL);
+
+        // clicking on send icon of GC popup
+        String originalWindow = getDriver().getWindowHandle();
+        giftcard.getSendArrow();
+
+        // Step 4: Wait for new tab and switch
+       staticWait(3000);
+        Set<String> windowHandles = getDriver().getWindowHandles();
+
+        for (String handle : windowHandles) {
+            if (!handle.equals(originalWindow)) {
+                getDriver().switchTo().window(handle);
+                break;
+            }
+        }
+        String currentUrlof = getDriver().getCurrentUrl();
+        softAssert.assertEquals(currentUrlof,Constants.giftCardDetailURL);
+    }
 }
+
