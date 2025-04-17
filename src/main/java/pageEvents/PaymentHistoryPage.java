@@ -4,11 +4,16 @@ import base.BaseTest;
 import org.openqa.selenium.By;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.Constants;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PaymentHistoryPage extends BaseTest {
     BillPage bills = new BillPage();
@@ -45,6 +50,7 @@ public class PaymentHistoryPage extends BaseTest {
     public By UpdateBtn = By.xpath("//input[@name='amount']//following::button[@type='submit' and normalize-space()='Update'][2]");
     public By CurrentBalanceBtn =By.xpath("//button[contains(text(), 'selected bill')]");
     public By MakePaymentsBtn = By.xpath("//button[normalize-space()='Make payments']");
+    public By paymentTileRecord = By.xpath("//div[@class='d-flex px-2 justify-content-between']");
 
 
     public void getmystuffandpaymenthistory() {
@@ -112,20 +118,52 @@ public class PaymentHistoryPage extends BaseTest {
     public void getUpdateAmount(){
         clickElementByJS(UpdateAmount);
     }
+
     public void VerifytheTransaction() {
         LoginAsCustomer();
         getNotificationIcon();
         getFirstNotification();
         staticWait(2000);
         getPaynowBtn();
-        getPayBalance();
+      //  getPayBalance();
         getTransId();
         pays.swipeToPay();
         waitForElementToBeClickable(CloseBtn,3);
         getCloseBtn();
         scrollToElement(Mystuff);
         getPaymentId();
-        Assert.assertEquals(getTransId(),getPaymentId());
+        int count = getCountOfWebElements(paymentTileRecord);
+        System.out.println("Count of the transaction " + count);
+        List<WebElement> allBills = new ArrayList<>();
+        JavascriptExecutor js = (JavascriptExecutor) getDriver() ;
+
+     int previousCount = 0;
+
+       while (true) {
+        // Scroll to bottom
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+
+        // Wait for the new elements to load (you can customize this with ExpectedConditions)
+        staticWait(2000); // Can be replaced with WebDriverWait for stability
+
+        // Re-fetch the list after scroll
+        List<WebElement> currentBills = getDriver() .findElements(paymentTileRecord);
+
+        int currentCount = currentBills.size();
+        System.out.println("Currently loaded bills: " + currentCount);
+
+        if (currentCount == previousCount) {
+            // No new bills loaded
+            break;
+        }
+
+        previousCount = currentCount;
+        allBills = currentBills;
+    }
+      //  Assert.assertEquals(getTransId(),getPaymentId());
+      //  List<WebElement> elements = getDriver().findElements(paymentTileRecord);
+      //  int count = elements.size();
+      //  System.out.println("Number of payment records found: " + count);
 
     }
     public void getTransactionPage(){

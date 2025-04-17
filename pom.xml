@@ -7,17 +7,17 @@
 
     <name>SampleProject</name>
     <url>http://maven.apache.org</url>
-    <repositories>
-        <repository>
-            <id>oss.sonatype.org-snapshot</id>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
         </repository>
+    </distributionManagement>
+    <repositories>
     </repositories>
 
     <properties>
@@ -127,8 +127,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>16</source>
-                    <target>16</target>
+                    <source>22</source>
+                    <target>22</target>
+                    <compilerArgs>--enable-preview</compilerArgs>
                 </configuration>
             </plugin>
         </plugins>

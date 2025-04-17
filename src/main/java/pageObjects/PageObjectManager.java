@@ -22,7 +22,7 @@ public class PageObjectManager {
     private AdminPage adminPage;
     private TransactionsPage transactionsPage;
     private SearchPage searchPage;
-
+    private GiftCardDashboardPage giftCardPage;
     // Logger instance for logging messages
     private static final Logger log = LoggerFactory.getLogger(PageObjectManager.class);
 
@@ -83,6 +83,9 @@ public class PageObjectManager {
 
         searchPage= new SearchPage();
         log.debug("Search page instance created");
+
+        giftCardPage= new GiftCardDashboardPage();
+        log.debug("Gift Card DashBoard page instance created.");
     }
 
     /**
@@ -182,5 +185,9 @@ public class PageObjectManager {
     public TransactionsPage getTransactionsPage(){
         log.debug("Transactions page");
         return transactionsPage;
+    }
+    public GiftCardDashboardPage getGiftCardPage(){
+        log.debug("Returning Gift Card Dashboard Page");
+        return giftCardPage;
     }
 }

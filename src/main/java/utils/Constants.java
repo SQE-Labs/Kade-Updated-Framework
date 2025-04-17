@@ -181,6 +181,32 @@ public interface Constants {
     String credentialsValidationLP = "Invalid credentials. Check your username and/or password";
 
 
+    // Gift Card DashBoard
+
+    String GiftCardHeader ="Gift Cards Dashboard";
+    String infoMessage= "Gift cards is currently disabled.";
+    String configurationPopupTitle = "Gift Cards Configuration";
+    String DisabledText="Disabled";
+    String EnableText="Enabled";
+    String referenceNoDisabledText ="Reference No. is optional";
+    String referenceNoEnabledText="Reference No. is mandatory";
+    String sourceFundingDisabledText = "Funding source is optional";
+    String getSourceFundingEnabledText="Funding source is restricted";
+    String ValidationMsg ="Please review the highlighted field(s)";
+    String giftCardHeaderText = "Issue a new gift card";
+    String customerPopupTitle = "Customer";
+    String emailValidationToolTip ="Please enter a valid email address.";
+    String phoneValidationToolTip = "Invalid phone number";
+    String noResultText ="There are no results";
+    String referenceNoTooltipMsg ="This field is required.";
+    String cardNoText ="Card No";
+    String cardMinLendthMsg = "Please enter at least 4 characters.";
+    String maxLength ="18";
+    String memoMaxLength = "500";
+
+
+
+
 
     // Transactions page
     String noPaymentInfoMsg = "There are no payments available yet!";

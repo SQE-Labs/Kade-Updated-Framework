@@ -1,0 +1,2 @@
+2025-04-16 12:54:43,292 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-04-16 12:54:50,661 [info]: Only enters numeric value so expected would be 1000.00 which is max
