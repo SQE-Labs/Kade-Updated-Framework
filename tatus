@@ -1,0 +1,191 @@
+[33mcommit 7850dbfa66e1a5dc93a8e37abd494f6108e48d38[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdhruv[m[33m, [m[1;31morigin/dhruv[m[33m)[m
+Merge: ee4329e 239b336
+Author: dhruv-rawats <dhruv.rawat@sqelabs.com>
+Date:   Mon Apr 7 17:26:00 2025 +0530
+
+    ewwe
+
+[33mcommit ee4329e2f82e173945c460fe45cb8a61c3e409bb[m
+Author: dhruv-rawats <dhruv.rawat@sqelabs.com>
+Date:   Mon Apr 7 17:21:55 2025 +0530
+
+    ewwe
+
+[33mcommit 239b33682cd8ebfa9fc38529d5c7bfeb0fa92a14[m[33m ([m[1;31morigin/viresh1234[m[33m)[m
+Author: VireshReddy123 <viresh.reddy@sqelabs.com>
+Date:   Mon Apr 7 16:26:46 2025 +0530
+
+    Payment module partially done
+
+[33mcommit b2280bc91fd0e1cffe355a1e2538dae9622830d0[m
+Author: dhruv-rawats <dhruv.rawat@sqelabs.com>
+Date:   Mon Apr 7 16:03:06 2025 +0530
+
+    First commit
+
+[33mcommit 5d04b6604037147c5d7be9080f80dd6cc82e8f3b[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 2f98ffb 5b38524
+Author: saksham-sqelabs <159518588+saksham-sqelabs@users.noreply.github.com>
+Date:   Thu Mar 27 21:30:17 2025 +0530
+
+    Merge pull request #3 from SQE-Labs/Preeti_new
+    
+    Store Configuration
+
+[33mcommit 5b3852471dfb01221a198989b17ffd1ff18dbb8a[m
+Merge: 1df38c4 2256688
+Author: Preeti1484 <preeti@sqelabs.com>
+Date:   Wed Mar 26 18:09:17 2025 +0530
+
+    Migrated 04 test case
+
+[33mcommit 1df38c4632435c0a6b2bcb889d230cfde3de9930[m
+Merge: 99faea4 01f6de4
+Author: Preeti1484 <preeti@sqelabs.com>
+Date:   Tue Mar 25 16:22:32 2025 +0530
+
+    taking pull
+
+[33mcommit 2256688ccc4661af7ca4895f03aef6e8a9266eba[m
+Author: VireshReddy123 <viresh.reddy@sqelabs.com>
+Date:   Tue Mar 25 15:52:15 2025 +0530
+
+    Billing module partially done
+
+[33mcommit c92415d7e6e6509b1763eedca88bb876e79577f5[m
+Merge: 01f6de4 5404240
+Author: VireshReddy123 <viresh.reddy@sqelabs.com>
+Date:   Tue Mar 25 12:27:30 2025 +0530
+
+    Billing module partially done
+
+[33mcommit 99faea47f8334d1ca40bd555ebe20d72fbc51d1d[m
+Author: Preeti1484 <preeti@sqelabs.com>
+Date:   Tue Mar 25 12:25:58 2025 +0530
+
+    Changes
+
+[33mcommit a015513d9e718ba130f33827f668463d4563c235[m
+Author: Preeti1484 <preeti@sqelabs.com>
+Date:   Fri Feb 28 18:44:23 2025 +0530
+
+    Migrated 02 test cases of store creation
+
+[33mcommit 5f0c0d0f2cda6124de1599c2c7199e6bddf5b621[m
+Author: Preeti1484 <preeti@sqelabs.com>
+Date:   Wed Feb 26 17:30:12 2025 +0530
+
+    Automated 01 test case
+
+[33mcommit 01f6de46bf039bc129f034cd1f8ff1069bde81ba[m
+Author: VireshReddy123 <viresh.reddy@sqelabs.com>
+Date:   Wed Feb 26 10:28:10 2025 +0530
+
+    Working on Bill module
+
+[33mcommit 5404240d9338f61f9a17d4732f28842a856f60f2[m
+Author: Preeti1484 <preeti@sqelabs.com>
+Date:   Wed Feb 19 18:30:46 2025 +0530
+
+    Uploaded Image in Store Creation
+
+[33mcommit 96814137e63cf50d2a42041901c81dc6718b9fd9[m
+Author: Preeti1484 <preeti@sqelabs.com>
+Date:   Tue Feb 18 18:23:44 2025 +0530
+
+    Store Creation
+
+[33mcommit 30e4d3bc76126f29ccf8cf0acdd593e39bad6c5e[m
+Merge: 6a799b5 2f98ffb
+Author: Preeti1484 <preeti@sqelabs.com>
+Date:   Mon Feb 17 16:02:19 2025 +0530
+
+    Changes
+
+[33mcommit 6a799b530870efa521e1dd04df211571a5b3179e[m
+Author: Preeti1484 <preeti@sqelabs.com>
+Date:   Mon Feb 17 15:28:15 2025 +0530
+
+    changes of store configuration
+
+[33mcommit 2d7ba1729bf0909cdc08579e64b6392c4e2d8a45[m[33m ([m[1;31morigin/preetisqe[m[33m)[m
+Author: Preeti1484 <preeti@sqelabs.com>
+Date:   Fri Feb 14 18:37:42 2025 +0530
+
+    Store Creation
+
+[33mcommit cc3b837bd48f4734b1bc1da9331105f7d80d0f25[m
+Author: VireshReddy123 <viresh.reddy@sqelabs.com>
+Date:   Fri Feb 14 14:11:49 2025 +0530
+
+    qsqs
+
+[33mcommit 3bb95f780149902833bcb440309052abc91ff8fb[m
+Author: VireshReddy123 <viresh.reddy@sqelabs.com>
+Date:   Fri Feb 14 13:25:34 2025 +0530
+
+    updated
+
+[33mcommit 2f98ffb153cc696a7710de4c5c3d1574bd90e530[m
+Author: Preeti1484 <preeti@sqelabs.com>
+Date:   Tue Feb 11 18:29:19 2025 +0530
+
+    Migrated 02 test cases of store creation
+
+[33mcommit c2c32d7a28ddfc42a842cff87e14fd153e6e4656[m
+Merge: 00cfd80 6199c9c
+Author: Preeti1484 <Preeti@sqelabs.com>
+Date:   Tue Feb 4 18:22:35 2025 +0530
+
+    Merge pull request #1 from SQE-Labs/rishabh1
+    
+    initial commit
+
+[33mcommit 6199c9c3fb618c8e3754fb321432c8991e7e1277[m[33m ([m[1;31morigin/rishabh1[m[33m)[m
+Author: rishabhhj <rishabh.joshi@sqelabs.com>
+Date:   Tue Feb 4 18:21:30 2025 +0530
+
+    initial commit
+
+[33mcommit 00cfd804f1dc96bae61b537b10aca26429a78e54[m
+Merge: 861af97 bae7496
+Author: Preeti1484 <preeti@sqelabs.com>
+Date:   Tue Feb 4 16:33:39 2025 +0530
+
+    shws
+
+[33mcommit 861af9730a2d946f3ff7d99f028395af33146ead[m
+Author: Preeti1484 <preeti@sqelabs.com>
+Date:   Tue Feb 4 16:27:43 2025 +0530
+
+    Framework
+
+[33mcommit bae7496352e78765b6796207e82e9063cf4d9bb2[m
+Author: preeti <preeti@sqelabs.com>
+Date:   Tue Feb 4 16:19:08 2025 +0530
+
+    tfesg
+
+[33mcommit 7288ba156db8ffcb2eb4bb87b4e2a7e9894e7444[m
+Author: preeti <preeti@sqelabs.com>
+Date:   Tue Feb 4 16:16:22 2025 +0530
+
+    changes
+
+[33mcommit 25c7d109fdcb928e8f1ea268fe1ec61fffa42894[m
+Author: Preeti1484 <Preeti@sqelabs.com>
+Date:   Tue Feb 4 16:10:16 2025 +0530
+
+    Changes
+
+[33mcommit 79d77ff0ecfa315c4b526a15944c126709835317[m
+Author: Preeti1484 <Preeti@sqelabs.com>
+Date:   Tue Feb 4 15:46:39 2025 +0530
+
+    Nothing changed
+
+[33mcommit 73256e622f2955d657a16ea84659c8eef85cc362[m
+Author: Preeti1484 <Preeti@sqelabs.com>
+Date:   Tue Feb 4 15:41:50 2025 +0530
+
+    Files

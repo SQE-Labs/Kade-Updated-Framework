@@ -2,6 +2,7 @@ package utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.Assert;
 
 /**
  * The Constants interface holds constant values used throughout the application.
@@ -13,6 +14,7 @@ public interface Constants {
 
     // Constant for the "Sign out" text used in validation
     String SIGN_OUT = "Sign out";
+    String transactionsTitle = "Transactions";
 
     // Dashboard
     String YourBusinessTitle ="Your Businesses";
@@ -38,6 +40,8 @@ public interface Constants {
     String existingEmailValidation ="This email is already registered.";
     String securityCode ="123456";
     String validPhonenumber = "6465551105";
+    String ValidPhone = "+1 (646) 555 1118";
+    String expectedSearchValidation = "Nothing found!";
     String TooltipForLessDigit ="Please enter at least 6 characters.";
     String invalidSecurityCodeMsg = "Invalid security code";
     String invalidSecurityCode ="332434";
@@ -46,6 +50,10 @@ public interface Constants {
     String validPassword = "Test@123";
     String validLoginEmail = "test1114@yopmail.com";
     String phoneSecurityCodeForLogin = "777777";
+    String ForgetPasswordtitle = "Forget password";
+    String  TermsOfUser ="User Agreement";
+    String PaymentHistoryTitle = "Payment History";
+    String NoPaymentsMessage = "There are no payments available yet!";
 
 
     //BasicInformationPage constants
@@ -169,7 +177,47 @@ public interface Constants {
     String addUserTitle = "Add user";
     String deacticeStatus = "Store is NOT active (Deactivated)";
     String activeStoreStatus ="Store is active and ready to receive payments";
+    String loginPageValidation = "Invalid phone number. Phone numbers must start with + and country code";
+    String credentialsValidationLP = "Invalid credentials. Check your username and/or password";
 
+
+    // Gift Card DashBoard
+
+    String GiftCardHeader ="Gift Cards Dashboard";
+    String infoMessage= "Gift cards is currently disabled.";
+    String configurationPopupTitle = "Gift Cards Configuration";
+    String DisabledText="Disabled";
+    String EnableText="Enabled";
+    String referenceNoDisabledText ="Reference No. is optional";
+    String referenceNoEnabledText="Reference No. is mandatory";
+    String sourceFundingDisabledText = "Funding source is optional";
+    String getSourceFundingEnabledText="Funding source is restricted";
+    String ValidationMsg ="Please review the highlighted field(s)";
+    String giftCardHeaderText = "Issue a new gift card";
+    String customerPopupTitle = "Customer";
+    String emailValidationToolTip ="Please enter a valid email address.";
+    String phoneValidationToolTip = "Invalid phone number";
+    String noResultText ="There are no results";
+    String referenceNoTooltipMsg ="This field is required.";
+    String cardNoText ="Card No";
+    String cardMinLendthMsg = "Please enter at least 4 characters.";
+    String maxLength ="18";
+    String memoMaxLength = "500";
+
+
+
+
+
+    // Transactions page
+    String noPaymentInfoMsg = "There are no payments available yet!";
+    String amount = "100.00";
+    String newChargeDescription = "New charge payment";
+    String terminalNotAcceptedAlert= "Your store is not configured to process any credit card";
+    String terminalSuccessMessage = "Processed successfully!";
+
+    // Verify Message
+    String verifyInfoMsg = "Each transaction can be verified only once.";
+    String verifyByStore = "Verified by the store";
 
 
 }

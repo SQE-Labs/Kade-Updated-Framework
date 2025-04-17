@@ -1,3 +1,0 @@
-2025-03-20 12:40:11,222 [info]: Clicking on newBillTxt
-2025-03-20 12:40:25,374 [info]: 200
-2025-03-20 12:40:47,097 [info]: Clicking on By.xpath: (//span[text()='NOT PAID'])[1]/../..

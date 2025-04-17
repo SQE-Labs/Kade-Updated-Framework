@@ -1,3 +1,4 @@
+
 package base;
 
 import java.awt.*;
@@ -11,6 +12,7 @@ import java.util.Random;
 import java.util.Set;
 
 import logger.Log;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -18,6 +20,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.support.ui.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -30,6 +35,7 @@ import pageObjects.PageObjectManager;
 import utils.ConfigFileReader;
 import utils.PropertyUtils;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 
 //import static pageObjects.PageObjectManager.pageObjectManager;
@@ -89,10 +95,13 @@ public class BaseTest {
         log.info("Setting up WebDriver for browser: {}, headless: {}", browser, headless);
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions chromeOptions = new ChromeOptions();
+
             if (headless) {
-                chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
+                chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080","--disable-notifications");
+
             }
             driver.set(new ChromeDriver(chromeOptions));
+
             log.info("ChromeDriver initialized.");
         } else if (browser.equalsIgnoreCase("firefox")) {
             driver.set(new FirefoxDriver());
@@ -178,7 +187,7 @@ public class BaseTest {
     public WebElement waitForElementToBeVisible(By locator, int timeout) {
         log.info("Waiting for element to be visible: {}", locator);
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeout));
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return wait.until(visibilityOfElementLocated(locator));
     }
 
     public static void WaitUntilElementVisible(By locator, int tries) {
@@ -187,7 +196,7 @@ public class BaseTest {
                 Wait<WebDriver> fluentWait1 = new FluentWait<WebDriver>(getDriver()).withTimeout(Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))))
                         .pollingEvery(Duration.ofMillis(Long.parseLong(PropertyUtils.getPropertyValue("wait"))))
                         .ignoring(TimeoutException.class);
-                fluentWait1.until(ExpectedConditions.visibilityOfElementLocated(locator));
+                fluentWait1.until(visibilityOfElementLocated(locator));
             }
         } catch (Exception e) {
         }
@@ -223,7 +232,7 @@ public class BaseTest {
      */
     public void click(By locator) {
         log.info("Clicking on element: {}", locator);
-       WebDriverWait wait = new WebDriverWait(getDriver(),Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))));
+        WebDriverWait wait = new WebDriverWait(getDriver(),Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))));
         waitForElementToBeClickable(locator, 10).click();
 
     }
@@ -250,7 +259,7 @@ public class BaseTest {
 
     public static void SendKeys(By element, String value) {
 
-         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))));
         wait.until(ExpectedConditions.presenceOfElementLocated(element));
         try {
             WebElement ele = getDriver().findElement(element);
@@ -264,7 +273,7 @@ public class BaseTest {
     /**
      * Retrieves the visible text of an element.
      *
-     * @param locator - The By locator for the element.
+     * @param locator - The By locator for the element.send
      * @return The text of the element.
      */
     public String getText(By locator) {
@@ -471,6 +480,11 @@ public class BaseTest {
         log.info("Navigating to URL: {}", url);
         getDriver().navigate().to(url);
     }
+    public String getPageTitle() {
+        Log.info("Get the Current Page Title");
+        return getDriver().getTitle();
+    }
+
 
     /**
      * Switches to a specific frame by its locator.
@@ -530,7 +544,7 @@ public class BaseTest {
      * @param locator The WebElement to interact with.
      * @param key The Keys value to simulate (e.g., Keys.ENTER, Keys.TAB).
      */
-    public void sendKeysToElement(WebElement element, Keys key) {
+    public void KeysToElement(WebElement element, Keys key) {
         element.sendKeys(key);
     }
 
@@ -544,6 +558,7 @@ public class BaseTest {
         WebElement dropdownElement = getDriver().findElement(locator);
         Select select = new Select(dropdownElement);
         select.selectByVisibleText(visibleText);
+
     }
 
     /**
@@ -605,6 +620,7 @@ public class BaseTest {
 
     /**
      * Wait for the loader to finish loading before interacting with the page.
+     *
      * @param loaderLocator The locator for the loader element (e.g., ID, class, or CSS selector).
      * @param timeout The maximum time to wait for the loader to disappear.
      */
@@ -631,7 +647,7 @@ public class BaseTest {
 
         // Wait for the loader to appear (if necessary)
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(loaderLocator));
+            wait.until(visibilityOfElementLocated(loaderLocator));
             System.out.println("Loader started loading.");
         } catch (Exception e) {
             System.err.println("Loader did not appear within the timeout.");
@@ -670,6 +686,32 @@ public class BaseTest {
 
 
     }
+    public static void LoginAsNewUser() {
+        log.info("Starting Login test - Entering username and password");
+
+        // Fetch the username and password from the configuration file
+        String username = configReader.getProperty("newuser");
+        String password = configReader.getProperty("newpass");
+
+        // Validate if username and password are present in the config file
+        if (username == null || password == null) {
+            log.error("Username or password is missing in the configuration file.");
+            throw new RuntimeException("Username or password is missing in the configuration file.");
+        }
+
+        // Log the username and password for debug purposes (considering security)
+        log.debug("Attempting to login with username: {}", username);
+
+        // Perform login action using the provided credentials
+        pageObjectManager.getLoginPage().signIn(username, password);
+
+        // Log the status of the action after clicking SignIn
+        log.debug("User has successfully logged in and landed on the dashboard");
+
+        // Verify the landing page is correct after login
+        pageObjectManager.getHomePage().landingPage();
+    }
+
 
     //login as customer method
     public static void LoginAsCustomer() {
@@ -745,12 +787,12 @@ public class BaseTest {
             String toolTipId = element.getAttribute("aria-describedby");
             if (toolTipId != null && !toolTipId.isEmpty()) {
                 By toolTipLocator = By.id(toolTipId);
-                WebElement tooltipElement = wait.until(ExpectedConditions.visibilityOfElementLocated(toolTipLocator));
+                WebElement tooltipElement = wait.until(visibilityOfElementLocated(toolTipLocator));
                 return tooltipElement.getText();
             }
 
             // Check for a common class or tag for tooltips (adjust this if needed)
-            WebElement tooltipElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".tooltip, [role='tooltip']")));
+            WebElement tooltipElement = wait.until(visibilityOfElementLocated(By.cssSelector(".tooltip, [role='tooltip']")));
             return tooltipElement.getText();
         } catch (TimeoutException e) {
             return "Tooltip not found or not visible";
@@ -866,7 +908,49 @@ public class BaseTest {
         }
     }
 
+    public void switchToWindow(String description) {
+        Log.info("Switch to window [" + description + "]");
+        String parentWindow = getDriver().getWindowHandle();
+        for (String windowHandle : getDriver().getWindowHandles())
+            if (!windowHandle.equals(parentWindow))
+                getDriver().switchTo().window(windowHandle);
+    }
+
+    public void selectStore(String store) {
+        click(By.xpath("//li[contains(text(),'" + store + "')]"));  // Select store
+    }
+    public void switchToDefaultWindow(){
+        getDriver().switchTo().defaultContent();
+    }
+    public boolean isDisplayed(By locator,int timeout) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeout));
+        log.info("Checking if element is displayed: {}", locator);
+        try {
+            wait.until(visibilityOfElementLocated(locator));
+            WebElement element = getDriver().findElement(locator);
+            boolean isDisplayed = element.isDisplayed();
+            log.info("Element displayed state: {}", isDisplayed);
+            return true;
+        } catch (NoSuchElementException e) {
+            log.warn("Element not found: {}", locator);
+            return false; // Treat missing elements as not displayed
+        }
+    }
+    public WebElement getWebElement(By locator ) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+        return wait.until(visibilityOfElementLocated(locator));
+    }
+    public String clickElementFromList(By locator, int index) {
+        List<WebElement> elements = getDriver().findElements(locator);
+        String name  =  elements.get(index).getText();
+        if (!elements.isEmpty() && index < elements.size()) {
+            elements.get(index).click();
+            log.info("Element is clicked at index: " +index);
+        } else {
+            log.warn("Element not found at index: " + index);
+        }
+        return name;
     }
 
 
-
+}

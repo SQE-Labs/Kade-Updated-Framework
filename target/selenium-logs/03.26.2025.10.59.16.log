@@ -1,3 +1,0 @@
-2025-03-26 10:59:16,373 [info]: Clicking on By.xpath: //button[text()='Add new terminal']
-2025-03-26 10:59:17,724 [info]: Clicking on By.xpath: //label[text()='Select your terminal']/../div[4]/label/i[2]
-2025-03-26 10:59:17,806 [info]: Clicking on By.xpath: //button[text()='Save']

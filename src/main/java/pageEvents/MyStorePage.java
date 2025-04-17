@@ -124,7 +124,8 @@ public class MyStorePage extends BaseTest {
     public By premiumTitle = By.xpath("//h4[text()='Premium']");
     public By premiumMonthlyBtn = By.cssSelector(".flex-fill label[for='rdo_p3_0']");
     public By premiumYearlyBtn = By.cssSelector(".flex-fill label[for='rdo_p3_1']");
-    public By premiumSignUpBtn = By.cssSelector("div#div_p3_0>a");
+    public By premiumMonthlySignUpBtn = By.cssSelector("div#div_p3_0>a");
+    public By premiumYearlySignUpBtn = By.cssSelector("div#div_p3_1>a");
     public By storeLogoCreation = By.cssSelector(".d-flex.align-items-center>img");
     public By configureLinkofStoreName = By.xpath("//tr[td[contains(text(),'\" + storename + \"')]]//a[text()='Configure']");
    public By fileInput2 = By.xpath("//input[@type='file' and @accept='image/*']");
@@ -256,14 +257,14 @@ public class MyStorePage extends BaseTest {
     }
 
     public void  getAcceptVenmoToggleButton() {
-       //hoverAndClick(acceptVenmoToggleBtn, acceptVenmoToggleBtn);
-//
-//        if(isElementDisplayed(acceptVenmoToggleBtn)){
-//            clickElementByJS(acceptVenmoToggleBtn);
-//        }
-//        else{
-//            hoverAndClick(enableToggle,enableToggle);
-//        }
+   //    hoverAndClick(acceptVenmoToggleBtn, acceptVenmoToggleBtn);
+
+        if(!isToggleEnabled(acceptVenmoToggleBtn)){
+            clickElementByJS(acceptVenmoToggleBtn);
+        }
+        else{
+            hoverAndClick(enableToggle,enableToggle);
+        }
 
         staticWait(6000);
         // Check if the toggle button is disabled
@@ -561,8 +562,16 @@ public class MyStorePage extends BaseTest {
     public void getPremiumYearlyBtn(){
     click(premiumYearlyBtn);
     }
-    public void getPremiumnSignUpBtn(){
-        click(premiumSignUpBtn);
+    public void getPremiumnMonthlySignUpBtn(){
+        click(premiumMonthlySignUpBtn);
     }
+    public void getBusinessYearlyPlan(){
+        click(yearlyBtn);
+    }
+
+    public void getPremiunmYearlySignUpbtn(){
+        click(premiumYearlySignUpBtn);
+    }
+
 
 }

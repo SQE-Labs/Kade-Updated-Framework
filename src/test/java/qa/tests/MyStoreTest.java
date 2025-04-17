@@ -117,6 +117,45 @@ public class MyStoreTest extends BaseTest {
 
     }
 
+    @Test(description = "SC04(b): Verify Store creation with Yearly Business Plan on 'Store Configuration' Page ")
+    public void verifyStoreCreationWithYearlyBusinessPlan() {
+        Login();
+        mystore.getStoreCreation();
+        mystore.getSubscriptionPlanTab();
+
+        //Verifying that 'Current Plan' appears under Essential Free Plan
+        String message = getText(mystore.currentPlanMSg);
+        softAssert.assertEquals(message, Constants.currentPlan);
+
+        // select on Business Yearly plan
+        mystore.getBusinessYearlyPlan();
+
+        //Click on 'Sign up' button
+        mystore.getPlansSignUpButton();
+
+        //Verifying that by-default Visa Payment method is enabled
+        String defaultPaymentMthd = getText(mystore.addedVisaMethod);
+        softAssert.assertEquals(defaultPaymentMthd, Constants.visavalue);
+
+//       Click on 'Change Pay Method' Link
+        mystore.getChangePayMethodLink();//Verifying that other payment methods are available
+        softAssert.assertTrue(isElementDisplayed(mystore.newCreditCardBtn), " New credit card button");
+        softAssert.assertTrue(isElementDisplayed(mystore.newBankAccountBtn), "new bank account");
+
+        // Click on 'Terms' Checkbox
+        mystore.getTermsCheckbox();
+
+        //  Click on 'Change Plan' Button
+        mystore.getChangePlanButton();
+
+        //Verifying that next bill date is generated
+        softAssert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
+        pageObjectManager.getSidePannel().getSignOut();
+        staticWait(3000);
+        pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
+
+    }
+
     @Test(description = "SC_05(A) Verifying the Configuration of already created Store using Settings Sub-Tabs")
     public void verifyingConfigurationsOfStoreUsingSettings() {
         String tipAmountPercent1 = requiredDigits(2);
@@ -298,59 +337,56 @@ public class MyStoreTest extends BaseTest {
         mystore.getCreditTerminalOption();
 
     }
-//    @Test(description SC06 (b) =" Verifying the Configuration of the Store using Payment Processing Sub-Tabs on 'Store Configuration' Page with Venmo & Zelle. ")
-//    public void verifyConfigurationOfStoreUsingPaymentProcessingSubTab(){
-//        Login();
-//        pageObjectManager.getSidePannel().getMangeBusinessTab();
-//        pageObjectManager.getSidePannel().getMyStoreTab();
-//
-//        // Click on 'Configure' Link
-//        mystore.getConfigureLink();
-//
-//    waitForElementToBeVisible(mystore.paymentProcessingSubTab,5);
-//
-//        // Click on 'Payment-Processing' Sub-Tab
-//        mystore.getPaymentProcessingSubTab();
-//        staticWait(3000);
-//        scrollToDown();
-//        staticWait(3000);
-//        mystore.getAcceptVenmoToggleButton();
-////        if(isElementDisabled(mystore.acceptVenmoToggleBtn)) {
-////            mystore.getAcceptVenmoToggleButton();
-////        }
-//        //Verifying Maximum length of 'VenmoID' field
-//        softAssert.assertEquals(getAttribute(mystore.venmoIDField,"maxlength"),"40");
-//
-//        // Enter ID in 'Venmo ID" field
-//        enterText(mystore.venmoIDField,requiredDigits(4));
-//
-//        //Verifying maximum length of 'Venmo Name' field
-//        softAssert.assertEquals(getAttribute(mystore.venmoNameField,"maxlength"),"40");
-//
-//        // Enter name in 'Venmo Name' Field
-//        enterText(mystore.venmoNameField,requiredString(8));
-//
-//        // Click on 'Save' Button
-//        mystore.getVenmoSaveButton();
-//
-//        if(isElementDisabled(mystore.acceptZelleHeader)) {
-//            mystore.getAcceptZelleToggleButton();
-//        }
-//        //Verifying maximum length of 'Zelle Phone' field
-//        softAssert.assertEquals(getAttribute(mystore.zellePhoneField,"maxlength"),"40");
-//
-//        //  Enter Phone Number in 'Zelle Phone' Field
-//        enterText(mystore.zellePhoneField,requiredDigits(4));
-//
-//        // Verifying maximum length of 'Zelle Name' field
-//        softAssert.assertEquals(getAttribute(mystore.zelleNameField,"maxlength"),"40");
-//
-//        // Enter Zelle Account Name
-//        enterText(mystore.zelleNameField,requiredString(8));
-//
-//        // Click on 'Save' Button
-//        mystore.getZelleSaveButton();
-//    }
+    @Test(description  ="SC_06 Verifying the Configuration of the Store using Payment Processing Sub-Tabs on 'Store Configuration' Page with Venmo & Zelle. ")
+    public void verifyConfigurationOfStoreUsingPaymentProcessingSubTab(){
+        Login();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getMyStoreTab();
+
+        // Click on 'Configure' Link
+        mystore.getConfigureLink();
+
+    waitForElementToBeVisible(mystore.paymentProcessingSubTab,5);
+
+        // Click on 'Payment-Processing' Sub-Tab
+        mystore.getPaymentProcessingSubTab();
+        staticWait(3000);
+        scrollToDown();
+        staticWait(3000);
+        mystore.getAcceptVenmoToggleButton();
+        //Verifying Maximum length of 'VenmoID' field
+        softAssert.assertEquals(getAttribute(mystore.venmoIDField,"maxlength"),"40");
+
+        // Enter ID in 'Venmo ID" field
+        enterText(mystore.venmoIDField,requiredDigits(4));
+
+        //Verifying maximum length of 'Venmo Name' field
+        softAssert.assertEquals(getAttribute(mystore.venmoNameField,"maxlength"),"40");
+
+        // Enter name in 'Venmo Name' Field
+        enterText(mystore.venmoNameField,requiredString(8));
+
+        // Click on 'Save' Button
+        mystore.getVenmoSaveButton();
+
+        if(isElementDisabled(mystore.acceptZelleHeader)) {
+            mystore.getAcceptZelleToggleButton();
+        }
+        //Verifying maximum length of 'Zelle Phone' field
+        softAssert.assertEquals(getAttribute(mystore.zellePhoneField,"maxlength"),"40");
+
+        //  Enter Phone Number in 'Zelle Phone' Field
+        enterText(mystore.zellePhoneField,requiredDigits(4));
+
+        // Verifying maximum length of 'Zelle Name' field
+        softAssert.assertEquals(getAttribute(mystore.zelleNameField,"maxlength"),"40");
+
+        // Enter Zelle Account Name
+        enterText(mystore.zelleNameField,requiredString(8));
+
+        // Click on 'Save' Button
+        mystore.getZelleSaveButton();
+    }
 
     @Test(description = "SC_07(A) Verifying the Configuration of the Store using 'Manage Users' Sub-Tab")
     public void sc07a_VerifyingConfigurationOfStoreUsingManageUsersSubTabs() {
@@ -368,8 +404,9 @@ public class MyStoreTest extends BaseTest {
         mystore.getAddUserBtn();
 
         //Verifying 'Add User' Pop-Up Title
-        softAssert.assertEquals(getText(mystore.addUserPopUpTitle),Constants.addUserTitle);
+        softAssert.assertEquals(getText(mystore.addUserPopUpTitle), Constants.addUserTitle);
     }
+
     @Test(description = "SC_08 Verify deactivating an activated Store")
     public void verifyDeactivatingAnActivatedStore() {
         Login();
@@ -380,7 +417,7 @@ public class MyStoreTest extends BaseTest {
         mystore.getConfigureLink();
         scrollToElement(mystore.activeSubTab);
 
-       waitForElementToBeInteractable(mystore.activeSubTab,6);
+        waitForElementToBeInteractable(mystore.activeSubTab, 6);
 
         //  Click on 'Active' Sub-tab
         mystore.getActivateSubtab();
@@ -389,18 +426,18 @@ public class MyStoreTest extends BaseTest {
         mystore.getDeactivateBtn();
 
         //Verifying that store gets Deactivated and success message appears
-        softAssert.assertEquals(getText(mystore.notActiveStoreLabel),Constants.deacticeStatus);
+        softAssert.assertEquals(getText(mystore.notActiveStoreLabel), Constants.deacticeStatus);
 
         // click on Activate button
         mystore.getActiveButton();
 
         // Verify the store gets ACTIVE AND INFORMATION MESSAGE APPEARS
-        softAssert.assertEquals(getText(mystore.activeStoreLabel),Constants.activeStoreStatus);
+        softAssert.assertEquals(getText(mystore.activeStoreLabel), Constants.activeStoreStatus);
         softAssert.assertAll();
     }
 
-    @Test(description = "SC 09-a Verify that store creation and purchasing the 'Premium' monthly plan subscription for the store, on 'Store Configuration' page.")
-    public void verifyingStoreCreationWithPurchasingMonthlyPremiumPlan(){
+    @Test(description = "SC 09 a Verify that store creation and purchasing the 'Premium' monthly plan subscription for the store, on 'Store Configuration' page.")
+    public void verifyingStoreCreationWithPurchasingMonthlyPremiumPlan() {
         Login();
         mystore.getStoreCreation();
         mystore.getSubscriptionPlanTab();
@@ -409,11 +446,11 @@ public class MyStoreTest extends BaseTest {
         softAssert.assertEquals(message, Constants.currentPlan);
 
         // Verifying the Premium title
-        softAssert.assertTrue(isElementDisplayed(mystore.premiumTitle),"Premium Title");
+        softAssert.assertTrue(isElementDisplayed(mystore.premiumTitle), "Premium Title");
 
         // byuing the Premium plan
         mystore.getPremiumMonthlyBtn();
-        mystore.getPremiumnSignUpBtn();
+        mystore.getPremiumnMonthlySignUpBtn();
 
         //Verifying that by-default Visa Payment method is enabled
         String defaultPaymentMthd = getText(mystore.addedVisaMethod);
@@ -434,14 +471,32 @@ public class MyStoreTest extends BaseTest {
 
         //Verifying that next bill date is generated
         softAssert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
+
+        // selecting premium yearly plan
+        mystore.getPremiumYearlyBtn();
+        mystore.getPremiunmYearlySignUpbtn();
+
+        // Click on 'Change Pay Method' Link
+        mystore.getChangePayMethodLink();
+
+        // Click on 'Terms' Checkbox
+        mystore.getTermsCheckbox();
+
+        //  Click on 'Change Plan' Button
+        mystore.getChangePlanButton();
+
         pageObjectManager.getSidePannel().getSignOut();
         staticWait(3000);
         pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
-
-
     }
 
+
+//    @Test(description = "Delete unwanted store")
+//    public void deleteUnwantedStore(){
+//        pageObjectManager.getAdminPage().ToDeleteStores();
+//    }
 }
+
 
 
 

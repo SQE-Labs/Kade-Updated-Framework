@@ -54,8 +54,6 @@ public class SignUpTest extends BaseTest {
 
         // Clicking on sign in Link
         signUp.getSignInLink();
-
-
     }
 
     @Test(description = "CA_TC 1(b): Verify the validation messages while creating new account with 'Personal Account' option on 'Login' page.")
