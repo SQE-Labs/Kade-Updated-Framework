@@ -184,4 +184,5 @@ public class PageObjectManager {
         log.debug("Gift Card page");
         return giftCardspage;
     }
+
 }

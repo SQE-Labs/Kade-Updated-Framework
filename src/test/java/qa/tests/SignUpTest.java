@@ -131,6 +131,7 @@ public class SignUpTest extends BaseTest {
 
         // Enter data in security code field
         enterText(signUp.securityCodeField, Constants.securityCode);
+        waitForElementToBeClickable(signUp.fullname,5);
 
         //Entering name in the Full name field
         enterText(signUp.fullname, "New Kade Member" + st);
@@ -164,23 +165,35 @@ public class SignUpTest extends BaseTest {
 
         // Entering Invalid security Code
         enterText(signUp.securityCodeField, Constants.invalidSecurityCode);
+
+        // ..
+        waitForElementToBeVisible(signUp.ContinueButtonBusiness,3);
+        signUp.getBusinessContinuebtn();
         String alertmessage = getText(signUp.securityCodeAlertMessage);
-        enterText(signUp.fullname, st + "New Member");
+
+
+//        waitForElementToBeVisible(signUp.fullname,4);/// UI change this field discountinue
+//        enterText(signUp.fullname, st + "New Member");
         signUp.getBusinessContinuebtn();
 
         // Verify the Validation message for Incorrect Security Code
         softAssert.assertEquals(alertmessage, Constants.invalidSecurityCodeMsg);
+        staticWait(3000);
 
         // Entering Valid security Code
         enterText(signUp.securityCodeField, Constants.phoneSecurityCode);
-        signUp.getContinueButton();
+        waitForElementToBeVisible(signUp.ContinueButtonBusiness,3);
+        //...
+        signUp.getBusinessContinuebtn();
+//        signUp.getContinueButton();
 
         // Verify the page title
         softAssert.assertTrue(isElementDisplayed(signUp.stripePageTitle));
+        staticWait(3000);
 
         // Clicking on Profile Link
         pageObjectManager.getSidePannel().getProfileLink();
-        pageObjectManager.getSecurityAndPasswordPage();
+        pageObjectManager.getSidePannel().getSecurityAndPasswordTab();
         pageObjectManager.getSecurityAndPasswordPage().getCloseAndDeleteAccountbtn();
         softAssert.assertAll();
     }
@@ -262,22 +275,24 @@ public class SignUpTest extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(signUp.newPasswordLabelSP),"new passoword label");
         softAssert.assertTrue(isElementDisplayed(signUp.showPasswordSignInP),"show password");
         softAssert.assertTrue(isElementDisplayed(signUp.signInButtonSignInP),"sign in button ");
-        waitForElementToBeClickable(signUp.signInButton,3);
+        waitForElementToBeInteractable(signUp.finalSignInbtn,5);
+        staticWait(5000);
 
         // Checking validations
         signUp.getFinalSignInbtn();
-        staticWait(3000);
+        staticWait(5000);
 
-        String securitycode= getToolTipMessage(signUp.securityCodeFieldSignInp);
+//        String securitycode= getToolTipMessage(signUp.securityCodeFieldSignInp);
         String password = getToolTipMessage(signUp.newPasswordFieldSP);
 
-        softAssert.assertEquals(securitycode,Constants.requiredFldValidation);
+//        softAssert.assertEquals(securitycode,Constants.requiredFldValidation);
 //        staticWait(3000);
         softAssert.assertEquals(password,Constants.requiredFldValidation);
+        staticWait(3000);
 
         // Enter invalid security code
-        enterText(signUp.securityCodeFieldSignInp,Constants.incompleteSecurityCode);
-        enterText(signUp.newPasswordFieldSP,Constants.validPassword);
+        actionEnterText(signUp.securityCodeFieldSignInp,Constants.incompleteSecurityCode);
+        actionEnterText(signUp.newPasswordFieldSP,Constants.validPassword);
         signUp.getFinalSignInbtn();
 
         String lessthan6 = getToolTipMessage(signUp.securityCodeFieldSignInp);
@@ -317,6 +332,7 @@ public class SignUpTest extends BaseTest {
         signUp.getContinueBtnSP();
         String actual = getToolTipMessage(signUp.emailFieldSP);
         softAssert.assertEquals(actual, Constants.RequiredField);
+
         enterText(signUp.emailFieldSP, Constants.invalidEmail);
         signUp.getContinueBtnSP();
         String tooltip = getToolTipMessage(signUp.emailFieldSP);

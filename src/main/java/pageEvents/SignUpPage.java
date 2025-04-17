@@ -25,7 +25,7 @@ public class SignUpPage extends BaseTest {
   public  By crossIcon = By.cssSelector(".btn-close");
   public  By verifyAccountTitle = By.xpath("//h1[text()='Verify your account']");
   public  By securityCodeLabel = By.xpath("//label[text()='Security Code']");
-  public  By securityCodeField = By.cssSelector("[name=\"otp\"]");
+  public  By securityCodeField = By.xpath("//div[@class='form-group mb-2']/label/..//div/input");
   public  By continueButton = By.xpath("//button[text()='Continue']");
   public  By setYourPasswordTitle = By.xpath("//h1[text()='Set your password']");
   public  By submitButton = By.xpath("//button[text()='Submit']");
@@ -67,7 +67,7 @@ public class SignUpPage extends BaseTest {
    public By informationMessageSP = By.cssSelector(".fw-bold.fst-italic");
    public By securityCodeLabelsignInP = By.cssSelector("label[class='mb-2']");
    public By newPasswordLabelSP= By.xpath("//label[text()='New password']");
-   public By securityCodeFieldSignInp = By.xpath("(//input[@name='otp'])[2]");
+   public By securityCodeFieldSignInp = By.xpath("(//div[@class='py-3 position-relative']//label[text()='Security Code:']//following-sibling::input");
    public By newPasswordFieldSP = By.xpath("//input[@name='password']");
    public By emailFieldSP = By.xpath("//input[@name='userName' and @type='email']");
    public By finalSignInbtn = By.cssSelector(".d-flex.justify-content-between.px-2 >button");
