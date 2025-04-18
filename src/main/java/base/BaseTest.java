@@ -11,6 +11,7 @@ import java.util.Random;
 import java.util.Set;
 
 import logger.Log;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -18,6 +19,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.support.ui.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -102,7 +106,7 @@ public class BaseTest {
             ChromeOptions chromeOptions = new ChromeOptions();
             if (headless) {
                 chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
-            }
+             }
             driver.set(new ChromeDriver(chromeOptions));
             log.info("ChromeDriver initialized.");
         }
@@ -281,8 +285,12 @@ public class BaseTest {
         log.info("Scrolling to element: {}", locator);
         WebElement element = getDriver().findElement(locator);
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+        staticWait(2000);
     }
-
+    public void scrollToWebElement(WebElement locator) {
+        log.info("Scrolling to element: {}", locator);
+         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", locator);
+    }
     /**
      * Hovers over an element using Actions.
      *
@@ -471,6 +479,11 @@ public class BaseTest {
         log.info("Navigating to URL: {}", url);
         getDriver().navigate().to(url);
     }
+    public String getPageTitle() {
+        Log.info("Get the Current Page Title");
+        return getDriver().getTitle();
+    }
+
 
     /**
      * Switches to a specific frame by its locator.
@@ -544,6 +557,7 @@ public class BaseTest {
         WebElement dropdownElement = getDriver().findElement(locator);
         Select select = new Select(dropdownElement);
         select.selectByVisibleText(visibleText);
+
     }
 
     /**
@@ -866,7 +880,62 @@ public class BaseTest {
         }
     }
 
+    public void switchToWindow(String description) {
+        Log.info("Switch to window [" + description + "]");
+        String parentWindow = getDriver().getWindowHandle();
+        for (String windowHandle : getDriver().getWindowHandles())
+            if (!windowHandle.equals(parentWindow))
+                getDriver().switchTo().window(windowHandle);
     }
+
+    public void selectStore(String store) {
+        click(By.xpath("//li[contains(text(),'" + store + "')]"));  // Select store
+    }
+    public void switchToDefaultWindow(){
+        getDriver().switchTo().defaultContent();
+    }
+    public static String deleteFile(String fileName) {
+        String home = System.getProperty("user.home");
+        String file_with_location;
+
+        if (System.getProperty("os.name").contains("Windows")) {
+            file_with_location = home + "\\Downloads\\" + fileName;
+        } else {
+            file_with_location = home + "/Downloads/" + fileName;
+        }
+
+        File file = new File(file_with_location);
+
+        if (file.exists()) {
+            boolean deleted = file.delete();
+            if (deleted) {
+                return "File deleted successfully";
+            } else {
+                return "Failed to delete file";
+            }
+        } else {
+            return "File not found";
+        }
+    }
+    public WebElement getElement(By locator) {
+        try {
+            return getDriver().findElement(locator);
+        } catch (Exception e) {
+            System.out.println("Element not found: " + locator.toString());
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<WebElement> getListOfWebElement(By locator) {
+        return getDriver().findElements(locator);
+    }
+
+
+
+}
+
+
 
 
 

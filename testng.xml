@@ -10,7 +10,7 @@
         <parameter name="browser" value="chrome" />
         <parameter name="headless" value="false" />
         <classes>
-            <class name="qa.tests.DashboardTest" />
+            <class name="qa.tests.BillTest" />
         </classes>
     </test>
 </suite>

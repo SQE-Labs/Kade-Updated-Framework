@@ -1,5 +1,0 @@
-2025-03-12 12:12:47,141 [info]: Clicking on newBillTxt
-2025-03-12 12:12:52,531 [info]: Extracted Number: 3000
-2025-03-12 12:13:13,689 [info]: $300
-2025-03-12 12:13:13,691 [info]: Extracted Number: 300
-2025-03-12 12:13:13,693 [info]: Unexpected behavior! Entered: 3001, But field contains: 300

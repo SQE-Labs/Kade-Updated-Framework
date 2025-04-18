@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 public class PageObjectManager {
     private static PageObjectManager pageObjectManager;
+    public BillPage bill;
     private LoginPageEvents loginPage;
     private HomePageEvents homePage;
     private DashboardPage dashboardPage;
@@ -19,6 +20,8 @@ public class PageObjectManager {
     private ReportsPage reportsPage;
     private RewardPointsPage rewardPointsPage;
     private AdminPage adminPage;
+    private TransactionsPage transactionsPage;
+    private GiftCardPage giftCardspage;
 
     // Logger instance for logging messages
     private static final Logger log = LoggerFactory.getLogger(PageObjectManager.class);
@@ -72,8 +75,14 @@ public class PageObjectManager {
         rewardPointsPage = new RewardPointsPage();
         log.debug("Reward Ponts Page instance created");
 
-        adminPage= new AdminPage();
+        adminPage = new AdminPage();
         log.debug("Admin page instance created ");
+
+        transactionsPage = new TransactionsPage();
+        log.debug("Transactions page");
+
+        giftCardspage= new GiftCardPage();
+        log.debug("Gift Card page");
     }
 
     /**
@@ -165,5 +174,14 @@ public class PageObjectManager {
     public RewardPointsPage getRewardPointsPage() {
         log.debug("Reward Points page instance");
         return rewardPointsPage;
+    }
+    public TransactionsPage getTransactionsPage(){
+        log.debug("Transactions page");
+        return transactionsPage;
+    }
+
+    public GiftCardPage getGiftCardspage(){
+        log.debug("Gift Card page");
+        return giftCardspage;
     }
 }
