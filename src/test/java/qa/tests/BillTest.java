@@ -16,6 +16,7 @@ public class BillTest extends BaseTest {
 
     @Test(priority = 0, description = "BC_01 and BC_08 Verify that creating a bill by adding amount value only, without Selecting a Customer and Verify that unpaid bill gets deleted")
     public void verifyCreateBillWithoutSelectingCustomer() {
+
         bill.createBillWithoutCustomer();
         bill.deleteBill();
     }

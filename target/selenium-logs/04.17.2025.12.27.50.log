@@ -1,0 +1,15 @@
+2025-04-17 12:27:50,942 [info]: Clicking on newBillTxt
+2025-04-17 12:28:18,364 [info]: Clicking on By.xpath: //a[normalize-space()='Sign out']
+2025-04-17 12:28:26,194 [info]: Clicking on By.xpath: //button[contains(text(), 'selected bill')]
+2025-04-17 12:28:55,787 [info]: Clicking on By.xpath: //a[normalize-space()='My Stuff']
+2025-04-17 12:28:55,832 [info]: Clicking on By.xpath: //div[normalize-space()='Payment History']
+2025-04-17 12:29:18,821 [info]: Clicking on By.xpath: //a[normalize-space()='My Stuff']
+2025-04-17 12:29:18,853 [info]: Clicking on By.xpath: //div[normalize-space()='Payment History']
+2025-04-17 12:29:33,490 [info]: Clicking on newBillTxt
+2025-04-17 12:30:00,339 [info]: Clicking on By.xpath: //a[normalize-space()='Sign out']
+2025-04-17 12:30:08,317 [info]: Clicking on By.xpath: //Button[@name='applyAmount' and @value='-1']
+2025-04-17 12:30:27,960 [info]: Clicking on By.xpath: //a[normalize-space()='Close']
+2025-04-17 12:31:14,095 [info]: Clicking on By.xpath: //a[normalize-space()='My Stuff']
+2025-04-17 12:31:14,120 [info]: Clicking on By.xpath: //div[normalize-space()='Payment History']
+2025-04-17 12:31:28,629 [info]: Clicking on By.xpath: //a[normalize-space()='My Stuff']
+2025-04-17 12:31:28,658 [info]: Clicking on By.xpath: //div[normalize-space()='Payment History']

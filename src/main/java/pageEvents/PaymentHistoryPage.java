@@ -1,9 +1,9 @@
 package pageEvents;
 
 import base.BaseTest;
+import logger.Log;
 import org.openqa.selenium.By;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
@@ -51,9 +51,12 @@ public class PaymentHistoryPage extends BaseTest {
     public By CurrentBalanceBtn =By.xpath("//button[contains(text(), 'selected bill')]");
     public By MakePaymentsBtn = By.xpath("//button[normalize-space()='Make payments']");
     public By paymentTileRecord = By.xpath("//div[@class='d-flex px-2 justify-content-between']");
+    By payCurrentBalance=By.xpath("//button[text()='Pay the current balance']/..");
+    By CustomPayBalance =By.xpath("//input[@name='applyAmount']");
+    By payNowBtns = By.xpath("//button[normalize-space()='Pay now']");
 
 
-    public void getmystuffandpaymenthistory() {
+    public void getMyStuffandPaymentHistory() {
         clickElementByJS(Mystuff);
         clickElementByJS(paymenthistory);
     }
@@ -71,7 +74,7 @@ public class PaymentHistoryPage extends BaseTest {
     public void VerifyPaymentHistoryPage() {
         Login();
         scrollToElement(Mystuff);
-        getmystuffandpaymenthistory();
+        getMyStuffandPaymentHistory();
         staticWait(2000);
         Assert.assertEquals(getpagetitle(), Constants.PaymentHistoryTitle);
         log.info("User is successfully navigated to payment history page");
@@ -81,7 +84,7 @@ public class PaymentHistoryPage extends BaseTest {
     public void VerifyPageNoPayments() {
         LoginAsNewUser();
         scrollToElement(Mystuff);
-        getmystuffandpaymenthistory();
+        getMyStuffandPaymentHistory();
         staticWait(2000);
         Assert.assertEquals(getNopaymentMessage(), Constants.NoPaymentsMessage);
         log.info("User can see a message on payment history page");
@@ -125,47 +128,48 @@ public class PaymentHistoryPage extends BaseTest {
         getFirstNotification();
         staticWait(2000);
         getPaynowBtn();
-      //  getPayBalance();
+        if (isElementDisplayed(payCurrentBalance)) {
+            getPayBalance();
+        } else {
+            Log.info("Nothing to be selected");
+        }
+
         getTransId();
         pays.swipeToPay();
-        waitForElementToBeClickable(CloseBtn,3);
+        waitForElementToBeClickable(CloseBtn, 3);
         getCloseBtn();
         scrollToElement(Mystuff);
         getPaymentId();
         int count = getCountOfWebElements(paymentTileRecord);
         System.out.println("Count of the transaction " + count);
         List<WebElement> allBills = new ArrayList<>();
-        JavascriptExecutor js = (JavascriptExecutor) getDriver() ;
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
 
-     int previousCount = 0;
+        int previousCount = 0;
 
-       while (true) {
-        // Scroll to bottom
-        js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        while (true) {
+            // Scroll to bottom
+            js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
-        // Wait for the new elements to load (you can customize this with ExpectedConditions)
-        staticWait(2000); // Can be replaced with WebDriverWait for stability
+            // Wait for the new elements to load (you can customize this with ExpectedConditions)
+            staticWait(2000); // Can be replaced with WebDriverWait for stability
 
-        // Re-fetch the list after scroll
-        List<WebElement> currentBills = getDriver() .findElements(paymentTileRecord);
+            // Re-fetch the list after scroll
+            List<WebElement> currentBills = getDriver().findElements(paymentTileRecord);
 
-        int currentCount = currentBills.size();
-        System.out.println("Currently loaded bills: " + currentCount);
+            int currentCount = currentBills.size();
+            System.out.println("Currently loaded bills: " + currentCount);
 
-        if (currentCount == previousCount) {
-            // No new bills loaded
-            break;
+            if (currentCount == previousCount) {
+                // No new bills loaded
+                break;
+            }
+
+            previousCount = currentCount;
+            allBills = currentBills;
         }
-
-        previousCount = currentCount;
-        allBills = currentBills;
     }
-      //  Assert.assertEquals(getTransId(),getPaymentId());
-      //  List<WebElement> elements = getDriver().findElements(paymentTileRecord);
-      //  int count = elements.size();
-      //  System.out.println("Number of payment records found: " + count);
 
-    }
     public void getTransactionPage(){
         waitForElementInVisible(PaymentTile,3);
         scrollToElement(PaymentTile);
@@ -179,7 +183,7 @@ public class PaymentHistoryPage extends BaseTest {
     public void VerifytheDetails() {
         LoginAsCustomer();
         scrollToElement(Mystuff);
-        getmystuffandpaymenthistory();
+        getMyStuffandPaymentHistory();
         staticWait(2000);
         softAssert.assertTrue(isElementDisplayed(paymentId));
         softAssert.assertTrue(isElementDisplayed(StoreName));
@@ -194,7 +198,7 @@ public class PaymentHistoryPage extends BaseTest {
 
     public void VerifyNavigationToBillpage() {
         LoginAsCustomer();
-        getmystuffandpaymenthistory();
+        getMyStuffandPaymentHistory();
         staticWait(5000);
         String PaymentID = getText(paymentId);
         getTransactionPage();
@@ -213,26 +217,47 @@ public class PaymentHistoryPage extends BaseTest {
         getFirstNotification();
         staticWait(2000);
         getPaynowBtn();
-        clickElementByJS(CurrentBalanceBtn);
-        scrollToElement(UpdateAmount);
-        waitForElementToBeClickable(UpdateAmount,3);
-        getUpdateAmount();
-        staticWait(5000);
-        clickElementByJS(AmountText);
-        staticWait(2000);
-        actionEnterText(AmountText,"200");
-        staticWait(5000);
-        clickElementByJS(UpdateBtn);
-        pays.swipeToPay();
-        staticWait(3000);
-        getDriver().navigate().back();
-        scrollToElement(Mystuff);
-        getmystuffandpaymenthistory();
-        staticWait(2000);
-        getTransactionPage();
-        staticWait(3000);
-        clickElementByJS(MakePaymentsBtn);
-        pays.swipeToPay();
+        if(isElementDisplayed(payCurrentBalance)){
+            actionEnterText(CurrentBalanceBtn,"200");
+          //  clickElementByJS(payNowBtns);
+
+           // pays.swipeToPay();
+            //getDriver().navigate().back();
+            scrollToElement(UpdateAmount);
+            waitForElementToBeClickable(UpdateAmount,3);
+            getUpdateAmount();
+            staticWait(5000);
+            clickElementByJS(AmountText);
+            staticWait(2000);
+            actionEnterText(AmountText,"200");
+            staticWait(5000);
+            clickElementByJS(UpdateBtn);
+            pays.swipeToPay();
+            staticWait(3000);
+            getDriver().navigate().back();
+        }else{
+            Log.info("Nothing to be selected");
+            scrollToElement(UpdateAmount);
+            waitForElementToBeClickable(UpdateAmount,3);
+            getUpdateAmount();
+            staticWait(5000);
+            clickElementByJS(AmountText);
+            staticWait(2000);
+            actionEnterText(AmountText,"200");
+            staticWait(5000);
+            clickElementByJS(UpdateBtn);
+            pays.swipeToPay();
+            staticWait(3000);
+            getDriver().navigate().to("https://sibtestenv.azurewebsites.net/Users/transactions");
+        }
+
+            scrollToElement(Mystuff);
+            getMyStuffandPaymentHistory();
+            staticWait(2000);
+            getTransactionPage();
+            staticWait(3000);
+            clickElementByJS(MakePaymentsBtn);
+            pays.swipeToPay();
 
     }
 
