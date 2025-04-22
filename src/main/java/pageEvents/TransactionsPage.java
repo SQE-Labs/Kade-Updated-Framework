@@ -22,7 +22,7 @@ public class TransactionsPage extends BaseTest {
     public By storesCombobox = By.xpath("//span[@role='combobox']");
     public By continueBtn = By.xpath("//button[@type='submit']");
     public By uniqueTransactionId = By.xpath("//span[@class='badge position-relative bg-light text-dark p-1 px-2 text-truncate flex-shrink-0']");
-    public By transactionID = By.xpath("//div[contains(@class,'bg-white border rounded rounded-2 g')]");
+    public By transactionID = By.xpath("//div[contains(@class,'bg-white border')]");
     public By store = By.xpath("//span[@class='fs-pn15 text-truncate']");
     public By payment = By.cssSelector(".fs-pn25.ms-2");
     public By customerName = By.cssSelector(".flex-column.overflow-hidden>a");
@@ -66,7 +66,7 @@ public class TransactionsPage extends BaseTest {
     public By failedPayments = By.xpath("//option[@value='failed']");
     public By unverifiedPayments = By.xpath("(//select[@name='paymentStatus']/option)[4]");
     public By pendingPaymentIcon = By.xpath("(//i[contains(@class,'fas fa-hourglass-half text-warning mx-1')])[2]");
-    public By excalamatrySign = By.xpath("//i[contains(@class,'fas fa-exclamation-circle text-danger mx-1')]");
+    public By excalamatrySign = By.xpath("(//div[@class='d-flex align-items-center']//i[@class='fas fa-exclamation-circle text-danger mx-1'])[1]");
     public By quotionmarkSign = By.xpath("//i[@class='fas fa-question-square text-info fs-5 me-2']");
     public By qrCodeSign = By.xpath("(//i[contains(@class,'fa fa-qrcode mx-1')])[2]");
     public By paymentLinkField = By.xpath("//select[@name='billTemplate']");
@@ -84,7 +84,6 @@ public class TransactionsPage extends BaseTest {
     public By legend = By.cssSelector(".text-end.p-2>button");
     By legendLabels = By.cssSelector("#_PR >div >div");
     By manualServiceFeeValue = By.xpath("//div[@class='text-warning']//span[2]");
-
 
 
     // New charge popup locators
@@ -149,10 +148,11 @@ public class TransactionsPage extends BaseTest {
     }
 
     public void getManualChargeTab() {
-        click(manualChargeTab);
+        clickElementByJS(manualChargeTab);
     }
 
     public void switchToCreditCardFrame() {
+        staticWait(6000);
         switchToFrame(creditCardInfoFrame);
     }
 
@@ -211,32 +211,38 @@ public class TransactionsPage extends BaseTest {
     public void getDownloadBtn() {
         click(downloadButton);
     }
-    public void getDateRangeField(){
+
+    public void getDateRangeField() {
         click(dateRangeField);
     }
-    public void getPaymentStatusDropdown(){
+
+    public void getPaymentStatusDropdown() {
         click(paaymentStatusDropdown);
     }
-    public void getUnverifiedPayments(){
+
+    public void getUnverifiedPayments() {
         click(unverifiedPayments);
     }
-    public void getClearPaymentField(){
+
+    public void getClearPaymentField() {
         click(clearPaymentField);
     }
 
-    public void getPaymentLinkField(){
+    public void getPaymentLinkField() {
         click(paymentLinkField);
     }
-    public void getQrCodeSeletct(){
+
+    public void getQrCodeSeletct() {
         click(qrCodeSeletct);
     }
-    public void getApplyButtonOnPopup(){
+
+    public void getApplyButtonOnPopup() {
         click(applyButton);
     }
-    public void getCrossIconOfCurrentPaidBill(){
+
+    public void getCrossIconOfCurrentPaidBill() {
         click(crossIconOfCurrentPaid);
     }
-
 
 
 //    Select select = new Select((WebElement)dropdown);
@@ -326,6 +332,7 @@ public class TransactionsPage extends BaseTest {
 
     // TRS 5 a
     public void getManualCharge() {
+        Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getTransactionTab();
         getStoresDropdown();
@@ -334,15 +341,16 @@ public class TransactionsPage extends BaseTest {
 
         // clicking on new charge button
         getNewChargeBtn();
-        waitForElementToBeClickable(newChargeAmountField, 3);
+        waitForElementToBeClickable(newChargeAmountField, 5);
         actionEnterText(newChargeAmountField, Constants.amount);
         actionEnterText(descriptionField, Constants.description);
         getNewChargeConfirmBtn();
         // Making new charge payment manually with Credit Card
 
-        staticWait(6000);
+        waitForElementToBeClickable(manualChargeTab,5);
         getManualChargeTab();
-        staticWait(5000);
+
+//        staticWait(6000);
         switchToCreditCardFrame();
         payments.getPayThroughCreditCard();
     }
@@ -406,14 +414,14 @@ public class TransactionsPage extends BaseTest {
         // Waiting for Automatic Terminal Payment
         softAssert.assertTrue(isElementDisplayed(terminal));
         String terminalValue = getText(manualServiceFeeValue);
-        softAssert.assertEquals(terminalValue,"$3.39");
+        softAssert.assertEquals(terminalValue, "$3.39");
         staticWait(3000);
         getTerminalCancelButton();
 
         // Paying through credit card after canceling terminal payment
         getManualChargeTab();
         String manualValue = getText(manualServiceFeeValue);
-        softAssert.assertEquals(terminalValue,"$3.86");
+        softAssert.assertEquals(terminalValue, "$3.86");
         staticWait(3000);
         staticWait(6000);
         switchToCreditCardFrame();
@@ -437,7 +445,7 @@ public class TransactionsPage extends BaseTest {
         getCurrentPaidBill();
 
         // Verifying the elements on Transaction Popup
-       // softAssert.assertTrue(isElementDisplayed(transactionID));
+        // softAssert.assertTrue(isElementDisplayed(transactionID));
         softAssert.assertTrue(isElementDisplayed(verifyButton));
         softAssert.assertTrue(isElementDisplayed(payment));
         softAssert.assertTrue(isElementDisplayed(time));
@@ -452,10 +460,14 @@ public class TransactionsPage extends BaseTest {
 
     // TRS 7 a
     public void getFullRefund() {
+
         // Making payment
         bills.createBillWithCustomer("636045278965", "saybo@yopmail.com");
         payments.billPaymentByThroughDebitCard("4111111111111111", "0930", "794", "Australia");
         payments.swipeCard();
+        payments.billPayment();
+
+        waitForElementToBeVisible(pageObjectManager.getSidePannel().signOutBtn,5);
 
 
         pageObjectManager.getSidePannel().getSignOut();
@@ -538,6 +550,7 @@ public class TransactionsPage extends BaseTest {
         waitForElementToBeClickable(refundAmountField, 3);
         actionEnterText(refundAmountField, refundAmmount);
         staticWait(3000);
+        scrollToElement(processRefundButton);
         getProcessRefundBtn();
     }
 
@@ -636,6 +649,7 @@ public class TransactionsPage extends BaseTest {
 
         // Clicking on Current Paid bill
         getCurrentPaidBill();
+        staticWait(4000);
 
         // verify the Pending processing Icon
         Assert.assertTrue(isElementDisplayed(pendingPaymentIcon), "pending icon");
@@ -645,6 +659,7 @@ public class TransactionsPage extends BaseTest {
     // TRS 10
     public void verifyTheFailedIcon() {
         bills.createBillWithCustomer("636045278965", "saybo@yopmail.com");
+
         payments.paymentThrouhVenmoAccount();
         pageObjectManager.getSidePannel().getSignOut();
         Login();
@@ -667,9 +682,10 @@ public class TransactionsPage extends BaseTest {
 
         // click on fail button
         getFailedBtn();
+        waitForElementToBeVisible(excalamatrySign,3);
 
         // verify that failed icon appear
-        Assert.assertTrue(isElementDisplayed(excalamatrySign));
+        Assert.assertTrue(isElementDisplayed(excalamatrySign),"Excalamatry Sign");
     }
 
     // TRS 09
@@ -691,13 +707,13 @@ public class TransactionsPage extends BaseTest {
         // click on apply button
         getApplyBtn();
         staticWait(5000);
-       // waitForPageLoad();
+        // waitForPageLoad();
 
         int count = getCountOfWebElements(transactionID);
         System.out.println("Count of the transaction " + count);
 
         List<WebElement> allBills = new ArrayList<>();
-        JavascriptExecutor js = (JavascriptExecutor) getDriver() ;
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
 
         int previousCount = 0;
 
@@ -709,7 +725,7 @@ public class TransactionsPage extends BaseTest {
             staticWait(2000); // Can be replaced with WebDriverWait for stability
 
             // Re-fetch the list after scroll
-            List<WebElement> currentBills = getDriver() .findElements(By.xpath("//div[contains(@class,'bg-white border rounded rounded-2 g')]")); // Replace .bill-item with your actual CSS class or selector
+            List<WebElement> currentBills = getDriver().findElements(By.xpath("//div[contains(@class,'bg-white border rounded rounded-2 g')]"));
 
             int currentCount = currentBills.size();
             System.out.println("Currently loaded bills: " + currentCount);
@@ -732,7 +748,7 @@ public class TransactionsPage extends BaseTest {
         staticWait(5000);
 
 
-        }
+    }
 
     public void FilterGetsDownloadTransactions() {
         String ammountFrom = "10.00";
@@ -748,37 +764,37 @@ public class TransactionsPage extends BaseTest {
         // click on filter icon
         getFilterIcon();
         staticWait(3000);
-//
-//        // verify filter title
-//        softAssert.assertTrue(isElementDisplayed(filterTiltle), "Filter title");
-//
-//
-//        String fileStatus = ActionEngine.isFileDownloaded("Transactions.xlsx");
-//        System.out.println("fileStatus :" + fileStatus);
-//        staticWait(3000);
-//        if (fileStatus.equalsIgnoreCase("File Present")) {
-//            String deletStatus = ActionEngine.deleteFile("Transactions.xlsx");
-//            System.out.println("deleteStatus :" + deletStatus);
-//
-//            staticWait(3000);
-//
-//            // Clicking on download button
-//            getFilterIcon();
-//            staticWait(3000);
-//
-//            // Clicking on Download button
-//            getDownloadBtn();
-//
-//            staticWait(5000);
-//            String fileDownloadStatus = ActionEngine.isFileDownloaded("Transactions.xlsx");
-//            System.out.println("fileDownloadStatus: " + fileDownloadStatus);
 
-//            softAssert.assertEquals(ActionEngine.isFileDownloaded("Transactions.xlsx"), "File Present");
+        // verify filter title
+        softAssert.assertTrue(isElementDisplayed(filterTiltle), "Filter title");
 
-//            // click on filter icon
-//            getFilterIcon();
-//
-//            waitForElementToBeVisible(filterIcon, 5);
+
+        String fileStatus = ActionEngine.isFileDownloaded("Transactions.xlsx");
+        System.out.println("fileStatus :" + fileStatus);
+        staticWait(3000);
+        if (fileStatus.equalsIgnoreCase("File Present")) {
+            String deletStatus = ActionEngine.deleteFile("Transactions.xlsx");
+            System.out.println("deleteStatus :" + deletStatus);
+
+            staticWait(3000);
+
+            // Clicking on download button
+            getFilterIcon();
+            staticWait(3000);
+
+            // Clicking on Download button
+            getDownloadBtn();
+
+            staticWait(5000);
+            String fileDownloadStatus = ActionEngine.isFileDownloaded("Transactions.xlsx");
+            System.out.println("fileDownloadStatus: " + fileDownloadStatus);
+
+            softAssert.assertEquals(ActionEngine.isFileDownloaded("Transactions.xlsx"), "File Present");
+
+            // click on filter icon
+            getFilterIcon();
+
+            waitForElementToBeVisible(filterIcon, 5);
 
             getDateRangeField();
             staticWait(3000);
@@ -828,22 +844,23 @@ public class TransactionsPage extends BaseTest {
             getQrCodeSeletct();
             getApplyButtonOnPopup();
 
-            waitForElementToBeVisible(qrCodeSign,3);
-            softAssert.assertTrue(isElementDisplayed(qrCodeSign),"Qr Code Sign");
+            waitForElementToBeVisible(qrCodeSign, 3);
+            softAssert.assertTrue(isElementDisplayed(qrCodeSign), "Qr Code Sign");
 
-           getFilterIcon();
-           getPaymentStatusDropdown();
-           getClearPaymentField();
-           staticWait(5000);
+            getFilterIcon();
+            getPaymentStatusDropdown();
+            getClearPaymentField();
+            staticWait(5000);
 
-           actionEnterText(amountRangeFrom, ammountFrom);
-           waitForElementToBeVisible(amountRangeTo,5);
-           actionEnterText(amountRangeTo, ammountTo);
+            actionEnterText(amountRangeFrom, ammountFrom);
+            waitForElementToBeVisible(amountRangeTo, 5);
+            actionEnterText(amountRangeTo, ammountTo);
 
-           getApplyButtonOnPopup();
-           staticWait(5000);
-      }
+            getApplyButtonOnPopup();
+            staticWait(5000);
+        }
     }
+}
 
 
 

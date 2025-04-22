@@ -183,6 +183,7 @@ public class PaymentPage extends BaseTest {
     By selectCheckBox = By.xpath("(//span[text()='Confirm your payment by checking this box']/../i)[2]");
     By zelleSaveBtn = By.xpath("//button[text()='Submit']");
     By payCurrentBalance=By.xpath("//button[text()='Pay the current balance']/..");
+    By okbuttonOfAttentionPopup = By.xpath("//button[@class='btn btn-outline-primary']");
 
 
     //        public void PaymentsPage() {
@@ -1131,7 +1132,7 @@ public class PaymentPage extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(rateYourExpTxt));
         softAssert.assertTrue(isElementDisplayed(viewReciptTxt));
         staticWait(2000);
-   scrollToElement(viewReciptTxt);
+       scrollToElement(viewReciptTxt);
         clickOnViewReciptLink();
         softAssert.assertTrue(isElementDisplayed(transactionHeader));
         softAssert.assertTrue(isElementDisplayed(tarnsactionUniqueId));
@@ -1152,6 +1153,7 @@ public class PaymentPage extends BaseTest {
         }
         //  softAssert.assertTrue(isElementDisplayed(storeName));
         softAssert.assertTrue(isElementDisplayed(visaCardName));
+        staticWait(3000);
         clickOnchangeBtn();
         clickOncreditCards();
         switchToFrame();
@@ -1268,6 +1270,34 @@ public class PaymentPage extends BaseTest {
         clickOnCheckBox();
         zelleSaveBtn();
         billPayment();
+    }
+
+    public void getOkButtonOfAttentionPopup(){
+        click(okbuttonOfAttentionPopup);
+    }
+    public void billPaymentByThroughDebitCardWithRecurringBill(String cardNameTxt, String expiryDateTxt, String cvcTxt, String countryName) {
+        clickOnSignOut();
+        LoginAsCustomer();
+        clickOnBillIcon();
+        clickOnBill();
+        clickOnPayNowBtn();
+        if(isElementDisplayed(payCurrentBalance)){
+            hoverAndClick(payCurrentBalance,payCurrentBalance);
+        }else{
+            Log.info("Nothing to be selected");
+        }
+        // Clicking on Ok button of Attention popup
+        getOkButtonOfAttentionPopup();
+
+        staticWait(3000);
+        clickOnchangeBtn();
+        clickOncreditCards();
+        switchToFrame();
+        enterCardName(cardNameTxt, expiryDateTxt, cvcTxt, countryName);
+        switchToDefaultContent();
+        staticWait(10000);
+        clickOnSaveBtn();
+
     }
 
 

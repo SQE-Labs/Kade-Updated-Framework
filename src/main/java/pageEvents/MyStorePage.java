@@ -31,15 +31,15 @@ public class MyStorePage extends BaseTest {
   public By timeZoneField = By.xpath("//select[@name='timeZone']");
   public By timeZoneOption = By.xpath("//option[text()='(GMT-05:00) Eastern Time (US & Canada)']");
   public By taxRateTbx = By.xpath("//input[@name='taxRate']");
-  public By saveBtn = By.xpath("//button[text()='Save']");
-  public By saveVenmoPaymentBtn = By.xpath("//div[co//button[text()='Save']ntains(@data-load,'/_venmoGatewayApplication')] //button[text()='Save']");
+  public By saveBtn = By.xpath("//button[@class='-btn-save- btn btn-primary' and text()='Save']");
+  public By saveVenmoPaymentBtn = By.xpath("(//div[@class='card-footer']//button)[1]");
   public By stripeBtn = By.cssSelector(".img-fluid.h-100");
   public By connectStripePopUpTitle = By.xpath("//h5[text()='Connect to stripe']");
   public By testStripeBtn = By.partialLinkText("Create a test Stripe account");
   public By bankTransferToggleBtn = By.xpath("//span[text()='Accept bank transfer']");
   public By skipForNowBtn = By.xpath("//button[text()='Skip for now']");
   public By continueBtn = By.xpath("//button[text()='Continue']");
-  public By configureLink = By.xpath("(//h6[text()='Automation Flow 3']/../..//a)[1]");
+  public By configureLink = By.cssSelector("[href='/Stores/manageStore/2564']");
 
   public By configureLink2 = By.xpath("/html/body/div[4]/div/div/main/div/div[3]/div/div/div[4]/div[1]/a");
   public By modifyBtn = By.xpath("//button[text()='Modify']");
@@ -131,7 +131,7 @@ public class MyStorePage extends BaseTest {
    public By fileInput2 = By.xpath("//input[@type='file' and @accept='image/*']");
    public By configureATerminalTitle = By.cssSelector(".text-danger.mb-3");
     public By addACreditCardTerminal = By.xpath("//h4[text()='Configure a terminal']/../div//button");
-    public By terminalEditIcon = By.cssSelector(".far.fa-edit.fa-2x");
+    public By terminalEditIcon = By.xpath("(//div[contains(@class, 'row-cols-2')]//i)[1]");
     public By terminalDeleteBtn = By.cssSelector(".d-flex.mt-3>button:nth-child(2)");
 
 
@@ -316,17 +316,20 @@ public class MyStorePage extends BaseTest {
         scrollToElement(creditCardTerminalOption);
 //        waitForElementToBeClickable(creditCardTerminalOption,5);
         clickElementByJS(creditCardTerminalOption);
-        waitForElementToBeClickable(saveBtn,3);
+        waitForElementToBeClickable(saveBtn,5);
         getSaveButton();
-        waitForElementToBeClickable(terminalDeleteBtn,5);
-//        getTerminalEditIcon();
-//        scrollToElement(terminalDeleteBtn);
-//        getDeleteTerminalBtn();
+
+        waitForElementToBeClickable(terminalEditIcon,5);
+        staticWait(3000);
+        getTerminalEditIcon();
+        scrollToElement(terminalDeleteBtn);
+        getDeleteTerminalBtn();
     }
 
     public void getTerminalEditIcon(){
-        clickElementByJS(terminalEditIcon);
+        click(terminalEditIcon);
     }
+
     public void getDeleteTerminalBtn(){
         scrollToElement(terminalDeleteBtn);
         click(terminalDeleteBtn);
@@ -382,7 +385,7 @@ public class MyStorePage extends BaseTest {
 
         enterText(StoreNameTbx, storeNamewithstripe);
         actionEnterText(phoneTbx, phone);
-        staticWait(2000);
+        staticWait(3000);
         scrollToElement(saveBtn);
         waitForElementToBeVisible(saveBtn,10);
         getSaveButton();
@@ -410,6 +413,9 @@ public class MyStorePage extends BaseTest {
       Assert.assertEquals(storePhoneno, phone);
       Assert.assertEquals(Currency, Constants.defaultCurrency);
       Assert.assertEquals(Taxrate, Constants.defaultTaxRate);
+
+      staticWait(3000);
+
     }
 // *************************************************************************************
 
@@ -524,7 +530,7 @@ public class MyStorePage extends BaseTest {
 
         //Verifying the minimum, maximum and default values of taxRate field
         softAssert.assertEquals(getAttribute(taxRateTbx,"min"),"0");
-        softAssert.assertEquals(getAttribute(taxRateTbx,"value"),"0.000");
+        softAssert.assertEquals(getAttribute(taxRateTbx,"value"),"0.000","Tax rate tbx value");
         softAssert.assertEquals(getAttribute(taxRateTbx,"max"),"100");
 
         //  Enter Tax rate
