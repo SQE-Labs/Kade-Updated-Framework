@@ -9,9 +9,9 @@
         <parameter name="env"  value="qa" />
         <parameter name="browser" value="chrome" />
         <parameter name="headless" value="false" />
-<!--        <packages>-->
-<!--            <package name="qa.tests"/>-->
-<!--        </packages>-->
+        <packages>
+            <package name="qa.tests"/>
+        </packages>
         <classes>
             <class name="qa.tests.TransactionsTest"></class>
         </classes>

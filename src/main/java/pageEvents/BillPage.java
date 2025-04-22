@@ -43,7 +43,7 @@ public class BillPage extends BaseTest {
     By userNumber = By.xpath("//input[@name='userPhone']");
     public By filterBtn = By.cssSelector(".far.fa-2x.fa-sliders-h-square");
     public By configureAmount = By.xpath("//div[@class='text-center fs-pn25']");
-    public By enteredAmount = By.cssSelector("span[data-field='total']");
+    public By enteredAmount = By.xpath("//span[@data-field='total']");
     public By tapToAddFiles = By.xpath("//div[text()='Tap to add files']/..");
     public By camera = By.xpath("(//button[contains(@class,'btn btn-outline-dark mx-2')]/child::i[contains(@class,'fas fa-camera-retro fs-p50')])[2]/..");
     public By pdfIcon = By.xpath("(//button[contains(@class,'btn btn-outline-dark mx-2')]/child::i[contains(@class,'fas fa-file-pdf fs-p50')])[2]/..");
@@ -185,7 +185,7 @@ public class BillPage extends BaseTest {
     public By repeatLockIcon = By.xpath("(//i[@class='fas fa-lock'])[1]");
     public By expireLockIcon = By.xpath("(//i[@class='fas fa-lock'])[2]");
     public By memoNoneTxt = By.xpath("(//div[contains(@class,'text-nowrap d-flex')]//div[text()='None'])[4]");
-    public By expiryDateSection = By.xpath("//label[text()='Expiration Date:']/../..");
+    public By expiryDateSection = By.xpath("(//a[contains(@class, '-activator-button-')])[5]");
     public By expirationDayPopUp = By.xpath("//h5[text()='Expiration Date']");
     public By refNoneTxt = By.xpath("//label[text()='Ref No.:']/..//div[text()='None']/../../../../..");
     public By DescriptionEnteredText = By.xpath("//label[text()='Description:']/..//div[text()='None']/../../../../..");
@@ -351,11 +351,11 @@ public class BillPage extends BaseTest {
 
     public void clickOnExpiryDateSection() {
         staticWait(3000);
-        hoverAndClick(expiryDateSection, expiryDateSection);
+        clickElementByJS(expiryDateSection);
     }
 
     public void sendTxtInexpireInTxtField(String hrs, int minTxt) {
-        staticWait(2000);
+        staticWait(3000);
         actionEnterText(expireInTxtField, hrs);
         click(expireDropDown);
         staticWait(2000);
@@ -921,29 +921,49 @@ public class BillPage extends BaseTest {
     }
 
     public void validatingEnteredAmount() {
-        String amount = getText(enteredAmount);
-        Log.info(amount);
-//        String emteredBillAmount=amount.replaceAll("[^0-9]", "");
-//        Log.info("Extracted Number: " + emteredBillAmount);
+        String amount = getText(enteredAmount);  // Get the value from the field
+        Log.info("Field value: " + amount);
 
-        if (amt.equals(amount)) {  // Expected wrong behavior
-            Log.info("Restriction is working. Field changed to: " + amount);
+        // Remove non-numeric characters (like commas or currency symbols)
+        String extractedNumber = amount.replaceAll("[^0-9]", "");
+        Log.info("Extracted Number: " + extractedNumber);
+
+        // Parse to integer for comparison
+        int actualAmount = Integer.parseInt(extractedNumber);
+
+        // Validate against the limit
+        if (actualAmount > 50000) {
+            Log.info("Restriction FAILED. Field allowed more than 50,000: " + actualAmount);
         } else {
-            Log.info("Entered: 3001, But field contains: " + amount);
+            Log.info("Restriction WORKING. Value in field is within limit: " + actualAmount);
         }
     }
 
-    public void validateEnteredAmount() {
-        enteredamt = "5000001";
-        String amount = getText(enteredAmount);
-        Log.info(amount);
-//        String emteredBillAmount=amount.replaceAll("[^0-9]", "");
-//        Log.info("Extracted Number: " + emteredBillAmount);
 
-        if (enteredamt.equals(amount)) {  // Expected wrong behavior
-            Log.info("Restriction is working. Field changed to: " + amount);
+    public void validateEnteredAmount() {
+        String testInput = "500001";
+        // Try to enter more than 50000
+        staticWait(3000);
+
+        String fieldValue = getText(enteredAmount);
+        staticWait(3000);
+
+
+        // Read actual value from the field
+
+        Log.info("Attempted to enter: " + testInput);
+        Log.info("Actual field value after restriction: " + fieldValue);
+
+         // Remove non-numeric characters if the field includes commas or currency symbols
+       // String numericFieldValue = fieldValue.replaceAll("[^0-9]", "");
+        String numericFieldValue = fieldValue.replaceAll("[^0-9.]", "");
+
+        double actualAmount = Double.parseDouble(numericFieldValue);
+
+        if (actualAmount > 50000.00) {
+            Log.info(" Restriction FAILED. Field allowed more than 50,000: " + actualAmount);
         } else {
-            Log.info("Entered: 3001, But field contains: " + amount);
+            Log.info(" Restriction WORKING. Value in field is within limit: " + actualAmount);
         }
     }
 
@@ -1398,13 +1418,12 @@ public class BillPage extends BaseTest {
 
         //Enter amount
         String amt = "5000001";
+        staticWait(3000);
+        actionEnterText(amtTbx, amt);
         validateEnteredAmount();
         getAmountValue();
 
         staticWait(3000);
-        actionEnterText(amtTbx, amt);
-
-        validatingEnteredAmount();
 
         //Click Confirm
         getConfirmButton();
@@ -1412,10 +1431,6 @@ public class BillPage extends BaseTest {
         //Click On Continue Button
         staticWait(4000);
         getContinueWithoutButton();
-
-
-        //Close popup
-        closePaymentpopup();
 
         //Deleting Created Bill
         staticWait(3000);
@@ -1677,11 +1692,7 @@ public class BillPage extends BaseTest {
         staticWait(4000);
         getContinueWithoutButton();
 
-        //Close popup
-        closePaymentpopup();
-
-
-       //Verify not paid label for generated amount
+        //Verify not paid label for generated amount
         softAssert.assertTrue(isElementDisplayed(notPaidLabel));
         softAssert.assertTrue(isElementDisplayed(uniqueRefNo));
         softAssert.assertTrue(isElementDisplayed(billTimeOnPopup));
@@ -1690,10 +1701,9 @@ public class BillPage extends BaseTest {
         staticWait(3000);
 
 
-
     }
 
-    public void verifyBillCreationByAddingRecurringTransactionsDaily() {
+    public void verifyBillCreationByAddingRecurringTransactionsDaily(String phoneNumber, String emailID) {
 
         Login();
         //Select Store
@@ -1710,6 +1720,17 @@ public class BillPage extends BaseTest {
         staticWait(3000);
         actionEnterText(amtTbx, amt);
 
+        //Click On Continue Button
+        staticWait(4000);
+
+        //click on select customer button.
+        clickOnCustomerSec();
+
+        //   Select Customer
+        getCustomerPhoneNoField(phoneNumber);
+        getCustomerEmailField( emailID);
+        getEmailGoButton();
+
         //Click on More Option
         clickOnMoreSection();
         clickOnRepeatField();
@@ -1717,26 +1738,26 @@ public class BillPage extends BaseTest {
         //  bill.activateAfterFirstElement();
         clickOnDoneBtn();
 
-
         //Click Confirm
         staticWait(2000);
         getConfirmButton();
 
-        //Click On Continue Button
-        staticWait(4000);
-        getContinueWithoutButton();
+//        waitForElementToBeClickable(crossIcon,3);
+        staticWait(5000);
 
-        //Close popup
-        closePaymentpopup();
+//        //Close popup
+        closePopup();
 
+        staticWait(3000);
         softAssert.assertTrue(isElementDisplayed(reccuringIcon));
+        staticWait(3000);
         clickOnReccuring();
 
         removeNonNumericValueFromTheValue();
 
-
         //Deleting Created Bill
         staticWait(3000);
+
     }
 
     public void verifyBillCreationByAddingRecurringTransactionsWeekly(String phoneNumber, String emailID) {
@@ -1782,8 +1803,7 @@ public class BillPage extends BaseTest {
 //        waitForElementToBeClickable(crossIcon,3);
         staticWait(5000);
 
-        //Close popup
-//        closePaymentpopup();
+//        //Close popup
         closePopup();
 
         staticWait(3000);
@@ -1800,7 +1820,7 @@ public class BillPage extends BaseTest {
 
     }
 
-    public void verifyBillCreationByAddingRecurringTransactionsMonthly() {
+    public void verifyBillCreationByAddingRecurringTransactionsMonthly(String phoneNumber, String emailID) {
 
         Login();
         //Select Store
@@ -1813,9 +1833,20 @@ public class BillPage extends BaseTest {
         getNewBillButton();
 
         //Enter amount
-
+        String amt = "1000.00";
         staticWait(3000);
         actionEnterText(amtTbx, amt);
+
+        //Click On Continue Button
+        staticWait(4000);
+
+        //click on select customer button.
+        clickOnCustomerSec();
+
+        //   Select Customer
+        getCustomerPhoneNoField(phoneNumber);
+        getCustomerEmailField( emailID);
+        getEmailGoButton();
 
         //Click on More Option
         clickOnMoreSection();
@@ -1828,70 +1859,80 @@ public class BillPage extends BaseTest {
         staticWait(2000);
         getConfirmButton();
 
-        //Click On Continue Button
-        staticWait(4000);
-        getContinueWithoutButton();
+//        waitForElementToBeClickable(crossIcon,3);
+        staticWait(5000);
 
-        //Close popup
-        closePaymentpopup();
-
-        softAssert.assertTrue(isElementDisplayed(reccuringIcon));
-        clickOnReccuring();
-
-
-        removeNonNumericValueFromTheValue();
-
-        //Deleting Created Bill
-        staticWait(3000);
-
-
-    }
-
-    public void verifyBillCreationByAddingRecurringTransactionsYearly() {
-
-        Login();
-        //Select Store
-        clickOnNewBill();
-        getStoresDropdown();
-        selectStore(Constants.AutomationBillFlow);
-        getContinueButton();
-
-        //Click on New Bill Button
-        getNewBillButton();
-
-        //Enter amount
+//        //Close popup
+        closePopup();
 
         staticWait(3000);
-        actionEnterText(amtTbx, amt);
-
-        //Click on More Option
-        clickOnMoreSection();
-        clickOnRepeatField();
-        getYearlyFieldValue();
-        clickOnDoneBtn();
-
-
-        //Click Confirm
-        staticWait(2000);
-        getConfirmButton();
-
-        //Click On Continue Button
-        staticWait(4000);
-        getContinueWithoutButton();
-
-        //Close popup
-        closePaymentpopup();
-
         softAssert.assertTrue(isElementDisplayed(reccuringIcon));
+        staticWait(3000);
         clickOnReccuring();
 
         removeNonNumericValueFromTheValue();
 
+
         //Deleting Created Bill
         staticWait(3000);
-
-
     }
+
+        public void verifyBillCreationByAddingRecurringTransactionsYearly(String phoneNumber, String emailID) {
+
+            Login();
+            //Select Store
+            clickOnNewBill();
+            getStoresDropdown();
+            selectStore(Constants.AutomationBillFlow);
+            getContinueButton();
+
+            //Click on New Bill Button
+            getNewBillButton();
+
+            //Enter amount
+            String amt = "1000.00";
+            staticWait(3000);
+            actionEnterText(amtTbx, amt);
+
+            //Click On Continue Button
+            staticWait(4000);
+
+            //click on select customer button.
+            clickOnCustomerSec();
+
+            //   Select Customer
+            getCustomerPhoneNoField(phoneNumber);
+            getCustomerEmailField( emailID);
+            getEmailGoButton();
+
+            //Click on More Option
+            clickOnMoreSection();
+             clickOnRepeatField();
+          getYearlyFieldValue();
+            //  bill.activateAfterFirstElement();
+            clickOnDoneBtn();
+
+            //Click Confirm
+            staticWait(2000);
+            getConfirmButton();
+
+//        waitForElementToBeClickable(crossIcon,3);
+            staticWait(5000);
+
+//        //Close popup
+            closePopup();
+
+            staticWait(3000);
+            softAssert.assertTrue(isElementDisplayed(reccuringIcon));
+            staticWait(3000);
+            clickOnReccuring();
+
+            removeNonNumericValueFromTheValue();
+
+            //Deleting Created Bill
+            staticWait(3000);
+        }
+
 
     public void verifyBillCreationByAddingpaymentMethod(String emilId) {
         Login();
