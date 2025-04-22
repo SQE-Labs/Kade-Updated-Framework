@@ -50,6 +50,7 @@ public interface Constants {
     String phoneSecurityCodeForLogin = "777777";
     String ForgetPasswordtitle = "Forget password";
     String  TermsOfUser ="User Agreement";
+    String invalidEmailValidationMsg = "Invalid email";
 
 
     //BasicInformationPage constants
@@ -160,7 +161,7 @@ public interface Constants {
     //Verifying Modified Details
     String editdefaultStoreName = "My Store MSC Final";
     String editdefaultStorePhone = "+1 (918) 065 2341";
-    String reverseStoreName = "Automation Flow 3";
+    String reverseStoreName = "Automation Flow 1";
 
 
     // Store Configuration

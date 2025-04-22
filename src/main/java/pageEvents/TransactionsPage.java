@@ -22,7 +22,7 @@ public class TransactionsPage extends BaseTest {
     public By storesCombobox = By.xpath("//span[@role='combobox']");
     public By continueBtn = By.xpath("//button[@type='submit']");
     public By uniqueTransactionId = By.xpath("//span[@class='badge position-relative bg-light text-dark p-1 px-2 text-truncate flex-shrink-0']");
-    public By transactionID = By.xpath("//div[contains(@class,'bg-white border rounded rounded-2 g')]");
+    public By transactionID = By.xpath("//div[contains(@class,'bg-white border')]");
     public By store = By.xpath("//span[@class='fs-pn15 text-truncate']");
     public By payment = By.cssSelector(".fs-pn25.ms-2");
     public By customerName = By.cssSelector(".flex-column.overflow-hidden>a");
@@ -66,7 +66,7 @@ public class TransactionsPage extends BaseTest {
     public By failedPayments = By.xpath("//option[@value='failed']");
     public By unverifiedPayments = By.xpath("(//select[@name='paymentStatus']/option)[4]");
     public By pendingPaymentIcon = By.xpath("(//i[contains(@class,'fas fa-hourglass-half text-warning mx-1')])[2]");
-    public By excalamatrySign = By.xpath("//i[contains(@class,'fas fa-exclamation-circle text-danger mx-1')]");
+    public By excalamatrySign = By.xpath("(//div[@class='d-flex align-items-center']//i[@class='fas fa-exclamation-circle text-danger mx-1'])[1]");
     public By quotionmarkSign = By.xpath("//i[@class='fas fa-question-square text-info fs-5 me-2']");
     public By qrCodeSign = By.xpath("(//i[contains(@class,'fa fa-qrcode mx-1')])[2]");
     public By paymentLinkField = By.xpath("//select[@name='billTemplate']");
@@ -148,10 +148,11 @@ public class TransactionsPage extends BaseTest {
     }
 
     public void getManualChargeTab() {
-        click(manualChargeTab);
+        clickElementByJS(manualChargeTab);
     }
 
     public void switchToCreditCardFrame() {
+        staticWait(6000);
         switchToFrame(creditCardInfoFrame);
     }
 
@@ -331,6 +332,7 @@ public class TransactionsPage extends BaseTest {
 
     // TRS 5 a
     public void getManualCharge() {
+        Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getTransactionTab();
         getStoresDropdown();
@@ -339,15 +341,16 @@ public class TransactionsPage extends BaseTest {
 
         // clicking on new charge button
         getNewChargeBtn();
-        waitForElementToBeClickable(newChargeAmountField, 3);
+        waitForElementToBeClickable(newChargeAmountField, 5);
         actionEnterText(newChargeAmountField, Constants.amount);
         actionEnterText(descriptionField, Constants.description);
         getNewChargeConfirmBtn();
         // Making new charge payment manually with Credit Card
 
-        staticWait(6000);
+        waitForElementToBeClickable(manualChargeTab,5);
         getManualChargeTab();
-        staticWait(5000);
+
+//        staticWait(6000);
         switchToCreditCardFrame();
         payments.getPayThroughCreditCard();
     }
@@ -457,10 +460,14 @@ public class TransactionsPage extends BaseTest {
 
     // TRS 7 a
     public void getFullRefund() {
+
         // Making payment
         bills.createBillWithCustomer("636045278965", "saybo@yopmail.com");
         payments.billPaymentByThroughDebitCard("4111111111111111", "0930", "794", "Australia");
         payments.swipeCard();
+        payments.billPayment();
+
+        waitForElementToBeVisible(pageObjectManager.getSidePannel().signOutBtn,5);
 
 
         pageObjectManager.getSidePannel().getSignOut();
@@ -543,6 +550,7 @@ public class TransactionsPage extends BaseTest {
         waitForElementToBeClickable(refundAmountField, 3);
         actionEnterText(refundAmountField, refundAmmount);
         staticWait(3000);
+        scrollToElement(processRefundButton);
         getProcessRefundBtn();
     }
 
@@ -641,6 +649,7 @@ public class TransactionsPage extends BaseTest {
 
         // Clicking on Current Paid bill
         getCurrentPaidBill();
+        staticWait(4000);
 
         // verify the Pending processing Icon
         Assert.assertTrue(isElementDisplayed(pendingPaymentIcon), "pending icon");
@@ -650,6 +659,7 @@ public class TransactionsPage extends BaseTest {
     // TRS 10
     public void verifyTheFailedIcon() {
         bills.createBillWithCustomer("636045278965", "saybo@yopmail.com");
+
         payments.paymentThrouhVenmoAccount();
         pageObjectManager.getSidePannel().getSignOut();
         Login();
@@ -672,9 +682,10 @@ public class TransactionsPage extends BaseTest {
 
         // click on fail button
         getFailedBtn();
+        waitForElementToBeVisible(excalamatrySign,3);
 
         // verify that failed icon appear
-        Assert.assertTrue(isElementDisplayed(excalamatrySign));
+        Assert.assertTrue(isElementDisplayed(excalamatrySign),"Excalamatry Sign");
     }
 
     // TRS 09

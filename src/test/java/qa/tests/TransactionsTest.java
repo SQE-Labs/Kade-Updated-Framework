@@ -32,11 +32,16 @@ public class TransactionsTest extends BaseTest {
 
 
     @Test(description = "TRS2 : Verify that appropriate information message appears when no transaction is available, on 'Transaction' page.")
-    public void verifyInfoMessageAppearsWhenNoTransactionIsAvailable() {
+    public void averifyInfoMessageAppearsWhenNoTransactionIsAvailable() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getTransactionTab();
+        staticWait(3000);
+
+        bill.getStoresDropdown();
         selectStore(Constants.AutomationTransaction2);
+        bill.getContinueButton();
+
         String informsg = getText(transaction.informationMessage);
         softAssert.assertEquals(informsg, Constants.noPaymentInfoMsg);
     }
@@ -56,8 +61,7 @@ public class TransactionsTest extends BaseTest {
     }
 
     @Test(description = "TRS5 (a) :Verify that store manager is able to charge a customer manually, after stripe payment is configured for a store.")
-    public void chargeManuallyAfterStripeConfigured() {
-        Login();
+    public void a3chargeManuallyAfterStripeConfigured() {
         transaction.getManualCharge();
 
     }
@@ -89,6 +93,7 @@ public class TransactionsTest extends BaseTest {
 
     @Test(description = "TRS7 (b): Verify that store manager is able to refund partial transaction on 'Transaction details' popup of 'Transaction' page.")
     public void verifyThatStoreMangerIsAbleToRefundPartialPayment() {
+
         transaction.getPartialRefund();
     }
 
@@ -108,17 +113,14 @@ public class TransactionsTest extends BaseTest {
 
         bill.verifyBillCreationByAddingRecurringTransactionsWeekly("6356789657", "saybo@yopmail.com");
         staticWait(3000);
-        bill.clickOnCrossIcon();
-        staticWait(3000);
-        payment.billPaymentByThroughDebitCard("4111111111111111", "0930", "794", "Australia");
+        payment.billPaymentByThroughDebitCardWithRecurringBill("4111111111111111", "0930", "794", "Australia");
         payment.swipeCard();
         payment.billPayment();
 
     }
 
     @Test(description = "TRS10: Verify that Fail payment icon appears, when payment is failed manually on 'Transaction detail' popup of 'Transaction' page.")
-    public void getFailedPaymentIcon() {
-        Login();
+    public void a2getFailedPaymentIcon() {
         transaction.verifyTheFailedIcon();
 
     }

@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 
 public class SidePannelPage extends BaseTest {
 
-    By profileLink = By.xpath("//a[@class='btn btn-link p-0 fs-pn15 ']");
+    public By profileLink = By.xpath("//a[@class='btn btn-link p-0 fs-pn15 ']");
     By validationMessage=By.xpath("//p[@class='alert-content']");
     public By billBtn = By.cssSelector(".sidebar-nav > li:nth-child(5)");
     By transactionsButton=By.cssSelector(".sidebar-nav > li:nth-child(4)");
@@ -22,7 +22,7 @@ public class SidePannelPage extends BaseTest {
     By SearchBtn = By.cssSelector(".fa-search");
     public By myStuff = By.xpath("//a[text()='My Stuff']");
     public By giftCardsTab = By.cssSelector("[href='/Giftcards/GiftCardsSummary']");
-    public By securityAndPasswordTab = By.xpath("//a[@class='list-group-item list-group-item-action'][@data-section='security']");
+    public By securityAndPasswordTab = By.xpath("//a[text()='Security and Password']");
 
 
 

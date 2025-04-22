@@ -18,13 +18,15 @@ public class BillTest extends BaseTest {
     public void verifyCreateBillWithoutSelectingCustomer() {
 
         bill.createBillWithoutCustomer();
-        bill.deleteBill();
+        bill.getDeleteButton();
+        bill.getDeleteIcon();
     }
 
     @Test(priority = 1, description = "BC_02 Verify that creating a bill by adding amount value only, with Selecting a Customer")
     public void verifyCreateBillBySelectingCustomer() {
         bill.createBillWithCustomer("636045278965", "yonro@yopmail.com");
-        bill.deleteBill();
+        bill.getDeleteButton();
+        bill.getDeleteIcon();
 
     }
 
@@ -54,20 +56,24 @@ public class BillTest extends BaseTest {
     @Test(priority = 6, enabled = true, description = "BC_12 Verify that creating a bill with default configured bill amount, on 'Bill' popup of 'Bills' page.")
     public void verifyingBillCreationWithoutConfiguredBillAmount() {
        bill.verifyingBillCreationWithOutConfiguredBillAmount();
-       bill.deleteBill();
+        bill.getDeleteButton();
+        bill.getDeleteIcon();
     }
 
     @Test(priority = 7, enabled = true, description = "BC_06 Verify that creating a bill by attaching the image file.")
     public void verifyingBillCreationByAttachingImageFile() throws InterruptedException, AWTException {
 
       bill.createBillByAttachingImageFile();
-      bill.deleteBill();
+        bill.getDeleteButton();
+        bill.getDeleteIcon();
     }
 
     @Test(priority = 8, enabled = true, description = "BC_07 Verify that creating a bill by attaching the image file.")
     public void verifyingBillCreationByAttachingPdfFile() throws InterruptedException, AWTException {
 
        bill.verifyingBillCreationByAttachingPdfFile();
+        bill.getDeleteButton();
+        bill.getDeleteIcon();
     }
 
     @Test(priority = 9, enabled = true, description = "BC_14 Verify that creating a bill with adding Memo field, on 'Bill' popup.")

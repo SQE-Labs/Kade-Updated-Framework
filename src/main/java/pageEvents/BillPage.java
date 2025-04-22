@@ -116,9 +116,9 @@ public class BillPage extends BaseTest {
     By discardBtn = By.xpath("(//*[contains(text(),'discard')])[5]/.. //button[text()='Discard']");
     public By confirmBtn = By.xpath("//button[@name='method']");
     public By continueWithoutBtn = By.xpath("//button[text()='Continue without']");
-    public By closePopup = By.xpath("(//div[contains(@class, 'modal-content')]//button[@class='btn-close'])[2]");
+    public By closePopup = By.xpath("(//div[@class='modal-content']//h5/following-sibling::button)[3]");
     public By crossPopUpIcon = By.xpath("(//div[contains(@class, 'modal-content')]//button[@class='btn-close'])[2]");
-    public By crossIcon = By.xpath("(//div[contains(@class, 'modal-content')] //button[@class='btn-close'])[4]");
+    public By crossIcon = By.xpath("(//div[contains(@class,'modal-content')]//button[@class='btn-close'])[1]");
     public By countinueWithoutTxt = By.xpath("//div//button[text()='Continue without']");
     public By selectACustomerBtn = By.xpath("(//div[@class='modal-content'])[8]//button[text()='Select a customer']");
     By whichStorePopup = By.xpath("//p[text()='Which store?']");
@@ -212,7 +212,7 @@ public class BillPage extends BaseTest {
     By repeatElements = By.xpath("//label[@class='list-group-item']");
     public By paidExpiryField = By.xpath("//label[text()='Expiration Date:']");
     public By repeatPopUpTitle = By.xpath("//h5[text()='Repeat']");
-    public By reccuringIcon = By.xpath("(//i[@title='Recurring transaction'])[1]");
+    public By reccuringIcon = By.xpath("(//span/following-sibling::i)[1]");
     public By reccuringMenu = By.xpath("//div[text()='Recurring']/..");
     By expiryDatePopUpTitle = By.xpath("//h5[text()='Expiration Date']");
     By unpaidAmount = By.cssSelector(".text-danger.fs-4");
@@ -770,8 +770,8 @@ public class BillPage extends BaseTest {
     }
 
     public void getDeleteButton() {
-        waitForElementToBeClickable(deleteButton, 10);
-        click(deleteButton);
+        waitForElementToBeClickable(deleteButton, 3);
+        clickElementByJS(deleteButton);
     }
 
     public void clickOnNotPaidLabel() {
@@ -1198,8 +1198,8 @@ public class BillPage extends BaseTest {
         String toastMessage = "Bill has been created successfully.Click here to open the bill";
         softAssert.assertEquals(successMessage, toastMessage);
 
-        //Close popup
-        closePaymentpopup();
+        waitForElementToBeClickable(deleteButton,3);
+
 
 
 
@@ -1225,10 +1225,10 @@ public class BillPage extends BaseTest {
         getNewBillButton();
 
         // Verify New Bill popup
-        softAssert.assertEquals(popUpHeader, "Bill");
+        softAssert.assertEquals(popUpHeader, "Bill","Popup Header for bill");
 
         //Verify Confirm Button is disabled before entering amount
-        softAssert.assertTrue(isElementDisplayed(btnDisbled));
+        softAssert.assertTrue(isElementDisplayed(btnDisbled),"Btn is disabled");
 
 
         //Enter amount
@@ -1237,16 +1237,16 @@ public class BillPage extends BaseTest {
         actionEnterText(amtTbx, amount);
 
         //Verify Default Confirm button is enabled after entering amount
-        softAssert.assertTrue(isElementDisplayed(btnDisbled));
+        softAssert.assertTrue(isElementDisplayed(btnDisbled),"Confirm button");
 
 
         //Click Confirm
         getConfirmButton();
 
         //Verify Message popup and Buttons
-        softAssert.assertEquals(messagePopupHeader, "Message");
-        softAssert.assertTrue(isElementDisplayed(selectCustomer));
-        softAssert.assertTrue(isElementDisplayed(continueWithoutBtn));
+        softAssert.assertEquals(messagePopupHeader, "Message", "Message popup header");
+        softAssert.assertTrue(isElementDisplayed(selectCustomer),"Select Customer");
+        softAssert.assertTrue(isElementDisplayed(continueWithoutBtn),"continue button");
 
         //click on select customer button.
         getSelectACustomerButton();
@@ -1283,7 +1283,6 @@ public class BillPage extends BaseTest {
 
         //Deleting Created Bill
         waitForElementToBeClickable(notPaid, 5);
-        staticWait(3000);
         clickOnNotPaidLabel();
     }
 
@@ -1326,6 +1325,10 @@ public class BillPage extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(uniqueRefNo));
         softAssert.assertTrue(isElementDisplayed(billTimeOnPopup));
         staticWait(3000);
+
+//        //Deleting Created Bill
+//        waitForElementToBeClickable(notPaid, 5);
+//        clickOnNotPaidLabel();
 
 
     }
@@ -1391,6 +1394,7 @@ public class BillPage extends BaseTest {
 
         // Click on New Bill Button
         getNewBillButton();
+        staticWait(3000);
 
         //Enter amount
         String amt = "5000001";
@@ -1401,6 +1405,7 @@ public class BillPage extends BaseTest {
         actionEnterText(amtTbx, amt);
 
         validatingEnteredAmount();
+
         //Click Confirm
         getConfirmButton();
 
@@ -1455,11 +1460,6 @@ public class BillPage extends BaseTest {
         staticWait(4000);
         getContinueWithoutButton();
 
-
-        //Close popup
-        closePaymentpopup();
-
-
         //Deleting Created Bill
         staticWait(3000);
 
@@ -1496,8 +1496,8 @@ public class BillPage extends BaseTest {
         staticWait(4000);
         getContinueWithoutButton();
 
-        //Close popup
-        clickOnCloseIcon();
+//        //Close popup
+//        clickOnCloseIcon(); Bill popup open up after clicking on Continue without btn
     }
 
     public void verifyingBillCreationByAttachingPdfFile() throws InterruptedException, AWTException {
@@ -1531,8 +1531,8 @@ public class BillPage extends BaseTest {
         staticWait(4000);
         getContinueWithoutButton();
 
-        //Close popup
-        closePopup();
+//        //Close popup
+//        closePopup();
     }
 
     public void verifyingBillCreationWithAddingMemoField(String emailID) {
@@ -1574,6 +1574,7 @@ public class BillPage extends BaseTest {
 
         //Close popup
         closePopupOnBillPage();
+
         //Verify not paid label for generated amount
         verifyEnteredMemoText();
     }
@@ -1774,14 +1775,18 @@ public class BillPage extends BaseTest {
         //  bill.activateAfterFirstElement();
         clickOnDoneBtn();
 
-
         //Click Confirm
         staticWait(2000);
         getConfirmButton();
 
-        //Close popup
-        closePaymentpopup();
+//        waitForElementToBeClickable(crossIcon,3);
+        staticWait(5000);
 
+        //Close popup
+//        closePaymentpopup();
+        closePopup();
+
+        staticWait(3000);
         softAssert.assertTrue(isElementDisplayed(reccuringIcon));
         staticWait(3000);
         clickOnReccuring();
