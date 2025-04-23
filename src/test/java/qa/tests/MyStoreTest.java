@@ -53,7 +53,7 @@ public class MyStoreTest extends BaseTest {
         }
 
         scrollToElement(mystore.deleteStoreBtn);
-        waitForElementToBeVisible(mystore.deleteStoreBtn,3);
+        waitForElementToBeVisible(mystore.deleteStoreBtn,5);
         // click on delete button
         mystore.getDeleteStoreButton();
         mystore.getDeleteStoreIcon();
@@ -61,7 +61,7 @@ public class MyStoreTest extends BaseTest {
 
 
     @Test(description = "SC_02  Verify creation of Store with Stripe Payment Account")
-    public void c1creationOfStoreWithStripeAccount() {
+    public void creationOfStoreWithStripeAccount() {
 
         Login();
         mystore.getStoreCreation();
@@ -74,7 +74,7 @@ public class MyStoreTest extends BaseTest {
     }
 
     @Test(description = "SC_03 Verifying modification of existing created Store")
-    public void c2verifyingModificationOfExistingCreatedStore() {
+    public void verifyingModificationOfExistingCreatedStore() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
@@ -371,7 +371,8 @@ public class MyStoreTest extends BaseTest {
 
         mystore.getAcceptVenmoToggleButton();
 
-            staticWait(3000);
+            staticWait(5000);
+
             //Verifying Maximum length of 'VenmoID' field
             softAssert.assertEquals(getAttribute(mystore.venmoIDField, "maxlength"), "40");
 
@@ -386,10 +387,22 @@ public class MyStoreTest extends BaseTest {
 
             // Click on 'Save' Button
             mystore.getVenmoSaveButton();
+            scrollToElement(mystore.acceptZelleHeader);
+            staticWait(3000);
 
-        if(isElementDisabled(mystore.acceptZelleHeader)) {
-            mystore.getAcceptZelleToggleButton();
+
+//        if(isElementDisabled(mystore.acceptZelleHeader)) {
+//            System.out.println( "yes i am displayed");
+//            mystore.getAcceptZelleToggleButton();
+//            staticWait(3000);
+//        }
+         if(!isToggleEnabled(mystore.acceptZelleToggleBtn)){
+            clickElementByJS(mystore.acceptZelleToggleBtn);
         }
+        else{
+            hoverAndClick(mystore.acceptZelleToggleBtn,mystore.acceptZelleToggleBtn);
+        }
+
         //Verifying maximum length of 'Zelle Phone' field
         softAssert.assertEquals(getAttribute(mystore.zellePhoneField,"maxlength"),"40");
 
@@ -487,6 +500,7 @@ public class MyStoreTest extends BaseTest {
         // Click on 'Terms' Checkbox
         mystore.getTermsCheckbox();
         scrollToElement(mystore.changePlanBtn);
+        waitForElementToBeClickable(mystore.changePlanBtn,3);
 
         //  Click on 'Change Plan' Button
         mystore.getChangePlanButton();
@@ -503,7 +517,8 @@ public class MyStoreTest extends BaseTest {
 
         // Click on 'Terms' Checkbox
         mystore.getTermsCheckbox();
-
+        scrollToElement(mystore.changePlanBtn);
+        waitForElementToBeClickable(mystore.changePlanBtn,3);
         //  Click on 'Change Plan' Button
         mystore.getChangePlanButton();
 

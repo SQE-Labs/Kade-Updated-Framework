@@ -579,7 +579,7 @@ public class TransactionsPage extends BaseTest {
 
     // TRS 12
     public void verifyQuestionMarkIcon() {
-        bills.createBillWithCustomer("636045278965", "saybo@yopmail.com");
+        bills.verifyCreateBillForSuggestedCustomer("saybo@yopmail.com");
         payments.paymentThrouhVenmoAccount();
         pageObjectManager.getSidePannel().getSignOut();
         Login();
@@ -589,12 +589,14 @@ public class TransactionsPage extends BaseTest {
         selectStore(Constants.AutomationBillFlow);
         getContinueButton();
         getCurrentPaidBill();
+        waitForElementToBeVisible(questionMarkIcon,3);
 
         // Clicking on the paid amount and verify the question mark icon is displayed
-        softAssert.assertTrue(isElementDisplayed(questionMarkIcon));
+        softAssert.assertTrue(isElementDisplayed(questionMarkIcon),"Question Mark Icon");
 //        waitForElementToBeClickable(amount,4);
         staticWait(5000);
         clickOnAmount();
+
 
         // Verify Capture and Failed Button is visible
         softAssert.assertTrue(isElementDisplayed(capturedButton), "captured button");
@@ -637,7 +639,7 @@ public class TransactionsPage extends BaseTest {
         payments.billPayment();
 
         pageObjectManager.getSidePannel().getSignOut();
-        staticWait(3000);
+        staticWait(5000);
 
         // login as store manager
         Login();
@@ -649,7 +651,7 @@ public class TransactionsPage extends BaseTest {
 
         // Clicking on Current Paid bill
         getCurrentPaidBill();
-        staticWait(4000);
+        staticWait(5000);
 
         // verify the Pending processing Icon
         Assert.assertTrue(isElementDisplayed(pendingPaymentIcon), "pending icon");

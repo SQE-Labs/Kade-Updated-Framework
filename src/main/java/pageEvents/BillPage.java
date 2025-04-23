@@ -1243,6 +1243,7 @@ public class BillPage extends BaseTest {
 
         // Click on New Bill Button
         getNewBillButton();
+        waitForElementInVisible(popUpHeader,3);
 
         // Verify New Bill popup
         softAssert.assertEquals(popUpHeader, "Bill","Popup Header for bill");
@@ -1255,13 +1256,14 @@ public class BillPage extends BaseTest {
 
         staticWait(3000);
         actionEnterText(amtTbx, amount);
-
+        staticWait(2000);
         //Verify Default Confirm button is enabled after entering amount
         softAssert.assertTrue(isElementDisplayed(btnDisbled),"Confirm button");
 
 
         //Click Confirm
         getConfirmButton();
+        waitForElementToBeVisible(messagePopupHeader,3);
 
         //Verify Message popup and Buttons
         softAssert.assertEquals(messagePopupHeader, "Message", "Message popup header");
@@ -1274,11 +1276,13 @@ public class BillPage extends BaseTest {
         //Verify Customer popup
         String phoneNumberField = "Phone number. Existing or new";
         String phone = getAttribute(customerNumber, "placeholder");
+        staticWait(2000);
         softAssert.assertTrue(Boolean.parseBoolean(phone), phoneNumberField);
         Log.info(phone);
 
         String emailField = "Email. Existing or new";
         String email = getAttribute(customerNumber, "placeholder");
+        staticWait(2000);
         softAssert.assertTrue(Boolean.parseBoolean(email), emailField);
         Log.info(email);
 
@@ -1291,9 +1295,9 @@ public class BillPage extends BaseTest {
         //Click Confirm
 
         getConfirmButton();
+        waitForElementToBeVisible(successMessage,3);
 
         //Verify toast message : Success message Popup.
-        softAssert.assertTrue(isElementDisplayed(successMessage));
         String toastMessage = "Bill has been created successfully.Click here to open the bill";
         softAssert.assertEquals(successMessage, toastMessage);
 
@@ -1331,19 +1335,23 @@ public class BillPage extends BaseTest {
         getConfirmButton();
 
         //Verify toast message : Success message Popup.
-        waitForElementToBeVisible(successMessage, 10);
+        waitForElementToBeVisible(successMessage, 5);
         softAssert.assertTrue(isElementDisplayed(successMessage));
-        String toastMessage = "Bill has been created successfully.Click here to open the bill";
-        softAssert.assertEquals(successMessage, toastMessage);
 
+        String successMsg= getText(successMessage);
+
+        String toastMessage = "Bill has been created successfully.Click here to open the bill";
+        softAssert.assertEquals(successMsg, toastMessage);
 
         //Close popup
         closePopup();
+        waitForElementToBeVisible(notPaidLabel,4);
 
         //Verify not paid label for generated amount
-        softAssert.assertTrue(isElementDisplayed(notPaidLabel));
-        softAssert.assertTrue(isElementDisplayed(uniqueRefNo));
-        softAssert.assertTrue(isElementDisplayed(billTimeOnPopup));
+        softAssert.assertTrue(isElementDisplayed(notPaidLabel),"Not Paid Label");
+        softAssert.assertTrue(isElementDisplayed(uniqueRefNo), "Unique Reference No");
+        softAssert.assertTrue(isElementDisplayed(billTimeOnPopup),"Bill Time On Popup");
+
         staticWait(3000);
 
 //        //Deleting Created Bill

@@ -1117,26 +1117,30 @@ public class PaymentPage extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(viewReciptTxt));
 
         clickOnViewReciptLink();
+        staticWait(3000);
         softAssert.assertTrue(isElementDisplayed(transactionHeader));
         softAssert.assertTrue(isElementDisplayed(tarnsactionUniqueId));
         softAssert.assertTrue(isElementDisplayed(paymentMethodIcon));
+
 
     }
 
     public void billPayment() {
 
         staticWait(3000);
-        softAssert.assertTrue(isElementDisplayed(thankTxt));
-        softAssert.assertTrue(isElementDisplayed(youTxt));
+        softAssert.assertTrue(isElementDisplayed(thankTxt),"Thankyou Text");
+        softAssert.assertTrue(isElementDisplayed(youTxt),"you Text");
         scrollToDown();
-        softAssert.assertTrue(isElementDisplayed(rateYourExpTxt));
-        softAssert.assertTrue(isElementDisplayed(viewReciptTxt));
-        staticWait(2000);
+        waitForElementToBeVisible(rateYourExpTxt,3);
+        softAssert.assertTrue(isElementDisplayed(rateYourExpTxt),"Rate your experience");
+        softAssert.assertTrue(isElementDisplayed(viewReciptTxt),"View Receipt Text");
+        staticWait(3000);
        scrollToElement(viewReciptTxt);
         clickOnViewReciptLink();
-        softAssert.assertTrue(isElementDisplayed(transactionHeader));
-        softAssert.assertTrue(isElementDisplayed(tarnsactionUniqueId));
-        softAssert.assertTrue(isElementDisplayed(paymentMethodIcon));
+        waitForElementToBeVisible(transactionHeader,3);
+        softAssert.assertTrue(isElementDisplayed(transactionHeader), "Transaction Header");
+        softAssert.assertTrue(isElementDisplayed(tarnsactionUniqueId),"Transaction UniqueId");
+        softAssert.assertTrue(isElementDisplayed(paymentMethodIcon),"Payment Method Icon");
 
     }
 
@@ -1262,9 +1266,9 @@ public class PaymentPage extends BaseTest {
         }else{
              Log.info("Nothing to be selected");
         }
-
+        staticWait(3000);
        // softAssert.assertTrue(isElementDisplayed(storeName));
-        softAssert.assertTrue(isElementDisplayed(visaCardName));
+        softAssert.assertTrue(isElementDisplayed(visaCardName),"Visa Card");
         clickOnVenmoAccount();
         clickOnMakePaymentBtn();
         clickOnCheckBox();
