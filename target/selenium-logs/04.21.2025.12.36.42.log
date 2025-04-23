@@ -1,0 +1,2 @@
+2025-04-21 12:36:42,425 [info]: Clicking on By.xpath: //a[@class='card-header collapsed' and text()='January 2025']
+2025-04-21 12:36:45,765 [info]: Clicking on By.xpath: (//a[@class='btn btn-link stretched-link align-self-center'])[1]

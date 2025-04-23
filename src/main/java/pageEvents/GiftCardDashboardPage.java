@@ -290,10 +290,18 @@ public class GiftCardDashboardPage extends BaseTest {
 
 
     }
-    public void verifyFundingSrcFieldAppear(String actionType){
+    public void verifyFundingSrcFieldAppear(String actionType) {
 
-        if (actionType.equals("Optional"))
-        {
+        if (actionType.equals("Optional")) {
+            Login();
+            Pannel.getMangeBusinessTab();
+            Pannel.getGiftCardsDashboardTab();
+            selectStore(5);
+            clickWhichStoreContinueBtn();
+            getForSaleBtn();
+            staticWait(3000);
+            click(addBtn);
+        } else {
             Login();
             Pannel.getMangeBusinessTab();
             Pannel.getGiftCardsDashboardTab();
@@ -303,8 +311,9 @@ public class GiftCardDashboardPage extends BaseTest {
             staticWait(3000);
             click(addBtn);
         }
-        else
-        {
+    }
+@Test
+    public void verifyAvailableQuantityFieldLength(){
             Login();
             Pannel.getMangeBusinessTab();
             Pannel.getGiftCardsDashboardTab();
@@ -313,8 +322,10 @@ public class GiftCardDashboardPage extends BaseTest {
             getForSaleBtn();
             staticWait(3000);
             click(addBtn);
-        }
 
+            String length = getAttribute(availableQnty,"maxlength");
+            Log.info("Maximum length is" + " " + length);
+        }
 
 
 
@@ -328,4 +339,4 @@ public class GiftCardDashboardPage extends BaseTest {
 
 
 
-}
+

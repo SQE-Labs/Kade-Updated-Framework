@@ -58,12 +58,12 @@ public class ReportsTest extends BaseTest {
         Login();
         reportsPage.openReportsPage();
 
-        clickElementByJS(reportsPage.selectJanuaryMonth);
+       // clickElementByJS(reportsPage.topMonth);
         DeleteFile(Constants.fileNameDaily);
-        scrollToElement(reportsPage.janDataDownload);
         staticWait(2000);
-        clickElementByJS(reportsPage.janDataDownload);
+        clickElementByJS(reportsPage.firstLinkDownload);
         String fileStatus = isFileDownloaded(Constants.fileNameDaily);
+        staticWait(3000);
         System.out.println("fileStatus :" + fileStatus);
         Assert.assertEquals(fileStatus,Constants.filePresent);
     }
@@ -76,13 +76,13 @@ public class ReportsTest extends BaseTest {
         reportsPage.openReportsPage();
 
         click(reportsPage.monthlyPayConfirmation);
-        click(reportsPage.year24);
-        waitForElementToBeVisible(reportsPage.dec24Report,10);
-        Assert.assertTrue(isElementDisplayed(reportsPage.dec24Report));
+        //click(reportsPage.year24);
+        waitForElementToBeVisible(reportsPage.year25First,10);
+        Assert.assertTrue(isElementDisplayed(reportsPage.year25First));
         DeleteFile(Constants.filenameMonthly);
-        waitForElementToBeInteractable(reportsPage.dec24Report,10);
-        clickElementByJS(reportsPage.dec24Report);
-        staticWait(2000);
+        waitForElementToBeInteractable(reportsPage.year25First,10);
+        clickElementByJS(reportsPage.year25First);
+        staticWait(5000);
         String fileStatus = isFileDownloaded(Constants.filenameMonthly);
         System.out.println("fileStatus :" + fileStatus);
         Assert.assertEquals(fileStatus,Constants.filePresent);

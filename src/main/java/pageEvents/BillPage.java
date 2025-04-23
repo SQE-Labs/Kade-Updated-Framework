@@ -185,7 +185,8 @@ public class BillPage extends BaseTest {
     public By repeatLockIcon = By.xpath("(//i[@class='fas fa-lock'])[1]");
     public By expireLockIcon = By.xpath("(//i[@class='fas fa-lock'])[2]");
     public By memoNoneTxt = By.xpath("(//div[contains(@class,'text-nowrap d-flex')]//div[text()='None'])[4]");
-    public By expiryDateSection = By.xpath("//label[text()='Expiration Date:']/../..");
+   // public By expiryDateSection = By.xpath("//div[@class='border p-2 py-3 mb-2 rounded-3 position-relative -expdate-div-']//div[@class='d-flex justify-content-between position-relative align-items-center']//div[@class='w-100 text-end text-truncate ps-2']//div//a[@class='stretched-link ms-1 -activator-button-']");
+    public By expiryDateSection = By.xpath("(//a[contains(@class, '-activator-button-')])[5]");
     public By expirationDayPopUp = By.xpath("//h5[text()='Expiration Date']");
     public By refNoneTxt = By.xpath("//label[text()='Ref No.:']/..//div[text()='None']/../../../../..");
     public By DescriptionEnteredText = By.xpath("//label[text()='Description:']/..//div[text()='None']/../../../../..");
@@ -350,7 +351,8 @@ public class BillPage extends BaseTest {
 
     public void clickOnExpiryDateSection() {
         staticWait(3000);
-        hoverAndClick(expiryDateSection, expiryDateSection);
+        clickElementByJS(expiryDateSection);
+
     }
 
     public void sendTxtInexpireInTxtField(String hrs, int minTxt) {

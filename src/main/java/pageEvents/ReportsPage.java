@@ -20,7 +20,9 @@ public class ReportsPage extends BaseTest {
     public By monthCardHeader = By.cssSelector(".card-header");
     public By cardBody = By.xpath("//div[@class='card-body max-30c collapse show']");
     public By janDataDownload = By.xpath("(//a[contains(text(),'"+month+"')]//parent::div/div[1]//strong[text()='"+day+"'])[1]");
+    public By firstLinkDownload = By.xpath("(//a[@class='btn btn-link stretched-link align-self-center'])[1]");
     public By selectJanuaryMonth = By.xpath("//a[@class='card-header collapsed' and text()='"+month+"']");
+    public By topMonth = By.xpath("(//a[@class='card-header'])[1]");
     public By dec24Report = By.xpath("//strong[@class='align-self-center' and text()='"+month2+"']");
     public By totalReceivedamt = By.xpath("//div[@class='col-md-4'] //h4[text()='Total Received Amount']");
     public By totalTax = By.xpath("//div[@class='col-md-4'] //h4[text()='Total Tax']");
@@ -35,7 +37,10 @@ public class ReportsPage extends BaseTest {
     public By printTotalReceivedPay = By.id("lblTotalReceivedAmount");
     public By printTotalTaxPay = By.id("lblTotalTax");
     public By printTotalTip = By.id("lblTotalTip");
-    public By year24 = By.xpath("//a[@class='card-header collapsed' and text()='2024']");
+    public By year24 = By.xpath("//a[text()='2024']");
+    public By year25First = By.xpath("(//a[text()='This Year']//following-sibling::div/div/a)[1]");
+
+    public By dec2024 =By.xpath("//a[text()='2024']/following-sibling::div//strong[text()='December - 2024']");
     public By manageBusinessAcc = By.xpath("//a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']");
     public By reportsTab = By.cssSelector(".align-middle.me-2.fa-fw.far.fa-ballot");
 

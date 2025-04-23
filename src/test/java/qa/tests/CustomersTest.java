@@ -107,7 +107,8 @@ public class CustomersTest extends BaseTest {
         waitForElementToBeInteractable(customersPage.searchField,20);
         actionEnterText(customersPage.searchField,Constants.searchInput);
         click(customersPage.searchBtn);
-        Assert.assertTrue(isElementDisplayed(customersPage.customerDisplayed));
+        waitForElementToBeVisible(customersPage.customerDisplayed2,2);
+        Assert.assertTrue(isElementDisplayed(customersPage.customerDisplayed2));
     }
 
     @Test

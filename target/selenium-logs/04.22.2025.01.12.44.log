@@ -1,0 +1,2 @@
+2025-04-22 13:12:44,300 [info]: Clicking on newBillTxt
+2025-04-22 13:12:56,376 [info]: Clicking on By.xpath: //div[@class='border p-2 py-3 mb-2 rounded-3 position-relative -expdate-div-']//div[@class='d-flex justify-content-between position-relative align-items-center']//div[@class='w-100 text-end text-truncate ps-2']//div//a[@class='stretched-link ms-1 -activator-button-']

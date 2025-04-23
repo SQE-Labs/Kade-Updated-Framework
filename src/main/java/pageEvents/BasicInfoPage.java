@@ -65,7 +65,8 @@ public class BasicInfoPage extends BaseTest {
         WebElement fileInput = getDriver().findElement(By.xpath("//input[@type='file']"));
 
         String userDir = System.getProperty("user.dir");
-        String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "image" + File.separator + "dummy.pdf";
+        String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator+ "ImageResources"+ File.separator + "image" + File.separator + "dummy.pdf";
+                //userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "image" + File.separator + "dummy.pdf";
         fileInput.sendKeys(filePath);
     }
 

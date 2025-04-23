@@ -1,0 +1,3 @@
+2025-04-21 12:18:30,690 [info]: Clicking on By.xpath: //a[@class='card-header collapsed' and text()='January 2025']
+2025-04-21 12:18:34,116 [info]: Clicking on By.xpath: (//a[contains(text(),'January 2025')]//parent::div/div[1]//strong[text()='Sunday'])[1]
+2025-04-21 12:18:49,474 [info]: Clicking on By.xpath: //strong[@class='align-self-center' and text()='December - 2024']

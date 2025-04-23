@@ -17,7 +17,7 @@ public class RewardsProgramPage extends BaseTest {
     public By infoMsgRewardsConfig = By.cssSelector(".fa.fa-do-not-enter.text-danger.me-2");
     public By settingsBtn = By.cssSelector(".btn.btn-link.float-end.p-0");
     public By rewardsProgPopupTitle = By.cssSelector(".modal-title");
-    public By toggleDisabled = By.cssSelector(".far.fa-toggle-off.custom-check-off ");
+    public By toggleDisabled = By.xpath("//i[contains(@class,'check-off')]");
     public By toggleEnabled = By.cssSelector(".far.fa-toggle-on.custom-check-on ");
     public By saveChangesBtn = By.xpath("//button[@class='btn btn-primary'][text()='Save changes']");
     public By rewardsProgActivationMsg = By.cssSelector(".fa.fa-check.text-success.me-2");

@@ -725,41 +725,28 @@ public class GiftCardDashboardTest extends BaseTest {
 
     }
 
-    @Test(priority = 90, enabled = true, description = "Verify that 'Funding Source' field appear as text field on 'Gift Card For Sale' page. ")
+    @Test(priority = 90 & 91 , enabled = true, description = "Verify that 'Funding Source' field appear as text field on 'Gift Card For Sale' page. ")
     public void verifyFundingSrcFieldAppearAsText(){
-
-
-    }
-
-    @Test(priority = 91, enabled = true, description = "Verify that 'Gift card amount' field accepts only numeric value, on 'Gift Card For Sale' popup. ")
-    public void verifyValidationOnEnteringG (){
+         //
 
     }
 
-    @Test(priority = 92, enabled = true, description = "Verify that 'Gift card amount' field accepts only numeric value, on 'Gift Card For Sale' popup. ")
-    public void verifyValidati(){
+ //   @Test(priority = 92, enabled = true, description = " Verify that 'Available quantity for sale' field accepts value up to 4 digits, on 'Gift Card For Sale' page.  ")
+   // public void verifyValidationOnEnteringG (){
 
-    }
+ //   }
 
-    @Test(priority = 93, enabled = true, description = "Verify that 'Gift card amount' field accepts only numeric value, on 'Gift Card For Sale' popup. ")
-    public void verifyVal() {
 
-    }
 
-    @Test(priority = 94, enabled = true, description = "Verify that 'Gift card amount' field accepts only numeric value, on 'Gift Card For Sale' popup. ")
-    public void verifyValidationOnEnteringGreaterValu() {
 
-    }
 
-    @Test(priority = 95, enabled = true, description = "Verify that 'Gift card amount' field accepts only numeric value, on 'Gift Card For Sale' popup. ")
-    public void verifyValidationOnEnteringGreaterVal() {
 
-    }
 
-    @Test(priority = 96, enabled = true, description = "Verify that 'Gift card amount' field accepts only numeric value, on 'Gift Card For Sale' popup. ")
-    public void verifyValidationOnEnteringGreaterVa() {
 
-    }
+
+
+
+
 
 
 
