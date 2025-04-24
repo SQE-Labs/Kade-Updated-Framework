@@ -7,7 +7,6 @@ import java.io.File;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
 
 import logger.Log;
@@ -22,7 +21,6 @@ import org.openqa.selenium.support.ui.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.asserts.SoftAssert;
@@ -884,24 +882,28 @@ public class BaseTest {
         }
         return name;
     }
-    public boolean isDisplayed(By locator,int timeout) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeout));
+    public boolean isDisplayed(By locator, int timeoutInSeconds) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutInSeconds));
         log.info("Checking if element is displayed: {}", locator);
         try {
-            wait.until(visibilityOfElementLocated(locator));
-            WebElement element = getDriver().findElement(locator);
-            boolean isDisplayed = element.isDisplayed();
-            log.info("Element displayed state: {}", isDisplayed);
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            boolean isVisible = element.isDisplayed();
+            log.info("Element displayed state: {}", isVisible);
             return true;
-        } catch (NoSuchElementException e) {
-            log.warn("Element not found: {}", locator);
-            return false; // Treat missing elements as not displayed
+        } catch (TimeoutException e) {
+            log.warn("Element not visible within timeout: {}", locator);
+            return false;
+        } catch (Exception e) {
+            log.error("Unexpected exception while checking visibility of: {}", locator, e);
+            return false;
         }
     }
 
-
-
 }
+
+
+
+
 
 
 

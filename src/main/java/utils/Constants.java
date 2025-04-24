@@ -188,6 +188,21 @@ public interface Constants {
     String emailValidationToolTip ="Please enter a valid email address.";
     String phoneValidationToolTip = "Invalid phone number";
     String noResultText ="There are no results";
+    String noActiveStoreInfoMsg="No active store is available in your account!";
+    String referenceNoTooltipMsg ="This field is required.";
+    String cardNoText ="Card No";
+    String cardMinLendthMsg ="Please enter atleast 4 characters.";
+    String cardNoDatatype="numeric";
+    String maxLength ="18";
+    String fundingSourceType = "text";
+    String invalidDateTooltip= "Invalid date";
+    String memoMaxLength ="500";
+    String fundingResourceText ="Funding source";
+    String memoText ="Memo";
+    String startDateText ="Start Date:";
+    String endDateText ="Exp. Date:";
+
+
 
 
 
