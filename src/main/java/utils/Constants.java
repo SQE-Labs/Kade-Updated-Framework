@@ -54,6 +54,7 @@ public interface Constants {
     String  TermsOfUser ="User Agreement";
     String PaymentHistoryTitle = "Payment History";
     String NoPaymentsMessage = "There are no payments available yet!";
+    String invalidEmailValidationMsg = "Invalid email";
 
 
     //BasicInformationPage constants
@@ -158,12 +159,13 @@ public interface Constants {
     public static String AutomationTransaction2 ="Automation Transaction 2";
     public static String AutomationPaymentHistory = "Automation Payment History";  // Flow 1 without plan
     public static String BillHeader="Bill";
+    public static String TerminalChargeStore ="TerminalNewCharges";
 
 
     //Verifying Modified Details
-    String editdefaultStoreName = "My Store MSC Final";
+    String editdefaultStoreName = "Automation Flow Business 1";
     String editdefaultStorePhone = "+1 (918) 065 2341";
-    String reverseStoreName = "Automation Flow 3";
+    String reverseStoreName = "Automation Flow Business";
 
 
     // Store Configuration
@@ -220,7 +222,7 @@ public interface Constants {
 
     // Transactions page
     String noPaymentInfoMsg = "There are no payments available yet!";
-    String amount = "100.00";
+    String amount = "1590.01";
     String newChargeDescription = "New charge payment";
     String terminalNotAcceptedAlert= "Your store is not configured to process any credit card";
     String terminalSuccessMessage = "Processed successfully!";
@@ -228,6 +230,10 @@ public interface Constants {
     // Verify Message
     String verifyInfoMsg = "Each transaction can be verified only once.";
     String verifyByStore = "Verified by the store";
+
+    // Gift Card
+    String GiftCardSummaryURL = "https://sibtestenv.azurewebsites.net/Giftcards/GiftCardsSummary";
+    String giftCardDetailURL = "https://sibtestenv.azurewebsites.net/Giftcards/giftcardDetail?Id=2935";
 
 
 }

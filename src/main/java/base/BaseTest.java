@@ -14,6 +14,7 @@ import org.testng.asserts.SoftAssert;
 import pageObjects.PageObjectManager;
 import utils.ConfigFileReader;
 import utils.PropertyUtils;
+import java.util.List;
 
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
@@ -21,8 +22,6 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.time.Duration;
 import java.util.Set;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class BaseTest {
     private static final Logger log = LogManager.getLogger(BaseTest.class); // Logger instance
@@ -161,7 +160,7 @@ public class BaseTest {
     public WebElement waitForElementToBeVisible(By locator, int timeout) {
         log.info("Waiting for element to be visible: {}", locator);
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeout));
-        return wait.until(visibilityOfElementLocated(locator));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     public static void WaitUntilElementVisible(By locator, int tries) {
@@ -170,7 +169,7 @@ public class BaseTest {
                 Wait<WebDriver> fluentWait1 = new FluentWait<WebDriver>(getDriver()).withTimeout(Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))))
                         .pollingEvery(Duration.ofMillis(Long.parseLong(PropertyUtils.getPropertyValue("wait"))))
                         .ignoring(TimeoutException.class);
-                fluentWait1.until(visibilityOfElementLocated(locator));
+                fluentWait1.until(ExpectedConditions.visibilityOfElementLocated(locator));
             }
         } catch (Exception e) {
         }
@@ -264,6 +263,12 @@ public class BaseTest {
         log.info("Scrolling to element: {}", locator);
         WebElement element = getDriver().findElement(locator);
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+        staticWait(2000);
+    }
+
+    public void scrollToWebElement(WebElement locator) {
+        log.info("Scrolling to element: {}", locator);
+        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", locator);
     }
 
     /**
@@ -520,7 +525,7 @@ public class BaseTest {
      * @param locator The WebElement to interact with.
      * @param key The Keys value to simulate (e.g., Keys.ENTER, Keys.TAB).
      */
-    public void KeysToElement(WebElement element, Keys key) {
+    public void sendKeysToElement(WebElement element, Keys key) {
         element.sendKeys(key);
     }
 
@@ -624,7 +629,7 @@ public class BaseTest {
 
         // Wait for the loader to appear (if necessary)
         try {
-            wait.until(visibilityOfElementLocated(loaderLocator));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(loaderLocator));
             System.out.println("Loader started loading.");
         } catch (Exception e) {
             System.err.println("Loader did not appear within the timeout.");
@@ -764,12 +769,12 @@ public class BaseTest {
             String toolTipId = element.getAttribute("aria-describedby");
             if (toolTipId != null && !toolTipId.isEmpty()) {
                 By toolTipLocator = By.id(toolTipId);
-                WebElement tooltipElement = wait.until(visibilityOfElementLocated(toolTipLocator));
+                WebElement tooltipElement = wait.until(ExpectedConditions.visibilityOfElementLocated(toolTipLocator));
                 return tooltipElement.getText();
             }
 
             // Check for a common class or tag for tooltips (adjust this if needed)
-            WebElement tooltipElement = wait.until(visibilityOfElementLocated(By.cssSelector(".tooltip, [role='tooltip']")));
+            WebElement tooltipElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".tooltip, [role='tooltip']")));
             return tooltipElement.getText();
         } catch (TimeoutException e) {
             return "Tooltip not found or not visible";
@@ -850,7 +855,6 @@ public class BaseTest {
         js.executeScript("arguments[0].value = '';", element);
     }
 
-
     public void pressKeys(By locator, String value) {
         // Create PerformActions instance
         Actions actions = new Actions(getDriver());
@@ -906,6 +910,42 @@ public class BaseTest {
     public void switchToDefaultWindow() {
         getDriver().switchTo().defaultContent();
     }
+
+    public static String deleteFile(String fileName) {
+        String home = System.getProperty("user.home");
+        String file_with_location;
+
+        if (System.getProperty("os.name").contains("Windows")) {
+            file_with_location = home + "\\Downloads\\" + fileName;
+        } else {
+            file_with_location = home + "/Downloads/" + fileName;
+        }
+
+        File file = new File(file_with_location);
+
+        if (file.exists()) {
+            boolean deleted = file.delete();
+            if (deleted) {
+                return "File deleted successfully";
+            } else {
+                return "Failed to delete file";
+            }
+        } else {
+            return "File not found";
+        }
+    }
+
+    public WebElement getElement(By locator) {
+        try {
+            return getDriver().findElement(locator);
+        } catch (Exception e) {
+            System.out.println("Element not found: " + locator.toString());
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
     public boolean isDisplayed(By locator, int timeoutInSeconds) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutInSeconds));
         log.info("Checking if element is displayed: {}", locator);
@@ -922,8 +962,9 @@ public class BaseTest {
             return false;
         }
     }
-
-
+    public List<WebElement> getListOfWebElement(By locator) {
+        return (List<WebElement>) getDriver().findElements(locator);
+    }
 
 
 }

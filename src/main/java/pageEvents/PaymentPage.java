@@ -161,7 +161,7 @@ public class PaymentPage extends BaseTest {
     By bill = By.xpath("(//p[text()='A bill received']/../..)[1]");
     By payNowBtn = By.xpath("//button[text()='Pay Now']");
     By storeName = By.xpath("//h4[text()='Automation Bill Flow']");
-    By visaCardName = By.xpath("(//span[contains(text(),'Visa')])[3]");
+    public By visaCardName = By.xpath("(//span[contains(text(),'Visa')])[3]");
     By debitCardName = By.xpath("(//span[contains(text(),'Visa')])[5]");
     By changeBtn = By.xpath("//div[normalize-space()='Change']");
     By creditCards = By.xpath("//span[text()='New Credit Card']/../../../..");
@@ -170,10 +170,10 @@ public class PaymentPage extends BaseTest {
     By thankTxt = By.xpath("//span[text()='Thank']");
     By youTxt = By.xpath("//span[text()='You!']");
     By rateYourExpTxt = By.xpath("//div[normalize-space()='Rate your experience']");
-    By viewReciptTxt = By.xpath("//a[text()='View the receipt']");
+    public By viewReciptTxt = By.xpath("//a[text()='View the receipt']");
     By transactionHeader = By.xpath("//h1[normalize-space()='Transaction Detail']");
     By tarnsactionUniqueId = By.xpath("(//span[contains(text(),'TR-')])[2]");
-    By paymentMethodIcon = By.xpath("//span[text()='Visa 1111']");
+    By paymentMethodIcon = By.xpath("//span[contains(@class,'payment-logo-bg-sm')]");
     By bankAccountSection = By.xpath("(//span[contains(text(),'Bank Account 6789')])");
     By amountField = By.xpath("(//form//input[@name='amount'])[2]");
     By updateBtn = By.xpath("(//button[text()='Update'])[2]");
@@ -184,7 +184,8 @@ public class PaymentPage extends BaseTest {
     By makePayment = By.xpath("//button[text()='I made the payment']");
     By selectCheckBox = By.xpath("(//span[text()='Confirm your payment by checking this box']/../i)[2]");
     By zelleSaveBtn = By.xpath("//button[text()='Submit']");
-    By payCurrentBalance=By.xpath("//button[text()='Pay the current balance']/..");
+    public By payCurrentBalance=By.xpath("//button[text()='Pay the current balance']/..");
+    By okbuttonOfAttentionPopup = By.xpath("//button[@class='btn btn-outline-primary']");
 
 
     //        public void PaymentsPage() {
@@ -1118,26 +1119,30 @@ public class PaymentPage extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(viewReciptTxt));
 
         clickOnViewReciptLink();
+        staticWait(3000);
         softAssert.assertTrue(isElementDisplayed(transactionHeader));
         softAssert.assertTrue(isElementDisplayed(tarnsactionUniqueId));
         softAssert.assertTrue(isElementDisplayed(paymentMethodIcon));
+
 
     }
 
     public void billPayment() {
 
         staticWait(3000);
-        softAssert.assertTrue(isElementDisplayed(thankTxt));
-        softAssert.assertTrue(isElementDisplayed(youTxt));
+        softAssert.assertTrue(isElementDisplayed(thankTxt),"Thankyou Text");
+        softAssert.assertTrue(isElementDisplayed(youTxt),"you Text");
         scrollToDown();
-        softAssert.assertTrue(isElementDisplayed(rateYourExpTxt));
-        softAssert.assertTrue(isElementDisplayed(viewReciptTxt));
-        staticWait(2000);
-   scrollToElement(viewReciptTxt);
+        waitForElementToBeVisible(rateYourExpTxt,3);
+        softAssert.assertTrue(isElementDisplayed(rateYourExpTxt),"Rate your experience");
+        softAssert.assertTrue(isElementDisplayed(viewReciptTxt),"View Receipt Text");
+        staticWait(3000);
+       scrollToElement(viewReciptTxt);
         clickOnViewReciptLink();
-        softAssert.assertTrue(isElementDisplayed(transactionHeader));
-        softAssert.assertTrue(isElementDisplayed(tarnsactionUniqueId));
-        softAssert.assertTrue(isElementDisplayed(paymentMethodIcon));
+        staticWait(5000);
+        softAssert.assertTrue(isElementDisplayed(transactionHeader), "Transaction Header");
+        softAssert.assertTrue(isElementDisplayed(tarnsactionUniqueId),"Transaction UniqueId");
+        softAssert.assertTrue(isElementDisplayed(paymentMethodIcon),"Payment Method Icon");
 
     }
 
@@ -1154,6 +1159,7 @@ public class PaymentPage extends BaseTest {
         }
         //  softAssert.assertTrue(isElementDisplayed(storeName));
         softAssert.assertTrue(isElementDisplayed(visaCardName));
+        staticWait(3000);
         clickOnchangeBtn();
         clickOncreditCards();
         switchToFrame();
@@ -1262,14 +1268,40 @@ public class PaymentPage extends BaseTest {
         }else{
              Log.info("Nothing to be selected");
         }
-
-       // softAssert.assertTrue(isElementDisplayed(storeName));
-        softAssert.assertTrue(isElementDisplayed(visaCardName));
+        staticWait(4000);
         clickOnVenmoAccount();
         clickOnMakePaymentBtn();
         clickOnCheckBox();
         zelleSaveBtn();
         billPayment();
+    }
+
+    public void getOkButtonOfAttentionPopup(){
+        click(okbuttonOfAttentionPopup);
+    }
+    public void billPaymentByThroughDebitCardWithRecurringBill(String cardNameTxt, String expiryDateTxt, String cvcTxt, String countryName) {
+        clickOnSignOut();
+        LoginAsCustomer();
+        clickOnBillIcon();
+        clickOnBill();
+        clickOnPayNowBtn();
+        if(isElementDisplayed(payCurrentBalance)){
+            hoverAndClick(payCurrentBalance,payCurrentBalance);
+        }else{
+            Log.info("Nothing to be selected");
+        }
+        // Clicking on Ok button of Attention popup
+        getOkButtonOfAttentionPopup();
+
+        staticWait(3000);
+        clickOnchangeBtn();
+        clickOncreditCards();
+        switchToFrame();
+        enterCardName(cardNameTxt, expiryDateTxt, cvcTxt, countryName);
+        switchToDefaultContent();
+        staticWait(10000);
+        clickOnSaveBtn();
+
     }
 
 

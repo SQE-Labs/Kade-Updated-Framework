@@ -995,8 +995,8 @@ public class GiftCardDashboardPage extends BaseTest {
         clickElementByJS(issueNewGiftCardBtn);
         scrollToElement(moreOptionsBtn);
         clickElementByJS(moreOptionsBtn);
-        click(startDate);
-        actionEnterText(startDate, requiredString(5));
+        click(endDate);
+        actionEnterText(endDate, requiredString(5));
         scrollToElement(createButton);
         waitForElementToBeVisible(createButton, 1000);
         click(createButton);

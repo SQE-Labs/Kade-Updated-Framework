@@ -25484,3 +25484,133 @@
 [2025-04-24 16:32:59.003] [INFO ] [main] BaseTest - Getting text from element: By.xpath: //p[text()='Please review the highlighted field(s)']
 [2025-04-24 16:32:59.003] [INFO ] [main] BaseTest - Waiting for element to be visible: By.xpath: //p[text()='Please review the highlighted field(s)']
 [2025-04-24 16:33:09.338] [INFO ] [main] BaseTest - Tearing down WebDriver.
+[2025-04-24 18:10:34.497] [INFO ] [main] BaseTest - Environment set to: qa
+[2025-04-24 18:10:34.512] [INFO ] [main] ConfigFileReader - Reloading ConfigFileReader instance.
+[2025-04-24 18:10:34.512] [INFO ] [main] ConfigFileReader - Creating new instance of ConfigFileReader.
+[2025-04-24 18:10:34.514] [INFO ] [main] ConfigFileReader - Loading configuration for environment: qa
+[2025-04-24 18:10:34.514] [INFO ] [main] ConfigFileReader - Configuration file: config_qa.properties
+[2025-04-24 18:10:34.516] [INFO ] [main] ConfigFileReader - Configuration file loaded successfully: config_qa.properties
+[2025-04-24 18:10:34.516] [DEBUG] [main] BaseTest - Config file reloaded for environment: qa
+[2025-04-24 18:10:34.518] [INFO ] [main] ConfigFileReader - Retrieved property 'url': https://sibtestenv.azurewebsites.net/Account/Login
+[2025-04-24 18:10:34.518] [INFO ] [main] BaseTest - URL loaded from config: https://sibtestenv.azurewebsites.net/Account/Login
+[2025-04-24 18:10:34.564] [INFO ] [main] BaseTest - Setting up WebDriver for browser: chrome, headless: false
+[2025-04-24 18:10:43.028] [INFO ] [main] BaseTest - ChromeDriver initialized.
+[2025-04-24 18:10:43.145] [INFO ] [main] ConfigFileReader - Retrieved property 'url': https://sibtestenv.azurewebsites.net/Account/Login
+[2025-04-24 18:10:48.096] [INFO ] [main] BaseTest - Navigated to URL: https://sibtestenv.azurewebsites.net/Account/Login
+[2025-04-24 18:10:48.106] [INFO ] [main] BaseTest - Implicit wait set to 20 seconds.
+[2025-04-24 18:10:48.116] [INFO ] [main] ConfigFileReader - Retrieved property 'username': 6465551114
+[2025-04-24 18:10:48.117] [INFO ] [main] ConfigFileReader - Retrieved property 'password': Test@123
+[2025-04-24 18:10:48.117] [DEBUG] [main] BaseTest - Attempting to login with username: 6465551114
+[2025-04-24 18:10:48.119] [INFO ] [main] LoginPageEvents - Starting the sign-in process.
+[2025-04-24 18:10:48.119] [INFO ] [main] LoginPageEvents - Entering username: 6465551114
+[2025-04-24 18:10:48.119] [INFO ] [main] BaseTest - Entering text '6465551114' into element: By.cssSelector: input[name='userName']
+[2025-04-24 18:10:48.119] [INFO ] [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='userName']
+[2025-04-24 18:10:48.706] [INFO ] [main] LoginPageEvents - Entering password: Test@123
+[2025-04-24 18:10:48.706] [INFO ] [main] BaseTest - Entering text 'Test@123' into element: By.cssSelector: input[name='passWord']
+[2025-04-24 18:10:48.706] [INFO ] [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='passWord']
+[2025-04-24 18:10:49.414] [INFO ] [main] LoginPageEvents - Clicking on the Sign-In button.
+[2025-04-24 18:10:49.415] [INFO ] [main] BaseTest - Clicking on element: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[2025-04-24 18:10:49.429] [INFO ] [main] BaseTest - Waiting for element to be clickable: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[2025-04-24 18:10:49.709] [INFO ] [main] LoginPageEvents - Sign-in process completed.
+[2025-04-24 18:10:49.710] [DEBUG] [main] BaseTest - User has successfully logged in and landed on the dashboard
+[2025-04-24 18:10:49.710] [INFO ] [main] HomePageEvents - Verifying the landing page by checking the 'Sign Out' text.
+[2025-04-24 18:10:49.710] [INFO ] [main] BaseTest - Getting text from element: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[2025-04-24 18:10:49.710] [INFO ] [main] BaseTest - Waiting for element to be visible: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[2025-04-24 18:10:52.838] [DEBUG] [main] HomePageEvents - Retrieved 'Sign Out' text: Sign out
+[2025-04-24 18:10:52.841] [INFO ] [main] HomePageEvents - Landing page verified successfully. 'Sign Out' text matches the expected value.
+[2025-04-24 18:10:52.842] [INFO ] [main] BaseTest - Clicking on element: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[2025-04-24 18:10:52.842] [INFO ] [main] BaseTest - Waiting for element to be clickable: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[2025-04-24 18:10:54.211] [INFO ] [main] BaseTest - Clicking on element: By.cssSelector: span.select2-selection__rendered[role='textbox']
+[2025-04-24 18:10:54.211] [INFO ] [main] BaseTest - Waiting for element to be clickable: By.cssSelector: span.select2-selection__rendered[role='textbox']
+[2025-04-24 18:10:54.759] [INFO ] [main] BaseTest - Clicking on element: By.cssSelector: button.btn-primary
+[2025-04-24 18:10:54.763] [INFO ] [main] BaseTest - Waiting for element to be clickable: By.cssSelector: button.btn-primary
+[2025-04-24 18:10:55.107] [INFO ] [main] BaseTest - Clicking on element: By.cssSelector: button.btn.btn-link
+[2025-04-24 18:10:55.109] [INFO ] [main] BaseTest - Waiting for element to be clickable: By.cssSelector: button.btn.btn-link
+[2025-04-24 18:10:57.002] [INFO ] [main] BaseTest - Checking if element is displayed: By.cssSelector: label.custom-checkbox.mb-3
+[2025-04-24 18:10:58.266] [INFO ] [main] BaseTest - Element displayed state: true
+[2025-04-24 18:10:58.266] [INFO ] [main] BaseTest - Checking if element is displayed: By.cssSelector: input[name='readonlyFunds'] ~ span.custom-check-off
+[2025-04-24 18:10:58.437] [INFO ] [main] BaseTest - Element displayed state: true
+[2025-04-24 18:10:58.437] [INFO ] [main] BaseTest - Checking if element is displayed: By.cssSelector: input[name='ReferenceNo'] ~ span.custom-check-off
+[2025-04-24 18:10:58.599] [INFO ] [main] BaseTest - Element displayed state: true
+[2025-04-24 18:10:58.599] [INFO ] [main] BaseTest - Waiting for element to be visible: By.cssSelector: input[name='maximumGCAmount']
+[2025-04-24 18:10:59.160] [INFO ] [main] BaseTest - Clicking on element: By.cssSelector: button.btn.btn-outline-primary.ms-auto.mt-3
+[2025-04-24 18:10:59.161] [INFO ] [main] BaseTest - Waiting for element to be clickable: By.cssSelector: button.btn.btn-outline-primary.ms-auto.mt-3
+[2025-04-24 18:10:59.484] [DEBUG] [main] BaseTest - Static wait for 1000 ms.
+[2025-04-24 18:11:00.800] [INFO ] [main] BaseTest - Scrolling to element: By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+[2025-04-24 18:11:01.446] [DEBUG] [main] BaseTest - Static wait for 2000 ms.
+[2025-04-24 18:11:03.671] [INFO ] [main] BaseTest - Clicking on element: By.cssSelector: div.input-group>input[name='startDate']
+[2025-04-24 18:11:03.673] [INFO ] [main] BaseTest - Waiting for element to be clickable: By.cssSelector: div.input-group>input[name='startDate']
+[2025-04-24 18:11:05.898] [INFO ] [main] BaseTest - Scrolling to element: By.cssSelector: button.btn.btn-success.btn-lg.w-100
+[2025-04-24 18:11:06.039] [DEBUG] [main] BaseTest - Static wait for 2000 ms.
+[2025-04-24 18:11:08.053] [INFO ] [main] BaseTest - Waiting for element to be visible: By.cssSelector: button.btn.btn-success.btn-lg.w-100
+[2025-04-24 18:11:08.135] [INFO ] [main] BaseTest - Clicking on element: By.cssSelector: button.btn.btn-success.btn-lg.w-100
+[2025-04-24 18:11:08.137] [INFO ] [main] BaseTest - Waiting for element to be clickable: By.cssSelector: button.btn.btn-success.btn-lg.w-100
+[2025-04-24 18:11:08.493] [INFO ] [main] BaseTest - Waiting for element to be visible: By.xpath: //p[text()='Please review the highlighted field(s)']
+[2025-04-24 18:11:14.408] [INFO ] [main] BaseTest - Getting text from element: By.xpath: //p[text()='Please review the highlighted field(s)']
+[2025-04-24 18:11:14.408] [INFO ] [main] BaseTest - Waiting for element to be visible: By.xpath: //p[text()='Please review the highlighted field(s)']
+[2025-04-24 18:11:14.468] [INFO ] [main] BaseTest - Tearing down WebDriver.
+[2025-04-24 18:12:27.597] [INFO ] [main] BaseTest - Environment set to: qa
+[2025-04-24 18:12:27.606] [INFO ] [main] ConfigFileReader - Reloading ConfigFileReader instance.
+[2025-04-24 18:12:27.606] [INFO ] [main] ConfigFileReader - Creating new instance of ConfigFileReader.
+[2025-04-24 18:12:27.607] [INFO ] [main] ConfigFileReader - Loading configuration for environment: qa
+[2025-04-24 18:12:27.607] [INFO ] [main] ConfigFileReader - Configuration file: config_qa.properties
+[2025-04-24 18:12:27.609] [INFO ] [main] ConfigFileReader - Configuration file loaded successfully: config_qa.properties
+[2025-04-24 18:12:27.610] [DEBUG] [main] BaseTest - Config file reloaded for environment: qa
+[2025-04-24 18:12:27.610] [INFO ] [main] ConfigFileReader - Retrieved property 'url': https://sibtestenv.azurewebsites.net/Account/Login
+[2025-04-24 18:12:27.611] [INFO ] [main] BaseTest - URL loaded from config: https://sibtestenv.azurewebsites.net/Account/Login
+[2025-04-24 18:12:27.647] [INFO ] [main] BaseTest - Setting up WebDriver for browser: chrome, headless: false
+[2025-04-24 18:12:32.929] [INFO ] [main] BaseTest - ChromeDriver initialized.
+[2025-04-24 18:12:33.014] [INFO ] [main] ConfigFileReader - Retrieved property 'url': https://sibtestenv.azurewebsites.net/Account/Login
+[2025-04-24 18:12:38.868] [INFO ] [main] BaseTest - Navigated to URL: https://sibtestenv.azurewebsites.net/Account/Login
+[2025-04-24 18:12:38.878] [INFO ] [main] BaseTest - Implicit wait set to 20 seconds.
+[2025-04-24 18:12:38.888] [INFO ] [main] ConfigFileReader - Retrieved property 'username': 6465551114
+[2025-04-24 18:12:38.888] [INFO ] [main] ConfigFileReader - Retrieved property 'password': Test@123
+[2025-04-24 18:12:38.889] [DEBUG] [main] BaseTest - Attempting to login with username: 6465551114
+[2025-04-24 18:12:38.889] [INFO ] [main] LoginPageEvents - Starting the sign-in process.
+[2025-04-24 18:12:38.891] [INFO ] [main] LoginPageEvents - Entering username: 6465551114
+[2025-04-24 18:12:38.891] [INFO ] [main] BaseTest - Entering text '6465551114' into element: By.cssSelector: input[name='userName']
+[2025-04-24 18:12:38.891] [INFO ] [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='userName']
+[2025-04-24 18:12:39.547] [INFO ] [main] LoginPageEvents - Entering password: Test@123
+[2025-04-24 18:12:39.547] [INFO ] [main] BaseTest - Entering text 'Test@123' into element: By.cssSelector: input[name='passWord']
+[2025-04-24 18:12:39.547] [INFO ] [main] BaseTest - Waiting for element to be clickable: By.cssSelector: input[name='passWord']
+[2025-04-24 18:12:40.145] [INFO ] [main] LoginPageEvents - Clicking on the Sign-In button.
+[2025-04-24 18:12:40.147] [INFO ] [main] BaseTest - Clicking on element: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[2025-04-24 18:12:40.161] [INFO ] [main] BaseTest - Waiting for element to be clickable: By.xpath: //*[@id='loginAdvDivId']/div[2]/div/button
+[2025-04-24 18:12:40.606] [INFO ] [main] LoginPageEvents - Sign-in process completed.
+[2025-04-24 18:12:40.608] [DEBUG] [main] BaseTest - User has successfully logged in and landed on the dashboard
+[2025-04-24 18:12:40.608] [INFO ] [main] HomePageEvents - Verifying the landing page by checking the 'Sign Out' text.
+[2025-04-24 18:12:40.608] [INFO ] [main] BaseTest - Getting text from element: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[2025-04-24 18:12:40.609] [INFO ] [main] BaseTest - Waiting for element to be visible: By.xpath: //*[@id='sidebar']/div/div/a[3]
+[2025-04-24 18:12:43.596] [DEBUG] [main] HomePageEvents - Retrieved 'Sign Out' text: Sign out
+[2025-04-24 18:12:43.609] [INFO ] [main] HomePageEvents - Landing page verified successfully. 'Sign Out' text matches the expected value.
+[2025-04-24 18:12:43.609] [INFO ] [main] BaseTest - Clicking on element: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[2025-04-24 18:12:43.611] [INFO ] [main] BaseTest - Waiting for element to be clickable: By.xpath: //li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']
+[2025-04-24 18:12:45.022] [INFO ] [main] BaseTest - Clicking on element: By.cssSelector: span.select2-selection__rendered[role='textbox']
+[2025-04-24 18:12:45.026] [INFO ] [main] BaseTest - Waiting for element to be clickable: By.cssSelector: span.select2-selection__rendered[role='textbox']
+[2025-04-24 18:12:46.221] [INFO ] [main] BaseTest - Clicking on element: By.cssSelector: button.btn-primary
+[2025-04-24 18:12:46.222] [INFO ] [main] BaseTest - Waiting for element to be clickable: By.cssSelector: button.btn-primary
+[2025-04-24 18:12:47.991] [INFO ] [main] BaseTest - Clicking on element: By.cssSelector: button.btn.btn-link
+[2025-04-24 18:12:47.995] [INFO ] [main] BaseTest - Waiting for element to be clickable: By.cssSelector: button.btn.btn-link
+[2025-04-24 18:12:49.412] [INFO ] [main] BaseTest - Checking if element is displayed: By.cssSelector: label.custom-checkbox.mb-3
+[2025-04-24 18:12:50.427] [INFO ] [main] BaseTest - Element displayed state: true
+[2025-04-24 18:12:50.427] [INFO ] [main] BaseTest - Checking if element is displayed: By.cssSelector: input[name='readonlyFunds'] ~ span.custom-check-off
+[2025-04-24 18:12:50.711] [INFO ] [main] BaseTest - Element displayed state: true
+[2025-04-24 18:12:50.713] [INFO ] [main] BaseTest - Checking if element is displayed: By.cssSelector: input[name='ReferenceNo'] ~ span.custom-check-off
+[2025-04-24 18:12:51.017] [INFO ] [main] BaseTest - Element displayed state: true
+[2025-04-24 18:12:51.022] [INFO ] [main] BaseTest - Waiting for element to be visible: By.cssSelector: input[name='maximumGCAmount']
+[2025-04-24 18:12:52.131] [INFO ] [main] BaseTest - Clicking on element: By.cssSelector: button.btn.btn-outline-primary.ms-auto.mt-3
+[2025-04-24 18:12:52.138] [INFO ] [main] BaseTest - Waiting for element to be clickable: By.cssSelector: button.btn.btn-outline-primary.ms-auto.mt-3
+[2025-04-24 18:12:52.617] [DEBUG] [main] BaseTest - Static wait for 1000 ms.
+[2025-04-24 18:12:54.139] [INFO ] [main] BaseTest - Scrolling to element: By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+[2025-04-24 18:12:54.730] [DEBUG] [main] BaseTest - Static wait for 2000 ms.
+[2025-04-24 18:12:56.774] [INFO ] [main] BaseTest - Clicking on element: By.cssSelector: div.input-group>input[name='endDate']
+[2025-04-24 18:12:56.774] [INFO ] [main] BaseTest - Waiting for element to be clickable: By.cssSelector: div.input-group>input[name='endDate']
+[2025-04-24 18:12:57.929] [INFO ] [main] BaseTest - Scrolling to element: By.cssSelector: button.btn.btn-success.btn-lg.w-100
+[2025-04-24 18:12:58.001] [DEBUG] [main] BaseTest - Static wait for 2000 ms.
+[2025-04-24 18:13:00.016] [INFO ] [main] BaseTest - Waiting for element to be visible: By.cssSelector: button.btn.btn-success.btn-lg.w-100
+[2025-04-24 18:13:00.048] [INFO ] [main] BaseTest - Clicking on element: By.cssSelector: button.btn.btn-success.btn-lg.w-100
+[2025-04-24 18:13:00.048] [INFO ] [main] BaseTest - Waiting for element to be clickable: By.cssSelector: button.btn.btn-success.btn-lg.w-100
+[2025-04-24 18:13:00.245] [INFO ] [main] BaseTest - Waiting for element to be visible: By.xpath: //p[text()='Please review the highlighted field(s)']
+[2025-04-24 18:13:00.574] [INFO ] [main] BaseTest - Getting text from element: By.xpath: //p[text()='Please review the highlighted field(s)']
+[2025-04-24 18:13:00.574] [INFO ] [main] BaseTest - Waiting for element to be visible: By.xpath: //p[text()='Please review the highlighted field(s)']
+[2025-04-24 18:13:00.667] [INFO ] [main] BaseTest - Tearing down WebDriver.

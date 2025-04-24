@@ -31,15 +31,15 @@ public class MyStorePage extends BaseTest {
   public By timeZoneField = By.xpath("//select[@name='timeZone']");
   public By timeZoneOption = By.xpath("//option[text()='(GMT-05:00) Eastern Time (US & Canada)']");
   public By taxRateTbx = By.xpath("//input[@name='taxRate']");
-  public By saveBtn = By.xpath("//button[text()='Save']");
-  public By saveVenmoPaymentBtn = By.xpath("//div[co//button[text()='Save']ntains(@data-load,'/_venmoGatewayApplication')] //button[text()='Save']");
+  public By saveBtn = By.xpath("//div[contains(@class, 'd-flex mt-3')]/button[text()='Save']");
+  public By saveVenmoPaymentBtn = By.xpath("(//div[@class='card-footer']//button)[1]");
   public By stripeBtn = By.cssSelector(".img-fluid.h-100");
   public By connectStripePopUpTitle = By.xpath("//h5[text()='Connect to stripe']");
   public By testStripeBtn = By.partialLinkText("Create a test Stripe account");
   public By bankTransferToggleBtn = By.xpath("//span[text()='Accept bank transfer']");
   public By skipForNowBtn = By.xpath("//button[text()='Skip for now']");
   public By continueBtn = By.xpath("//button[text()='Continue']");
-  public By configureLink = By.xpath("(//h6[text()='Automation Flow 3']/../..//a)[1]");
+  public By configureLink = By.xpath("(//h6[text()='Automation Flow Business']/..//../div/a)[1]");
 
   public By configureLink2 = By.xpath("/html/body/div[4]/div/div/main/div/div[3]/div/div/div[4]/div[1]/a");
   public By modifyBtn = By.xpath("//button[text()='Modify']");
@@ -90,7 +90,7 @@ public class MyStorePage extends BaseTest {
     public By paymentProcessingSubTab = By.xpath("//div[text()='Payment Processing']");
    public By acceptVenmoToggleBtn = By.xpath("(//div[@class='my-3 loaded']//label/i)[14]");
    public By enableToggle=By.xpath("(//i[@class='far fa-toggle-on custom-check-on '])[8]");
-   public By acceptZelleToggleBtn = By.xpath("//span[text()='Accept Zelle']");
+   public By acceptZelleToggleBtn = By.xpath("(//span[text()='Accept Zelle'])[1]");
    public By venmoIDField = By.xpath("//label[text()='Venmo ID']/following-sibling::input");
    public By venmoNameField = By.xpath("//label[text()='Venmo Name']/following-sibling::input");
    public By zellePhoneField = By.xpath("//input[@name='phoneemail']");
@@ -117,7 +117,7 @@ public class MyStorePage extends BaseTest {
  public By notActiveStoreLabel = By.xpath("//h4[@class='me-2 text-danger']");
  public By activeStoreLabel = By.xpath("//h4[@class='me-2 text-success']");
  public By acceptVenmoHeader = By.xpath("//form[@action='/api/Stores/SaveVenmoGatewayApplication' and @style='display: none;']");
- public By acceptZelleHeader = By.xpath("//form[@action='/api/Stores/SaveVenmoGatewayApplication']/../..  //div[@style='display: none;']");
+ public By acceptZelleHeader = By.xpath("//form[@action='/api/Stores/SaveZelleGatewayApplication']");
  public  By deleteUserIcon = By.xpath("(//h5[text()='Users with access to this store']/../..//button)[2]");
     public By saveZellePaymentSettings = By.xpath("//form[@action='/api/Stores/SaveZelleGatewayApplication'] //button[text()='Save']");
     public By editStoreBtn = By.xpath("//i[@class='far fa-edit ms-2']");
@@ -131,7 +131,7 @@ public class MyStorePage extends BaseTest {
    public By fileInput2 = By.xpath("//input[@type='file' and @accept='image/*']");
    public By configureATerminalTitle = By.cssSelector(".text-danger.mb-3");
     public By addACreditCardTerminal = By.xpath("//h4[text()='Configure a terminal']/../div//button");
-    public By terminalEditIcon = By.cssSelector(".far.fa-edit.fa-2x");
+    public By terminalEditIcon = By.xpath("(//div[contains(@class, 'row-cols-2')]//i)[1]");
     public By terminalDeleteBtn = By.cssSelector(".d-flex.mt-3>button:nth-child(2)");
 
 
@@ -257,7 +257,6 @@ public class MyStorePage extends BaseTest {
     }
 
     public void  getAcceptVenmoToggleButton() {
-   //    hoverAndClick(acceptVenmoToggleBtn, acceptVenmoToggleBtn);
 
         if(!isToggleEnabled(acceptVenmoToggleBtn)){
             clickElementByJS(acceptVenmoToggleBtn);
@@ -266,32 +265,33 @@ public class MyStorePage extends BaseTest {
             hoverAndClick(enableToggle,enableToggle);
         }
 
-        staticWait(6000);
-        // Check if the toggle button is disabled
-        boolean isDisabled = !isEnabled(acceptVenmoToggleBtn); // isEnabled() returns false if disabled
-
-        if (isDisabled) {
-            System.out.println("Toggle button is disabled. Enabling it now...");
-
-            // Click the toggle button using JavaScript (in case normal click doesn't work)
-           clickElementByJS(acceptVenmoToggleBtn);
-
-            // Wait for toggle effect
-            staticWait(3000);
-
-            // Verify if the toggle button is now enabled
-            if (isEnabled(acceptVenmoToggleBtn)) {
-                System.out.println("Toggle button successfully enabled!");
-            } else {
-                System.out.println("Failed to enable the toggle button.");
-            }
-        } else {
-            System.out.println("Toggle button is already enabled.");
-        }
+//        staticWait(6000);
+//        // Check if the toggle button is disabled
+//        boolean isDisabled = !isEnabled(acceptVenmoToggleBtn); // isEnabled() returns false if disabled
+//
+//        if (isDisabled) {
+//            System.out.println("Toggle button is disabled. Enabling it now...");
+//
+//            // Click the toggle button using JavaScript (in case normal click doesn't work)
+//           clickElementByJS(acceptVenmoToggleBtn);
+//
+//            // Wait for toggle effect
+//            staticWait(3000);
+//
+//            // Verify if the toggle button is now enabled
+//            if (isEnabled(acceptVenmoToggleBtn)) {
+//                System.out.println("Toggle button successfully enabled!");
+//            } else {
+//                System.out.println("Failed to enable the toggle button.");
+//            }
+//        } else {
+//            System.out.println("Toggle button is already enabled.");
+//        }
 
     }
     public void getAcceptZelleToggleButton() {
-    click(acceptZelleToggleBtn);
+        waitForElementToBeVisible(acceptZelleToggleBtn,2);
+        hoverAndClick(acceptZelleToggleBtn,acceptZelleToggleBtn);
     }
     public void getVenmoSaveButton(){
         click(saveVenmoPaymentBtn);
@@ -316,17 +316,19 @@ public class MyStorePage extends BaseTest {
         scrollToElement(creditCardTerminalOption);
 //        waitForElementToBeClickable(creditCardTerminalOption,5);
         clickElementByJS(creditCardTerminalOption);
-        waitForElementToBeClickable(saveBtn,3);
+        waitForElementToBeClickable(saveBtn,6);
         getSaveButton();
-        waitForElementToBeClickable(terminalDeleteBtn,5);
-//        getTerminalEditIcon();
-//        scrollToElement(terminalDeleteBtn);
-//        getDeleteTerminalBtn();
+
+        staticWait(5000);
+        getTerminalEditIcon();
+        scrollToElement(terminalDeleteBtn);
+        getDeleteTerminalBtn();
     }
 
     public void getTerminalEditIcon(){
-        clickElementByJS(terminalEditIcon);
+        click(terminalEditIcon);
     }
+
     public void getDeleteTerminalBtn(){
         scrollToElement(terminalDeleteBtn);
         click(terminalDeleteBtn);
@@ -382,9 +384,9 @@ public class MyStorePage extends BaseTest {
 
         enterText(StoreNameTbx, storeNamewithstripe);
         actionEnterText(phoneTbx, phone);
-        staticWait(2000);
+        staticWait(3000);
         scrollToElement(saveBtn);
-        waitForElementToBeVisible(saveBtn,10);
+        waitForElementToBeVisible(saveBtn,5);
         getSaveButton();
         waitForElementToBeVisible(bankTransferToggleBtn,10);
         scrollToElement(bankTransferToggleBtn);
@@ -410,6 +412,9 @@ public class MyStorePage extends BaseTest {
       Assert.assertEquals(storePhoneno, phone);
       Assert.assertEquals(Currency, Constants.defaultCurrency);
       Assert.assertEquals(Taxrate, Constants.defaultTaxRate);
+
+      staticWait(3000);
+
     }
 // *************************************************************************************
 
@@ -510,6 +515,7 @@ public class MyStorePage extends BaseTest {
 
         //Verifying maximum length of 'Store Name' field
         Assert.assertEquals(getAttribute(StoreNameTbx,"maxlength"),"100");
+        waitForElementToBeClickable(StoreNameTbx,5);
 
         // Enter Store Name
         enterText(StoreNameTbx,Constants.editdefaultStoreName);
@@ -524,7 +530,7 @@ public class MyStorePage extends BaseTest {
 
         //Verifying the minimum, maximum and default values of taxRate field
         softAssert.assertEquals(getAttribute(taxRateTbx,"min"),"0");
-        softAssert.assertEquals(getAttribute(taxRateTbx,"value"),"0.000");
+        softAssert.assertEquals(getAttribute(taxRateTbx,"value"),"0.000","Tax rate tbx value");
         softAssert.assertEquals(getAttribute(taxRateTbx,"max"),"100");
 
         //  Enter Tax rate
@@ -532,7 +538,7 @@ public class MyStorePage extends BaseTest {
         scrollToElement(saveBtn);
         staticWait(3000);
         getSaveButton();
-        softAssert.assertAll();
+
 
         ////Reset Store to default
         getModifyButton();
@@ -544,6 +550,7 @@ public class MyStorePage extends BaseTest {
         actionEnterText(taxRateTbx,Constants.defaultTaxRate);
         waitForElementToBeClickable(saveBtn,3);
         getSaveButton();
+        softAssert.assertAll();
 
 
     }

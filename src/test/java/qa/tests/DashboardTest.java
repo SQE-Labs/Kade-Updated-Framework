@@ -1,15 +1,21 @@
 package qa.tests;
 
 import base.BaseTest;
+import logger.Log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
-import pageEvents.DashboardPage;
+import pageEvents.*;
 import pageObjects.PageObjectManager;
 import org.testng.Assert;
 
 import utils.Constants;
+
+import java.util.List;
 
 
 public class DashboardTest extends BaseTest {
@@ -18,6 +24,10 @@ public class DashboardTest extends BaseTest {
 
     private PageObjectManager pageObjectManager = PageObjectManager.getInstance();
     private DashboardPage dashboard = pageObjectManager.getDashboardPage();
+    PaymentPage payment = new PaymentPage();
+    TransactionsPage transaction = new TransactionsPage();
+    BillPage bill = new BillPage();
+
 
     @Test(description = "DC01 & 2 Verify all sections are displayed on the 'Dashboard")
     public void verifyAllSection() {
@@ -139,7 +149,148 @@ public class DashboardTest extends BaseTest {
 //         dashboard.getGraphTraverse();
         dashboard.getCustomerGraphData();
     }
+
+    @Test(description = "DC09,DC10, DC11 and DC 12: Verify that Recent transactions of all stores appear under 'Recent transactions' section, on 'Dashboard' page.")
+    public void verifyThatRecentTransactionForAllStoreAppearsUnderRecentTransactionSection() {
+
+        bill.createBillWithCustomer("636045278965", "saybo@yopmail.com");
+        payment.billPaymentByThroughDebitCard("4111111111111111", "0930", "794", "Australia");
+        payment.swipeCard();
+        staticWait(3000);
+        scrollToElement(payment.viewReciptTxt);
+        waitForElementToBeVisible(payment.viewReciptTxt, 3);
+        staticWait(3000);
+        scrollToElement(payment.viewReciptTxt);
+        waitForElementToBeVisible(payment.viewReciptTxt, 3);
+        payment.clickOnViewReciptLink();
+
+        pageObjectManager.getSidePannel().getSignOut();
+        staticWait(3000);
+
+        // login as store manager
+        Login();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getTransactionTab();
+        transaction.getStoresDropdown();
+        selectStore(Constants.AutomationBillFlow);
+        transaction.getContinueButton();
+
+        // Clicking on Current Paid bill
+        transaction.getCurrentPaidBill();
+        waitForElementToBeVisible(transaction.customerName, 5);
+        String customerName = getText(transaction.customerName);
+        String payment = getText(transaction.payment);
+        String time = getText(transaction.time);
+        staticWait(3000);
+        transaction.getCrossIconOfCurrentPaidBill();
+        staticWait(3000);
+        scrollToDown();
+
+        //Clicking on the Dashboard Tab
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getDashboardTab();
+        staticWait(3000);
+
+
+        // Verifying the recent Transaction.
+
+        softAssert.assertEquals(getText(dashboard.customerNameUnderRTSection), customerName);
+        softAssert.assertEquals(getText(dashboard.recentAmountUnderRT), payment);
+        softAssert.assertEquals(getText(dashboard.recentRTTime), time);
+
+        // Verify that user is able to refresh the transaction list
+        dashboard.getRefreshBtn();
+        waitForElementToBeVisible(dashboard.customerNameUnderRTSection, 4);
+
+
+        // Verify that Compelete transaction popup appears after clicking on any  Transaction.
+        dashboard.getTimeUnderRT();
+
+        softAssert.assertTrue(isElementDisplayed(dashboard.transactionPopup));
+        dashboard.getRTpopupCrossIcon();
+
+        // Verify that user gets directed to the 'Transactions' page after clicking on 'Full List' link.
+        dashboard.getFullListLink();
+    }
+
+    @Test(description = "DC 25,DC 26, DC 27 & DC 28: Verify that Recent transactions of a store appear under 'Recent transactions' section, on 'Dashboard' page of a store.")
+    public void verifyThatRecentTransactionAfterClickingOnAStore() {
+        // login as store manager
+        Login();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getTransactionTab();
+        transaction.getStoresDropdown();
+        selectStore(Constants.AutomationBillFlow);
+        transaction.getContinueButton();
+
+        // Clicking on Current Paid bill
+        transaction.getCurrentPaidBill();
+        waitForElementToBeVisible(transaction.customerName, 5);
+        String customerName = getText(transaction.customerName);
+        String payment = getText(transaction.payment);
+        String time = getText(transaction.time);
+        staticWait(3000);
+        transaction.getCrossIconOfCurrentPaidBill();
+        staticWait(3000);
+        scrollToDown();
+
+        //Clicking on the Dashboard Tab
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getDashboardTab();
+        staticWait(5000);
+        dashboard.getDashboardStoreCount();
+
+        dashboard.getFirstStore();
+        waitForElementToBeVisible(dashboard.customerNameUnderRTSection, 4);
+
+
+        // Verifying the recent Transaction.
+
+        softAssert.assertEquals(getText(dashboard.customerNameUnderRTSection), customerName);
+        softAssert.assertEquals(getText(dashboard.recentAmountUnderRT), payment);
+        softAssert.assertEquals(getText(dashboard.recentRTTime), time);
+
+        // Verify that user is able to refresh the transaction list
+        dashboard.getRefreshBtn();
+        waitForElementToBeVisible(dashboard.customerNameUnderRTSection, 4);
+
+
+        // Verify that Compelete transaction popup appears after clicking on any  Transaction.
+        dashboard.getTimeUnderRT();
+
+        softAssert.assertTrue(isElementDisplayed(dashboard.transactionPopup));
+        dashboard.getRTpopupCrossIcon();
+
+        // Verify that user gets directed to the 'Transactions' page after clicking on 'Full List' link.
+        dashboard.getFullListLink();
+    }
+
+    @Test(description = "DC13 and DC14 :Verify that 'Customer Trends' graph of all stores is displayed in 'Customer Trends' section, on 'Dashboard' page.")
+    public void verifyCustomerTrendGraphofAllStores() {
+        Login();
+
+        //Clicking on the Dashboard Tab
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getDashboardTab();
+
+        scrollToElement(dashboard.customerTrends);
+
+        // Verify Customer Trends section is displayed
+        softAssert.assertTrue(isElementDisplayed(dashboard.customerTrends));
+        softAssert.assertTrue(isElementDisplayed(dashboard.newLabel));
+        softAssert.assertTrue(isElementDisplayed(dashboard.repeatingLabel));
+
+        dashboard.getCustomerTrend();
+
+
+    }
 }
+
+
+
+
+
+
 
 
 

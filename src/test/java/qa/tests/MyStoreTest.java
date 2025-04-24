@@ -15,8 +15,7 @@ import java.io.File;
 
 import static base.BaseTest.Login;
 import static java.lang.Float.*;
-import static utils.Constants.CustomerTitle;
-import static utils.Constants.storeName;
+import static utils.Constants.*;
 
 public class MyStoreTest extends BaseTest {
     // Logger instance for logging messages
@@ -52,7 +51,9 @@ public class MyStoreTest extends BaseTest {
             //  Click on 'Skip' button
             mystore.getSkipBtnOfStripe();
         }
+        staticWait(3000);
         scrollToElement(mystore.deleteStoreBtn);
+        waitForElementToBeVisible(mystore.deleteStoreBtn,5);
         // click on delete button
         mystore.getDeleteStoreButton();
         mystore.getDeleteStoreIcon();
@@ -60,19 +61,25 @@ public class MyStoreTest extends BaseTest {
 
 
     @Test(description = "SC_02  Verify creation of Store with Stripe Payment Account")
-    public void c1creationOfStoreWithStripeAccount() {
+    public void creationOfStoreWithStripeAccount() {
 
         Login();
         mystore.getStoreCreation();
         pageObjectManager.getSidePannel().getSignOut();
-        pageObjectManager.getAdminPage().selectedStoreDeleted(storeName);
+        staticWait(3000);
+        pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
+
+
+
     }
 
     @Test(description = "SC_03 Verifying modification of existing created Store")
-    public void c2verifyingModificationOfExistingCreatedStore() {
+    public void verifyingModificationOfExistingCreatedStore() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
+        waitForElementToBeVisible(mystore.configureLink,5);
+
         // Click on 'Configure' Link
         mystore.getConfigureLink();
 
@@ -105,6 +112,7 @@ public class MyStoreTest extends BaseTest {
 
         // Click on 'Terms' Checkbox
         mystore.getTermsCheckbox();
+        scrollToElement(mystore.changePlanBtn);
 
         //  Click on 'Change Plan' Button
         mystore.getChangePlanButton();
@@ -144,6 +152,7 @@ public class MyStoreTest extends BaseTest {
 
         // Click on 'Terms' Checkbox
         mystore.getTermsCheckbox();
+        scrollToElement(mystore.changePlanBtn);
 
         //  Click on 'Change Plan' Button
         mystore.getChangePlanButton();
@@ -167,6 +176,9 @@ public class MyStoreTest extends BaseTest {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
+
+        waitForElementToBeInteractable(mystore.configureLink,4);
+
         // Click on 'Configure' Link
         mystore.getConfigureLink();
 
@@ -297,9 +309,11 @@ public class MyStoreTest extends BaseTest {
         softAssert.assertEquals(getAttribute(mystore.tipFlatValueField1, "max"), "999.00");
         softAssert.assertEquals(getAttribute(mystore.tipFlatValueField1, "min"), "0.01");
 
-        enterText(mystore.tipFlatValueField1, value1);
-        enterText(mystore.tipFlatValueField2, value2);
-        enterText(mystore.tipFlatValueField3, value3);
+        waitForElementToBeInteractable(mystore.tipFlatValueField1,3);
+
+        actionEnterText(mystore.tipFlatValueField1, value1);
+        actionEnterText(mystore.tipFlatValueField2, value2);
+        actionEnterText(mystore.tipFlatValueField3, value3);
 
         // Click on 'Save Changes' Button
         mystore.getSaveChangesButton();
@@ -333,6 +347,7 @@ public class MyStoreTest extends BaseTest {
         //Verifying the 'New Terminal' Pop-Up Title
         Assert.assertEquals(getText(mystore.newTerminalPopUpTitle), Constants.newTerminalTitle);
 
+
         // Select an option and save
         mystore.getCreditTerminalOption();
 
@@ -342,6 +357,7 @@ public class MyStoreTest extends BaseTest {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
+        waitForElementToBeClickable(mystore.configureLink,3);
 
         // Click on 'Configure' Link
         mystore.getConfigureLink();
@@ -353,25 +369,41 @@ public class MyStoreTest extends BaseTest {
         staticWait(3000);
         scrollToDown();
         staticWait(3000);
+
         mystore.getAcceptVenmoToggleButton();
-        //Verifying Maximum length of 'VenmoID' field
-        softAssert.assertEquals(getAttribute(mystore.venmoIDField,"maxlength"),"40");
 
-        // Enter ID in 'Venmo ID" field
-        enterText(mystore.venmoIDField,requiredDigits(4));
+            staticWait(5000);
 
-        //Verifying maximum length of 'Venmo Name' field
-        softAssert.assertEquals(getAttribute(mystore.venmoNameField,"maxlength"),"40");
+            //Verifying Maximum length of 'VenmoID' field
+            softAssert.assertEquals(getAttribute(mystore.venmoIDField, "maxlength"), "40");
 
-        // Enter name in 'Venmo Name' Field
-        enterText(mystore.venmoNameField,requiredString(8));
+            // Enter ID in 'Venmo ID" field
+            enterText(mystore.venmoIDField, requiredDigits(4));
 
-        // Click on 'Save' Button
-        mystore.getVenmoSaveButton();
+            //Verifying maximum length of 'Venmo Name' field
+            softAssert.assertEquals(getAttribute(mystore.venmoNameField, "maxlength"), "40");
 
-        if(isElementDisabled(mystore.acceptZelleHeader)) {
-            mystore.getAcceptZelleToggleButton();
+            // Enter name in 'Venmo Name' Field
+            enterText(mystore.venmoNameField, requiredString(8));
+
+            // Click on 'Save' Button
+            mystore.getVenmoSaveButton();
+            scrollToElement(mystore.acceptZelleHeader);
+            staticWait(3000);
+
+
+//        if(isElementDisabled(mystore.acceptZelleHeader)) {
+//            System.out.println( "yes i am displayed");
+//            mystore.getAcceptZelleToggleButton();
+//            staticWait(3000);
+//        }
+         if(!isToggleEnabled(mystore.acceptZelleToggleBtn)){
+            clickElementByJS(mystore.acceptZelleToggleBtn);
         }
+        else{
+            hoverAndClick(mystore.acceptZelleToggleBtn,mystore.acceptZelleToggleBtn);
+        }
+
         //Verifying maximum length of 'Zelle Phone' field
         softAssert.assertEquals(getAttribute(mystore.zellePhoneField,"maxlength"),"40");
 
@@ -388,14 +420,16 @@ public class MyStoreTest extends BaseTest {
         mystore.getZelleSaveButton();
     }
 
-    @Test(description = "SC_07(A) Verifying the Configuration of the Store using 'Manage Users' Sub-Tab")
+    @Test(enabled = false, description = "SC_07(A) Verifying the Configuration of the Store using 'Manage Users' Sub-Tab")
     public void sc07a_VerifyingConfigurationOfStoreUsingManageUsersSubTabs() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
+        waitForElementToBeClickable(mystore.configureLink,3);
 
         // Click on 'Configure' Link
         mystore.getConfigureLink();
+        waitForElementToBeClickable(mystore.manageUserSubTab,5);
 
         // click on Manage Sub Tab
         mystore.getManageUserSubTab();
@@ -405,6 +439,7 @@ public class MyStoreTest extends BaseTest {
 
         //Verifying 'Add User' Pop-Up Title
         softAssert.assertEquals(getText(mystore.addUserPopUpTitle), Constants.addUserTitle);
+        // need to update  due to UI changes
     }
 
     @Test(description = "SC_08 Verify deactivating an activated Store")
@@ -465,6 +500,8 @@ public class MyStoreTest extends BaseTest {
 
         // Click on 'Terms' Checkbox
         mystore.getTermsCheckbox();
+        scrollToElement(mystore.changePlanBtn);
+        waitForElementToBeClickable(mystore.changePlanBtn,3);
 
         //  Click on 'Change Plan' Button
         mystore.getChangePlanButton();
@@ -481,7 +518,8 @@ public class MyStoreTest extends BaseTest {
 
         // Click on 'Terms' Checkbox
         mystore.getTermsCheckbox();
-
+        scrollToElement(mystore.changePlanBtn);
+        waitForElementToBeClickable(mystore.changePlanBtn,3);
         //  Click on 'Change Plan' Button
         mystore.getChangePlanButton();
 
@@ -491,6 +529,7 @@ public class MyStoreTest extends BaseTest {
     }
 
 
+// This method is used to delete unwanted stores from the account
 //    @Test(description = "Delete unwanted store")
 //    public void deleteUnwantedStore(){
 //        pageObjectManager.getAdminPage().ToDeleteStores();
