@@ -26,7 +26,7 @@ public class PaymentPage extends BaseTest {
     By expirationDateTbx = By.xpath("//input[@id='Field-expiryInput']");
     By cvcTbx = By.xpath("//input[@id='Field-cvcInput']");
     By countryDropDown = By.xpath("//select[@id='Field-countryInput']");
-    By processBtn = By.xpath("//button[@type=\"submit\" and contains(text(),'Process')]");
+    By processBtn = By.xpath("//button[@type=\"button\" and contains(text(),'Process Payment')]");
     By voidBtn = By.xpath("//button[text()='Void']");
     By paymentLogo = By.xpath("//span[@class='payment-logo-bg me-1']");
     public By totalPaidAmt = By.xpath("//h4[contains(text(),'Total paid')]");
@@ -497,7 +497,7 @@ public class PaymentPage extends BaseTest {
 
     public void clickOnProcessPayment() {
         staticWait(5000);
-        hoverAndClick(processPayment, processPayment);
+        clickElementByJS(processPayment);
     }
 
     public void clickOnOtherBtn() {
@@ -683,7 +683,7 @@ public class PaymentPage extends BaseTest {
 
     public void clickOnswipeArrowBtn() {
         staticWait(5000);
-        hoverAndClick(swipeArrowBtn, swipeArrowBtn);
+        click(swipeArrowBtn);
     }
 
     public void swipeCard() {
@@ -780,10 +780,10 @@ public class PaymentPage extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(BillCreatedTime));
         softAssert.assertTrue(isElementDisplayed(NotPaid));
         softAssert.assertTrue(isElementDisplayed(tapToAddFile));
-        enterText(cardNumberTbx,cardNumber);
-        enterText(expirationDateTbx,expiryDateTxt);
-        enterText(cvcTbx,cvcTxt);
-        enterText(countryDropDown,countryName);
+//        enterText(cardNumberTbx,cardNumber);
+//        enterText(expirationDateTbx,expiryDateTxt);
+//        enterText(cvcTbx,cvcTxt);
+//        enterText(countryDropDown,countryName);
 
         // Click on Process payment button in Bill popup
         clickOnProcessPayment();

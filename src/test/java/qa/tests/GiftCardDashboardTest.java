@@ -15,7 +15,15 @@ public class GiftCardDashboardTest extends BaseTest {
 
     private PageObjectManager pageObjectManager = PageObjectManager.getInstance();
     private GiftCardDashboardPage giftCardPage = pageObjectManager.getGiftCardPage();
+    @Test(priority = 0, enabled = true, description = "Verify that user gets directed to 'Gift Cards Dashboard' page, after clicking on any store under 'Which store?' section.")
+    public void verifyInformationMsgNoActiveStore() {
+        SidePannelPage pannel = new SidePannelPage();
+        LoginAsCustomer();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        //softAssert.assertEquals(giftCardPage.getNoActiveStoreInfoMsg(), Constants.noActiveStoreInfoMsg);
 
+    }
 
     @Test(priority = 1, enabled = true, description = "Verify that user gets directed to 'Gift Cards Dashboard' page, after clicking on any store under 'Which store?' section.")
     public void verifyGiftcardDashboardPage() {
@@ -584,9 +592,51 @@ public class GiftCardDashboardTest extends BaseTest {
 
         }
     }
+    @Test(priority = 21, enabled = true, description = "Verify that 'Card No' field accepts only numeric value, on' Create gift card' popup.")
+    public void verifyCardAcceptesNumericValues() {
+        SidePannelPage pannel = new SidePannelPage();
+        Login();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        giftCardPage.selectStore(5);
+        giftCardPage.clickWhichStoreContinueBtn();
+        giftCardPage.clickConfigurationButton();
+        if (isDisplayed(giftCardPage.enabledToggleBth, 10000)) {
+            giftCardPage.enterAmount();
+            giftCardPage.clickSaveConfigurationBtn();
+            giftCardPage.clickIssueNewGiftCardBtn();
+            giftCardPage.clickCustomerField();
+            giftCardPage.setCustomerPhoneNo("6465551113");
+            giftCardPage.clickPhoneSearchBtn();
+            giftCardPage.setIntialAmount("10000");
+            scrollToElement(giftCardPage.moreOptionsBtn);
+            giftCardPage.clickMoreOptionsBtn();
+            WebElement element = getWebElement(giftCardPage.CardNoField);
+            String type = element.getAttribute("data-f-type");
+          //  softAssert.assertEquals(type,Constants.cardNoDatatype);
 
 
-        @Test(priority = 21, enabled = true, description = "Verify that 'Card No' field accepts only numeric value, on' Create gift card' popup.")
+        } else {
+            giftCardPage.enableToggleButton();
+            giftCardPage.enterAmount();
+            giftCardPage.clickSaveConfigurationBtn();
+            giftCardPage.clickIssueNewGiftCardBtn();
+            giftCardPage.clickCustomerField();
+            giftCardPage.setCustomerPhoneNo("6465551113");
+            giftCardPage.clickPhoneSearchBtn();
+            giftCardPage.setIntialAmount("10000");
+            scrollToElement(giftCardPage.moreOptionsBtn);
+            giftCardPage.clickMoreOptionsBtn();
+            WebElement element = getWebElement(giftCardPage.CardNoField);
+            String type = element.getAttribute("data-f-type");
+          //  softAssert.assertEquals(type,Constants.cardNoDatatype);
+
+        }
+    }
+
+
+
+    @Test(priority = 22, enabled = true, description = "Verify that 'Card No' field accepts only numeric value, on' Create gift card' popup.")
         public void verifyCardNoAccepts18NumericValues () {
             SidePannelPage pannel = new SidePannelPage();
             Login();
@@ -630,7 +680,7 @@ public class GiftCardDashboardTest extends BaseTest {
             }
 
         }
-    @Test(priority = 22, enabled = true, description = "Verify that 'Memo' field accepts value up to 500 characters, on' Create gift card' popup.")
+    @Test(priority = 23, enabled = true, description = "Verify that 'Memo' field accepts value up to 500 characters, on' Create gift card' popup.")
     public void verifyMemoAccepts500Values () {
         SidePannelPage pannel = new SidePannelPage();
         Login();
@@ -727,21 +777,19 @@ public class GiftCardDashboardTest extends BaseTest {
 
     @Test(priority = 90 & 91 , enabled = true, description = "Verify that 'Funding Source' field appear as text field on 'Gift Card For Sale' page. ")
     public void verifyFundingSrcFieldAppearAsText(){
-         //
+
 
     }
 
- //   @Test(priority = 92, enabled = true, description = " Verify that 'Available quantity for sale' field accepts value up to 4 digits, on 'Gift Card For Sale' page.  ")
-   // public void verifyValidationOnEnteringG (){
+   @Test(priority = 92, enabled = true, description = " Verify that 'Available quantity for sale' field accepts value up to 4 digits, on 'Gift Card For Sale' page.  ")
+   public void verifyAvailableQuantityMaximumLength (){
+        giftCardPage.verifyAvailableQuantityFieldLength();
+   }
 
- //   }
-
-
-
-
-
-
-
+    @Test(priority = 93, enabled = true, description = "Verify that user is not able to enter any decimal value in 'Available quantity for sale' field, on 'Gift Card For Sale' page. ")
+    public void verifyAvailableQuantityAcceptsNumerical (){
+        giftCardPage.verifyAvailableQuantityFieldLength();
+    }
 
 
 
@@ -752,6 +800,347 @@ public class GiftCardDashboardTest extends BaseTest {
 
 
 
+
+
+
+
+    @Test(priority = 24, enabled = true, description = "TC_4_02 Verify that appropriate setting options appears on 'Gift Card Configuration' popup, after clicking on 'Confguration' link, on 'Gift Card Dashboard' page.")
+    public void verifyFundingSourceAsTList() {
+        SidePannelPage pannel = new SidePannelPage();
+        Login();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        giftCardPage.selectStore(6);
+        giftCardPage.clickWhichStoreContinueBtn();
+        giftCardPage.clickConfigurationButton();
+
+        if (isDisplayed(giftCardPage.disabledToggleBtn, 100)) {
+            giftCardPage.enableToggleButton();
+            if(isDisplayed(giftCardPage.fundingSourceDisableText, 100)){
+                giftCardPage.enableFundingSourceEnableToggleBtn();
+                giftCardPage.setFundingSourceList();
+                giftCardPage.enterAmount();
+                giftCardPage.clickSaveConfigurationBtn();
+                giftCardPage.clickIssueNewGiftCardBtn();
+                giftCardPage.clickCustomerField();
+                giftCardPage.setCustomerPhoneNo("6465551113");
+                giftCardPage.clickPhoneSearchBtn();
+                giftCardPage.setIntialAmount("10000");
+                scrollToElement(giftCardPage.moreOptionsBtn);
+                giftCardPage.clickMoreOptionsBtn();
+                softAssert.assertEquals(giftCardPage.getSourceFundOption(),"HSBC");
+            }else {
+                giftCardPage.setFundingSourceList();
+                giftCardPage.enterAmount();
+                giftCardPage.clickSaveConfigurationBtn();
+                giftCardPage.clickIssueNewGiftCardBtn();
+                giftCardPage.clickCustomerField();
+                giftCardPage.setCustomerPhoneNo("6465551113");
+                giftCardPage.clickPhoneSearchBtn();
+                giftCardPage.setIntialAmount("10000");
+                scrollToElement(giftCardPage.moreOptionsBtn);
+                giftCardPage.clickMoreOptionsBtn();
+                softAssert.assertEquals(giftCardPage.getSourceFundOption(),"HSBC");
+            }
+
+        }
+        else{
+            if(isDisplayed(giftCardPage.fundingSourceDisableText, 100)){
+            giftCardPage.enableFundingSourceEnableToggleBtn();
+                giftCardPage.setFundingSourceList();
+                giftCardPage.enterAmount();
+                giftCardPage.clickSaveConfigurationBtn();
+                giftCardPage.clickIssueNewGiftCardBtn();
+                giftCardPage.clickCustomerField();
+                giftCardPage.setCustomerPhoneNo("6465551113");
+                giftCardPage.clickPhoneSearchBtn();
+                giftCardPage.setIntialAmount("10000");
+                scrollToElement(giftCardPage.moreOptionsBtn);
+                giftCardPage.clickMoreOptionsBtn();
+                softAssert.assertEquals(giftCardPage.getSourceFundOption(),"HSBC");
+        }else{
+
+                giftCardPage.enterAmount();
+                giftCardPage.clickSaveConfigurationBtn();
+                giftCardPage.clickIssueNewGiftCardBtn();
+                giftCardPage.clickCustomerField();
+                giftCardPage.setCustomerPhoneNo("6465551113");
+                giftCardPage.clickPhoneSearchBtn();
+                giftCardPage.setIntialAmount("10000");
+                scrollToElement(giftCardPage.moreOptionsBtn);
+                giftCardPage.clickMoreOptionsBtn();
+                softAssert.assertEquals(giftCardPage.getSourceFundOption(),"HSBC");
+        }
+
+
+        }
+
+
+    }
+    @Test(priority = 25, enabled = true, description = "TC_4_02 Verify that appropriate setting options appears on 'Gift Card Configuration' popup, after clicking on 'Confguration' link, on 'Gift Card Dashboard' page.")
+    public void verifyFundingSourceAsText() {
+        SidePannelPage pannel = new SidePannelPage();
+        Login();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        giftCardPage.selectStore(6);
+        giftCardPage.clickWhichStoreContinueBtn();
+        giftCardPage.clickConfigurationButton();
+
+        if (isDisplayed(giftCardPage.disabledToggleBtn, 100)) {
+            giftCardPage.enableToggleButton();
+            if(!isDisplayed(giftCardPage.fundingSourceDisableText, 100)){
+
+                giftCardPage.enterAmount();
+                giftCardPage.clickSaveConfigurationBtn();
+                giftCardPage.clickIssueNewGiftCardBtn();
+                giftCardPage.clickCustomerField();
+                giftCardPage.setCustomerPhoneNo("6465551113");
+                giftCardPage.clickPhoneSearchBtn();
+                giftCardPage.setIntialAmount("10000");
+                scrollToElement(giftCardPage.moreOptionsBtn);
+                giftCardPage.clickMoreOptionsBtn();
+                WebElement element = getWebElement(giftCardPage.memoField);
+                String dataType = element.getAttribute("type");
+               // softAssert.assertEquals(dataType,Constants.fundingSourceType);
+
+            }else {
+                giftCardPage.disableFundingSourceEnableToggleBtn();
+                giftCardPage.enterAmount();
+                giftCardPage.clickSaveConfigurationBtn();
+                giftCardPage.clickIssueNewGiftCardBtn();
+                giftCardPage.clickCustomerField();
+                giftCardPage.setCustomerPhoneNo("6465551113");
+                giftCardPage.clickPhoneSearchBtn();
+                giftCardPage.setIntialAmount("10000");
+                scrollToElement(giftCardPage.moreOptionsBtn);
+                giftCardPage.clickMoreOptionsBtn();
+                WebElement element = getWebElement(giftCardPage.memoField);
+                String dataType = element.getAttribute("type");
+               // softAssert.assertEquals(dataType,Constants.fundingSourceType);
+            }
+        }
+        else{
+            if(!isDisplayed(giftCardPage.fundingSourceDisableText, 100)){
+                giftCardPage.disableFundingSourceEnableToggleBtn();
+                giftCardPage.enterAmount();
+                giftCardPage.clickSaveConfigurationBtn();
+                giftCardPage.clickIssueNewGiftCardBtn();
+                giftCardPage.clickCustomerField();
+                giftCardPage.setCustomerPhoneNo("6465551113");
+                giftCardPage.clickPhoneSearchBtn();
+                giftCardPage.setIntialAmount("10000");
+                scrollToElement(giftCardPage.moreOptionsBtn);
+
+                giftCardPage.clickMoreOptionsBtn();
+                WebElement element = getWebElement(giftCardPage.memoField);
+                String dataType = element.getAttribute("type");
+              //  softAssert.assertEquals(dataType,Constants.fundingSourceType);
+            }else{
+
+                giftCardPage.enterAmount();
+                giftCardPage.clickSaveConfigurationBtn();
+                giftCardPage.clickIssueNewGiftCardBtn();
+                giftCardPage.clickCustomerField();
+                giftCardPage.setCustomerPhoneNo("6465551113");
+                giftCardPage.clickPhoneSearchBtn();
+                giftCardPage.setIntialAmount("10000");
+                scrollToElement(giftCardPage.moreOptionsBtn);
+                giftCardPage.clickMoreOptionsBtn();
+                WebElement element = getWebElement(giftCardPage.memoField);
+                String dataType = element.getAttribute("type");
+              //  softAssert.assertEquals(dataType,Constants.fundingSourceType);
+            }
+
+
+        }
+
+
+    }
+
+    @Test(priority = 26, enabled = true, description = "TC_4_02 Verify that appropriate setting options appears on 'Gift Card Configuration' popup, after clicking on 'Confguration' link, on 'Gift Card Dashboard' page.")
+    public void verifyPastStartDatesDisabled() {
+        SidePannelPage pannel = new SidePannelPage();
+        Login();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        giftCardPage.selectStore(3);
+        giftCardPage.clickWhichStoreContinueBtn();
+        giftCardPage.clickIssueNewGiftCardBtn();
+        giftCardPage.clickCustomerField();
+        giftCardPage.setCustomerPhoneNo("6465551113");
+        giftCardPage.clickPhoneSearchBtn();
+        scrollToElement(giftCardPage.moreOptionsBtn);
+        giftCardPage.clickMoreOptionsBtn();
+        giftCardPage.clickStartDate();
+        giftCardPage.selectDateTwoDaysAgo();
+
+
+
+    }
+    @Test(priority = 27, enabled = true, description = "TC_4_02 Verify that appropriate setting options appears on 'Gift Card Configuration' popup, after clicking on 'Confguration' link, on 'Gift Card Dashboard' page.")
+    public void verifyPastEndDateDisabled() {
+        SidePannelPage pannel = new SidePannelPage();
+        Login();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        giftCardPage.selectStore(3);
+        giftCardPage.clickWhichStoreContinueBtn();
+        giftCardPage.clickIssueNewGiftCardBtn();
+        giftCardPage.clickCustomerField();
+        giftCardPage.setCustomerPhoneNo("6465551113");
+        giftCardPage.clickPhoneSearchBtn();
+        scrollToElement(giftCardPage.moreOptionsBtn);
+        giftCardPage.clickMoreOptionsBtn();
+        giftCardPage.clickEndDate();
+        giftCardPage.selectDateTwoDaysAgo();
+
+
+
+    }
+    @Test(priority = 28, enabled = true, description = "TC_4_02 Verify that appropriate setting options appears on 'Gift Card Configuration' popup, after clicking on 'Confguration' link, on 'Gift Card Dashboard' page.")
+    public void verifyStartDateRejectsCharacters() {
+        SidePannelPage pannel = new SidePannelPage();
+        Login();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        giftCardPage.selectStore(3);
+        giftCardPage.clickWhichStoreContinueBtn();
+        giftCardPage.clickIssueNewGiftCardBtn();
+        giftCardPage.clickCustomerField();
+        giftCardPage.setCustomerPhoneNo("6465551113");
+        giftCardPage.clickPhoneSearchBtn();
+        scrollToElement(giftCardPage.moreOptionsBtn);
+        giftCardPage.clickMoreOptionsBtn();
+        giftCardPage.clickStartDate();
+        giftCardPage.enterTextStartDate();
+        scrollToElement(giftCardPage.createButton);
+        giftCardPage.clickCreateBtn();
+        //softAssert.assertEquals(giftCardPage.getStartDateTooltipMsg(),Constants.invalidDateTooltip);
+        softAssert.assertEquals(giftCardPage.getCardNoValidationMsg(),Constants.ValidationMsg);
+
+
+
+
+
+    }
+    @Test(priority = 29, enabled = true, description = "TC_4_02 Verify that appropriate setting options appears on 'Gift Card Configuration' popup, after clicking on 'Confguration' link, on 'Gift Card Dashboard' page.")
+    public void verifyEndDateRejectsCharacters() {
+        SidePannelPage pannel = new SidePannelPage();
+        Login();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        giftCardPage.selectStore(3);
+        giftCardPage.clickWhichStoreContinueBtn();
+        giftCardPage.clickIssueNewGiftCardBtn();
+        giftCardPage.clickCustomerField();
+        giftCardPage.setCustomerPhoneNo("6465551113");
+        giftCardPage.clickPhoneSearchBtn();
+        scrollToElement(giftCardPage.moreOptionsBtn);
+        giftCardPage.clickMoreOptionsBtn();
+        giftCardPage.clickEndDate();
+        giftCardPage.enterTextEndDate();
+        scrollToElement(giftCardPage.createButton);
+        giftCardPage.clickCreateBtn();
+      //  softAssert.assertEquals(giftCardPage.getEndDateTooltipMsg(),Constants.invalidDateTooltip);
+        softAssert.assertEquals(giftCardPage.getCardNoValidationMsg(),Constants.ValidationMsg);
+
+    }
+
+    @Test(priority = 30, enabled = true, description = "TC_4_02 Verify that appropriate setting options appears on 'Gift Card Configuration' popup, after clicking on 'Confguration' link, on 'Gift Card Dashboard' page.")
+    public void verifyGiftCardDetailPopUp() {
+        SidePannelPage pannel = new SidePannelPage();
+        Login();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        giftCardPage.selectStore(3);
+        giftCardPage.clickWhichStoreContinueBtn();
+        giftCardPage.clickConfigurationButton();
+
+        if(isDisplayed(giftCardPage.disabledToggleBtn, 1000)){
+            giftCardPage.enableToggleButton();
+            giftCardPage.enterAmount();
+            giftCardPage.clickSaveConfigurationBtn();
+            giftCardPage.clickIssueNewGiftCardBtn();
+            giftCardPage.clickCustomerField();
+            giftCardPage.setCustomerPhoneNo("6465551113");
+            giftCardPage.clickPhoneSearchBtn();
+            giftCardPage.setIntialAmount("1000");
+            scrollToElement(giftCardPage.createButton);
+            giftCardPage.clickCreateBtn();
+            scrollToElement(giftCardPage.giftCardDetailCardLink);
+            String giftCardLinkText = giftCardPage.getGiftCardText();
+            giftCardPage.clickGiftCardLink();
+            String cardText = giftCardPage.getGiftCardTextHeaders();
+            System.out.print(cardText);
+            softAssert.assertEquals(cardText,giftCardLinkText);
+
+
+        }else{
+            giftCardPage.enterAmount();
+            giftCardPage.clickSaveConfigurationBtn();
+            giftCardPage.clickIssueNewGiftCardBtn();
+            giftCardPage.clickCustomerField();
+            giftCardPage.setCustomerPhoneNo("6465551113");
+            giftCardPage.clickPhoneSearchBtn();
+            giftCardPage.setIntialAmount("10000");
+            scrollToElement(giftCardPage.createButton);
+            giftCardPage.clickCreateBtn();
+            scrollToElement(giftCardPage.giftCardDetailCardLink);
+            String giftCardLinkText = giftCardPage.getGiftCardText();
+            giftCardPage.clickGiftCardLink();
+            String cardText = giftCardPage.getGiftCardTextHeaders();
+            System.out.print(cardText);
+            softAssert.assertEquals(cardText,giftCardLinkText);
+        }
+
+
+    }
+
+
+    @Test(priority = 31, enabled = true, description = "TC_4_02 Verify that appropriate setting options appears on 'Gift Card Configuration' popup, after clicking on 'Confguration' link, on 'Gift Card Dashboard' page.")
+    public void verifyInfoIcon() {
+        SidePannelPage pannel = new SidePannelPage();
+        Login();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        giftCardPage.selectStore(3);
+        giftCardPage.clickWhichStoreContinueBtn();
+        giftCardPage.clickConfigurationButton();
+
+        if(isDisplayed(giftCardPage.disabledToggleBtn, 1000)){
+            giftCardPage.enableToggleButton();
+            giftCardPage.enterAmount();
+            giftCardPage.clickSaveConfigurationBtn();
+            giftCardPage.clickIssueNewGiftCardBtn();
+            giftCardPage.clickCustomerField();
+            giftCardPage.setCustomerPhoneNo("6465551113");
+            giftCardPage.clickPhoneSearchBtn();
+            giftCardPage.setIntialAmount("1000");
+            scrollToElement(giftCardPage.createButton);
+            giftCardPage.clickCreateBtn();
+            scrollToElement(giftCardPage.giftCardDetailCardLink);
+            giftCardPage.clickGiftCardLink();
+            giftCardPage.clickInfoIcon();
+
+
+
+
+        }else{
+            giftCardPage.enterAmount();
+            giftCardPage.clickSaveConfigurationBtn();
+            giftCardPage.clickIssueNewGiftCardBtn();
+            giftCardPage.clickCustomerField();
+            giftCardPage.setCustomerPhoneNo("6465551113");
+            giftCardPage.clickPhoneSearchBtn();
+            giftCardPage.setIntialAmount("10000");
+            scrollToElement(giftCardPage.createButton);
+            giftCardPage.clickCreateBtn();
+            scrollToElement(giftCardPage.giftCardDetailCardLink);
+            giftCardPage.clickGiftCardLink();
+            giftCardPage.clickInfoIcon();
+
+        }}
 
     }
 

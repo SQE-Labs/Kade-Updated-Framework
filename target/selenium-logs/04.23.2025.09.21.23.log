@@ -1,0 +1,6 @@
+2025-04-23 21:21:24,008 [info]: Clicking on newBillTxt
+2025-04-23 21:21:58,823 [info]: Phone number. Existing or new
+2025-04-23 21:21:58,880 [info]: Phone number. Existing or new
+2025-04-23 21:22:26,545 [info]: Clicking on By.xpath: //button[@class='btn btn-outline-success']
+2025-04-23 21:22:28,182 [info]: Numeric Value: Total: 2000.00
+2025-04-23 21:22:28,229 [info]: Numeric Value: 2000.00

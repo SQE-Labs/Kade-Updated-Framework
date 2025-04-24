@@ -35,7 +35,7 @@ public class CustomersPage extends BaseTest {
     public By eyeIcon = By.cssSelector(".far.fa-eye");
     public By profileHeading = By.xpath("//h1[@class='header-title mb-0']");
     public By messageIcon = By.cssSelector(".fal.fa-paper-plane.fa-2x");
-    public By trophieIcon = By.cssSelector(".far.fa-trophy-alt.fa-fw.align-self-center");
+    public By trophieIcon = By.xpath("//a[@class='align-self-center p-0 btn btn-link']");
     public By storeName = By.xpath("//h3[@class='text-truncate']");
     public By messagePg = By.xpath("//h1[@class='header-title mb-0']");
     public By typeArea = By.cssSelector(".form-control");
@@ -58,8 +58,8 @@ public class CustomersPage extends BaseTest {
     public By billPhonenumber = By.xpath("//input[@placeholder=\"Phone number\"]");
     public By billPhoneGoBtn = By.xpath("(//button[@class='btn btn-primary'][text()='Go'])[1]");
     public By billSendBtn = By.xpath("//div[@class='d-none -link-cust-d-block']");
-    public By customerDisplayed = By.xpath("//span[text()=\"Santa\"]");
-    public By customerDisplayed2 = By.xpath("//span[text()=\"yonro\"]");
+    public By customerDisplayed = By.xpath("(//div[text()='yonro'])[1]");
+    public By customerDisplayed2 = By.xpath("(//span[text()=\"Yonro\"])[1]");
     public By searchField = By.xpath("//input[@placeholder=\"Search by name\"]");
     public By searchBtn = By.xpath("//input[@placeholder='Search by name']/..//button");
     public By alertValidation = By.xpath("//h4[@class=\"alert-heading\"]");
@@ -80,7 +80,7 @@ public class CustomersPage extends BaseTest {
     public By frame1 = By.xpath("//iframe[@title='Secure payment input frame']");
     public By amountText = By.xpath("//label[text()='Amount']");
     public By closePopup = By.xpath("//div[@class='modal fade show' and not(@data-bs-keyboard='false')] //child::button");
-    public By addGiftCardBtn = By.cssSelector(".fas.fa-plus.fa-2x");
+    public By addGiftCardBtn = By.xpath("//div[contains(@class, 'justify-content-between m')]/button");
     public By initialAmt = By.xpath("//input[@name='initialAmount']");
     public By createGiftCardBtn = By.cssSelector(".btn.btn-success.btn-lg.w-100");
 

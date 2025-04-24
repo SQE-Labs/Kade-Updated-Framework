@@ -107,8 +107,7 @@ public class CustomersTest extends BaseTest {
         waitForElementToBeInteractable(customersPage.searchField,20);
         actionEnterText(customersPage.searchField,Constants.searchInput);
         click(customersPage.searchBtn);
-        waitForElementToBeVisible(customersPage.customerDisplayed2,2);
-        Assert.assertTrue(isElementDisplayed(customersPage.customerDisplayed2));
+        Assert.assertTrue(isElementDisplayed(customersPage.customerDisplayed));
     }
 
     @Test
@@ -184,8 +183,7 @@ public class CustomersTest extends BaseTest {
         waitForElementToBeVisible(customersPage.selectCustomerinFilter,10);
         click(customersPage.selectCustomerinFilter);
         click(customersPage.customerSelection);
-        staticWait(2000);
-        Assert.assertTrue(isElementDisplayed(customersPage.customerDisplayed2));
+        Assert.assertTrue(isDisplayed(customersPage.customerDisplayed2,2));
     }
 
     @Test
@@ -263,6 +261,8 @@ public class CustomersTest extends BaseTest {
         Login();
         customersPage.navigateToCustomersPage();
         click(customersPage.eyeIcon);
+        scrollToElement(customersPage.addGiftCardBtn);
+        waitForElementToBeClickable(customersPage.addGiftCardBtn,5);
         click(customersPage.addGiftCardBtn);
         waitForElementToBeInteractable(customersPage.initialAmt,10);
         actionEnterText(customersPage.initialAmt, Constants.initialAmt);

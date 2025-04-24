@@ -7,9 +7,16 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.Constants;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.time.LocalDate;
 
 
 public class GiftCardDashboardPage extends BaseTest {
+    public By systemMsg = By.cssSelector("p.h2");
 
     SidePannelPage Pannel = new SidePannelPage();
     public By giftCardDashBoardHeaderText = By.cssSelector("h1.header-title");
@@ -63,6 +70,14 @@ public class GiftCardDashboardPage extends BaseTest {
     public By CardNoField = By.cssSelector("label.optional~input[name='cardNo']");
     public By validationMsg = By.cssSelector("div.alert-message>p");
     public By memoField = By.cssSelector("textarea[name='greetingMessage']");
+    public By fundSourceList = By.cssSelector("textarea[name='fundSourceList']");
+    public By fundSourceOption = By.cssSelector("select[name='fundSource']>option:nth-child(2)");
+    public By startDate = By.cssSelector("div.input-group>input[name='startDate']");
+    public By endDate = By.cssSelector("div.input-group>input[name='endDate']");
+    public By giftCardDetailCardLink = By.xpath("(//tr/td/a[@class='btn btn-link btn btn-link'])[1]");
+    public By giftCardHeaderText = By.cssSelector("h3.text-info");
+    public By issueNewGiftcardForm = By.cssSelector("div.modal-body");
+    public By infoIcon = By.cssSelector("i.fal.fa-info-square");
 
     // Locators for Gift Cards For Sale
 
@@ -85,6 +100,8 @@ public class GiftCardDashboardPage extends BaseTest {
        String getStoreName = clickElementFromList(storeDropDownList,index);
        return getStoreName;
    }
+   public String getNoActiveStoreInfoMsg(){return getText(systemMsg);}
+   public String getSourceFundOption(){return getText(fundSourceOption);}
     public void clickWhichStoreContinueBtn(){ click(whichStoreContinueBtn);}
     public void clickConfigurationButton(){click(configurationBtn);}
     public String getConfigurationPopupText(){return getText(configurationPopupHeader);}
@@ -128,9 +145,53 @@ public class GiftCardDashboardPage extends BaseTest {
     public void setCardNo(String No){staticWait(10000);actionEnterText(CardNoField,No);}
     public String getCardNoValidationToolTip(){return getToolTipMessage(CardNoField);}
     public String getCardNoValidationMsg(){return getText(validationMsg);}
+    public void clickStartDate(){click(startDate);}
+    public void clickEndDate(){click(endDate);}
+    public void enterTextStartDate(){actionEnterText(startDate,requiredString(5));}
+    public void enterTextEndDate(){actionEnterText(endDate,requiredString(5));}
+    public String getStartDateTooltipMsg(){return getToolTipMessage(startDate);}
+    public String getEndDateTooltipMsg(){return getToolTipMessage(endDate);}
+    public void clickGiftCardLink(){staticWait(10000);waitForElementInVisible(issueNewGiftcardForm,1000)  ;click(giftCardDetailCardLink);}
+    public String getGiftCardText(){staticWait(10000);;return getText(giftCardDetailCardLink);}
+    public String getGiftCardTextHeaders(){staticWait(10000);String noText = getText(giftCardHeaderText);
+        String numberOnly = noText.split(":")[1].trim(); return numberOnly;}
+    public void clickInfoIcon(){staticWait(10000); click(infoIcon);}
 
 
+    public void setFundingSourceList() {
+        WebElement textArea = getWebElement(fundSourceList);
+        String currentValue = textArea.getAttribute("value");
+        if (currentValue != null && !currentValue.trim().isEmpty()) {
+            System.out.println("Existing text found: " + currentValue);
+            textArea.clear();
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+            }
+            textArea.sendKeys("HSBC");
+            System.out.println("New text entered.");
+        } else {
+            System.out.println("Textarea was already empty.");
+            textArea.sendKeys("HSBC");
+        }
+    }
+        public void selectDateTwoDaysAgo(){
 
+            LocalDate twoDaysAgo = LocalDate.now().minusDays(2);
+            int day = twoDaysAgo.getDayOfMonth();
+            String xpath = "//td[contains(@class, 'off') and contains(@class, 'disabled') and normalize-space(text())='" + day + "']";
+            getDriver().findElement(By.xpath(xpath));
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+            WebElement dateElement = getDriver().findElement(By.xpath(xpath));
+            String classes = dateElement.getAttribute("class");
+            if (classes.contains("disabled")) {
+                System.out.println("The date " + twoDaysAgo + " is disabled.");
+            } else {
+                dateElement.click();
+                System.out.println("Selected date: " + twoDaysAgo);
+            }
+        }
     // Gift Cards for sale
 //83
 
@@ -322,15 +383,29 @@ public class GiftCardDashboardPage extends BaseTest {
             getForSaleBtn();
             staticWait(3000);
             click(addBtn);
-
+            actionEnterText(availableQnty,"123456");
+            staticWait(3000);
             String length = getAttribute(availableQnty,"maxlength");
             Log.info("Maximum length is" + " " + length);
+            String limit = "4";
+            Assert.assertEquals(limit,length);
         }
+        @Test
+    public void verifyAvailableQuantityAcceptsNumbers (){
+        Login();
+        Pannel.getMangeBusinessTab();
+        Pannel.getGiftCardsDashboardTab();
+        selectStore(5);
+        clickWhichStoreContinueBtn();
+        getForSaleBtn();
+        staticWait(3000);
+        click(addBtn);
+        actionEnterText(availableQnty,"123.33");
+        String type = getAttribute(availableQnty,"data-f-type");
+        String ExpectedType = "numeric";
+        Assert.assertEquals(type,ExpectedType);
 
-
-
-
-
+    }
     }
 
 
