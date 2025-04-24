@@ -289,7 +289,12 @@ public class BillPage extends BaseTest {
 
 
 
+
     String amount = "2000.00";
+
+    public void expirationIcon(){
+        click(expireLockIcon);
+    }
 
     public void clickOnNewBill() {
         Log.info("Clicking on newBillTxt");
@@ -351,7 +356,7 @@ public class BillPage extends BaseTest {
 
     public void clickOnExpiryDateSection() {
         staticWait(3000);
-        clickElementByJS(expiryDateSection);
+       clickElementByJS(expiryDateSection);
     }
 
     public void sendTxtInexpireInTxtField(String hrs, int minTxt) {
@@ -1243,7 +1248,7 @@ public class BillPage extends BaseTest {
 
         // Click on New Bill Button
         getNewBillButton();
-        waitForElementInVisible(popUpHeader,3);
+        waitForElementToBeVisible(popUpHeader,3);
 
         // Verify New Bill popup
         softAssert.assertEquals(popUpHeader, "Bill","Popup Header for bill");
@@ -1637,7 +1642,9 @@ public class BillPage extends BaseTest {
 
         //Click on 'Expiry' Field
         softAssert.assertTrue(isElementDisplayed(expireLockIcon));
-        clickOnExpiryDateSection();
+//        waitForElementToBeVisible(expiryDateSection,2);
+//        clickOnExpiryDateSection();
+        expirationIcon();
         assertUpgradePlan();
 
 

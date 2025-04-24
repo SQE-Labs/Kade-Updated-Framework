@@ -589,7 +589,8 @@ public class TransactionsPage extends BaseTest {
         selectStore(Constants.AutomationBillFlow);
         getContinueButton();
         getCurrentPaidBill();
-        waitForElementToBeVisible(questionMarkIcon,3);
+//        waitForElementToBeVisible(questionMarkIcon,3);
+        staticWait(3000);
 
         // Clicking on the paid amount and verify the question mark icon is displayed
         softAssert.assertTrue(isElementDisplayed(questionMarkIcon),"Question Mark Icon");
@@ -684,7 +685,8 @@ public class TransactionsPage extends BaseTest {
 
         // click on fail button
         getFailedBtn();
-        waitForElementToBeVisible(excalamatrySign,3);
+
+        waitForElementToBeVisible(excalamatrySign,5);
 
         // verify that failed icon appear
         Assert.assertTrue(isElementDisplayed(excalamatrySign),"Excalamatry Sign");

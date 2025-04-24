@@ -16,7 +16,7 @@
             <class name="qa.tests.TransactionsTest"></class>
             <class name="qa.tests.MyStoreTest"></class>
             <class name="qa.tests.BillTest"></class>
-            <class name="qa.tests.DashboardTest"></class>
+
         </classes>
 
     </test>

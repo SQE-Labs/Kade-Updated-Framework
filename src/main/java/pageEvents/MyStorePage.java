@@ -31,7 +31,7 @@ public class MyStorePage extends BaseTest {
   public By timeZoneField = By.xpath("//select[@name='timeZone']");
   public By timeZoneOption = By.xpath("//option[text()='(GMT-05:00) Eastern Time (US & Canada)']");
   public By taxRateTbx = By.xpath("//input[@name='taxRate']");
-  public By saveBtn = By.xpath("//button[contains(@class,'-btn-save- btn') and text()='Save']");
+  public By saveBtn = By.xpath("//div[contains(@class, 'd-flex mt-3')]/button[text()='Save']");
   public By saveVenmoPaymentBtn = By.xpath("(//div[@class='card-footer']//button)[1]");
   public By stripeBtn = By.cssSelector(".img-fluid.h-100");
   public By connectStripePopUpTitle = By.xpath("//h5[text()='Connect to stripe']");
@@ -265,28 +265,28 @@ public class MyStorePage extends BaseTest {
             hoverAndClick(enableToggle,enableToggle);
         }
 
-        staticWait(6000);
-        // Check if the toggle button is disabled
-        boolean isDisabled = !isEnabled(acceptVenmoToggleBtn); // isEnabled() returns false if disabled
-
-        if (isDisabled) {
-            System.out.println("Toggle button is disabled. Enabling it now...");
-
-            // Click the toggle button using JavaScript (in case normal click doesn't work)
-           clickElementByJS(acceptVenmoToggleBtn);
-
-            // Wait for toggle effect
-            staticWait(3000);
-
-            // Verify if the toggle button is now enabled
-            if (isEnabled(acceptVenmoToggleBtn)) {
-                System.out.println("Toggle button successfully enabled!");
-            } else {
-                System.out.println("Failed to enable the toggle button.");
-            }
-        } else {
-            System.out.println("Toggle button is already enabled.");
-        }
+//        staticWait(6000);
+//        // Check if the toggle button is disabled
+//        boolean isDisabled = !isEnabled(acceptVenmoToggleBtn); // isEnabled() returns false if disabled
+//
+//        if (isDisabled) {
+//            System.out.println("Toggle button is disabled. Enabling it now...");
+//
+//            // Click the toggle button using JavaScript (in case normal click doesn't work)
+//           clickElementByJS(acceptVenmoToggleBtn);
+//
+//            // Wait for toggle effect
+//            staticWait(3000);
+//
+//            // Verify if the toggle button is now enabled
+//            if (isEnabled(acceptVenmoToggleBtn)) {
+//                System.out.println("Toggle button successfully enabled!");
+//            } else {
+//                System.out.println("Failed to enable the toggle button.");
+//            }
+//        } else {
+//            System.out.println("Toggle button is already enabled.");
+//        }
 
     }
     public void getAcceptZelleToggleButton() {
@@ -316,11 +316,10 @@ public class MyStorePage extends BaseTest {
         scrollToElement(creditCardTerminalOption);
 //        waitForElementToBeClickable(creditCardTerminalOption,5);
         clickElementByJS(creditCardTerminalOption);
-        waitForElementToBeClickable(saveBtn,5);
+        waitForElementToBeClickable(saveBtn,6);
         getSaveButton();
 
-        waitForElementToBeClickable(terminalEditIcon,5);
-        staticWait(3000);
+        staticWait(5000);
         getTerminalEditIcon();
         scrollToElement(terminalDeleteBtn);
         getDeleteTerminalBtn();

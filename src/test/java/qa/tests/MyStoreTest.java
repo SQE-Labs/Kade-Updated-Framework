@@ -51,7 +51,7 @@ public class MyStoreTest extends BaseTest {
             //  Click on 'Skip' button
             mystore.getSkipBtnOfStripe();
         }
-
+        staticWait(3000);
         scrollToElement(mystore.deleteStoreBtn);
         waitForElementToBeVisible(mystore.deleteStoreBtn,5);
         // click on delete button
@@ -346,6 +346,7 @@ public class MyStoreTest extends BaseTest {
 
         //Verifying the 'New Terminal' Pop-Up Title
         Assert.assertEquals(getText(mystore.newTerminalPopUpTitle), Constants.newTerminalTitle);
+
 
         // Select an option and save
         mystore.getCreditTerminalOption();
