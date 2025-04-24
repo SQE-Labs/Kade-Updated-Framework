@@ -73,7 +73,7 @@ public class PaymentPage extends BaseTest {
     By confirmVenmoCheckbox = By.xpath("//i[@class='fal fa-square custom-check-off ']");
     By venmoSubmitButton = By.xpath("//button[text()='Submit']");
     By checkBtn = By.xpath("//button[@class='btn btn-dark -crop-']");
-    By selectedBankDisplay = By.xpath("//div[@class='-placeholder- link-empty']");
+    public By selectedBankDisplay = By.xpath("//div[@class='-placeholder- link-empty']");
 
     // Assertion elements of Venmo Card
     By qrVenmoPopup = By.xpath("//div[@class='fs-4 text-center py-2 ']");
@@ -94,6 +94,7 @@ public class PaymentPage extends BaseTest {
     By zelleCopyLink = By.xpath("//span[text()='Copy']");
     By paymentType = By.xpath("//div[@class='d-flex flex-column align-items-end']//span[@class='fs-pn25']");
     By updateAmtBtn = By.xpath("//button[text()='Update']");
+    public By SelectedBalanceBtn =By.xpath("//button[contains(text(), 'selected bill')]");
 
     // Payment popup locators
 
@@ -1188,7 +1189,7 @@ public class PaymentPage extends BaseTest {
         clickOnBill();
         clickOnPayNowBtn();
         if(isElementDisplayed(payCurrentBalance)){
-            hoverAndClick(payCurrentBalance,payCurrentBalance);
+            hoverAndClick(SelectedBalanceBtn,SelectedBalanceBtn);
         }else{
             Log.info("Nothing to be selected");
         }
