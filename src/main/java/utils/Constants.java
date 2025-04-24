@@ -159,9 +159,9 @@ public interface Constants {
 
 
     //Verifying Modified Details
-    String editdefaultStoreName = "My Store MSC Final";
+    String editdefaultStoreName = "Automation Flow Business 1";
     String editdefaultStorePhone = "+1 (918) 065 2341";
-    String reverseStoreName = "Automation Flow 1";
+    String reverseStoreName = "Automation Flow Business";
 
 
     // Store Configuration
@@ -182,7 +182,7 @@ public interface Constants {
 
     // Transactions page
     String noPaymentInfoMsg = "There are no payments available yet!";
-    String amount = "100.00";
+    String amount = "1590.01";
     String newChargeDescription = "New charge payment";
     String terminalNotAcceptedAlert= "Your store is not configured to process any credit card";
     String terminalSuccessMessage = "Processed successfully!";
