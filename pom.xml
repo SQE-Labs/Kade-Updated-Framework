@@ -45,12 +45,13 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.13</version>
         </dependency>
-
         <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>chaintest-testng</artifactId>
             <version>1.0.12</version>
         </dependency>
+
+
 
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -126,8 +127,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>16</source>
-                    <target>16</target>
+                    <source>22</source>
+                    <target>22</target>
+                    <compilerArgs>--enable-preview</compilerArgs>
                 </configuration>
             </plugin>
         </plugins>

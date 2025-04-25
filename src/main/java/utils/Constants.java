@@ -40,6 +40,8 @@ public interface Constants {
     String existingEmailValidation ="This email is already registered.";
     String securityCode ="123456";
     String validPhonenumber = "6465551105";
+    String ValidPhone = "+1 (646) 555 1118";
+    String expectedSearchValidation = "Nothing found!";
     String TooltipForLessDigit ="Please enter at least 6 characters.";
     String invalidSecurityCodeMsg = "Invalid security code";
     String invalidSecurityCode ="332434";
@@ -50,6 +52,8 @@ public interface Constants {
     String phoneSecurityCodeForLogin = "777777";
     String ForgetPasswordtitle = "Forget password";
     String  TermsOfUser ="User Agreement";
+    String PaymentHistoryTitle = "Payment History";
+    String NoPaymentsMessage = "There are no payments available yet!";
     String invalidEmailValidationMsg = "Invalid email";
 
 
@@ -114,7 +118,7 @@ public interface Constants {
     String custEmailInput = "yonro@yopmail.com";
     String emailTooltip = "Please enter a valid email address.";
     String emptyFieldTooltip = "This field is required.";
-    String searchInput = "Santa";
+    String searchInput = "yonro";
     String phnNumberInput = "9011017524";
     String phnNumberInput2 = "1232233223";
     String phnNumberInput3 = "12345678901234567890123";
@@ -129,9 +133,9 @@ public interface Constants {
     String initialAmt = "1000";
 
     //Reports Page
-    String fileNameDaily = "2962-2025-01-20.csv";
+    String fileNameDaily = "2938-2025-04-19.csv";
     String filePresent = "File Present";
-    String filenameMonthly = "2962-2025-01-01.csv";
+    String filenameMonthly = "2962-2025-04-01.csv";
     String dateRange = "01/01/2025 - 02/20/2025";
 
     //Store Creation
@@ -177,6 +181,42 @@ public interface Constants {
     String activeStoreStatus ="Store is active and ready to receive payments";
     String loginPageValidation = "Invalid phone number. Phone numbers must start with + and country code";
     String credentialsValidationLP = "Invalid credentials. Check your username and/or password";
+
+
+    // Gift Card DashBoard
+
+    String GiftCardHeader ="Gift Cards Dashboard";
+    String infoMessage= "Gift cards is currently disabled.";
+    String configurationPopupTitle = "Gift Cards Configuration";
+    String DisabledText="Disabled";
+    String EnableText="Enabled";
+    String referenceNoDisabledText ="Reference No. is optional";
+    String referenceNoEnabledText="Reference No. is mandatory";
+    String sourceFundingDisabledText = "Funding source is optional";
+    String getSourceFundingEnabledText="Funding source is restricted";
+    String ValidationMsg ="Please review the highlighted field(s)";
+    String giftCardHeaderText = "Issue a new gift card";
+    String customerPopupTitle = "Customer";
+    String emailValidationToolTip ="Please enter a valid email address.";
+    String phoneValidationToolTip = "Invalid phone number";
+    String noResultText ="There are no results";
+    String noActiveStoreInfoMsg="No active store is available in your account!";
+    String referenceNoTooltipMsg ="This field is required.";
+    String cardNoText ="Card No";
+    String cardMinLendthMsg ="Please enter atleast 4 characters.";
+    String cardNoDatatype="numeric";
+    String maxLength ="18";
+    String fundingSourceType = "text";
+    String invalidDateTooltip= "Invalid date";
+    String memoMaxLength ="500";
+    String fundingResourceText ="Funding source";
+    String memoText ="Memo";
+    String startDateText ="Start Date:";
+    String endDateText ="Exp. Date:";
+
+
+
+
 
 
 

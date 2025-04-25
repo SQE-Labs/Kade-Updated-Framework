@@ -1,17 +1,6 @@
 package base;
 
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
-import java.io.File;
-
-import java.time.Duration;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-
 import logger.Log;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -19,24 +8,20 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.logging.LogEntries;
-import org.openqa.selenium.logging.LogEntry;
-import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.support.ui.*;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import pageObjects.PageObjectManager;
 import utils.ConfigFileReader;
 import utils.PropertyUtils;
+import java.util.List;
 
-
-
-//import static pageObjects.PageObjectManager.pageObjectManager;
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.time.Duration;
+import java.util.Set;
 
 public class BaseTest {
     private static final Logger log = LogManager.getLogger(BaseTest.class); // Logger instance
@@ -51,7 +36,6 @@ public class BaseTest {
     private By target = null;
 
 
-
     /**
      * Set the environment from the test parameter.
      *
@@ -61,7 +45,7 @@ public class BaseTest {
 
     @BeforeClass
     @Parameters("env")
-    public void setEnvironment(@Optional("qa")String env) {
+    public void setEnvironment(@Optional("qa") String env) {
         if (env != null && !env.isEmpty()) {
             System.setProperty("env", env);
             log.info("Environment set to: {}", env);
@@ -83,12 +67,12 @@ public class BaseTest {
     /**
      * Initialize the WebDriver based on the browser and headless parameter.
      *
-     * @param browser - Browser name (chrome, firefox).
+     * @param browser  - Browser name (chrome, firefox).
      * @param headless - Whether to run in headless mode.
      */
     @BeforeMethod
     @Parameters({"browser", "headless"})
-    public void setupDriver(@Optional("chrome")String browser, @Optional("false")boolean headless) {
+    public void setupDriver(@Optional("chrome") String browser, @Optional("false") boolean headless) {
         softAssert = new SoftAssert();
         log.info("Setting up WebDriver for browser: {}, headless: {}", browser, headless);
         if (browser.equalsIgnoreCase("chrome")) {
@@ -101,12 +85,11 @@ public class BaseTest {
         } else if (browser.equalsIgnoreCase("firefox")) {
             driver.set(new FirefoxDriver());
             log.info("FirefoxDriver initialized.");
-        }
-        else {
+        } else {
             ChromeOptions chromeOptions = new ChromeOptions();
             if (headless) {
                 chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
-             }
+            }
             driver.set(new ChromeDriver(chromeOptions));
             log.info("ChromeDriver initialized.");
         }
@@ -139,7 +122,6 @@ public class BaseTest {
     }
 
 
-
     /**
      * Get the current WebDriver instance.
      *
@@ -150,11 +132,7 @@ public class BaseTest {
     }
 
 
-
-
-
     // --------------------- Utility Methods -------------------------------------------------------
-
 
 
     /**
@@ -227,14 +205,14 @@ public class BaseTest {
      */
     public void click(By locator) {
         log.info("Clicking on element: {}", locator);
-       WebDriverWait wait = new WebDriverWait(getDriver(),Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))));
         waitForElementToBeClickable(locator, 10).click();
 
     }
 
 
     public static void clickElementByJS(By element) {
-        Log.info("Clicking on " +element);
+        Log.info("Clicking on " + element);
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("arguments[0].click();", getDriver().findElement(element));
     }
@@ -254,14 +232,14 @@ public class BaseTest {
 
     public static void SendKeys(By element, String value) {
 
-         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))));
         wait.until(ExpectedConditions.presenceOfElementLocated(element));
         try {
             WebElement ele = getDriver().findElement(element);
             ele.sendKeys(value);
 
         } catch (Exception E) {
-            throw new RuntimeException (E);
+            throw new RuntimeException(E);
         }
     }
 
@@ -287,10 +265,12 @@ public class BaseTest {
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
         staticWait(2000);
     }
+
     public void scrollToWebElement(WebElement locator) {
         log.info("Scrolling to element: {}", locator);
-         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", locator);
+        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", locator);
     }
+
     /**
      * Hovers over an element using Actions.
      *
@@ -345,6 +325,7 @@ public class BaseTest {
             return false;
         }
     }
+
     public boolean isToggleEnabled(By locator) {
         log.info("Checking if toggle is enabled: {}", locator);
         try {
@@ -365,7 +346,7 @@ public class BaseTest {
      */
     public boolean isEnabled(By locator) {
         try {
-            return  getDriver().findElement(locator).isEnabled();
+            return getDriver().findElement(locator).isEnabled();
         } catch (TimeoutException e) {
             return false;
         }
@@ -479,6 +460,7 @@ public class BaseTest {
         log.info("Navigating to URL: {}", url);
         getDriver().navigate().to(url);
     }
+
     public String getPageTitle() {
         Log.info("Get the Current Page Title");
         return getDriver().getTitle();
@@ -550,7 +532,7 @@ public class BaseTest {
     /**
      * Handle dropdown selection by visible text.
      *
-     * @param locator The locator of the dropdown element.
+     * @param locator     The locator of the dropdown element.
      * @param visibleText The text to select in the dropdown.
      */
     public void selectDropdownByVisibleText(By locator, String visibleText) {
@@ -564,7 +546,7 @@ public class BaseTest {
      * Handle dropdown selection by value.
      *
      * @param locator The locator of the dropdown element.
-     * @param value The value to select in the dropdown.
+     * @param value   The value to select in the dropdown.
      */
     public void selectDropdownByValue(By locator, String value) {
         WebElement dropdownElement = getDriver().findElement(locator);
@@ -576,7 +558,7 @@ public class BaseTest {
      * Handle dropdown selection by index.
      *
      * @param locator The locator of the dropdown element.
-     * @param index The index to select in the dropdown (0-based).
+     * @param index   The index to select in the dropdown (0-based).
      */
     public void selectDropdownByIndex(By locator, int index) {
         WebElement dropdownElement = getDriver().findElement(locator);
@@ -619,8 +601,9 @@ public class BaseTest {
 
     /**
      * Wait for the loader to finish loading before interacting with the page.
+     *
      * @param loaderLocator The locator for the loader element (e.g., ID, class, or CSS selector).
-     * @param timeout The maximum time to wait for the loader to disappear.
+     * @param timeout       The maximum time to wait for the loader to disappear.
      */
     public void waitForLoaderToDisappear(By loaderLocator, int timeout) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeout));
@@ -637,8 +620,9 @@ public class BaseTest {
     /**
      * Wait for the loader to appear and then disappear, if it appears, before interacting with the page.
      * This is a more comprehensive method that accounts for both loader appearance and disappearance.
+     *
      * @param loaderLocator The locator for the loader element.
-     * @param timeout The maximum time to wait for the loader to disappear.
+     * @param timeout       The maximum time to wait for the loader to disappear.
      */
     public void waitForLoaderAndContent(By loaderLocator, int timeout) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeout));
@@ -654,8 +638,6 @@ public class BaseTest {
         // Wait until the loader disappears
         waitForLoaderToDisappear(loaderLocator, timeout);
     }
-
-
 
 
     //login method
@@ -685,6 +667,33 @@ public class BaseTest {
 
     }
 
+    public static void LoginAsNewUser() {
+        log.info("Starting Login test - Entering username and password");
+
+        // Fetch the username and password from the configuration file
+        String username = configReader.getProperty("newuser");
+        String password = configReader.getProperty("newpass");
+
+        // Validate if username and password are present in the config file
+        if (username == null || password == null) {
+            log.error("Username or password is missing in the configuration file.");
+            throw new RuntimeException("Username or password is missing in the configuration file.");
+        }
+
+        // Log the username and password for debug purposes (considering security)
+        log.debug("Attempting to login with username: {}", username);
+
+        // Perform login action using the provided credentials
+        pageObjectManager.getLoginPage().signIn(username, password);
+
+        // Log the status of the action after clicking SignIn
+        log.debug("User has successfully logged in and landed on the dashboard");
+
+        // Verify the landing page is correct after login
+        pageObjectManager.getHomePage().landingPage();
+    }
+
+
     //login as customer method
     public static void LoginAsCustomer() {
         log.info("Starting Login test - Entering username and password");
@@ -711,6 +720,7 @@ public class BaseTest {
         // Verify the landing page is correct after login
         pageObjectManager.getHomePage().landingPage();
     }
+
     public static void LoginAsAdmin() {
         log.info("Starting Login test");
 
@@ -730,13 +740,13 @@ public class BaseTest {
         pageObjectManager.getHomePage().landingPage();
     }
 
-    public void setTextByJS(By locator, String input){
-        WebElement inputField =  getDriver().findElement(locator);
+    public void setTextByJS(By locator, String input) {
+        WebElement inputField = getDriver().findElement(locator);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].value='+input+';", inputField);
     }
 
-    public void actionEnterText(By locator, String textToEnter){
+    public void actionEnterText(By locator, String textToEnter) {
         Actions actions = new Actions(getDriver());
         WebElement element = getDriver().findElement(locator);
         actions.click(element).sendKeys(textToEnter).build().perform();
@@ -812,6 +822,7 @@ public class BaseTest {
             return "File not Present";
         }
     }
+
     public String requiredDigits(int n) {
         String AlphaNumericString = "1234567890";
         StringBuilder s = new StringBuilder(n);
@@ -837,11 +848,13 @@ public class BaseTest {
         }
         return s.toString();
     }
+
     public void cleanByJS(By locator) {
         WebElement element = getDriver().findElement(locator);
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("arguments[0].value = '';", element);
     }
+
     public void pressKeys(By locator, String value) {
         // Create PerformActions instance
         Actions actions = new Actions(getDriver());
@@ -851,10 +864,11 @@ public class BaseTest {
         // Send each character of the string one by one
         for (char ch : value.toCharArray()) {
             actions.sendKeys(String.valueOf(ch)).perform();
-        }}
+        }
+    }
 
     public int getCountOfWebElements(By locator) {
-        List<WebElement> webElements = getDriver().findElements(locator);
+        java.util.List<WebElement> webElements = getDriver().findElements(locator);
         // Return the count of elements
         return webElements.size();
     }
@@ -871,6 +885,7 @@ public class BaseTest {
             return true; // Treat missing elements as disabled
         }
     }
+
     public static void scrollToDown() {
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         try {
@@ -891,9 +906,11 @@ public class BaseTest {
     public void selectStore(String store) {
         click(By.xpath("//li[contains(text(),'" + store + "')]"));  // Select store
     }
-    public void switchToDefaultWindow(){
+
+    public void switchToDefaultWindow() {
         getDriver().switchTo().defaultContent();
     }
+
     public static String deleteFile(String fileName) {
         String home = System.getProperty("user.home");
         String file_with_location;
@@ -917,6 +934,7 @@ public class BaseTest {
             return "File not found";
         }
     }
+
     public WebElement getElement(By locator) {
         try {
             return getDriver().findElement(locator);
@@ -927,15 +945,26 @@ public class BaseTest {
         }
     }
 
+
+    public boolean isDisplayed(By locator, int timeoutInSeconds) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutInSeconds));
+        log.info("Checking if element is displayed: {}", locator);
+        try {
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            boolean isVisible = element.isDisplayed();
+            log.info("Element displayed state: {}", isVisible);
+            return true;
+        } catch (TimeoutException e) {
+            log.warn("Element not visible within timeout: {}", locator);
+            return false;
+        } catch (Exception e) {
+            log.error("Unexpected exception while checking visibility of: {}", locator, e);
+            return false;
+        }
+    }
     public List<WebElement> getListOfWebElement(By locator) {
-        return getDriver().findElements(locator);
+        return (List<WebElement>) getDriver().findElements(locator);
     }
 
 
-
 }
-
-
-
-
-

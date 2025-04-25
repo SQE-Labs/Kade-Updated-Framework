@@ -4,6 +4,7 @@ import base.BaseTest;
 import logger.Log;
 import org.testng.annotations.Test;
 import pageEvents.BillPage;
+import pageEvents.PaymentHistoryPage;
 import pageEvents.PaymentPage;
 
 import java.awt.*;
@@ -12,7 +13,7 @@ import java.awt.*;
 public class PaymentsAndRefundTest extends BaseTest {
     BillPage bill = new BillPage();
     PaymentPage payment = new PaymentPage();
-
+    PaymentHistoryPage pay = new PaymentHistoryPage();
 
 
     @Test(priority = 0, enabled = true, description = "PYMT1 Bill Creation and Successful Bill Payment by Cash through Store Manager.")
@@ -94,21 +95,13 @@ public class PaymentsAndRefundTest extends BaseTest {
         bill.createBillWithCustomer("636045278965", "saybo@yopmail.com");
         payment.billPaymentByVariousPaymentMethods("500.00", "4111111111111111", "0930", "794", "Australia");
         payment.swipeCard();
-//        payment.clickOnPayNowBtn();
-//        if(isElementDisplayed(payment.payCurrentBalance)){
-//            hoverAndClick(payment.payCurrentBalance,payment.payCurrentBalance);
-//        }else{
-//            Log.info("Nothing to be selected");
-//        }
-//
-//        // softAssert.assertTrue(isElementDisplayed(storeName));
-//        softAssert.assertTrue(isElementDisplayed(payment.visaCardName));
-//        payment.clickOnZelleAccount();
-//        payment.clickOnMakePaymentBtn();
-//        payment.clickOnCheckBox();
-//        payment.zelleSaveBtn();
-//        payment.billPayment();
-        payment.paymentByZelleAccount();
+        payment.clickOnchangeBtn();
+        staticWait(2000);
+        payment.clickOnZelleAccount();
+        payment.clickOnMakePaymentBtn();
+        payment.clickOnCheckBox();
+        payment.zelleSaveBtn();
+        payment.billPayment();
     }
 
     @Test(priority = 10, enabled = true,description = "PYMT13 : Create Bill for a customer and pay using Venmo.")
