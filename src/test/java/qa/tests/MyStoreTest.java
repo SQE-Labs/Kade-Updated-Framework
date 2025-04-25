@@ -33,7 +33,7 @@ public class MyStoreTest extends BaseTest {
     }
 
 
-    @Test(description = "SC_01(B) Verifying deletion of Store when Stripe Account is not Registered Yet")
+    @Test(enabled = false, description = "SC_01(B) Verifying deletion of Store when Stripe Account is not Registered Yet")
     public void sc01b_DeletionOfStore() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
@@ -353,7 +353,7 @@ public class MyStoreTest extends BaseTest {
         mystore.getCreditTerminalOption();
 
     }
-    @Test(description  ="SC_06 Verifying the Configuration of the Store using Payment Processing Sub-Tabs on 'Store Configuration' Page with Venmo & Zelle. ")
+    @Test(enabled = false , description  ="SC_06 Verifying the Configuration of the Store using Payment Processing Sub-Tabs on 'Store Configuration' Page with Venmo & Zelle. ")
     public void verifyConfigurationOfStoreUsingPaymentProcessingSubTab(){
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();

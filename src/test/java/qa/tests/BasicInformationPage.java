@@ -78,6 +78,7 @@ public class BasicInformationPage extends BaseTest {
         waitForElementInVisible(basicInfoPage.modifyBtn,20);
         basicInfoPage.invalidInputStorePhone();
         Assert.assertTrue(isElementDisplayed(basicInfoPage.alertMsg));
+        pageObjectManager.getLoginPage().getValidationCrossIcon();
         hoverOverElement(basicInfoPage.storePhoneField);
         Assert.assertEquals(getToolTipMessage(basicInfoPage.storePhoneField),Constants.invalidPhoneToolTip,"After Entering Invalid phone number");
     }
