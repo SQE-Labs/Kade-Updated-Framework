@@ -12,6 +12,7 @@ test-report/
 /.DS_Store
 allure-results/
 debugger.xml
+logs
 screenshot
 chaintest
 maven-status
