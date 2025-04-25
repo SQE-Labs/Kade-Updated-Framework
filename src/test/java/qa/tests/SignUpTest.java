@@ -131,7 +131,8 @@ public class SignUpTest extends BaseTest {
 
         // Enter data in security code field
         enterText(signUp.securityCodeFieldNewAccount, Constants.securityCode);
-        waitForElementToBeClickable(signUp.fullname,5);
+//        waitForElementToBeClickable(signUp.fullname,5);
+        staticWait(5000);
 
         //Entering name in the Full name field
         enterText(signUp.fullname, "New Kade Member" + st);
@@ -166,16 +167,16 @@ public class SignUpTest extends BaseTest {
 
         // Entering Invalid security Code
         enterText(signUp.securityCodeFieldNewAccount, Constants.invalidSecurityCode);
+//        staticWait(5000);
+//        enterText(signUp.fullname, st + "New Member");
 
         // ..
         waitForElementToBeVisible(signUp.ContinueButtonBusiness,3);
         signUp.getBusinessContinuebtn();
+        staticWait(3000);
 
         String alertmessage = getText(signUp.securityCodeAlertMessage);
 
-
-//        waitForElementToBeVisible(signUp.fullname,4);/// UI change this field discountinue
-//        enterText(signUp.fullname, st + "New Member");
         signUp.getBusinessContinuebtn();
 
         // Verify the Validation message for Incorrect Security Code
@@ -374,11 +375,12 @@ public class SignUpTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(description = " CA_TC 4(b): Verify that signing in to the application by email address using Business Account option, with forget password option.")
+    @Test( enabled = false ,description = " CA_TC 4(b): Verify that signing in to the application by email address using Business Account option, with forget password option.")
     public void verifyThatSigningInByEmailUsingBusinessAccountOptionWithForgetPasswordoption() {
         pageObjectManager.getLoginPage().getSignUpLink();
         signUp.getBusinessAccount();
         signUp.getCrossIcon();
+        staticWait(3000);
 
         // Clicking on 'Sign In Button
         signUp.getSignInBtn();

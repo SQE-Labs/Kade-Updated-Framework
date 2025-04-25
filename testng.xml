@@ -5,10 +5,10 @@
         <listener class-name="utils.SuiteListener"></listener>
         <listener class-name="com.aventstack.chaintest.plugins.ChainTestListener"></listener>
     </listeners>
-    <test thread-count="3" name="Test">
+    <test name="Test" thread-count="2"  parallel="classes">
         <parameter name="env"  value="qa" />
         <parameter name="browser" value="chrome" />
-        <parameter name="headless" value="false" />
+        <parameter name="headless" value="true" />
 <!--        <packages>-->
 <!--            <package name="qa.tests"/>-->
 <!--        </packages>-->
@@ -16,6 +16,7 @@
             <class name="qa.tests.TransactionsTest"></class>
             <class name="qa.tests.MyStoreTest"></class>
             <class name="qa.tests.BillTest"></class>
+            <class name="qa.tests.SignUpTest"></class>
 
         </classes>
 

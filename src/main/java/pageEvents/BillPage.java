@@ -1250,8 +1250,9 @@ public class BillPage extends BaseTest {
         getNewBillButton();
         waitForElementToBeVisible(popUpHeader,3);
 
+
         // Verify New Bill popup
-        softAssert.assertEquals(popUpHeader, "Bill","Popup Header for bill");
+        softAssert.assertEquals(getText(popUpHeader), "Bill","Popup Header for bill");
 
         //Verify Confirm Button is disabled before entering amount
         softAssert.assertTrue(isElementDisplayed(btnDisbled),"Btn is disabled");

@@ -18,8 +18,7 @@ public class PaymentsAndRefundTest extends BaseTest {
     @Test(priority = 0, enabled = true, description = "PYMT1 Bill Creation and Successful Bill Payment by Cash through Store Manager.")
     public void cashPaymentThroughStoreManager() {
 
-        bill.createBillWithCustomer("636045278965","Saybo@yopmail.com");
-        payment.paymentPopup("Enter Bill Amount");
+        bill.createBillWithCustomer("636045278965","Saybo@yopmail.com");payment.paymentPopup("Enter Bill Amount");
 
     }
 
@@ -94,20 +93,6 @@ public class PaymentsAndRefundTest extends BaseTest {
         bill.createBillWithCustomer("636045278965", "saybo@yopmail.com");
         payment.billPaymentByVariousPaymentMethods("500.00", "4111111111111111", "0930", "794", "Australia");
         payment.swipeCard();
-//        payment.clickOnPayNowBtn();
-//        if(isElementDisplayed(payment.payCurrentBalance)){
-//            hoverAndClick(payment.payCurrentBalance,payment.payCurrentBalance);
-//        }else{
-//            Log.info("Nothing to be selected");
-//        }
-//
-//        // softAssert.assertTrue(isElementDisplayed(storeName));
-//        softAssert.assertTrue(isElementDisplayed(payment.visaCardName));
-//        payment.clickOnZelleAccount();
-//        payment.clickOnMakePaymentBtn();
-//        payment.clickOnCheckBox();
-//        payment.zelleSaveBtn();
-//        payment.billPayment();
         payment.paymentByZelleAccount();
     }
 

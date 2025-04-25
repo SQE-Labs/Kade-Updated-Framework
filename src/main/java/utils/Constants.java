@@ -39,11 +39,11 @@ public interface Constants {
     String existingEmail = "test@yopmail.com";
     String existingEmailValidation ="This email is already registered.";
     String securityCode ="123456";
-    String validPhonenumber = "6465551105";
+    String validPhonenumber = "6465551111";
     String TooltipForLessDigit ="Please enter at least 6 characters.";
     String invalidSecurityCodeMsg = "Invalid security code";
     String invalidSecurityCode ="332434";
-    String  phoneSecurityCode ="346543";
+    String  phoneSecurityCode ="777777";
     String passwordvalidation = "Invalid password, a password must contain at least one upper case letter, one lower case letter and one special character or a number.";
     String validPassword = "Test@123";
     String validLoginEmail = "test1114@yopmail.com";

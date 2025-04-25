@@ -1271,7 +1271,8 @@ public class PaymentPage extends BaseTest {
         clickOnMakePaymentBtn();
         clickOnCheckBox();
         zelleSaveBtn();
-        billPayment();
+
+    billPayment();
     }
 
     public void getOkButtonOfAttentionPopup(){

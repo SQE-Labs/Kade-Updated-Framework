@@ -344,6 +344,7 @@ public class TransactionsPage extends BaseTest {
         waitForElementToBeClickable(newChargeAmountField, 5);
         actionEnterText(newChargeAmountField, Constants.amount);
         actionEnterText(descriptionField, Constants.description);
+        staticWait(3000);
         getNewChargeConfirmBtn();
         // Making new charge payment manually with Credit Card
 

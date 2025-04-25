@@ -73,7 +73,7 @@ public class GiftCardsTest extends BaseTest {
 
 
     }
-    @Test(priority = 4,enabled = false, description = "GC 15: Verify that 'Gift card detail' page opens in a new tab, after clicking on 'Open in a new tab' icon , on Gift Card Summary popup")
+    @Test(priority = 4,enabled = true, description = "GC 15: Verify that 'Gift card detail' page opens in a new tab, after clicking on 'Open in a new tab' icon , on Gift Card Summary popup")
     public void verifyGCOpenInNewTab(){
         LoginAsCustomer();
         staticWait(3000);

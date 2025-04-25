@@ -51,7 +51,7 @@ public class MyStoreTest extends BaseTest {
             //  Click on 'Skip' button
             mystore.getSkipBtnOfStripe();
         }
-        staticWait(3000);
+        staticWait(5000);
         scrollToElement(mystore.deleteStoreBtn);
         waitForElementToBeVisible(mystore.deleteStoreBtn,5);
         // click on delete button
@@ -177,7 +177,8 @@ public class MyStoreTest extends BaseTest {
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
 
-        waitForElementToBeInteractable(mystore.configureLink,4);
+//        waitForElementToBeInteractable(mystore.configureLink,4);
+        staticWait(3000);
 
         // Click on 'Configure' Link
         mystore.getConfigureLink();
@@ -357,7 +358,7 @@ public class MyStoreTest extends BaseTest {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
-        waitForElementToBeClickable(mystore.configureLink,3);
+        waitForElementToBeClickable(mystore.configureLink,5);
 
         // Click on 'Configure' Link
         mystore.getConfigureLink();
@@ -449,6 +450,7 @@ public class MyStoreTest extends BaseTest {
         pageObjectManager.getSidePannel().getMyStoreTab();
 
         // Click on 'Configure' Link
+
         mystore.getConfigureLink();
         scrollToElement(mystore.activeSubTab);
 

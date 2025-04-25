@@ -31,7 +31,7 @@ public class MyStorePage extends BaseTest {
   public By timeZoneField = By.xpath("//select[@name='timeZone']");
   public By timeZoneOption = By.xpath("//option[text()='(GMT-05:00) Eastern Time (US & Canada)']");
   public By taxRateTbx = By.xpath("//input[@name='taxRate']");
-  public By saveBtn = By.xpath("//div[contains(@class, 'd-flex mt-3')]/button[text()='Save']");
+  public By saveBtn = By.xpath("//button[text()='Save']");
   public By saveVenmoPaymentBtn = By.xpath("(//div[@class='card-footer']//button)[1]");
   public By stripeBtn = By.cssSelector(".img-fluid.h-100");
   public By connectStripePopUpTitle = By.xpath("//h5[text()='Connect to stripe']");
@@ -39,7 +39,7 @@ public class MyStorePage extends BaseTest {
   public By bankTransferToggleBtn = By.xpath("//span[text()='Accept bank transfer']");
   public By skipForNowBtn = By.xpath("//button[text()='Skip for now']");
   public By continueBtn = By.xpath("//button[text()='Continue']");
-  public By configureLink = By.xpath("(//h6[text()='Automation Flow Business']/..//../div/a)[1]");
+  public By configureLink = By.xpath("(//h6[contains(text(),'Automation Flow Business')]/..//../div/a)[1]");
 
   public By configureLink2 = By.xpath("/html/body/div[4]/div/div/main/div/div[3]/div/div/div[4]/div[1]/a");
   public By modifyBtn = By.xpath("//button[text()='Modify']");
@@ -373,6 +373,7 @@ public class MyStorePage extends BaseTest {
             pageObjectManager.getSidePannel().getMyStoreTab();
             getRegisterNewBusinessButton();
         }
+        staticWait(3000);
         // Click on 'Stripe Account' Button
           getStripeAccountBtn();
           scrollToElement(testStripeBtn);
@@ -439,7 +440,7 @@ public class MyStorePage extends BaseTest {
             pageObjectManager.getSidePannel().getMyStoreTab();
             getRegisterNewBusinessButton();
         }
-        waitForElementToBeClickable(skipStripeAccountBtn,4);
+        waitForElementToBeClickable(skipStripeAccountBtn,5);
         getSkipStripeAccountButton();
         staticWait(3000);
 //        waitForElementToBeClickable(skipStripeAccountPopUpBtn,5);
@@ -525,6 +526,7 @@ public class MyStorePage extends BaseTest {
         //Verifying the maximum length of 'Phone' field
         softAssert.assertEquals(getAttribute(phoneTbx,"maxlength"),"22");
         actionEnterText(phoneTbx,Constants.validPhoneNumber);
+        staticWait(3000);
 
         // Select Time Zone
 
