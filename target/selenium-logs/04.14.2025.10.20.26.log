@@ -1,4 +1,0 @@
-2025-04-14 22:20:26,940 [info]: Clicking on By.xpath: //button[contains(text(), 'selected bill')]
-2025-04-14 22:20:30,929 [info]: Clicking on By.xpath: //a[@class='stretched-link position-absolute h-100 -updateamount-']
-2025-04-14 22:20:36,052 [info]: Clicking on By.xpath: //input[@lbl-title='Amount']
-2025-04-14 22:20:43,325 [info]: Clicking on By.xpath: //input[@name='amount']//following::button[@type='submit' and normalize-space()='Update'][2]

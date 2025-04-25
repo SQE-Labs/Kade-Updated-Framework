@@ -1,3 +1,0 @@
-2025-04-13 19:05:56,714 [info]: Clicking on By.xpath: //a[normalize-space()='My Stuff']
-2025-04-13 19:05:56,747 [info]: Clicking on By.xpath: //div[normalize-space()='Payment History']
-2025-04-13 19:05:58,805 [info]: Clicking on By.xpath: //div[contains(@class, 'bg-white mb-2')][1]//span[contains(@class, 'badge position-relative')]

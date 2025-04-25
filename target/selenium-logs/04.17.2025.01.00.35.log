@@ -1,4 +1,0 @@
-2025-04-17 13:00:35,797 [info]: Clicking on newBillTxt
-2025-04-17 13:01:04,093 [info]: Clicking on By.xpath: //a[normalize-space()='Sign out']
-2025-04-17 13:01:11,952 [info]: Clicking on By.xpath: //button[normalize-space()='Pay now']
-2025-04-17 13:01:15,326 [info]: Clicking on By.xpath: //a[normalize-space()='Close']

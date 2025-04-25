@@ -1,3 +1,0 @@
-2025-04-13 20:23:49,629 [info]: Clicking on By.xpath: //a[normalize-space()='My Stuff']
-2025-04-13 20:23:49,663 [info]: Clicking on By.xpath: //div[normalize-space()='Payment History']
-2025-04-13 20:23:49,737 [info]: Clicking on By.xpath: //div[contains(@class, 'p-1 p-sm-2') and contains(@class, 'rounded')][1]

@@ -1,2 +1,0 @@
-2025-04-13 13:24:23,671 [info]: Clicking on By.xpath: //Button[@name='applyAmount' and @value='-1']
-2025-04-13 13:24:43,304 [info]: Clicking on By.xpath: //a[normalize-space()='Close']
