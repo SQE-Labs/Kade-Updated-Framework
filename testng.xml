@@ -8,7 +8,9 @@
     <test thread-count="3" name="Test">
         <parameter name="env"  value="qa" />
         <parameter name="browser" value="chrome" />
-        <parameter name="headless" value="false" />
+        <parameter name="headless" value="trueC:\Users\SQE Labs\IdeaProjects\Kade-Updated-Framework\src\main\resources\ImageResources\image\BillDummyImg
+C:\Users\SQE Labs\IdeaProjects\Kade-Updated-Framework\src\main\resources\ImageResources\image\dummy
+" />
         <packages>
             <package name="qa.tests"/>
         </packages>
