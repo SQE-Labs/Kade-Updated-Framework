@@ -279,7 +279,7 @@ public class BaseTest {
     public void hoverOverElement(By locator) {
         log.info("Hovering over element: {}", locator);
         Actions actions = new Actions(getDriver());
-        actions.moveToElement(waitForElementToBeVisible(locator, 10)).perform();
+        actions.moveToElement(waitForElementToBeVisible(locator, 10)).build().perform();
     }
 
     /**

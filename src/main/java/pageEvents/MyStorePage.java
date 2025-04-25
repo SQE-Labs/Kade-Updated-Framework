@@ -31,7 +31,7 @@ public class MyStorePage extends BaseTest {
   public By timeZoneField = By.xpath("//select[@name='timeZone']");
   public By timeZoneOption = By.xpath("//option[text()='(GMT-05:00) Eastern Time (US & Canada)']");
   public By taxRateTbx = By.xpath("//input[@name='taxRate']");
-  public By saveBtn = By.xpath("//div[contains(@class, 'd-flex mt-3')]/button[text()='Save']");
+  public By saveBtn = By.xpath("//button[text()='Save']");
   public By saveVenmoPaymentBtn = By.xpath("(//div[@class='card-footer']//button)[1]");
   public By stripeBtn = By.cssSelector(".img-fluid.h-100");
   public By connectStripePopUpTitle = By.xpath("//h5[text()='Connect to stripe']");

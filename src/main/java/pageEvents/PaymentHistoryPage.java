@@ -183,7 +183,7 @@ public class PaymentHistoryPage extends BaseTest {
     public void VerifytheDetails() {
         LoginAsCustomer();
         scrollToElement(Mystuff);
-        getMyStuffandPaymentHistory();
+         getMyStuffandPaymentHistory();
         staticWait(2000);
         softAssert.assertTrue(isElementDisplayed(paymentId));
         softAssert.assertTrue(isElementDisplayed(StoreName));
@@ -255,7 +255,7 @@ public class PaymentHistoryPage extends BaseTest {
             getMyStuffandPaymentHistory();
             staticWait(2000);
             getTransactionPage();
-            staticWait(3000);
+
             clickElementByJS(MakePaymentsBtn);
             pays.swipeToPay();
 
