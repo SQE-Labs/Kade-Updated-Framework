@@ -18,7 +18,7 @@ public class SignUpPage extends BaseTest {
   public  By alreadyHaveAnAccountLabel = By.xpath("//p[contains(text(),'Already have an account?')]");
   public  By signInLink = By.xpath("//a[@class='ms-2']");
   public  By checkBox=By.xpath("//i[@class='fal fa-square custom-check-off ']");
-  public  By businessAccountButton = By.xpath("//a[text()='Business Account']");
+  public  By businessAccountButton = By.xpath("//span[text()='Business Account']");
   public  By personalAccountButton = By.xpath("//a[text()='Personal Account']");
   public  By existingPhoneValidation = By.xpath("//p[text()='This phone number is already registered.']");
   public  By existingEmailValidation = By.xpath("//p[text()='This email is already registered.']");
