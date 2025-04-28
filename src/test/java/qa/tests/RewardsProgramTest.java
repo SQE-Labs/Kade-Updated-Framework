@@ -50,12 +50,14 @@ public class RewardsProgramTest extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.rewardsProgPopupTitle));
         click(rewardsProgramPage.toggleDisabled);
         click(rewardsProgramPage.saveChangesBtn);
+
+
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.rewardsProgActivationMsg));
-
-
         click(rewardsProgramPage.settingsBtn);
         click(rewardsProgramPage.toggleEnabled);
         click(rewardsProgramPage.saveChangesBtn);
+
+
     }
 
     @Test

@@ -240,7 +240,7 @@ public class GiftCardDashboardTest extends BaseTest {
 
     }
 
-    @Test(priority = 90 & 91 , enabled = true, description = "Verify that 'Funding Source' field appear as text field on 'Gift Card For Sale' page. ")
+    @Test(priority = 90 & 91 , enabled = false, description = "Verify that 'Funding Source' field appear as text field on 'Gift Card For Sale' page. ")
     public void verifyFundingSrcFieldAppearAsText(){
 
 

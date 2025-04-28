@@ -7,6 +7,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 import utils.Constants;
 
 import java.util.ArrayList;
@@ -331,6 +332,7 @@ public class TransactionsPage extends BaseTest {
 
 
     // TRS 5 a
+
     public void getManualCharge() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();

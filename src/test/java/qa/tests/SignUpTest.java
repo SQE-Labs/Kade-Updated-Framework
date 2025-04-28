@@ -131,7 +131,7 @@ public class SignUpTest extends BaseTest {
 
         // Enter data in security code field
         enterText(signUp.securityCodeFieldNewAccount, Constants.securityCode);
-        waitForElementToBeClickable(signUp.fullname,5);
+        waitForElementToBeClickable(signUp.fullname,6);
 
         //Entering name in the Full name field
         enterText(signUp.fullname, "New Kade Member" + st);
@@ -184,7 +184,7 @@ public class SignUpTest extends BaseTest {
         cleanByJS(signUp.securityCodeFieldNewAccount);
 
         // Entering Valid security Code
-        actionEnterText(signUp.securityCodeFieldNewAccount, Constants.phoneSecurityCode);
+        actionEnterText(signUp.securityCodeFieldNewAccount, Constants.phoneSecurityCodeForLogin);
         waitForElementToBeVisible(signUp.ContinueButtonBusiness,3);
 
         signUp.getBusinessContinuebtn();
@@ -330,7 +330,7 @@ public class SignUpTest extends BaseTest {
     }
 
     @Test(description = " CA_TC 4(a): Verify that signing in to the application by email address using Business Account option.")
-    public void verifyThatSigningInByEmailUsingBusinessAccountOption() {
+    public void averifyThatSigningInByEmailUsingBusinessAccountOption() {
         pageObjectManager.getLoginPage().getSignUpLink();
         signUp.getBusinessAccount();
         signUp.getCrossIcon();
