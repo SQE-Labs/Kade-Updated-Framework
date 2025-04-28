@@ -39,7 +39,7 @@ public class MyStorePage extends BaseTest {
   public By bankTransferToggleBtn = By.xpath("//span[text()='Accept bank transfer']");
   public By skipForNowBtn = By.xpath("//button[text()='Skip for now']");
   public By continueBtn = By.xpath("//button[text()='Continue']");
-  public By configureLink = By.xpath("(//h6[text()='Automation Flow Business']/..//../div/a)[1]");
+  public By configureLink = By.xpath("(//h6[starts-with(text(),'Automation Flow Business')]/../../div/a)[1]");
 
   public By configureLink2 = By.xpath("/html/body/div[4]/div/div/main/div/div[3]/div/div/div[4]/div[1]/a");
   public By modifyBtn = By.xpath("//button[text()='Modify']");
@@ -49,7 +49,7 @@ public class MyStorePage extends BaseTest {
    public By yearlyBtn = By.xpath("//label[text()='Yearly']");
    public By termsCbx = By.xpath("//span[text()='     I agree to the']");
    public By changePlanBtn = By.xpath("//button[text()='Change plan']");
-   public By addedStoreName = By.cssSelector(".form-group.mb-3>h4");
+   public By addedStoreName = By.xpath("(//div[contains (@class, 'form-group mb-3')]//label//following-sibling::div)[1]");
    public By addedLocationDescription = By.cssSelector("div[class='display-none -readonly-div-'] span");
    public By addedStoreAddress = By.xpath("//label[text()='Store Address']/following-sibling::p");
    public By addedStorePhone = By.xpath("//label[text()='Store Phone']/following-sibling::p");
@@ -398,6 +398,7 @@ public class MyStorePage extends BaseTest {
         // Click on 'Skip For Now' Button
         getSkipForNowButton();
         getContinueButton();
+
         //verifying the default Values of the Store
         String storenameactual = getText(addedStoreName);
         String locationDescription = getText(addedLocationDescription);
@@ -492,6 +493,7 @@ public class MyStorePage extends BaseTest {
         waitForElementToBeVisible(continueBtn,10);
         getContinueButton();
         waitForPageLoad();
+
         //  //Verify Created Store
         softAssert.assertEquals(getText(addedStoreName),storeName);
         softAssert.assertAll();
