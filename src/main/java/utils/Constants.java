@@ -201,6 +201,7 @@ public interface Constants {
     String memoText ="Memo";
     String startDateText ="Start Date:";
     String endDateText ="Exp. Date:";
+    String fundingSourceOptionalField = "Optional";
 
 
 

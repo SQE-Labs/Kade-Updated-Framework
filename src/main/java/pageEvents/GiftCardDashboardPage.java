@@ -2,16 +2,18 @@ package pageEvents;
 
 import base.BaseTest;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import static org.openqa.selenium.support.locators.RelativeLocator.with;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import utils.Constants;
 
 import java.time.Duration;
 import java.time.LocalDate;
-
-
+import java.time.format.DateTimeFormatter;
 
 
 public class GiftCardDashboardPage extends BaseTest {
@@ -82,6 +84,25 @@ public class GiftCardDashboardPage extends BaseTest {
     public By issueNewGiftcardForm = By.cssSelector("div.modal-body");
     public By infoIcon = By.cssSelector("i.fal.fa-info-square");
     public By enableClass = By.cssSelector("label.custom-checkbox.mb-3");
+    public By storeMnager = By.cssSelector("div.fw-bold");
+    public By issuedOn = By.xpath("//span[contains(text(),'Issued on:')]");
+    public By issueBy = By.xpath("//span[contains(text(), 'Issued by:')]");
+    public By editBtn = By.cssSelector("i.far.fa-edit");
+    public By fundingSourceOptionalField = By.xpath("//label[text()='Funding source']");
+
+
+
+
+    public String DateStringGenerator()
+        {
+            LocalDate currentDate = LocalDate.now(); // or any specific date: LocalDate.of(2025, 4, 15)
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String formattedDate = currentDate.format(formatter);
+
+            String result = "Issued on: " + formattedDate;
+             return result;
+        }
+
 
 
     public String selectStore(int index) {
@@ -91,22 +112,22 @@ public class GiftCardDashboardPage extends BaseTest {
     }
 
 
-
-
-    public String offOptionalSettings() {
+    public String[] offOptionalSettings() {
         Login();
+        String storeManagerName = getText(storeMnager);
         pannel.getMangeBusinessTab();
         pannel.getGiftCardsDashboardTab();
-        selectStore(4);
+        selectStore(1);
         click(whichStoreContinueBtn);
         click(configurationBtn);
-        if (!isDisplayed(enableClass, 1000)) {
+
+        if (!isDisplayed(enableClass, 3)) {
             clickElementByJS(enabledToggleBth);
         }
-        if (!isDisplayed(fundingSourceDisableText, 100)) {
+        if (!isDisplayed(fundingSourceDisableText, 3)) {
             clickElementByJS(fundingSourceEnableToggleBtn);
         }
-        if (!isDisplayed(referenceNoDisabledText, 100)) {
+        if (!isDisplayed(referenceNoDisabledText, 3)) {
             clickElementByJS(referenceNoEnableToggleBtn);
         }
 
@@ -115,11 +136,40 @@ public class GiftCardDashboardPage extends BaseTest {
         WebElement element = getWebElement(amountField);
         String maxAmountValue = element.getAttribute("value");
         click(saveConfiguration);
-        return  maxAmountValue;
+
+        return new String[] { maxAmountValue, storeManagerName };
     }
 
 
 
+
+
+
+
+    public void createGiftCard(){
+        offOptionalSettings();
+        staticWait(1000);
+        clickElementByJS(issueNewGiftCardBtn);
+        waitForElementToBeInteractable(customerField, 10000);
+        clickElementByJS(customerField);
+        waitForElementToBeVisible(customerEmail, 1000);
+        actionEnterText(customerEmail, "beanBliss@yopmail.com");
+        clickElementByJS(customerEmailSearchBtn);
+        staticWait(1000);
+        waitForElementToBeVisible(intialAmount, 1000);
+        actionEnterText(intialAmount, "100000");
+        staticWait(1000);
+        scrollToElement(createButton);
+        waitForElementToBeVisible(createButton, 1000);
+        click(createButton);
+        staticWait(3000);
+        scrollToElement(giftCardDetailCardLink);
+        staticWait(3000);
+        click(giftCardDetailCardLink);
+        staticWait(2000);
+        click(infoIcon);
+
+    }
 
 
 
@@ -154,44 +204,51 @@ public class GiftCardDashboardPage extends BaseTest {
 
 
 
-    public void verifyReferenceNoOptions() {
-        Login();
-        pannel.getMangeBusinessTab();
-        pannel.getGiftCardsDashboardTab();
-        selectStore(6);
-        click(whichStoreContinueBtn);
-        click(configurationBtn);
+public void verifyReferenceNoOptions() {
+    Login();
+    pannel.getMangeBusinessTab();
+    pannel.getGiftCardsDashboardTab();
+    selectStore(4);
+    click(whichStoreContinueBtn);
+    click(configurationBtn);
 
-        boolean isMainToggleVisible = isDisplayed(disabledToggleBtn, 1000);
-
-        if (!isMainToggleVisible) {
-            toggle(disabledToggleBtn, disabledText, Constants.DisabledText);
-            toggle(disabledToggleBtn, enableText, Constants.EnableText);
-        } else {
-            softAssert.assertEquals(getText(disabledText), Constants.DisabledText);
-            click(disabledToggleBtn);
-            softAssert.assertEquals(getText(enableText), Constants.EnableText);
-        }
-
-        handleReferenceNoToggle();
+    if (isDisplayed(disabledToggleBtn, 3)) {
+        softAssert.assertEquals(getText(disabledText), Constants.DisabledText);
+        click(disabledToggleBtn);
+        softAssert.assertEquals(getText(enableText), Constants.EnableText);
+    } else if (isDisplayed(enabledToggleBth, 3)) {
+        softAssert.assertEquals(getText(enableText), Constants.EnableText);
+    } else {
+        throw new IllegalStateException("Main toggle button not found in expected states");
     }
+
+    handleReferenceNoToggle();
+}
 
     private void toggle(By toggleBtn, By textLocator, String expectedText) {
         click(toggleBtn);
+        waitUntilTextChanges(textLocator, expectedText, 3);
         softAssert.assertEquals(getText(textLocator), expectedText);
     }
 
     private void handleReferenceNoToggle() {
-        if (isDisplayed(refernceNoDiableToggleBtn, 1000)) {
+        if (isDisplayed(refernceNoDiableToggleBtn, 3)) {
             softAssert.assertEquals(getText(referenceNoDisabledText), Constants.referenceNoDisabledText);
             click(refernceNoDiableToggleBtn);
             softAssert.assertEquals(getText(referenceNoEnabledText), Constants.referenceNoEnabledText);
-        } else {
+        } else if (isDisplayed(referenceNoEnableToggleBtn, 3)) {
             click(referenceNoEnableToggleBtn);
             softAssert.assertEquals(getText(referenceNoDisabledText), Constants.referenceNoDisabledText);
             click(refernceNoDiableToggleBtn);
             softAssert.assertEquals(getText(referenceNoEnabledText), Constants.referenceNoEnabledText);
+        } else {
+            throw new IllegalStateException("Reference No toggle not found");
         }
+    }
+
+    private void waitUntilTextChanges(By locator, String expectedText, int timeoutSeconds) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutSeconds));
+        wait.until(ExpectedConditions.textToBe(locator, expectedText));
     }
 
 
@@ -239,13 +296,13 @@ public class GiftCardDashboardPage extends BaseTest {
         click(whichStoreContinueBtn);
         click(configurationBtn);
 
-        if (isDisplayed(disabledToggleBtn, 1000)) {
+        if (isDisplayed(disabledToggleBtn, 3)) {
             click(disabledToggleBtn);
-            softAssert.assertEquals(isDisplayed(amountCardText, 1000), "true");
+            softAssert.assertEquals(isDisplayed(amountCardText, 3), "true");
         } else {
             click(enabledToggleBth);
             click(disabledToggleBtn);
-            softAssert.assertEquals(isDisplayed(amountCardText, 1000), "true");
+            softAssert.assertEquals(isDisplayed(amountCardText, 3), "true");
         }
 
 
@@ -258,7 +315,7 @@ public class GiftCardDashboardPage extends BaseTest {
         click(whichStoreContinueBtn);
         click(configurationBtn);
 
-        if (isDisplayed(disabledToggleBtn, 1000)) {
+        if (isDisplayed(disabledToggleBtn, 3)) {
             click(disabledToggleBtn);
             waitForElementToBeVisible(amountField,1000);actionEnterText(amountField,"100000");
             click(saveConfiguration);
@@ -275,24 +332,49 @@ public class GiftCardDashboardPage extends BaseTest {
     }
 
 
-    public void verifyNullAmountValidationMsg() {
-        Login();
-        pannel.getMangeBusinessTab();
-        pannel.getGiftCardsDashboardTab();
-        String name = selectStore(6);
-        click(whichStoreContinueBtn);
-        click(configurationBtn);
-        if (isDisplayed(disabledToggleBtn, 1000)) {
-            click(disabledToggleBtn);
-            click(saveConfiguration);
-            softAssert.assertEquals(getText(cardAmountValidationMsg), Constants.ValidationMsg);
+public void verifyNullAmountValidationMsg() {
+    Login();
+    pannel.getMangeBusinessTab();
+    pannel.getGiftCardsDashboardTab();
+    click(whichStoreContinueBtn);
+    click(configurationBtn);
 
-        } else {
-            click(saveConfiguration);
-            softAssert.assertEquals(getText(cardAmountValidationMsg), Constants.ValidationMsg);
+    WebElement amountFieldElement = getWebElement(amountField);
 
+    amountFieldElement.click();
+
+    String currentValue = amountFieldElement.getAttribute("value");
+    System.out.println("Current Amount Field Value: " + currentValue);
+
+    if (currentValue != null && !currentValue.isEmpty()) {
+        try {
+            amountFieldElement.clear();
+            Thread.sleep(500);
+
+
+            if (!amountFieldElement.getAttribute("value").isEmpty()) {
+                JavascriptExecutor js = (JavascriptExecutor) getDriver();
+                js.executeScript("arguments[0].value='';", amountFieldElement);
+                System.out.println("Field cleared using JavaScript.");
+            } else {
+                System.out.println("Field cleared using .clear().");
+            }
+        } catch (Exception e) {
+            System.out.println("Exception while clearing: " + e.getMessage());
         }
+    } else {
+        System.out.println("Amount field is already empty.");
     }
+
+    if (isDisplayed(disabledToggleBtn, 4)) {
+        click(disabledToggleBtn);
+    }
+
+    click(saveConfiguration);
+    softAssert.assertEquals(getText(cardAmountValidationMsg), Constants.ValidationMsg);
+}
+
+
     public void verifyOptionalSettings() {
         Login();
         pannel.getMangeBusinessTab();
@@ -417,7 +499,7 @@ public class GiftCardDashboardPage extends BaseTest {
 
 
     public void verifyInitialAmtEqualsMaxGiftAmount() {
-        String maxConfiguredAmt= offOptionalSettings();
+        String maxConfiguredAmt= offOptionalSettings()[0];
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
         waitForElementToBeInteractable(customerField,10000);clickElementByJS(customerField);
@@ -699,7 +781,88 @@ public class GiftCardDashboardPage extends BaseTest {
 
     }
 
+    public void verifyGiftCardDetailPopUp() {
+        offOptionalSettings();
+        staticWait(1000);
+        clickElementByJS(issueNewGiftCardBtn);
+        waitForElementToBeInteractable(customerField,10000);clickElementByJS(customerField);
+        waitForElementToBeVisible(customerEmail,1000); actionEnterText(customerEmail,"beanBliss@yopmail.com");
+        clickElementByJS(customerEmailSearchBtn);
+        staticWait(1000);
+        waitForElementToBeVisible(intialAmount,1000); actionEnterText(intialAmount,"100000");
+        staticWait(1000);
+        scrollToElement(createButton);
+        waitForElementToBeVisible(createButton,1000);click(createButton);
+         staticWait(2000);
+        scrollToElement(giftCardDetailCardLink);
+        String giftCardLinkText = getText(giftCardDetailCardLink);
+        click(giftCardDetailCardLink);
+       WebElement element = getWebElement(giftCardHeaderText);
+        String cardNumber = element.getText().split(":")[1].trim();
+        Assert.assertEquals(giftCardLinkText, cardNumber);
+        System.out.println(cardNumber);
+        staticWait(1000);
+
+
+
     }
+
+
+    public void verifyInfoIcon() {
+      String storeManagerName =  offOptionalSettings()[1];
+      String issueByActualText=  "Issued on: " + storeManagerName;
+        staticWait(1000);
+        clickElementByJS(issueNewGiftCardBtn);
+        waitForElementToBeInteractable(customerField, 10000);
+        clickElementByJS(customerField);
+        waitForElementToBeVisible(customerEmail, 1000);
+        actionEnterText(customerEmail, "beanBliss@yopmail.com");
+        clickElementByJS(customerEmailSearchBtn);
+        staticWait(1000);
+        waitForElementToBeVisible(intialAmount, 1000);
+        actionEnterText(intialAmount, "100000");
+        staticWait(1000);
+        scrollToElement(createButton);
+        waitForElementToBeVisible(createButton, 1000);
+        click(createButton);
+        staticWait(2000);
+        scrollToElement(giftCardDetailCardLink);
+        click(giftCardDetailCardLink);
+        staticWait(2000);
+        click(infoIcon);
+        WebElement element = getWebElement(giftCardHeaderText);
+        String cardNumber = element.getText().split(":")[1].trim();
+        System.out.println(cardNumber);
+        String issuedOnActualText = getText(issuedOn);
+        String issuedOnexpectedText =  DateStringGenerator();
+        softAssert.assertEquals(issuedOnActualText, issuedOnexpectedText);
+        softAssert.assertEquals(getText(issueBy), issueByActualText);
+
+
+
+    }
+
+
+    public void verifyEditBtn() {
+        createGiftCard();
+        click(editBtn);
+        softAssert.assertEquals(getText(fundingResourceText), Constants.fundingResourceText);
+        softAssert.assertEquals(getText(memoText), Constants.memoText);
+        softAssert.assertEquals(getText(startDateText), Constants.startDateText);
+        softAssert.assertEquals(getText(endDateText), Constants.endDateText);
+
+    }
+
+    public void verifyFundingResourceOptional(){
+        createGiftCard();
+        click(editBtn);
+        WebElement element = getWebElement(fundingResourceField);
+        String dataType = element.getAttribute("type");
+        softAssert.assertEquals(dataType,Constants.fundingSourceType);
+    }
+
+}
+
 
 
 

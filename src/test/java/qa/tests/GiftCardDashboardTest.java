@@ -3,8 +3,8 @@ package qa.tests;
 import base.BaseTest;
 
 import org.testng.annotations.Test;
-import pageEvents.GiftCardDashboardPage;
 import pageObjects.PageObjectManager;
+import pageEvents.GiftCardDashboardPage;
 
 
 
@@ -13,8 +13,8 @@ import pageObjects.PageObjectManager;
 public class GiftCardDashboardTest extends BaseTest {
 
     private PageObjectManager pageObjectManager = PageObjectManager.getInstance();
-    private GiftCardDashboardPage giftCardPage = pageObjectManager.getGiftCardPage();
 
+    private GiftCardDashboardPage giftCardPage = pageObjectManager.getGiftCardDashboardPage();
     @Test(priority = 0, enabled = true, description = "Verify that appropriate information message appears after clicking on 'Gift Card Dashboard' tab, when not store is active")
     public void verifyInformationMsgNoActiveStore() {
         giftCardPage.verifyInformationMsgNoActiveStore();
@@ -184,6 +184,27 @@ public class GiftCardDashboardTest extends BaseTest {
     @Test(priority = 29, enabled = true, description = "Verify that validation message appears on entering character in 'Start Date' or 'Exp. Date' field, on 'Create gift card' popup.")
     public void verifyEndDateRejectsCharacters() {
        giftCardPage.verifyEndDateRejectsCharacters();
+    }
+
+    @Test(priority = 30, enabled = true, description = "TC_4_02 Verify that appropriate setting options appears on 'Gift Card Configuration' popup, after clicking on 'Confguration' link, on 'Gift Card Dashboard' page.")
+    public void verifyGiftCardDetailPopUp() {
+        giftCardPage.verifyGiftCardDetailPopUp();
+    }
+
+    @Test(priority = 31, enabled = true, description = "TC_4_02 Verify that appropriate setting options appears on 'Gift Card Configuration' popup, after clicking on 'Confguration' link, on 'Gift Card Dashboard' page.")
+    public void verifyInfoIcon() {
+        giftCardPage.verifyInfoIcon();
+    }
+
+    @Test(priority = 32, enabled = true, description = "Verify that appropriate fields appear after clicking on edit icon below the  <Card No: XXXXX>' label, on 'Gift Card Details' popup ")
+    public void verifyEditBtn() {
+        giftCardPage.verifyEditBtn();
+    }
+
+
+    @Test(priority = 33, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verifyFundingResourceOptional() {
+        giftCardPage.verifyFundingResourceOptional();
     }
 
 }
