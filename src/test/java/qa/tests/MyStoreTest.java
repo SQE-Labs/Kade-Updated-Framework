@@ -51,7 +51,7 @@ public class MyStoreTest extends BaseTest {
             //  Click on 'Skip' button
             mystore.getSkipBtnOfStripe();
         }
-        staticWait(3000);
+        staticWait(4000);
         scrollToElement(mystore.deleteStoreBtn);
         waitForElementToBeVisible(mystore.deleteStoreBtn,5);
         // click on delete button
@@ -482,7 +482,7 @@ public class MyStoreTest extends BaseTest {
 
         // Verifying the Premium title
         softAssert.assertTrue(isElementDisplayed(mystore.premiumTitle), "Premium Title");
-
+     scrollToElement(mystore.premiumMonthlyBtn);
         // byuing the Premium plan
         mystore.getPremiumMonthlyBtn();
         mystore.getPremiumnMonthlySignUpBtn();
@@ -508,6 +508,8 @@ public class MyStoreTest extends BaseTest {
 
         //Verifying that next bill date is generated
         softAssert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
+
+        scrollToElement(mystore.premiumYearlyBtn);
 
         // selecting premium yearly plan
         mystore.getPremiumYearlyBtn();
