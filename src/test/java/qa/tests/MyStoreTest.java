@@ -391,12 +391,6 @@ public class MyStoreTest extends BaseTest {
             scrollToElement(mystore.acceptZelleHeader);
             staticWait(3000);
 
-
-//        if(isElementDisabled(mystore.acceptZelleHeader)) {
-//            System.out.println( "yes i am displayed");
-//            mystore.getAcceptZelleToggleButton();
-//            staticWait(3000);
-//        }
          if(!isToggleEnabled(mystore.acceptZelleToggleBtn)){
             clickElementByJS(mystore.acceptZelleToggleBtn);
         }
@@ -420,27 +414,6 @@ public class MyStoreTest extends BaseTest {
         mystore.getZelleSaveButton();
     }
 
-    @Test(enabled = false, description = "SC_07(A) Verifying the Configuration of the Store using 'Manage Users' Sub-Tab")
-    public void sc07a_VerifyingConfigurationOfStoreUsingManageUsersSubTabs() {
-        Login();
-        pageObjectManager.getSidePannel().getMangeBusinessTab();
-        pageObjectManager.getSidePannel().getMyStoreTab();
-        waitForElementToBeClickable(mystore.configureLink,3);
-
-        // Click on 'Configure' Link
-        mystore.getConfigureLink();
-        waitForElementToBeClickable(mystore.manageUserSubTab,5);
-
-        // click on Manage Sub Tab
-        mystore.getManageUserSubTab();
-
-        // Click on 'Add User' Button
-        mystore.getAddUserBtn();
-
-        //Verifying 'Add User' Pop-Up Title
-        softAssert.assertEquals(getText(mystore.addUserPopUpTitle), Constants.addUserTitle);
-        // need to update  due to UI changes
-    }
 
     @Test(description = "SC_08 Verify deactivating an activated Store")
     public void verifyDeactivatingAnActivatedStore() {
@@ -529,6 +502,30 @@ public class MyStoreTest extends BaseTest {
         staticWait(3000);
         pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
     }
+
+    @Test(description = "SC_07(A) Verifying the Configuration of the Store using 'Manage Users' Sub-Tab")
+    public void sc07a_VerifyingConfigurationOfStoreUsingManageUsersSubTabs() {
+        Login();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getMyStoreTab();
+        waitForElementToBeClickable(mystore.configureLink,3);
+
+        // Click on 'Configure' Link
+        mystore.getConfigureLink();
+        waitForElementToBeClickable(mystore.manageUserSubTab,5);
+
+        // click on Manage Sub Tab
+        mystore.getManageUserSubTab();
+
+        // Click on 'Add User' Button
+        mystore.getAddUserBtn();
+
+        //Verifying 'Add User' Pop-Up Title
+        softAssert.assertEquals(getText(mystore.addUserPopUpTitle), Constants.addUserTitle);
+
+        // need to update  due to UI changes
+    }
+
 
 
 // This method is used to delete unwanted stores from the account
