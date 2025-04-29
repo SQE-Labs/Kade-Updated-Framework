@@ -64,7 +64,7 @@ public class BillTest extends BaseTest {
     @Test(priority = 7, enabled = true, description = "BC_06 Verify that creating a bill by attaching the image file.")
     public void verifyingBillCreationByAttachingImageFile() throws InterruptedException, AWTException {
 
-      bill.createBillByAttachingImageFile();
+        bill.createBillByAttachingImageFile();
         bill.getDeleteButton();
         bill.getDeleteIcon();
     }
