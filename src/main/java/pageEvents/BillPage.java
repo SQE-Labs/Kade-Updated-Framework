@@ -3,6 +3,7 @@ package pageEvents;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.nio.file.Paths;
 import java.text.NumberFormat;
 import java.util.List;
@@ -320,7 +321,7 @@ public class BillPage extends BaseTest {
         hoverAndClick(camera, camera);
         staticWait(1000);
         uploadImageInStoreLogo();
-        staticWait(10000);
+        staticWait(5000);
         //  scrollToElement(okIcon);
         hoverAndClick(okIcon, okIcon);
 
@@ -743,7 +744,14 @@ public class BillPage extends BaseTest {
     }
 
     public void uploadImageInStoreLogo() throws AWTException {
-        uploadImageAsAttachment("/src/main/resources/ImageResources/image/BillDummyImg");
+//        uploadImageAsAttachment("/src/main/resources/ImageResources/image/BillDummyImg");
+         WebElement fileInput = getDriver().findElement(By.xpath("//input[@type='file' and @accept='image/*']"));
+        // Set the file path to upload
+        String userDir = System.getProperty("user.dir");
+        String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator+ "ImageResources"+ File.separator + "image" + File.separator + "BillDummyImg.jpg";
+        fileInput.sendKeys(filePath);
+
+
     }
 
     public void uploadPdf() throws AWTException {

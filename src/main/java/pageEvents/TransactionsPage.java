@@ -551,7 +551,7 @@ public class TransactionsPage extends BaseTest {
         scrollToElement(refundAmountField);
         waitForElementToBeClickable(refundAmountField, 3);
         actionEnterText(refundAmountField, refundAmmount);
-        staticWait(3000);
+        staticWait(5000);
         scrollToElement(processRefundButton);
         getProcessRefundBtn();
     }

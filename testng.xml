@@ -12,19 +12,13 @@
         <parameter name="headless" value="false" />
 
 
-        <packages>
-            <package name="qa.tests" />
-        </packages>
+<!--        <packages>-->
+<!--            <package name="qa.tests" />-->
+<!--        </packages>-->
 
-        <!-- Uncomment the below section if you want to run specific test classes -->
-        <!--
-        <classes>
-            <class name="qa.tests.TransactionsTest" />C:\Users\SQE Labs\IdeaProjects\Kade-Updated-Framework\src\main\resources\ImageResources\image\BillDummyImg
-            C:\Users\SQE Labs\IdeaProjects\Kade-Updated-Framework\src\main\resources\ImageResources\image\dummy
-
-            <class name="qa.tests.MyStoreTest" />
-            <class name="qa.tests.BillTest" />
+    <classes>
+    <class name="qa.tests.LoginPage" />
         </classes>
-        -->
+
     </test>
 </suite>
