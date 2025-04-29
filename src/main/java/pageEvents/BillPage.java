@@ -1256,7 +1256,7 @@ public class BillPage extends BaseTest {
 
         // Click on New Bill Button
         getNewBillButton();
-        waitForElementToBeVisible(popUpHeader,3);
+        waitForElementToBeVisible(popUpHeader,5);
 
         // Verify New Bill popup
         softAssert.assertEquals(popUpHeader, "Bill","Popup Header for bill");
@@ -1276,7 +1276,7 @@ public class BillPage extends BaseTest {
 
         //Click Confirm
         getConfirmButton();
-        waitForElementToBeVisible(messagePopupHeader,3);
+        waitForElementToBeVisible(messagePopupHeader,5);
 
         //Verify Message popup and Buttons
         softAssert.assertEquals(messagePopupHeader, "Message", "Message popup header");

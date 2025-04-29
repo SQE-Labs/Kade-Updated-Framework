@@ -810,6 +810,7 @@ public class BaseTest {
         // Determine the Downloads folder based on OS
         if (System.getProperty("os.name").contains("Windows")) {
             file_with_location = home + "\\Downloads\\" + fileName;
+            System.out.println( fileName);
         } else {
             file_with_location = home + "/Downloads/" + fileName;
         }

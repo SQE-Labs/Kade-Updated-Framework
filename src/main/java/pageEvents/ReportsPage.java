@@ -43,6 +43,7 @@ public class ReportsPage extends BaseTest {
     public By dec2024 =By.xpath("//a[text()='2024']/following-sibling::div//strong[text()='December - 2024']");
     public By manageBusinessAcc = By.xpath("//a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']");
     public By reportsTab = By.cssSelector(".align-middle.me-2.fa-fw.far.fa-ballot");
+    public By dataDownloaded= By.xpath("(//a[@data-download])[1]");
 
     public void openReportsPage() {
         click(manageBusinessAcc);

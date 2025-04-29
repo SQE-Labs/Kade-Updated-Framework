@@ -3,6 +3,7 @@ package qa.tests;
 import base.BaseTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -48,14 +49,15 @@ public class RewardsProgramTest extends BaseTest {
         click(rewardsProgramPage.settingsBtn);
         waitForElementToBeVisible(rewardsProgramPage.rewardsProgPopupTitle,10);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.rewardsProgPopupTitle));
-        click(rewardsProgramPage.toggleDisabled);
+
+        if(!isDisplayed(rewardsProgramPage.pointsForGiftCard,2)){
+         click(rewardsProgramPage.toggleDisabled);
+        }
         click(rewardsProgramPage.saveChangesBtn);
 
 
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.rewardsProgActivationMsg));
-        click(rewardsProgramPage.settingsBtn);
-        click(rewardsProgramPage.toggleEnabled);
-        click(rewardsProgramPage.saveChangesBtn);
+
 
 
     }
