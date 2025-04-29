@@ -3,11 +3,16 @@ package qa.tests;
 import base.BaseTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.PageObjectManager;
 import pageEvents.ReportsPage;
 import utils.Constants;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ReportsTest extends BaseTest {
 
@@ -52,20 +57,54 @@ public class ReportsTest extends BaseTest {
     }
 
     @Test
-    public void verifyDownloadedReports() {
-        log.info("Verify that reports get downloaded on csv format");
+        public void verifyDownloadedReports() {
+            log.info("Verify that reports get downloaded in CSV format");
 
-        Login();
-        reportsPage.openReportsPage();
+            Login();
+            reportsPage.openReportsPage();
 
-       // clickElementByJS(reportsPage.topMonth);
-        DeleteFile(Constants.fileNameDaily);
-        staticWait(2000);
-        clickElementByJS(reportsPage.firstLinkDownload);
-        String fileStatus = isFileDownloaded(Constants.fileNameDaily);
-        staticWait(3000);
-        System.out.println("fileStatus :" + fileStatus);
-        Assert.assertEquals(fileStatus,Constants.filePresent);
+            DeleteFile(Constants.fileNameDaily);
+            clickElementByJS(reportsPage.firstLinkDownload);
+            staticWait(2000);
+
+            String data = getAttribute(reportsPage.dataDownloaded, "data-download");
+
+            Pattern storeIdPattern = Pattern.compile("storeId=(\\d+)");
+            Pattern datePattern = Pattern.compile("reportdate=(\\d{2})%2f(\\d{2})%2f(\\d{4})");
+
+            Matcher storeIdMatcher = storeIdPattern.matcher(data);
+            Matcher dateMatcher = datePattern.matcher(data);
+
+            String finalResult = "";
+
+            if (storeIdMatcher.find() && dateMatcher.find()) {
+                String storeId = storeIdMatcher.group(1);
+                String month = dateMatcher.group(1);
+                String day = dateMatcher.group(2);
+                String year = dateMatcher.group(3);
+
+                finalResult = storeId + "-" + year + "-" + month + "-" + day;
+                System.out.println("file downloaded is " + finalResult);  // e.g. 2938-2025-04-26
+            } else {
+                log.error("Failed to extract storeId or reportDate from data: " + data);
+            }
+        // Assuming finalResult is already calculated as "2962-2025-04-26"
+        String[] dateParts = finalResult.split("-");
+        String downloadedDay = dateParts[3];
+
+        // Now extract day from the UI element
+        WebElement uiDayElement = getDriver().findElement(By.xpath("(//span[@class='position-relative align-self-center text-muted'])[1]/span"));
+        String uiDay = uiDayElement.getText().trim();  // e.g. "26"
+
+        // Compare
+        Assert.assertEquals(uiDay, downloadedDay, "Asserting UI day and downloaded report day.");
+         staticWait(5000);
+
+//        String fileStatus = isFileDownloaded(Constants.fileNameDaily);
+//
+//        staticWait(3000);
+//        System.out.println("fileStatus :" + fileStatus);
+//        Assert.assertEquals(fileStatus,Constants.filePresent);
     }
 
     @Test

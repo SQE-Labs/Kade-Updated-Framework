@@ -43,6 +43,7 @@ public class RewardsProgramPage extends BaseTest {
     public By noResultIcon = By.cssSelector(".no-result-icon");
     public By minPayments = By.cssSelector("[name='minpayments']");
     public By maxPayments = By.cssSelector("[name='maxpayments']");
+    public By pointsForGiftCard = By.xpath("//input[@name=\"pointsForGiftcard\"]");
 
     public void RewardsProgramPageOpen() {
         clickElementByJS(manageBusinessAcc);
