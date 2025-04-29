@@ -133,6 +133,7 @@ public class MyStorePage extends BaseTest {
     public By addACreditCardTerminal = By.xpath("//h4[text()='Configure a terminal']/../div//button");
     public By terminalEditIcon = By.xpath("(//div[contains(@class, 'row-cols-2')]//i)[1]");
     public By terminalDeleteBtn = By.cssSelector(".d-flex.mt-3>button:nth-child(2)");
+    By  venmoIDLabel = By.xpath("//label[text()='Venmo ID']");
 
 
 
@@ -258,12 +259,12 @@ public class MyStorePage extends BaseTest {
 
     public void  getAcceptVenmoToggleButton() {
 
-        if(!isToggleEnabled(acceptVenmoToggleBtn)){
+        if(!isDisplayed(venmoIDLabel,2)){
             clickElementByJS(acceptVenmoToggleBtn);
         }
-        else{
-            hoverAndClick(enableToggle,enableToggle);
-        }
+//        else{
+//            hoverAndClick(enableToggle,enableToggle);
+//        }
 
 //        staticWait(6000);
 //        // Check if the toggle button is disabled

@@ -60,10 +60,10 @@ public class ReportsTest extends BaseTest {
 
        // clickElementByJS(reportsPage.topMonth);
         DeleteFile(Constants.fileNameDaily);
-        staticWait(2000);
+        staticWait(3000);
         clickElementByJS(reportsPage.firstLinkDownload);
         String fileStatus = isFileDownloaded(Constants.fileNameDaily);
-        staticWait(3000);
+        staticWait(5000);
         System.out.println("fileStatus :" + fileStatus);
         Assert.assertEquals(fileStatus,Constants.filePresent);
     }
