@@ -12,13 +12,13 @@
         <parameter name="headless" value="false" />
 
 
-<!--        <packages>-->
-<!--            <package name="qa.tests" />-->
-<!--        </packages>-->
+        <packages>
+            <package name="qa.tests" />
+        </packages>
 
-    <classes>
-    <class name="qa.tests.LoginPage" />
-        </classes>
+<!--    <classes>-->
+<!--    <class name="qa.tests.LoginPage" />-->
+<!--        </classes>-->
 
     </test>
 </suite>

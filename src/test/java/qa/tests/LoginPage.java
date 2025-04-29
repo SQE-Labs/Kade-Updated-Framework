@@ -66,6 +66,7 @@ public class LoginPage extends BaseTest {
     @Test(priority = 2, enabled = true, description = " Verify that user get directed to 'Create New Account' page")
     public void validateSignUpLink() {
         loginPage.getSignUpLink();
+        waitForElementToBeVisible(loginPage.popupTitle,4);
         String popupTitle = getText(loginPage.popupTitle);
         Assert.assertEquals(popupTitle, "New Account");
     }
