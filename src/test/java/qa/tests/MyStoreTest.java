@@ -118,10 +118,10 @@ public class MyStoreTest extends BaseTest {
         mystore.getChangePlanButton();
 
         //Verifying that next bill date is generated
-        softAssert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
-        pageObjectManager.getSidePannel().getSignOut();
-        staticWait(3000);
-        pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
+        Assert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
+//        pageObjectManager.getSidePannel().getSignOut();
+//        staticWait(3000);
+//        pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
 
     }
 
@@ -159,9 +159,11 @@ public class MyStoreTest extends BaseTest {
 
         //Verifying that next bill date is generated
         softAssert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
+
         pageObjectManager.getSidePannel().getSignOut();
         staticWait(3000);
         pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
+        softAssert.assertAll();
 
     }
 
@@ -480,7 +482,7 @@ public class MyStoreTest extends BaseTest {
         mystore.getChangePlanButton();
 
         //Verifying that next bill date is generated
-        softAssert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
+        Assert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
 
         scrollToElement(mystore.premiumYearlyBtn);
 
@@ -498,9 +500,12 @@ public class MyStoreTest extends BaseTest {
         //  Click on 'Change Plan' Button
         mystore.getChangePlanButton();
 
+
         pageObjectManager.getSidePannel().getSignOut();
         staticWait(3000);
         pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
+        softAssert.assertAll();
+
     }
 
     @Test(description = "SC_07(A) Verifying the Configuration of the Store using 'Manage Users' Sub-Tab")
