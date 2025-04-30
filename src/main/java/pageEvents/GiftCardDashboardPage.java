@@ -981,9 +981,8 @@ public class GiftCardDashboardPage extends BaseTest {
         click(startDate);
         actionEnterText(startDate, requiredString(5));
         scrollToElement(createButton);
-        waitForElementToBeVisible(createButton, 1000);
+        waitForElementToBeVisible(createButton, 1);
         click(createButton);
-        waitForElementToBeVisible(validationMsg,2);
         softAssert.assertEquals(getToolTipMessage(startDate), Constants.invalidDateTooltip);
         softAssert.assertEquals(getText(validationMsg), Constants.ValidationMsg);
 
@@ -998,9 +997,8 @@ public class GiftCardDashboardPage extends BaseTest {
         click(endDate);
         actionEnterText(endDate, requiredString(5));
         scrollToElement(createButton);
-        waitForElementToBeVisible(createButton, 1000);
+        waitForElementToBeVisible(createButton, 1);
         click(createButton);
-        waitForElementToBeVisible(validationMsg,2);
         softAssert.assertEquals(getToolTipMessage(endDate), Constants.invalidDateTooltip);
         softAssert.assertEquals(getText(validationMsg), Constants.ValidationMsg);
 
