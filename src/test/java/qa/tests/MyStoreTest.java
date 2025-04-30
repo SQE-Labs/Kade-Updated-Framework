@@ -516,19 +516,60 @@ public class MyStoreTest extends BaseTest {
 
         // click on Manage Sub Tab
         mystore.getManageUserSubTab();
+        waitForElementToBeInteractable(mystore.createUserAndCredetButton,5);
 
-        // Click on 'Add User' Button
-        mystore.getAddUserBtn();
+        // Creating  Manager user
+        mystore.createManagerUser();
 
-        //Verifying 'Add User' Pop-Up Title
-        softAssert.assertEquals(getText(mystore.addUserPopUpTitle), Constants.addUserTitle);
+        // Creating Reader user
+        mystore.creatingReaderProfile();
 
-        // need to update  due to UI changes
+        // Creating Operator user
+        mystore.creatingOperatorUser();
+
+
+
+
+    }
+
+    @Test(description = "SC_07(B) Verifying the Configuration of the store using Manage User sub tab to invite any existing user to manage store.")
+    public void sc_07b_VerifyingConfigurationOfStoreUsingManageUserSubTabToInviteAnyExistingUserToManageStore() {
+        Login();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getMyStoreTab();
+        waitForElementToBeClickable(mystore.configureLink,3);
+
+        // Click on 'Configure' Link
+        mystore.getConfigureLink();
+        waitForElementToBeClickable(mystore.manageUserSubTab,5);
+
+        // click on Manage Sub Tab
+        mystore.getManageUserSubTab();
+        waitForElementToBeInteractable(mystore.createUserAndCredetButton,5);
+        mystore.getinviteUserButton();
+        waitForElementToBeVisible(mystore.inviteExistingUserPopupTitle,4);
+
+        // Verifying the 'Invite Existing User' PopUp Title
+        softAssert.assertEquals(getText(mystore.inviteExistingUserPopupTitle),"Invite Existing User Pop Up Title");
+
+        // Enter Email Or Phone Number
+        enterText(mystore.inviteMangeUserEmailOrPhoneField,"6465551105");
+
+        //  Click on the 'User Profile' Drop Down
+        mystore.getUserProfileDropdown();
+
+        // Select profile of 'Manager' User
+        mystore.getmanagerProfileOption();
+
+        // Click on 'Send Invite' Button.
+        mystore.sendInviteButton();
+
+
     }
 
 
 
-// This method is used to delete unwanted stores from the account
+// //This method is used to delete unwanted stores from the account
 //    @Test(description = "Delete unwanted store")
 //    public void deleteUnwantedStore(){
 //        pageObjectManager.getAdminPage().ToDeleteStores();
