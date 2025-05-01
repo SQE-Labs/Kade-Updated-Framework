@@ -185,7 +185,8 @@ public class BaseTest {
     public static void WaitUntilElementVisible(By locator, int tries) {
         try {
             for (int i = 0; i < tries; i++) {
-                Wait<WebDriver> fluentWait1 = new FluentWait<WebDriver>(getDriver()).withTimeout(Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))))
+                Wait<WebDriver> fluentWait1 = new FluentWait<WebDriver>(getDriver())
+                        .withTimeout(Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))))
                         .pollingEvery(Duration.ofMillis(Long.parseLong(PropertyUtils.getPropertyValue("wait"))))
                         .ignoring(TimeoutException.class);
                 fluentWait1.until(ExpectedConditions.visibilityOfElementLocated(locator));

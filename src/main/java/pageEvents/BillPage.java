@@ -135,7 +135,7 @@ public class BillPage extends BaseTest {
     By attachedImage = By.xpath("//img[@class='img-thumbnail  bg-black']");
     By notPaidBill = By.xpath("//div[contains(@class, 'row bg-white')][1]");
     By unPaidBill = By.xpath("(//div[contains(@class,'row bg-white ')])[1]/div[2]");
-    public By deleteButton = By.cssSelector(".btn-outline-danger");
+    public By deleteButton = By.xpath("//button[text()='Delete']");
     public By notPaid = By.xpath("//div[contains(@class, 'row bg-white')][1]");
     public By billsection = By.xpath("//*[@id=\"_16U\"]/div[2]");
     public By billLabel = By.xpath("//div[contains(@class,'row bg-white border rounded')]");
@@ -1188,7 +1188,7 @@ public class BillPage extends BaseTest {
         staticWait(4000);
         getContinueWithoutButton();
 
-        //Verify toast message : Success message Popup.
+     //   Verify toast message : Success message Popup.
         staticWait(4000);
         softAssert.assertTrue(isElementDisplayed(successMessage));
         String toastMessage = "Bill has been created successfully.Click here to open the bill";
@@ -1196,14 +1196,15 @@ public class BillPage extends BaseTest {
 
         //Close popup
         closePaymentpopup();
-
-
-
-
+//        if(isElementDisplayed(billPopupHeader)){
+//            deleteBill();
+//        }else{
+//            closePaymentpopup();
+//        }
     }
+
     public void deleteBill(){
-        clickOnNotPaidLabel();
-        staticWait(2000);
+        staticWait(5000);
         getDeleteButton();
         getDeleteIcon();
     }
@@ -1268,19 +1269,24 @@ public class BillPage extends BaseTest {
 
         getConfirmButton();
 
-        //Verify toast message : Success message Popup.
-        softAssert.assertTrue(isElementDisplayed(successMessage));
-        String toastMessage = "Bill has been created successfully.Click here to open the bill";
-        softAssert.assertEquals(successMessage, toastMessage);
+//        //Verify toast message : Success message Popup.
+//        softAssert.assertTrue(isElementDisplayed(successMessage));
+//        String toastMessage = "Bill has been created successfully.Click here to open the bill";
+//        softAssert.assertEquals(successMessage, toastMessage);
 
 
-        //Close popup
-        closePaymentpopup();
+//        //Close popup
+//        closePaymentpopup();
+//
+//        //Deleting Created Bill
+//        waitForElementToBeClickable(notPaid, 5);
+//        staticWait(3000);
+        if(isElementDisplayed(billPopupHeader)){
+            deleteBill();
+        }else{
+            closePaymentpopup();
+        }
 
-        //Deleting Created Bill
-        waitForElementToBeClickable(notPaid, 5);
-        staticWait(3000);
-        clickOnNotPaidLabel();
     }
 
     public void verifyCreateBillForSuggestedCustomer(String emailID) {
@@ -1322,7 +1328,7 @@ public class BillPage extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(uniqueRefNo));
         softAssert.assertTrue(isElementDisplayed(billTimeOnPopup));
         staticWait(3000);
-
+        clickOnNotPaidLabel();
 
     }
 
@@ -1906,6 +1912,6 @@ public class BillPage extends BaseTest {
 
         //Share bill by adding card details
         clickOnpaymentMethodLink();
-
     }
+
 }

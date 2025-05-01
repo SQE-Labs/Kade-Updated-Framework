@@ -8,8 +8,6 @@ import java.awt.*;
 
 
 
-
-
 public class BillTest extends BaseTest {
 
     BillPage bill = new BillPage();
