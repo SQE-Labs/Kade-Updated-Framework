@@ -2,12 +2,14 @@ package qa.tests;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.BaseTest;
 import pageEvents.HomePageEvents;
 import pageEvents.LoginPageEvents;
 import pageObjects.PageObjectManager;
+import utils.Constants;
 
 /**
  * Test class for the Login page functionality.
@@ -27,7 +29,7 @@ public class LoginPage extends BaseTest {
 
     /**
      * Test method for logging into the application.
-     * It enters the username and password, clicks the SignIn button, 
+     * It enters the username and password, clicks the SignIn button,
      * and verifies the landing page after login.
      */
     //@Test
@@ -56,4 +58,59 @@ public class LoginPage extends BaseTest {
 //        // Verify the landing page is correct after login
 //        homePage.landingPage();
 //    }
+    @Test(priority = 1, enabled = true, description = "Verify the Login Page Fields's Validations")
+    public void verifyLoginPage() {
+        loginPage.verifyLoginPageFields();
+    }
+
+    @Test(priority = 2, enabled = true, description = " Verify that user get directed to 'Create New Account' page")
+    public void validateSignUpLink() {
+        loginPage.getSignUpLink();
+        waitForElementToBeVisible(loginPage.popupTitle,4);
+        String popupTitle = getText(loginPage.popupTitle);
+        Assert.assertEquals(popupTitle, "New Account");
+    }
+
+    @Test(priority = 3,enabled = true, description = "Verify that  'User Agreement' page opens up, when  user clicks on 'Terms Of Use' link, on 'Login' page. & Verify that " + " 'Privacy' page opens up, when  user clicks on 'Privacy Policy' link, on 'Login' page.")
+        public void verifyPrivacyAndTermsOfUsePage() {
+        loginPage.getTermsofUseLink();
+        // Store the parent window handle
+        String parentWindowHandle = getDriver().getWindowHandle();
+
+        Assert.assertTrue(isElementDisplayed(loginPage.termsOfUse));
+        loginPage.switchToWindow("Terms of Use Page");
+        String actualTitle = getPageTitle();
+        String expectedTitle = "Terms Of Use";
+        staticWait(3000);
+        switchToParentWindow(parentWindowHandle);
+        waitForElementToBeInteractable(loginPage.privacyPolicyLink,3);
+        loginPage.getPrivacyPolicylink();
+        loginPage.switchToWindow("Privacy Policy");
+        Assert.assertTrue(isElementDisplayed(loginPage.privacyPolicyTitle));
+    }
+    @Test(priority = 4, enabled = true, description =" Verify that Forgot Password page appears after clickin gon 'Forgot Password' link")
+    public void validateForgotPasswordLink(){
+        loginPage.getForgotPassowrdLink();
+        String actualTitle = getPageTitle();
+        Assert.assertEquals(actualTitle, Constants.ForgetPasswordtitle);
+        loginPage.verifyForgetPassword();
+
+    }
+    @Test(priority = 5, enabled = true, description = "Verify that user gets logged in with google account when user  clicks on 'Sign in using your Google account' link, on 'Login' page.")
+    public void signInwithGoogle(){
+        loginPage.getSignInWithGoogle();
+        enterText(loginPage.googleEmailField,"");
+
+
+    }
+
+    @Test(priority = 6,enabled = true,description = "Verify that user is able to login successfully, after entering valid data in all the mandatory fields.")
+    public void successfulLogin(){
+        Login();
+        String title = getPageTitle();
+        Assert.assertEquals(title,Constants.transactionsTitle);
+    }
+
 }
+
+

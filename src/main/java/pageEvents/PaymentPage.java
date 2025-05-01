@@ -5,7 +5,11 @@ import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.Test;
 import utils.Constants;
+
+import java.awt.*;
+import java.nio.file.Paths;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -16,7 +20,19 @@ public class PaymentPage extends BaseTest {
     // Payment popup locators
 
     By countryDropDown = By.id("Field-countryInput");
+    /*
+    Receive Payment Locators
+     */
+
+    By cardNumberTbx = By.xpath("//input[@id='Field-numberInput']");
+    By expirationDateTbx = By.xpath("//input[@id='Field-expiryInput']");
+    By cvcTbx = By.xpath("//input[@id='Field-cvcInput']");
+
     public By swipeBtn = By.xpath("//input[@class='slider -pm-none-']");
+
+
+    // Payment popup locators
+
     public By billHeader = By.xpath("//span[text()='Bill']");
     public By qrCode = By.xpath("//span[text()='QR Code']");
     public By processPaymentBtn = By.xpath("//button[text()='Process Payment']");
@@ -43,8 +59,8 @@ public class PaymentPage extends BaseTest {
     public By CashBtn = By.xpath("(//div[contains(@class,'w-100 border')])[3]");
     By venomoCard = By.xpath("(//div[contains(@class,'w-100 border')])[1]");
     By ZelleCard = By.xpath("(//div[contains(@class,'w-100 border')])[2]");
-     By paidLabel = By.xpath("//div[normalize-space()='Paid']");
-     By cashIcon = By.xpath("(//span[text()='Cash']/../child::span)[3]");
+    By paidLabel = By.xpath("//div[normalize-space()='Paid']");
+    By cashIcon = By.xpath("(//span[text()='Cash']/../child::span)[3]");
     By crossIcon = By.xpath("(//button[@class='btn-close'])[3]");
     By crossIconOnTransactionpage = By.xpath("//button[@class='btn-close']");
     By transcationMenu = By.xpath("(//div[text()='Transactions'])[2]");
@@ -63,7 +79,6 @@ public class PaymentPage extends BaseTest {
     By venmoIcon = By.xpath("(//span[text()='Venmo'])[2]");
     By zelleIcon = By.xpath("(//span[text()='Zelle'])[2]");
     By notPaid = By.xpath("//div[contains(@class, 'row bg-white')][1]");
-
     By deleteIcon = By.xpath("//i[@class='fa fa-trash text-danger']/../.");
     By voided = By.xpath("//h6[text()='VOIDED']");
     By signOut = By.xpath("//a[text()='Sign out']");
@@ -81,18 +96,19 @@ public class PaymentPage extends BaseTest {
     By bill = By.xpath("(//p[text()='A bill received']/../..)[1]");
     By payNowBtn = By.xpath("//button[text()='Pay Now']");
     By storeName = By.xpath("//h4[text()='Automation Bill Flow']");
+    By debitCardName = By.xpath("(//span[contains(text(),'Visa')])[5]");
+    By changeBtn = By.xpath("//div[normalize-space()='Change']");
     By visaCardName = By.xpath("(//span[contains(text(),'Visa')])[3]");
-     By changeBtn = By.xpath("//div[normalize-space()='Change']");
     By creditCards = By.xpath("//span[text()='New Credit Card']/../../../..");
     By iframeForCard = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[2]");
     By saveBtn = By.xpath("//button[text()='Save']");
     By thankTxt = By.xpath("//span[text()='Thank']");
     By youTxt = By.xpath("//span[text()='You!']");
     By rateYourExpTxt = By.xpath("//div[normalize-space()='Rate your experience']");
-    By viewReciptTxt = By.xpath("//a[text()='View the receipt']");
+    public By viewReciptTxt = By.xpath("//a[text()='View the receipt']");
     By transactionHeader = By.xpath("//h1[normalize-space()='Transaction Detail']");
     By tarnsactionUniqueId = By.xpath("(//span[contains(text(),'TR-')])[2]");
-    By paymentMethodIcon = By.xpath("//span[text()='Visa 1111']");
+    By paymentMethodIcon = By.xpath("//span[contains(@class,'payment-logo-bg-sm')]");
     By bankAccountSection = By.xpath("(//span[contains(text(),'Bank Account 6789')])");
     By amountField = By.xpath("(//form//input[@name='amount'])[2]");
     By updateBtn = By.xpath("(//button[text()='Update'])[2]");
@@ -103,17 +119,7 @@ public class PaymentPage extends BaseTest {
     By makePayment = By.xpath("//button[text()='I made the payment']");
     By selectCheckBox = By.xpath("(//span[text()='Confirm your payment by checking this box']/../i)[2]");
     By zelleSaveBtn = By.xpath("//button[text()='Submit']");
-    By payCurrentBalance=By.xpath("//button[text()='Pay the current balance']/..");
-    By rejectBtn=By.xpath("//button[text()='Reject']");
-    By subitBtn=By.xpath("//button[text()='Submit']");
-    By rejectedToastMsg=By.xpath("//div[text()='Bill has been rejected successfully']");
-    By BillMenu=By.xpath("//div[text()='Bills']/..");
-    By storesCombobox = By.xpath("//span[@role='combobox']");
-    By continueBtn = By.xpath("//button[@type='submit']");
-    By shareIcon=By.xpath("//span[text()='Share']/..");
-
-
-
+    By payCurrentBalance = By.xpath("//button[text()='Pay the current balance']/..");
 
 
     public void clickOnProcessPaymentBtn() {
@@ -183,13 +189,13 @@ public class PaymentPage extends BaseTest {
     }
 
     public void clickOntranscationMenu() {
+        staticWait(2000);
         click(transcationMenu);
     }
 
     public void clickOnpaidBillSection() {
         click(paidBill);
     }
-
 
 
     public void clickOnDeleteIcon() {
@@ -214,6 +220,7 @@ public class PaymentPage extends BaseTest {
     }
 
     public void clickOnSignOut() {
+        staticWait(3000);
         click(signOut);
     }
 
@@ -243,6 +250,7 @@ public class PaymentPage extends BaseTest {
     public void clickOnchangeBtn() {
         staticWait(5000);
         scrollToDown();
+        staticWait(2000);
         click(changeBtn);
     }
 
@@ -250,7 +258,6 @@ public class PaymentPage extends BaseTest {
         staticWait(4000);
         click(zelleAccount);
     }
-
     public void clickOnVenmoBank() {
         staticWait(4000);
         click(VenmoAccount);
@@ -266,6 +273,10 @@ public class PaymentPage extends BaseTest {
         switchToFrame(iframeForCard);
     }
 
+    public void clickOnSwipeBtn() {
+        staticWait(4000);
+        click(swipeBtn);
+    }
 
     public void swipeToPay() {
         staticWait(10000);
@@ -276,10 +287,8 @@ public class PaymentPage extends BaseTest {
     }
 
     public void clickOnViewReciptLink() {
-        refreshPage();
-        staticWait(5000);
-        scrollToDown();
         staticWait(2000);
+        scrollToElement(viewReciptTxt);
         click(viewReciptTxt);
     }
 
@@ -299,7 +308,7 @@ public class PaymentPage extends BaseTest {
 
     public void clickOnswipeArrowBtn() {
         staticWait(5000);
-        hoverAndClick(swipeArrowBtn, swipeArrowBtn);
+        click(swipeArrowBtn);
     }
 
     public void swipeCard() {
@@ -317,45 +326,31 @@ public class PaymentPage extends BaseTest {
     public void clickOnCheckBox() {
         click(selectCheckBox);
     }
-    public void ClickOnSubmitBtn(){
-        click(subitBtn);
-    }
+
 
     public void zelleSaveBtn() {
         click(zelleSaveBtn);
     }
-    public void clickOnRejectBtn(){
-        click(rejectBtn);
-        List<WebElement> elements=getDriver().findElements(By.xpath("//i[@class='fal fa-circle custom-check-off ']"));
-        for(WebElement element: elements) {
+
+    public void clickOnRejectBtn() {
+        List<WebElement> elements = getDriver().findElements(By.xpath("//i[@class='fal fa-circle custom-check-off ']"));
+        for (WebElement element : elements) {
             String resonsName = element.getText();
             Log.info(resonsName);
-             element.click();;
+            element.click();
+            ;
         }
-        ClickOnSubmitBtn();
-        softAssert.assertEquals(rejectedToastMsg,"Bill has been rejected successfully");
     }
 
-    public void clickOnBills(){
-        click(BillMenu);
-    }
-    public void getStoresDropdown() {
-        click(storesCombobox);
-    }
+
     public void selectStore(String store) {
         click(By.xpath("//li[contains(text(),'" + store + "')]"));  // Select store
     }
-    public void getContinueButton() {
-        click(continueBtn);
-    }
+
     public void clickOnNotPaidLabel() {
         staticWait(3000);
         hoverAndClick(notPaid, notPaid);
     }
-    public void clickOnShareIcon(){
-        click(shareIcon);
-    }
-
 
 
     public void paymentPopup(String memoTxt) {
@@ -372,15 +367,15 @@ public class PaymentPage extends BaseTest {
 
         // Click on Process payment button in Bill popup
         clickOnProcessPaymentBtn();
-
+        staticWait(2000);
         String recievePaymentTxt = getText(totalAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String totalAmt = recievePaymentTxt.replaceAll("[$,]", "");
+        String totalAmt = recievePaymentTxt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + totalAmt); // Output: 1000.00// Remove non-numeric characters
 
         String balanceSAmt = getText(balanceAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String balance = balanceSAmt.replaceAll("[$,]", "");
+        String balance = balanceSAmt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + balance); // Output: 1000.00// Remove non-numeric characters
 
         softAssert.assertEquals(totalAmt, balance);
@@ -420,7 +415,7 @@ public class PaymentPage extends BaseTest {
     }
 
     public void paymentByCreditCard(String cardNumber, String expiryDateTxt, String cvcTxt, String countryName) {
-
+        staticWait(2000);
         softAssert.assertEquals(billHeader, "Bill");
         softAssert.assertTrue(isElementDisplayed(qrCode));
         softAssert.assertTrue(isElementDisplayed(shareBtn));
@@ -437,12 +432,12 @@ public class PaymentPage extends BaseTest {
 
         String recievePaymentTxt = getText(totalAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String totalAmt = recievePaymentTxt.replaceAll("[$,]", "");
+        String totalAmt = recievePaymentTxt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + totalAmt); // Output: 1000.00// Remove non-numeric characters
 
         String balanceSAmt = getText(balanceAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String balance = balanceSAmt.replaceAll("[$,]", "");
+        String balance = balanceSAmt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + balance); // Output: 1000.00// Remove non-numeric characters
 
         softAssert.assertEquals(totalAmt, balance);
@@ -492,12 +487,12 @@ public class PaymentPage extends BaseTest {
 
         String recievePaymentTxt = getText(totalAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String totalAmt = recievePaymentTxt.replaceAll("[$,]", "");
+        String totalAmt = recievePaymentTxt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + totalAmt); // Output: 1000.00// Remove non-numeric characters
 
         String balanceSAmt = getText(balanceAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String balance = balanceSAmt.replaceAll("[$,]", "");
+        String balance = balanceSAmt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + balance); // Output: 1000.00// Remove non-numeric characters
 
         softAssert.assertEquals(totalAmt, balance);
@@ -543,12 +538,12 @@ public class PaymentPage extends BaseTest {
 
         String recievePaymentTxt = getText(totalAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String totalAmt = recievePaymentTxt.replaceAll("[$,]", "");
+        String totalAmt = recievePaymentTxt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + totalAmt); // Output: 1000.00// Remove non-numeric characters
 
         String balanceSAmt = getText(balanceAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String balance = balanceSAmt.replaceAll("[$,]", "");
+        String balance = balanceSAmt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + balance); // Output: 1000.00// Remove non-numeric characters
 
         softAssert.assertEquals(totalAmt, balance);
@@ -578,6 +573,7 @@ public class PaymentPage extends BaseTest {
     }
 
     public void PaymentByMultipleMode(String partialAmount, String partialAmounts, String totalAmount) {
+        staticWait(2000);
         softAssert.assertEquals(billHeader, "Bill");
         softAssert.assertTrue(isElementDisplayed(qrCode));
         softAssert.assertTrue(isElementDisplayed(shareBtn));
@@ -594,12 +590,12 @@ public class PaymentPage extends BaseTest {
 
         String recievePaymentTxt = getText(totalAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String totalAmt = recievePaymentTxt.replaceAll("[$,]", "");
+        String totalAmt = recievePaymentTxt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + totalAmt); // Output: 1000.00// Remove non-numeric characters
 
         String balanceSAmt = getText(balanceAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String balance = balanceSAmt.replaceAll("[$,]", "");
+        String balance = balanceSAmt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + balance); // Output: 1000.00// Remove non-numeric characters
 
 
@@ -657,12 +653,12 @@ public class PaymentPage extends BaseTest {
 
         String recievePaymentTxt = getText(totalAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String totalAmt = recievePaymentTxt.replaceAll("[$,]", "");
+        String totalAmt = recievePaymentTxt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + totalAmt); // Output: 1000.00// Remove non-numeric characters
 
         String balanceSAmt = getText(balanceAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String balance = balanceSAmt.replaceAll("[$,]", "");
+        String balance = balanceSAmt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + balance); // Output: 1000.00// Remove non-numeric characters
 
 
@@ -708,12 +704,12 @@ public class PaymentPage extends BaseTest {
 
         String recievePaymentTxt = getText(totalAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String totalAmt = recievePaymentTxt.replaceAll("[$,]", "");
+        String totalAmt = recievePaymentTxt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + totalAmt); // Output: 1000.00// Remove non-numeric characters
 
         String balanceSAmt = getText(balanceAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String balance = balanceSAmt.replaceAll("[$,]", "");
+        String balance = balanceSAmt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + balance); // Output: 1000.00// Remove non-numeric characters
 
         softAssert.assertEquals(totalAmt, balance);
@@ -749,10 +745,15 @@ public class PaymentPage extends BaseTest {
 
     }
 
-
-    public void billPayment() {
-
-        staticWait(5000);
+    public void billPaymentByCustomer() {
+        clickOnSignOut();
+        LoginAsCustomer();
+        clickOnBillIcon();
+        clickOnBill();
+        clickOnPayNowBtn();
+        softAssert.assertTrue(isElementDisplayed(storeName));
+        softAssert.assertTrue(isElementDisplayed(visaCardName));
+        swipeToPay();
         softAssert.assertTrue(isElementDisplayed(thankTxt));
         softAssert.assertTrue(isElementDisplayed(youTxt));
         scrollToDown();
@@ -766,15 +767,32 @@ public class PaymentPage extends BaseTest {
 
     }
 
+    public void billPayment() {
+
+        staticWait(5000);
+        softAssert.assertTrue(isElementDisplayed(thankTxt));
+        softAssert.assertTrue(isElementDisplayed(youTxt));
+        scrollToDown();
+        softAssert.assertTrue(isElementDisplayed(rateYourExpTxt));
+        softAssert.assertTrue(isElementDisplayed(viewReciptTxt));
+        staticWait(2000);
+        clickOnViewReciptLink();
+        softAssert.assertTrue(isElementDisplayed(transactionHeader));
+        softAssert.assertTrue(isElementDisplayed(tarnsactionUniqueId));
+        softAssert.assertTrue(isElementDisplayed(paymentMethodIcon));
+
+    }
+
     public void billPaymentByThroughDebitCard(String cardNameTxt, String expiryDateTxt, String cvcTxt, String countryName) {
+        staticWait(3000);
         clickOnSignOut();
         LoginAsCustomer();
         clickOnBillIcon();
         clickOnBill();
         clickOnPayNowBtn();
-        if(isElementDisplayed(payCurrentBalance)){
-            hoverAndClick(payCurrentBalance,payCurrentBalance);
-        }else{
+        if (isElementDisplayed(payCurrentBalance)) {
+            hoverAndClick(payCurrentBalance, payCurrentBalance);
+        } else {
             Log.info("Nothing to be selected");
         }
         //  softAssert.assertTrue(isElementDisplayed(storeName));
@@ -791,31 +809,33 @@ public class PaymentPage extends BaseTest {
 
 
     public void paymentThrouhBankAccount() {
+        staticWait(3000);
         clickOnSignOut();
         LoginAsCustomer();
         clickOnBillIcon();
         clickOnBill();
         clickOnPayNowBtn();
-        if(isElementDisplayed(payCurrentBalance)){
-            hoverAndClick(payCurrentBalance,payCurrentBalance);
-        }else{
+        if (isElementDisplayed(payCurrentBalance)) {
+            hoverAndClick(payCurrentBalance, payCurrentBalance);
+        } else {
             Log.info("Nothing to be selected");
         }
-     //   softAssert.assertTrue(isElementDisplayed(storeName));
+        //   softAssert.assertTrue(isElementDisplayed(storeName));
         softAssert.assertTrue(isElementDisplayed(visaCardName));
         clickOnchangeBtn();
         clickOnBankAccountSection();
     }
 
     public void billPaymentByVariousPaymentMethods(String enterTextInAmountField, String cardNameTxt, String expiryDateTxt, String cvcTxt, String countryName) {
+        staticWait(3000);
         clickOnSignOut();
         LoginAsCustomer();
         clickOnBillIcon();
         clickOnBill();
         clickOnPayNowBtn();
-        if(isElementDisplayed(payCurrentBalance)){
-            hoverAndClick(payCurrentBalance,payCurrentBalance);
-        }else{
+        if (isElementDisplayed(payCurrentBalance)) {
+            hoverAndClick(payCurrentBalance, payCurrentBalance);
+        } else {
             Log.info("Nothing to be selected");
         }
         softAssert.assertTrue(isElementDisplayed(storeName));
@@ -839,17 +859,27 @@ public class PaymentPage extends BaseTest {
         clickOnZelleBank();
     }
 
+    public void getPayThroughCreditCard() {
+        //switchToCreditCardFrame();
+        actionEnterText(cardNumberTbx, "4111111111111111");
+        actionEnterText(expirationDateTbx, "0230");
+        actionEnterText(cvcTbx, "123");
+        actionEnterText(countryDropDown, "Australia");
+        switchToDefaultWindow();
+
+    }
+
     public void clickOnVenmoAccount() {
         clickOnchangeBtn();
         clickOnVenmoBank();
     }
-    public void clickOnVenomoAccount(){
+
+    public void clickOnVenomoAccount() {
         clickOnVenmoAccount();
         clickOnMakePaymentBtn();
         clickOnCheckBox();
         zelleSaveBtn();
     }
-
 
 
     public void paymentByZelleAccount() {
@@ -858,9 +888,9 @@ public class PaymentPage extends BaseTest {
         clickOnBillIcon();
         clickOnBill();
         clickOnPayNowBtn();
-        if(isElementDisplayed(payCurrentBalance)){
-            hoverAndClick(payCurrentBalance,payCurrentBalance);
-        }else{
+        if (isElementDisplayed(payCurrentBalance)) {
+            hoverAndClick(payCurrentBalance, payCurrentBalance);
+        } else {
             Log.info("Nothing to be selected");
         }
 
@@ -875,26 +905,27 @@ public class PaymentPage extends BaseTest {
 
 
     public void paymentThrouhVenmoAccount() {
+        staticWait(3000);
         clickOnSignOut();
         LoginAsCustomer();
         clickOnBillIcon();
         clickOnBill();
         clickOnPayNowBtn();
-        if(isElementDisplayed(payCurrentBalance)){
-            hoverAndClick(payCurrentBalance,payCurrentBalance);
-        }else{
-             Log.info("Nothing to be selected");
+        if (isElementDisplayed(payCurrentBalance)) {
+            hoverAndClick(payCurrentBalance, payCurrentBalance);
+        } else {
+            Log.info("Nothing to be selected");
         }
-
-       // softAssert.assertTrue(isElementDisplayed(storeName));
-        softAssert.assertTrue(isElementDisplayed(visaCardName));
+        staticWait(4000);
         clickOnVenmoAccount();
         clickOnMakePaymentBtn();
         clickOnCheckBox();
         zelleSaveBtn();
         billPayment();
     }
-    public void RejectABill(){
+
+    public void RejectABill() {
+        staticWait(3000);
         clickOnSignOut();
         LoginAsCustomer();
         clickOnBillIcon();
@@ -903,13 +934,28 @@ public class PaymentPage extends BaseTest {
 
     }
 
-    public void paymentUsingBill(){
-        clickOnBills();
-        getStoresDropdown();
-        selectStore(Constants.AutomationBillFlow);
-        getContinueButton();
-        clickOnNotPaidLabel();
-        clickOnShareIcon();
-    }
+    public void billPaymentByThroughDebitCardWithRecurringBill(String cardNameTxt, String expiryDateTxt, String cvcTxt, String countryName) {
+        staticWait(3000);
+        clickOnSignOut();
+        LoginAsCustomer();
+        clickOnBillIcon();
+        clickOnBill();
+        clickOnPayNowBtn();
+        if (isElementDisplayed(payCurrentBalance)) {
+            hoverAndClick(payCurrentBalance, payCurrentBalance);
+        } else {
+            Log.info("Nothing to be selected");
+        }
+        // Clicking on Ok button of Attention popup
 
+        staticWait(3000);
+        clickOnchangeBtn();
+        clickOncreditCards();
+        switchToFrame();
+        enterCardName(cardNameTxt, expiryDateTxt, cvcTxt, countryName);
+        switchToDefaultContent();
+        staticWait(10000);
+        clickOnSaveBtn();
+
+    }
 }

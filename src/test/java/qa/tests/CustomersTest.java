@@ -121,6 +121,7 @@ public class CustomersTest extends BaseTest {
         waitForElementInVisible(customersPage.filterApplyBtn,20);
 
         customersPage.applyFilter(Constants.phnNumberInput2);
+        waitForElementToBeVisible(customersPage.noResult,3);
         Assert.assertTrue(isElementDisplayed(customersPage.noResult));
 
         customersPage.applyFilter(Constants.phnNumberInput3);
@@ -182,8 +183,7 @@ public class CustomersTest extends BaseTest {
         waitForElementToBeVisible(customersPage.selectCustomerinFilter,10);
         click(customersPage.selectCustomerinFilter);
         click(customersPage.customerSelection);
-        staticWait(2000);
-        Assert.assertTrue(isElementDisplayed(customersPage.customerDisplayed2));
+        Assert.assertTrue(isDisplayed(customersPage.customerDisplayed2,2));
     }
 
     @Test
@@ -261,6 +261,8 @@ public class CustomersTest extends BaseTest {
         Login();
         customersPage.navigateToCustomersPage();
         click(customersPage.eyeIcon);
+        scrollToElement(customersPage.addGiftCardBtn);
+        waitForElementToBeClickable(customersPage.addGiftCardBtn,5);
         click(customersPage.addGiftCardBtn);
         waitForElementToBeInteractable(customersPage.initialAmt,10);
         actionEnterText(customersPage.initialAmt, Constants.initialAmt);

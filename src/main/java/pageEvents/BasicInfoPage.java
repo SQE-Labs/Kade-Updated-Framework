@@ -26,7 +26,7 @@ public class BasicInfoPage extends BaseTest {
     public By storeNameField = By.xpath("//input[@name='name']");
     public By saveButton = By.cssSelector(".-btn-save-.btn.btn-primary");
     public By storeFullAddress = By.xpath("//input[@name='fulladdress']");
-    public By storePhoneField = By.xpath("//input[@name='phone']");
+    public By storePhoneField = By.xpath("(//input[@name='phone'])[1]");
     public By storeTexRateField = By.xpath("//input[@name='taxRate']");
     public By storeLogo = By.xpath("//a[@class=' -profile- d-inline-block position-relative start-50 translate-middle-x']");
     public By checkBtn = By.cssSelector(".fa.fa-check");
@@ -57,7 +57,7 @@ public class BasicInfoPage extends BaseTest {
         click(storePhoneField);
         actionEnterText(storePhoneField,Constants.invalidStorePhone);
         scrollToElement(saveButton);
-        waitForElementToBeClickable(saveButton,10);
+        waitForElementToBeClickable(saveButton,5);
         getSaveBtn();
     }
 
@@ -65,7 +65,8 @@ public class BasicInfoPage extends BaseTest {
         WebElement fileInput = getDriver().findElement(By.xpath("//input[@type='file']"));
 
         String userDir = System.getProperty("user.dir");
-        String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "image" + File.separator + "dummy.pdf";
+        String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator+ "ImageResources"+ File.separator + "image" + File.separator + "dummy.pdf";
+                //userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "image" + File.separator + "dummy.pdf";
         fileInput.sendKeys(filePath);
     }
 

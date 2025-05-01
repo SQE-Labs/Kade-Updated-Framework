@@ -1,8 +1,10 @@
 package qa.tests;
 
 import base.BaseTest;
+import logger.Log;
 import org.testng.annotations.Test;
 import pageEvents.BillPage;
+import pageEvents.PaymentHistoryPage;
 import pageEvents.PaymentPage;
 
 import java.awt.*;
@@ -11,19 +13,21 @@ import java.awt.*;
 public class PaymentsAndRefundTest extends BaseTest {
     BillPage bill = new BillPage();
     PaymentPage payment = new PaymentPage();
+    PaymentHistoryPage pay = new PaymentHistoryPage();
 
 
     @Test(priority = 0, enabled = true, description = "PYMT1 Bill Creation and Successful Bill Payment by Cash through Store Manager.")
     public void cashPaymentThroughStoreManager() {
 
         bill.createBillWithCustomer("636045278965", "Saybo@yopmail.com");
+        bill.clickOnNotPaidLabel();
         payment.paymentPopup("Enter Bill Amount");
-
     }
 
     @Test(priority = 1, enabled = true, description = "PYMT2 : Bill Creation and Successful Bill Payment by Credit Card through Store manager.")
     public void cardPaymentThroughStoreManager() {
         bill.createBillWithCustomer("636045278965", "Saybo@yopmail.com");
+        bill.clickOnNotPaidLabel();
         payment.paymentByCreditCard("4111111111111111", "0930", "794", "Australia");
 
     }
@@ -32,6 +36,7 @@ public class PaymentsAndRefundTest extends BaseTest {
     public void payByVenmoThroughStoreManager() {
 
         bill.createBillWithCustomer("636045278965", "Saybo@yopmail.com");
+        bill.clickOnNotPaidLabel();
         payment.paymentThroughVenomo();
 
     }
@@ -39,7 +44,7 @@ public class PaymentsAndRefundTest extends BaseTest {
     @Test(priority = 3, enabled = true, description = "PYMT4 : Bill Creation and Successful Bill Payment by Zelle through Store manager.")
     public void payByZelleThroughStoreManager() {
         bill.createBillWithCustomer("636045278965", "Saybo@yopmail.com");
-
+        bill.clickOnNotPaidLabel();
         payment.paymentThroughZelle();
     }
 
@@ -47,7 +52,7 @@ public class PaymentsAndRefundTest extends BaseTest {
     public void verifyPaymentByMultipleModeThroughStoreManager() {
 
         bill.createBillWithCustomer("636045278965", "Saybo@yopmail.com");
-
+        bill.clickOnNotPaidLabel();
         payment.PaymentByMultipleMode("500.00", "500.00", "1000.00");
 
     }
@@ -56,6 +61,7 @@ public class PaymentsAndRefundTest extends BaseTest {
     public void partialPaymentThroughStoreManager() {
 
         bill.createBillWithCustomer("636045278965", "Saybo@yopmail.com");
+        bill.clickOnNotPaidLabel();
         payment.partialPayment("1500.00");
     }
 
@@ -63,6 +69,7 @@ public class PaymentsAndRefundTest extends BaseTest {
     public void markSuccessfulPaymentAsVoid() {
 
         bill.createBillWithCustomer("636045278965", "Saybo@yopmail.com");
+        bill.clickOnNotPaidLabel();
         payment.markSuccessfulPaymentAsVoid("Paying Bill");
     }
 
@@ -70,7 +77,6 @@ public class PaymentsAndRefundTest extends BaseTest {
     public void BillPaymentByCreditCardThroughCustomer() {
 
         bill.createBillWithCustomer("636045278965", "saybo@yopmail.com");
-
         payment.billPaymentByThroughDebitCard("4111111111111111", "0930", "794", "Australia");
         payment.swipeCard();
         payment.billPayment();
@@ -92,7 +98,13 @@ public class PaymentsAndRefundTest extends BaseTest {
         bill.createBillWithCustomer("636045278965", "saybo@yopmail.com");
         payment.billPaymentByVariousPaymentMethods("500.00", "4111111111111111", "0930", "794", "Australia");
         payment.swipeCard();
-        payment.paymentByZelleAccount();
+        payment.clickOnchangeBtn();
+        staticWait(2000);
+        payment.clickOnZelleAccount();
+        payment.clickOnMakePaymentBtn();
+        payment.clickOnCheckBox();
+        payment.zelleSaveBtn();
+        payment.billPayment();
     }
 
     @Test(priority = 10, enabled = true, description = "Create Bill for a customer and pay using Venmo.")
@@ -116,14 +128,4 @@ public class PaymentsAndRefundTest extends BaseTest {
         bill.createBillWithCustomer("636045278965", "saybo@yopmail.com");
         payment.RejectABill();
     }
-
-    @Test(priority = 13, enabled = false, description = "PYMT11:Bill Creation and Payment Using Link")
-    public void BillCreationAndPaymentUsingLink() {
-
-        bill.createBillWithCustomer("636045278965", "saybo@yopmail.com");
-        payment.paymentUsingBill();
-
-
-    }
-
 }

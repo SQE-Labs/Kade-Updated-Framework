@@ -64,29 +64,29 @@ public class SuiteListener implements ITestListener, IAnnotationTransformer {
     @Override
     public void transform(ITestAnnotation annotation, Class testClass, Constructor testConstructor, Method testMethod) {
         // Set retry logic for the test method
-        annotation.setRetryAnalyzer(RetryAnalyzer.class);
-        log.info("Retry logic applied for test: {}", testMethod.getName());
+        //annotation.setRetryAnalyzer(RetryAnalyzer.class);
+       // log.info("Retry logic applied for test: {}", testMethod.getName());
     }
 
     // Other listener methods can be overridden as needed:
     @Override
-    public void onTestStart(ITestResult result) { 
-        log.info("Test started: {}", result.getMethod().getMethodName()); 
+    public void onTestStart(ITestResult result) {
+        log.info("Test started: {}", result.getMethod().getMethodName());
     }
 
     @Override
-    public void onTestSkipped(ITestResult result) { 
-        log.info("Test skipped: {}", result.getMethod().getMethodName()); 
+    public void onTestSkipped(ITestResult result) {
+        log.info("Test skipped: {}", result.getMethod().getMethodName());
     }
 
     @Override
-    public void onTestSuccess(ITestResult result) { 
-        log.info("Test passed: {}", result.getMethod().getMethodName()); 
+    public void onTestSuccess(ITestResult result) {
+        log.info("Test passed: {}", result.getMethod().getMethodName());
     }
 
     @Override
-    public void onTestFailedButWithinSuccessPercentage(ITestResult result) { 
-        log.info("Test failed but within success percentage: {}", result.getMethod().getMethodName()); 
+    public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+        log.info("Test failed but within success percentage: {}", result.getMethod().getMethodName());
     }
 
     @Override
