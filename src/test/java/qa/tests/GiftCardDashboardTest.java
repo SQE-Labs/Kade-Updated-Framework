@@ -1,6 +1,7 @@
 package qa.tests;
 
 import base.BaseTest;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import pageEvents.GiftCardDashboardPage;
@@ -240,9 +241,10 @@ public class GiftCardDashboardTest extends BaseTest {
 
     }
 
-    @Test(priority = 90 & 91 , enabled = false, description = "Verify that 'Funding Source' field appear as text field on 'Gift Card For Sale' page. ")
+    @Test(priority = 90 & 91 , enabled = true, description = "Verify that 'Funding Source' field appear as text field on 'Gift Card For Sale' page. ")
     public void verifyFundingSrcFieldAppearAsText(){
 
+      giftCardPage.validateAddedFundingSource();
 
     }
 
@@ -255,6 +257,26 @@ public class GiftCardDashboardTest extends BaseTest {
     public void verifyAvailableQuantityAcceptsNumerical (){
         giftCardPage.verifyAvailableQuantityFieldLength();
     }
+
+    @Test(priority = 94, enabled = true, description = "Verify that 'Reference No' field accepts value up to 30 characters, on 'Gift Card For Sale' page. ")
+    public void verifyRefNoFieldAcceptsChar (){
+        giftCardPage.verifyRefNoValidation();
+    }
+
+    @Test(priority = 95, enabled = true, description = "Verify that by default date range appears as 1 year from current date in 'Sale date range' field, on 'Gift Card For Sale' page.")
+    public void verifyDefaultDateRangeInSaleDateRange (){
+        giftCardPage.verifyDefaultDateRange();
+    }
+
+    @Test(priority = 96, enabled = true, description = "Verify that user is able to set date range from date picker of 'Sale date range' field, on 'Gift Card For Sale' page.")
+    public void verifySelectingDateRange (){
+      //  giftCardPage.verifyS();selectRandomDate
+
+        giftCardPage.verifyDateRange();
+
+    }
+
+
 
 }
 
