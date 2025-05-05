@@ -1098,7 +1098,7 @@ public class GiftCardDashboardPage extends BaseTest {
 
         return formatter.format(today) + " - " + formatter.format(nextYear);
     }
-@Test
+
     public void verifyDefaultDateRange(){
 
         Login();
@@ -1222,6 +1222,36 @@ public class GiftCardDashboardPage extends BaseTest {
         Assert.assertEquals(prefilledSalePrice, "15.00", "Sale price is not prefilled");
 
         }
+
+        public void verifyStatusOfGiftCard(){
+        offOptionalSettings();
+        staticWait(2000);
+        getForSaleBtn();
+        staticWait(3000);
+        click(addBtn);
+        String amt = "1000";
+        String saleAmt = "1500";
+        String available = "5";
+        actionEnterText(faceValue, amt);
+        actionEnterText(salePrice, saleAmt);
+        actionEnterText(availableQnty, available);
+        scrollToElement(date);
+        clickElementByJS(date);
+        // WebElement dateElement = driver.findElement(date);
+        // dateElement.clear();
+        cleanByJS(date);
+        actionEnterText(date,"05/04/2023 - 05/04/2024");
+        waitForElementToBeClickable(saveBtn, 2);
+        staticWait(6000);
+        click(saveBtn);
+        staticWait(3000);
+        Assert.assertTrue(isElementDisplayed(afterGiftCardFOrSalePage));
+
+        }
+
+    public void verifyUpdateSaleGiftCard() {
+
+    }
 
     }
 

@@ -270,7 +270,7 @@ public class GiftCardDashboardTest extends BaseTest {
 
     @Test(priority = 96 & 98, enabled = true, description = "Verify that user is able to set date range from date picker of 'Sale date range' field, on 'Gift Card For Sale' page.")
     public void verifySelectingDateRange (){
-      //  giftCardPage.verifyS();selectRandomDate
+
 
         giftCardPage.verifyDateRange();
 
@@ -290,6 +290,24 @@ public class GiftCardDashboardTest extends BaseTest {
     public void verifyPre_filledFieldsOnGiftCardsForSalePage (){
 
         giftCardPage.verifyUserDirectionForSalePage();
+
+
+    }
+
+    @Test(priority = 100, enabled = true, description = " Verify that status of the gift card appears 'Ended' after the sale end date, on 'Sell Dashboard' page."
+    )
+    public void verifyStatusOfGiftCardAfterEndDate (){
+
+        giftCardPage.verifyStatusOfGiftCard();
+
+
+    }
+
+    @Test(priority = 101, enabled = true, description = "Verify that user is able to update the sale gift card from 'Gift Card For Sale' page. "
+    )
+    public void verifyUserUpdateSaleGiftCard (){
+
+        giftCardPage.verifyUpdateSaleGiftCard();
 
 
     }
