@@ -109,7 +109,7 @@ public class PaymentHistoryPage extends BaseTest {
         return getText(TransBillId);
     }
     public String getPaymentId(){
-        return getText(paymentId);
+        waitForElementToBeVisible(paymentId,5);return getText(paymentId);
     }
     public void getCloseBtn(){
         clickElementByJS(CloseBtn);
@@ -139,6 +139,7 @@ public class PaymentHistoryPage extends BaseTest {
         waitForElementToBeClickable(CloseBtn, 3);
         getCloseBtn();
         scrollToElement(Mystuff);
+        getMyStuffandPaymentHistory();
         getPaymentId();
         int count = getCountOfWebElements(paymentTileRecord);
         System.out.println("Count of the transaction " + count);
@@ -183,7 +184,7 @@ public class PaymentHistoryPage extends BaseTest {
     public void VerifytheDetails() {
         LoginAsCustomer();
         scrollToElement(Mystuff);
-         getMyStuffandPaymentHistory();
+        getMyStuffandPaymentHistory();
         staticWait(2000);
         softAssert.assertTrue(isElementDisplayed(paymentId));
         softAssert.assertTrue(isElementDisplayed(StoreName));

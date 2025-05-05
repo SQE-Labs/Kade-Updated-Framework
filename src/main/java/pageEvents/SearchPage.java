@@ -119,6 +119,7 @@ public class SearchPage extends BaseTest {
 
 
             getbillBtn();
+            staticWait(2000);
             click(continueBtn);
             waitForElementToBeVisible(refrenceIdtext,2);
             getCopyReferenceId();
@@ -134,8 +135,9 @@ public class SearchPage extends BaseTest {
 
     public void checkbytransactionid(){
 
-
+            waitForElementToBeClickable(transactionsBtn,3);
              getTransactionsBtn();
+             staticWait(2000);
              click(continueTrans);
              waitForElementToBeVisible(transactionIdtext,2);
              getCopyTransactionId();

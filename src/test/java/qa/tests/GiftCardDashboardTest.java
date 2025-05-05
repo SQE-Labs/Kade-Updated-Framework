@@ -1,6 +1,7 @@
 package qa.tests;
 
 import base.BaseTest;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import pageEvents.GiftCardDashboardPage;
@@ -240,9 +241,10 @@ public class GiftCardDashboardTest extends BaseTest {
 
     }
 
-    @Test(priority = 90 & 91 , enabled = false, description = "Verify that 'Funding Source' field appear as text field on 'Gift Card For Sale' page. ")
+    @Test(priority = 90 & 91 , enabled = true, description = "Verify that 'Funding Source' field appear as text field on 'Gift Card For Sale' page. ")
     public void verifyFundingSrcFieldAppearAsText(){
 
+      giftCardPage.validateAddedFundingSource();
 
     }
 
@@ -255,6 +257,62 @@ public class GiftCardDashboardTest extends BaseTest {
     public void verifyAvailableQuantityAcceptsNumerical (){
         giftCardPage.verifyAvailableQuantityFieldLength();
     }
+
+    @Test(priority = 94, enabled = true, description = "Verify that 'Reference No' field accepts value up to 30 characters, on 'Gift Card For Sale' page. ")
+    public void verifyRefNoFieldAcceptsChar (){
+        giftCardPage.verifyRefNoValidation();
+    }
+
+    @Test(priority = 95, enabled = true, description = "Verify that by default date range appears as 1 year from current date in 'Sale date range' field, on 'Gift Card For Sale' page.")
+    public void verifyDefaultDateRangeInSaleDateRange (){
+        giftCardPage.verifyDefaultDateRange();
+    }
+
+    @Test(priority = 96 & 98, enabled = true, description = "Verify that user is able to set date range from date picker of 'Sale date range' field, on 'Gift Card For Sale' page.")
+    public void verifySelectingDateRange (){
+
+
+        giftCardPage.verifyDateRange();
+
+    }
+    @Test(priority = 97, enabled = true, description = "Verify that 'Memo' field accepts value up to 500 characters, on 'Gift Card For Sale' page.")
+    public void verifyMemoFieldMaximumLimit (){
+
+        giftCardPage.verifyMemoFieldMaximumChar();
+
+
+    }
+
+
+    @Test(priority = 99, enabled = true, description = "\"Verify that user gets directed to 'Gift Card For Sale' page and all the fields appear pre-filled, after clicking on any sale gift card from 'Sell Dashboard' page\n" +
+            "\""
+            )
+    public void verifyPre_filledFieldsOnGiftCardsForSalePage (){
+
+        giftCardPage.verifyUserDirectionForSalePage();
+
+
+    }
+
+    @Test(priority = 100, enabled = true, description = " Verify that status of the gift card appears 'Ended' after the sale end date, on 'Sell Dashboard' page."
+    )
+    public void verifyStatusOfGiftCardAfterEndDate (){
+
+        giftCardPage.verifyStatusOfGiftCard();
+
+
+    }
+
+    @Test(priority = 101, enabled = true, description = "Verify that user is able to update the sale gift card from 'Gift Card For Sale' page. "
+    )
+    public void verifyUserUpdateSaleGiftCard (){
+
+        giftCardPage.verifyUpdateSaleGiftCard();
+
+
+    }
+
+
 
 }
 
