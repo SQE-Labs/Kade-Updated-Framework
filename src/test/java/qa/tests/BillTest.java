@@ -80,8 +80,6 @@ public class BillTest extends BaseTest {
     @Test(priority = 10, enabled = true, description = "BC_10 Verify that creating a bill, when user has  Essential (Free) plan for his store")
     public void verifyingBillCreationWithEssentialFreePlan() {
         bill.verifyingBillCreationWithEssentialFreePlan("yonro@yopmail.com");
-        bill.clickOnNotPaidLabel();
-        bill.deleteBill();
     }
 
     @Test(priority = 11, enabled = true, description = "BC_15 Verify that creating a bill by adding the custom expiration date' on 'Bills' page..")

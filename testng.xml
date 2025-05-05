@@ -8,8 +8,8 @@
 
     <test thread-count="3" name="Chrome Test">
         <parameter name="env" value="qa" />
-        <parameter name="browser" value="firefox" />
-         <parameter name="headless" value="false" />
+        <parameter name="browser" value="chrome" />
+         <parameter name="headless" value="true" />
 
 
 <!--        <packages>-->
@@ -18,17 +18,24 @@
 
 
 
-        <classes>
-<!--            <class name="qa.tests.PaymentsAndRefundTest" />-->
-             <class name="qa.tests.BillTest" />
-        </classes>
+<!--        <classes>-->
+<!--&lt;!&ndash;            <class name="qa.tests.PaymentsAndRefundTest" />&ndash;&gt;-->
+<!--             <class name="qa.tests.BillTest" />-->
+<!--        </classes>-->
+<!--         -->
 
-    </test>
-    <test name="FirefoxTest">
+<!--    </test>-->
+<!--    <test name="FirefoxTest">-->
+<!--        <parameter name="browser" value="chrome"/>-->
+<!--        <classes>-->
+<!--&lt;!&ndash;            <class name="qa.tests.PaymentsAndRefundTest"/>&ndash;&gt;-->
+<!--            <class name="qa.tests.BillTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="ChromeTest">-->
         <parameter name="browser" value="chrome"/>
         <classes>
-<!--            <class name="qa.tests.PaymentsAndRefundTest"/>-->
-            <class name="qa.tests.BillTest"/>
+            <class name="qa.tests.TransactionsTest"/>
         </classes>
     </test>
 </suite>

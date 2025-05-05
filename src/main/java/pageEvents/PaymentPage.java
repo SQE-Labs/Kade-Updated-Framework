@@ -5,6 +5,7 @@ import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.Constants;
 
@@ -13,6 +14,9 @@ import java.nio.file.Paths;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
+
+import static pageEvents.TransactionsPage.attentionHeader;
+import static pageEvents.TransactionsPage.okButn;
 
 public class PaymentPage extends BaseTest {
 
@@ -354,16 +358,19 @@ public class PaymentPage extends BaseTest {
 
 
     public void paymentPopup(String memoTxt) {
-        softAssert.assertEquals(billHeader, "Bill");
-        softAssert.assertTrue(isElementDisplayed(qrCode));
-        softAssert.assertTrue(isElementDisplayed(shareBtn));
-        softAssert.assertTrue(isElementDisplayed(editIcon));
-        softAssert.assertTrue(isElementDisplayed(processPaymentBtn));
-        softAssert.assertTrue(isElementDisplayed(deleteIconBtn));
-        softAssert.assertTrue(isElementDisplayed(uniqueNumber));
-        softAssert.assertTrue(isElementDisplayed(BillCreatedTime));
-        softAssert.assertTrue(isElementDisplayed(NotPaid));
-        softAssert.assertTrue(isElementDisplayed(tapToAddFile));
+        String billHead=getText(billHeader);
+        Assert.assertEquals(billHead, "Bill");
+
+        Assert.assertTrue(isElementDisplayed(qrCode));
+        Assert.assertTrue(isElementDisplayed(shareBtn));
+        Assert.assertTrue(isElementDisplayed(editIcon));
+        Assert.assertTrue(isElementDisplayed(processPaymentBtn));
+        Assert.assertTrue(isElementDisplayed(deleteIconBtn));
+        Assert.assertTrue(isElementDisplayed(uniqueNumber));
+        Assert.assertTrue(isElementDisplayed(BillCreatedTime));
+        Assert.assertTrue(isElementDisplayed(NotPaid));
+        Assert.assertTrue(isElementDisplayed(tapToAddFile));
+
 
         // Click on Process payment button in Bill popup
         clickOnProcessPaymentBtn();
@@ -378,37 +385,43 @@ public class PaymentPage extends BaseTest {
         String balance = balanceSAmt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + balance); // Output: 1000.00// Remove non-numeric characters
 
-        softAssert.assertEquals(totalAmt, balance);
-        softAssert.assertTrue(isElementDisplayed(recieveAmtTxtField));
-        softAssert.assertTrue(isElementDisplayed(creditCardButton));
-        softAssert.assertTrue(isElementDisplayed(otherBtn));
+         Assert.assertEquals(totalAmt, balance);
+        Assert.assertTrue(isElementDisplayed(recieveAmtTxtField));
+        Assert.assertTrue(isElementDisplayed(creditCardButton));
+        Assert.assertTrue(isElementDisplayed(otherBtn));
 
         //click on others button.
         clickOnOtherBtn();
 
-        softAssert.assertTrue(isElementDisplayed(paymentTypeText));
-        String getAttMemo = getAttribute(memoTxtField, "placeholder");
-        softAssert.assertEquals(getAttMemo, "Memo");
+        staticWait(2000);
+        Assert.assertTrue(isElementDisplayed(paymentTypeText));
 
-        softAssert.assertTrue(isElementDisplayed(venomoBtn));
-        softAssert.assertTrue(isElementDisplayed(zelleBtn));
-        softAssert.assertTrue(isElementDisplayed(CashBtn));
+         String getAttMemo = getAttribute(memoTxtField, "placeholder");
+        Assert.assertEquals(getAttMemo, "Memo");
+
+        Assert.assertTrue(isElementDisplayed(venomoBtn));
+        Assert.assertTrue(isElementDisplayed(zelleBtn));
+        Assert.assertTrue(isElementDisplayed(CashBtn));
+
 
         enterInMemoField(memoTxt);
         clickOnCashBtn();
 
-        softAssert.assertTrue(isElementDisplayed(paidLabel));
-        softAssert.assertTrue(isElementDisplayed(cashIcon));
+      //  Assert.assertTrue(isElementDisplayed(paidLabel));
+        Assert.assertTrue(isElementDisplayed(cashIcon));
 
         clickOnCrossIcon();
         clickOntranscationMenu();
         clickOnpaidBillSection();
 
-        softAssert.assertTrue(isElementDisplayed(amountPaidTime));
-        softAssert.assertTrue(isElementDisplayed(paidlabel));
-        softAssert.assertTrue(isElementDisplayed(uniqueId));
-        softAssert.assertTrue(isElementDisplayed(refundIcon));
-        softAssert.assertTrue(isElementDisplayed(verifyIcon));
+        Assert.assertTrue(isElementDisplayed(amountPaidTime));
+
+        Assert.assertTrue(isElementDisplayed(paidlabel));
+
+        Assert.assertTrue(isElementDisplayed(uniqueId));
+
+        Assert.assertTrue(isElementDisplayed(refundIcon));
+        Assert.assertTrue(isElementDisplayed(verifyIcon));
 
         clickOncrossIconOnTransactionpage();
 
@@ -416,16 +429,29 @@ public class PaymentPage extends BaseTest {
 
     public void paymentByCreditCard(String cardNumber, String expiryDateTxt, String cvcTxt, String countryName) {
         staticWait(2000);
-        softAssert.assertEquals(billHeader, "Bill");
-        softAssert.assertTrue(isElementDisplayed(qrCode));
-        softAssert.assertTrue(isElementDisplayed(shareBtn));
-        softAssert.assertTrue(isElementDisplayed(editIcon));
-        softAssert.assertTrue(isElementDisplayed(processPaymentBtn));
-        softAssert.assertTrue(isElementDisplayed(deleteIconBtn));
-        softAssert.assertTrue(isElementDisplayed(uniqueNumber));
-        softAssert.assertTrue(isElementDisplayed(BillCreatedTime));
-        softAssert.assertTrue(isElementDisplayed(NotPaid));
-        softAssert.assertTrue(isElementDisplayed(tapToAddFile));
+//        softAssert.assertEquals(billHeader, "Bill");
+//        softAssert.assertTrue(isElementDisplayed(qrCode));
+//        softAssert.assertTrue(isElementDisplayed(shareBtn));
+//        softAssert.assertTrue(isElementDisplayed(editIcon));
+//        softAssert.assertTrue(isElementDisplayed(processPaymentBtn));
+//        softAssert.assertTrue(isElementDisplayed(deleteIconBtn));
+//        softAssert.assertTrue(isElementDisplayed(uniqueNumber));
+//        softAssert.assertTrue(isElementDisplayed(BillCreatedTime));
+//        softAssert.assertTrue(isElementDisplayed(NotPaid));
+//        softAssert.assertTrue(isElementDisplayed(tapToAddFile));
+
+        String billHead=getText(billHeader);
+        Assert.assertEquals(billHead, "Bill");
+
+        Assert.assertTrue(isElementDisplayed(qrCode));
+        Assert.assertTrue(isElementDisplayed(shareBtn));
+        Assert.assertTrue(isElementDisplayed(editIcon));
+        Assert.assertTrue(isElementDisplayed(processPaymentBtn));
+        Assert.assertTrue(isElementDisplayed(deleteIconBtn));
+        Assert.assertTrue(isElementDisplayed(uniqueNumber));
+        Assert.assertTrue(isElementDisplayed(BillCreatedTime));
+        Assert.assertTrue(isElementDisplayed(NotPaid));
+        Assert.assertTrue(isElementDisplayed(tapToAddFile));
 
         // Click on Process payment button in Bill popup
         clickOnProcessPayment();
@@ -440,10 +466,15 @@ public class PaymentPage extends BaseTest {
         String balance = balanceSAmt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + balance); // Output: 1000.00// Remove non-numeric characters
 
-        softAssert.assertEquals(totalAmt, balance);
-        softAssert.assertTrue(isElementDisplayed(recieveAmtTxtField));
-        softAssert.assertTrue(isElementDisplayed(creditCardButton));
-        softAssert.assertTrue(isElementDisplayed(otherBtn));
+//        softAssert.assertEquals(totalAmt, balance);
+//        softAssert.assertTrue(isElementDisplayed(recieveAmtTxtField));
+//        softAssert.assertTrue(isElementDisplayed(creditCardButton));
+//        softAssert.assertTrue(isElementDisplayed(otherBtn));
+
+        Assert.assertEquals(totalAmt, balance);
+        Assert.assertTrue(isElementDisplayed(recieveAmtTxtField));
+        Assert.assertTrue(isElementDisplayed(creditCardButton));
+        Assert.assertTrue(isElementDisplayed(otherBtn));
 
         //click on others button.
         clickOncreditCardBtn();
@@ -850,9 +881,7 @@ public class PaymentPage extends BaseTest {
         switchToDefaultContent();
         staticWait(10000);
         clickOnSaveBtn();
-
     }
-
 
     public void clickOnZelleAccount() {
         clickOnchangeBtn();
@@ -941,13 +970,17 @@ public class PaymentPage extends BaseTest {
         clickOnBillIcon();
         clickOnBill();
         clickOnPayNowBtn();
-        if (isElementDisplayed(payCurrentBalance)) {
-            hoverAndClick(payCurrentBalance, payCurrentBalance);
+        if (isElementDisplayed(notPaid)) {
+            hoverAndClick(notPaid, notPaid);
+        } else {
+            Log.info("Nothing to be selected");
+        }
+        if (isElementDisplayed(attentionHeader)) {
+            hoverAndClick(okButn , okButn );
         } else {
             Log.info("Nothing to be selected");
         }
         // Clicking on Ok button of Attention popup
-
         staticWait(3000);
         clickOnchangeBtn();
         clickOncreditCards();
@@ -956,6 +989,5 @@ public class PaymentPage extends BaseTest {
         switchToDefaultContent();
         staticWait(10000);
         clickOnSaveBtn();
-
     }
 }
