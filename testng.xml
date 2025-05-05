@@ -9,7 +9,7 @@
     <test thread-count="3" name="Test">
         <parameter name="env" value="qa" />
         <parameter name="browser" value="chrome" />
-        <parameter name="headless" value="true" />
+        <parameter name="headless" value="false" />
 
 
 <!--        <packages>-->
@@ -19,16 +19,8 @@
 
 
         <classes>
-            <class name="qa.tests.GiftCardDashboardTest" />
-            <class name="qa.tests.BasicInformationPage" />
-            <class name="qa.tests.ReportsTest" />
-            <class name="qa.tests.SearchTest" />
-            <class name="qa.tests.PaymentHistoryTest" />
-            <class name="qa.tests.RewardPointsTest" />
-            <class name="qa.tests.RewardsProgramTest" />
-            <class name="qa.tests.CustomersTest" />
-
-            <!--            <class name="qa.tests.BillTest" />-->
+             <class name="qa.tests.MyStoreTest" />
+            <class name="qa.tests.PaymentsAndRefundTest" />
         </classes>
 
     </test>
