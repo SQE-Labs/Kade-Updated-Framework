@@ -349,7 +349,7 @@ public class TransactionsPage extends BaseTest {
         getNewChargeConfirmBtn();
         // Making new charge payment manually with Credit Card
 
-        waitForElementToBeClickable(manualChargeTab,5);
+        waitForElementToBeClickable(manualChargeTab, 5);
         getManualChargeTab();
 
 //        staticWait(6000);
@@ -469,7 +469,7 @@ public class TransactionsPage extends BaseTest {
         payments.swipeCard();
         payments.billPayment();
 
-        waitForElementToBeVisible(pageObjectManager.getSidePannel().signOutBtn,5);
+        waitForElementToBeVisible(pageObjectManager.getSidePannel().signOutBtn, 5);
 
 
         pageObjectManager.getSidePannel().getSignOut();
@@ -595,7 +595,7 @@ public class TransactionsPage extends BaseTest {
         staticWait(3000);
 
         // Clicking on the paid amount and verify the question mark icon is displayed
-        softAssert.assertTrue(isElementDisplayed(questionMarkIcon),"Question Mark Icon");
+        softAssert.assertTrue(isElementDisplayed(questionMarkIcon), "Question Mark Icon");
 //        waitForElementToBeClickable(amount,4);
         staticWait(5000);
         clickOnAmount();
@@ -688,10 +688,10 @@ public class TransactionsPage extends BaseTest {
         // click on fail button
         getFailedBtn();
 
-        waitForElementToBeVisible(excalamatrySign,5);
+        waitForElementToBeVisible(excalamatrySign, 5);
 
         // verify that failed icon appear
-        Assert.assertTrue(isElementDisplayed(excalamatrySign),"Excalamatry Sign");
+        Assert.assertTrue(isElementDisplayed(excalamatrySign), "Excalamatry Sign");
     }
 
     // TRS 09
@@ -782,7 +782,7 @@ public class TransactionsPage extends BaseTest {
             String deletStatus = ActionEngine.deleteFile("Transactions.xlsx");
             System.out.println("deleteStatus :" + deletStatus);
 
-            staticWait(3000);
+            staticWait(5000);
 
             // Clicking on download button
             getFilterIcon();
@@ -796,6 +796,7 @@ public class TransactionsPage extends BaseTest {
             System.out.println("fileDownloadStatus: " + fileDownloadStatus);
 
             softAssert.assertEquals(ActionEngine.isFileDownloaded("Transactions.xlsx"), "File Present");
+            staticWait(3000);
 
             // click on filter icon
             getFilterIcon();
@@ -845,12 +846,12 @@ public class TransactionsPage extends BaseTest {
             getPaymentStatusDropdown();
             getClearPaymentField();
 
-            staticWait(3000);
+            staticWait(5000);
             getPaymentLinkField();
             getQrCodeSeletct();
             getApplyButtonOnPopup();
 
-            waitForElementToBeVisible(qrCodeSign, 3);
+            staticWait(3000);
             softAssert.assertTrue(isElementDisplayed(qrCodeSign), "Qr Code Sign");
 
             getFilterIcon();
@@ -864,9 +865,11 @@ public class TransactionsPage extends BaseTest {
 
             getApplyButtonOnPopup();
             staticWait(5000);
+            softAssert.assertAll();
         }
     }
 }
+
 
 
 
