@@ -104,8 +104,9 @@ public class BasicInformationPage extends BaseTest {
         String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator+ "ImageResources"+ File.separator + "image" + File.separator + "BillDummyImg.jpg";
 
         fileInput.sendKeys(filePath);
+        waitForElementToBeClickable(basicInfoPage.checkBtn,10);
         click(basicInfoPage.checkBtn);
-        waitForElementInVisible(basicInfoPage.checkBtn,10);
+
     }
 
     @Test
