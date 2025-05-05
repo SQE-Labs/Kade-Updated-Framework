@@ -268,11 +268,29 @@ public class GiftCardDashboardTest extends BaseTest {
         giftCardPage.verifyDefaultDateRange();
     }
 
-    @Test(priority = 96, enabled = true, description = "Verify that user is able to set date range from date picker of 'Sale date range' field, on 'Gift Card For Sale' page.")
+    @Test(priority = 96 & 98, enabled = true, description = "Verify that user is able to set date range from date picker of 'Sale date range' field, on 'Gift Card For Sale' page.")
     public void verifySelectingDateRange (){
       //  giftCardPage.verifyS();selectRandomDate
 
         giftCardPage.verifyDateRange();
+
+    }
+    @Test(priority = 97, enabled = true, description = "Verify that 'Memo' field accepts value up to 500 characters, on 'Gift Card For Sale' page.")
+    public void verifyMemoFieldMaximumLimit (){
+
+        giftCardPage.verifyMemoFieldMaximumChar();
+
+
+    }
+
+
+    @Test(priority = 99, enabled = true, description = "\"Verify that user gets directed to 'Gift Card For Sale' page and all the fields appear pre-filled, after clicking on any sale gift card from 'Sell Dashboard' page\n" +
+            "\""
+            )
+    public void verifyPre_filledFieldsOnGiftCardsForSalePage (){
+
+        giftCardPage.verifyUserDirectionForSalePage();
+
 
     }
 

@@ -84,6 +84,8 @@ public class BasicInfoPage extends BaseTest {
 
     public void getManageBussinessAcc() {click(manageBusinessAcc);}
 
-    public void getCustStoreConfig() {click(custStoreConfig);}
+    public void getCustStoreConfig() {
+        waitForElementToBeClickable(custStoreConfig,5);
+        click(custStoreConfig);}
 
 }

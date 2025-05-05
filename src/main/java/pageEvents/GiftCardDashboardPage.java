@@ -112,6 +112,10 @@ public class GiftCardDashboardPage extends BaseTest {
     public By saveBtn=By.xpath("//button[normalize-space()='Save changes']");
     public By pickingLeftDate =By.xpath("//div[@class='drp-calendar left']//div//table//tbody//tr[3]//td[4]");
     public By afterGiftCardFOrSalePage = By.xpath("//p[contains(text(), \"share the link to your gift cards\")]");
+    public By firstCardLink = By.xpath("(//div[@class='loaded']//div)[1]");
+
+
+
     public static void LoginAsCustomerNew() {
         Log.info("Starting Login test - Entering username and password");
 
@@ -1165,15 +1169,59 @@ public class GiftCardDashboardPage extends BaseTest {
         click(addBtn);
         Assert.assertEquals(getText(fundSourceOption), "HSBC");
 
+    }
 
+    public void verifyMemoFieldMaximumChar (){
 
-
+        Login();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        selectStore(5);
+        clickWhichStoreContinueBtn();
+        getForSaleBtn();
+        staticWait(3000);
+        click(addBtn);
+        scrollToElement(memo);
+        String max_char = getAttribute(memo,"maxlength");
+        Log.info("Maximum char limit is : " + max_char);
+        Assert.assertEquals(max_char, "500", "Max character limit is not 30");
 
 
 
     }
 
+    public void verifyUserDirectionForSalePage() {
+        offOptionalSettings();
+        staticWait(2000);
+        getForSaleBtn();
+        staticWait(3000);
+        click(addBtn);
+        String amt = "1000";
+        String saleAmt = "1500";
+        String available = "5";
+        actionEnterText(faceValue, amt);
+        actionEnterText(salePrice, saleAmt);
+        actionEnterText(availableQnty, available);
+        scrollToElement(date);
+        clickElementByJS(date);
+        click(pickingLeftDate);
+        click(pickingLeftDate);
+        waitForElementToBeClickable(saveBtn, 2);
+        staticWait(6000);
+        click(saveBtn);
+        staticWait(3000);
+        Assert.assertTrue(isElementDisplayed(afterGiftCardFOrSalePage));
+        waitForElementToBeClickable(firstCardLink,5);
+        click(firstCardLink);
+        staticWait(4000);
+        String prefilledFaceValue = getAttribute(faceValue, "value");
+        String prefilledSalePrice = getAttribute(salePrice, "value");
+        String prefilledAvailableQnty = getAttribute(availableQnty, "value");
+        Assert.assertEquals(prefilledAvailableQnty, "5", "Available quantity is not prefilled");
+        Assert.assertEquals(prefilledFaceValue, "10.00", "Available quantity is not prefilled");
+        Assert.assertEquals(prefilledSalePrice, "15.00", "Sale price is not prefilled");
 
+        }
 
     }
 

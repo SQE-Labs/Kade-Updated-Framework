@@ -330,7 +330,7 @@ public class SignUpTest extends BaseTest {
     }
 
     @Test(description = " CA_TC 4(a): Verify that signing in to the application by email address using Business Account option.")
-    public void averifyThatSigningInByEmailUsingBusinessAccountOption() {
+    public void verifyThatSigningInByEmailUsingBusinessAccountOption() {
         pageObjectManager.getLoginPage().getSignUpLink();
         signUp.getBusinessAccount();
         signUp.getCrossIcon();
