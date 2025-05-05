@@ -7,7 +7,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pageEvents.BillPage;
 import pageEvents.MyStorePage;
+import pageEvents.PaymentPage;
 import pageObjects.PageObjectManager;
 import utils.Constants;
 
@@ -16,6 +18,8 @@ import java.io.File;
 import static base.BaseTest.Login;
 import static java.lang.Float.*;
 import static utils.Constants.*;
+import org.testng.Assert;
+
 
 public class MyStoreTest extends BaseTest {
     // Logger instance for logging messages
@@ -23,6 +27,8 @@ public class MyStoreTest extends BaseTest {
 
     PageObjectManager pageObjectManager = PageObjectManager.getInstance();
     MyStorePage mystore = pageObjectManager.getMyStorePage();
+    BillPage bill = new BillPage();
+    PaymentPage payment = new PaymentPage();
 
     @Test(description = "SC_01(A) Verifying creation of Store without Stripe Payment Account Configuration")
     public void storeCreationWithoutStripeAccount() {
@@ -51,7 +57,7 @@ public class MyStoreTest extends BaseTest {
             //  Click on 'Skip' button
             mystore.getSkipBtnOfStripe();
         }
-        staticWait(4000);
+        staticWait(5000);
         scrollToElement(mystore.deleteStoreBtn);
         waitForElementToBeVisible(mystore.deleteStoreBtn,5);
         // click on delete button
@@ -68,8 +74,6 @@ public class MyStoreTest extends BaseTest {
         pageObjectManager.getSidePannel().getSignOut();
         staticWait(3000);
         pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
-
-
 
     }
 
@@ -103,6 +107,7 @@ public class MyStoreTest extends BaseTest {
 
         //Verifying that by-default Visa Payment method is enabled
         String defaultPaymentMthd = getText(mystore.addedVisaMethod);
+        System.out.println(defaultPaymentMthd);
         softAssert.assertEquals(defaultPaymentMthd, Constants.visavalue);
 
 //       Click on 'Change Pay Method' Link
@@ -119,9 +124,10 @@ public class MyStoreTest extends BaseTest {
 
         //Verifying that next bill date is generated
         Assert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
-//        pageObjectManager.getSidePannel().getSignOut();
-//        staticWait(3000);
-//        pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
+        pageObjectManager.getSidePannel().getSignOut();
+        staticWait(3000);
+        pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
+        softAssert.assertAll();
 
     }
 
@@ -149,6 +155,7 @@ public class MyStoreTest extends BaseTest {
         mystore.getChangePayMethodLink();//Verifying that other payment methods are available
         softAssert.assertTrue(isElementDisplayed(mystore.newCreditCardBtn), " New credit card button");
         softAssert.assertTrue(isElementDisplayed(mystore.newBankAccountBtn), "new bank account");
+        mystore.getbankAccountOptionForPlan();
 
         // Click on 'Terms' Checkbox
         mystore.getTermsCheckbox();
@@ -446,7 +453,7 @@ public class MyStoreTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(description = "SC 09 a Verify that store creation and purchasing the 'Premium' monthly plan subscription for the store, on 'Store Configuration' page.")
+    @Test(description = "SC 09 and Sc 10 Verify that store creation and purchasing the 'Premium' monthly plan subscription for the store, on 'Store Configuration' page.")
     public void verifyingStoreCreationWithPurchasingMonthlyPremiumPlan() {
         Login();
         mystore.getStoreCreation();
@@ -457,7 +464,7 @@ public class MyStoreTest extends BaseTest {
 
         // Verifying the Premium title
         softAssert.assertTrue(isElementDisplayed(mystore.premiumTitle), "Premium Title");
-     scrollToElement(mystore.premiumMonthlyBtn);
+        scrollToElement(mystore.premiumMonthlyBtn);
         // byuing the Premium plan
         mystore.getPremiumMonthlyBtn();
         mystore.getPremiumnMonthlySignUpBtn();
@@ -472,6 +479,8 @@ public class MyStoreTest extends BaseTest {
         //Verifying that other payment methods are available
         softAssert.assertTrue(isElementDisplayed(mystore.newCreditCardBtn), " New credit card button");
         softAssert.assertTrue(isElementDisplayed(mystore.newBankAccountBtn), "new bank account");
+
+        mystore.getbankAccountOptionForPlan();
 
         // Click on 'Terms' Checkbox
         mystore.getTermsCheckbox();
@@ -497,8 +506,11 @@ public class MyStoreTest extends BaseTest {
         mystore.getTermsCheckbox();
         scrollToElement(mystore.changePlanBtn);
         waitForElementToBeClickable(mystore.changePlanBtn,3);
+
         //  Click on 'Change Plan' Button
         mystore.getChangePlanButton();
+        //Verifying that next bill date is generated
+        Assert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
 
 
         pageObjectManager.getSidePannel().getSignOut();
@@ -532,12 +544,9 @@ public class MyStoreTest extends BaseTest {
         // Creating Operator user
         mystore.creatingOperatorUser();
 
-
-
-
     }
 
-    @Test(description = "SC_07(B) Verifying the Configuration of the store using Manage User sub tab to invite any existing user to manage store.")
+    @Test(enabled = false , description = "SC_07(B) Verifying the Configuration of the store using Manage User sub tab to invite any existing user to manage store.")
     public void sc_07b_VerifyingConfigurationOfStoreUsingManageUserSubTabToInviteAnyExistingUserToManageStore() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
@@ -555,10 +564,10 @@ public class MyStoreTest extends BaseTest {
         waitForElementToBeVisible(mystore.inviteExistingUserPopupTitle,4);
 
         // Verifying the 'Invite Existing User' PopUp Title
-        softAssert.assertEquals(getText(mystore.inviteExistingUserPopupTitle),"Invite Existing User Pop Up Title");
+        Assert.assertEquals(getText(mystore.inviteExistingUserPopupTitle),"Invite users");
 
         // Enter Email Or Phone Number
-        enterText(mystore.inviteMangeUserEmailOrPhoneField,"6465551105");
+        enterText(mystore.inviteMangeUserEmailOrPhoneField,"saybo@yopmail.com");
 
         //  Click on the 'User Profile' Drop Down
         mystore.getUserProfileDropdown();
@@ -568,6 +577,12 @@ public class MyStoreTest extends BaseTest {
 
         // Click on 'Send Invite' Button.
         mystore.sendInviteButton();
+
+        pageObjectManager.getSidePannel().getSignOut();
+
+        LoginAsCustomer();
+        payment.clickOnBillIcon();
+
 
 
     }

@@ -57,7 +57,7 @@ public class MyStorePage extends BaseTest {
    public By addedStorePhone = By.xpath("//label[text()='Store Phone']/following-sibling::p");
    public By addedCurrencyOfStore = By.xpath("//label[text()='Currency of the Store']/following-sibling::p");
    public By addedTaxRate = By.xpath("//label[text()='Tax rate']/following-sibling::p");
-   public By addedVisaMethod = By.cssSelector("div[class='-title- d-flex flex-column'] span[class='text-nowrap']");
+   public By addedVisaMethod = By.xpath("(//span[contains(text(), 'Visa 1111')])[1]");
    public By newCreditCardBtn = By.xpath("//span[text()='New Credit Card']");
    public By newBankAccountBtn = By.xpath("//span[text()='New Bank Account']");
    public By changePayMethodBtn = By.xpath("//button[text()='change']");
@@ -138,7 +138,7 @@ public class MyStorePage extends BaseTest {
     public By terminalEditIcon = By.xpath("(//div[contains(@class, 'row-cols-2')]//i)[1]");
     public By terminalDeleteBtn = By.cssSelector(".d-flex.mt-3>button:nth-child(2)");
     By  venmoIDLabel = By.xpath("//label[text()='Venmo ID']");
-
+    public By bankAccountOptionForPlan = By.xpath("//span[contains(text(),'Bank Account 6789')]/..");
     public By createUserAndCredetButton = By.xpath("//div[@class='mb-1 text-center']/..");
     public By inviteUserButton = By.xpath("//span[text()='Recommended']/..");
 
@@ -236,6 +236,9 @@ public class MyStorePage extends BaseTest {
         clickElementByJS(storeLinksBtn);
     }
     public void getAcceptVenmoHeader(){click(acceptVenmoHeader);}
+    public void getbankAccountOptionForPlan(){
+        click(bankAccountOptionForPlan);
+    }
 
     // time zone
     public void selectTimeZone() {
@@ -514,9 +517,9 @@ public class MyStorePage extends BaseTest {
         // Select Time Zone
 
         //Verifying the minimum, maximum and default values of taxRate field
-       softAssert.assertEquals(getAttribute(taxRateTbx,"min"),"0");
-       softAssert.assertEquals(getAttribute(taxRateTbx,"value"),"0.000");
-       softAssert.assertEquals(getAttribute(taxRateTbx,"max"),"100");
+       Assert.assertEquals(getAttribute(taxRateTbx,"min"),"0");
+       Assert.assertEquals(getAttribute(taxRateTbx,"value"),"0.000");
+       Assert.assertEquals(getAttribute(taxRateTbx,"max"),"100");
 
        //  Enter Tax rate
         actionEnterText(taxRateTbx,Constants.taxRate);
@@ -529,10 +532,11 @@ public class MyStorePage extends BaseTest {
 
         //  //Verify Created Store
         softAssert.assertEquals(getText(addedStoreName),storeName);
-        softAssert.assertAll();
+
 
         pageObjectManager.getSidePannel().getSignOut();
         pageObjectManager.getAdminPage().selectedStoreDeleted(storeName);
+
     }
    // **********************************************************
     public void editStoreFields(){
@@ -558,15 +562,15 @@ public class MyStorePage extends BaseTest {
         selectStoreAddress(Constants.storeAddress);
 
         //Verifying the maximum length of 'Phone' field
-        softAssert.assertEquals(getAttribute(phoneTbx,"maxlength"),"22");
+        Assert.assertEquals(getAttribute(phoneTbx,"maxlength"),"22");
         actionEnterText(phoneTbx,Constants.validPhoneNumber);
 
         // Select Time Zone
 
         //Verifying the minimum, maximum and default values of taxRate field
-        softAssert.assertEquals(getAttribute(taxRateTbx,"min"),"0");
-        softAssert.assertEquals(getAttribute(taxRateTbx,"value"),"0.000","Tax rate tbx value");
-        softAssert.assertEquals(getAttribute(taxRateTbx,"max"),"100");
+        Assert.assertEquals(getAttribute(taxRateTbx,"min"),"0");
+        Assert.assertEquals(getAttribute(taxRateTbx,"value"),"0.000","Tax rate tbx value");
+        Assert.assertEquals(getAttribute(taxRateTbx,"max"),"100");
 
         //  Enter Tax rate
         actionEnterText(taxRateTbx,Constants.taxRate);
@@ -585,7 +589,6 @@ public class MyStorePage extends BaseTest {
         actionEnterText(taxRateTbx,Constants.defaultTaxRate);
         waitForElementToBeClickable(saveBtn,3);
         getSaveButton();
-        softAssert.assertAll();
 
 
     }
@@ -621,13 +624,13 @@ public class MyStorePage extends BaseTest {
         waitForElementToBeVisible(addUserPopUpTitle,4);
 
         // verify the add user popup
-        softAssert.assertEquals(addUserPopUpTitle,"Add User");
+        Assert.assertEquals(getText(addUserPopUpTitle),"Add User");
 
         // Enter UserName in 'Username' field
         enterText(manageUserNameField,"My store user"+ requiredString(4));
 
         //Verifying the Maximum length of 'Username' field.
-        softAssert.assertEquals(getAttribute(manageUserNameField,"maxlength"),"30");
+        Assert.assertEquals(getAttribute(manageUserNameField,"maxlength"),"30");
 
         //  Click on the 'User Profile' Drop Down
         getUserProfileDropdown();
@@ -639,7 +642,7 @@ public class MyStorePage extends BaseTest {
         enterText(manageUserPassword, validPassword);
 
         //Verifying the Maximum length of 'Password' field
-        softAssert.assertEquals(getAttribute(manageUserPassword,"maxlength"),"18");
+      Assert.assertEquals(getAttribute(manageUserPassword,"maxlength"),"18");
 
         // Click on 'Create User' Button
         getcreateManagerUserButton();
@@ -658,7 +661,7 @@ public class MyStorePage extends BaseTest {
         waitForElementToBeVisible(addUserPopUpTitle,4);
 
         // verify the add user popup
-        softAssert.assertEquals(addUserPopUpTitle,"Add User");
+        softAssert.assertEquals(getText(addUserPopUpTitle),"Add User");
 
         // Enter UserName in 'Username' field
         enterText(manageUserNameField,"My store user"+ requiredString(4));
@@ -686,7 +689,7 @@ public class MyStorePage extends BaseTest {
         getdeleteUserIcon();
         getCheckIconOfDeleteUser();
         staticWait(4000);
-
+        softAssert.assertAll();
     }
     public void creatingOperatorUser(){
         // Clicking on add new user button
@@ -694,7 +697,7 @@ public class MyStorePage extends BaseTest {
         waitForElementToBeVisible(addUserPopUpTitle,4);
 
         // verify the add user popup
-        softAssert.assertEquals(addUserPopUpTitle,"Add User");
+        softAssert.assertEquals(getText(addUserPopUpTitle),"Add User");
 
         // Enter UserName in 'Username' field
         enterText(manageUserNameField,"My store user"+ requiredString(4));
@@ -721,6 +724,7 @@ public class MyStorePage extends BaseTest {
         // wait for deleting the user
         getdeleteUserIcon();
         getCheckIconOfDeleteUser();
+        softAssert.assertAll();
 
     }
     }

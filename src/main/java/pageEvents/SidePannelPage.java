@@ -23,6 +23,7 @@ public class SidePannelPage extends BaseTest {
     public By myStuff = By.xpath("//a[text()='My Stuff']");
     public By giftCardsTab = By.cssSelector("[href='/Giftcards/GiftCardsSummary']");
     public By securityAndPasswordTab = By.xpath("//a[text()='Security and Password']");
+    public By paymentMethod = By.xpath("//a[text()='Payment Methods']");
 
 
 
@@ -64,5 +65,8 @@ public class SidePannelPage extends BaseTest {
     }
     public void getSecurityAndPasswordTab(){
         click(securityAndPasswordTab);
+    }
+    public void getPaymentMethodTab(){
+        click(paymentMethod);
     }
 }

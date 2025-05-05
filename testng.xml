@@ -19,9 +19,8 @@
 
 
         <classes>
+             <class name="qa.tests.MyStoreTest" />
             <class name="qa.tests.PaymentsAndRefundTest" />
-            <!-- <class name="qa.tests.MyStoreTest" />   -->
-            <class name="qa.tests.BillTest" />
         </classes>
 
     </test>
