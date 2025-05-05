@@ -13,9 +13,9 @@ public class AddPaymentMethodTest extends BaseTest {
     PageObjectManager pageObjectManager = new PageObjectManager();
     PaymentMethod paymentMethod = new PaymentMethod();
 
-    @Test(description = "Added Bank Account Method")
+    @Test(priority = 2,description = "PM02: Added Bank Account Method")
     public void getAddedBankAccountMethod(){
-        Login();
+        LoginAsNewUser();
         pageObjectManager.getSidePannel().getProfileLink();
         pageObjectManager.getSidePannel().getPaymentMethodTab();
 
@@ -29,11 +29,15 @@ public class AddPaymentMethodTest extends BaseTest {
         // Clicking on Add payment link
         paymentMethod.getAddOrModifyPaymentLink();
 
-        waitForElementToBeClickable(paymentMethod.addPaymentButton,4);
-        paymentMethod.getAddPaymentButton();
+
+        if (!isElementDisplayed(paymentMethod.noPaymentInfo)) {
+            paymentMethod.getAddPaymentButton();
+        }
 
         // Verify add new payment method title appears
-        waitForElementToBeVisible(paymentMethod.addNewPaymentMethodTitle,4);
+        waitForElementToBeVisible(paymentMethod.addNewPaymentMethodTitle,6);
+
+
         Assert.assertTrue(isElementDisplayed(paymentMethod.addNewPaymentMethodTitle),"Add new payment method");
         Assert.assertTrue(isElementDisplayed(paymentMethod.creditCardOption),"Credit card option");
         Assert.assertTrue(isElementDisplayed(paymentMethod.bankAccountOption),"bank account option");
@@ -73,20 +77,37 @@ public class AddPaymentMethodTest extends BaseTest {
         paymentMethod.getSaveWithLinkBtn();
 
         staticWait(5000);
+
+        // Verify that success text appears
+        Assert.assertTrue(isElementDisplayed(paymentMethod.successText),"Success Text");
+
         paymentMethod.getBackToKadePayBtn();
         switchToDefaultContent();
+        staticWait(5000);
+        switchToFrame(paymentMethod.bankFrame);
 
+//        waitForElementToBeVisible(paymentMethod.stripeBankAccountText,5);
+        System.out.println("Bank Account name is " + getText(paymentMethod.stripeBankAccountText));
+        Assert.assertEquals(getText(paymentMethod.stripeBankAccountText),"Stripebank");
+        switchToDefaultContent();
         waitForElementToBeClickable(paymentMethod.finalSavebtn,5);
         paymentMethod.getFinalSaveBtn();
 
-
-
-
-
-
-
+        staticWait(5000);
+        paymentMethod.getTrashIcon();
+        paymentMethod.getThumbIcon();
 
 
     }
 
+    @Test(priority = 1, description = "Verify that appropriate information message appears, when no payment method is added, on the 'Payment Method' page.")
+        public void verifyThatInformationMsgAppearsWhenNoPaymetMethodIsSelected(){
+        LoginAsNewUser();
+        pageObjectManager.getSidePannel().getProfileLink();
+        pageObjectManager.getSidePannel().getPaymentMethodTab();
+
+        // verify the information message when no payment method is selected
+        String infoMessage = getText(paymentMethod.noPaymentInfo);
+        Assert.assertEquals(infoMessage,Constants.noPaymentInfoMessage);
+    }
 }

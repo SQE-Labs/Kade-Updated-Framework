@@ -25,9 +25,13 @@ public class PaymentMethod extends BaseTest {
     public By finalSavebtn = By.xpath("//button[contains (@class, 'btn btn-primary ') and text()='Save']");
     public By bankFrame = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[1]");
     public By loginInsitututeFrame = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[2]");
+    public By successText = By.xpath("//div[contains(@class,'la-v3-successTextWrapper')]//h1");
+    public By stripeBankAccountText = By.xpath("//div[contains(@class,'p-PickerItem--singleRow')]//../h3");
+    public By trash = By.xpath("//i[@class='fas fa-trash']//..");
+    public By noPaymentInfo = By.xpath("//div[@class='no-result-icon']/../p");
+    public By thumbIcon = By.xpath("//i[contains(@class,'fal fa-thumbs-up')]//..");
+
     // Methods
-
-
     public void  getAddOrModifyPaymentLink(){
         click(addORModifyPaymentLink);
     }
@@ -39,7 +43,6 @@ public class PaymentMethod extends BaseTest {
     public void getCrossIconOfNewP(){click(crossIconAddNewPaymentPopup);}
     public void getTestInsituteBtn(){click(testInsituteBtn);}
     public void getAgreeAndContinueBtn(){clickElementByJS(agreeAndContinueBtn);}
-
     public void getSuccessOption(){
         click(successOption);
     }
@@ -57,5 +60,11 @@ public class PaymentMethod extends BaseTest {
     }
     public void getFinalSaveBtn(){
         click(finalSavebtn);
+    }
+    public void getTrashIcon(){
+        clickElementByJS(trash);
+    }
+    public void getThumbIcon(){
+        clickElementByJS(thumbIcon);
     }
 }
