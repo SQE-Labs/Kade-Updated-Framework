@@ -1872,6 +1872,7 @@ public class BillPage extends BaseTest {
         closePopup();
 
         // Assert.assertTrue(isElementDisplayed(reccuringIcon));
+        staticWait(2000);
         scrollToTopOfPage();
         clickOnReccuring();
 

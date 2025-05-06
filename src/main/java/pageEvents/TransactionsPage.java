@@ -779,7 +779,7 @@ public class TransactionsPage extends BaseTest {
        //     Assert.assertTrue(isElementDisplayed(filterTiltle));
             //  softAssert.assertTrue(isElementDisplayed(filterTiltle), "Filter title");
 
-            getApplyButtonOnPopup();
+         //   getApplyButtonOnPopup();
             staticWait(3000);
             Assert.assertTrue(isElementDisplayed(TransactionHeader));
             // click on filter icon
