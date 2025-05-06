@@ -1,0 +1,17 @@
+qa\tests\BillTest.class
+qa\tests\SignUpTest.class
+qa\tests\GiftCardDashboardTest.class
+qa\tests\ReportsTest.class
+qa\tests\PaymentHistoryTest.class
+qa\tests\PaymentsAndRefundTest.class
+qa\tests\TransactionsTest.class
+qa\tests\RewardPointsTest.class
+qa\tests\DashboardTest.class
+qa\tests\RewardsProgramTest.class
+qa\tests\SecurityAndPasswordTest.class
+qa\tests\SearchTest.class
+qa\tests\GiftCardsTest.class
+qa\tests\LoginPage.class
+qa\tests\MyStoreTest.class
+qa\tests\CustomersTest.class
+qa\tests\BasicInformationPage.class

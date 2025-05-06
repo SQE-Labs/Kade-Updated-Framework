@@ -14,6 +14,10 @@ import org.testng.asserts.SoftAssert;
 import pageObjects.PageObjectManager;
 import utils.ConfigFileReader;
 import utils.PropertyUtils;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import java.awt.*;
@@ -166,7 +170,8 @@ public class BaseTest {
     public static void WaitUntilElementVisible(By locator, int tries) {
         try {
             for (int i = 0; i < tries; i++) {
-                Wait<WebDriver> fluentWait1 = new FluentWait<WebDriver>(getDriver()).withTimeout(Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))))
+                Wait<WebDriver> fluentWait1 = new FluentWait<WebDriver>(getDriver())
+                        .withTimeout(Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))))
                         .pollingEvery(Duration.ofMillis(Long.parseLong(PropertyUtils.getPropertyValue("wait"))))
                         .ignoring(TimeoutException.class);
                 fluentWait1.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -264,6 +269,17 @@ public class BaseTest {
         WebElement element = getDriver().findElement(locator);
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
         staticWait(2000);
+    }
+    public void scrollToTopOfPage() {
+        log.info("Scrolling to the top of the page");
+        ((JavascriptExecutor) getDriver()).executeScript("window.scrollTo(0, 0);");
+        staticWait(2000);
+    }
+    public static String getCurrentDate() {
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = new Date();
+        String date1 = dateFormat.format(date);
+        return date1;
     }
 
     public void scrollToWebElement(WebElement locator) {

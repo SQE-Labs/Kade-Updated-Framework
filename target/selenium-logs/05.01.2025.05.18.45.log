@@ -1,0 +1,9 @@
+2025-05-01 17:18:45,592 [info]: Starting Login test - Entering username and password
+2025-05-01 17:18:45,949 [debug]: User has successfully logged in and landed on the dashboard
+2025-05-01 17:18:48,329 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 17:18:59,145 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 17:19:00,383 [info]: Element is clicked at index: 3
+2025-05-01 17:19:20,433 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 17:19:21,680 [info]: Element is clicked at index: 4
+2025-05-01 17:19:34,615 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 17:19:35,784 [info]: Element is clicked at index: 4
