@@ -102,7 +102,7 @@ public class AddPaymentMethodTest extends BaseTest {
 
     @Test(priority = 1, description = "Verify that appropriate information message appears, when no payment method is added, on the 'Payment Method' page.")
         public void verifyThatInformationMsgAppearsWhenNoPaymetMethodIsSelected(){
-        LoginAsNewUser();
+        pageObjectManager.getSignUpPage().creatingNewAccountWithEmailWithBusinessAccount();
         pageObjectManager.getSidePannel().getProfileLink();
         pageObjectManager.getSidePannel().getPaymentMethodTab();
 

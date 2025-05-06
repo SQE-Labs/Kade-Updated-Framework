@@ -376,32 +376,8 @@ public class SignUpTest extends BaseTest {
 
     @Test(description = " CA_TC 4(b): Verify that signing in to the application by email address using Business Account option, with forget password option.")
     public void verifyThatSigningInByEmailUsingBusinessAccountOptionWithForgetPasswordoption() {
-        pageObjectManager.getLoginPage().getSignUpLink();
-        signUp.getBusinessAccount();
-        signUp.getCrossIcon();
-
-        // Clicking on 'Sign In Button
-        signUp.getSignInBtn();
-
-        // Clicking on Switch to Email Link
-        signUp.getSwitchtoEmailLink();
-        enterText(signUp.emailFieldSP, Constants.validLoginEmail);
-        signUp.getContinueBtnSP();
-
-        // Clicking on I don't know password link
-        signUp.getIdonkKnowPasswordLinkSP();
-
-        // Verify the elements
-        softAssert.assertTrue(isElementDisplayed(signUp.securityCodeLabelsignInP),"Security code label");
-        softAssert.assertTrue(isElementDisplayed(signUp.informationMessageSP),"Information message");
-        softAssert.assertTrue(isElementDisplayed(signUp.newPasswordLabelSP),"new passoword label");
-        softAssert.assertTrue(isElementDisplayed(signUp.showPasswordSignInP),"show password");
-        softAssert.assertTrue(isElementDisplayed(signUp.signInButtonSignInP),"sign in button ");
-
-        enterText(signUp.securityCodeField,Constants.securityCode);
-        enterText(signUp.newPasswordFieldSP,Constants.validPassword);
-        signUp.getShowPasswordSP();
-        signUp.getFinalSignInbtn();
+        signUp.getsignInWithEmailUsingBusinessAccount();
     }
+
 }
 
