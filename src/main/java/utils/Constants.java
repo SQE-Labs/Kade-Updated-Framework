@@ -2,6 +2,7 @@ package utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 
 /**
@@ -235,5 +236,6 @@ public interface Constants {
     String GiftCardSummaryURL = "https://sibtestenv.azurewebsites.net/Giftcards/GiftCardsSummary";
     String giftCardDetailURL = "https://sibtestenv.azurewebsites.net/Giftcards/giftcardDetail?Id=2935";
 
-
+        // payment method
+    String noPaymentInfoMessage = "You don't have any payment method set up";
 }

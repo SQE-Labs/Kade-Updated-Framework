@@ -1,0 +1,134 @@
+2025-05-01 16:33:33,802 [info]: Starting Login test - Entering username and password
+2025-05-01 16:33:34,128 [debug]: User has successfully logged in and landed on the dashboard
+2025-05-01 16:33:36,906 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:33:48,263 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:33:49,521 [info]: Element is clicked at index: 3
+2025-05-01 16:34:01,233 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:34:02,424 [info]: Element is clicked at index: 4
+2025-05-01 16:34:15,845 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:34:17,159 [info]: Element is clicked at index: 4
+2025-05-01 16:34:33,616 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:34:34,895 [info]: Element is clicked at index: 6
+2025-05-01 16:34:50,643 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:34:51,883 [info]: Element is clicked at index: 6
+2025-05-01 16:35:07,379 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:35:08,745 [info]: Element is clicked at index: 6
+2025-05-01 16:35:24,839 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:35:45,002 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:35:46,275 [info]: Element is clicked at index: 6
+2025-05-01 16:36:03,123 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:36:04,421 [info]: Element is clicked at index: 6
+2025-05-01 16:36:18,280 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:36:19,502 [info]: Element is clicked at index: 4
+2025-05-01 16:36:25,231 [info]: Clicking on By.cssSelector: div>.modal-content .stretched-link.-selectCustomer-
+2025-05-01 16:36:36,920 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:36:38,322 [info]: Element is clicked at index: 4
+2025-05-01 16:36:42,830 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-01 16:36:43,957 [info]: Clicking on By.cssSelector: div>.modal-content .stretched-link.-selectCustomer-
+2025-05-01 16:36:56,689 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:36:57,939 [info]: Element is clicked at index: 4
+2025-05-01 16:37:02,294 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-01 16:37:03,382 [info]: Clicking on By.cssSelector: div>.modal-content .stretched-link.-selectCustomer-
+2025-05-01 16:37:04,835 [info]: Clicking on By.cssSelector: input[name='email']~button.btn
+2025-05-01 16:37:36,089 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:37:37,500 [info]: Element is clicked at index: 4
+2025-05-01 16:37:41,991 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-01 16:37:43,124 [info]: Clicking on By.cssSelector: div>.modal-content .stretched-link.-selectCustomer-
+2025-05-01 16:37:55,306 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:37:56,673 [info]: Element is clicked at index: 4
+2025-05-01 16:38:00,998 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-01 16:38:02,067 [info]: Clicking on By.cssSelector: div>.modal-content .stretched-link.-selectCustomer-
+2025-05-01 16:38:03,908 [info]: Clicking on By.cssSelector: input[name='email']~button.btn
+2025-05-01 16:38:17,082 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:38:18,391 [info]: Element is clicked at index: 4
+2025-05-01 16:38:23,072 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-01 16:38:24,278 [info]: Clicking on By.cssSelector: div>.modal-content .stretched-link.-selectCustomer-
+2025-05-01 16:38:25,536 [info]: Clicking on By.cssSelector: input[name='email']~button.btn
+2025-05-01 16:38:36,764 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:38:38,001 [info]: Element is clicked at index: 5
+2025-05-01 16:38:45,050 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-01 16:38:46,164 [info]: Clicking on By.cssSelector: div>.modal-content .stretched-link.-selectCustomer-
+2025-05-01 16:38:47,532 [info]: Clicking on By.cssSelector: input[name='email']~button.btn
+2025-05-01 16:39:04,234 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:39:05,654 [info]: Element is clicked at index: 4
+2025-05-01 16:39:10,040 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-01 16:39:11,334 [info]: Clicking on By.cssSelector: div>.modal-content .stretched-link.-selectCustomer-
+2025-05-01 16:39:12,633 [info]: Clicking on By.cssSelector: input[name='email']~button.btn
+2025-05-01 16:39:15,971 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-01 16:39:29,394 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:39:30,662 [info]: Element is clicked at index: 4
+2025-05-01 16:39:35,131 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-01 16:39:36,214 [info]: Clicking on By.cssSelector: div>.modal-content .stretched-link.-selectCustomer-
+2025-05-01 16:39:37,535 [info]: Clicking on By.cssSelector: input[name='email']~button.btn
+2025-05-01 16:39:40,800 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-01 16:40:04,300 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:40:05,666 [info]: Element is clicked at index: 4
+2025-05-01 16:40:10,518 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-01 16:40:13,096 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-01 16:40:34,038 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:40:35,350 [info]: Element is clicked at index: 4
+2025-05-01 16:40:39,802 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-01 16:40:42,379 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-01 16:41:03,212 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:41:04,500 [info]: Element is clicked at index: 4
+2025-05-01 16:41:08,864 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-01 16:41:11,474 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-01 16:41:22,292 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:41:23,554 [info]: Element is clicked at index: 5
+2025-05-01 16:41:25,979 [info]: Clicking on By.cssSelector: input[name='readonlyFunds'] ~ i.custom-check-off
+2025-05-01 16:41:28,017 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-01 16:41:30,665 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-01 16:41:43,136 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:41:44,532 [info]: Element is clicked at index: 5
+2025-05-01 16:41:52,223 [info]: Clicking on By.cssSelector: input[name='readonlyFunds'] ~ i.custom-check-on
+2025-05-01 16:41:53,694 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-01 16:41:56,346 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-01 16:42:07,787 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:42:09,118 [info]: Element is clicked at index: 4
+2025-05-01 16:42:13,562 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-01 16:42:16,224 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-01 16:42:27,813 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:42:29,205 [info]: Element is clicked at index: 4
+2025-05-01 16:42:33,626 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-01 16:42:36,189 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-01 16:42:47,965 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:42:49,280 [info]: Element is clicked at index: 4
+2025-05-01 16:42:53,774 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-01 16:42:56,374 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-01 16:43:12,792 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:43:14,135 [info]: Element is clicked at index: 4
+2025-05-01 16:43:18,595 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-01 16:43:21,209 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-01 16:43:35,327 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:43:36,636 [info]: Element is clicked at index: 5
+2025-05-01 16:43:53,644 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:43:54,987 [info]: Element is clicked at index: 5
+2025-05-01 16:44:18,291 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:44:19,515 [info]: Element is clicked at index: 5
+2025-05-01 16:44:25,298 [info]: Only enters numeric value so expected would be 1000.00 which is max
+2025-05-01 16:44:39,221 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:44:40,517 [info]: Element is clicked at index: 5
+2025-05-01 16:44:46,236 [info]: Only enters numeric value so expected would be 1000.00 which is max
+2025-05-01 16:45:00,124 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:45:01,490 [info]: Element is clicked at index: 5
+2025-05-01 16:45:07,187 [info]: Only enters numeric value so expected would be 1000.00 which is max
+2025-05-01 16:45:20,926 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:45:22,250 [info]: Element is clicked at index: 5
+2025-05-01 16:45:33,466 [info]: Clicking on By.xpath: //button[normalize-space()='Save changes']
+2025-05-01 16:45:35,523 [info]: Navigated to Gift Card for sale page
+2025-05-01 16:45:46,267 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:45:47,636 [info]: Element is clicked at index: 5
+2025-05-01 16:45:58,463 [info]: Clicking on By.xpath: //button[normalize-space()='Save changes']
+2025-05-01 16:46:02,960 [info]: Validate tooltip
+2025-05-01 16:46:14,674 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:46:16,077 [info]: Element is clicked at index: 5
+2025-05-01 16:46:24,685 [info]: Maximum length is 4
+2025-05-01 16:46:35,403 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:46:36,820 [info]: Element is clicked at index: 5
+2025-05-01 16:46:45,551 [info]: Maximum length is 4
+2025-05-01 16:46:57,440 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:46:58,732 [info]: Element is clicked at index: 5
+2025-05-01 16:47:04,374 [info]: Maximum char limit is : 30
+2025-05-01 16:47:15,333 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-01 16:47:16,647 [info]: Element is clicked at index: 5
+2025-05-01 16:47:22,233 [info]: Default date range is: 05/01/2025 - 05/01/2026
