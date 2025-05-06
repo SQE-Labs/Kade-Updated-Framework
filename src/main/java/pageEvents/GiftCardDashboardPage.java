@@ -2,9 +2,8 @@ package pageEvents;
 
 import base.BaseTest;
 import logger.Log;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.Constants;
@@ -16,12 +15,15 @@ import utils.Constants;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Random;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 
 public class GiftCardDashboardPage extends BaseTest {
+    WebDriver driver =new ChromeDriver();
     public By systemMsg = By.cssSelector("p.h2");
 
     SidePannelPage pannel = new SidePannelPage();
@@ -91,6 +93,8 @@ public class GiftCardDashboardPage extends BaseTest {
     public By infoIcon = By.cssSelector("i.fal.fa-info-square");
     public By enableClass = By.cssSelector("label.custom-checkbox.mb-3");
 
+
+
     // Locators for Gift Cards For Sale
 
     public By giftCardsSaleLink = By.xpath("//a[normalize-space()='Gift Cards For Sale']");
@@ -106,6 +110,12 @@ public class GiftCardDashboardPage extends BaseTest {
     public By expireDay =By.xpath("//input[@name='expireInDays']");
     public By memo =By.xpath("//textarea[@name='memo']");
     public By saveBtn=By.xpath("//button[normalize-space()='Save changes']");
+    public By pickingLeftDate =By.xpath("//div[@class='drp-calendar left']//div//table//tbody//tr[3]//td[4]");
+    public By afterGiftCardFOrSalePage = By.xpath("//p[contains(text(), \"share the link to your gift cards\")]");
+    public By firstCardLink = By.xpath("(//div[@class='loaded']//div)[1]");
+
+
+
     public static void LoginAsCustomerNew() {
         Log.info("Starting Login test - Entering username and password");
 
@@ -972,19 +982,20 @@ public class GiftCardDashboardPage extends BaseTest {
 
 
     }
-    public void verifyStartDateRejectsCharacters () {
+    public void  verifyStartDateRejectsCharacters () {
         offOptionalSettings();
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
         scrollToElement(moreOptionsBtn);
         clickElementByJS(moreOptionsBtn);
         click(startDate);
-        actionEnterText(startDate, requiredString(5));
+        actionEnterText(startDate,"fssgjyfu");
         scrollToElement(createButton);
         waitForElementToBeVisible(createButton, 1);
         click(createButton);
-        softAssert.assertEquals(getToolTipMessage(startDate), Constants.invalidDateTooltip);
+        staticWait(2000);
         softAssert.assertEquals(getText(validationMsg), Constants.ValidationMsg);
+        softAssert.assertEquals(getToolTipMessage(startDate), Constants.invalidDateTooltip);
 
 
     }
@@ -995,7 +1006,7 @@ public class GiftCardDashboardPage extends BaseTest {
         scrollToElement(moreOptionsBtn);
         clickElementByJS(moreOptionsBtn);
         click(endDate);
-        actionEnterText(endDate, requiredString(5));
+        getDriver().findElement(endDate).sendKeys("asshiidnh");
         scrollToElement(createButton);
         waitForElementToBeVisible(createButton, 1);
         click(createButton);
@@ -1063,7 +1074,194 @@ public class GiftCardDashboardPage extends BaseTest {
     }
 
 
-}
+    public void verifyRefNoValidation(){
+
+        Login();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        selectStore(5);
+        clickWhichStoreContinueBtn();
+        getForSaleBtn();
+        staticWait(3000);
+        click(addBtn);
+        String max_char = getAttribute(referenceNoField,"maxlength");
+        Log.info("Maximum char limit is : " + max_char);
+        Assert.assertEquals(max_char, "30", "Max character limit is not 30");
+
+    }
+
+    private String getExpectedDateRange() {
+        LocalDate today = LocalDate.now();
+        LocalDate nextYear = today.plusYears(1);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+
+        return formatter.format(today) + " - " + formatter.format(nextYear);
+    }
+
+    public void verifyDefaultDateRange(){
+
+        Login();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        selectStore(5);
+        clickWhichStoreContinueBtn();
+        getForSaleBtn();
+        staticWait(3000);
+        click(addBtn);
+        // Get date range from UI
+        String actualRange = getAttribute(date, "value");
+        Log.info("Default date range is: " + actualRange);
+
+        // Generate expected date range
+        String expectedRange = getExpectedDateRange();
+
+        // Assertion
+        Assert.assertEquals(actualRange, expectedRange, "Date range does not match expected value.");
+
+    }
+
+    public void verifyDateRange(){
+
+        offOptionalSettings();
+        staticWait(2000);
+        getForSaleBtn();
+        staticWait(3000);
+        click(addBtn);
+        String amt="1000";
+        actionEnterText(faceValue,amt);
+        actionEnterText(salePrice,"1500");
+        actionEnterText(availableQnty,"5");
+        scrollToElement(date);
+        clickElementByJS(date);
+        click(pickingLeftDate);
+        click(pickingLeftDate);
+        waitForElementToBeClickable(saveBtn,2);
+        staticWait(6000);
+        click(saveBtn);
+        staticWait(3000);
+        Assert.assertTrue(isElementDisplayed(afterGiftCardFOrSalePage));
+
+
+
+
+    }
+    public void validateAddedFundingSource(){
+        Login();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        selectStore(5);
+        click(whichStoreContinueBtn);
+        click(configurationBtn);
+        if (!isDisplayed(enableClass, 3)) {
+            clickElementByJS(enabledToggleBth);
+        }
+        if (isDisplayed(fundingSourceDisableText, 3)) {
+            clickElementByJS(fundingSourceDiableToggleBtn);
+        }
+        setFundingSourceList();
+        waitForElementToBeVisible(amountField, 1000);
+        actionEnterText(amountField, "100000");
+        click(saveConfiguration);
+        staticWait(1000);
+        getForSaleBtn();
+        staticWait(3000);
+        click(addBtn);
+        Assert.assertEquals(getText(fundSourceOption), "HSBC");
+
+    }
+
+    public void verifyMemoFieldMaximumChar (){
+
+        Login();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        selectStore(5);
+        clickWhichStoreContinueBtn();
+        getForSaleBtn();
+        staticWait(3000);
+        click(addBtn);
+        scrollToElement(memo);
+        String max_char = getAttribute(memo,"maxlength");
+        Log.info("Maximum char limit is : " + max_char);
+        Assert.assertEquals(max_char, "500", "Max character limit is not 30");
+
+
+
+    }
+
+    public void verifyUserDirectionForSalePage() {
+        offOptionalSettings();
+        staticWait(2000);
+        getForSaleBtn();
+        staticWait(3000);
+        click(addBtn);
+        String amt = "1000";
+        String saleAmt = "1500";
+        String available = "5";
+        actionEnterText(faceValue, amt);
+        actionEnterText(salePrice, saleAmt);
+        actionEnterText(availableQnty, available);
+        scrollToElement(date);
+        clickElementByJS(date);
+        click(pickingLeftDate);
+        click(pickingLeftDate);
+        waitForElementToBeClickable(saveBtn, 2);
+        staticWait(6000);
+        click(saveBtn);
+        staticWait(3000);
+        Assert.assertTrue(isElementDisplayed(afterGiftCardFOrSalePage));
+        waitForElementToBeClickable(firstCardLink,5);
+        click(firstCardLink);
+        staticWait(4000);
+        String prefilledFaceValue = getAttribute(faceValue, "value");
+        String prefilledSalePrice = getAttribute(salePrice, "value");
+        String prefilledAvailableQnty = getAttribute(availableQnty, "value");
+        Assert.assertEquals(prefilledAvailableQnty, "5", "Available quantity is not prefilled");
+        Assert.assertEquals(prefilledFaceValue, "10.00", "Available quantity is not prefilled");
+        Assert.assertEquals(prefilledSalePrice, "15.00", "Sale price is not prefilled");
+
+        }
+
+        public void verifyStatusOfGiftCard(){
+        offOptionalSettings();
+        staticWait(2000);
+        getForSaleBtn();
+        staticWait(3000);
+        click(addBtn);
+        String amt = "1000";
+        String saleAmt = "1500";
+        String available = "5";
+        actionEnterText(faceValue, amt);
+        actionEnterText(salePrice, saleAmt);
+        actionEnterText(availableQnty, available);
+        scrollToElement(date);
+        clickElementByJS(date);
+        // WebElement dateElement = driver.findElement(date);
+        // dateElement.clear();
+        cleanByJS(date);
+        actionEnterText(date,"05/04/2023 - 05/04/2024");
+        waitForElementToBeClickable(saveBtn, 2);
+        staticWait(6000);
+        click(saveBtn);
+        staticWait(3000);
+        Assert.assertTrue(isElementDisplayed(afterGiftCardFOrSalePage));
+
+        }
+
+    public void verifyUpdateSaleGiftCard() {
+
+    }
+
+    }
+
+
+
+
+
+
+
+
 
 
 

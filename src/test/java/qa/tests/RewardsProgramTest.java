@@ -25,11 +25,11 @@ public class RewardsProgramTest extends BaseTest {
 
         Login();
         rewardsProgramPage.RewardsProgramPageOpen();
-
-        softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.pageHeading));
+        waitForElementToBeVisible(rewardsProgramPage.pageHeading,5);
+        Assert.assertTrue(isElementDisplayed(rewardsProgramPage.pageHeading));
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void verifyInformationMessageAppears() {
         log.info("Verify that information message appears, when Rewards program is not configured for store.");
 

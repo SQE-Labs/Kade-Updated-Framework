@@ -67,7 +67,8 @@ public class ReportsTest extends BaseTest {
             clickElementByJS(reportsPage.firstLinkDownload);
             staticWait(2000);
 
-            String data = getAttribute(reportsPage.dataDownloaded, "data-download");
+
+            String data= getAttribute(reportsPage.dataDownloaded,"data-download");
 
             Pattern storeIdPattern = Pattern.compile("storeId=(\\d+)");
             Pattern datePattern = Pattern.compile("reportdate=(\\d{2})%2f(\\d{2})%2f(\\d{4})");
@@ -97,7 +98,7 @@ public class ReportsTest extends BaseTest {
         String uiDay = uiDayElement.getText().trim();  // e.g. "26"
 
         // Compare
-        Assert.assertEquals(uiDay, downloadedDay, "Asserting UI day and downloaded report day.");
+         Assert.assertEquals(uiDay, downloadedDay, "Asserting UI day and downloaded report day.");
          staticWait(5000);
 
 //        String fileStatus = isFileDownloaded(Constants.fileNameDaily);

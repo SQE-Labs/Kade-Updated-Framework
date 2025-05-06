@@ -88,7 +88,7 @@ public class AdminPage extends BaseTest {
         LoginAsAdmin();
         getFindStoreLink();
         getFilterIcon();
-        enterText(storeNameField,"QrDashBoard");
+        enterText(storeNameField,"AutoStore");
         selectDropdownByVisibleText(selectStatus,"Active");
         getApplyBtn();
         staticWait(3000);
@@ -112,7 +112,7 @@ public class AdminPage extends BaseTest {
                 getUpdateStatusBtn();
                 scrollToElement(deleteBtn);
                 getDeleteBtn();
-               staticWait(2000);
+                staticWait(2000);
 
                enterText(deleteStoreNameField,storename);
                staticWait(3000);
@@ -120,7 +120,7 @@ public class AdminPage extends BaseTest {
                staticWait(3000);
 
                getFilterIcon();
-               enterText(storeNameField,"QrDashBoard");
+               enterText(storeNameField,"AutoStore");
                getApplyBtn();
                storeElements = getDriver().findElements(By.cssSelector(".ms-2.text-truncate"));
                elementcount = storeElements.size();

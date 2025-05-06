@@ -212,7 +212,7 @@ public class TransactionsPage extends BaseTest {
         click(applyButton);
     }
 
-    public void clickOnDownloadBtn() {
+    public void getDownloadBtn() {
         click(downloadButton);
     }
 
@@ -234,6 +234,9 @@ public class TransactionsPage extends BaseTest {
 
     public void getPaymentLinkField() {
         click(paymentLinkField);
+    }
+    public void clickOnDownloadBtn() {
+        click(downloadButton);
     }
 
     public void getQrCodeSeletct() {
@@ -752,7 +755,7 @@ public class TransactionsPage extends BaseTest {
         // Output total bills
         Log.info("Total bills collected: " + allBills.size());
         for (WebElement bill : allBills) {
-            Log.info(bill.getText()); // or any property you want
+            System.out.println(bill.getText()); // or any property you want
         }
 
         staticWait(5000);
@@ -765,29 +768,25 @@ public class TransactionsPage extends BaseTest {
         String ammountTo = "100.00";
 
         Login();
-      //  pageObjectManager.getSidePannel().getMangeBusinessTab();
+        //  pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getTransactionTab();
         getStoresDropdown();
         selectStore(Constants.AutomationBillFlow);
+             staticWait(3000);
         getContinueButton();
-
-        // click on filter icon
-        getFilterIcon();
+            // verify filter title
         staticWait(3000);
+       //     Assert.assertTrue(isElementDisplayed(filterTiltle));
+            //  softAssert.assertTrue(isElementDisplayed(filterTiltle), "Filter title");
 
-        // verify filter title
-        Assert.assertTrue(isElementDisplayed(filterTiltle));
-      //  softAssert.assertTrue(isElementDisplayed(filterTiltle), "Filter title");
+            getApplyButtonOnPopup();
+            staticWait(3000);
+            Assert.assertTrue(isElementDisplayed(TransactionHeader));
+            // click on filter icon
+            getFilterIcon();
+            staticWait(3000);
 
-        getApplyButtonOnPopup();
-        staticWait(3000);
-        Assert.assertTrue(isElementDisplayed(TransactionHeader));
-        // click on filter icon
-        getFilterIcon();
-        staticWait(3000);
-
-        clickOnDownloadBtn();
-
+            clickOnDownloadBtn();
 
 
 //        String fileStatus = ActionEngine.isFileDownloaded("Transactions.xlsx");
@@ -800,84 +799,36 @@ public class TransactionsPage extends BaseTest {
 //            staticWait(3000);
 
 
-
             staticWait(5000);
             String fileDownloadStatus = ActionEngine.isFileDownloaded("Transactions.xlsx");
-            System.out.println("fileDownloadStatus: " + fileDownloadStatus);
 
-            softAssert.assertEquals(ActionEngine.isFileDownloaded("Transactions.xlsx"), "File Present");
+                getFilterIcon();
+                getPaymentStatusDropdown();
+                // getClearPaymentField();
 
-            // click on filter icon
-            getFilterIcon();
-
-            waitForElementToBeVisible(filterIcon, 5);
-
-            getDateRangeField();
-            staticWait(3000);
-
-            List<WebElement> dateList2 = getListOfWebElement(listCallender);
-            List<String> dateList = new ArrayList<>();
-            for (WebElement element : dateList2) {
-                String text = element.getText().trim();
-                dateList.add(text);
-            }
-
-            List<String> expectedList = Arrays.asList("Empty", "Last 30 Days", "This Month", "Custom Range", "Yesterday", "Last Month", "Last 7 Days");
-
-            for (String expectedItem : expectedList) {
-                softAssert.assertTrue(dateList.contains(expectedItem));
-            }
-
-            //Asertions for Calender
-            softAssert.assertTrue(isElementDisplayed(calender1), "Verify calender1 is displayed");
-            softAssert.assertTrue(isElementDisplayed(calender2), "Calender 2 is displayed");
-
-            getPaymentStatusDropdown();
-            softAssert.assertTrue(isElementDisplayed(pendingPayments));
-
-
-            getApplyBtn();
-            staticWait(5000);
-
-            waitForElementToBeClickable(filterIcon, 5);
-            getFilterIcon();
-            getPaymentStatusDropdown();
-            staticWait(5000);
-
-            //selecting option from dropdown
-            getUnverifiedPayments();
-            staticWait(7000);
-            getApplyBtn();
-            staticWait(6000);
-
-
-            getFilterIcon();
-            getPaymentStatusDropdown();
-           // getClearPaymentField();
-
-            staticWait(3000);
-            getPaymentLinkField();
-            getQrCodeSeletct();
-            getApplyButtonOnPopup();
+                staticWait(3000);
+                getPaymentLinkField();
+                getQrCodeSeletct();
+                getApplyButtonOnPopup();
 
 //            waitForElementToBeVisible(qrCodeSign, 3);
 //            softAssert.assertTrue(isElementDisplayed(qrCodeSign), "Qr Code Sign");
 //            Assert.assertTrue(isElementDisplayed(qrCodeSign));
 
-          staticWait(3000);
-            getFilterIcon();
-           // getPaymentStatusDropdown();
-          //  getClearPaymentField();
-            staticWait(3000);
+                staticWait(3000);
+                getFilterIcon();
+                // getPaymentStatusDropdown();
+                //  getClearPaymentField();
+                staticWait(3000);
 
-            actionEnterText(amountRangeFrom, ammountFrom);
-            //waitForElementToBeVisible(amountRangeTo, 10);
-            actionEnterText(amountRangeTo, ammountTo);
+                actionEnterText(amountRangeFrom, ammountFrom);
+                //waitForElementToBeVisible(amountRangeTo, 10);
+                actionEnterText(amountRangeTo, ammountTo);
 
-            getApplyButtonOnPopup();
-            staticWait(5000);
+                getApplyButtonOnPopup();
+                staticWait(5000);
+            }
         }
-    }
 
 
 

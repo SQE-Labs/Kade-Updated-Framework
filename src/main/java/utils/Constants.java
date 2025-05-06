@@ -146,7 +146,7 @@ public interface Constants {
     String defaultCurrency = "USD";
     String defaultTaxRate = "0.000%";
     String currentPlan= "Current plan";
-    String visavalue = "Visa1111";
+    String visavalue = "Visa 1111";
 
     //Store Names
     public static String AutomationBillFlow = "Automation Bill Flow";  // Flow 1 without plan

@@ -36,6 +36,9 @@
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="qa.tests.TransactionsTest"/>
+             <class name="qa.tests.MyStoreTest" />
+            <class name="qa.tests.PaymentsAndRefundTest" />
         </classes>
+
     </test>
 </suite>
