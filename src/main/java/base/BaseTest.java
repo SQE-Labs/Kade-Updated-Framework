@@ -6,7 +6,10 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.Random;
 import java.util.Set;
+
 import logger.Log;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -23,6 +26,7 @@ import org.openqa.selenium.support.ui.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.asserts.SoftAssert;
@@ -39,15 +43,14 @@ public class BaseTest {
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     protected static ConfigFileReader configReader;
     protected static SoftAssert softAssert;
-    private By locator = null;
+
+
+    public static PageObjectManager pageObjectManager = PageObjectManager.getInstance();
+
 
     private By target = null;
 
 
-
-    public BaseTest() {
-        this.locator = locator;
-    }
 
     /**
      * Set the environment from the test parameter.
@@ -160,7 +163,7 @@ public class BaseTest {
      * @param millis - The wait time in milliseconds.
      */
     public void staticWait(long millis) {
-        log.debug("Static wait for {} ms.");
+        log.debug("Static wait for {} ms.", millis);
         try {
             Thread.sleep(millis);
         } catch (InterruptedException e) {
@@ -276,36 +279,12 @@ public class BaseTest {
     /**
      * Scrolls to the specified element using JavaScript.
      *
-     * @param element - The By locator for the element.
+     * @param locator - The By locator for the element.
      */
-    public static void scrollToElement(By element) {
-        JavascriptExecutor jse = (JavascriptExecutor) getDriver() ;
-        WebElement ele = getDriver() .findElement(element);
-        try {
-            jse.executeScript("arguments[0].scrollIntoView(true);", ele);
-        } catch (Exception e) {
-            throw new RuntimeException (e);
-        }
-    }
-    public static void scrollToDown() {
-        JavascriptExecutor js = (JavascriptExecutor) getDriver();
-        try {
-            js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
-    // Scroll up to an element
-    public void scrollToUp(By element) {
-        JavascriptExecutor js = (JavascriptExecutor) getDriver();
-        WebElement ele = getDriver() .findElement(element);
-        try {
-            js.executeScript("window.scrollTo(0, 0);");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public void scrollToElement(By locator) {
+        log.info("Scrolling to element: {}", locator);
+        WebElement element = getDriver().findElement(locator);
+        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
     /**
@@ -362,6 +341,18 @@ public class BaseTest {
             return false;
         }
     }
+    public boolean isToggleEnabled(By locator) {
+        log.info("Checking if toggle is enabled: {}", locator);
+        try {
+            WebElement toggle = getDriver().findElement(locator);
+            boolean isEnabled = toggle.isSelected();
+            log.info("Toggle state: {}", isEnabled);
+            return isEnabled;
+        } catch (NoSuchElementException e) {
+            log.warn("Toggle not found: {}", locator);
+            return false;
+        }
+    }
 
     /**
      * Checks whether the element is enabled.
@@ -411,7 +402,6 @@ public class BaseTest {
     public static void waitForElementInVisible(By locator, int waitTime) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(waitTime));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
-
     }
 
     /**
@@ -656,7 +646,7 @@ public class BaseTest {
         waitForLoaderToDisappear(loaderLocator, timeout);
     }
 
-    public static PageObjectManager pageObjectManager = PageObjectManager.getInstance();
+
 
 
     //login method
@@ -824,6 +814,10 @@ public class BaseTest {
         return s.toString();
     }
 
+    public static String requiredDigits(float value1, float value2) {
+        return String.format("%.2f", value2); // Formats to 2 decimal places
+    }
+
     public static String requiredString(int n) {
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789" + "abcdefghijklmnopqrstuvxyz";
         StringBuilder s = new StringBuilder(n);
@@ -834,7 +828,6 @@ public class BaseTest {
         }
         return s.toString();
     }
-
     public void cleanByJS(By locator) {
         WebElement element = getDriver().findElement(locator);
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
@@ -851,9 +844,34 @@ public class BaseTest {
             actions.sendKeys(String.valueOf(ch)).perform();
         }}
 
+    public int getCountOfWebElements(By locator) {
+        List<WebElement> webElements = getDriver().findElements(locator);
+        // Return the count of elements
+        return webElements.size();
+    }
 
-}
+    public boolean isElementDisabled(By locator) {
+        log.info("Checking if element is disabled: {}", locator);
+        try {
+            WebElement element = getDriver().findElement(locator);
+            boolean isDisabled = !element.isEnabled() || "true".equals(element.getAttribute("disabled"));
+            log.info("Element disabled state: {}", isDisabled);
+            return isDisabled;
+        } catch (NoSuchElementException e) {
+            log.warn("Element not found: {}", locator);
+            return true; // Treat missing elements as disabled
+        }
+    }
+    public static void scrollToDown() {
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        try {
+            js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    }
 
 
 

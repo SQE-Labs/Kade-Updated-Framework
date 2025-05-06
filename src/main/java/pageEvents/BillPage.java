@@ -400,7 +400,7 @@ public class BillPage extends BaseTest {
 
     public void assertGetRefNotxt() {
         WaitUntilElementVisible(refNoneTxt, 10);
-        scrollToUp(refNoneTxt);
+        scrollToElement(refNoneTxt);
         softAssert.assertTrue(isElementDisplayed(refNoneTxt));
     }
 
@@ -453,7 +453,7 @@ public class BillPage extends BaseTest {
     }
 
     public void reEnterAmountInBillTxtField(String maximumBill, String maximumSecondBill) {
-        scrollToUp(reEnterAmountInBillfield);
+        scrollToElement(reEnterAmountInBillfield);
         actionEnterText(reEnterAmountInBillfield, maximumBill);
     }
 
@@ -992,7 +992,6 @@ public class BillPage extends BaseTest {
                 List<WebElement> selectedElements = getDriver().findElements(By.xpath("//div[@class='list-group-item']"));
                 for (WebElement selectedElement : selectedElements) {
                     staticWait(2000);
-                    scrollToDown();
                     String selectedTxt = selectedElement.getText();
                     Log.info("Selected: " + selectedTxt);
                 }
@@ -1028,6 +1027,7 @@ public class BillPage extends BaseTest {
             }
         }
     }
+
 
     public void getMonthlyFieldValue() {
         List<WebElement> elements = getDriver().findElements(By.xpath("//div[@class='list-group mb-2']/child::label"));
@@ -1131,7 +1131,7 @@ public class BillPage extends BaseTest {
     }
 
     public void clickOnReccuring() {
-        scrollToUp(reccuringMenu);
+        scrollToElement(reccuringMenu);
         staticWait(2000);
         click(reccuringMenu);
         click(reccuringBill);
