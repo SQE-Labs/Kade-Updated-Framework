@@ -422,6 +422,7 @@ public class BillPage extends BaseTest {
     public void clickOnGetRefNotxt() {
         staticWait(4000);
         click(refNoneTxt);
+
         Assert.assertTrue(isElementDisplayed(refNoPopup));
         referenceTxt = "Kevin123" + requiredString(42);
         staticWait(4000);
@@ -1201,7 +1202,8 @@ public class BillPage extends BaseTest {
         getConfirmButton();
 
         //Verify Message popup and Buttons
-        Assert.assertEquals(messagePopupHeader, "Message");
+        String messagePopupHead = getText(messagePopupHeader);
+         Assert.assertEquals(messagePopupHead, "Message");
         Assert.assertTrue(isElementDisplayed(selectCustomer));
         Assert.assertTrue(isElementDisplayed(continueWithoutBtn));
 
