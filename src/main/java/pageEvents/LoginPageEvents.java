@@ -194,25 +194,8 @@ public class LoginPageEvents extends BaseTest {
         enterText(pageObjectManager.getSignUpPage().confirmPasswordField,Constants.validPassword);
         pageObjectManager.getSignUpPage().getSubmitButton();
         softAssert.assertAll();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
+
 
 
 }
