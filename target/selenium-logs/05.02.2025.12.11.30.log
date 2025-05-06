@@ -1,0 +1,2 @@
+2025-05-02 12:11:30,594 [info]: Clicking on By.xpath: //a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']
+2025-05-02 12:11:30,627 [info]: Clicking on By.xpath: //div[text()='Rewards Program']

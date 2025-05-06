@@ -1,0 +1,4 @@
+2025-05-02 11:39:52,179 [info]: Clicking on newBillTxt
+2025-05-02 11:40:25,563 [info]: Clicking on By.xpath: //a[normalize-space()='Sign out']
+2025-05-02 11:41:32,562 [info]: Nothing to be selected
+2025-05-02 11:42:04,955 [info]: Clicking on By.xpath: //a[normalize-space()='Close']
