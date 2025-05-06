@@ -19,6 +19,7 @@ public class GiftCardDashboardTest extends BaseTest {
     private PageObjectManager pageObjectManager = PageObjectManager.getInstance();
     private GiftCardDashboardPage giftCardPage = pageObjectManager.getGiftCardPage();
 
+    private GiftCardDashboardPage giftCardPage = pageObjectManager.getGiftCardDashboardPage();
     @Test(priority = 0, enabled = true, description = "Verify that appropriate information message appears after clicking on 'Gift Card Dashboard' tab, when not store is active")
     public void verifyInformationMsgNoActiveStore() {
         giftCardPage.verifyInformationMsgNoActiveStore();
@@ -160,25 +161,11 @@ public class GiftCardDashboardTest extends BaseTest {
     }
 
     @Test(priority = 25, enabled = true, description = "TC_4_02 Verify that appropriate setting options appears on 'Gift Card Configuration' popup, after clicking on 'Confguration' link, on 'Gift Card Dashboard' page.")
-    public void verifyFundingSourceAsText() {
-        giftCardPage.verifyFundingSourceAsText();
-
-
-    }
-
+    public void verifyFundingSourceAsText() {giftCardPage.verifyFundingSourceAsText();}
     @Test(priority = 26, enabled = true, description = "Verify that user is not allowed to select past dates in 'Start Date' and 'Exp. Date' fields respectively, on  'Create gift card' popup.")
-    public void verifyPastStartDatesDisabled() {
-        giftCardPage.verifyPastStartDatesDisabled();
-
-
-    }
-
+    public void verifyPastStartDatesDisabled() {giftCardPage.verifyPastStartDatesDisabled();}
     @Test(priority = 27, enabled = true, description = "Verify that user is not allowed to select past dates in 'Start Date' and 'Exp. Date' fields respectively, on  'Create gift card' popup.")
-    public void verifyPastEndDateDisabled() {
-        giftCardPage.verifyPastEndDateDisabled();
-
-
-    }
+    public void verifyPastEndDateDisabled() {giftCardPage.verifyPastEndDateDisabled();}
 
     @Test(priority = 28, enabled = true, description = "Verify that validation message appears on entering character in 'Start Date' or 'Exp. Date' field, on 'Create gift card' popup.")
     public void verifyStartDateRejectsCharacters() {
@@ -299,6 +286,49 @@ public class GiftCardDashboardTest extends BaseTest {
     public void verifyStatusOfGiftCardAfterEndDate (){
 
         giftCardPage.verifyStatusOfGiftCard();
+
+    @Test(priority = 33, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verifyFundingResourceOptional() {
+        giftCardPage.verifyFundingResourceTextField();
+    }
+
+    @Test(priority = 34, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verifyFundingResourceAsList() {
+        giftCardPage.verifyFundingResourceAsList();
+    }
+    @Test(priority = 34, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verifyReferenceNoFieldMaxLen50() {
+        giftCardPage.verifyReferenceNoFieldMaxLen50();
+    }
+    @Test(priority = 35, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verifyMemoFieldMaxLen500() {
+        giftCardPage.verifyMemoFieldMaxLen500();
+    }
+
+    @Test(priority = 36, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verifyPastStartDateIsDisabled() {
+        giftCardPage.verifyPastStartDateIsDisabled();
+    }
+    @Test(priority = 37, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verifyPastEndDateIsDisabled() {
+        giftCardPage.verifyPastEndDateIsDisabled();
+    }
+
+    @Test(priority = 38, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verifyStartDateRejectsChar() {
+        giftCardPage.verifyStartDateRejectsChar();
+    }
+
+    @Test(priority = 39, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verifyEndDateRejectsChar() {
+        giftCardPage.verifyEndDateRejectsChar();
+    }
+    @Test(priority = 40, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verifyStatusChange() {
+        giftCardPage.verifyStatusChange();
+    }
+    @Test(priority = 41, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verify() {
 
 
     }
