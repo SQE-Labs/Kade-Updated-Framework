@@ -362,8 +362,8 @@ public class TransactionsPage extends BaseTest {
         getManualChargeTab();
 
 //        staticWait(6000);
-        switchToCreditCardFrame();
-        payments.getPayThroughCreditCard();
+         switchToCreditCardFrame();
+         payments.getPayThroughCreditCard();
          getProcessBtn();
          waitForElementToBeVisible(sendReceiptTitle,5);
 

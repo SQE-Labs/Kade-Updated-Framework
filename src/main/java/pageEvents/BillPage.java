@@ -1200,7 +1200,7 @@ public class BillPage extends BaseTest {
         getConfirmButton();
 
         //Verify Message popup and Buttons
-        Assert.assertEquals(messagePopupHeader, "Message");
+        Assert.assertEquals(getText(messagePopupHeader), "Message");
         Assert.assertTrue(isElementDisplayed(selectCustomer));
         Assert.assertTrue(isElementDisplayed(continueWithoutBtn));
 
