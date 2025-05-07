@@ -5,6 +5,7 @@ import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import utils.Constants;
 
 import java.awt.*;
@@ -51,38 +52,33 @@ public class QRCodePage extends BaseTest {
     By tickets = By.xpath("//span[text()='Tickets/Events']");
     By donations = By.xpath("//span[text()='Donations']");
     By flexibleAmounteader = By.xpath("//p[text()='Flexible amount']");
-    By editPaymentLink=By.xpath("//h1[normalize-space()='Edit Payment link']");
-    By titleField=By.xpath("//input[@name='description']");
-    By amountDesc=By.xpath("//label[text()='Amount description']/../child::textarea");
-    By editContent=By.xpath("//button[text()='Edit content']");
-    By customizeContent=By.xpath("//h5[text()='Customize content']");
-    By title=By.xpath("(//div[@class='qr-template']/div)[1]");
-    By titleFieldOnPopup=By.xpath("//input[@name='title']");
-    By saveBtnOnFieldOnPopup=By.xpath("//input[@name='title']/../../child::div/button[text()='Save']");
-    By uploadImage=By.xpath("(//div[@class='template-main-image mb-3'])[1]");
-    By content=By.xpath("(//div[@data-field='content'])[1]");
-    By contentPage=By.xpath("//h5[text()='HTML Editor']");
-    By enterInContentPage=By.xpath("//h5[text()='HTML Editor']/../..//p");
-    By addBtn =By.xpath("//span[text()='Add']/..");
-    By saveBtnContentPage=By.xpath("//h5[text()='HTML Editor']/../../child::div//button[text()='Save']");
-    By fieldType=By.xpath("//select[@name='type']");
-        By selectValue=By.xpath("//option[text()='Full name']");
-        By titleNewField=By.xpath("//input[@name='name']");
-        By enableToggle=By.xpath("(//i[@class='far fa-toggle-off custom-check-off '])[4]");
-        By saveBtnOnNewField=By.xpath("(//button[text()='Save'])[2]");
-
-
-
-
-
-
-
-
-
-
-
-
-
+    By editPaymentLink = By.xpath("//h1[normalize-space()='Edit Payment link']");
+    By titleField = By.xpath("//input[@name='description']");
+    By amountDesc = By.xpath("//label[text()='Amount description']/../child::textarea");
+    By editContent = By.xpath("//button[text()='Edit content']");
+    By customizeContent = By.xpath("//h5[text()='Customize content']");
+    By title = By.xpath("(//div[@class='qr-template']/div)[1]");
+    By titleFieldOnPopup = By.xpath("//input[@name='title']");
+    By saveBtnOnFieldOnPopup = By.xpath("//input[@name='title']/../../child::div/button[text()='Save']");
+    By uploadImage = By.xpath("(//div[@class='template-main-image mb-3'])[1]");
+    By content = By.xpath("(//div[@data-field='content'])[1]");
+    By contentPage = By.xpath("//h5[text()='HTML Editor']");
+    By enterInContentPage = By.xpath("//h5[text()='HTML Editor']/../..//p");
+    By addBtn = By.xpath("//span[text()='Add']/..");
+    By saveBtnContentPage = By.xpath("//h5[text()='HTML Editor']/../../child::div//button[text()='Save']");
+    By fieldType = By.xpath("//select[@name='type']");
+    By selectValue = By.xpath("//option[text()='Full name']");
+    By titleNewField = By.xpath("//input[@name='name']");
+    By enableToggle = By.xpath("(//i[@class='far fa-toggle-off custom-check-off '])[4]");
+    By saveBtnOnNewField = By.xpath("(//button[text()='Save'])[2]");
+    By editIcon = By.xpath("//div[@class='-titlediv- flex-grow-1 mx-2']/..//i[@class='fal fa-pencil']");
+    By addButton = By.xpath("//span[text()='Add']");
+    By enterTxt = By.xpath("(//input[@name='name'])[1]");
+    By correctIcon = By.xpath("(//button[@type='submit'])[1]");
+    By deleteIcon=By.xpath("//div[contains(@class,'mb-2 border')]//button[@type='button']/i[@class='far fa-trash']/..");
+    By calender=By.xpath("//input[@name='endDate']");
+    By monthHeader=By.xpath("(//th[@class='month'])[1]");
+    By toggleBtn=By.xpath("((//label[@class='custom-checkbox'])[3]/i)[1]");
 
 
     public void clickOnmanageBusinessMenu() {
@@ -152,57 +148,101 @@ public class QRCodePage extends BaseTest {
     public void clickOnFlexibleAmount() {
         click(flexibleAmount);
     }
-    public void enterAmountDesc(String amountTxt){
-        actionEnterText(amountDesc,amountTxt);
+
+    public void enterAmountDesc(String amountTxt) {
+        actionEnterText(amountDesc, amountTxt);
     }
+
     public void clickOneditContent() {
         click(editContent);
     }
+
     public void clickOncustomizeContent() {
         click(customizeContent);
     }
 
     public void clickOntitle() {
         staticWait(5000);
-        hoverAndClick(title,title);
+        hoverAndClick(title, title);
     }
+
     public void clickOntitleFieldOnPopup(String enterTitleField) {
-        actionEnterText(titleFieldOnPopup,enterTitleField);
+        actionEnterText(titleFieldOnPopup, enterTitleField);
     }
+
     public void clickOnSaveBtnOnFieldOnPopup() {
         click(saveBtnOnFieldOnPopup);
     }
+
     public void clickOncontent() {
         click(content);
-        softAssert.assertTrue(isElementDisplayed(contentPage ));
+        softAssert.assertTrue(isElementDisplayed(contentPage));
     }
+
     public void enterInContentPage(String txtEnterInContentPage) {
-        actionEnterText(enterInContentPage,txtEnterInContentPage);
-     }
+        actionEnterText(enterInContentPage, txtEnterInContentPage);
+    }
 
     public void clickOnsaveBtnContentPage() {
         click(saveBtnContentPage);
-     }
-     public void clickOnAddBtn(){
+    }
+
+    public void clickOnAddBtn() {
         staticWait(3000);
         scrollToElement(addBtn);
         click(addBtn);
-     }
-     public void selectfieldType(){
+    }
+
+    public void selectfieldType() {
         click(fieldType);
         staticWait(2000);
         click(selectValue);
-     }
-     public void entertitleNewField(String titleNewFieldTxt){
-        actionEnterText(titleNewField,titleNewFieldTxt);
-     }
-     public void clickOnToggle(){
-        click(enableToggle);
-     }
-     public void clickOnsaveBtnOnNewField(){
-        click(saveBtnOnNewField);
-     }
+    }
 
+    public void entertitleNewField(String titleNewFieldTxt) {
+        actionEnterText(titleNewField, titleNewFieldTxt);
+    }
+
+    public void clickOnToggle() {
+        click(enableToggle);
+    }
+
+    public void clickOnsaveBtnOnNewField() {
+        click(saveBtnOnNewField);
+    }
+
+    public void clickOnEditIcon() {
+        click(editIcon);
+    }
+
+    public void enterTxtInFlexibleAmtField(String Txt) {
+        actionEnterText(enterTxt, Txt);
+    }
+    public void clickOnCorrectIcon(){
+        click(correctIcon);
+    }
+    public void clickOndeleteIcon(){
+        click(deleteIcon);
+    }
+
+    public void clickOnCalenderIcon(){
+        scrollToElement(calender);
+        click(calender);
+        staticWait(2000);
+        String calenderHead=getText(monthHeader);
+        Log.info(calenderHead);
+        Assert.assertTrue(isElementDisplayed(monthHeader));
+    }
+    public void enableToggle(){
+        staticWait(2000);
+        scrollToElement(toggleBtn);
+        if(isElementDisabled(toggleBtn)){
+            click(toggleBtn);
+        }
+        else{
+            Log.info("Toggle button is on");
+        }
+    }
 
 
 
@@ -212,13 +252,11 @@ public class QRCodePage extends BaseTest {
         String absolutePath = Paths.get(projectPath, relativePath).toString();
         uploadImageFile(absolutePath);
     }
+
     public void uploadImageInStoreLogo() throws AWTException {
 
         uploadImageAsAttachment("/src/main/resources/ImageResources/image/BillDummyImg");
     }
-
-
-
 
 
     public void selectStore() {
@@ -351,7 +389,7 @@ public class QRCodePage extends BaseTest {
     public void flexibleAmountQrCode(String enterAmount, String enterTitleField, String txtEnterInContentPage) throws AWTException {
         createNewQrCode();
         softAssert.assertTrue(isElementDisplayed(editPaymentLink));
-        String titleLength=getAttribute(titleField,"maxlength");
+        String titleLength = getAttribute(titleField, "maxlength");
         Log.info(titleLength);
         enterAmountDesc(enterAmount);
         clickOneditContent();
@@ -364,16 +402,26 @@ public class QRCodePage extends BaseTest {
         clickOncontent();
         enterInContentPage(txtEnterInContentPage);
         clickOnsaveBtnContentPage();
-     }
+    }
 
-     public void addAdditionalField(String entertitleNewFieldTxt){
-         selectStore();
-         clickOnnewQrCode();
-         clickOnFlexibleAmount();
-         clickOnAddBtn();
-         selectfieldType();
-         entertitleNewField(entertitleNewFieldTxt);
-         clickOnToggle();
-         clickOnsaveBtnOnNewField();
-     }
+    public void addAdditionalField(String entertitleNewFieldTxt) {
+        selectStore();
+        clickOnnewQrCode();
+        clickOnFlexibleAmount();
+        clickOnAddBtn();
+        selectfieldType();
+        entertitleNewField(entertitleNewFieldTxt);
+        clickOnToggle();
+        clickOnsaveBtnOnNewField();
+    }
+
+    public void editAdditionalFields(String Txt) {
+        staticWait(3000);
+        clickOnEditIcon();
+        enterTxtInFlexibleAmtField(Txt);
+        clickOnCorrectIcon();
+        clickOndeleteIcon();
+        clickOnCalenderIcon();
+        enableToggle();
+    }
 }

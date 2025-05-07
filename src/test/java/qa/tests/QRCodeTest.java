@@ -51,7 +51,6 @@ public class QRCodeTest extends BaseTest {
     @Test(priority = 7, enabled = true, description = "")
     public void addAdditionalField()  {
         QrCode.addAdditionalField("I am done");
+        QrCode.editAdditionalFields("Updated Header");
     }
-
-
 }

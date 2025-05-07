@@ -20,7 +20,7 @@
 
 <!--        <classes>-->
 <!--&lt;!&ndash;            <class name="qa.tests.PaymentsAndRefundTest" />&ndash;&gt;-->
-<!--             <class name="qa.tests.BillTest" />-->
+<!--             <class name="qa.tests.BillTest" />&ndash;&gt;-->
 <!--        </classes>-->
 <!--         -->
 
@@ -37,6 +37,8 @@
         <classes>
 
             <class name="qa.tests.PaymentsAndRefundTest" />
+            <class name="qa.tests.BillTest" />
+
         </classes>
 
     </test>
