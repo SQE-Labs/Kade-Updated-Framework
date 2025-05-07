@@ -271,6 +271,7 @@ public class BaseTest {
         staticWait(2000);
     }
     public void scrollToTopOfPage() {
+        staticWait(2000);
         log.info("Scrolling to the top of the page");
         ((JavascriptExecutor) getDriver()).executeScript("window.scrollTo(0, 0);");
         staticWait(2000);
