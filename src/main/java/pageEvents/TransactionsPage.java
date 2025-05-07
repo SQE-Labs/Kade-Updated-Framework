@@ -5,17 +5,15 @@ import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 import utils.Constants;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class TransactionsPage extends BaseTest {
     PaymentPage payments = new PaymentPage();
+    PaymentMethod paymentMethod = new PaymentMethod();
     //Locators
     public By transactionRow = By.xpath("//div[contains(@class,'bg-white border')]");
     public By billAmount = By.xpath("//div[@class='display-6 fw-bold pt-2']");
@@ -110,6 +108,7 @@ public class TransactionsPage extends BaseTest {
     By amount = By.cssSelector(".d-flex.flex-column.align-items-end");
     By dropdown = By.xpath("//select[@name='paymentStatus']");
     By crossIconOfCurrentPaid = By.xpath("//button[@class='btn-close']");
+    By processBtn = By.xpath("(//button[starts-with((text()), 'Process')])[2]");
 
 
     BillPage bills = new BillPage();
@@ -250,6 +249,9 @@ public class TransactionsPage extends BaseTest {
     public void getCrossIconOfCurrentPaidBill() {
         click(crossIconOfCurrentPaid);
     }
+    public void getProcessBtn(){
+        click(processBtn);
+    }
 
 
 //    Select select = new Select((WebElement)dropdown);
@@ -362,6 +364,15 @@ public class TransactionsPage extends BaseTest {
 //        staticWait(6000);
         switchToCreditCardFrame();
         payments.getPayThroughCreditCard();
+         getProcessBtn();
+         waitForElementToBeVisible(sendReceiptTitle,5);
+
+        // Verify the Send Receipt Popup is Displayed
+        softAssert.assertTrue(isElementDisplayed(sendReceiptTitle));
+        String text = getText(amountField);
+        softAssert.assertEquals(text, "$" + Constants.amount);
+        String successMsg = getText(successMessage);
+        softAssert.assertEquals(successMsg, "$" + Constants.terminalSuccessMessage);
     }
 
     // TRS 5 b

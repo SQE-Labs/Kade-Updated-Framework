@@ -1,6 +1,7 @@
 package base;
 
 import logger.Log;
+import utils.PropertyUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -13,7 +14,8 @@ import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import pageObjects.PageObjectManager;
 import utils.ConfigFileReader;
-import utils.PropertyUtils;
+
+
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

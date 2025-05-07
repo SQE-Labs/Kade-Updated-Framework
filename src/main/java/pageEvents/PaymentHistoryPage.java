@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 import utils.Constants;
 
 import java.util.ArrayList;

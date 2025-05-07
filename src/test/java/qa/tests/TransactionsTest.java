@@ -17,6 +17,7 @@ public class TransactionsTest extends BaseTest {
     private TransactionsPage transaction = pageObjectManager.getTransactionsPage();
 
 
+
     @Test(priority = 0, enabled = true,description = "TRS 01 a: Verify that list of transactions appears on 'Transaction' page.")
     public void verifyThatListOfTransactionsAppears() {
         transaction.verifyAllElementsOnTransactionPopup();
@@ -60,6 +61,7 @@ public class TransactionsTest extends BaseTest {
     @Test(priority = 5, enabled = true,description = "TRS5 (a) :Verify that store manager is able to charge a customer manually, after stripe payment is configured for a store.")
     public void a3chargeManuallyAfterStripeConfigured() {
         transaction.getManualCharge();
+
 
     }
 

@@ -6,11 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import org.testng.annotations.Test;
-import utils.Constants;
 
-import java.awt.*;
-import java.nio.file.Paths;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -105,7 +101,7 @@ public class PaymentPage extends BaseTest {
     By visaCardName = By.xpath("(//span[contains(text(),'Visa')])[3]");
     By creditCards = By.xpath("//span[text()='New Credit Card']/../../../..");
     By iframeForCard = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[2]");
-    By saveBtn = By.xpath("//button[text()='Save']");
+    public By saveBtn = By.xpath("//button[text()='Save']");
     By thankTxt = By.xpath("//span[text()='Thank']");
     By youTxt = By.xpath("//span[text()='You!']");
     By rateYourExpTxt = By.xpath("//div[normalize-space()='Rate your experience']");
@@ -890,6 +886,7 @@ public class PaymentPage extends BaseTest {
 
     public void getPayThroughCreditCard() {
         //switchToCreditCardFrame();
+        scrollToElement(cardNumberTbx);
         actionEnterText(cardNumberTbx, "4111111111111111");
         actionEnterText(expirationDateTbx, "0230");
         actionEnterText(cvcTbx, "123");

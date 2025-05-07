@@ -1,7 +1,6 @@
 package qa.tests;
 
 import base.BaseTest;
-import logger.Log;
 import org.testng.annotations.Test;
 import pageEvents.BillPage;
 import pageEvents.PaymentHistoryPage;
