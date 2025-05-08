@@ -121,6 +121,36 @@ public class PaymentPage extends BaseTest {
     By zelleSaveBtn = By.xpath("//button[text()='Submit']");
     By payCurrentBalance = By.xpath("//button[text()='Pay the current balance']/..");
 
+    // Affirm payment button
+    By affirmAccount = By.xpath("//span[text()='Affirm']/../../../..");
+    By processBtnOfAffirm = By.xpath("//button[starts-with(text(),'Process')]");
+    By paymentInformationTitle = By.xpath("//h5[text()='Payment information']");
+    By affirmTestPageTitle = By.xpath("//h1[@class='common-SectionTitle']");
+    By authorizeTestPaymentBtn = By.xpath("//button[starts-with(text(),'Authorize Test Payment')]");
+    public By paymentDetails = By.xpath("//span[starts-with(@class,'payment-logo-bg-sm')]/../../..");
+    By moreDetailsBtn = By.xpath("//button[contains(@class,'btn btn-link w-100')]//i/..");
+    public By moreDetails = By.xpath("//div[@class='card-body collapse show']");
+
+
+
+
+
+    public void clickOnAffirmButton(){
+        click(affirmAccount);
+    }
+    public void getProcessButtonOfAffirm(){
+        click(processBtnOfAffirm);
+    }
+    public void getAuthorizeTestPaymentBtn(){
+        click(authorizeTestPaymentBtn);
+    }
+    public void getPayemntDetails(){
+        click(paymentDetails);
+    }
+
+    public void getMoreDetailsBtn(){
+        clickElementByJS(moreDetailsBtn);
+    }
 
     public void clickOnProcessPaymentBtn() {
         staticWait(2000);
@@ -986,5 +1016,38 @@ public class PaymentPage extends BaseTest {
         switchToDefaultContent();
         staticWait(10000);
         clickOnSaveBtn();
+    }
+    public void billPaymentThroughAffirmMethod(){
+        staticWait(3000);
+        clickOnSignOut();
+        LoginAsCustomer();
+        clickOnBillIcon();
+        clickOnBill();
+        clickOnPayNowBtn();
+
+        staticWait(3000);
+        clickOnchangeBtn();
+
+        waitForElementToBeVisible(affirmAccount,5);
+
+        // clicking on affirm payment method button
+        clickOnAffirmButton();
+
+        waitForElementToBeVisible(paymentInformationTitle,5);
+        Assert.assertTrue(isElementDisplayed(paymentInformationTitle),"Payment information Title ");
+//        waitForElementToBeVisible(processBtnOfAffirm,5);
+        staticWait(5000);
+
+        // click on 'Process' button
+
+        getProcessButtonOfAffirm();
+
+        waitForPageLoad();
+
+        // verify Affirm test page appears
+        Assert.assertTrue(isElementDisplayed(affirmTestPageTitle),"Affirm Test page title");
+
+        scrollToElement(authorizeTestPaymentBtn);
+        getAuthorizeTestPaymentBtn();
     }
 }

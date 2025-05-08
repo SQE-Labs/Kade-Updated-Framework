@@ -12,9 +12,16 @@
         <parameter name="headless" value="false" />
 
 
-        <packages>
-            <package name="qa.tests" />
-        </packages>
+<!--        <packages>-->
+<!--            <package name="qa.tests" />-->
+<!--        </packages>-->
+        <classes>
+            <class name="qa.tests.MyStoreTest"></class>
+            <class name="qa.tests.BillTest"></class>
+            <class name="qa.tests.PaymentsAndRefundTest"></class>
+            <class name="qa.tests.TransactionsTest"></class>
+
+        </classes>
 
 
 

@@ -126,6 +126,8 @@ public class BillTest extends BaseTest {
     public void verifyBillCreationByAddingpaymentMethod() {
         bill.verifyBillCreationByAddingpaymentMethod("yonro@yopmail.com");
     }
+
+
 }
 
 
