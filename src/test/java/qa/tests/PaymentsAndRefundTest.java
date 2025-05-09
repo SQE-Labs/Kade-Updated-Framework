@@ -137,4 +137,10 @@ public class PaymentsAndRefundTest extends BaseTest {
         payment.getPayemntDetails();
     }
 
+    @Test(priority = 14, enabled = true, description = "Verify that creating a bill and paying through Auto payment method.")
+    public void verifyCreatingABillAndPayingThroughAutoPaymentMethod(){
+        bill.createBillWithCustomerAndPayThroughAutoPayment();
+
+    }
+
 }

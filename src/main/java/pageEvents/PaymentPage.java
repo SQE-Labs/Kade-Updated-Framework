@@ -27,6 +27,7 @@ public class PaymentPage extends BaseTest {
     By cardNumberTbx = By.xpath("//input[@id='Field-numberInput']");
     By expirationDateTbx = By.xpath("//input[@id='Field-expiryInput']");
     By cvcTbx = By.xpath("//input[@id='Field-cvcInput']");
+    By autoPaymentCardFrame = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[1]");
 
     public By swipeBtn = By.xpath("//input[@class='slider -pm-none-']");
 
@@ -299,7 +300,7 @@ public class PaymentPage extends BaseTest {
     }
 
     public void switchToFrame() {
-        staticWait(4000);
+        staticWait(3000);
         switchToFrame(iframeForCard);
     }
 
@@ -915,7 +916,7 @@ public class PaymentPage extends BaseTest {
     }
 
     public void getPayThroughCreditCard() {
-        //switchToCreditCardFrame();
+        switchToFrame();
         scrollToElement(cardNumberTbx);
         actionEnterText(cardNumberTbx, "4111111111111111");
         actionEnterText(expirationDateTbx, "0230");
@@ -1049,5 +1050,20 @@ public class PaymentPage extends BaseTest {
 
         scrollToElement(authorizeTestPaymentBtn);
         getAuthorizeTestPaymentBtn();
+    }
+    public void getPayThroughCreditCardThroughAutoPayment() {
+        switchToFrame(autoPaymentCardFrame);
+        scrollToElement(cardNumberTbx);
+        actionEnterText(cardNumberTbx, "4111111111111111");
+        actionEnterText(expirationDateTbx, "0230");
+        actionEnterText(cvcTbx, "123");
+        actionEnterText(countryDropDown, "Australia");
+        staticWait(2000);
+        switchToDefaultWindow();
+        scrollToElement(saveBtn);
+
+        waitForElementToBeClickable(saveBtn,4);
+        clickOnSaveBtn();
+
     }
 }
