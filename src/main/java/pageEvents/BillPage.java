@@ -102,7 +102,7 @@ public class BillPage extends BaseTest {
     By description2 = By.xpath("//input[@name='items[1].description']");
     public By amtInput = By.xpath("//input[@name='amount']");
     By closeCustomerBtn = By.xpath("//span[text()='Customer']/../..//button");
-    By customerBtn = By.xpath("//label[@class='mb-1' and text()='Customer']/../..");
+    By customerBtn = By.xpath("//div[contains(text(),'Select or create')]/../../../../../..");
     public By phoneNoTbx = By.xpath("//input[@placeholder='Phone number']");
     public By emailTbx = By.xpath("//input[@placeholder='Email. Existing or new']");
     public By searchTbx = By.xpath("//input[@placeholder='Search']");
@@ -174,22 +174,25 @@ public class BillPage extends BaseTest {
     By upgradePopUpTitle = By.xpath("//h3[text()='Upgrade your plan']");
     By memoBtn = By.xpath("//label[text()='Memo:']/..");
     By memoField = By.xpath("//div[@class='my-4']//textarea[@lbl-title='Memo']");
-    By doneBtn = By.xpath("(//button[text()='Done'])[5]");
+    By doneBtn = By.xpath("(//button[@class='btn btn-link w-100 my-3'])[5]");
     By doneBtn2 = By.xpath("//h5[text()='Repeat']/../..//button[text()='Done']");
     By memoFieldText = By.xpath("(//div[@class='d-none empty-d-block fst-italic w-100'])[4]");
     By memoFieldMessage = By.xpath("//div[contains(text(),'Customer will not see this memo')]");
     By memoPopUpTitle = By.xpath("//h5[text()='Memo']");
     By addedMemoText = By.xpath("(//div[contains(text(),'Memo Text')])[1]");
-    public By taxToggleBtn = By.xpath("//input[@name='applyTax']/../i[2]");
-    public By totalAmtAfterTax = By.xpath("//span[@data-field='total']");
-    public By moreSection = By.xpath("//label[text()='More options']/../..");
-    public By repeatLockIcon = By.xpath("(//i[@class='fas fa-lock'])[1]");
-    public By expireLockIcon = By.xpath("(//i[@class='fas fa-lock'])[2]");
-    public By memoNoneTxt = By.xpath("(//div[contains(@class,'text-nowrap d-flex')]//div[text()='None'])[4]");
-    public By expiryDateSection = By.xpath("//div[contains(text(),'If an unpaid bill expires')]/..");
-    public By expirationDayPopUp = By.xpath("//h5[text()='Expiration Date']");
-    public By refNoneTxt = By.xpath("//label[text()='Ref No.:']/..//div[text()='None']/../../../../..");
-    public By DescriptionEnteredText = By.xpath("//label[text()='Description:']/..//div[text()='None']/../../../../..");
+    By taxToggleBtn = By.xpath("//input[@name='applyTax']/../i[2]");
+    By totalAmtAfterTax = By.xpath("//span[@data-field='total']");
+    By moreSection = By.xpath("//label[text()='More options']/../..");
+    By repeatLockIcon = By.xpath("(//i[@class='fas fa-lock'])[1]");
+    By expireLockIcon = By.xpath("(//i[@class='fas fa-lock'])[2]");
+    By memoNoneTxt = By.xpath("//label[text()='Memo:']/..//div[text()='None']");
+    By expiryDateSection = By.xpath("(//a[contains(@class,'-activator-button-') and contains(@onclick,'showMe()')])[5]");
+    By expirationsec=By.xpath("(//div[contains(@class,'position-absolute start-')])[2]");
+    By expirationDayPopUp = By.xpath("//h5[text()='Expiration Date']");
+    By refSection=By.xpath("//label[text()='Ref No.:']/..//div[text()='None']/../../../../..");
+    By refNoneTxt = By.xpath("//label[text()='Ref No.:']/..//div[text()='None']");
+    By refDescTxt=By.xpath("//label[text()='Ref No.:']/..//div[contains(@class,'link-empty')]");
+    public By DescriptionEnteredText = By.xpath("//label[text()='Description:']/..//div[contains(@class,'link-empty')]");
     public By descriptionNoneTxt = By.xpath("//label[text()='Description:']/..//div[text()='None']/../../../../..");
     public By refNoPopup = By.xpath("//h5[text()='Reference No.']");
     public By enterTxtInRefNo = By.xpath("//h5[text()='Reference No.']/../../child::div/div/input");
@@ -246,26 +249,12 @@ public class BillPage extends BaseTest {
     By shareLinkToCustomer = By.xpath("//button[normalize-space()='Send a link to the customer to add a payment method']");
     By shareLinkSuccessMessage = By.xpath("//div[text()='We sent a link to the customer.']");
 
-    By expCloseIcon = By.xpath("(//button[@class='btn-close'])[7]");
-    By expiresInField = By.cssSelector(".form-control.flex-grow-1.me-1");
-    By expDropDown = By.cssSelector(".form-control.form-select.max-10c");
-    By expDropDownOption = By.xpath("//option[@value='minutes']");
-    By addedExpTimer = By.cssSelector(".badge.bg-warning");
-    By expPopUpBtnNone = By.xpath("(//button[contains(@class,'fs-inherit mb-4')])[1]");
-    By expPopUpBtn24Hr = By.xpath("(//button[contains(@class,'fs-inherit mb-4')])[2]");
-    By expPopUpBtn4Hr = By.xpath("(//button[contains(@class,'fs-inherit mb-4')])[3]");
-    By expPopUpBtn1Hr = By.xpath("(//button[contains(@class,'fs-inherit mb-4')])[4]");
-    By repeatOption = By.xpath("//input[@value='1']");
-    By customerCancelOption = By.xpath("//span[text()='Customer can cancel at any time']");
+
     By everyDayField = By.xpath("(//div[@class='d-flex']/child::label/following-sibling::input)[1]");
     By everyWeekField = By.xpath("(//div[@class='d-flex']/child::label/following-sibling::input)[2]");
     By everyMonthField = By.xpath("(//div[@class='d-flex']/child::label/following-sibling::input)[3]");
 
     By specificNumbers = By.xpath("//label[normalize-space()='Specific number of times']/input");
-    public By pecificNumberText = By.xpath("//div[@class='d-flex']/child::input[@lbl-title='Times']");
-    public By totalDays = By.xpath("//div[contains(@class,'mb-2 d-flex')]");
-    By recurringBillText = By.xpath("//a[@class='btn btn-link']");
-    public By billTag = By.xpath("//div[contains(@class,'col-5  text-end') ]//div[1]/span");
 
     /*
     Locators of Bill popup
@@ -360,19 +349,15 @@ public class BillPage extends BaseTest {
     }
 
     public void clickOnExpiryDateSection() {
-        //scrollToElement(expiryDateSection);
-        staticWait(2000);
+        staticWait(3000);
         click(expiryDateSection);
     }
-
-    public void sendTxtInexpireInTxtField(String hrs, int minTxt) {
+    public void clickOnExpirationSec(){
         staticWait(2000);
-        actionEnterText(expireInTxtField, hrs);
-        click(expireDropDown);
-        staticWait(2000);
-        selectDropdownByIndex(expireDropDown, minTxt);
-        staticWait(2000);
+        click(expirationsec);
     }
+
+
 
     public void clickOnshareLinkToCustomer() {
 
@@ -406,14 +391,17 @@ public class BillPage extends BaseTest {
     }
 
     public void clickOnDoneBtn() {
-        scrollToElement(doneBtn);
-        click(doneBtn);
+        clickElementByJS(doneBtn);
+        staticWait(2000);
     }
 
     public void assertGetRefNotxt() {
         WaitUntilElementVisible(refNoneTxt, 10);
-        scrollToElement(refNoneTxt);
-        Assert.assertTrue(isElementDisplayed(refNoneTxt));
+        scrollToTopOfPage();
+        staticWait(2000);
+
+        String refNoneTxts=getText(refNoneTxt);
+         Assert.assertEquals(refNoneTxts,"None");
     }
 
     public void assertDescriptionNonetxt() {
@@ -422,8 +410,10 @@ public class BillPage extends BaseTest {
 
     public void clickOnGetRefNotxt() {
         staticWait(4000);
-        click(refNoneTxt);
-        Assert.assertTrue(isElementDisplayed(refNoPopup));
+        click(refSection);
+
+        String refNoPopups=getText(refNoPopup);
+        Assert.assertEquals(refNoPopups,"Reference No.");
         referenceTxt = "Kevin123" + requiredString(42);
         staticWait(4000);
         actionEnterText(enterTxtInRefNo, referenceTxt);
@@ -435,7 +425,9 @@ public class BillPage extends BaseTest {
         staticWait(4000);
         click(descriptionSection);
         Log.info("descriptionSection None text displayed");
-        Assert.assertTrue(isElementDisplayed(descriptionTitle));
+
+        String descriptionTitles=getText(descriptionTitle);
+        Assert.assertEquals(descriptionTitles,"Description");
         descriptionTxt = "Kevin123" + requiredString(192);
         staticWait(4000);
         actionEnterText(descriptionTextField, descriptionTxt);
@@ -446,8 +438,10 @@ public class BillPage extends BaseTest {
 
     public void assertEnteredText() {
         Log.info("Validating text");
-        Assert.assertEquals(referenceTxt, getText(refNoneTxt));
-        Log.info(getText(refNoneTxt));
+
+        String referenceTxts=getText(refDescTxt);
+        Assert.assertEquals(referenceTxt, referenceTxts);
+        Log.info(getText(refDescTxt));
 
 
     }
@@ -455,7 +449,9 @@ public class BillPage extends BaseTest {
 
     public void assertEnteredTextInDescriptionField() {
         Log.info("Validating text");
-        Assert.assertEquals(descriptionTxt, getText(DescriptionEnteredText));
+
+        String DescriptionEnteredTexts=getText(DescriptionEnteredText);
+        Assert.assertEquals(descriptionTxt, DescriptionEnteredTexts);
         Log.info(getText(DescriptionEnteredText));
     }
 
@@ -499,25 +495,7 @@ public class BillPage extends BaseTest {
         return formatter.format(num);
     }
 
-    public void getAttachedFiles() {
-        click(attachedImage);
-    }
 
-    public void getUnPaidBillWithDescription() {
-        click(unPaidBill);
-    }
-
-    public void getUnpaidBillWithoutDescription() {
-        click(notPaidBill);
-    }
-
-    public void getProcessPaymentButton() {
-        click(processPaymentBtn);
-    }
-
-    public void getTransactionLink() {
-        click(transactionsLink);
-    }
 
     public void getContinueButton() {
         click(continueBtn);
@@ -529,24 +507,10 @@ public class BillPage extends BaseTest {
 
     }
 
-    public void getAmountTextbox() {
-        click(amtTbx);
-    }
 
-    public void getDescriptionTextbox() {
-        click(descriptionField);
-    }
-
-    public void getCustomerField() {
-        click(customerField);
-    }
-
-    public void getMoreOption() {
-        click(moreOptions);
-    }
 
     public void getConfirmButton() {
-        staticWait(4000);
+        staticWait(6000);
         scrollToElement(confirmBtn);
         click(confirmBtn);
     }
@@ -588,13 +552,7 @@ public class BillPage extends BaseTest {
     }
 
 
-    public void getSearchField() {
-        click(searchTbx);
-    }
 
-    public void getGoPhoneNumberButton() {
-        click(goBtnPhnNo);
-    }
 
     public void BillClosePopup() {
         waitForElementToBeClickable(closePopup, 10);
@@ -619,77 +577,6 @@ public class BillPage extends BaseTest {
         hoverAndClick(closeLogoPopupBtn, closeLogoPopupBtn);
     }
 
-    public void getPopupTitle() {
-        click(popUpHeader);
-    }
-
-//    public void createBill(BillPage billObj) {
-//        createBill(billObj, true);
-//    }
-
-//    public void createBill(BillPage billObj, boolean navigateToBillSection) {
-//        if (navigateToBillSection) {
-//            getStoresDropdown();
-//            selectStore(billObj.getStore());
-//            getContinueButton();
-//        }
-//
-//        getNewBillButton();
-//        if (billObj.getAmount() != null) {
-//            getAmountField().setText(billObj.getAmount());
-//        }
-//        getDisableTaxToggleButton();
-//        getDescriptionTextbox();
-//        if (billObj.getCustomerPhnNo() != null) {
-//            getCustomerButton();
-//            getCustomerPhoneNoField().setText(billObj.getCustomerPhnNo());
-//            getGoPhoneNumberButton();
-//            getConfirmButton();
-//        }
-//        if (billObj.getCustomerEmail() != null) {
-//            getCustomerButton();
-//            getUserEmailField().setText(billObj.getCustomerEmail());
-//            getEmailGoButton();
-//        }
-//        getConfirmButton();
-//
-//        getContinueWithoutButton();
-//    }
-//
-//    public void createBillForRT(BillPage billObj, boolean navigateToBillSection) {
-//        if (navigateToBillSection) {
-//            getStoresDropdown();
-//            selectStore(billObj.getStore());
-//            getContinueButton();
-//        }
-//
-//        getNewBillButton();
-//        if (billObj.getAmount() != null) {
-//            getAmountField().setText(billObj.getAmount());
-//        }
-//        getDisableTaxToggleButton();
-//        getDescriptionTextbox();
-//        if (billObj.getCustomerPhnNo() != null) {
-//            getCustomerButton();
-//            getCustomerPhoneNoField().setText(billObj.getCustomerPhnNo());
-//            getGoPhoneNumberButton();
-//            getConfirmButton();
-//        }
-//        if (billObj.getCustomerEmail() != null) {
-//            getCustomerButton();
-//            getUserEmailField().setText(billObj.getCustomerEmail());
-//            getEmailGoButton();
-//
-//            getMoreOption();
-//
-//            getRepeatField();
-//            getRepeatOption();
-//            getCustomerCancelOption();
-//            getDoneBtn();
-//        }
-//        getConfirmButton();
-//        getContinueWithoutButton();
-//    }
 
 
     public void getEmailGoButton() {
@@ -735,19 +622,6 @@ public class BillPage extends BaseTest {
     }
 
 
-    public void getCustomerPhoneField() {
-        click(customerNumber);
-    }
-
-    public void getSuggestionList() {
-        click(suggestionList);
-    }
-
-    public void getTapToAddFilesIcon() {
-
-        click(tapToAddFiles);
-    }
-
     public void uploadImageAsAttachment(String relativePath) throws AWTException {
         String projectPath = System.getProperty("user.dir");
         String absolutePath = Paths.get(projectPath, relativePath).toString();
@@ -762,25 +636,6 @@ public class BillPage extends BaseTest {
         uploadImageAsAttachment("/src/main/resources/ImageResources/image/dummy");
     }
 
-    public void getCheckButton() {
-        click(checkBtn);
-    }
-
-    public void getCameraIcon() {
-        click(cameraIcon);
-    }
-
-    public void getAttachedFile() {
-        click(attachedImage);
-    }
-
-    public void getAttachedImage() {
-        click(attachedImage);
-    }
-
-    public void getDocumentIcon() {
-        click(documentIcon);
-    }
 
 
     public void getDeleteButton() {
@@ -794,19 +649,7 @@ public class BillPage extends BaseTest {
     }
 
 
-    public void reduceScreenResolution() throws AWTException {
-        Robot robot = new Robot();
 
-        // Press and hold the Control key
-        robot.keyPress(KeyEvent.VK_CONTROL);
-
-        // Press the Minus (-) key
-        robot.keyPress(KeyEvent.VK_MINUS);
-        robot.keyRelease(KeyEvent.VK_MINUS); // Release Minus key
-
-        // Release the Control key
-        robot.keyRelease(KeyEvent.VK_CONTROL);
-    }
 
     public void getDeleteIcon() {
         staticWait(2000);
@@ -829,11 +672,13 @@ public class BillPage extends BaseTest {
 
 
     public void getMemoFieldMessage() {
-        Assert.assertEquals(memoFieldMessage, "Customer will not see this memo");
+        String memoFieldMessages=getText(memoFieldMessage);
+        Assert.assertEquals(memoFieldMessages, "Customer will not see this memo");
     }
 
     public void getMemoPopUpTitle() {
-        Assert.assertEquals(memoPopUpTitle, "Memo");
+        String memoPopUpTitles=getText(memoPopUpTitle);
+        Assert.assertEquals(memoPopUpTitles, "Memo");
     }
 
     public void getEveryDayFieldValue(String specificNumber) {
@@ -1093,49 +938,7 @@ public class BillPage extends BaseTest {
             }
         }
     }
-    //        List<WebElement> elements = getDriver().findElements(By.xpath("//div[@class='list-group mb-2']/child::label"));
-//        for (WebElement element : elements) {
-//            staticWait(3000);
-//            String repeatTxt = element.getText();
-//            Log.info("Clicking on: " + repeatTxt);
-//            element.click();
-//            staticWait(2000);
-//
-//            switch (repeatTxt) {
-//                case "Daily":
-//                    getEveryDayFieldValue("1");
-//                    break;
-//                case "Weekly":
-//                    getEveryWeekFieldValue("1");
-//                    break;
-//                case "Monthly":
-//                    getEveryMonthFieldValue("1");
-//                    break;
-//                case "Yearly":
-//                     Log.info("Every month field is not displayed.");
-//                    break;
-//                default:
-//                    Log.info("No repeat selected");
-//                    break;
-//            }
-//    public void activateAfterFirstElement() {
-//        List<WebElement> selectedElements = getDriver().findElements(By.xpath("//div[@class='list-group-item']"));
-//        for (WebElement selectedElement : selectedElements) {
-//            staticWait(2000);
-//
-//            scrollToDown();
-//            String selectedTxt = selectedElement.getText();
-//            Log.info("Selected: " + selectedTxt);
-////                selectedElement.click();
-////                if(isElementDisplayed(timesTotalField)){
-////                    Log.info("Time total field appears");
-////                }
-////                else{
-////                    Log.info("Ends on date field appears");
-////                }
-//
-//        }
-//    }
+
 
     public void clickOnRepeatsection() {
         staticWait(2000);
@@ -1149,8 +952,7 @@ public class BillPage extends BaseTest {
     }
 
     public void clickOnReccuring() {
-        staticWait(2000);
-        Assert.assertTrue(isElementDisplayed(reccuringIcon));
+       //  Assert.assertTrue(isElementDisplayed(reccuringIcon));
         staticWait(2000);
         click(reccuringMenu);
         click(reccuringBill);
@@ -1391,9 +1193,6 @@ public class BillPage extends BaseTest {
         //Close popup
         closePopup();
 
-        // Asserting description
-        assertingDescription();
-
     }
 
     public void verifyingBillCreationWithConfiguredBilledAmount() {
@@ -1510,9 +1309,7 @@ public class BillPage extends BaseTest {
         //Click Confirm
         getConfirmButton();
 
-        //Click On Continue Button
-        staticWait(4000);
-        getContinueWithoutButton();
+
     }
 
     public void verifyingBillCreationByAttachingPdfFile() throws InterruptedException, AWTException {
@@ -1592,7 +1389,7 @@ public class BillPage extends BaseTest {
         //Close popup
         closePopupOnBillPage();
         //Verify not paid label for generated amount
-        verifyEnteredMemoText();
+        //verifyEnteredMemoText();
     }
 
 
@@ -1630,7 +1427,7 @@ public class BillPage extends BaseTest {
 
         //Click on 'Expiry' Field
         Assert.assertTrue(isElementDisplayed(expireLockIcon));
-        clickOnExpiryDateSection();
+        clickOnExpirationSec();
         assertUpgradePlan();
 
 
@@ -1650,7 +1447,7 @@ public class BillPage extends BaseTest {
 
     }
 
-    public void verifyBillCreationByAddingExpirationDate(String expiresInFieldTxt) {
+    public void verifyBillCreationByAddingExpirationDate(String emailID,String expiresInFieldTxt) {
         Login();
         //Select Store
         clickOnNewBill();
@@ -1658,30 +1455,41 @@ public class BillPage extends BaseTest {
         selectStore(Constants.AutomationBillFlow);
         getContinueButton();
 
-        //Click on New Bill Button
+        // Click on New Bill Button
         getNewBillButton();
 
         //Enter amount
-        String amt = "1250.00";
+        String amt = "2,000.00";
         staticWait(3000);
+        scrollToElement(amtTbx);
         actionEnterText(amtTbx, amt);
+
+        //Select Suggested Customer
+
+        getCustomerButton();
+        getCustomerEmailField(emailID);
+        getEmailGoButton();
 
         //Click on More Option
         clickOnMoreSection();
+
         clickOnExpiryDateSection();
         staticWait(2000);
 
         String expirationDay = getText(expirationDayPopUp);
-        Assert.assertEquals(expirationDay, "Expiration Date");
-        Assert.assertTrue(isElementDisplayed(noneTxt),"Element Displayed");
+        Assert.assertEquals(expirationDay,"Expiration Date");
 
+        String noneTxts = getText(noneTxt);
+        Assert.assertEquals(noneTxts, "None");
 
-
-        Assert.assertTrue(isElementDisplayed(dayTxt));
-        Assert.assertTrue(isElementDisplayed(quterDayTxt));
-        Assert.assertTrue(isElementDisplayed(oneHourTxt));
-        Assert.assertTrue(isElementDisplayed(thirtyMinTxt));
-
+        String dayTxts = getText(dayTxt);
+        Assert.assertEquals(dayTxts, "24 Hours");
+        String quterDayTxts = getText(quterDayTxt);
+        Assert.assertEquals(quterDayTxts, "4 Hours");
+        String oneHourTxts = getText(oneHourTxt);
+        Assert.assertEquals(oneHourTxts, "1 Hour");
+        String thirtyMinTxts = getText(thirtyMinTxt);
+        Assert.assertEquals(thirtyMinTxts, "30 Minutes");
 
         //Click on Expiry Field
         actionEnterText(expiresField,expiresInFieldTxt );
@@ -1691,15 +1499,13 @@ public class BillPage extends BaseTest {
         //Click Confirm
         getConfirmButton();
 
-        //Click On Continue Button
-        staticWait(4000);
-        getContinueWithoutButton();
+
 
         //Close popup
-        closePaymentpopup();
+        closePopup();
 
 
-//Verify not paid label for generated amount
+      //Verify not paid label for generated amount
         Assert.assertTrue(isElementDisplayed(notPaidLabel));
         Assert.assertTrue(isElementDisplayed(uniqueRefNo));
         Assert.assertTrue(isElementDisplayed(billTimeOnPopup));

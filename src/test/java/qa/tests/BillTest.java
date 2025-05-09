@@ -81,9 +81,10 @@ public class BillTest extends BaseTest {
         bill.verifyingBillCreationWithEssentialFreePlan("yonro@yopmail.com");
     }
 
-    @Test(priority = 11, enabled = false, description = "BC_15 Verify that creating a bill by adding the custom expiration date' on 'Bills' page..")
+    @Test(priority = 11, enabled = true, description = "BC_15 Verify that creating a bill by adding the custom expiration date' on 'Bills' page..")
     public void verifyBillCreationByAddingExpirationDate() {
-        bill.verifyBillCreationByAddingExpirationDate("20");
+        bill.verifyBillCreationByAddingExpirationDate("yonro@yopmail.com","20");
+        bill.clickOnNotPaidLabel();
         bill.getDeleteButton();
         bill.getDeleteIcon();
     }
