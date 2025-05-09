@@ -1,12 +1,9 @@
 package pageEvents;
 
 import base.BaseTest;
-import logger.Log;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import pageObjects.PageObjectManager;
 import utils.Constants;
 
 import java.io.File;
@@ -586,8 +583,10 @@ public class MyStorePage extends BaseTest {
         enterText(StoreNameTbx,Constants.reverseStoreName);
         enterText(locationDescTbx,Constants.defaultLocationDescription);
         actionEnterText(phoneTbx,Constants.validPhoneNumber2);
+        scrollToElement(taxRateTbx);
+        waitForElementToBeClickable(taxRateTbx,3);
         actionEnterText(taxRateTbx,Constants.defaultTaxRate);
-        waitForElementToBeClickable(saveBtn,3);
+        waitForElementToBeClickable(saveBtn,5);
         getSaveButton();
 
 

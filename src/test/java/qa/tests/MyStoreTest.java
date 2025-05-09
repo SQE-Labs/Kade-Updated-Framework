@@ -57,7 +57,7 @@ public class MyStoreTest extends BaseTest {
             //  Click on 'Skip' button
             mystore.getSkipBtnOfStripe();
         }
-        staticWait(5000);
+        waitForElementToBeVisible(mystore.deleteStoreBtn,7);
         scrollToElement(mystore.deleteStoreBtn);
         waitForElementToBeVisible(mystore.deleteStoreBtn,5);
         // click on delete button

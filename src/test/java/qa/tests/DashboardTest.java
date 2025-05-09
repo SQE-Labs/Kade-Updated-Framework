@@ -1,21 +1,14 @@
 package qa.tests;
 
 import base.BaseTest;
-import logger.Log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 import pageEvents.*;
 import pageObjects.PageObjectManager;
 import org.testng.Assert;
 
 import utils.Constants;
-
-import java.util.List;
 
 
 public class DashboardTest extends BaseTest {

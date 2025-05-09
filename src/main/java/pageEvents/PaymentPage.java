@@ -6,11 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import org.testng.annotations.Test;
-import utils.Constants;
 
-import java.awt.*;
-import java.nio.file.Paths;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -31,6 +27,7 @@ public class PaymentPage extends BaseTest {
     By cardNumberTbx = By.xpath("//input[@id='Field-numberInput']");
     By expirationDateTbx = By.xpath("//input[@id='Field-expiryInput']");
     By cvcTbx = By.xpath("//input[@id='Field-cvcInput']");
+    By autoPaymentCardFrame = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[1]");
 
     public By swipeBtn = By.xpath("//input[@class='slider -pm-none-']");
 
@@ -105,7 +102,7 @@ public class PaymentPage extends BaseTest {
     By visaCardName = By.xpath("(//span[contains(text(),'Visa')])[3]");
     By creditCards = By.xpath("//span[text()='New Credit Card']/../../../..");
     By iframeForCard = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[2]");
-    By saveBtn = By.xpath("//button[text()='Save']");
+    public By saveBtn = By.xpath("//button[text()='Save']");
     By thankTxt = By.xpath("//span[text()='Thank']");
     By youTxt = By.xpath("//span[text()='You!']");
     By rateYourExpTxt = By.xpath("//div[normalize-space()='Rate your experience']");
@@ -125,6 +122,36 @@ public class PaymentPage extends BaseTest {
     By zelleSaveBtn = By.xpath("//button[text()='Submit']");
     By payCurrentBalance = By.xpath("//button[text()='Pay the current balance']/..");
 
+    // Affirm payment button
+    By affirmAccount = By.xpath("//span[text()='Affirm']/../../../..");
+    By processBtnOfAffirm = By.xpath("//button[starts-with(text(),'Process')]");
+    By paymentInformationTitle = By.xpath("//h5[text()='Payment information']");
+    By affirmTestPageTitle = By.xpath("//h1[@class='common-SectionTitle']");
+    By authorizeTestPaymentBtn = By.xpath("//button[starts-with(text(),'Authorize Test Payment')]");
+    public By paymentDetails = By.xpath("//span[starts-with(@class,'payment-logo-bg-sm')]/../../..");
+    By moreDetailsBtn = By.xpath("//button[contains(@class,'btn btn-link w-100')]//i/..");
+    public By moreDetails = By.xpath("//div[@class='card-body collapse show']");
+
+
+
+
+
+    public void clickOnAffirmButton(){
+        click(affirmAccount);
+    }
+    public void getProcessButtonOfAffirm(){
+        click(processBtnOfAffirm);
+    }
+    public void getAuthorizeTestPaymentBtn(){
+        click(authorizeTestPaymentBtn);
+    }
+    public void getPayemntDetails(){
+        click(paymentDetails);
+    }
+
+    public void getMoreDetailsBtn(){
+        clickElementByJS(moreDetailsBtn);
+    }
 
     public void clickOnProcessPaymentBtn() {
         staticWait(2000);
@@ -273,7 +300,7 @@ public class PaymentPage extends BaseTest {
     }
 
     public void switchToFrame() {
-        staticWait(4000);
+        staticWait(3000);
         switchToFrame(iframeForCard);
     }
 
@@ -889,7 +916,8 @@ public class PaymentPage extends BaseTest {
     }
 
     public void getPayThroughCreditCard() {
-        //switchToCreditCardFrame();
+        switchToFrame();
+        scrollToElement(cardNumberTbx);
         actionEnterText(cardNumberTbx, "4111111111111111");
         actionEnterText(expirationDateTbx, "0230");
         actionEnterText(cvcTbx, "123");
@@ -989,5 +1017,53 @@ public class PaymentPage extends BaseTest {
         switchToDefaultContent();
         staticWait(10000);
         clickOnSaveBtn();
+    }
+    public void billPaymentThroughAffirmMethod(){
+        staticWait(3000);
+        clickOnSignOut();
+        LoginAsCustomer();
+        clickOnBillIcon();
+        clickOnBill();
+        clickOnPayNowBtn();
+
+        staticWait(3000);
+        clickOnchangeBtn();
+
+        waitForElementToBeVisible(affirmAccount,5);
+
+        // clicking on affirm payment method button
+        clickOnAffirmButton();
+
+        waitForElementToBeVisible(paymentInformationTitle,5);
+        Assert.assertTrue(isElementDisplayed(paymentInformationTitle),"Payment information Title ");
+//        waitForElementToBeVisible(processBtnOfAffirm,5);
+        staticWait(5000);
+
+        // click on 'Process' button
+
+        getProcessButtonOfAffirm();
+
+        waitForPageLoad();
+
+        // verify Affirm test page appears
+        Assert.assertTrue(isElementDisplayed(affirmTestPageTitle),"Affirm Test page title");
+
+        scrollToElement(authorizeTestPaymentBtn);
+        getAuthorizeTestPaymentBtn();
+    }
+    public void getPayThroughCreditCardThroughAutoPayment() {
+        switchToFrame(autoPaymentCardFrame);
+        scrollToElement(cardNumberTbx);
+        actionEnterText(cardNumberTbx, "4111111111111111");
+        actionEnterText(expirationDateTbx, "0230");
+        actionEnterText(cvcTbx, "123");
+        actionEnterText(countryDropDown, "Australia");
+        staticWait(2000);
+        switchToDefaultWindow();
+        scrollToElement(saveBtn);
+
+        waitForElementToBeClickable(saveBtn,4);
+        clickOnSaveBtn();
+
     }
 }

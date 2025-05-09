@@ -24,9 +24,10 @@ public class PaymentMethod extends BaseTest {
     public By backToKadePay = By.xpath("//span[text()='Back to Kade Pay']/..");
     public By finalSavebtn = By.xpath("//button[contains (@class, 'btn btn-primary ') and text()='Save']");
     public By bankFrame = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[1]");
-    public By loginInsitututeFrame = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[2]");
+    public By loginInsitututeFrame = By.xpath("(//iframe[contains(@name, '__privateStripeFrame')])[1]");
     public By successText = By.xpath("//div[contains(@class,'la-v3-successTextWrapper')]//h1");
     public By stripeBankAccountText = By.xpath("//div[contains(@class,'p-PickerItem--singleRow')]//../h3");
+    public By visaCardText = By.xpath("//span[normalize-space()='Visa 1111']");
     public By trash = By.xpath("//i[@class='fas fa-trash']//..");
     public By noPaymentInfo = By.xpath("//div[@class='no-result-icon']/../p");
     public By thumbIcon = By.xpath("//i[contains(@class,'fal fa-thumbs-up')]//..");
