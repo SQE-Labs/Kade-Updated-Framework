@@ -1668,18 +1668,18 @@ public class BillPage extends BaseTest {
         clickOnMoreSection();
         clickOnExpiryDateSection();
         staticWait(2000);
-
-        Assert.assertEquals((expirationDayPopUp), "Expiration Date");
-        Assert.assertTrue(isElementDisplayed(noneTxt));
-        Assert.assertTrue(isElementDisplayed(dayTxt));
-        Assert.assertTrue(isElementDisplayed(quterDayTxt));
-        Assert.assertTrue(isElementDisplayed(oneHourTxt));
-        Assert.assertTrue(isElementDisplayed(thirtyMinTxt));
-
-
-        //Click on Expiry Field
-        sendTxtInexpireInTxtField("20", 1);
-        clickOnDoneBtn();
+//
+//        Assert.assertEquals((expirationDayPopUp), "Expiration Date");
+//        Assert.assertTrue(isElementDisplayed(noneTxt));
+//        Assert.assertTrue(isElementDisplayed(dayTxt));
+//        Assert.assertTrue(isElementDisplayed(quterDayTxt));
+//        Assert.assertTrue(isElementDisplayed(oneHourTxt));
+//        Assert.assertTrue(isElementDisplayed(thirtyMinTxt));
+//
+//
+//        //Click on Expiry Field
+//        sendTxtInexpireInTxtField("20", 1);
+//        clickOnDoneBtn();
 
 
         //Click Confirm

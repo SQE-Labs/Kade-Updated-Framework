@@ -312,18 +312,54 @@ public class GiftCardDashboardTest extends BaseTest {
 
     }
 
-    @Test(priority = 101, enabled = false, description = "Verify that user is able to update the sale gift card from 'Gift Card For Sale' page. "
+    @Test(priority = 102, enabled = true, description = "Verify that user is not able to delete the sale gift card, after cancelling the Deletion action, on 'Gift Card For Sale' page"
     )
-    public void verifyUserUpdateSaleGiftCar (){
+    public void verifyUserNotAbleToDeleteAfterCancelingGiftCard (){
 
-        giftCardPage.verifyUpdateSaleGiftCard();
+        giftCardPage.verifyUserNotAbleToDeleteAfterCanceling();
 
+        }
+    @Test(priority = 103, enabled = true, description = "Verify that user is able to delete the sale gift card, after clicking on 'Delete' button, on 'Gift Card For Sale' page")
+    public void verifyUserAbleToDeleteSaleGiftCard () {
+
+        giftCardPage.verifyUserAbleToDeleteSaleGift();
+
+        }
+
+    @Test(priority = 104, enabled = true, description = "\"Verify that all the available sale gift cards appear listed on 'Sell Dashboard' page.\n" +
+            "\"")
+    public void verifyAllSaleGiftCardsListedOnSellDashboard (){
+
+        giftCardPage.verifyListOfGiftCards();
+
+    }
+
+    @Test(priority = 105, enabled = true, description = "Verify that by-default 'Available' option appears selected in 'Status' dropdown under filter option, on 'Sell Dashboard' page.")
+    public void verifyDefaultOptionSelectedInStatusDropdown (){
+
+        giftCardPage.verifyGiftCardDetails();
+
+    }
+
+    @Test(priority = 106, enabled = true, description = "\"Verify that 'Available' and 'All' options appear after clicking on 'Status' dropdown under filter option, on 'Sell Dashboard' page.\n" +
+            "\"")
+    public void verifyAvailableAndAllOptionsInStatusDropdown (){
+
+        giftCardPage.verifyAvailableAndAllOptionsInStatus();
 
     }
 
 
+//    @Test(priority = 107, enabled = true, description = "\"Verify that only avaliable sale gift cards appear listed after selecting 'Available' option from 'Status' dropdown of Filter, on 'Sell Dashboard' page.\n" +
+//            "\""){
+//        giftCardPage.verifyAvailableSaleGiftCards();
+//    }
 
 }
+
+
+
+
 
 
 
