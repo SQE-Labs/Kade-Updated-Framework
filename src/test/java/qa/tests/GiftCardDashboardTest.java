@@ -350,10 +350,10 @@ public class GiftCardDashboardTest extends BaseTest {
     }
 
 
-//    @Test(priority = 107, enabled = true, description = "\"Verify that only avaliable sale gift cards appear listed after selecting 'Available' option from 'Status' dropdown of Filter, on 'Sell Dashboard' page.\n" +
-//            "\""){
-//        giftCardPage.verifyAvailableSaleGiftCards();
-//    }
+    @Test(priority = 107, enabled = true, description = "Verify that only avaliable sale gift cards appear listed after selecting 'Available' option from 'Status' dropdown of Filter, on 'Sell Dashboard' page." )
+    public void verifyAvailableSaleGiftCardsListed (){
+        giftCardPage.verifyAvailableSaleGiftCards();
+    }
 
 }
 

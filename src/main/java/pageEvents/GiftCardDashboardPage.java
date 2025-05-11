@@ -1680,10 +1680,17 @@ public class GiftCardDashboardPage extends BaseTest {
 
      }
 
-
+@Test
      public void verifyAvailableSaleGiftCards() {
 
-        
+         offOptionalSettings();
+         staticWait(2000);
+         getForSaleBtn();
+         staticWait(1000);
+         click(filterBtn);
+         staticWait(2000);
+         click();
+
      }
 
 }
