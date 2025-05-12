@@ -18,6 +18,7 @@ import static utils.Constants.BillHeader;
 
 
 public class BillPage extends BaseTest {
+    PaymentPage payment = new PaymentPage();
 
     String descriptionTxt;
     String referenceTxt;
@@ -89,7 +90,7 @@ public class BillPage extends BaseTest {
     By addMoreRowLink = By.xpath("//button[@class='btn-sm btn btn-link']");
     By toolTipMessage = By.xpath("//div[@class='tooltip-inner']");
     By refNoTextBox = By.xpath("//input[@name='refNo']");
-    By autoGenToggleBtn = By.xpath("(//input[@name='autoGenerate'])[1]");
+    By autoGenToggleBtn = By.xpath("//i[contains(@class,'btn-sm custom-check-off')]");
     By autoGenClass = By.xpath("(//input[@name='autoGenerate'])[1]/../../../..");
     //	By closeIcon = By.xpath("(//button[@class='btn-close'])[2]");
     By customerEmail = By.xpath("(//input[@name='email'])[2]");
@@ -234,7 +235,7 @@ public class BillPage extends BaseTest {
     public By minutesTxt = By.xpath("//option[text()='Minutes']");
 
     By paymentMethodLink = By.xpath("//button[text()='Add payment method']");
-    By customerPermissionCheckbox = By.xpath("((//label[@class='custom-checkbox'])[5]/child::i)[2]");
+    By customerPermissionCheckbox = By.xpath("//label[contains(@class, 'checkbox')]//span[text()=\"I have my customer's permission\"]");
     By customerPrmissionDoneButton = By.xpath("(//button[text()='Continue'])[2]");
     By cardName = By.xpath("//input[@placeholder='1234 1234 1234 1234']");
     By cardIframe = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[2]");
@@ -266,6 +267,10 @@ public class BillPage extends BaseTest {
     By recurringBillText = By.xpath("//a[@class='btn btn-link']");
     public By billTag = By.xpath("//div[contains(@class,'col-5  text-end') ]//div[1]/span");
 
+    // auto payment
+    public By autoPaymentInfoMsg = By.xpath("//div[@class='alert-message']//div[contains(text(),'process this bill')]");
+    public By removeButtonUnderInfoMsg = By.xpath("//div[contains(text(),'process this bill')]/..//button");
+    public By successInfoMsg = By.xpath("//h6[text()='This bill has been processed']");
     /*
     Locators of Bill popup
      */
@@ -286,15 +291,27 @@ public class BillPage extends BaseTest {
     By activeBillAmmount = By.xpath("//span[@class='display-5 display-sm-2 fw-bold']");
     By doneButton = By.xpath(" //div[@id='_3FH']/button[@type='button'][normalize-space()='Done']");
     public By amountTxtField = By.xpath("//label[text()='Amount']");
-    By btnDisabled=By.xpath("(//button[@disabled='disabled'])[3]");
+    By btnDisabled = By.xpath("(//button[@disabled='disabled'])[3]");
+    By chargeButton = By.xpath("//span[contains(text(),'Charge')]");
 
 
+
+    public void getUseThisToggle(){
+        clickElementByJS(autoGenToggleBtn);
+    }
+    public void getChargeButton(){
+        click(chargeButton);
+    }
 
 
     String amount = "2000.00";
 
     public void expirationIcon(){
         click(expireLockIcon);
+    }
+
+    public void getRemoveBtnUnderInfoMsg(){
+        click(removeButtonUnderInfoMsg);
     }
 
     public void clickOnNewBill() {
@@ -344,7 +361,8 @@ public class BillPage extends BaseTest {
         staticWait(3000);
         click(moreSection);
     }
-    public void clickOnIcon(){
+
+    public void clickOnIcon() {
         staticWait(2000);
         click(closeIcon);
     }
@@ -360,7 +378,7 @@ public class BillPage extends BaseTest {
 
     public void clickOnExpiryDateSection() {
         staticWait(3000);
-       click(expiryDateSection);
+        click(expiryDateSection);
     }
 
     public void sendTxtInexpireInTxtField(String hrs, int minTxt) {
@@ -422,7 +440,6 @@ public class BillPage extends BaseTest {
     public void clickOnGetRefNotxt() {
         staticWait(4000);
         click(refNoneTxt);
-
         Assert.assertTrue(isElementDisplayed(refNoPopup));
         referenceTxt = "Kevin123" + requiredString(42);
         staticWait(4000);
@@ -560,6 +577,7 @@ public class BillPage extends BaseTest {
         staticWait(3000);
         click(selectACustomerBtn);
     }
+
     public void selectCust() {
         staticWait(3000);
         click(selectCust);
@@ -1203,7 +1221,7 @@ public class BillPage extends BaseTest {
 
         //Verify Message popup and Buttons
         String messagePopupHead = getText(messagePopupHeader);
-         Assert.assertEquals(messagePopupHead, "Message");
+        Assert.assertEquals(getText(messagePopupHeader), "Message");
         Assert.assertTrue(isElementDisplayed(selectCustomer));
         Assert.assertTrue(isElementDisplayed(continueWithoutBtn));
 
@@ -1668,18 +1686,18 @@ public class BillPage extends BaseTest {
         clickOnMoreSection();
         clickOnExpiryDateSection();
         staticWait(2000);
-//
-//        Assert.assertEquals((expirationDayPopUp), "Expiration Date");
-//        Assert.assertTrue(isElementDisplayed(noneTxt));
-//        Assert.assertTrue(isElementDisplayed(dayTxt));
-//        Assert.assertTrue(isElementDisplayed(quterDayTxt));
-//        Assert.assertTrue(isElementDisplayed(oneHourTxt));
-//        Assert.assertTrue(isElementDisplayed(thirtyMinTxt));
-//
-//
-//        //Click on Expiry Field
-//        sendTxtInexpireInTxtField("20", 1);
-//        clickOnDoneBtn();
+
+        Assert.assertEquals((expirationDayPopUp), "Expiration Date");
+        Assert.assertTrue(isElementDisplayed(noneTxt));
+        Assert.assertTrue(isElementDisplayed(dayTxt));
+        Assert.assertTrue(isElementDisplayed(quterDayTxt));
+        Assert.assertTrue(isElementDisplayed(oneHourTxt));
+        Assert.assertTrue(isElementDisplayed(thirtyMinTxt));
+
+
+        //Click on Expiry Field
+        sendTxtInexpireInTxtField("20", 1);
+        clickOnDoneBtn();
 
 
         //Click Confirm
@@ -2005,6 +2023,77 @@ public class BillPage extends BaseTest {
 
         //Share bill by adding card details
         clickOnpaymentMethodLink();
+
+    }
+
+    public void createBillWithCustomerAndPayThroughAutoPayment() {
+        String emailId = requiredString(4)+ "@yopmail.com";
+        Login();
+        //Select Store
+        clickOnNewBill();
+        getStoresDropdown();
+        selectStore(Constants.AutomationBillTest);
+        getContinueButton();
+
+        // Click on New Bill Button
+        getNewBillButton();
+
+        // Verify New Bill popup
+        //  Assert.assertEquals(popUpHeader, "Bill");
+        String popupheader = getText(popUpHeader);
+        Assert.assertEquals(popupheader, "Bill");
+
+        //Verify Confirm Button is disabled before entering amount
+        scrollToElement(btnDisabled);
+        Assert.assertTrue(isElementDisplayed(btnDisabled));
+
+        //Enter amount
+        String amt = "1005.00";
+        staticWait(3000);
+        actionEnterText(amtTbx, amt);
+
+        //Select Suggested Customer
+
+        getCustomerButton();
+        getCustomerEmailField(emailId);
+        getEmailGoButton();
+        clickOnEnterNameDoneBtn();
+
+        staticWait(3000);
+        clickOnpaymentMethodLink();
+        ClickOnCustomerPermissionCheckbox();
+        ClickOncustomerPrmissionDoneButton();
+
+        staticWait(5000);
+        payment.getPayThroughCreditCardThroughAutoPayment();
+
+        staticWait(5000);
+
+        // Clicking on use this toggle button
+        getUseThisToggle();
+        scrollToDown();
+
+        // Verify that info message appears
+        Assert.assertTrue(isElementDisplayed(autoPaymentInfoMsg),"Autopayment Info Message");
+        Assert.assertTrue(isElementDisplayed(removeButtonUnderInfoMsg),"Remove Btn ");
+        Assert.assertTrue(isElementDisplayed(chargeButton),"Charge Button");
+
+        // clicking on remove button
+        staticWait(3000);
+        getRemoveBtnUnderInfoMsg();
+
+        // Verify that toggle gets disabled
+        Assert.assertFalse(isElementDisplayed(autoPaymentInfoMsg), "Autopayment method disappears");
+        Assert.assertTrue(!isToggleEnabled(autoGenToggleBtn));
+
+
+        // Clicking on use this toggle button
+        getUseThisToggle();
+        scrollToElement(chargeButton);
+        waitForElementToBeVisible(chargeButton,3);
+        getChargeButton();
+
+        staticWait(3000);
 
     }
 }

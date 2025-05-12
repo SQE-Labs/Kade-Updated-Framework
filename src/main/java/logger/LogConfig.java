@@ -1,7 +1,6 @@
 package logger;
 
 import org.apache.log4j.*;
-import org.slf4j.ILoggerFactory;
 
 import java.io.IOException;
 import java.time.LocalDateTime;

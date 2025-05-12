@@ -306,10 +306,7 @@ public class GiftCardDashboardTest extends BaseTest {
     @Test(priority = 101, enabled = true, description = "Verify that user is able to update the sale gift card from 'Gift Card For Sale' page. "
     )
     public void verifyUserUpdateSaleGiftCard (){
-
         giftCardPage.verifyUpdateSaleGiftCard();
-
-
     }
 
     @Test(priority = 102, enabled = true, description = "Verify that user is not able to delete the sale gift card, after cancelling the Deletion action, on 'Gift Card For Sale' page"
