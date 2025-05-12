@@ -126,6 +126,8 @@ public class GiftCardDashboardPage extends BaseTest {
     By filterBtn = with(By.tagName("button")).toLeftOf(addBtn);
     By statusAvailable = By.xpath("//option[text()='Available']");
     By optionLocator = By.xpath("//select[@name='status']//option");
+    By endBtn = By.xpath("//option[2]");
+    By applyBtn = By.xpath("//button[normalize-space(text())='Apply']");
 
 
 
@@ -1668,7 +1670,8 @@ public class GiftCardDashboardPage extends BaseTest {
         staticWait(1000);
         click(filterBtn);
         staticWait(2000);
-        click(statusAvailable);List<WebElement> options = getDriver().findElements(optionLocator);
+        click(statusAvailable);
+        List<WebElement> options = getDriver().findElements(optionLocator);
 
         // Assert that exactly two <option> elements are presentAssert.assertEquals("Expected exactly two options", 2, options.size());
 
@@ -1680,18 +1683,295 @@ public class GiftCardDashboardPage extends BaseTest {
 
      }
 
+
+public void verifyAvailableSaleGiftCards() {
+    offOptionalSettings();
+    staticWait(2000);
+    getForSaleBtn();
+
+    JavascriptExecutor js = (JavascriptExecutor) getDriver();
+    List<WebElement> allGiftCards = new ArrayList<>();
+
+    int previousCount = 0;
+
+    while (true) {
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        staticWait(2000);
+
+        List<WebElement> currentGiftCards = getDriver().findElements(giftCardDetails);
+        int currentCount = currentGiftCards.size();
+
+        System.out.println("Currently loaded gift cards: " + currentCount);
+
+        if (currentCount == previousCount) {
+            break;
+        }
+
+        previousCount = currentCount;
+        allGiftCards = currentGiftCards;
+    }
+
+    Log.info("Total gift cards collected: " + allGiftCards.size());
+
+    boolean zeroQtyFound = false;
+    for (WebElement gift : allGiftCards) {
+        String giftText = gift.getText();
+        System.out.println(giftText);
+
+        if (giftText.contains("Available QTY: 0")) {
+            zeroQtyFound = true;
+            Log.error("Gift card with zero available quantity found:\n" + giftText, new RuntimeException("Available QTY: 0"));
+        }
+    }
+
+    if (zeroQtyFound) {
+        throw new AssertionError("One or more gift cards have 'Available QTY: 0'. Test failed.");
+    }
+
+    staticWait(5000);
+}
 @Test
-     public void verifyAvailableSaleGiftCards() {
+public void verifyActionOnZeroAvailableQty() {
+    offOptionalSettings();
+    staticWait(2000);
+    getForSaleBtn();
+    staticWait(1000);
+    click(filterBtn);
+    staticWait(2000);
+    click(statusAvailable);
+    click(endBtn);
+    click(applyBtn);
+    staticWait(5000);
 
-         offOptionalSettings();
-         staticWait(2000);
-         getForSaleBtn();
-         staticWait(1000);
-         click(filterBtn);
-         staticWait(2000);
-         click();
+    JavascriptExecutor js = (JavascriptExecutor) getDriver();
+    List<WebElement> allGiftCards = new ArrayList<>();
 
-     }
+    int previousCount = 0;
+
+    while (true) {
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        staticWait(2000);
+
+        List<WebElement> currentGiftCards = getDriver().findElements(giftCardDetails);
+        int currentCount = currentGiftCards.size();
+
+        System.out.println("Currently loaded gift cards: " + currentCount);
+
+        if (currentCount == previousCount) {
+            break;
+        }
+
+        previousCount = currentCount;
+        allGiftCards = currentGiftCards;
+    }
+
+    Log.info("Total gift cards collected: " + allGiftCards.size());
+    boolean zeroQtyFound = false;
+
+    for (WebElement gift : allGiftCards) {
+        String giftText = gift.getText();
+        System.out.println(giftText);
+
+        if (giftText.contains("Available QTY: 0")) {
+            zeroQtyFound = true;
+
+            // Log the issue
+            Log.error("Gift card with zero available quantity found:\n" + giftText, new RuntimeException("Available QTY: 0"));
+
+            // Scroll to the gift card and click
+            try {
+                js.executeScript("arguments[0].scrollIntoView({block: 'center'});", gift);
+                staticWait(1000); // allow scroll transition
+                WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+                wait.until(ExpectedConditions.elementToBeClickable(gift)).click();
+            } catch (ElementClickInterceptedException e) {
+                js.executeScript("arguments[0].click();", gift); // fallback JS click
+            }
+
+            staticWait(2000); // Optional: wait for UI to load
+
+            // Check for Delete button
+            try {
+                WebElement deleteBtn = getDriver().findElement(By.id("deleteButton")); // Use actual locator
+                boolean isDisplayed = isDisplayed(deleteIcon, 2);
+                if (isDisplayed) {
+                    throw new AssertionError("Delete button should not be visible for Available QTY: 0");
+                }
+            } catch (NoSuchElementException e) {
+                System.out.println("Delete button is not present, as expected.");
+            }
+
+            break; // Only handle the first tile with Available QTY: 0
+        }
+    }
+
+    if (!zeroQtyFound) {
+        throw new AssertionError("No gift card with 'Available QTY: 0' was found.");
+    }
+}
+    public void verifyActionOnSoldQty1() {
+        offOptionalSettings();
+        staticWait(2000);
+        getForSaleBtn();
+        staticWait(1000);
+        click(filterBtn);
+        staticWait(2000);
+        click(statusAvailable);
+        click(endBtn);
+        click(applyBtn);
+        staticWait(5000);
+
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        List<WebElement> allGiftCards = new ArrayList<>();
+
+        int previousCount = 0;
+
+        while (true) {
+            js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+            staticWait(2000);
+
+            List<WebElement> currentGiftCards = getDriver().findElements(giftCardDetails);
+            int currentCount = currentGiftCards.size();
+
+            System.out.println("Currently loaded gift cards: " + currentCount);
+
+            if (currentCount == previousCount) {
+                break;
+            }
+
+            previousCount = currentCount;
+            allGiftCards = currentGiftCards;
+        }
+
+        Log.info("Total gift cards collected: " + allGiftCards.size());
+        boolean soldQtyFound = false;
+
+        for (WebElement gift : allGiftCards) {
+            String giftText = gift.getText();
+            System.out.println(giftText);
+
+            if (giftText.contains("Sold QTY: 1")) {
+                soldQtyFound = true;
+                Log.info("Gift card with Sold QTY: 1 found:\n" + giftText);
+
+                // Scroll to tile and click
+                try {
+                    js.executeScript("arguments[0].scrollIntoView({block: 'center'});", gift);
+                    staticWait(1000);
+                    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+                    wait.until(ExpectedConditions.elementToBeClickable(gift)).click();
+                } catch (ElementClickInterceptedException e) {
+                    js.executeScript("arguments[0].click();", gift);
+                }
+
+                staticWait(2000); // wait for tile details to load
+
+                // Scroll to delete icon and click
+                try {
+                    WebElement deleteBtn = getDriver().findElement(deleteIcon); // deleteIcon is a By locator
+                    js.executeScript("arguments[0].scrollIntoView({block: 'center'});", deleteBtn);
+                    staticWait(1000);
+                    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+                    wait.until(ExpectedConditions.elementToBeClickable(deleteBtn)).click();
+                    Log.info("Delete button clicked successfully.");
+                } catch (NoSuchElementException e) {
+                    throw new AssertionError("Delete button not found on tile with Sold QTY: 1");
+                }
+
+                break;
+            }
+        }
+
+        if (!soldQtyFound) {
+            throw new AssertionError("No gift card with 'Sold QTY: 1' was found.");
+        }
+    }
+
+@Test
+    public void verifyActionOnSoldQty0() {
+        offOptionalSettings();
+        staticWait(2000);
+        getForSaleBtn();
+        staticWait(1000);
+        click(filterBtn);
+        staticWait(2000);
+        click(statusAvailable);  // Assuming the status filter is relevant for sold quantity as well
+        click(endBtn);
+        click(applyBtn);
+        staticWait(5000);
+
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        List<WebElement> allGiftCards = new ArrayList<>();
+
+        int previousCount = 0;
+
+        // Scroll and collect all gift card elements until the list stops growing
+        while (true) {
+            js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+            staticWait(2000);
+
+            List<WebElement> currentGiftCards = getDriver().findElements(giftCardDetails);
+            int currentCount = currentGiftCards.size();
+
+            System.out.println("Currently loaded gift cards: " + currentCount);
+
+            if (currentCount == previousCount) {
+                break;
+            }
+
+            previousCount = currentCount;
+            allGiftCards = currentGiftCards;
+        }
+
+        Log.info("Total gift cards collected: " + allGiftCards.size());
+        boolean soldQtyFound = false;
+
+        // Iterate over all gift cards and find the one with Sold QTY: 0
+        for (WebElement gift : allGiftCards) {
+            String giftText = gift.getText();
+            System.out.println(giftText);
+
+            if (giftText.contains("Sold QTY: 0")) {
+                soldQtyFound = true;
+                Log.info("Gift card with Sold QTY: 0 found:\n" + giftText);
+
+                // Scroll to the gift card tile and click on it
+                try {
+                    js.executeScript("arguments[0].scrollIntoView({block: 'center'});", gift);
+                    staticWait(1000);  // Allow time for scroll to finish
+                    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+                    wait.until(ExpectedConditions.elementToBeClickable(gift)).click();
+                } catch (ElementClickInterceptedException e) {
+                    js.executeScript("arguments[0].click();", gift);
+                }
+
+                staticWait(2000); // wait for tile details to load
+
+                // Scroll to delete icon and click
+                try {
+                    WebElement deleteBtn = getDriver().findElement(deleteIcon); // deleteIcon is a By locator
+                    js.executeScript("arguments[0].scrollIntoView({block: 'center'});", deleteBtn);
+                    staticWait(1000); // Allow time for scroll to finish
+                    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+                    wait.until(ExpectedConditions.elementToBeClickable(deleteBtn)).click();
+                    Log.info("Delete button clicked successfully.");
+                } catch (NoSuchElementException e) {
+                    throw new AssertionError("Delete button not found on tile with Sold QTY: 0");
+                }
+
+                break;  // Only handle the first found tile with Sold QTY: 0
+            }
+        }
+
+        // If no gift card with Sold QTY: 0 was found, throw an error
+        if (!soldQtyFound) {
+            throw new AssertionError("No gift card with 'Sold QTY: 0' was found.");
+        }
+    }
+
+
+
+
 
 }
 

@@ -350,10 +350,27 @@ public class GiftCardDashboardTest extends BaseTest {
     }
 
 
-    @Test(priority = 107, enabled = true, description = "Verify that only avaliable sale gift cards appear listed after selecting 'Available' option from 'Status' dropdown of Filter, on 'Sell Dashboard' page." )
+    @Test(priority = 107 & 108, enabled = true, description = "Verify that only avaliable sale gift cards appear listed after selecting 'Available' option from 'Status' dropdown of Filter, on 'Sell Dashboard' page." )
     public void verifyAvailableSaleGiftCardsListed (){
         giftCardPage.verifyAvailableSaleGiftCards();
     }
+
+    @Test(priority = 114 & 115, enabled = true, description = "Verify that user is not able to delete the sale gift card, if the sale gift card Available QTY is zero, on 'Sell Dashboard' page.\n")
+    public void verifyActionOnZeroAvlQty (){
+
+        giftCardPage.verifyActionOnZeroAvailableQty();
+
+    }
+
+    @Test(priority = 116, enabled = true, description = "\"Verify that user is able to delete only those sale gift card which has Sold QTY: Zero, on 'Sell Dashboard' page.\n" +
+            "\"")
+    public void verifyUserAbleToDeleteSaleGiftCardQty0 (){
+
+        giftCardPage.verifyActionOnSoldQty0();
+
+    }
+
+
 
 }
 
