@@ -16,10 +16,14 @@ import utils.Constants;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static org.openqa.selenium.support.locators.RelativeLocator.with;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
+
+
 
 
 public class GiftCardDashboardPage extends BaseTest {
@@ -94,27 +98,37 @@ public class GiftCardDashboardPage extends BaseTest {
     public By enableClass = By.cssSelector("label.custom-checkbox.mb-3");
 
 
-
     // Locators for Gift Cards For Sale
 
     public By giftCardsSaleLink = By.xpath("//a[normalize-space()='Gift Cards For Sale']");
-    public By addBtn =By.xpath("//a[normalize-space()='Add']");
-    public By faceValue =By.xpath("//input[@name='amount']");
-    public By salePrice =By.xpath("//input[@name='salePrice']");
-    public By refNum =By.xpath("//input[@name='referenceNo']");
-    public By fundingSrc =By.xpath("//select[@name='fundSource']");//div[@class='master-body']//div[4]//label[1]
-    public By fundingLabel =By.xpath("//div[@class='master-body']//div[4]//label[1]");
-    public By availableQnty =By.xpath("//input[@name='qty']");
-    public By date =By.xpath("//div[@class='input-group']//input[@name='saleDateRange']");
-    public By startDay =By.xpath("//input[@name='startInDays']");
-    public By expireDay =By.xpath("//input[@name='expireInDays']");
-    public By memo =By.xpath("//textarea[@name='memo']");
-    public By saveBtn=By.xpath("//button[normalize-space()='Save changes']");
-    public By pickingLeftDate =By.xpath("//div[@class='drp-calendar left']//div//table//tbody//tr[3]//td[4]");
+    public By addBtn = By.xpath("//a[normalize-space()='Add']");
+    public By faceValue = By.xpath("//input[@name='amount']");
+    public By salePrice = By.xpath("//input[@name='salePrice']");
+    public By refNum = By.xpath("//input[@name='referenceNo']");
+    public By fundingSrc = By.xpath("//select[@name='fundSource']");//div[@class='master-body']//div[4]//label[1]
+    public By fundingLabel = By.xpath("//div[@class='master-body']//div[4]//label[1]");
+    public By availableQnty = By.xpath("//input[@name='qty']");
+    public By date = By.xpath("//div[@class='input-group']//input[@name='saleDateRange']");
+    public By startDay = By.xpath("//input[@name='startInDays']");
+    public By expireDay = By.xpath("//input[@name='expireInDays']");
+    public By memo = By.xpath("//textarea[@name='memo']");
+    public By saveBtn = By.xpath("//button[normalize-space()='Save changes']");
+    public By pickingLeftDate = By.xpath("//div[@class='drp-calendar left']//div//table//tbody//tr[3]//td[4]");
     public By afterGiftCardFOrSalePage = By.xpath("//p[contains(text(), \"share the link to your gift cards\")]");
     public By firstCardLink = By.xpath("(//div[@class='loaded']//div)[1]");
     public By endText = By.xpath("(//span[text()=\"Ended\"])[1]");
     public By dataSavedSuccessfully = By.xpath("//div[text()=\"Data saved successfully!\"]");
+    public By deleteIcon = By.xpath("//button[normalize-space(text())='Delete']");
+    public By neverMindIcon = By.xpath("//button[normalize-space(text())='Never mind']");
+    public By giftCardDetails = By.xpath("//div[starts-with(@class, 'bg-white mb-2 position-relative ')]");
+
+    By thumbsUp = with(By.tagName("button")).toRightOf(neverMindIcon);
+    By filterBtn = with(By.tagName("button")).toLeftOf(addBtn);
+    By statusAvailable = By.xpath("//option[text()='Available']");
+    By optionLocator = By.xpath("//select[@name='status']//option");
+    By endBtn = By.xpath("//option[2]");
+    By applyBtn = By.xpath("//button[normalize-space(text())='Apply']");
+
 
 
 
@@ -138,13 +152,12 @@ public class GiftCardDashboardPage extends BaseTest {
         // Verify the landing page is correct after login
         pageObjectManager.getHomePage().landingPage();
     }
+
     public String selectStore(int index) {
         click(storeDropDown);
         String getStoreName = clickElementFromList(storeDropDownList, index);
         return getStoreName;
     }
-
-
 
 
     public String offOptionalSettings() {
@@ -169,21 +182,18 @@ public class GiftCardDashboardPage extends BaseTest {
         WebElement element = getWebElement(amountField);
         String maxAmountValue = element.getAttribute("value");
         click(saveConfiguration);
-        return  maxAmountValue;
+        return maxAmountValue;
     }
 
 
-
-
-
-
-    public void verifyInformationMsgNoActiveStore(){
+    public void verifyInformationMsgNoActiveStore() {
         LoginAsCustomerNew();
         pannel.getMangeBusinessTab();
         pannel.getGiftCardsDashboardTab();
         softAssert.assertEquals(getText(systemMsg), Constants.noActiveStoreInfoMsg);
     }
-    public void verifyGiftcardDashboardPage(){
+
+    public void verifyGiftcardDashboardPage() {
         Login();
         pannel.getMangeBusinessTab();
         pannel.getGiftCardsDashboardTab();
@@ -255,7 +265,6 @@ public class GiftCardDashboardPage extends BaseTest {
     }
 
 
-
     public void verifySourceFundingOptions() {
         Login();
         pannel.getMangeBusinessTab();
@@ -310,6 +319,7 @@ public class GiftCardDashboardPage extends BaseTest {
 
 
     }
+
     public void verifySendAmount() {
         Login();
         pannel.getMangeBusinessTab();
@@ -320,12 +330,14 @@ public class GiftCardDashboardPage extends BaseTest {
 
         if (isDisplayed(disabledToggleBtn, 3)) {
             click(disabledToggleBtn);
-            waitForElementToBeVisible(amountField,3);actionEnterText(amountField,"100000");
+            waitForElementToBeVisible(amountField, 3);
+            actionEnterText(amountField, "100000");
             click(saveConfiguration);
             softAssert.assertEquals(storeName.toString(), name);
 
         } else {
-            waitForElementToBeVisible(amountField,3);actionEnterText(amountField,"100000");
+            waitForElementToBeVisible(amountField, 3);
+            actionEnterText(amountField, "100000");
             click(saveConfiguration);
             softAssert.assertEquals(storeName.toString(), name);
 
@@ -350,7 +362,8 @@ public class GiftCardDashboardPage extends BaseTest {
             if (!isDisplayed(fundingSourceDisableText, 3)) {
                 click(fundingSourceDiableToggleBtn);
             } else {
-                waitForElementToBeVisible(amountField,3);actionEnterText(amountField,"100000");
+                waitForElementToBeVisible(amountField, 3);
+                actionEnterText(amountField, "100000");
                 click(saveConfiguration);
                 softAssert.assertEquals(storeName.toString(), name);
             }
@@ -363,7 +376,8 @@ public class GiftCardDashboardPage extends BaseTest {
             if (!isDisplayed(fundingSourceDisableText, 3)) {
                 click(fundingSourceDiableToggleBtn);
             } else {
-                waitForElementToBeVisible(amountField,3);actionEnterText(amountField,"100000");
+                waitForElementToBeVisible(amountField, 3);
+                actionEnterText(amountField, "100000");
                 click(saveConfiguration);
                 softAssert.assertEquals(storeName.toString(), name);
             }
@@ -371,6 +385,7 @@ public class GiftCardDashboardPage extends BaseTest {
 
         }
     }
+
     public void verifyNullAmountValidationMsg() {
         Login();
         pannel.getMangeBusinessTab();
@@ -413,6 +428,7 @@ public class GiftCardDashboardPage extends BaseTest {
         click(saveConfiguration);
         softAssert.assertEquals(getText(cardAmountValidationMsg), Constants.ValidationMsg);
     }
+
     public void verifyCrossButton() {
         Login();
         pannel.getMangeBusinessTab();
@@ -424,6 +440,7 @@ public class GiftCardDashboardPage extends BaseTest {
         softAssert.assertEquals(storeName.toString(), name);
 
     }
+
     public void verifyIssueNewGiftCardBtn() {
         Login();
         pannel.getMangeBusinessTab();
@@ -432,7 +449,9 @@ public class GiftCardDashboardPage extends BaseTest {
         click(whichStoreContinueBtn);
         click(configurationBtn);
         offOptionalSettings();
-        staticWait(1000);waitForElementToBeVisible(issueNewGiftCardBtn,1000); click(issueNewGiftCardBtn);
+        staticWait(1000);
+        waitForElementToBeVisible(issueNewGiftCardBtn, 1000);
+        click(issueNewGiftCardBtn);
         softAssert.assertEquals(getText(giftCardHeader), Constants.giftCardHeaderText);
 
     }
@@ -440,9 +459,10 @@ public class GiftCardDashboardPage extends BaseTest {
     public void verifyCustomerPopUp() {
         offOptionalSettings();
         staticWait(1000);
-        waitForElementToBeVisible(issueNewGiftCardBtn,1000);
+        waitForElementToBeVisible(issueNewGiftCardBtn, 1000);
         click(issueNewGiftCardBtn);
-        waitForElementToBeInteractable(customerField,10000);clickElementByJS(customerField);
+        waitForElementToBeInteractable(customerField, 10000);
+        clickElementByJS(customerField);
         softAssert.assertEquals(getText(customerTitleText), Constants.customerPopupTitle);
 
 
@@ -452,8 +472,10 @@ public class GiftCardDashboardPage extends BaseTest {
         offOptionalSettings();
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
-        waitForElementToBeInteractable(customerField,10000);clickElementByJS(customerField);
-        waitForElementToBeVisible(customerPhoneNo,1000);actionEnterText(customerPhoneNo,"1");
+        waitForElementToBeInteractable(customerField, 10000);
+        clickElementByJS(customerField);
+        waitForElementToBeVisible(customerPhoneNo, 1000);
+        actionEnterText(customerPhoneNo, "1");
         click(customerPhoneSearchBtn);
         softAssert.assertEquals(getText(customerPhoneValidationMsg), Constants.ValidationMsg);
         softAssert.assertEquals(getToolTipMessage(customerPhoneToolTip), Constants.phoneValidationToolTip);
@@ -465,21 +487,27 @@ public class GiftCardDashboardPage extends BaseTest {
         offOptionalSettings();
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
-        waitForElementToBeInteractable(customerField,10000);clickElementByJS(customerField);
-        waitForElementToBeVisible(customerEmail,1000); actionEnterText(customerEmail,"r");
+        waitForElementToBeInteractable(customerField, 10000);
+        clickElementByJS(customerField);
+        waitForElementToBeVisible(customerEmail, 1000);
+        actionEnterText(customerEmail, "r");
         clickElementByJS(customerEmailSearchBtn);
         softAssert.assertEquals(getText(customerEmailValidationMsg), Constants.ValidationMsg);
         softAssert.assertEquals(getToolTipMessage(customerEmailToolTip), Constants.emailValidationToolTip);
 
 
     }
+
     public void verifyInvalidCustomerNameField() {
         offOptionalSettings();
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
-        waitForElementToBeInteractable(customerField,10000);clickElementByJS(customerField);
-        waitForElementToBeVisible(customerName,10000);     actionEnterText(customerName,"rt");
-        waitForElementToBeVisible(customerNameSearchBtn,10000);click(customerNameSearchBtn);
+        waitForElementToBeInteractable(customerField, 10000);
+        clickElementByJS(customerField);
+        waitForElementToBeVisible(customerName, 10000);
+        actionEnterText(customerName, "rt");
+        waitForElementToBeVisible(customerNameSearchBtn, 10000);
+        click(customerNameSearchBtn);
         softAssert.assertEquals(getText(noSearchResultText), Constants.noResultText);
 
     }
@@ -488,34 +516,37 @@ public class GiftCardDashboardPage extends BaseTest {
         offOptionalSettings();
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
-        waitForElementToBeInteractable(customerField,10000);clickElementByJS(customerField);
-        waitForElementToBeVisible(customerEmail,1000); actionEnterText(customerEmail,"beanBliss@yopmail.com");
+        waitForElementToBeInteractable(customerField, 10000);
+        clickElementByJS(customerField);
+        waitForElementToBeVisible(customerEmail, 1000);
+        actionEnterText(customerEmail, "beanBliss@yopmail.com");
         clickElementByJS(customerEmailSearchBtn);
-        waitForElementToBeVisible(intialAmount,1000);actionEnterText(intialAmount,"1000");
+        waitForElementToBeVisible(intialAmount, 1000);
+        actionEnterText(intialAmount, "1000");
         scrollToElement(createButton);
-        waitForElementToBeVisible(createButton,1000);click(createButton);
+        waitForElementToBeVisible(createButton, 1000);
+        click(createButton);
 
     }
 
 
-
-
     public void verifyInitialAmtEqualsMaxGiftAmount() {
-        String maxConfiguredAmt= offOptionalSettings();
+        String maxConfiguredAmt = offOptionalSettings();
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
-        waitForElementToBeInteractable(customerField,10000);clickElementByJS(customerField);
-        waitForElementToBeVisible(customerEmail,1000); actionEnterText(customerEmail,"beanBliss@yopmail.com");
+        waitForElementToBeInteractable(customerField, 10000);
+        clickElementByJS(customerField);
+        waitForElementToBeVisible(customerEmail, 1000);
+        actionEnterText(customerEmail, "beanBliss@yopmail.com");
         clickElementByJS(customerEmailSearchBtn);
-        waitForElementToBeVisible(intialAmount,1000);actionEnterText(intialAmount,"100000");
+        waitForElementToBeVisible(intialAmount, 1000);
+        actionEnterText(intialAmount, "100000");
         WebElement element = getWebElement(intialAmount);
         String maxIntialAmt = element.getAttribute("value");
-        softAssert.assertEquals(maxConfiguredAmt,maxIntialAmt);
+        softAssert.assertEquals(maxConfiguredAmt, maxIntialAmt);
 
 
-        }
-
-
+    }
 
 
     public void verifyRefrenceNoMandatory() {
@@ -544,14 +575,18 @@ public class GiftCardDashboardPage extends BaseTest {
     private void verifyReferenceTooltipFlow() {
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
-        waitForElementToBeVisible(customerField,1000); clickElementByJS(customerField);
-        waitForElementToBeVisible(customerEmail,1000); actionEnterText(customerEmail,"beanBliss@yopmail.com");
+        waitForElementToBeVisible(customerField, 1000);
+        clickElementByJS(customerField);
+        waitForElementToBeVisible(customerEmail, 1000);
+        actionEnterText(customerEmail, "beanBliss@yopmail.com");
         clickElementByJS(customerEmailSearchBtn);
         staticWait(1000);
-       waitForElementToBeVisible(intialAmount,1000); actionEnterText(intialAmount,"100000");
+        waitForElementToBeVisible(intialAmount, 1000);
+        actionEnterText(intialAmount, "100000");
         staticWait(1000);
         scrollToElement(createButton);
-        waitForElementToBeVisible(createButton,1000);click(createButton);
+        waitForElementToBeVisible(createButton, 1000);
+        click(createButton);
         staticWait(1000);
         softAssert.assertEquals(getToolTipMessage(referenceNoField), Constants.referenceNoTooltipMsg);
     }
@@ -560,11 +595,14 @@ public class GiftCardDashboardPage extends BaseTest {
         offOptionalSettings();
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
-        waitForElementToBeInteractable(customerField,10000);clickElementByJS(customerField);
-        waitForElementToBeVisible(customerEmail,1000); actionEnterText(customerEmail,"beanBliss@yopmail.com");
+        waitForElementToBeInteractable(customerField, 10000);
+        clickElementByJS(customerField);
+        waitForElementToBeVisible(customerEmail, 1000);
+        actionEnterText(customerEmail, "beanBliss@yopmail.com");
         clickElementByJS(customerEmailSearchBtn);
         staticWait(1000);
-        waitForElementToBeVisible(intialAmount,1000); actionEnterText(intialAmount,"100000");
+        waitForElementToBeVisible(intialAmount, 1000);
+        actionEnterText(intialAmount, "100000");
         scrollToElement(moreOptionsBtn);
         clickElementByJS(moreOptionsBtn);
         waitForElementToBeVisible(cardNoText, 1000);
@@ -574,7 +612,8 @@ public class GiftCardDashboardPage extends BaseTest {
         softAssert.assertEquals(getText(startDateText), Constants.startDateText);
         softAssert.assertEquals(getText(endDateText), Constants.endDateText);
         scrollToElement(createButton);
-        waitForElementToBeVisible(createButton,1000);click(createButton);
+        waitForElementToBeVisible(createButton, 1000);
+        click(createButton);
 
     }
 
@@ -582,22 +621,27 @@ public class GiftCardDashboardPage extends BaseTest {
         offOptionalSettings();
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
-        waitForElementToBeInteractable(customerField,10000);clickElementByJS(customerField);
-        waitForElementToBeVisible(customerEmail,1000); actionEnterText(customerEmail,"beanBliss@yopmail.com");
+        waitForElementToBeInteractable(customerField, 10000);
+        clickElementByJS(customerField);
+        waitForElementToBeVisible(customerEmail, 1000);
+        actionEnterText(customerEmail, "beanBliss@yopmail.com");
         clickElementByJS(customerEmailSearchBtn);
         staticWait(1000);
-        waitForElementToBeVisible(intialAmount,1000); actionEnterText(intialAmount,"100000");
+        waitForElementToBeVisible(intialAmount, 1000);
+        actionEnterText(intialAmount, "100000");
         scrollToElement(moreOptionsBtn);
         clickElementByJS(moreOptionsBtn);
         staticWait(10000);
         actionEnterText(CardNoField, "12");
         scrollToElement(createButton);
-        waitForElementToBeVisible(createButton,1000);click(createButton);
+        waitForElementToBeVisible(createButton, 1000);
+        click(createButton);
         softAssert.assertEquals(getToolTipMessage(CardNoField), Constants.cardMinLendthMsg);
-        softAssert.assertEquals(getText(validationMsg),Constants.ValidationMsg);
+        softAssert.assertEquals(getText(validationMsg), Constants.ValidationMsg);
 
 
     }
+
     public void verifyCardAcceptesNumericValues() {
         offOptionalSettings();
         staticWait(1000);
@@ -607,12 +651,12 @@ public class GiftCardDashboardPage extends BaseTest {
         staticWait(10000);
         WebElement element = getWebElement(CardNoField);
         String type = element.getAttribute("data-f-type");
-        softAssert.assertEquals(type,Constants.cardNoDatatype);
+        softAssert.assertEquals(type, Constants.cardNoDatatype);
 
     }
 
 
-    public void verifyCardNoAccepts18NumericValues () {
+    public void verifyCardNoAccepts18NumericValues() {
         offOptionalSettings();
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
@@ -621,9 +665,10 @@ public class GiftCardDashboardPage extends BaseTest {
         staticWait(10000);
         WebElement element = getWebElement(CardNoField);
         String maxLength = element.getAttribute("maxlength");
-        softAssert.assertEquals(maxLength,Constants.maxLength);
-     }
-    public void verifyMemoAccepts500Values () {
+        softAssert.assertEquals(maxLength, Constants.maxLength);
+    }
+
+    public void verifyMemoAccepts500Values() {
         offOptionalSettings();
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
@@ -631,7 +676,7 @@ public class GiftCardDashboardPage extends BaseTest {
         clickElementByJS(moreOptionsBtn);
         WebElement element = getWebElement(memoField);
         String maxLength = element.getAttribute("maxlength");
-        softAssert.assertEquals(maxLength,Constants.memoMaxLength);
+        softAssert.assertEquals(maxLength, Constants.memoMaxLength);
 
     }
 
@@ -659,90 +704,279 @@ public class GiftCardDashboardPage extends BaseTest {
         clickElementByJS(moreOptionsBtn);
         WebElement element = getWebElement(fundingResourceField);
         String dataType = element.getAttribute("type");
-        softAssert.assertEquals(dataType,Constants.fundingSourceType);
+        softAssert.assertEquals(dataType, Constants.fundingSourceType);
 
 
     }
 
 
+    public String getNoActiveStoreInfoMsg() {
+        return getText(systemMsg);
+    }
 
-   public String getNoActiveStoreInfoMsg(){return getText(systemMsg);}
-   public String getSourceFundOption(){return getText(fundSourceOption);}
-    public void clickWhichStoreContinueBtn(){ click(whichStoreContinueBtn);}
-    public void clickConfigurationButton(){click(configurationBtn);}
-    public String getConfigurationPopupText(){return getText(configurationPopupHeader);}
-    public String getDisabledText(){return getText(disabledText);}
-    public void enableToggleButton(){ click(disabledToggleBtn);}
-    public void disableToggleButton(){ click(enabledToggleBth);}
-    public String getReferenceNoDisabledText(){ return getText(referenceNoDisabledText);}
-    public String getReferenceNoEnabledText(){ return getText(referenceNoEnabledText);}
-    public void enableReferenceNoEnableToggleBtn(){ click(refernceNoDiableToggleBtn);}
-    public void disableReferenceNoEnableToggleBtn(){ click(referenceNoEnableToggleBtn);}
-    public String getFundingSourceDisabledText(){ return getText(fundingSourceDisableText);}
-    public String getFundingSourceEnabledText(){ return getText(fundingSourceEnabledText);}
-    public void enableFundingSourceEnableToggleBtn(){ click(fundingSourceEnableToggleBtn);}
-    public void disableFundingSourceEnableToggleBtn(){ click(fundingSourceDiableToggleBtn);}
-    public void clickSaveConfigurationBtn(){ click(saveConfiguration);}
-    public void enterAmount(){waitForElementToBeVisible(amountField,1000);actionEnterText(amountField,"100000");}
-    public void enterTextSourceFunding(){SendKeys(sourceFundingText,"");}
-    public String getCardAmountValidationMeg(){return getText(cardAmountValidationMsg);}
-    public void clickCrossIcon(){click(crossBtn);}
-    public void clickIssueNewGiftCardBtn(){staticWait(1000);waitForElementToBeVisible(issueNewGiftCardBtn,1000); click(issueNewGiftCardBtn);}
-    public String getGiftCardHeader(){return getText(giftCardHeader);}
-    public String getCustomerTitle(){return getText(customerTitleText);}
-    public void clickCustomerField(){waitForElementToBeClickable(customerField,1000);clickElementByJS(customerField);}
-    public void setCustomerPhoneNo(String number){waitForElementToBeVisible(customerPhoneNo,1000);actionEnterText(customerPhoneNo,number);}
-    public void clickPhoneSearchBtn(){click(customerPhoneSearchBtn);}
-    public String getPhoneValidationMsgText(){return getText(customerPhoneValidationMsg);}
-    public String geEmailValidationMsgText(){waitForElementToBeVisible(customerEmailValidationMsg,1000);return getText(customerEmailValidationMsg);}
-    public void setCustomerName(String name){waitForElementToBeVisible(customerName,10000);     actionEnterText(customerName,name);}
-    public String getNoSearchResultText(){return getText(noSearchResultText);}
-    public void setCustomerEmail(String email){staticWait(1000);actionEnterText(customerEmail,email);}
-    public void clickEmailSearchBtn(){staticWait(1000);waitForElementToBeVisible(customerEmailSearchBtn,10000);click(customerEmailSearchBtn);}
-    public void clickCustomerNameSearchBtn(){waitForElementToBeVisible(customerNameSearchBtn,10000);click(customerNameSearchBtn);}
-    public String getEmailValidationToolTip(){return getToolTipMessage(customerEmailToolTip);}
-    public String getPhoneValidationToolTip(){return getToolTipMessage(customerPhoneToolTip);}
-    public void clickCreateBtn(){waitForElementToBeVisible(createButton,1000);click(createButton);}
-    public void clickDoneBtn(){waitForElementToBeVisible(doneBtn,1000);click(doneBtn);}
-    public void setIntialAmount(String amt){staticWait(10000);   waitForElementToBeVisible(intialAmount,1000);actionEnterText(intialAmount,amt);}
-    public  String getReferenceNoToolTip(){ return getToolTipMessage(referenceNoField);}
-    public void clickMoreOptionsBtn(){staticWait(10000);waitForElementToBeVisible(moreOptionsBtn,1000);clickElementByJS(moreOptionsBtn);}
-    public String getCardNoText(){waitForElementToBeVisible(cardNoText,1000);return getText(cardNoText);}
-    public void setCardNo(String No){staticWait(10000);actionEnterText(CardNoField,No);}
-    public String getCardNoValidationToolTip(){return getToolTipMessage(CardNoField);}
-    public String getCardNoValidationMsg(){return getText(validationMsg);}
-    public void clickStartDate(){click(startDate);}
-    public void clickEndDate(){click(endDate);}
-    public void enterTextStartDate(){actionEnterText(startDate,requiredString(5));}
-    public void enterTextEndDate(){actionEnterText(endDate,requiredString(5));}
-    public String getStartDateTooltipMsg(){return getToolTipMessage(startDate);}
-    public String getEndDateTooltipMsg(){return getToolTipMessage(endDate);}
-    public void clickGiftCardLink(){staticWait(10000);waitForElementInVisible(issueNewGiftcardForm,1000)  ;click(giftCardDetailCardLink);}
-    public String getGiftCardText(){staticWait(10000);;return getText(giftCardDetailCardLink);}
-    public String getGiftCardTextHeaders(){staticWait(10000);String noText = getText(giftCardHeaderText);
-        String numberOnly = noText.split(":")[1].trim(); return numberOnly;}
-    public void clickInfoIcon(){staticWait(10000); click(infoIcon);}
+    public String getSourceFundOption() {
+        return getText(fundSourceOption);
+    }
+
+    public void clickWhichStoreContinueBtn() {
+        click(whichStoreContinueBtn);
+    }
+
+    public void clickConfigurationButton() {
+        click(configurationBtn);
+    }
+
+    public String getConfigurationPopupText() {
+        return getText(configurationPopupHeader);
+    }
+
+    public String getDisabledText() {
+        return getText(disabledText);
+    }
+
+    public void enableToggleButton() {
+        click(disabledToggleBtn);
+    }
+
+    public void disableToggleButton() {
+        click(enabledToggleBth);
+    }
+
+    public String getReferenceNoDisabledText() {
+        return getText(referenceNoDisabledText);
+    }
+
+    public String getReferenceNoEnabledText() {
+        return getText(referenceNoEnabledText);
+    }
+
+    public void enableReferenceNoEnableToggleBtn() {
+        click(refernceNoDiableToggleBtn);
+    }
+
+    public void disableReferenceNoEnableToggleBtn() {
+        click(referenceNoEnableToggleBtn);
+    }
+
+    public String getFundingSourceDisabledText() {
+        return getText(fundingSourceDisableText);
+    }
+
+    public String getFundingSourceEnabledText() {
+        return getText(fundingSourceEnabledText);
+    }
+
+    public void enableFundingSourceEnableToggleBtn() {
+        click(fundingSourceEnableToggleBtn);
+    }
+
+    public void disableFundingSourceEnableToggleBtn() {
+        click(fundingSourceDiableToggleBtn);
+    }
+
+    public void clickSaveConfigurationBtn() {
+        click(saveConfiguration);
+    }
+
+    public void enterAmount() {
+        waitForElementToBeVisible(amountField, 1000);
+        actionEnterText(amountField, "100000");
+    }
+
+    public void enterTextSourceFunding() {
+        SendKeys(sourceFundingText, "");
+    }
+
+    public String getCardAmountValidationMeg() {
+        return getText(cardAmountValidationMsg);
+    }
+
+    public void clickCrossIcon() {
+        click(crossBtn);
+    }
+
+    public void clickIssueNewGiftCardBtn() {
+        staticWait(1000);
+        waitForElementToBeVisible(issueNewGiftCardBtn, 1000);
+        click(issueNewGiftCardBtn);
+    }
+
+    public String getGiftCardHeader() {
+        return getText(giftCardHeader);
+    }
+
+    public String getCustomerTitle() {
+        return getText(customerTitleText);
+    }
+
+    public void clickCustomerField() {
+        waitForElementToBeClickable(customerField, 1000);
+        clickElementByJS(customerField);
+    }
+
+    public void setCustomerPhoneNo(String number) {
+        waitForElementToBeVisible(customerPhoneNo, 1000);
+        actionEnterText(customerPhoneNo, number);
+    }
+
+    public void clickPhoneSearchBtn() {
+        click(customerPhoneSearchBtn);
+    }
+
+    public String getPhoneValidationMsgText() {
+        return getText(customerPhoneValidationMsg);
+    }
+
+    public String geEmailValidationMsgText() {
+        waitForElementToBeVisible(customerEmailValidationMsg, 1000);
+        return getText(customerEmailValidationMsg);
+    }
+
+    public void setCustomerName(String name) {
+        waitForElementToBeVisible(customerName, 10000);
+        actionEnterText(customerName, name);
+    }
+
+    public String getNoSearchResultText() {
+        return getText(noSearchResultText);
+    }
+
+    public void setCustomerEmail(String email) {
+        staticWait(1000);
+        actionEnterText(customerEmail, email);
+    }
+
+    public void clickEmailSearchBtn() {
+        staticWait(1000);
+        waitForElementToBeVisible(customerEmailSearchBtn, 10000);
+        click(customerEmailSearchBtn);
+    }
+
+    public void clickCustomerNameSearchBtn() {
+        waitForElementToBeVisible(customerNameSearchBtn, 10000);
+        click(customerNameSearchBtn);
+    }
+
+    public String getEmailValidationToolTip() {
+        return getToolTipMessage(customerEmailToolTip);
+    }
+
+    public String getPhoneValidationToolTip() {
+        return getToolTipMessage(customerPhoneToolTip);
+    }
+
+    public void clickCreateBtn() {
+        waitForElementToBeVisible(createButton, 1000);
+        click(createButton);
+    }
+
+    public void clickDoneBtn() {
+        waitForElementToBeVisible(doneBtn, 1000);
+        click(doneBtn);
+    }
+
+    public void setIntialAmount(String amt) {
+        staticWait(10000);
+        waitForElementToBeVisible(intialAmount, 1000);
+        actionEnterText(intialAmount, amt);
+    }
+
+    public String getReferenceNoToolTip() {
+        return getToolTipMessage(referenceNoField);
+    }
+
+    public void clickMoreOptionsBtn() {
+        staticWait(10000);
+        waitForElementToBeVisible(moreOptionsBtn, 1000);
+        clickElementByJS(moreOptionsBtn);
+    }
+
+    public String getCardNoText() {
+        waitForElementToBeVisible(cardNoText, 1000);
+        return getText(cardNoText);
+    }
+
+    public void setCardNo(String No) {
+        staticWait(10000);
+        actionEnterText(CardNoField, No);
+    }
+
+    public String getCardNoValidationToolTip() {
+        return getToolTipMessage(CardNoField);
+    }
+
+    public String getCardNoValidationMsg() {
+        return getText(validationMsg);
+    }
+
+    public void clickStartDate() {
+        click(startDate);
+    }
+
+    public void clickEndDate() {
+        click(endDate);
+    }
+
+    public void enterTextStartDate() {
+        actionEnterText(startDate, requiredString(5));
+    }
+
+    public void enterTextEndDate() {
+        actionEnterText(endDate, requiredString(5));
+    }
+
+    public String getStartDateTooltipMsg() {
+        return getToolTipMessage(startDate);
+    }
+
+    public String getEndDateTooltipMsg() {
+        return getToolTipMessage(endDate);
+    }
+
+    public void clickGiftCardLink() {
+        staticWait(10000);
+        waitForElementInVisible(issueNewGiftcardForm, 1000);
+        click(giftCardDetailCardLink);
+    }
+
+    public String getGiftCardText() {
+        staticWait(10000);
+        ;
+        return getText(giftCardDetailCardLink);
+    }
+
+    public String getGiftCardTextHeaders() {
+        staticWait(10000);
+        String noText = getText(giftCardHeaderText);
+        String numberOnly = noText.split(":")[1].trim();
+        return numberOnly;
+    }
+
+    public void clickInfoIcon() {
+        staticWait(10000);
+        click(infoIcon);
+    }
 
     public List<WebElement> getListOfWebElements(By locator) {
         return getDriver().findElements(locator);
     }
+
     public String clickElementFromList(By locator, int index) {
         List<WebElement> elements = getDriver().findElements(locator);
-        String name  =  elements.get(index).getText();
+        String name = elements.get(index).getText();
         if (!elements.isEmpty() && index < elements.size()) {
             elements.get(index).click();
-           Log.info("Element is clicked at index: " +index);
+            Log.info("Element is clicked at index: " + index);
         } else {
             Log.warn("Element not found at index: " + index);
         }
         return name;
     }
 
-    public WebElement getWebElement(By locator ) {
+    public WebElement getWebElement(By locator) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
         return wait.until(visibilityOfElementLocated(locator));
     }
-
 
 
     public void setFundingSourceList() {
@@ -762,6 +996,7 @@ public class GiftCardDashboardPage extends BaseTest {
             textArea.sendKeys("HSBC");
         }
     }
+
     public void verifyFundingSourceAsTList() {
         Login();
         pannel.getMangeBusinessTab();
@@ -787,56 +1022,55 @@ public class GiftCardDashboardPage extends BaseTest {
     }
 
 
+    public void selectDateTwoDaysAgo() {
 
-        public void selectDateTwoDaysAgo(){
-
-            LocalDate twoDaysAgo = LocalDate.now().minusDays(2);
-            int day = twoDaysAgo.getDayOfMonth();
-            String xpath = "//td[contains(@class, 'off') and contains(@class, 'disabled') and normalize-space(text())='" + day + "']";
-            getDriver().findElement(By.xpath(xpath));
-            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
-            wait.until(visibilityOfElementLocated(By.xpath(xpath)));
-            WebElement dateElement = getDriver().findElement(By.xpath(xpath));
-            String classes = dateElement.getAttribute("class");
-            if (classes.contains("disabled")) {
-                System.out.println("The date " + twoDaysAgo + " is disabled.");
-            } else {
-                dateElement.click();
-                System.out.println("Selected date: " + twoDaysAgo);
-            }
+        LocalDate twoDaysAgo = LocalDate.now().minusDays(2);
+        int day = twoDaysAgo.getDayOfMonth();
+        String xpath = "//td[contains(@class, 'off') and contains(@class, 'disabled') and normalize-space(text())='" + day + "']";
+        getDriver().findElement(By.xpath(xpath));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+        wait.until(visibilityOfElementLocated(By.xpath(xpath)));
+        WebElement dateElement = getDriver().findElement(By.xpath(xpath));
+        String classes = dateElement.getAttribute("class");
+        if (classes.contains("disabled")) {
+            System.out.println("The date " + twoDaysAgo + " is disabled.");
+        } else {
+            dateElement.click();
+            System.out.println("Selected date: " + twoDaysAgo);
         }
+    }
     // Gift Cards for sale
 //83
 
-    public void getForSaleBtn(){
-       click(giftCardsSaleLink);
+    public void getForSaleBtn() {
+        click(giftCardsSaleLink);
     }
 
-    public void verifyUserDirection(){
+    public void verifyUserDirection() {
 
-    Login();
+        Login();
         pannel.getMangeBusinessTab();
         pannel.getGiftCardsDashboardTab();
-    selectStore(5);
-    clickWhichStoreContinueBtn();
-    getForSaleBtn();
-    staticWait(3000);
-    click(addBtn);
-    softAssert.assertTrue(isElementDisplayed(faceValue));
-    softAssert.assertTrue(isElementDisplayed(salePrice));
-    softAssert.assertTrue(isElementDisplayed(refNum));
-    softAssert.assertTrue(isDisplayed(fundingLabel,3));
-    softAssert.assertTrue(isElementDisplayed(availableQnty));
-    softAssert.assertTrue(isElementDisplayed(date));
-    softAssert.assertTrue(isElementDisplayed(startDay));
-    softAssert.assertTrue(isElementDisplayed(expireDay));
-    softAssert.assertTrue(isElementDisplayed(memo));
-    softAssert.assertAll();
+        selectStore(5);
+        clickWhichStoreContinueBtn();
+        getForSaleBtn();
+        staticWait(3000);
+        click(addBtn);
+        softAssert.assertTrue(isElementDisplayed(faceValue));
+        softAssert.assertTrue(isElementDisplayed(salePrice));
+        softAssert.assertTrue(isElementDisplayed(refNum));
+        softAssert.assertTrue(isDisplayed(fundingLabel, 3));
+        softAssert.assertTrue(isElementDisplayed(availableQnty));
+        softAssert.assertTrue(isElementDisplayed(date));
+        softAssert.assertTrue(isElementDisplayed(startDay));
+        softAssert.assertTrue(isElementDisplayed(expireDay));
+        softAssert.assertTrue(isElementDisplayed(memo));
+        softAssert.assertAll();
 
     }
 
-//84
-    public void verifyFaceValueAmountField(){
+    //84
+    public void verifyFaceValueAmountField() {
         Login();
         pannel.getMangeBusinessTab();
         pannel.getGiftCardsDashboardTab();
@@ -848,21 +1082,22 @@ public class GiftCardDashboardPage extends BaseTest {
         WebElement element = getWebElement(faceValue);
         //String maxlen=getAttribute(faceValue,"max");
 
-        String maxLen= element.getAttribute("max");
+        String maxLen = element.getAttribute("max");
         System.out.println(maxLen);           //maxlinit is 1000.00
-        String amt="100000";
-        actionEnterText(faceValue,amt);    //10000.00
-        String afterEnter= getText(faceValue);
+        String amt = "100000";
+        actionEnterText(faceValue, amt);    //10000.00
+        String afterEnter = getText(faceValue);
         System.out.println(afterEnter);
         System.out.println("faceValue take input only 1000 as maximum limit is 1000");
         staticWait(3000);
-        Assert.assertEquals(maxLen,"1000.00");
+        Assert.assertEquals(maxLen, "1000.00");
         staticWait(3000);
 
 
     }
+
     //85
-    public void verifyFaceValueFieldAccept(){
+    public void verifyFaceValueFieldAccept() {
         Login();
         pannel.getMangeBusinessTab();
         pannel.getGiftCardsDashboardTab();
@@ -871,16 +1106,17 @@ public class GiftCardDashboardPage extends BaseTest {
         getForSaleBtn();
         staticWait(3000);
         click(addBtn);
-        actionEnterText(faceValue,"asd100000");
+        actionEnterText(faceValue, "asd100000");
         Log.info("Only enters numeric value so expected would be 1000.00 which is max");
         WebElement element = getWebElement(faceValue);
-        String maxLen= element.getAttribute("max");
-        Assert.assertEquals(maxLen,"1000.00");   //assert 1000.00 which is being entered with max
+        String maxLen = element.getAttribute("max");
+        Assert.assertEquals(maxLen, "1000.00");   //assert 1000.00 which is being entered with max
         staticWait(3000);
 
     }
-//86
-    public void verifySalePriceFieldAccept(){
+
+    //86
+    public void verifySalePriceFieldAccept() {
         Login();
         pannel.getMangeBusinessTab();
         pannel.getGiftCardsDashboardTab();
@@ -889,15 +1125,16 @@ public class GiftCardDashboardPage extends BaseTest {
         getForSaleBtn();
         staticWait(3000);
         click(addBtn);
-        actionEnterText(salePrice,"asd150000");
+        actionEnterText(salePrice, "asd150000");
         Log.info("Only enters numeric value so expected would be 1000.00 which is max");
         WebElement element = getWebElement(salePrice);
-        String maxLen= element.getAttribute("max");
-        Assert.assertEquals(maxLen,"1500.00");   //assert 1500.00 which is being entered with max
+        String maxLen = element.getAttribute("max");
+        Assert.assertEquals(maxLen, "1500.00");   //assert 1500.00 which is being entered with max
         staticWait(3000);
 
     }
-    public void verifyUserAllowedToEnterMaximumValue(){
+
+    public void verifyUserAllowedToEnterMaximumValue() {
         Login();
         pannel.getMangeBusinessTab();
         pannel.getGiftCardsDashboardTab();
@@ -906,13 +1143,12 @@ public class GiftCardDashboardPage extends BaseTest {
         getForSaleBtn();
         staticWait(3000);
         click(addBtn);
-        actionEnterText(salePrice,"150000");
+        actionEnterText(salePrice, "150000");
         Log.info("Only enters numeric value so expected would be 1000.00 which is max");
         WebElement element = getWebElement(salePrice);
-        String maxLen= element.getAttribute("max");
-        Assert.assertEquals(maxLen,"1500.00");   //assert only 1500.00 which is being entered, with max
+        String maxLen = element.getAttribute("max");
+        Assert.assertEquals(maxLen, "1500.00");   //assert only 1500.00 which is being entered, with max
         staticWait(3000);
-
 
 
     }
@@ -926,10 +1162,10 @@ public class GiftCardDashboardPage extends BaseTest {
         getForSaleBtn();
         staticWait(3000);
         click(addBtn);
-        actionEnterText(faceValue,"15000");
-        actionEnterText(salePrice,"17000");
-        actionEnterText(refNum,"abc123");
-        actionEnterText(availableQnty,"5");
+        actionEnterText(faceValue, "15000");
+        actionEnterText(salePrice, "17000");
+        actionEnterText(refNum, "abc123");
+        actionEnterText(availableQnty, "5");
         staticWait(5000);
         clickElementByJS(saveBtn);
         staticWait(2000);
@@ -962,7 +1198,8 @@ public class GiftCardDashboardPage extends BaseTest {
         Log.info("Validate tooltip");
 
     }
-    public void verifyPastStartDatesDisabled () {
+
+    public void verifyPastStartDatesDisabled() {
         offOptionalSettings();
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
@@ -973,7 +1210,8 @@ public class GiftCardDashboardPage extends BaseTest {
 
 
     }
-    public void verifyPastEndDateDisabled () {
+
+    public void verifyPastEndDateDisabled() {
         offOptionalSettings();
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
@@ -984,14 +1222,15 @@ public class GiftCardDashboardPage extends BaseTest {
 
 
     }
-    public void  verifyStartDateRejectsCharacters () {
+
+    public void verifyStartDateRejectsCharacters() {
         offOptionalSettings();
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
         scrollToElement(moreOptionsBtn);
         clickElementByJS(moreOptionsBtn);
         click(startDate);
-        actionEnterText(startDate,"fssgjyfu");
+        actionEnterText(startDate, "fssgjyfu");
         scrollToElement(createButton);
         waitForElementToBeVisible(createButton, 1);
         click(createButton);
@@ -1001,7 +1240,8 @@ public class GiftCardDashboardPage extends BaseTest {
 
 
     }
-    public void verifyEndDateRejectsCharacters () {
+
+    public void verifyEndDateRejectsCharacters() {
         offOptionalSettings();
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
@@ -1018,7 +1258,7 @@ public class GiftCardDashboardPage extends BaseTest {
     }
 
 
-    public void verifyFundingSrcFieldAppear (String actionType){
+    public void verifyFundingSrcFieldAppear(String actionType) {
 
         if (actionType.equals("Optional")) {
             Login();
@@ -1041,7 +1281,7 @@ public class GiftCardDashboardPage extends BaseTest {
         }
     }
 
-    public void verifyAvailableQuantityFieldLength () {
+    public void verifyAvailableQuantityFieldLength() {
         Login();
         pannel.getMangeBusinessTab();
         pannel.getGiftCardsDashboardTab();
@@ -1058,7 +1298,7 @@ public class GiftCardDashboardPage extends BaseTest {
         Assert.assertEquals(limit, length);
     }
 
-    public void verifyAvailableQuantityAcceptsNumbers(){
+    public void verifyAvailableQuantityAcceptsNumbers() {
         Login();
         pannel.getMangeBusinessTab();
         pannel.getGiftCardsDashboardTab();
@@ -1076,7 +1316,7 @@ public class GiftCardDashboardPage extends BaseTest {
     }
 
 
-    public void verifyRefNoValidation(){
+    public void verifyRefNoValidation() {
 
         Login();
         pannel.getMangeBusinessTab();
@@ -1086,7 +1326,7 @@ public class GiftCardDashboardPage extends BaseTest {
         getForSaleBtn();
         staticWait(3000);
         click(addBtn);
-        String max_char = getAttribute(referenceNoField,"maxlength");
+        String max_char = getAttribute(referenceNoField, "maxlength");
         Log.info("Maximum char limit is : " + max_char);
         Assert.assertEquals(max_char, "30", "Max character limit is not 30");
 
@@ -1101,7 +1341,7 @@ public class GiftCardDashboardPage extends BaseTest {
         return formatter.format(today) + " - " + formatter.format(nextYear);
     }
 
-    public void verifyDefaultDateRange(){
+    public void verifyDefaultDateRange() {
 
         Login();
         pannel.getMangeBusinessTab();
@@ -1123,32 +1363,31 @@ public class GiftCardDashboardPage extends BaseTest {
 
     }
 
-    public void verifyDateRange(){
+    public void verifyDateRange() {
 
         offOptionalSettings();
         staticWait(2000);
         getForSaleBtn();
         staticWait(3000);
         click(addBtn);
-        String amt="1000";
-        actionEnterText(faceValue,amt);
-        actionEnterText(salePrice,"1500");
-        actionEnterText(availableQnty,"5");
+        String amt = "1000";
+        actionEnterText(faceValue, amt);
+        actionEnterText(salePrice, "1500");
+        actionEnterText(availableQnty, "5");
         scrollToElement(date);
         clickElementByJS(date);
         click(pickingLeftDate);
         click(pickingLeftDate);
-        waitForElementToBeClickable(saveBtn,2);
+        waitForElementToBeClickable(saveBtn, 2);
         staticWait(6000);
         click(saveBtn);
         staticWait(3000);
         Assert.assertTrue(isElementDisplayed(afterGiftCardFOrSalePage));
 
 
-
-
     }
-    public void validateAddedFundingSource(){
+
+    public void validateAddedFundingSource() {
         Login();
         pannel.getMangeBusinessTab();
         pannel.getGiftCardsDashboardTab();
@@ -1173,7 +1412,7 @@ public class GiftCardDashboardPage extends BaseTest {
 
     }
 
-    public void verifyMemoFieldMaximumChar (){
+    public void verifyMemoFieldMaximumChar() {
 
         Login();
         pannel.getMangeBusinessTab();
@@ -1184,10 +1423,9 @@ public class GiftCardDashboardPage extends BaseTest {
         staticWait(3000);
         click(addBtn);
         scrollToElement(memo);
-        String max_char = getAttribute(memo,"maxlength");
+        String max_char = getAttribute(memo, "maxlength");
         Log.info("Maximum char limit is : " + max_char);
         Assert.assertEquals(max_char, "500", "Max character limit is not 30");
-
 
 
     }
@@ -1213,7 +1451,7 @@ public class GiftCardDashboardPage extends BaseTest {
         click(saveBtn);
         staticWait(3000);
         Assert.assertTrue(isElementDisplayed(afterGiftCardFOrSalePage));
-        waitForElementToBeClickable(firstCardLink,5);
+        waitForElementToBeClickable(firstCardLink, 5);
         click(firstCardLink);
         staticWait(4000);
         String prefilledFaceValue = getAttribute(faceValue, "value");
@@ -1223,9 +1461,10 @@ public class GiftCardDashboardPage extends BaseTest {
         Assert.assertEquals(prefilledFaceValue, "10.00", "Available quantity is not prefilled");
         Assert.assertEquals(prefilledSalePrice, "15.00", "Sale price is not prefilled");
 
-        }
-@Test
-        public void verifyStatusOfGiftCard(){
+    }
+
+    @Test
+    public void verifyStatusOfGiftCard() {
         offOptionalSettings();
         staticWait(2000);
         getForSaleBtn();
@@ -1242,19 +1481,19 @@ public class GiftCardDashboardPage extends BaseTest {
         // WebElement dateElement = driver.findElement(date);
         // dateElement.clear();
         cleanByJS(date);
-        actionEnterText(date,"05/04/2023 - 05/04/2024");
+        actionEnterText(date, "05/04/2023 - 05/04/2024");
         waitForElementToBeClickable(saveBtn, 2);
         staticWait(6000);
         click(saveBtn);
         staticWait(3000);
         Assert.assertTrue(isElementDisplayed(afterGiftCardFOrSalePage));
-        waitForElementToBeVisible(endText,5);
+        waitForElementToBeVisible(endText, 5);
         staticWait(5000);
         String status = getText(endText);
         Assert.assertEquals(status, "Ended", "Status is not Active");
 
-        }
-@Test
+    }
+
     public void verifyUpdateSaleGiftCard() {
 
         offOptionalSettings();
@@ -1277,7 +1516,7 @@ public class GiftCardDashboardPage extends BaseTest {
         click(saveBtn);
         staticWait(3000);
         Assert.assertTrue(isElementDisplayed(afterGiftCardFOrSalePage));
-        waitForElementToBeClickable(firstCardLink,5);
+        waitForElementToBeClickable(firstCardLink, 5);
         click(firstCardLink);
         staticWait(4000);
         String updatedAmt = "70000";
@@ -1288,12 +1527,451 @@ public class GiftCardDashboardPage extends BaseTest {
         actionEnterText(availableQnty, updateAvailable);
         scrollToElement(saveBtn);
         click(saveBtn);
-        waitForElementToBeVisible(dataSavedSuccessfully,5);
+        waitForElementToBeVisible(dataSavedSuccessfully, 5);
         Assert.assertTrue(isElementDisplayed(dataSavedSuccessfully));
 
 
+    }
+
+    public void verifyUserNotAbleToDeleteAfterCanceling() {
+
+        offOptionalSettings();
+        staticWait(2000);
+        getForSaleBtn();
+        staticWait(3000);
+        click(addBtn);
+        String amt = "1000";
+        String saleAmt = "1500";
+        String available = "5";
+        actionEnterText(faceValue, amt);
+        actionEnterText(salePrice, saleAmt);
+        actionEnterText(availableQnty, available);
+        scrollToElement(date);
+        clickElementByJS(date);
+        click(pickingLeftDate);
+        click(pickingLeftDate);
+        waitForElementToBeClickable(saveBtn, 2);
+        staticWait(6000);
+        click(saveBtn);
+        staticWait(3000);
+        Assert.assertTrue(isElementDisplayed(afterGiftCardFOrSalePage));
+        waitForElementToBeClickable(firstCardLink, 5);
+        click(firstCardLink);
+        staticWait(4000);
+        scrollToElement(deleteIcon);
+        click(deleteIcon);
+        waitForElementToBeVisible(neverMindIcon, 5);
+        click(neverMindIcon);
+        Assert.assertTrue(isElementDisplayed(date));
+    }
+
+
+
+
+    public void verifyUserAbleToDeleteSaleGift() {
+
+        offOptionalSettings();
+        staticWait(2000);
+        getForSaleBtn();
+        staticWait(3000);
+        click(addBtn);
+        String amt = "1000";
+        String saleAmt = "1500";
+        String available = "5";
+        actionEnterText(faceValue, amt);
+        actionEnterText(salePrice, saleAmt);
+        actionEnterText(availableQnty, available);
+        scrollToElement(date);
+        clickElementByJS(date);
+        click(pickingLeftDate);
+        click(pickingLeftDate);
+        waitForElementToBeClickable(saveBtn, 2);
+        staticWait(6000);
+        click(saveBtn);
+        staticWait(3000);
+        Assert.assertTrue(isElementDisplayed(afterGiftCardFOrSalePage));
+        waitForElementToBeClickable(firstCardLink, 5);
+        click(firstCardLink);
+        staticWait(4000);
+        scrollToElement(deleteIcon);
+        click(deleteIcon);
+        click(thumbsUp);
+        staticWait(3000);
 
     }
+
+
+    public void verifyListOfGiftCards(){
+
+        offOptionalSettings();
+        staticWait(2000);
+        getForSaleBtn();
+
+
+        int count = getCountOfWebElements(giftCardDetails);
+        System.out.println("Count of the transaction " + count);
+
+        List<WebElement> allGiftCards = new ArrayList<>();
+
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+
+        int previousCount = 0;
+
+        while (true) {
+            // Scroll to bottom
+            js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+
+            // Wait for the new elements to load (you can customize this with ExpectedConditions)
+            staticWait(2000); // Can be replaced with WebDriverWait for stability
+
+            // Re-fetch the list after scroll
+            List<WebElement> currentGiftCards = getDriver().findElements(giftCardDetails);
+
+            int currentCount = currentGiftCards.size();
+            System.out.println("Currently loaded bills: " + currentCount);
+
+            if (currentCount == previousCount) {
+                // No new gift cards loaded
+                break;
+            }
+
+            previousCount = currentCount;
+            allGiftCards = currentGiftCards;
+        }
+
+// Output total bills
+        Log.info("Total gift cards collected: " + allGiftCards.size());
+        for (WebElement gifts : allGiftCards) {
+            System.out.println(gifts.getText()); // or any property you want
+        }
+
+        staticWait(5000);
+
+
+    }
+
+    public void verifyGiftCardDetails() {
+        offOptionalSettings();
+        staticWait(2000);
+        getForSaleBtn();
+        staticWait(1000);
+        click(filterBtn);
+        staticWait(7000);
+        Assert.assertTrue(isElementDisplayed(statusAvailable));
+        Assert.assertEquals(getText(statusAvailable),"Available");
+
+
+    }
+     public void verifyAvailableAndAllOptionsInStatus() {
+
+        offOptionalSettings();
+        staticWait(2000);
+        getForSaleBtn();
+        staticWait(1000);
+        click(filterBtn);
+        staticWait(2000);
+        click(statusAvailable);
+        List<WebElement> options = getDriver().findElements(optionLocator);
+
+        // Assert that exactly two <option> elements are presentAssert.assertEquals("Expected exactly two options", 2, options.size());
+
+         // Assert the text of each <option> element
+         Assert.assertEquals(options.get(0).getText(),"Available");
+         System.out.println("First option text: " + options.get(0).getText());
+         Assert.assertEquals(options.get(1).getText(),"All");
+         System.out.println("Second option text: " + options.get(1).getText());
+
+     }
+
+
+public void verifyAvailableSaleGiftCards() {
+    offOptionalSettings();
+    staticWait(2000);
+    getForSaleBtn();
+
+    JavascriptExecutor js = (JavascriptExecutor) getDriver();
+    List<WebElement> allGiftCards = new ArrayList<>();
+
+    int previousCount = 0;
+
+    while (true) {
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        staticWait(2000);
+
+        List<WebElement> currentGiftCards = getDriver().findElements(giftCardDetails);
+        int currentCount = currentGiftCards.size();
+
+        System.out.println("Currently loaded gift cards: " + currentCount);
+
+        if (currentCount == previousCount) {
+            break;
+        }
+
+        previousCount = currentCount;
+        allGiftCards = currentGiftCards;
+    }
+
+    Log.info("Total gift cards collected: " + allGiftCards.size());
+
+    boolean zeroQtyFound = false;
+    for (WebElement gift : allGiftCards) {
+        String giftText = gift.getText();
+        System.out.println(giftText);
+
+        if (giftText.contains("Available QTY: 0")) {
+            zeroQtyFound = true;
+            Log.error("Gift card with zero available quantity found:\n" + giftText, new RuntimeException("Available QTY: 0"));
+        }
+    }
+
+    if (zeroQtyFound) {
+        throw new AssertionError("One or more gift cards have 'Available QTY: 0'. Test failed.");
+    }
+
+    staticWait(5000);
+}
+@Test
+public void verifyActionOnZeroAvailableQty() {
+    offOptionalSettings();
+    staticWait(2000);
+    getForSaleBtn();
+    staticWait(1000);
+    click(filterBtn);
+    staticWait(2000);
+    click(statusAvailable);
+    click(endBtn);
+    click(applyBtn);
+    staticWait(5000);
+
+    JavascriptExecutor js = (JavascriptExecutor) getDriver();
+    List<WebElement> allGiftCards = new ArrayList<>();
+
+    int previousCount = 0;
+
+    while (true) {
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        staticWait(2000);
+
+        List<WebElement> currentGiftCards = getDriver().findElements(giftCardDetails);
+        int currentCount = currentGiftCards.size();
+
+        System.out.println("Currently loaded gift cards: " + currentCount);
+
+        if (currentCount == previousCount) {
+            break;
+        }
+
+        previousCount = currentCount;
+        allGiftCards = currentGiftCards;
+    }
+
+    Log.info("Total gift cards collected: " + allGiftCards.size());
+    boolean zeroQtyFound = false;
+
+    for (WebElement gift : allGiftCards) {
+        String giftText = gift.getText();
+        System.out.println(giftText);
+
+        if (giftText.contains("Available QTY: 0")) {
+            zeroQtyFound = true;
+
+            // Log the issue
+            Log.error("Gift card with zero available quantity found:\n" + giftText, new RuntimeException("Available QTY: 0"));
+
+            // Scroll to the gift card and click
+            try {
+                js.executeScript("arguments[0].scrollIntoView({block: 'center'});", gift);
+                staticWait(1000); // allow scroll transition
+                WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+                wait.until(ExpectedConditions.elementToBeClickable(gift)).click();
+            } catch (ElementClickInterceptedException e) {
+                js.executeScript("arguments[0].click();", gift); // fallback JS click
+            }
+
+            staticWait(2000); // Optional: wait for UI to load
+
+            // Check for Delete button
+            try {
+                WebElement deleteBtn = getDriver().findElement(By.id("deleteButton")); // Use actual locator
+                boolean isDisplayed = isDisplayed(deleteIcon, 2);
+                if (isDisplayed) {
+                    throw new AssertionError("Delete button should not be visible for Available QTY: 0");
+                }
+            } catch (NoSuchElementException e) {
+                System.out.println("Delete button is not present, as expected.");
+            }
+
+            break; // Only handle the first tile with Available QTY: 0
+        }
+    }
+
+    if (!zeroQtyFound) {
+        throw new AssertionError("No gift card with 'Available QTY: 0' was found.");
+    }
+}
+    public void verifyActionOnSoldQty1() {
+        offOptionalSettings();
+        staticWait(2000);
+        getForSaleBtn();
+        staticWait(1000);
+        click(filterBtn);
+        staticWait(2000);
+        click(statusAvailable);
+        click(endBtn);
+        click(applyBtn);
+        staticWait(5000);
+
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        List<WebElement> allGiftCards = new ArrayList<>();
+
+        int previousCount = 0;
+
+        while (true) {
+            js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+            staticWait(2000);
+
+            List<WebElement> currentGiftCards = getDriver().findElements(giftCardDetails);
+            int currentCount = currentGiftCards.size();
+
+            System.out.println("Currently loaded gift cards: " + currentCount);
+
+            if (currentCount == previousCount) {
+                break;
+            }
+
+            previousCount = currentCount;
+            allGiftCards = currentGiftCards;
+        }
+
+        Log.info("Total gift cards collected: " + allGiftCards.size());
+        boolean soldQtyFound = false;
+
+        for (WebElement gift : allGiftCards) {
+            String giftText = gift.getText();
+            System.out.println(giftText);
+
+            if (giftText.contains("Sold QTY: 1")) {
+                soldQtyFound = true;
+                Log.info("Gift card with Sold QTY: 1 found:\n" + giftText);
+
+                // Scroll to tile and click
+                try {
+                    js.executeScript("arguments[0].scrollIntoView({block: 'center'});", gift);
+                    staticWait(1000);
+                    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+                    wait.until(ExpectedConditions.elementToBeClickable(gift)).click();
+                } catch (ElementClickInterceptedException e) {
+                    js.executeScript("arguments[0].click();", gift);
+                }
+
+                staticWait(2000); // wait for tile details to load
+
+                // Scroll to delete icon and click
+                try {
+                    WebElement deleteBtn = getDriver().findElement(deleteIcon); // deleteIcon is a By locator
+                    js.executeScript("arguments[0].scrollIntoView({block: 'center'});", deleteBtn);
+                    staticWait(1000);
+                    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+                    wait.until(ExpectedConditions.elementToBeClickable(deleteBtn)).click();
+                    Log.info("Delete button clicked successfully.");
+                } catch (NoSuchElementException e) {
+                    throw new AssertionError("Delete button not found on tile with Sold QTY: 1");
+                }
+
+                break;
+            }
+        }
+
+        if (!soldQtyFound) {
+            throw new AssertionError("No gift card with 'Sold QTY: 1' was found.");
+        }
+    }
+
+@Test
+    public void verifyActionOnSoldQty0() {
+        offOptionalSettings();
+        staticWait(2000);
+        getForSaleBtn();
+        staticWait(1000);
+        click(filterBtn);
+        staticWait(2000);
+        click(statusAvailable);  // Assuming the status filter is relevant for sold quantity as well
+        click(endBtn);
+        click(applyBtn);
+        staticWait(5000);
+
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        List<WebElement> allGiftCards = new ArrayList<>();
+
+        int previousCount = 0;
+
+        // Scroll and collect all gift card elements until the list stops growing
+        while (true) {
+            js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+            staticWait(2000);
+
+            List<WebElement> currentGiftCards = getDriver().findElements(giftCardDetails);
+            int currentCount = currentGiftCards.size();
+
+            System.out.println("Currently loaded gift cards: " + currentCount);
+
+            if (currentCount == previousCount) {
+                break;
+            }
+
+            previousCount = currentCount;
+            allGiftCards = currentGiftCards;
+        }
+
+        Log.info("Total gift cards collected: " + allGiftCards.size());
+        boolean soldQtyFound = false;
+
+        // Iterate over all gift cards and find the one with Sold QTY: 0
+        for (WebElement gift : allGiftCards) {
+            String giftText = gift.getText();
+            System.out.println(giftText);
+
+            if (giftText.contains("Sold QTY: 0")) {
+                soldQtyFound = true;
+                Log.info("Gift card with Sold QTY: 0 found:\n" + giftText);
+
+                // Scroll to the gift card tile and click on it
+                try {
+                    js.executeScript("arguments[0].scrollIntoView({block: 'center'});", gift);
+                    staticWait(1000);  // Allow time for scroll to finish
+                    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+                    wait.until(ExpectedConditions.elementToBeClickable(gift)).click();
+                } catch (ElementClickInterceptedException e) {
+                    js.executeScript("arguments[0].click();", gift);
+                }
+
+                staticWait(2000); // wait for tile details to load
+
+                // Scroll to delete icon and click
+                try {
+                    WebElement deleteBtn = getDriver().findElement(deleteIcon); // deleteIcon is a By locator
+                    js.executeScript("arguments[0].scrollIntoView({block: 'center'});", deleteBtn);
+                    staticWait(1000); // Allow time for scroll to finish
+                    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+                    wait.until(ExpectedConditions.elementToBeClickable(deleteBtn)).click();
+                    Log.info("Delete button clicked successfully.");
+                } catch (NoSuchElementException e) {
+                    throw new AssertionError("Delete button not found on tile with Sold QTY: 0");
+                }
+
+                break;  // Only handle the first found tile with Sold QTY: 0
+            }
+        }
+
+        // If no gift card with Sold QTY: 0 was found, throw an error
+        if (!soldQtyFound) {
+            throw new AssertionError("No gift card with 'Sold QTY: 0' was found.");
+        }
+    }
+
+
+
+
 
 }
 
