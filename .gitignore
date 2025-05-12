@@ -1,6 +1,6 @@
 .settings
-/target
-test-output
+/target/
+/test-output
 .project
 .classpath
 /.idea
@@ -12,7 +12,7 @@ test-report/
 /.DS_Store
 allure-results/
 debugger.xml
-logs/
+/logs/
 screenshot
 chaintest
 maven-status

@@ -1,7 +1,0 @@
-2025-05-02 13:33:15,528 [info]: Clicking on By.xpath: (//a[@class='btn btn-link stretched-link align-self-center'])[1]
-2025-05-02 13:33:28,910 [info]: Clicking on newBillTxt
-2025-05-02 13:34:01,444 [info]: Clicking on By.xpath: //a[normalize-space()='Sign out']
-2025-05-02 13:34:29,273 [info]: Nothing to be selected
-2025-05-02 13:34:47,187 [info]: Clicking on By.xpath: //a[normalize-space()='Close']
-2025-05-02 13:34:50,687 [info]: Clicking on By.xpath: //a[normalize-space()='My Stuff']
-2025-05-02 13:34:50,724 [info]: Clicking on By.xpath: //div[normalize-space()='Payment History']

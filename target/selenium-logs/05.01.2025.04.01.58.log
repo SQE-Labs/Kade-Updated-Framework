@@ -1,4 +1,0 @@
-2025-05-01 16:01:58,643 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
-2025-05-01 16:01:59,822 [info]: Element is clicked at index: 4
-2025-05-01 16:02:03,981 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
-2025-05-01 16:02:06,503 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
