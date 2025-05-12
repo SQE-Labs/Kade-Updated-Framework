@@ -31,7 +31,7 @@
                   <tr>
                     <td>
                       <span class="bg-failed" style="margin-right:10px;padding:0px 5px;">FAILED</span>
-                      <span style="">May 7, 2025, 11:36:59 AM &middot; 1h 31m 0s</span>
+                      <span style="">6 May 2025, 12:43:16 pm &middot; 2h 27m 18s</span>
                     </td>
                   </tr>
                 </table>
@@ -52,15 +52,15 @@
 	            <tr>
 	              <td width="100" style="padding:30px 40px 20px;">
 	                <p style="font-weight:500;color:#7E7E7E;margin:0;">Tests</p>
-	                <h1 style="font-size:34px;">60</h1>
+	                <h1 style="font-size:34px;">212</h1>
 	              </td>
                 <td width="100" style="padding:30px 40px 20px;">
 	                <p style="font-weight:500;color:#7E7E7E;margin:0;color:#79B530">Passed</p>
-	                <h1 style="font-size:34px;">48</h1>
+	                <h1 style="font-size:34px;">187</h1>
 	              </td>
                 <td width="100" style="padding:30px 40px 20px;">
 	                <p style="font-weight:500;color:#7E7E7E;margin:0;color:#e64b5d">Failed</p>
-	                <h1 style="font-size:34px;">12</h1>
+	                <h1 style="font-size:34px;">25</h1>
 	              </td>
                 <td width="100" style="padding:30px 40px 20px;">
 	                <p style="font-weight:500;color:#7E7E7E;margin:0;color:#e6e04c">Skipped</p>
@@ -114,62 +114,35 @@
                       <p class="text-failed" style="font-size:14px;font-weight:500;margin:0;margin-bottom:5px;">
                         Suite
                       <p style="font-size:12px;margin:0;">
-                        <span>May 7, 2025, 11:37:00 AM / 1h 30m 58s</span>
+                        <span>6 May 2025, 12:43:17 pm / 2h 27m 18s</span>
                       </p>
                     </td>
                   </tr>
                   <tr>
                     <td width="650px" class="bg-failed" style="padding:7px 10px;">
                       <p style="font-size:13px;margin:0;">
-                        qa.tests.MyStoreTest
+                        qa.tests.AddPaymentMethodTest
                       </p>
                     </td>
                   </tr>
                   <tr>
                     <td width="650px" class="bg-passed" style="padding:7px 20px;">
                       <p style="font-size:13px;margin:0;">
-                        c2verifyingBuyingMonthlyBusinessPlanForAlreadyCreatedStore
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
-                      <p style="font-size:13px;margin:0;">
-                        creationOfStoreWithStripeAccount
+                        verifyThatInformationMsgAppearsWhenNoPaymetMethodIsSelected
                       </p>
                     </td>
                   </tr>
                   <tr>
                     <td width="650px" class="bg-failed" style="padding:7px 20px;">
                       <p style="font-size:13px;margin:0;">
-                        sc01b_DeletionOfStore
-<pre>org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//button[text()='Delete the store']"}
-  (Session info: chrome=136.0.7103.49)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
-Build info: version: '4.11.0', revision: '040bc5406b'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [baad8a468202c889be53948e233d714b, findElement {using=xpath, value=//button[text()='Delete the store']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.49, chrome: {chromedriverVersion: 136.0.7103.92 (cb81a4cc5087..., userDataDir: C:\Users\Caelius\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:59795}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59795/devtoo..., se:cdpVersion: 136.0.7103.49, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: baad8a468202c889be53948e233d714b
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)
-	at base.BaseTest.scrollToElement(BaseTest.java:271)
-	at qa.tests.MyStoreTest.sc01b_DeletionOfStore(MyStoreTest.java:61)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+                        getAddedBankAccountMethod
+<pre>java.lang.AssertionError: Credit card option expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertTrue(Assert.java:57)
+	at qa.tests.AddPaymentMethodTest.getAddedBankAccountMethod(AddPaymentMethodTest.java:42)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
 	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
 	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
@@ -178,7 +151,7 @@ Session ID: baad8a468202c889be53948e233d714b
 	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
 	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
 	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
 	at org.testng.TestRunner.privateRun(TestRunner.java:739)
 	at org.testng.TestRunner.run(TestRunner.java:614)
 	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
@@ -194,6 +167,1280 @@ Session ID: baad8a468202c889be53948e233d714b
 	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
 	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
 </pre>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr><td style="height:10px"></td></tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 10px;">
+                      <p style="font-size:13px;margin:0;">
+                        qa.tests.BasicInformationPage
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyBasicInformationPageOpens
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyInvalidAddressValidation
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyInvalidPhoneValidation
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyModifyAndSaveChangesFunctionality
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyStoreLogoChange
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyStoreLogoChangeWithInvalidFile
+                      </p>
+                    </td>
+                  </tr>
+                  <tr><td style="height:10px"></td></tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 10px;">
+                      <p style="font-size:13px;margin:0;">
+                        qa.tests.BillTest
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyCreateBillWithoutSelectingCustomer
+<pre>java.lang.AssertionError: expected [Message] but found [By.xpath: //h5[text()='Message']]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+	at org.testng.Assert.assertEquals(Assert.java:132)
+	at org.testng.Assert.assertEquals(Assert.java:644)
+	at pageEvents.BillPage.createBillWithoutCustomer(BillPage.java:1204)
+	at qa.tests.BillTest.verifyCreateBillWithoutSelectingCustomer(BillTest.java:18)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyCreateBillBySelectingCustomer
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyCreateBillForSuggestedCustomer
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyBillCreationUsingOptionalFields
+<pre>java.lang.AssertionError: expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertTrue(Assert.java:57)
+	at org.testng.Assert.assertTrue(Assert.java:67)
+	at pageEvents.BillPage.clickOnGetRefNotxt(BillPage.java:425)
+	at pageEvents.BillPage.verifyBillCreationByOptionalFields(BillPage.java:1373)
+	at qa.tests.BillTest.verifyBillCreationUsingOptionalFields(BillTest.java:42)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyingBillCreationWithConfiguredBillAmount
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyingBillCreationWithoutConfiguredBillAmount
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyingBillCreationByAttachingImageFile
+<pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //button[@class='btn btn-dark -crop-'] (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.11.0', revision: '040bc5406b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '24'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.49, chrome: {chromedriverVersion: 136.0.7103.49 (031848bc6ad0..., userDataDir: C:\Users\SQELAB~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:61608}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:61608/devtoo..., se:cdpVersion: 136.0.7103.49, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 6d0a6008d64173bfdf8dc8109099f819
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
+	at base.BaseTest.waitForElementToBeVisible(BaseTest.java:167)
+	at base.BaseTest.hoverAndClick(BaseTest.java:309)
+	at pageEvents.BillPage.clickOnTapToAddImageFiles(BillPage.java:327)
+	at pageEvents.BillPage.createBillByAttachingImageFile(BillPage.java:1506)
+	at qa.tests.BillTest.verifyingBillCreationByAttachingImageFile(BillTest.java:63)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyingBillCreationByAttachingPdfFile
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyingBillCreationWithAddingMemoField
+<pre>java.lang.AssertionError: expected [None] but found [By.xpath: (//div[contains(@class,'text-nowrap d-flex')]//div[text()='None'])[4]]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+	at org.testng.Assert.assertEquals(Assert.java:132)
+	at org.testng.Assert.assertEquals(Assert.java:644)
+	at pageEvents.BillPage.verifyingBillCreationWithAddingMemoField(BillPage.java:1576)
+	at qa.tests.BillTest.verifyingBillCreationWithAddingMemoField(BillTest.java:77)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyingBillCreationWithEssentialFreePlan
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyBillCreationByAddingExpirationDate
+<pre>java.lang.AssertionError: expected [Expiration Date] but found [By.xpath: //h5[text()='Expiration Date']]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+	at org.testng.Assert.assertEquals(Assert.java:132)
+	at org.testng.Assert.assertEquals(Assert.java:644)
+	at pageEvents.BillPage.verifyBillCreationByAddingExpirationDate(BillPage.java:1670)
+	at qa.tests.BillTest.verifyBillCreationByAddingExpirationDate(BillTest.java:87)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyBillCreationByAddingRecurringTransactionsDaily
+<pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <button class="btn-close" type="button" data-bs-dismiss="modal"></button> is not clickable at point (2085, 51). Other element would receive the click: <div class="modal-header">...</div>
+  (Session info: chrome=136.0.7103.49)
+Build info: version: '4.11.0', revision: '040bc5406b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '24'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [c3719dae1d88f98acea33661767af330, clickElement {id=f.658991B0CF1384E0991E289AECCBEE5A.d.E8D8D901368EB4016DC4641DDFA78B8F.e.256}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.49, chrome: {chromedriverVersion: 136.0.7103.49 (031848bc6ad0..., userDataDir: C:\Users\SQELAB~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:62142}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:62142/devtoo..., se:cdpVersion: 136.0.7103.49, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (c3719dae1d88f98acea33661767af330)] -> xpath: (//div[contains(@class, 'modal-content')]//button[@class='btn-close'])[2]]
+Session ID: c3719dae1d88f98acea33661767af330
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:77)
+	at base.BaseTest.click(BaseTest.java:214)
+	at pageEvents.BillPage.closePopupIcon(BillPage.java:604)
+	at pageEvents.BillPage.closePopupOnBillPage(BillPage.java:986)
+	at pageEvents.BillPage.verifyBillCreationByAddingRecurringTransactionsDaily(BillPage.java:1738)
+	at qa.tests.BillTest.verifyBillCreationByAddingRecurringTransactionsDaily(BillTest.java:94)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyBillCreationByAddingRecurringTransactionsWeekly
+<pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //div//button[text()='Continue without'] (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.11.0', revision: '040bc5406b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '24'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.49, chrome: {chromedriverVersion: 136.0.7103.49 (031848bc6ad0..., userDataDir: C:\Users\SQELAB~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:62264}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:62264/devtoo..., se:cdpVersion: 136.0.7103.49, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 600259863a59baaa6301b195f3a5c5b7
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
+	at base.BaseTest.waitForElementToBeVisible(BaseTest.java:167)
+	at pageEvents.BillPage.getContinueWithoutButton(BillPage.java:554)
+	at pageEvents.BillPage.verifyBillCreationByAddingRecurringTransactionsWeekly(BillPage.java:1806)
+	at qa.tests.BillTest.verifyBillCreationByAddingRecurringTransactionsWeekly(BillTest.java:103)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyBillCreationByAddingRecurringTransactionsMonthly
+<pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <button class="btn-close" type="button" data-bs-dismiss="modal"></button> is not clickable at point (2085, 51). Other element would receive the click: <div class="modal-header">...</div>
+  (Session info: chrome=136.0.7103.49)
+Build info: version: '4.11.0', revision: '040bc5406b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '24'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [9cb1376f46a01ce80d75d38a93bfb65a, clickElement {id=f.E39D1C46EDC3338938825E29D804DAA4.d.8AFCEB037A6B621E810B930090169ED0.e.255}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.49, chrome: {chromedriverVersion: 136.0.7103.49 (031848bc6ad0..., userDataDir: C:\Users\SQELAB~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:62422}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:62422/devtoo..., se:cdpVersion: 136.0.7103.49, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (9cb1376f46a01ce80d75d38a93bfb65a)] -> xpath: (//div[contains(@class, 'modal-content')]//button[@class='btn-close'])[2]]
+Session ID: 9cb1376f46a01ce80d75d38a93bfb65a
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:77)
+	at base.BaseTest.click(BaseTest.java:214)
+	at pageEvents.BillPage.closePopupIcon(BillPage.java:604)
+	at pageEvents.BillPage.closePopupOnBillPage(BillPage.java:986)
+	at pageEvents.BillPage.verifyBillCreationByAddingRecurringTransactionsMonthly(BillPage.java:1920)
+	at qa.tests.BillTest.verifyBillCreationByAddingRecurringTransactionsMonthly(BillTest.java:111)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyBillCreationByAddingRecurringTransactionsYearly
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyBillCreationByAddingpaymentMethod
+                      </p>
+                    </td>
+                  </tr>
+                  <tr><td style="height:10px"></td></tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 10px;">
+                      <p style="font-size:13px;margin:0;">
+                        qa.tests.CustomersTest
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyAddCustomerWithEmail
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyAddCustomerWithPhoneNumber
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyAddCustomerWithPhoneNumber
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyAddCustomerWithPhoneNumber
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyAddCustomerWithPhoneNumber
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyAddRewardPoints
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyChangeCustomerName
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyCreateBillAndSearch
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyCreateGiftCard
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyFilterWithEmail
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyFilterWithName
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyFilterWithPhoneNumber
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyOpenCustomersProfilePage
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyOpenMessagePg
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifySelectCustomerViaFilter
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifystoreCustomersPage
+                      </p>
+                    </td>
+                  </tr>
+                  <tr><td style="height:10px"></td></tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 10px;">
+                      <p style="font-size:13px;margin:0;">
+                        qa.tests.DashboardTest
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        userGetDirectToMessagePage
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyAllSection
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyCountOfAllStores
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyCustomerTrendGraphofAllStores
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyRadarchartPaymentMethodOfSelectedStore
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyThatDirectedToDashboardPageOfSelectedStore
+<pre>org.openqa.selenium.StaleElementReferenceException: stale element reference: stale element not found in the current frame
+  (Session info: chrome=136.0.7103.49)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Build info: version: '4.11.0', revision: '040bc5406b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '24'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [0b5297bde8ef0be0dbaff42984e3bbc8, isElementDisplayed {id=f.C5464A530A1BC3502D5C7508791EF97C.d.95D9F0A43241C2746D899BC38BD50185.e.150}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.49, chrome: {chromedriverVersion: 136.0.7103.49 (031848bc6ad0..., userDataDir: C:\Users\SQELAB~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64260}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64260/devtoo..., se:cdpVersion: 136.0.7103.49, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (0b5297bde8ef0be0dbaff42984e3bbc8)] -> css selector: div:nth-child(1) >div >h1]
+Session ID: 0b5297bde8ef0be0dbaff42984e3bbc8
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
+	at org.openqa.selenium.remote.RemoteWebElement.isDisplayed(RemoteWebElement.java:280)
+	at base.BaseTest.isElementDisplayed(BaseTest.java:338)
+	at qa.tests.DashboardTest.verifyThatDirectedToDashboardPageOfSelectedStore(DashboardTest.java:110)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyThatRecentTransactionAfterClickingOnAStore
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyThatRecentTransactionForAllStoreAppearsUnderRecentTransactionSection
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyTheRadarChartPaymentMethods
+                      </p>
+                    </td>
+                  </tr>
+                  <tr><td style="height:10px"></td></tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 10px;">
+                      <p style="font-size:13px;margin:0;">
+                        qa.tests.GiftCardDashboardTest
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyInformationMsgNoActiveStore
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyGiftcardDashboardPage
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyGiftConfigurationPopup
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyReferenceNoOption
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifySourceFundingOptions
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyCardAmountField
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifySendAmount
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyNullAmountValidationMsg
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyOptionalSettings
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyCrossButton
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyCustomerPopUp
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyInvalidCustomerPhoneField
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyInvalidCustomerEmailField
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyInvalidCustomerNameField
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyInitialAmountField
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyInitialAmtEqualsMaxGiftAmount
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyRefrenceNoMandatory
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyAdditionalFields
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyCardNoRejectLessThan4NumericValues
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyCardAcceptesNumericValues
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyCardNoAccepts18NumericValues
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyMemoAccepts500Values
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyFundingSourceAsTList
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyFundingSourceAsText
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyPastStartDatesDisabled
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyPastEndDateDisabled
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyStartDateRejectsCharacters
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyEndDateRejectsCharacters
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyUserDirectsToGiftCardForSalePage
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyValidationOnEnteringGreaterValue
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyFaceValueFieldAcceptNumeric
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifySalePriceAcceptOnlyNumeric
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyUserAllowedToEnterMaximumValueInSalePrice
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyFieldsAppearMandatoryOnPage
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyValidationOnLeavingBlankAnyFIeld
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyFundingSrcFieldAppearAsText
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyAvailableQuantityMaximumLength
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyAvailableQuantityAcceptsNumerical
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyRefNoFieldAcceptsChar
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyDefaultDateRangeInSaleDateRange
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifySelectingDateRange
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyMemoFieldMaximumLimit
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyPre_filledFieldsOnGiftCardsForSalePage
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyStatusOfGiftCardAfterEndDate
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyUserUpdateSaleGiftCard
+                      </p>
+                    </td>
+                  </tr>
+                  <tr><td style="height:10px"></td></tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 10px;">
+                      <p style="font-size:13px;margin:0;">
+                        qa.tests.GiftCardsTest
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyTheInfoMsgWhenNoGiftCard
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyTheCardsAndInfomationOnGC
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyGCSummaryPopupOpensUpAfterClickingOnGC
+                      </p>
+                    </td>
+                  </tr>
+                  <tr><td style="height:10px"></td></tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 10px;">
+                      <p style="font-size:13px;margin:0;">
+                        qa.tests.LoginPage
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyLoginPage
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        validateSignUpLink
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyPrivacyAndTermsOfUsePage
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        validateForgotPasswordLink
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        signInwithGoogle
+<pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.cssSelector: .Xb9hP >[type='email'] (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.11.0', revision: '040bc5406b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '24'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.49, chrome: {chromedriverVersion: 136.0.7103.49 (031848bc6ad0..., userDataDir: C:\Users\SQELAB~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52407}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52407/devtoo..., se:cdpVersion: 136.0.7103.49, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: ec841a63994d07e1a03826b28ac530ce
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
+	at base.BaseTest.waitForElementToBeClickable(BaseTest.java:193)
+	at base.BaseTest.enterText(BaseTest.java:233)
+	at qa.tests.LoginPage.signInwithGoogle(LoginPage.java:102)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        successfulLogin
+                      </p>
+                    </td>
+                  </tr>
+                  <tr><td style="height:10px"></td></tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 10px;">
+                      <p style="font-size:13px;margin:0;">
+                        qa.tests.MyStoreTest
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        c2verifyingBuyingMonthlyBusinessPlanForAlreadyCreatedStore
+<pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.cssSelector: .img-fluid.h-100 (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.11.0', revision: '040bc5406b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '24'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.49, chrome: {chromedriverVersion: 136.0.7103.49 (031848bc6ad0..., userDataDir: C:\Users\SQELAB~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52542}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52542/devtoo..., se:cdpVersion: 136.0.7103.49, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: aeea69ff623f48af93ba580fb0ab3197
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
+	at base.BaseTest.waitForElementToBeClickable(BaseTest.java:193)
+	at base.BaseTest.click(BaseTest.java:214)
+	at pageEvents.MyStorePage.getStripeAccountBtn(MyStorePage.java:171)
+	at pageEvents.MyStorePage.getStoreCreation(MyStorePage.java:413)
+	at qa.tests.MyStoreTest.c2verifyingBuyingMonthlyBusinessPlanForAlreadyCreatedStore(MyStoreTest.java:99)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        creationOfStoreWithStripeAccount
+<pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.cssSelector: .img-fluid.h-100 (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.11.0', revision: '040bc5406b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '24'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.49, chrome: {chromedriverVersion: 136.0.7103.49 (031848bc6ad0..., userDataDir: C:\Users\SQELAB~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52657}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52657/devtoo..., se:cdpVersion: 136.0.7103.49, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 458d9564f4e5698aa370cab6e564eb42
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
+	at base.BaseTest.waitForElementToBeClickable(BaseTest.java:193)
+	at base.BaseTest.click(BaseTest.java:214)
+	at pageEvents.MyStorePage.getStripeAccountBtn(MyStorePage.java:171)
+	at pageEvents.MyStorePage.getStoreCreation(MyStorePage.java:413)
+	at qa.tests.MyStoreTest.creationOfStoreWithStripeAccount(MyStoreTest.java:73)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        sc01b_DeletionOfStore
                       </p>
                     </td>
                   </tr>
@@ -269,8 +1516,8 @@ Session ID: baad8a468202c889be53948e233d714b
 	at org.testng.Assert.failNotEquals(Assert.java:1578)
 	at org.testng.Assert.assertTrue(Assert.java:57)
 	at qa.tests.MyStoreTest.verifyingStoreCreationWithPurchasingMonthlyPremiumPlan(MyStoreTest.java:513)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
 	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
 	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
@@ -279,7 +1526,7 @@ Session ID: baad8a468202c889be53948e233d714b
 	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
 	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
 	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
 	at org.testng.TestRunner.privateRun(TestRunner.java:739)
 	at org.testng.TestRunner.run(TestRunner.java:614)
 	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
@@ -300,413 +1547,51 @@ Session ID: baad8a468202c889be53948e233d714b
                   </tr>
                   <tr><td style="height:10px"></td></tr>
                   <tr>
-                    <td width="650px" class="bg-failed" style="padding:7px 10px;">
+                    <td width="650px" class="bg-passed" style="padding:7px 10px;">
                       <p style="font-size:13px;margin:0;">
-                        qa.tests.BillTest
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
-                      <p style="font-size:13px;margin:0;">
-                        verifyCreateBillWithoutSelectingCustomer
-<pre>java.lang.AssertionError: expected [Message] but found [By.xpath: //h5[text()='Message']]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1578)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-	at org.testng.Assert.assertEquals(Assert.java:132)
-	at org.testng.Assert.assertEquals(Assert.java:644)
-	at pageEvents.BillPage.createBillWithoutCustomer(BillPage.java:1203)
-	at qa.tests.BillTest.verifyCreateBillWithoutSelectingCustomer(BillTest.java:18)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-	at org.testng.TestRunner.privateRun(TestRunner.java:739)
-	at org.testng.TestRunner.run(TestRunner.java:614)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-	at org.testng.TestNG.runSuites(TestNG.java:1112)
-	at org.testng.TestNG.run(TestNG.java:1079)
-	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
-	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
-</pre>
+                        qa.tests.PaymentHistoryTest
                       </p>
                     </td>
                   </tr>
                   <tr>
                     <td width="650px" class="bg-passed" style="padding:7px 20px;">
                       <p style="font-size:13px;margin:0;">
-                        verifyCreateBillBySelectingCustomer
+                        VerifyPartiallyPaidLabelOnTransactionDetailPage
                       </p>
                     </td>
                   </tr>
                   <tr>
                     <td width="650px" class="bg-passed" style="padding:7px 20px;">
                       <p style="font-size:13px;margin:0;">
-                        verifyCreateBillForSuggestedCustomer
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
-                      <p style="font-size:13px;margin:0;">
-                        verifyBillCreationUsingOptionalFields
-<pre>java.lang.AssertionError: expected [true] but found [false]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1578)
-	at org.testng.Assert.assertTrue(Assert.java:57)
-	at org.testng.Assert.assertTrue(Assert.java:67)
-	at pageEvents.BillPage.clickOnGetRefNotxt(BillPage.java:424)
-	at pageEvents.BillPage.verifyBillCreationByOptionalFields(BillPage.java:1372)
-	at qa.tests.BillTest.verifyBillCreationUsingOptionalFields(BillTest.java:42)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-	at org.testng.TestRunner.privateRun(TestRunner.java:739)
-	at org.testng.TestRunner.run(TestRunner.java:614)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-	at org.testng.TestNG.runSuites(TestNG.java:1112)
-	at org.testng.TestNG.run(TestNG.java:1079)
-	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
-	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
-</pre>
+                        VerifyUserNavigateToBillDetailPage
                       </p>
                     </td>
                   </tr>
                   <tr>
                     <td width="650px" class="bg-passed" style="padding:7px 20px;">
                       <p style="font-size:13px;margin:0;">
-                        verifyingBillCreationWithConfiguredBillAmount
+                        verifyMessageDisplayedWhenNoPaymentsAreMade
                       </p>
                     </td>
                   </tr>
                   <tr>
                     <td width="650px" class="bg-passed" style="padding:7px 20px;">
                       <p style="font-size:13px;margin:0;">
-                        verifyingBillCreationWithoutConfiguredBillAmount
+                        verifyRecordsGetUpdatedAfterMakingTransaction
                       </p>
                     </td>
                   </tr>
                   <tr>
                     <td width="650px" class="bg-passed" style="padding:7px 20px;">
                       <p style="font-size:13px;margin:0;">
-                        verifyingBillCreationByAttachingImageFile
+                        verifyRequiredDetailsTransaction
                       </p>
                     </td>
                   </tr>
                   <tr>
                     <td width="650px" class="bg-passed" style="padding:7px 20px;">
                       <p style="font-size:13px;margin:0;">
-                        verifyingBillCreationByAttachingPdfFile
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
-                      <p style="font-size:13px;margin:0;">
-                        verifyingBillCreationWithAddingMemoField
-<pre>java.lang.AssertionError: expected [None] but found [By.xpath: (//div[contains(@class,'text-nowrap d-flex')]//div[text()='None'])[4]]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1578)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-	at org.testng.Assert.assertEquals(Assert.java:132)
-	at org.testng.Assert.assertEquals(Assert.java:644)
-	at pageEvents.BillPage.verifyingBillCreationWithAddingMemoField(BillPage.java:1575)
-	at qa.tests.BillTest.verifyingBillCreationWithAddingMemoField(BillTest.java:77)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-	at org.testng.TestRunner.privateRun(TestRunner.java:739)
-	at org.testng.TestRunner.run(TestRunner.java:614)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-	at org.testng.TestNG.runSuites(TestNG.java:1112)
-	at org.testng.TestNG.run(TestNG.java:1079)
-	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
-	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
-</pre>
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
-                      <p style="font-size:13px;margin:0;">
-                        verifyingBillCreationWithEssentialFreePlan
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
-                      <p style="font-size:13px;margin:0;">
-                        verifyBillCreationByAddingExpirationDate
-<pre>java.lang.AssertionError: expected [Expiration Date] but found [By.xpath: //h5[text()='Expiration Date']]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1578)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-	at org.testng.Assert.assertEquals(Assert.java:132)
-	at org.testng.Assert.assertEquals(Assert.java:644)
-	at pageEvents.BillPage.verifyBillCreationByAddingExpirationDate(BillPage.java:1669)
-	at qa.tests.BillTest.verifyBillCreationByAddingExpirationDate(BillTest.java:87)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-	at org.testng.TestRunner.privateRun(TestRunner.java:739)
-	at org.testng.TestRunner.run(TestRunner.java:614)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-	at org.testng.TestNG.runSuites(TestNG.java:1112)
-	at org.testng.TestNG.run(TestNG.java:1079)
-	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
-	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
-</pre>
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
-                      <p style="font-size:13px;margin:0;">
-                        verifyBillCreationByAddingRecurringTransactionsDaily
-<pre>java.lang.AssertionError: expected [true] but found [false]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1578)
-	at org.testng.Assert.assertTrue(Assert.java:57)
-	at org.testng.Assert.assertTrue(Assert.java:67)
-	at pageEvents.BillPage.verifyBillCreationByAddingRecurringTransactionsDaily(BillPage.java:1739)
-	at qa.tests.BillTest.verifyBillCreationByAddingRecurringTransactionsDaily(BillTest.java:94)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-	at org.testng.TestRunner.privateRun(TestRunner.java:739)
-	at org.testng.TestRunner.run(TestRunner.java:614)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-	at org.testng.TestNG.runSuites(TestNG.java:1112)
-	at org.testng.TestNG.run(TestNG.java:1079)
-	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
-	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
-</pre>
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
-                      <p style="font-size:13px;margin:0;">
-                        verifyBillCreationByAddingRecurringTransactionsWeekly
-<pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //div//button[text()='Continue without'] (tried for 10 second(s) with 500 milliseconds interval)
-Build info: version: '4.11.0', revision: '040bc5406b'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.49, chrome: {chromedriverVersion: 136.0.7103.92 (cb81a4cc5087..., userDataDir: C:\Users\Caelius\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:50130}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:50130/devtoo..., se:cdpVersion: 136.0.7103.49, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 79bf482e2b0c89d88c1af7e762020dce
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
-	at base.BaseTest.waitForElementToBeVisible(BaseTest.java:169)
-	at pageEvents.BillPage.getContinueWithoutButton(BillPage.java:553)
-	at pageEvents.BillPage.verifyBillCreationByAddingRecurringTransactionsWeekly(BillPage.java:1805)
-	at qa.tests.BillTest.verifyBillCreationByAddingRecurringTransactionsWeekly(BillTest.java:103)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-	at org.testng.TestRunner.privateRun(TestRunner.java:739)
-	at org.testng.TestRunner.run(TestRunner.java:614)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-	at org.testng.TestNG.runSuites(TestNG.java:1112)
-	at org.testng.TestNG.run(TestNG.java:1079)
-	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
-	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
-</pre>
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
-                      <p style="font-size:13px;margin:0;">
-                        verifyBillCreationByAddingRecurringTransactionsMonthly
-<pre>java.lang.AssertionError: expected [true] but found [false]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1578)
-	at org.testng.Assert.assertTrue(Assert.java:57)
-	at org.testng.Assert.assertTrue(Assert.java:67)
-	at pageEvents.BillPage.verifyBillCreationByAddingRecurringTransactionsMonthly(BillPage.java:1921)
-	at qa.tests.BillTest.verifyBillCreationByAddingRecurringTransactionsMonthly(BillTest.java:111)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-	at org.testng.TestRunner.privateRun(TestRunner.java:739)
-	at org.testng.TestRunner.run(TestRunner.java:614)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-	at org.testng.TestNG.runSuites(TestNG.java:1112)
-	at org.testng.TestNG.run(TestNG.java:1079)
-	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
-	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
-</pre>
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
-                      <p style="font-size:13px;margin:0;">
-                        verifyBillCreationByAddingRecurringTransactionsYearly
-<pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <button class="btn-close" type="button" data-bs-dismiss="modal"></button> is not clickable at point (944, 51). Other element would receive the click: <div class="modal-header">...</div>
-  (Session info: chrome=136.0.7103.49)
-Build info: version: '4.11.0', revision: '040bc5406b'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [b1fe5e8a389096e111e9f0d9c6af8a5f, clickElement {id=f.A963367904B5B7AC0808FB6CC335DA0F.d.56B10C769AD37A78201116197E6D4E00.e.3665}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.49, chrome: {chromedriverVersion: 136.0.7103.92 (cb81a4cc5087..., userDataDir: C:\Users\Caelius\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:50698}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:50698/devtoo..., se:cdpVersion: 136.0.7103.49, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on windows (b1fe5e8a389096e111e9f0d9c6af8a5f)] -> xpath: (//div[contains(@class, 'modal-content')]//button[@class='btn-close'])[2]]
-Session ID: b1fe5e8a389096e111e9f0d9c6af8a5f
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:77)
-	at base.BaseTest.click(BaseTest.java:216)
-	at pageEvents.BillPage.closePopupIcon(BillPage.java:603)
-	at pageEvents.BillPage.closePopupOnBillPage(BillPage.java:985)
-	at pageEvents.BillPage.verifyBillCreationByAddingRecurringTransactionsYearly(BillPage.java:1964)
-	at qa.tests.BillTest.verifyBillCreationByAddingRecurringTransactionsYearly(BillTest.java:119)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-	at org.testng.TestRunner.privateRun(TestRunner.java:739)
-	at org.testng.TestRunner.run(TestRunner.java:614)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-	at org.testng.TestNG.runSuites(TestNG.java:1112)
-	at org.testng.TestNG.run(TestNG.java:1079)
-	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
-	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
-</pre>
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
-                      <p style="font-size:13px;margin:0;">
-                        verifyBillCreationByAddingpaymentMethod
+                        verifyUserDirectedToPaymentHistoryPageAfterClickingOnPaymentHistoryTab
                       </p>
                     </td>
                   </tr>
@@ -719,9 +1604,42 @@ Session ID: b1fe5e8a389096e111e9f0d9c6af8a5f
                     </td>
                   </tr>
                   <tr>
-                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
                       <p style="font-size:13px;margin:0;">
                         cashPaymentThroughStoreManager
+<pre>java.lang.AssertionError: expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertTrue(Assert.java:57)
+	at org.testng.Assert.assertTrue(Assert.java:67)
+	at pageEvents.PaymentPage.paymentPopup(PaymentPage.java:372)
+	at qa.tests.PaymentsAndRefundTest.cashPaymentThroughStoreManager(PaymentsAndRefundTest.java:24)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
                       </p>
                     </td>
                   </tr>
@@ -785,18 +1703,18 @@ Session ID: b1fe5e8a389096e111e9f0d9c6af8a5f
                     <td width="650px" class="bg-failed" style="padding:7px 20px;">
                       <p style="font-size:13px;margin:0;">
                         BillPaymentByVariousPaymentMethods
-<pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <div class="text-danger badge bg-white btn-pill empty-d-none">...</div> is not clickable at point (816, 511). Other element would receive the click: <div class="offcanvas-backdrop fade show"></div>
+<pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <div class="text-danger badge bg-white btn-pill empty-d-none">...</div> is not clickable at point (1957, 672). Other element would receive the click: <div class="offcanvas-backdrop fade show"></div>
   (Session info: chrome=136.0.7103.49)
 Build info: version: '4.11.0', revision: '040bc5406b'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '24'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [5d63e2de8c811ea23d10870bd5fce435, clickElement {id=f.53C8F8B9C5E508C828B42A7524E47FCC.d.6F8FFDEFC659A9A55A9D19D36AD2E5B6.e.9059}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.49, chrome: {chromedriverVersion: 136.0.7103.92 (cb81a4cc5087..., userDataDir: C:\Users\Caelius\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54350}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:54350/devtoo..., se:cdpVersion: 136.0.7103.49, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on windows (5d63e2de8c811ea23d10870bd5fce435)] -> xpath: //div[normalize-space()='Change']]
-Session ID: 5d63e2de8c811ea23d10870bd5fce435
+Command: [50e76cbf488c944abad0205ee83462ea, clickElement {id=f.01D40D19FDA16E34BD6DCA4849B33EAD.d.DA189ABF7AB318247AFEFEA10B180016.e.481}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.49, chrome: {chromedriverVersion: 136.0.7103.49 (031848bc6ad0..., userDataDir: C:\Users\SQELAB~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56112}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56112/devtoo..., se:cdpVersion: 136.0.7103.49, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (50e76cbf488c944abad0205ee83462ea)] -> xpath: //div[normalize-space()='Change']]
+Session ID: 50e76cbf488c944abad0205ee83462ea
 	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
@@ -806,12 +1724,12 @@ Session ID: 5d63e2de8c811ea23d10870bd5fce435
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
 	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
 	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:77)
-	at base.BaseTest.click(BaseTest.java:216)
-	at pageEvents.PaymentPage.clickOnchangeBtn(PaymentPage.java:254)
-	at pageEvents.PaymentPage.clickOnZelleAccount(PaymentPage.java:883)
-	at qa.tests.PaymentsAndRefundTest.BillPaymentByVariousPaymentMethods(PaymentsAndRefundTest.java:102)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at base.BaseTest.click(BaseTest.java:214)
+	at pageEvents.PaymentPage.clickOnchangeBtn(PaymentPage.java:258)
+	at pageEvents.PaymentPage.clickOnZelleAccount(PaymentPage.java:887)
+	at qa.tests.PaymentsAndRefundTest.BillPaymentByVariousPaymentMethods(PaymentsAndRefundTest.java:103)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
 	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
 	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
@@ -820,7 +1738,7 @@ Session ID: 5d63e2de8c811ea23d10870bd5fce435
 	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
 	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
 	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
 	at org.testng.TestRunner.privateRun(TestRunner.java:739)
 	at org.testng.TestRunner.run(TestRunner.java:614)
 	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
@@ -864,6 +1782,779 @@ Session ID: 5d63e2de8c811ea23d10870bd5fce435
                   <tr>
                     <td width="650px" class="bg-failed" style="padding:7px 10px;">
                       <p style="font-size:13px;margin:0;">
+                        qa.tests.QRCodeTest
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        typesOfQrCodes
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        directPaySection
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        directPayByViewLink
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        contactScreenSection
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        custPermSection
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        createNewQrCode
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        flexibleAmountQrCode
+<pre>org.openqa.selenium.ElementNotInteractableException: element not interactable: [object HTMLInputElement] has no size and location
+  (Session info: chrome=136.0.7103.49)
+Build info: version: '4.11.0', revision: '040bc5406b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '24'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [c38320ca35b2cd615ed94fbbf9add7cd, actions {actions=[org.openqa.selenium.interactions.Sequence@58f49b0, org.openqa.selenium.interactions.Sequence@18c71fb4]}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.49, chrome: {chromedriverVersion: 136.0.7103.49 (031848bc6ad0..., userDataDir: C:\Users\SQELAB~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57464}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:57464/devtoo..., se:cdpVersion: 136.0.7103.49, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: c38320ca35b2cd615ed94fbbf9add7cd
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.RemoteWebDriver.perform(RemoteWebDriver.java:604)
+	at org.openqa.selenium.interactions.Actions$BuiltAction.perform(Actions.java:605)
+	at base.BaseTest.actionEnterText(BaseTest.java:768)
+	at pageEvents.QRCodePage.clickOntitleFieldOnPopup(QRCodePage.java:170)
+	at pageEvents.QRCodePage.flexibleAmountQrCode(QRCodePage.java:360)
+	at qa.tests.QRCodeTest.flexibleAmountQrCode(QRCodeTest.java:48)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        addAdditionalField
+                      </p>
+                    </td>
+                  </tr>
+                  <tr><td style="height:10px"></td></tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 10px;">
+                      <p style="font-size:13px;margin:0;">
+                        qa.tests.ReportsTest
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyCustomDateRange
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyDailyReport
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyDownloadedReports
+<pre>java.lang.AssertionError: Asserting UI day and downloaded report day. expected [06] but found [5]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+	at org.testng.Assert.assertEquals(Assert.java:132)
+	at org.testng.Assert.assertEquals(Assert.java:656)
+	at qa.tests.ReportsTest.verifyDownloadedReports(ReportsTest.java:101)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyMonthlyPayConfirmationReport
+<pre>java.lang.AssertionError: expected [File Present] but found [File not Present]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+	at org.testng.Assert.assertEquals(Assert.java:132)
+	at org.testng.Assert.assertEquals(Assert.java:656)
+	at org.testng.Assert.assertEquals(Assert.java:666)
+	at qa.tests.ReportsTest.verifyMonthlyPayConfirmationReport(ReportsTest.java:128)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyPaymentReceived
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyReportsPgForCustStore
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyReportsPgOpens
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyTodayStats
+                      </p>
+                    </td>
+                  </tr>
+                  <tr><td style="height:10px"></td></tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 10px;">
+                      <p style="font-size:13px;margin:0;">
+                        qa.tests.RewardPointsTest
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyCustomGiftCardSlider
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyRedeemNowPg
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyRewardCardDetails
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyRewardPointsDetails
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyRewardsPointsPageOpens
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyStoreInfoPageDetails
+                      </p>
+                    </td>
+                  </tr>
+                  <tr><td style="height:10px"></td></tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 10px;">
+                      <p style="font-size:13px;margin:0;">
+                        qa.tests.RewardsProgramTest
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyCustProfileOpens
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyCustomerSinceInvalidDateRange
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyCustomerSinceValidDateRange
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyFilterFunctionality
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyInformationMessageAppears
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyInvalidLastVisitDateRng
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyMaxPaymentsField
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyMaxRewardPointsFilter
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyMinPaymentsField
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyMinRewardPointsFilter
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyRewardsPointsDetailPageOpens
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyRewardsProgramConfigOpens
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyRewardsProgramPageOpens
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyUserPhnEmailFieldF
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyUserPhnEmailFieldFunc
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyUsernameFieldFunc
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyValidLastVisitDateRng
+                      </p>
+                    </td>
+                  </tr>
+                  <tr><td style="height:10px"></td></tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 10px;">
+                      <p style="font-size:13px;margin:0;">
+                        qa.tests.SearchTest
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyBillOrTransactionAppearsAfterSearchingByReferenceId
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifySearchPopupAppearsAfterClickingSearchTab
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyUserDirectedToCustomerPageUsingPhoneNumberoremail
+                      </p>
+                    </td>
+                  </tr>
+                  <tr><td style="height:10px"></td></tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 10px;">
+                      <p style="font-size:13px;margin:0;">
+                        qa.tests.SecurityAndPasswordTest
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        UpdatePhoneNumber
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyAllSecurityCodeScenarios
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyAlternatePhoneNumber
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyDeleteButton
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyInvalidEmailUpdateInput
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyResetYourPasswordPopupOpens
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyUpdateEmailPopupOpens
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyValidEmailUpdateInput
+                      </p>
+                    </td>
+                  </tr>
+                  <tr><td style="height:10px"></td></tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 10px;">
+                      <p style="font-size:13px;margin:0;">
+                        qa.tests.SignUpTest
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        VerifyTheSignUpPage
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyCreateNewAccountByPhoneNumberWithBusinessAccount
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyCreatingAccountWithPersonalAccountOption
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyCreatingNewAccountByEmailWithBusinessAccount
+<pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.cssSelector: [name='name'] (tried for 6 second(s) with 500 milliseconds interval)
+Build info: version: '4.11.0', revision: '040bc5406b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '24'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.49, chrome: {chromedriverVersion: 136.0.7103.49 (031848bc6ad0..., userDataDir: C:\Users\SQELAB~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60620}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60620/devtoo..., se:cdpVersion: 136.0.7103.49, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: d3ca6809f720604684e9fc0f66b0a6b3
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
+	at base.BaseTest.waitForElementToBeClickable(BaseTest.java:193)
+	at qa.tests.SignUpTest.verifyCreatingNewAccountByEmailWithBusinessAccount(SignUpTest.java:134)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyThatSiginToApplicationByPhoneNumberUsingBusinessAccountOption
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyThatSigningInByEmailUsingBusinessAccountOption
+<pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <button class=" w-100 max-20c rounded-3 p-2 py-3 rounded-lg btn btn-dark" type="button" data-action="/Account/_continueAfterAJAXLogin?donotLoginDeviceId=true&amp;createNew=true&amp;returnUrl=%2fAccount%2fAppRegisterDevice%3frecall%3dtrue">...</button> is not clickable at point (1901, 1854). Other element would receive the click: <div id="_SR8_D2V" class="modal fade show" tabindex="-1" role="dialog" aria-modal="true" style="display: block;">...</div>
+  (Session info: chrome=136.0.7103.49)
+Build info: version: '4.11.0', revision: '040bc5406b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '24'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [536783a70677940adbbb3436c5d9bf20, clickElement {id=f.A3669DB2590E2D18A81C0E608923DDF6.d.5537DE87105916E600CEE6D9D6DA1702.e.84}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.49, chrome: {chromedriverVersion: 136.0.7103.49 (031848bc6ad0..., userDataDir: C:\Users\SQELAB~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60731}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60731/devtoo..., se:cdpVersion: 136.0.7103.49, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (536783a70677940adbbb3436c5d9bf20)] -> xpath: //button[text()='Sign in']]
+Session ID: 536783a70677940adbbb3436c5d9bf20
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:77)
+	at base.BaseTest.click(BaseTest.java:214)
+	at pageEvents.SignUpPage.getSignInBtn(SignUpPage.java:99)
+	at qa.tests.SignUpTest.verifyThatSigningInByEmailUsingBusinessAccountOption(SignUpTest.java:339)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyThatSigningInByEmailUsingBusinessAccountOptionWithForgetPasswordoption
+<pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <button class=" w-100 max-20c rounded-3 p-2 py-3 rounded-lg btn btn-dark" type="button" data-action="/Account/_continueAfterAJAXLogin?donotLoginDeviceId=true&amp;createNew=true&amp;returnUrl=%2fAccount%2fAppRegisterDevice%3frecall%3dtrue">...</button> is not clickable at point (1901, 1854). Other element would receive the click: <div id="_SR8_D35" class="modal fade show" tabindex="-1" role="dialog" aria-modal="true" style="display: block;">...</div>
+  (Session info: chrome=136.0.7103.49)
+Build info: version: '4.11.0', revision: '040bc5406b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '24'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [43a704a16b0666305d402cc47515b6b9, clickElement {id=f.6E142857EF96512AA6EE6DF42A63ADA2.d.640A7AE5652F2096733D1CBE4B164F7D.e.83}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.49, chrome: {chromedriverVersion: 136.0.7103.49 (031848bc6ad0..., userDataDir: C:\Users\SQELAB~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60774}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60774/devtoo..., se:cdpVersion: 136.0.7103.49, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (43a704a16b0666305d402cc47515b6b9)] -> xpath: //button[text()='Sign in']]
+Session ID: 43a704a16b0666305d402cc47515b6b9
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:77)
+	at base.BaseTest.click(BaseTest.java:214)
+	at pageEvents.SignUpPage.getSignInBtn(SignUpPage.java:99)
+	at pageEvents.SignUpPage.getsignInWithEmailUsingBusinessAccount(SignUpPage.java:129)
+	at qa.tests.SignUpTest.verifyThatSigningInByEmailUsingBusinessAccountOptionWithForgetPasswordoption(SignUpTest.java:379)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyThatSigningInToApplicationByPhoneUsingNewPassword
+<pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <button class=" w-100 max-20c rounded-3 p-2 py-3 rounded-lg btn btn-dark" type="button" data-action="/Account/_continueAfterAJAXLogin?donotLoginDeviceId=true&amp;createNew=true&amp;returnUrl=%2fAccount%2fAppRegisterDevice%3frecall%3dtrue">...</button> is not clickable at point (1901, 1854). Other element would receive the click: <div id="_SR8_D3F" class="modal fade show" tabindex="-1" role="dialog" aria-modal="true" style="display: block;">...</div>
+  (Session info: chrome=136.0.7103.49)
+Build info: version: '4.11.0', revision: '040bc5406b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '24'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [9760339e481a8c373e003408d6f08810, clickElement {id=f.015F7312951AFBEAC2C0BCD978ED9233.d.75B1AF500266B17D1BD5FCFC5C54D3E2.e.83}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.49, chrome: {chromedriverVersion: 136.0.7103.49 (031848bc6ad0..., userDataDir: C:\Users\SQELAB~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60823}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60823/devtoo..., se:cdpVersion: 136.0.7103.49, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (9760339e481a8c373e003408d6f08810)] -> xpath: //button[text()='Sign in']]
+Session ID: 9760339e481a8c373e003408d6f08810
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:77)
+	at base.BaseTest.click(BaseTest.java:214)
+	at pageEvents.SignUpPage.getSignInBtn(SignUpPage.java:99)
+	at qa.tests.SignUpTest.verifyThatSigningInToApplicationByPhoneUsingNewPassword(SignUpTest.java:267)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                      <p style="font-size:13px;margin:0;">
+                        verifyValidationMessagesWithPersonalAccountOption
+                      </p>
+                    </td>
+                  </tr>
+                  <tr><td style="height:10px"></td></tr>
+                  <tr>
+                    <td width="650px" class="bg-failed" style="padding:7px 10px;">
+                      <p style="font-size:13px;margin:0;">
                         qa.tests.TransactionsTest
                       </p>
                     </td>
@@ -876,9 +2567,43 @@ Session ID: 5d63e2de8c811ea23d10870bd5fce435
                     </td>
                   </tr>
                   <tr>
-                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
                       <p style="font-size:13px;margin:0;">
                         verifyByStoreLabelOnTransactionPage
+<pre>java.lang.AssertionError: expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertTrue(Assert.java:57)
+	at org.testng.Assert.assertTrue(Assert.java:67)
+	at pageEvents.PaymentPage.paymentPopup(PaymentPage.java:372)
+	at pageEvents.TransactionsPage.verifyByStoreLabel(TransactionsPage.java:280)
+	at qa.tests.TransactionsTest.verifyByStoreLabelOnTransactionPage(TransactionsTest.java:27)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
                       </p>
                     </td>
                   </tr>
@@ -939,9 +2664,60 @@ Session ID: 5d63e2de8c811ea23d10870bd5fce435
                     </td>
                   </tr>
                   <tr>
-                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
+                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
                       <p style="font-size:13px;margin:0;">
                         verifyThatStoreMangerIsAbleToRefundPartialPayment
+<pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <button class="btn btn-outline-danger" type="button" data-ajaxsubmit="1" data-inaction="{&quot;successUrl&quot;:&quot;hide-modal&quot;,&quot;successJS&quot;:&quot;_SR8_EFF(d)&quot;}">...</button> is not clickable at point (1687, 766). Other element would receive the click: <div class="tooltip fade show bs-tooltip-bottom" role="tooltip" id="tooltip325887" data-popper-placement="bottom" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(1658px, 729px);">...</div>
+  (Session info: chrome=136.0.7103.49)
+Build info: version: '4.11.0', revision: '040bc5406b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '24'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [f5db6a7b2964381bb00e50de5e02dcaf, clickElement {id=f.0568B4DB30AC5D7B17AF5721B3A23DC2.d.D5E6C2451BBF9944D03B0B3F875A742B.e.637}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.49, chrome: {chromedriverVersion: 136.0.7103.49 (031848bc6ad0..., userDataDir: C:\Users\SQELAB~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:61886}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:61886/devtoo..., se:cdpVersion: 136.0.7103.49, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (f5db6a7b2964381bb00e50de5e02dcaf)] -> xpath: //button[text()='Process Refund']]
+Session ID: f5db6a7b2964381bb00e50de5e02dcaf
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:77)
+	at base.BaseTest.click(BaseTest.java:214)
+	at pageEvents.TransactionsPage.getProcessRefundBtn(TransactionsPage.java:176)
+	at pageEvents.TransactionsPage.getPartialRefund(TransactionsPage.java:563)
+	at qa.tests.TransactionsTest.verifyThatStoreMangerIsAbleToRefundPartialPayment(TransactionsTest.java:94)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre>
                       </p>
                     </td>
                   </tr>
@@ -960,60 +2736,9 @@ Session ID: 5d63e2de8c811ea23d10870bd5fce435
                     </td>
                   </tr>
                   <tr>
-                    <td width="650px" class="bg-failed" style="padding:7px 20px;">
+                    <td width="650px" class="bg-passed" style="padding:7px 20px;">
                       <p style="font-size:13px;margin:0;">
                         verifyRecurringIconAppearsForRTEnabledBillTransactions
-<pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <a class="ms-2 ms-sm-3 btn btn-link" href="/Stores/recurringTransactionDashboard/2938">...</a> is not clickable at point (431, 27). Other element would receive the click: <div id="_SR8_K87" class="modal fade show" tabindex="-1" role="dialog" aria-modal="true" style="display: block;">...</div>
-  (Session info: chrome=136.0.7103.49)
-Build info: version: '4.11.0', revision: '040bc5406b'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [5cbe62d005c058a2fb6fd18ec908c3bf, clickElement {id=f.7905B10A4CDC494F6DF37DA83A549FFF.d.3910D5293524767BED37E7BBB709F0FE.e.2451}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.49, chrome: {chromedriverVersion: 136.0.7103.92 (cb81a4cc5087..., userDataDir: C:\Users\Caelius\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60635}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60635/devtoo..., se:cdpVersion: 136.0.7103.49, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on windows (5cbe62d005c058a2fb6fd18ec908c3bf)] -> xpath: //div[text()='Recurring']/..]
-Session ID: 5cbe62d005c058a2fb6fd18ec908c3bf
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:77)
-	at base.BaseTest.click(BaseTest.java:216)
-	at pageEvents.BillPage.clickOnReccuring(BillPage.java:1153)
-	at pageEvents.BillPage.BillCreationByAddingRecurringTransactionsWeekly(BillPage.java:1876)
-	at qa.tests.TransactionsTest.verifyRecurringIconAppearsForRTEnabledBillTransactions(TransactionsTest.java:113)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-	at org.testng.TestRunner.privateRun(TestRunner.java:739)
-	at org.testng.TestRunner.run(TestRunner.java:614)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-	at org.testng.TestNG.runSuites(TestNG.java:1112)
-	at org.testng.TestNG.run(TestNG.java:1079)
-	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
-	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
-</pre>
                       </p>
                     </td>
                   </tr>

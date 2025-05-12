@@ -905,6 +905,10 @@ public class BaseTest {
         }
     }
 
+    public void switchToDefaultWindow() {
+        getDriver().switchTo().defaultContent();
+    }
+
     public static void scrollToDown() {
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         try {
@@ -924,10 +928,6 @@ public class BaseTest {
 
     public void selectStore(String store) {
         click(By.xpath("//li[contains(text(),'" + store + "')]"));  // Select store
-    }
-
-    public void switchToDefaultWindow() {
-        getDriver().switchTo().defaultContent();
     }
 
     public static String deleteFile(String fileName) {
