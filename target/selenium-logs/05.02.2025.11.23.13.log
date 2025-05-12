@@ -1,2 +1,0 @@
-2025-05-02 11:23:13,305 [info]: Clicking on By.xpath: (//a[@class='btn btn-link stretched-link align-self-center'])[1]
-2025-05-02 11:23:31,233 [info]: Clicking on By.xpath: (//a[text()='This Year']//following-sibling::div/div/a)[1]
