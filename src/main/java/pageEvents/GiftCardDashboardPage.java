@@ -3,6 +3,7 @@ package pageEvents;
 import base.BaseTest;
 import logger.Log;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.locators.RelativeLocator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.Constants;
@@ -14,7 +15,9 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 import static org.openqa.selenium.support.locators.RelativeLocator.with;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
@@ -23,6 +26,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElem
 
 
 public class GiftCardDashboardPage extends BaseTest {
+    BillPage bill = new BillPage();
     //WebDriver driver =new ChromeDriver();
     public By systemMsg = By.cssSelector("p.h2");
 
@@ -125,7 +129,42 @@ public class GiftCardDashboardPage extends BaseTest {
     By endBtn = By.xpath("//option[2]");
     By applyBtn = By.xpath("//button[normalize-space(text())='Apply']");
 
+    // filter locators
+    By filterIcon = By.xpath("//div[contains(@class,'d-flex flex-wrap px-3')]/button/i");
+    By filterTitle = By.xpath("//h5[text()='Filters']");
+    By filterPopupCrossIcon = By.xpath("//h5[text()='Filters']/../button");
+    By filterLabels = By.xpath("//div[@class='offcanvas-body']//div/label");
+    By userNamePartialfield = By.cssSelector("[name='userName']");
+    By userPhoneEmailtbx = By.xpath("//label[text()='User Phone/Email']");
+    By applyBtnFilter = By.xpath("(//button[text()='Apply'])[1]");
+    By resultUserName = By.xpath("(//img[contains(@class,'profile-image-sm')]/../span)[1]");
+    By allresult = By.xpath("//table[contains(@class,'sortable_table')]//tbody//tr");
+    By noResultInfoMsg = By.cssSelector(".no-result-icon+p");
+    By userEmailTbx = with(By.tagName("div")).below(userPhoneEmailtbx);
+    By validationMsgForCustomerPopup = By.cssSelector(".no-result-icon+p");
+    By dateFilterLabel = By.xpath("//label[starts-with(text(),'Date')]");
+    By dateFilterInput = with(By.tagName("input")).below(dateFilterLabel);
+    By existingGCDate = By.xpath("//table[@class='table-condensed'][.//th[text()='May 2025']]//td[text()='12']");
 
+
+public void getFilterIcon(){
+    clickElementByJS(filterIcon);
+}
+public void getFitlerApplyBtn(){
+    click(applyBtnFilter);
+}
+public void getUserPhoneEmailTbxFilter(){
+    click(userEmailTbx);
+}
+public void getDateFilterInput(){
+    click(dateFilterInput);
+}
+
+public void getExistingGCDate(){
+    clickElementByJS(existingGCDate);
+    clickElementByJS(existingGCDate);
+
+}
 
 
     public static void LoginAsCustomerNew() {
@@ -1965,11 +2004,213 @@ public void verifyActionOnZeroAvailableQty() {
         }
     }
 
+    public void getAllFilterFileds(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+        waitForElementToBeVisible(filterTitle,5);
+        // verify Filter Title
+        Assert.assertTrue(isElementDisplayed(filterTitle),"Filter Title ");
+
+        // Expected filter labels
+        List<String> expectedLabels = Arrays.asList("User Name \"Partial\"", "User Phone/Email", "Date", "Gift card status", "Min Amount", "Max Amount","Card Number \"Partial\"");
+
+        // Locate filter section
+        List<WebElement> filterElements = getDriver().findElements(filterLabels);
+
+        // Extract actual filter text
+        for (String expectedLabel : expectedLabels) {
+            boolean found = filterElements.stream()
+                    .anyMatch(element -> element.getText().trim().equalsIgnoreCase(expectedLabel));
+            Assert.assertTrue(found, "Filter label not found: " + expectedLabel);
+        }
+    }
+
+    public void getRelevantRecordAfterEnteringExistingCardHolderFilter(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+
+        waitForElementToBeClickable(userNamePartialfield,4);
+        enterText(userNamePartialfield,Constants.giftCardCustomer);
+
+        // Click on apply button
+        getFitlerApplyBtn();
+        staticWait(4000);
+        scrollToDown();
+
+        // Verify that applied customer result appears
+        Assert.assertEquals(getText(resultUserName),Constants.giftCardCustomer);
+
+        staticWait(5000);
+
+
+//         Verify all result appears
+        List<WebElement> allRecords = getDriver().findElements(allresult);
+
+        for (WebElement record : allRecords) {
+            String detail = record.getText();
+            System.out.println("Gift Card Record for existing user is: " + detail);
+        }
+    }
+
+    public void getNoRecordMsgForInvalidCardHolder(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+
+        waitForElementToBeClickable(userNamePartialfield,4);
+        enterText(userNamePartialfield,Constants.invalidData);
+
+        getFitlerApplyBtn();
+        staticWait(4000);
+        scrollToDown();
+        waitForElementToBeVisible(noResultInfoMsg,3);
+        // Verify the no result info msg
+        Assert.assertTrue(isElementDisplayed(noResultInfoMsg),"No result Info Message");
+    }
+
+    public void verifyRecordsAppearForPhoneFilter(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+
+        waitForElementToBeClickable(userEmailTbx,4);
+
+        // clicking on 'User Email Phone filter
+        getUserPhoneEmailTbxFilter();
+        staticWait(4000);
+
+        //   Select Customer
+        bill.getCustomerPhoneNoField(Constants.giftCardUserPhoneNumber);
+        bill.getGoPhoneNumberButton();
+        staticWait(3000);
+
+        getFitlerApplyBtn();
+        staticWait(3000);
+
+        scrollToDown();
+        staticWait(3000);
+
+        //Verify all result appears
+        List<WebElement> allRecords = getDriver().findElements(allresult);
+
+        for (WebElement record : allRecords) {
+            String detail = record.getText();
+            System.out.println("Record for existing user is: " + detail);
+        }
+    }
 
 
 
+
+
+
+
+    public void verifyRelevantRecordsAppearAfterEnteringUserEmailFilter(){
+    offOptionalSettings();
+    waitForPageLoad();
+
+    staticWait(5000);
+    getFilterIcon();
+
+        waitForElementToBeClickable(userEmailTbx,4);
+
+    // clicking on 'User Email Phone filter
+        getUserPhoneEmailTbxFilter();
+        staticWait(3000);
+//        waitForElementToBeVisible();
+
+        //   Select Customer
+        bill.getCustomerEmailField(Constants.giftCardUserEmail);
+        bill.getEmailGoButton();
+        staticWait(3000);
+
+        getFitlerApplyBtn();
+        staticWait(3000);
+        scrollToDown();
+        //         Verify all result appears
+        List<WebElement> allRecords = getDriver().findElements(allresult);
+
+        for (WebElement record : allRecords) {
+            String detail = record.getText();
+            System.out.println("Record for existing user is: " + detail);
+        }
+}
+    public void verifyInfoMsgForInvalidCustomerEmailInput(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+
+        waitForElementToBeClickable(userEmailTbx,4);
+
+        // clicking on 'User Email Phone filter
+        getUserPhoneEmailTbxFilter();
+        staticWait(3000);
+
+        //   Select Customer
+        bill.getCustomerEmailField(Constants.nonExistingEmailFilterInput);
+        bill.getEmailGoButton();
+        waitForElementToBeVisible(validationMsgForCustomerPopup,3);
+
+        // verify that  validation message appears
+        Assert.assertEquals(getText(validationMsgForCustomerPopup),Constants.noResultText);
+}
+    public void verifyInfoMsgForInvalidCustomerPhoneInput(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+
+        waitForElementToBeClickable(userEmailTbx,5);
+
+        // clicking on 'User Email Phone filter
+        getUserPhoneEmailTbxFilter();
+        staticWait(5000);
+
+        //   Select Customer
+        bill.getCustomerPhoneNoField(Constants.nonExistingPhoneNoFilterInput);
+        bill.getGoPhoneNumberButton();
+
+        waitForElementToBeVisible(validationMsgForCustomerPopup,3);
+
+        // verify that  validation message appears
+        Assert.assertEquals(getText(validationMsgForCustomerPopup),Constants.noResultText);
+    }
+
+    public void verifyGiftCardAppearsForSelectedDate(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+        waitForElementToBeVisible(dateFilterLabel,4);
+
+        getDateFilterInput();
+        staticWait(3000);
+
+        getExistingGCDate();
+
+    }
 
 }
+
+
+
+
+
+
 
 
 

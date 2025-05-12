@@ -366,7 +366,45 @@ public class GiftCardDashboardTest extends BaseTest {
         giftCardPage.verifyActionOnSoldQty0();
 
     }
+    @Test (priority = 52,enabled = true,description = "Verify that appropirate fields appears after clicking on 'Filter' link, on 'Gift Cards Dashboard' page.")
+    public void verifyFilterFieldsOfGiftCardDashboard(){
+        giftCardPage.getAllFilterFileds();
+    }
 
+    @Test(priority = 53, enabled = true, description = "Verify that relevant gift cards appear listed after entering any existing  card holder name in 'User Name' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
+    public void verifyRelevantGiftCardAppearsWhileAddingExistingCardHolderName(){
+        giftCardPage.getRelevantRecordAfterEnteringExistingCardHolderFilter();
+    }
+
+    @Test(priority = 54, enabled = true,description = "Verify that information message appears after entering non existing card holder name in 'User Name' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
+    public void verifyNoResultInfoMsgAppearsAfterEnteringNonExistingData(){
+        giftCardPage.getNoRecordMsgForInvalidCardHolder();
+    }
+
+
+    @Test(priority = 55, enabled = true, description = "Verify that relevant gift cards appear listed after entering any existing customer phone number in 'User Phone/Email' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
+    public void verifyRelevantRecordsAppearAfterEnteringUsingPhoneFilter(){
+        giftCardPage.verifyRecordsAppearForPhoneFilter();
+    }
+    @Test(priority = 56, enabled = true, description ="Verify that information message appears after entering non existing customer phone number in 'User Phone/Email' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
+    public void verifyInformationMsgAppearsAfterEnteringNonExistingCustomerPhoneNumber(){
+        giftCardPage.verifyInfoMsgForInvalidCustomerPhoneInput();
+    }
+
+    @Test(priority = 57, enabled = true, description = "Verify that relevant gift cards appear listed after entering any existing customer email in 'User Phone/Email' field under 'Filter' link, on 'Gift Cards Dashboard' page.\n")
+    public void verifyRelevantRecordsAppearAfterEnteringUserEmailFilter(){
+        giftCardPage.verifyRelevantRecordsAppearAfterEnteringUserEmailFilter();
+    }
+
+    @Test(priority = 58,enabled = true, description = "Verify that information message appears after entering non existing customer email in 'User Phone/Email' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
+    public void verifyInformationMsgAppearsAfterEnteringNonExistingCustomerEmail(){
+        giftCardPage.verifyInfoMsgForInvalidCustomerEmailInput();
+    }
+    @Test(priority = 59,enabled = true, description ="Verify that relevant gift cards appear listed after selecting date range( gift card exists) from 'Date' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
+    public void verifyGiftCardAppearsForSelectedDate(){
+        giftCardPage.verifyGiftCardAppearsForSelectedDate();
+
+    }
 
 
 }
