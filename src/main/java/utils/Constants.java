@@ -237,6 +237,14 @@ public interface Constants {
     String giftCardCustomer = "Bean Bliss";
     String giftCardUserEmail = "beanBliss@yopmail.com";
     String giftCardUserPhoneNumber = "6465551105";
+    String minAmountOfGC = "100.00";
+    String maxAmountOfGC = "1000.00";
+    String midValue = "500.00";
+    String giftCardNo = "3119";
+    String threeDigit = "311";
+    String lessThan3cardNoValidation = "Please enter at least 4 characters.";
+    String nonexistingGC ="2172";
+
 
 
 }
