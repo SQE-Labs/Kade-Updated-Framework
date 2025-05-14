@@ -1,3 +1,0 @@
-2025-05-05 15:56:59,414 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
-2025-05-05 15:57:00,702 [info]: Element is clicked at index: 4
-2025-05-05 15:57:13,137 [info]: Clicking on By.xpath: //div[@class='input-group']//input[@name='saleDateRange']

@@ -1,3 +1,0 @@
-2025-05-01 18:16:01,318 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
-2025-05-01 18:16:02,651 [info]: Element is clicked at index: 5
-2025-05-01 18:16:05,112 [info]: Clicking on By.cssSelector: input[name='readonlyFunds'] ~ i.custom-check-off

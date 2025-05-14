@@ -1,7 +1,7 @@
 package qa.tests;
 
 import base.BaseTest;
-import logger.Log;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageEvents.BillPage;
 import pageEvents.PaymentHistoryPage;
@@ -128,4 +128,19 @@ public class PaymentsAndRefundTest extends BaseTest {
         bill.createBillWithCustomer("636045278965", "saybo@yopmail.com");
         payment.RejectABill();
     }
+    @Test(priority = 13, enabled = true, description = "PYMT16 Creating bill for customer and pay through affrim payment method.")
+    public void verifyCreatingBillForCustomerPayThroughAffirmPayment(){
+        bill.createBillWithCustomer("636045278965", "saybo@yopmail.com");
+        payment.billPaymentThroughAffirmMethod();
+        payment.billPayment();
+        System.out.println("Payment Details is" + getText(payment.paymentDetails));
+        payment.getPayemntDetails();
+    }
+
+    @Test(priority = 14, enabled = true, description = "Verify that creating a bill and paying through Auto payment method.")
+    public void verifyCreatingABillAndPayingThroughAutoPaymentMethod(){
+        bill.createBillWithCustomerAndPayThroughAutoPayment();
+
+    }
+
 }

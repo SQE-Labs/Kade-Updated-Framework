@@ -192,7 +192,6 @@ public class GiftCardDashboardTest extends BaseTest {
 
     @Test(priority = 83, enabled = true, description = "Verify that user gets directed to 'Gift Card For Sale' page, after clicking on 'Add' button, on 'Sell Dashboard' page.")
     public void verifyUserDirectsToGiftCardForSalePage() {
-
         giftCardPage.verifyUserDirection();
     }
 
@@ -213,7 +212,6 @@ public class GiftCardDashboardTest extends BaseTest {
 
     @Test(priority = 86, enabled = true, description = "Verify that 'Sale price' field accepts only numeric value, on 'Gift Card For Sale' popup. ")
     public void verifySalePriceAcceptOnlyNumeric() {
-
         giftCardPage.verifySalePriceFieldAccept();
 
 
@@ -297,24 +295,83 @@ public class GiftCardDashboardTest extends BaseTest {
     @Test(priority = 100, enabled = true, description = " Verify that status of the gift card appears 'Ended' after the sale end date, on 'Sell Dashboard' page."
     )
     public void verifyStatusOfGiftCardAfterEndDate (){
-
         giftCardPage.verifyStatusOfGiftCard();
-
-
     }
 
     @Test(priority = 101, enabled = true, description = "Verify that user is able to update the sale gift card from 'Gift Card For Sale' page. "
     )
     public void verifyUserUpdateSaleGiftCard (){
-
         giftCardPage.verifyUpdateSaleGiftCard();
+    }
 
+    @Test(priority = 102, enabled = true, description = "Verify that user is not able to delete the sale gift card, after cancelling the Deletion action, on 'Gift Card For Sale' page"
+    )
+    public void verifyUserNotAbleToDeleteAfterCancelingGiftCard (){
+
+        giftCardPage.verifyUserNotAbleToDeleteAfterCanceling();
+
+        }
+    @Test(priority = 103, enabled = true, description = "Verify that user is able to delete the sale gift card, after clicking on 'Delete' button, on 'Gift Card For Sale' page")
+    public void verifyUserAbleToDeleteSaleGiftCard () {
+
+        giftCardPage.verifyUserAbleToDeleteSaleGift();
+
+        }
+
+    @Test(priority = 104, enabled = true, description = "\"Verify that all the available sale gift cards appear listed on 'Sell Dashboard' page.\n" +
+            "\"")
+    public void verifyAllSaleGiftCardsListedOnSellDashboard (){
+
+        giftCardPage.verifyListOfGiftCards();
+
+    }
+
+    @Test(priority = 105, enabled = true, description = "Verify that by-default 'Available' option appears selected in 'Status' dropdown under filter option, on 'Sell Dashboard' page.")
+    public void verifyDefaultOptionSelectedInStatusDropdown (){
+
+        giftCardPage.verifyGiftCardDetails();
+
+    }
+
+    @Test(priority = 106, enabled = true, description = "\"Verify that 'Available' and 'All' options appear after clicking on 'Status' dropdown under filter option, on 'Sell Dashboard' page.\n" +
+            "\"")
+    public void verifyAvailableAndAllOptionsInStatusDropdown (){
+
+        giftCardPage.verifyAvailableAndAllOptionsInStatus();
 
     }
 
 
+    @Test(priority = 107 & 108, enabled = true, description = "Verify that only avaliable sale gift cards appear listed after selecting 'Available' option from 'Status' dropdown of Filter, on 'Sell Dashboard' page." )
+    public void verifyAvailableSaleGiftCardsListed (){
+        giftCardPage.verifyAvailableSaleGiftCards();
+    }
+
+    @Test(priority = 114 & 115, enabled = true, description = "Verify that user is not able to delete the sale gift card, if the sale gift card Available QTY is zero, on 'Sell Dashboard' page.\n")
+    public void verifyActionOnZeroAvlQty (){
+
+        giftCardPage.verifyActionOnZeroAvailableQty();
+
+    }
+
+    @Test(priority = 116, enabled = true, description = "\"Verify that user is able to delete only those sale gift card which has Sold QTY: Zero, on 'Sell Dashboard' page.\n" +
+            "\"")
+    public void verifyUserAbleToDeleteSaleGiftCardQty0 (){
+        giftCardPage.verifyActionOnSoldQty0();
+
+    }
+    @Test(priority = 1, enabled = true, description = "TC-73")
+    public void verifyDonateGraph (){
+        giftCardPage.donateGraph("may2025");
+
+    }
+
 
 }
+
+
+
+
 
 
 
