@@ -121,7 +121,7 @@ public class SearchPage extends BaseTest {
             getbillBtn();
             staticWait(2000);
             click(continueBtn);
-            waitForElementToBeVisible(refrenceIdtext,2);
+            waitForElementToBeVisible(refrenceIdtext,4);
             getCopyReferenceId();
             clickonSearch();
             click(ClickSearchBox);

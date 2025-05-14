@@ -50,6 +50,7 @@ public class MyStoreTest extends BaseTest {
         staticWait(2000);
         if (!isElementDisplayed(mystore.storeLogo)) {
             mystore.getSkipStripeAccountButton();
+            waitForElementToBeVisible(mystore.skipPopUpTitle,4);
 
             String actual = getText(mystore.skipPopUpTitle);
             //Verifying the 'Skip' Pop Up Title

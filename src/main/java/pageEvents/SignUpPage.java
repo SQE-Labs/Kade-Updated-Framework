@@ -130,7 +130,7 @@ public void getsignInWithEmailUsingBusinessAccount(){
 
     // Clicking on Switch to Email Link
      getSwitchtoEmailLink();
-    enterText(emailFieldSP, Constants.validLoginEmail);
+    enterText(emailFieldSP, Constants.validAdminEmail);
      getContinueBtnSP();
 
     // Clicking on I don't know password link

@@ -226,6 +226,7 @@ public class DashboardTest extends BaseTest {
         transaction.getCrossIconOfCurrentPaidBill();
         staticWait(3000);
         scrollToDown();
+        staticWait(3000);
 
         //Clicking on the Dashboard Tab
         pageObjectManager.getSidePannel().getMangeBusinessTab();

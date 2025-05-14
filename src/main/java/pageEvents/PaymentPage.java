@@ -101,7 +101,7 @@ public class PaymentPage extends BaseTest {
     By changeBtn = By.xpath("//div[normalize-space()='Change']");
     By visaCardName = By.xpath("(//span[contains(text(),'Visa')])[3]");
     By creditCards = By.xpath("//span[text()='New Credit Card']/../../../..");
-    By iframeForCard = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[2]");
+    By iframeForCard = By.xpath("//div[@class='StripeElement']//div/iframe[contains(@name,'__privateStripeFrame')]");
     public By saveBtn = By.xpath("//button[text()='Save']");
     By thankTxt = By.xpath("//span[text()='Thank']");
     By youTxt = By.xpath("//span[text()='You!']");
@@ -281,7 +281,7 @@ public class PaymentPage extends BaseTest {
     public void clickOnchangeBtn() {
         staticWait(5000);
         scrollToDown();
-        staticWait(2000);
+        staticWait(4000);
         click(changeBtn);
     }
 

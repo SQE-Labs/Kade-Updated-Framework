@@ -81,7 +81,7 @@ public class PaymentHistoryPage extends BaseTest {
     }
 
     public void VerifyPageNoPayments() {
-        LoginAsNewUser();
+        LoginAsNewUser1();
         scrollToElement(Mystuff);
         getMyStuffandPaymentHistory();
         staticWait(2000);
