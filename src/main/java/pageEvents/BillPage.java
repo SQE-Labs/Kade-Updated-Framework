@@ -247,6 +247,8 @@ PaymentPage payment=new PaymentPage();
 
     By shareLinkToCustomer = By.xpath("//button[normalize-space()='Send a link to the customer to add a payment method']");
     By shareLinkSuccessMessage = By.xpath("//div[text()='We sent a link to the customer.']");
+    By continueBtn = By.xpath("//button[@type='submit']");
+
 
     By expCloseIcon = By.xpath("(//button[@class='btn-close'])[7]");
     By expiresInField = By.cssSelector(".form-control.flex-grow-1.me-1");

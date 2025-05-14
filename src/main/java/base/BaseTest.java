@@ -327,6 +327,10 @@ public class BaseTest {
         return waitForElementToBeVisible(locator, 10).getAttribute(attribute);
     }
 
+    public String getAttributeOfWebElement(WebElement element, String attribute) {
+        return element.getAttribute(attribute);
+    }
+
     /**
      * Checks if an element is displayed on the page.
      *
