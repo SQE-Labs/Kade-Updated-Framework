@@ -192,7 +192,6 @@ public class GiftCardDashboardTest extends BaseTest {
 
     @Test(priority = 83, enabled = true, description = "Verify that user gets directed to 'Gift Card For Sale' page, after clicking on 'Add' button, on 'Sell Dashboard' page.")
     public void verifyUserDirectsToGiftCardForSalePage() {
-
         giftCardPage.verifyUserDirection();
     }
 
@@ -213,7 +212,6 @@ public class GiftCardDashboardTest extends BaseTest {
 
     @Test(priority = 86, enabled = true, description = "Verify that 'Sale price' field accepts only numeric value, on 'Gift Card For Sale' popup. ")
     public void verifySalePriceAcceptOnlyNumeric() {
-
         giftCardPage.verifySalePriceFieldAccept();
 
 
@@ -297,10 +295,7 @@ public class GiftCardDashboardTest extends BaseTest {
     @Test(priority = 100, enabled = true, description = " Verify that status of the gift card appears 'Ended' after the sale end date, on 'Sell Dashboard' page."
     )
     public void verifyStatusOfGiftCardAfterEndDate (){
-
         giftCardPage.verifyStatusOfGiftCard();
-
-
     }
 
     @Test(priority = 101, enabled = true, description = "Verify that user is able to update the sale gift card from 'Gift Card For Sale' page. "
@@ -362,10 +357,13 @@ public class GiftCardDashboardTest extends BaseTest {
     @Test(priority = 116, enabled = true, description = "\"Verify that user is able to delete only those sale gift card which has Sold QTY: Zero, on 'Sell Dashboard' page.\n" +
             "\"")
     public void verifyUserAbleToDeleteSaleGiftCardQty0 (){
-
         giftCardPage.verifyActionOnSoldQty0();
 
     }
+
+    @Test(priority = 1, enabled = true, description = "TC-73")
+    public void verifyDonateGraph (){
+        giftCardPage.donateGraph("may2025");
     @Test (priority = 52,enabled = true,description = "Verify that appropirate fields appears after clicking on 'Filter' link, on 'Gift Cards Dashboard' page.")
     public void verifyFilterFieldsOfGiftCardDashboard(){
         giftCardPage.getAllFilterFileds();
@@ -479,7 +477,8 @@ public class GiftCardDashboardTest extends BaseTest {
 
 
 
-
+ 
+    }
 
 
 }

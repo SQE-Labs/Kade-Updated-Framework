@@ -41,6 +41,8 @@ public class GiftCardDashboardPage extends BaseTest {
     public By storeDropDownList = By.cssSelector("ul.select2-results__options > li");
     public By whichStoreContinueBtn = By.cssSelector("button.btn-primary");
     public By storeName = By.cssSelector("h3.text-truncate");
+    By continueBtn = By.xpath("//button[@type='submit']");
+
     public By infoMessageText = By.cssSelector("div.card-header.pb-0");
     public By configurationBtn = By.cssSelector("button.btn.btn-link");
     public By configurationPopupHeader = By.cssSelector("h5.modal-title");
@@ -104,7 +106,7 @@ public class GiftCardDashboardPage extends BaseTest {
 
     // Locators for Gift Cards For Sale
 
-    public By giftCardsSaleLink = By.xpath("//a[normalize-space()='Gift Cards For Sale']");
+    By giftCardsSaleLink = By.xpath("//a[normalize-space()='Gift Cards For Sale']");
     public By addBtn = By.xpath("//a[normalize-space()='Add']");
     public By faceValue = By.xpath("//input[@name='amount']");
     public By salePrice = By.xpath("//input[@name='salePrice']");
@@ -132,6 +134,9 @@ public class GiftCardDashboardPage extends BaseTest {
     By optionLocator = By.xpath("//select[@name='status']//option");
     By endBtn = By.xpath("//option[2]");
     By applyBtn = By.xpath("//button[normalize-space(text())='Apply']");
+    By storeDropdown=By.xpath("//span[contains(@class,'select2-selection s')]");
+    By storeField=By.xpath("//input[@class='select2-search__field']");
+    By selectStore=By.xpath("//li[text()='may2025']");
 
     // filter locators
     By filterIcon = By.xpath("//div[contains(@class,'d-flex flex-wrap px-3')]/button/i");
@@ -211,11 +216,26 @@ public void getGiftCardStatusTbx(){
         pageObjectManager.getHomePage().landingPage();
     }
 
+
+
+
     public String selectStore(int index) {
         click(storeDropDown);
         String getStoreName = clickElementFromList(storeDropDownList, index);
         return getStoreName;
     }
+
+    public void clickOnStore(){
+        click(storeDropdown);
+    }
+    public void selectStore(){
+        click(selectStore);
+    }
+
+    public void sendKeysInStoreField(String storeFieldTxt){
+        actionEnterText(storeField,storeFieldTxt);
+    }
+
 
 
     public String offOptionalSettings() {
@@ -259,6 +279,9 @@ public void getGiftCardStatusTbx(){
         String name = selectStore(3);
         click(whichStoreContinueBtn);
         softAssert.assertEquals(getText(storeName), name);
+    }
+    public void getContinueButton() {
+        click(continueBtn);
     }
 
 
@@ -2026,6 +2049,26 @@ public void verifyActionOnZeroAvailableQty() {
             throw new AssertionError("No gift card with 'Sold QTY: 0' was found.");
         }
     }
+    public void QrTypeDropdown() {
+        List<WebElement> Types = getDriver().findElements(By.xpath("//select[@name='qrCodeType']/option"));
+        for (WebElement Type : Types) {
+            String txt = Type.getText();
+            Log.info("Qr code Type Dropdown values are :" + txt);
+        }
+    }
+
+
+public void donateGraph(String storeFieldTxt){
+        Login();
+    pannel.getMangeBusinessTab();
+    pannel.getGiftCardsDashboardTab();
+    clickOnStore();
+    sendKeysInStoreField(storeFieldTxt);
+    selectStore();
+
+ }
+
+//span[@class='apexcharts-legend-text']
 
     public void getAllFilterFileds(){
         offOptionalSettings();
@@ -2598,6 +2641,7 @@ public void verifyActionOnZeroAvailableQty() {
         List<WebElement> allRecords = getDriver().findElements(allresult);
         String recordText = allRecords.get(0).getText();
         Assert.assertTrue(recordText.contains(Constants.giftCardNo),"Record does not match");
+
 
         // Entering non- existing GC no and Validate
         getFilterIcon();

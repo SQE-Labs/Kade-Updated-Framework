@@ -12,13 +12,12 @@ import base.BaseTest;
 import logger.Log;
 import org.openqa.selenium.*;
 import org.testng.Assert;
- import utils.Constants;
+import utils.Constants;
 
 import static utils.Constants.BillHeader;
 
 
 public class BillPage extends BaseTest {
-    PaymentPage payment = new PaymentPage();
 
     String descriptionTxt;
     String referenceTxt;
@@ -26,7 +25,7 @@ public class BillPage extends BaseTest {
     public String amt;
 
     public String enteredamt;
-
+PaymentPage payment=new PaymentPage();
 
     public By newBillTxt = By.xpath("//div/child::div[text()='New Bill']");
     public By newBillBtn = By.cssSelector(".fs-p15>i+div");
@@ -90,7 +89,9 @@ public class BillPage extends BaseTest {
     By addMoreRowLink = By.xpath("//button[@class='btn-sm btn btn-link']");
     By toolTipMessage = By.xpath("//div[@class='tooltip-inner']");
     By refNoTextBox = By.xpath("//input[@name='refNo']");
-    By autoGenToggleBtn = By.xpath("//i[contains(@class,'btn-sm custom-check-off')]");
+    By autoGenToggleBtn = By.xpath("(//input[@name='autoGenerate'])[1]");
+    public By autoPaymentInfoMsg = By.xpath("//div[@class='alert-message']//div[contains(text(),'process this bill')]");
+
     By autoGenClass = By.xpath("(//input[@name='autoGenerate'])[1]/../../../..");
     //	By closeIcon = By.xpath("(//button[@class='btn-close'])[2]");
     By customerEmail = By.xpath("(//input[@name='email'])[2]");
@@ -126,7 +127,6 @@ public class BillPage extends BaseTest {
     By whichStorePopup = By.xpath("//p[text()='Which store?']");
     By newBusinessCard = By.xpath("div.overflow-hidden.border.border-info");
     public By storesCombobox = By.xpath("//span[@role='combobox']");
-    By continueBtn = By.xpath("//button[@type='submit']");
     public By messagePopupHeader = By.xpath("//h5[text()='Message']");
     public By closeLogoPopupBtn = By.xpath("(//div[contains(@class, 'modal-content')]//button[@class='btn-close'])[3]");
     public By totalAmt = By.xpath("//span[@data-field='total']");
@@ -230,12 +230,14 @@ public class BillPage extends BaseTest {
     public By quterDayTxt = By.xpath("//button[contains(text(),'24 Hours')]/following-sibling::button[contains(text(),'4 Hours')]");
     public By oneHourTxt = By.xpath("//button[contains(text(),'1 Hour')]");
     public By thirtyMinTxt = By.xpath("//button[contains(text(),'30')]");
+    By expiresField=By.xpath("//span[text()='Expires in:']/../input[@lbl-title='Expires in']");
+
     public By expireInTxtField = By.xpath("//span[contains(text(),'Expires in:')]/following-sibling::input[@data-field='duration']");
     public By expireDropDown = By.xpath("//option[text()='Minutes']/..");
     public By minutesTxt = By.xpath("//option[text()='Minutes']");
 
     By paymentMethodLink = By.xpath("//button[text()='Add payment method']");
-    By customerPermissionCheckbox = By.xpath("//label[contains(@class, 'checkbox')]//span[text()=\"I have my customer's permission\"]");
+    By customerPermissionCheckbox = By.xpath("((//label[@class='custom-checkbox'])[5]/child::i)[2]");
     By customerPrmissionDoneButton = By.xpath("(//button[text()='Continue'])[2]");
     By cardName = By.xpath("//input[@placeholder='1234 1234 1234 1234']");
     By cardIframe = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[2]");
@@ -267,10 +269,6 @@ public class BillPage extends BaseTest {
     By recurringBillText = By.xpath("//a[@class='btn btn-link']");
     public By billTag = By.xpath("//div[contains(@class,'col-5  text-end') ]//div[1]/span");
 
-    // auto payment
-    public By autoPaymentInfoMsg = By.xpath("//div[@class='alert-message']//div[contains(text(),'process this bill')]");
-    public By removeButtonUnderInfoMsg = By.xpath("//div[contains(text(),'process this bill')]/..//button");
-    public By successInfoMsg = By.xpath("//h6[text()='This bill has been processed']");
     /*
     Locators of Bill popup
      */
@@ -291,27 +289,19 @@ public class BillPage extends BaseTest {
     By activeBillAmmount = By.xpath("//span[@class='display-5 display-sm-2 fw-bold']");
     By doneButton = By.xpath(" //div[@id='_3FH']/button[@type='button'][normalize-space()='Done']");
     public By amountTxtField = By.xpath("//label[text()='Amount']");
-    By btnDisabled = By.xpath("(//button[@disabled='disabled'])[3]");
+    By btnDisabled=By.xpath("(//button[@disabled='disabled'])[3]");
     By chargeButton = By.xpath("//span[contains(text(),'Charge')]");
+    public By removeButtonUnderInfoMsg = By.xpath("//div[contains(text(),'process this bill')]/..//button");
 
 
 
-    public void getUseThisToggle(){
-        clickElementByJS(autoGenToggleBtn);
-    }
-    public void getChargeButton(){
-        click(chargeButton);
-    }
+
 
 
     String amount = "2000.00";
 
     public void expirationIcon(){
         click(expireLockIcon);
-    }
-
-    public void getRemoveBtnUnderInfoMsg(){
-        click(removeButtonUnderInfoMsg);
     }
 
     public void clickOnNewBill() {
@@ -361,8 +351,7 @@ public class BillPage extends BaseTest {
         staticWait(3000);
         click(moreSection);
     }
-
-    public void clickOnIcon() {
+    public void clickOnIcon(){
         staticWait(2000);
         click(closeIcon);
     }
@@ -378,7 +367,7 @@ public class BillPage extends BaseTest {
 
     public void clickOnExpiryDateSection() {
         staticWait(3000);
-        click(expiryDateSection);
+       click(expiryDateSection);
     }
 
     public void sendTxtInexpireInTxtField(String hrs, int minTxt) {
@@ -409,6 +398,15 @@ public class BillPage extends BaseTest {
 
     public void ClickOncustomerPrmissionDoneButton() {
         click(customerPrmissionDoneButton);
+    }
+    public void getUseThisToggle(){
+        clickElementByJS(autoGenToggleBtn);
+    }
+    public void getChargeButton(){
+        click(chargeButton);
+    }
+    public void getRemoveBtnUnderInfoMsg(){
+        click(removeButtonUnderInfoMsg);
     }
 
     public void enterTxtInCardNumberField(String txt, String expiryDate, String cvcNumber) {
@@ -577,7 +575,6 @@ public class BillPage extends BaseTest {
         staticWait(3000);
         click(selectACustomerBtn);
     }
-
     public void selectCust() {
         staticWait(3000);
         click(selectCust);
@@ -1220,8 +1217,7 @@ public class BillPage extends BaseTest {
         getConfirmButton();
 
         //Verify Message popup and Buttons
-        String messagePopupHead = getText(messagePopupHeader);
-        Assert.assertEquals(getText(messagePopupHeader), "Message");
+        Assert.assertEquals(messagePopupHeader, "Message");
         Assert.assertTrue(isElementDisplayed(selectCustomer));
         Assert.assertTrue(isElementDisplayed(continueWithoutBtn));
 
@@ -1666,7 +1662,7 @@ public class BillPage extends BaseTest {
 
     }
 
-    public void verifyBillCreationByAddingExpirationDate() {
+    public void verifyBillCreationByAddingExpirationDate(String emailID,String expiresInFieldTxt) {
         Login();
         //Select Store
         clickOnNewBill();
@@ -1674,52 +1670,63 @@ public class BillPage extends BaseTest {
         selectStore(Constants.AutomationBillFlow);
         getContinueButton();
 
-        //Click on New Bill Button
+        // Click on New Bill Button
         getNewBillButton();
 
         //Enter amount
-        String amt = "1250.00";
+        String amt = "2,000.00";
         staticWait(3000);
+        scrollToElement(amtTbx);
         actionEnterText(amtTbx, amt);
+
+        //Select Suggested Customer
+
+        getCustomerButton();
+        getCustomerEmailField(emailID);
+        getEmailGoButton();
 
         //Click on More Option
         clickOnMoreSection();
+
         clickOnExpiryDateSection();
         staticWait(2000);
 
-        Assert.assertEquals((expirationDayPopUp), "Expiration Date");
-        Assert.assertTrue(isElementDisplayed(noneTxt));
-        Assert.assertTrue(isElementDisplayed(dayTxt));
-        Assert.assertTrue(isElementDisplayed(quterDayTxt));
-        Assert.assertTrue(isElementDisplayed(oneHourTxt));
-        Assert.assertTrue(isElementDisplayed(thirtyMinTxt));
+        String expirationDay = getText(expirationDayPopUp);
+        Assert.assertEquals(expirationDay,"Expiration Date");
 
+        String noneTxts = getText(noneTxt);
+        Assert.assertEquals(noneTxts, "None");
+
+        String dayTxts = getText(dayTxt);
+        Assert.assertEquals(dayTxts, "24 Hours");
+        String quterDayTxts = getText(quterDayTxt);
+        Assert.assertEquals(quterDayTxts, "4 Hours");
+        String oneHourTxts = getText(oneHourTxt);
+        Assert.assertEquals(oneHourTxts, "1 Hour");
+        String thirtyMinTxts = getText(thirtyMinTxt);
+        Assert.assertEquals(thirtyMinTxts, "30 Minutes");
 
         //Click on Expiry Field
-        sendTxtInexpireInTxtField("20", 1);
+        actionEnterText(expiresField,expiresInFieldTxt );
         clickOnDoneBtn();
 
 
         //Click Confirm
         getConfirmButton();
 
-        //Click On Continue Button
-        staticWait(4000);
-        getContinueWithoutButton();
+
 
         //Close popup
-        closePaymentpopup();
+        closePopup();
 
 
-//Verify not paid label for generated amount
+        //Verify not paid label for generated amount
         Assert.assertTrue(isElementDisplayed(notPaidLabel));
         Assert.assertTrue(isElementDisplayed(uniqueRefNo));
         Assert.assertTrue(isElementDisplayed(billTimeOnPopup));
         Assert.assertTrue(isElementDisplayed(expireDateTime));
-
         staticWait(3000);
     }
-
     public void verifyBillCreationByAddingRecurringTransactionsDaily(String phoneNumber,String emailID) {
 
         Login();
@@ -2025,8 +2032,8 @@ public class BillPage extends BaseTest {
         clickOnpaymentMethodLink();
 
     }
-
     public void createBillWithCustomerAndPayThroughAutoPayment() {
+
         String emailId = requiredString(4)+ "@yopmail.com";
         Login();
         //Select Store

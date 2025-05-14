@@ -1,7 +1,6 @@
 package base;
 
 import logger.Log;
-import utils.PropertyUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -9,13 +8,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.*;
+ import org.openqa.selenium.support.ui.*;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import pageObjects.PageObjectManager;
 import utils.ConfigFileReader;
-
-
+import utils.PropertyUtils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -273,6 +271,7 @@ public class BaseTest {
         staticWait(2000);
     }
     public void scrollToTopOfPage() {
+        staticWait(2000);
         log.info("Scrolling to the top of the page");
         ((JavascriptExecutor) getDriver()).executeScript("window.scrollTo(0, 0);");
         staticWait(2000);

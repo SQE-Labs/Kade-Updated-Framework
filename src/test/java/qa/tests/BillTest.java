@@ -4,7 +4,6 @@ package qa.tests;
 import base.BaseTest;
 import org.testng.annotations.Test;
 import pageEvents.BillPage;
-
 import java.awt.*;
 
 
@@ -84,7 +83,8 @@ public class BillTest extends BaseTest {
 
     @Test(priority = 11, enabled = true, description = "BC_15 Verify that creating a bill by adding the custom expiration date' on 'Bills' page..")
     public void verifyBillCreationByAddingExpirationDate() {
-        bill.verifyBillCreationByAddingExpirationDate();
+        bill.verifyBillCreationByAddingExpirationDate("yonro@yopmail.com","20");
+        bill.clickOnNotPaidLabel();
         bill.getDeleteButton();
         bill.getDeleteIcon();
     }
