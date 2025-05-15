@@ -231,7 +231,7 @@ public class DashboardTest extends BaseTest {
         //Clicking on the Dashboard Tab
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getDashboardTab();
-        staticWait(5000);
+        staticWait(4000);
         dashboard.getDashboardStoreCount();
 
         dashboard.getFirstStore();
