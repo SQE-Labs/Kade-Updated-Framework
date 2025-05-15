@@ -1,19 +1,32 @@
-C:\Users\Caelius\IdeaProjects\Kade Updated Framework\src\main\java\pageEvents\BasicInfoPage.java
-C:\Users\Caelius\IdeaProjects\Kade Updated Framework\src\main\java\pageEvents\ReportsPage.java
-C:\Users\Caelius\IdeaProjects\Kade Updated Framework\src\main\java\pageEvents\DashboardPage.java
-C:\Users\Caelius\IdeaProjects\Kade Updated Framework\src\main\java\utils\ConfigFileReader.java
-C:\Users\Caelius\IdeaProjects\Kade Updated Framework\src\main\java\utils\SuiteListener.java
-C:\Users\Caelius\IdeaProjects\Kade Updated Framework\src\main\java\pageEvents\SignUpPage.java
-C:\Users\Caelius\IdeaProjects\Kade Updated Framework\src\main\java\pageEvents\LoginPageEvents.java
-C:\Users\Caelius\IdeaProjects\Kade Updated Framework\src\main\java\pageEvents\HomePageEvents.java
-C:\Users\Caelius\IdeaProjects\Kade Updated Framework\src\main\java\utils\RetryAnalyzer.java
-C:\Users\Caelius\IdeaProjects\Kade Updated Framework\src\main\java\pageEvents\AdminPage.java
-C:\Users\Caelius\IdeaProjects\Kade Updated Framework\src\main\java\base\BaseTest.java
-C:\Users\Caelius\IdeaProjects\Kade Updated Framework\src\main\java\pageEvents\CustomersPage.java
-C:\Users\Caelius\IdeaProjects\Kade Updated Framework\src\main\java\utils\Constants.java
-C:\Users\Caelius\IdeaProjects\Kade Updated Framework\src\main\java\pageEvents\SidePannelPage.java
-C:\Users\Caelius\IdeaProjects\Kade Updated Framework\src\main\java\pageObjects\PageObjectManager.java
-C:\Users\Caelius\IdeaProjects\Kade Updated Framework\src\main\java\pageEvents\MyStorePage.java
-C:\Users\Caelius\IdeaProjects\Kade Updated Framework\src\main\java\pageEvents\SecurityAndPasswordPage.java
-C:\Users\Caelius\IdeaProjects\Kade Updated Framework\src\main\java\pageEvents\RewardsProgramPage.java
-C:\Users\Caelius\IdeaProjects\Kade Updated Framework\src\main\java\pageEvents\RewardPointsPage.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/RewardsProgramPage.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/SecurityAndPasswordPage.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/PaymentMethod.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/QRCodePage.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/SidePannelPage.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/LoginPage.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/TransactionsPage.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/SignUpPage.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/base/BaseTest.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/utils/SuiteListener.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/DashboardPage.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/utils/Constants.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/HomePageEvents.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/BillPage.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/logger/LogConfig.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/RewardPointsPage.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/ReportsPage.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/CustomersPage.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/logger/Log.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/AdminPage.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/PaymentPage.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/utils/ConfigFileReader.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/PaymentHistoryPage.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/SearchPage.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/LoginPageEvents.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/utils/PropertyUtils.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/MyStorePage.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/BasicInfoPage.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/GiftCardPage.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageEvents/GiftCardDashboardPage.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/pageObjects/PageObjectManager.java
+/Users/caelius/IdeaProjects/Kade-Updated-Framework/src/main/java/utils/RetryAnalyzer.java
