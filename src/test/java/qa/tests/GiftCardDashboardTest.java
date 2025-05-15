@@ -1,6 +1,9 @@
 package qa.tests;
 
 import base.BaseTest;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
@@ -12,6 +15,8 @@ import pageObjects.PageObjectManager;
 
 import utils.Constants;
 
+import java.io.File;
+import java.io.IOException;
 
 
 public class GiftCardDashboardTest extends BaseTest {
@@ -361,13 +366,17 @@ public class GiftCardDashboardTest extends BaseTest {
 
     }
 
-    @Test(priority = 1, enabled = true, description = "TC-73")
-    public void verifyDonateGraph (){
+    @Test(priority = 73, enabled = true, description = "TC-73 and TC-74")
+    public void verifyDonateGraph () {
         giftCardPage.donateGraph("may2025");
+    }
+
+
     @Test (priority = 52,enabled = true,description = "Verify that appropirate fields appears after clicking on 'Filter' link, on 'Gift Cards Dashboard' page.")
     public void verifyFilterFieldsOfGiftCardDashboard(){
         giftCardPage.getAllFilterFileds();
     }
+
 
     @Test(priority = 53, enabled = true, description = "Verify that relevant gift cards appear listed after entering any existing  card holder name in 'User Name' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
     public void verifyRelevantGiftCardAppearsWhileAddingExistingCardHolderName(){
@@ -463,25 +472,10 @@ public class GiftCardDashboardTest extends BaseTest {
     public void verifyInvalidInputofFilterFields(){
         giftCardPage. verifyInvalidInputofFilterFields();
     }
+     }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
- 
-    }
-
-
-}
 
 
 
