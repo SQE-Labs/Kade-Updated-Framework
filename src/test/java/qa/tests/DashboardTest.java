@@ -222,10 +222,11 @@ public class DashboardTest extends BaseTest {
         String customerName = getText(transaction.customerName);
         String payment = getText(transaction.payment);
         String time = getText(transaction.time);
-        staticWait(3000);
+        staticWait(4000);
         transaction.getCrossIconOfCurrentPaidBill();
         staticWait(3000);
         scrollToDown();
+
         staticWait(3000);
 
         //Clicking on the Dashboard Tab
