@@ -2,8 +2,6 @@ package utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
-import org.testng.Assert;
 
 /**
  * The Constants interface holds constant values used throughout the application.
@@ -15,7 +13,6 @@ public interface Constants {
 
     // Constant for the "Sign out" text used in validation
     String SIGN_OUT = "Sign out";
-    String transactionsTitle = "Transactions";
 
     // Dashboard
     String YourBusinessTitle ="Your Businesses";
@@ -40,9 +37,7 @@ public interface Constants {
     String existingEmail = "test@yopmail.com";
     String existingEmailValidation ="This email is already registered.";
     String securityCode ="123456";
-    String validPhonenumber = "6465551111";
-    String ValidPhone = "+1 (646) 555 1118";
-    String expectedSearchValidation = "Nothing found!";
+    String validPhonenumber = "6465551105";
     String TooltipForLessDigit ="Please enter at least 6 characters.";
     String invalidSecurityCodeMsg = "Invalid security code";
     String invalidSecurityCode ="332434";
@@ -51,11 +46,6 @@ public interface Constants {
     String validPassword = "Test@123";
     String validLoginEmail = "test1114@yopmail.com";
     String phoneSecurityCodeForLogin = "777777";
-    String ForgetPasswordtitle = "Forget password";
-    String  TermsOfUser ="User Agreement";
-    String PaymentHistoryTitle = "Payment History";
-    String NoPaymentsMessage = "There are no payments available yet!";
-    String invalidEmailValidationMsg = "Invalid email";
 
 
     //BasicInformationPage constants
@@ -119,7 +109,7 @@ public interface Constants {
     String custEmailInput = "yonro@yopmail.com";
     String emailTooltip = "Please enter a valid email address.";
     String emptyFieldTooltip = "This field is required.";
-    String searchInput = "yonro";
+    String searchInput = "Santa";
     String phnNumberInput = "9011017524";
     String phnNumberInput2 = "1232233223";
     String phnNumberInput3 = "12345678901234567890123";
@@ -134,9 +124,9 @@ public interface Constants {
     String initialAmt = "1000";
 
     //Reports Page
-    String fileNameDaily = "2962-2025-04-26.csv";
+    String fileNameDaily = "2962-2025-01-20.csv";
     String filePresent = "File Present";
-    String filenameMonthly = "2962-2025-04-01.csv";
+    String filenameMonthly = "2962-2025-01-01.csv";
     String dateRange = "01/01/2025 - 02/20/2025";
 
     //Store Creation
@@ -147,7 +137,7 @@ public interface Constants {
     String defaultCurrency = "USD";
     String defaultTaxRate = "0.000%";
     String currentPlan= "Current plan";
-    String visavalue = "Visa 1111";
+    String visavalue = "Visa1111";
 
     //Store Names
     public static String AutomationBillFlow = "Automation Bill Flow";  // Flow 1 without plan
@@ -160,13 +150,12 @@ public interface Constants {
     public static String AutomationTransaction2 ="Automation Transaction 2";
     public static String AutomationPaymentHistory = "Automation Payment History";  // Flow 1 without plan
     public static String BillHeader="Bill";
-    public static String TerminalChargeStore ="TerminalNewCharges";
 
 
     //Verifying Modified Details
-    String editdefaultStoreName = "Automation Flow Business 1";
+    String editdefaultStoreName = "My Store MSC Final";
     String editdefaultStorePhone = "+1 (918) 065 2341";
-    String reverseStoreName = "Automation Flow Business";
+    String reverseStoreName = "Automation Flow 3";
 
 
     // Store Configuration
@@ -180,8 +169,6 @@ public interface Constants {
     String addUserTitle = "Add user";
     String deacticeStatus = "Store is NOT active (Deactivated)";
     String activeStoreStatus ="Store is active and ready to receive payments";
-    String loginPageValidation = "Invalid phone number. Phone numbers must start with + and country code";
-    String credentialsValidationLP = "Invalid credentials. Check your username and/or password";
 
 
     // Gift Card DashBoard
