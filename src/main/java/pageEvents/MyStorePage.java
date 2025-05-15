@@ -586,7 +586,7 @@ public class MyStorePage extends BaseTest {
         actionEnterText(phoneTbx,Constants.validPhoneNumber2);
         scrollToElement(taxRateTbx);
         waitForElementToBeClickable(taxRateTbx,3);
-        actionEnterText(taxRateTbx,Constants.defaultTaxRate);
+        actionEnterText(taxRateTbx,Constants.defaultTaxRateValue);
         waitForElementToBeClickable(saveBtn,5);
         getSaveButton();
 

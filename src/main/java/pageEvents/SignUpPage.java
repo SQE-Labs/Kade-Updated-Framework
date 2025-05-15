@@ -130,11 +130,14 @@ public void getsignInWithEmailUsingBusinessAccount(){
 
     // Clicking on Switch to Email Link
      getSwitchtoEmailLink();
-    enterText(emailFieldSP, Constants.validAdminEmail);
+     enterText(emailFieldSP, Constants.validAdminEmail);
      getContinueBtnSP();
+     waitForElementToBeVisible(iDontKnowPasswordSP,5);
 
-    // Clicking on I don't know password link
+     // Clicking on I don't know password link
     getIdonkKnowPasswordLinkSP();
+
+    waitForElementToBeVisible(securityCodeLabelsignInP,5);
 
     // Verify the elements
     softAssert.assertTrue(isElementDisplayed(securityCodeLabelsignInP),"Security code label");
@@ -142,6 +145,7 @@ public void getsignInWithEmailUsingBusinessAccount(){
     softAssert.assertTrue(isElementDisplayed(newPasswordLabelSP),"new passoword label");
     softAssert.assertTrue(isElementDisplayed(showPasswordSignInP),"show password");
     softAssert.assertTrue(isElementDisplayed(signInButtonSignInP),"sign in button ");
+    waitForElementToBeClickable(securityCodeField,3);
 
     enterText(securityCodeField,Constants.securityCode);
     enterText(newPasswordFieldSP,Constants.validPassword);

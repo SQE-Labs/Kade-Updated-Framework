@@ -227,7 +227,7 @@ public class DashboardTest extends BaseTest {
         staticWait(3000);
         scrollToDown();
 
-        staticWait(3000);
+        staticWait(5000);
 
         //Clicking on the Dashboard Tab
         pageObjectManager.getSidePannel().getMangeBusinessTab();

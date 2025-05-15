@@ -511,7 +511,7 @@ public class MyStoreTest extends BaseTest {
         //  Click on 'Change Plan' Button
         mystore.getChangePlanButton();
         //Verifying that next bill date is generated
-        Assert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
+        Assert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date"); // Bug Failed due to 3092, 2827
 
 
         pageObjectManager.getSidePannel().getSignOut();
