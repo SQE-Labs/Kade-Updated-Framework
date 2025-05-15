@@ -50,6 +50,7 @@ public interface Constants {
     String passwordvalidation = "Invalid password, a password must contain at least one upper case letter, one lower case letter and one special character or a number.";
     String validPassword = "Test@123";
     String validLoginEmail = "test1114@yopmail.com";
+    String validAdminEmail = "eti275@yopmal.com";
     String phoneSecurityCodeForLogin = "777777";
     String ForgetPasswordtitle = "Forget password";
     String  TermsOfUser ="User Agreement";
@@ -136,7 +137,7 @@ public interface Constants {
     //Reports Page
     String fileNameDaily = "2962-2025-04-26.csv";
     String filePresent = "File Present";
-    String filenameMonthly = "2962-2025-04-01.csv";
+    String filenameMonthly = "2962-2025-05-01.csv";
     String dateRange = "01/01/2025 - 02/20/2025";
 
     //Store Creation

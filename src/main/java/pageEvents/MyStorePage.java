@@ -165,6 +165,7 @@ public class MyStorePage extends BaseTest {
     }
 
     public void getStripeAccountBtn(){
+        staticWait(2000);
         click(stripeBtn);
     }
     public void getTestStripeAccountButton(){
@@ -559,7 +560,7 @@ public class MyStorePage extends BaseTest {
         selectStoreAddress(Constants.storeAddress);
 
         //Verifying the maximum length of 'Phone' field
-        Assert.assertEquals(getAttribute(phoneTbx,"maxlength"),"22");
+        Assert.assertEquals(getAttribute(phoneTbx,"maxlength"),"16"); // Phone number field accept now max 16 characters only
         actionEnterText(phoneTbx,Constants.validPhoneNumber);
 
         // Select Time Zone
