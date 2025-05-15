@@ -1,6 +1,9 @@
 package qa.tests;
 
 import base.BaseTest;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
@@ -12,6 +15,8 @@ import pageObjects.PageObjectManager;
 
 import utils.Constants;
 
+import java.io.File;
+import java.io.IOException;
 
 
 public class GiftCardDashboardTest extends BaseTest {
@@ -192,7 +197,6 @@ public class GiftCardDashboardTest extends BaseTest {
 
     @Test(priority = 83, enabled = true, description = "Verify that user gets directed to 'Gift Card For Sale' page, after clicking on 'Add' button, on 'Sell Dashboard' page.")
     public void verifyUserDirectsToGiftCardForSalePage() {
-
         giftCardPage.verifyUserDirection();
     }
 
@@ -213,7 +217,6 @@ public class GiftCardDashboardTest extends BaseTest {
 
     @Test(priority = 86, enabled = true, description = "Verify that 'Sale price' field accepts only numeric value, on 'Gift Card For Sale' popup. ")
     public void verifySalePriceAcceptOnlyNumeric() {
-
         giftCardPage.verifySalePriceFieldAccept();
 
 
@@ -297,10 +300,7 @@ public class GiftCardDashboardTest extends BaseTest {
     @Test(priority = 100, enabled = true, description = " Verify that status of the gift card appears 'Ended' after the sale end date, on 'Sell Dashboard' page."
     )
     public void verifyStatusOfGiftCardAfterEndDate (){
-
         giftCardPage.verifyStatusOfGiftCard();
-
-
     }
 
     @Test(priority = 101, enabled = true, description = "Verify that user is able to update the sale gift card from 'Gift Card For Sale' page. "
@@ -362,14 +362,21 @@ public class GiftCardDashboardTest extends BaseTest {
     @Test(priority = 116, enabled = true, description = "\"Verify that user is able to delete only those sale gift card which has Sold QTY: Zero, on 'Sell Dashboard' page.\n" +
             "\"")
     public void verifyUserAbleToDeleteSaleGiftCardQty0 (){
-
         giftCardPage.verifyActionOnSoldQty0();
 
     }
+
+    @Test(priority = 73, enabled = true, description = "TC-73 and TC-74")
+    public void verifyDonateGraph () {
+        giftCardPage.donateGraph("may2025");
+    }
+
+
     @Test (priority = 52,enabled = true,description = "Verify that appropirate fields appears after clicking on 'Filter' link, on 'Gift Cards Dashboard' page.")
     public void verifyFilterFieldsOfGiftCardDashboard(){
         giftCardPage.getAllFilterFileds();
     }
+
 
     @Test(priority = 53, enabled = true, description = "Verify that relevant gift cards appear listed after entering any existing  card holder name in 'User Name' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
     public void verifyRelevantGiftCardAppearsWhileAddingExistingCardHolderName(){
@@ -465,24 +472,10 @@ public class GiftCardDashboardTest extends BaseTest {
     public void verifyInvalidInputofFilterFields(){
         giftCardPage. verifyInvalidInputofFilterFields();
     }
+     }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
 
 
 

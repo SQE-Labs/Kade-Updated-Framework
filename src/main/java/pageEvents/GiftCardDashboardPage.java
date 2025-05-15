@@ -27,8 +27,6 @@ import static org.openqa.selenium.support.locators.RelativeLocator.with;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 
-
-
 public class GiftCardDashboardPage extends BaseTest {
     BillPage bill = new BillPage();
     //WebDriver driver =new ChromeDriver();
@@ -41,6 +39,8 @@ public class GiftCardDashboardPage extends BaseTest {
     public By storeDropDownList = By.cssSelector("ul.select2-results__options > li");
     public By whichStoreContinueBtn = By.cssSelector("button.btn-primary");
     public By storeName = By.cssSelector("h3.text-truncate");
+    By continueBtn = By.xpath("//button[@type='submit']");
+
     public By infoMessageText = By.cssSelector("div.card-header.pb-0");
     public By configurationBtn = By.cssSelector("button.btn.btn-link");
     public By configurationPopupHeader = By.cssSelector("h5.modal-title");
@@ -104,7 +104,7 @@ public class GiftCardDashboardPage extends BaseTest {
 
     // Locators for Gift Cards For Sale
 
-    public By giftCardsSaleLink = By.xpath("//a[normalize-space()='Gift Cards For Sale']");
+    By giftCardsSaleLink = By.xpath("//a[normalize-space()='Gift Cards For Sale']");
     public By addBtn = By.xpath("//a[normalize-space()='Add']");
     public By faceValue = By.xpath("//input[@name='amount']");
     public By salePrice = By.xpath("//input[@name='salePrice']");
@@ -132,6 +132,14 @@ public class GiftCardDashboardPage extends BaseTest {
     By optionLocator = By.xpath("//select[@name='status']//option");
     By endBtn = By.xpath("//option[2]");
     By applyBtn = By.xpath("//button[normalize-space(text())='Apply']");
+ 
+    By storeDropdown = By.xpath("//span[contains(@class,'select2-selection s')]");
+    By storeField = By.xpath("//input[@class='select2-search__field']");
+    By selectStore = By.xpath("//li[text()='may2025']");
+    By donutGraphDark = By.xpath("//div[@class='apexcharts-tooltip apexcharts-theme-dark']");
+    By donutGraph = By.xpath("//div[@class='apexcharts-tooltip apexcharts-theme-dark apexcharts-active']");
+    By donut = By.cssSelector("[class='apexcharts-series apexcharts-pie-series']");
+ 
 
     // filter locators
     By filterIcon = By.xpath("//div[contains(@class,'d-flex flex-wrap px-3')]/button/i");
@@ -188,7 +196,7 @@ public void getNonExistingGCDate(){
 public void getGiftCardStatusTbx(){
     click(giftCardStatusTbx);
 }
-
+ 
 
     public static void LoginAsCustomerNew() {
         Log.info("Starting Login test - Entering username and password");
@@ -211,10 +219,23 @@ public void getGiftCardStatusTbx(){
         pageObjectManager.getHomePage().landingPage();
     }
 
+
     public String selectStore(int index) {
         click(storeDropDown);
         String getStoreName = clickElementFromList(storeDropDownList, index);
         return getStoreName;
+    }
+
+    public void clickOnStore() {
+        click(storeDropdown);
+    }
+
+    public void selectStore() {
+        click(selectStore);
+    }
+
+    public void sendKeysInStoreField(String storeFieldTxt) {
+        actionEnterText(storeField, storeFieldTxt);
     }
 
 
@@ -259,6 +280,10 @@ public void getGiftCardStatusTbx(){
         String name = selectStore(3);
         click(whichStoreContinueBtn);
         softAssert.assertEquals(getText(storeName), name);
+    }
+
+    public void getContinueButton() {
+        click(continueBtn);
     }
 
 
@@ -1624,8 +1649,6 @@ public void getGiftCardStatusTbx(){
     }
 
 
-
-
     public void verifyUserAbleToDeleteSaleGift() {
 
         offOptionalSettings();
@@ -1659,7 +1682,7 @@ public void getGiftCardStatusTbx(){
     }
 
 
-    public void verifyListOfGiftCards(){
+    public void verifyListOfGiftCards() {
 
         offOptionalSettings();
         staticWait(2000);
@@ -1716,11 +1739,12 @@ public void getGiftCardStatusTbx(){
         click(filterBtn);
         staticWait(7000);
         Assert.assertTrue(isElementDisplayed(statusAvailable));
-        Assert.assertEquals(getText(statusAvailable),"Available");
+        Assert.assertEquals(getText(statusAvailable), "Available");
 
 
     }
-     public void verifyAvailableAndAllOptionsInStatus() {
+
+    public void verifyAvailableAndAllOptionsInStatus() {
 
         offOptionalSettings();
         staticWait(2000);
@@ -1733,140 +1757,142 @@ public void getGiftCardStatusTbx(){
 
         // Assert that exactly two <option> elements are presentAssert.assertEquals("Expected exactly two options", 2, options.size());
 
-         // Assert the text of each <option> element
-         Assert.assertEquals(options.get(0).getText(),"Available");
-         System.out.println("First option text: " + options.get(0).getText());
-         Assert.assertEquals(options.get(1).getText(),"All");
-         System.out.println("Second option text: " + options.get(1).getText());
+        // Assert the text of each <option> element
+        Assert.assertEquals(options.get(0).getText(), "Available");
+        System.out.println("First option text: " + options.get(0).getText());
+        Assert.assertEquals(options.get(1).getText(), "All");
+        System.out.println("Second option text: " + options.get(1).getText());
 
-     }
+    }
 
 
-public void verifyAvailableSaleGiftCards() {
-    offOptionalSettings();
-    staticWait(2000);
-    getForSaleBtn();
-
-    JavascriptExecutor js = (JavascriptExecutor) getDriver();
-    List<WebElement> allGiftCards = new ArrayList<>();
-
-    int previousCount = 0;
-
-    while (true) {
-        js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+    public void verifyAvailableSaleGiftCards() {
+        offOptionalSettings();
         staticWait(2000);
+        getForSaleBtn();
 
-        List<WebElement> currentGiftCards = getDriver().findElements(giftCardDetails);
-        int currentCount = currentGiftCards.size();
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        List<WebElement> allGiftCards = new ArrayList<>();
 
-        System.out.println("Currently loaded gift cards: " + currentCount);
+        int previousCount = 0;
 
-        if (currentCount == previousCount) {
-            break;
-        }
+        while (true) {
+            js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+            staticWait(2000);
 
-        previousCount = currentCount;
-        allGiftCards = currentGiftCards;
-    }
+            List<WebElement> currentGiftCards = getDriver().findElements(giftCardDetails);
+            int currentCount = currentGiftCards.size();
 
-    Log.info("Total gift cards collected: " + allGiftCards.size());
+            System.out.println("Currently loaded gift cards: " + currentCount);
 
-    boolean zeroQtyFound = false;
-    for (WebElement gift : allGiftCards) {
-        String giftText = gift.getText();
-        System.out.println(giftText);
-
-        if (giftText.contains("Available QTY: 0")) {
-            zeroQtyFound = true;
-            Log.error("Gift card with zero available quantity found:\n" + giftText, new RuntimeException("Available QTY: 0"));
-        }
-    }
-
-    if (zeroQtyFound) {
-        throw new AssertionError("One or more gift cards have 'Available QTY: 0'. Test failed.");
-    }
-
-    staticWait(5000);
-}
-@Test
-public void verifyActionOnZeroAvailableQty() {
-    offOptionalSettings();
-    staticWait(2000);
-    getForSaleBtn();
-    staticWait(1000);
-    click(filterBtn);
-    staticWait(2000);
-    click(statusAvailable);
-    click(endBtn);
-    click(applyBtn);
-    staticWait(5000);
-
-    JavascriptExecutor js = (JavascriptExecutor) getDriver();
-    List<WebElement> allGiftCards = new ArrayList<>();
-
-    int previousCount = 0;
-
-    while (true) {
-        js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-        staticWait(2000);
-
-        List<WebElement> currentGiftCards = getDriver().findElements(giftCardDetails);
-        int currentCount = currentGiftCards.size();
-
-        System.out.println("Currently loaded gift cards: " + currentCount);
-
-        if (currentCount == previousCount) {
-            break;
-        }
-
-        previousCount = currentCount;
-        allGiftCards = currentGiftCards;
-    }
-
-    Log.info("Total gift cards collected: " + allGiftCards.size());
-    boolean zeroQtyFound = false;
-
-    for (WebElement gift : allGiftCards) {
-        String giftText = gift.getText();
-        System.out.println(giftText);
-
-        if (giftText.contains("Available QTY: 0")) {
-            zeroQtyFound = true;
-
-            // Log the issue
-            Log.error("Gift card with zero available quantity found:\n" + giftText, new RuntimeException("Available QTY: 0"));
-
-            // Scroll to the gift card and click
-            try {
-                js.executeScript("arguments[0].scrollIntoView({block: 'center'});", gift);
-                staticWait(1000); // allow scroll transition
-                WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
-                wait.until(ExpectedConditions.elementToBeClickable(gift)).click();
-            } catch (ElementClickInterceptedException e) {
-                js.executeScript("arguments[0].click();", gift); // fallback JS click
+            if (currentCount == previousCount) {
+                break;
             }
 
-            staticWait(2000); // Optional: wait for UI to load
+            previousCount = currentCount;
+            allGiftCards = currentGiftCards;
+        }
 
-            // Check for Delete button
-            try {
-                WebElement deleteBtn = getDriver().findElement(By.id("deleteButton")); // Use actual locator
-                boolean isDisplayed = isDisplayed(deleteIcon, 2);
-                if (isDisplayed) {
-                    throw new AssertionError("Delete button should not be visible for Available QTY: 0");
+        Log.info("Total gift cards collected: " + allGiftCards.size());
+
+        boolean zeroQtyFound = false;
+        for (WebElement gift : allGiftCards) {
+            String giftText = gift.getText();
+            System.out.println(giftText);
+
+            if (giftText.contains("Available QTY: 0")) {
+                zeroQtyFound = true;
+                Log.error("Gift card with zero available quantity found:\n" + giftText, new RuntimeException("Available QTY: 0"));
+            }
+        }
+
+        if (zeroQtyFound) {
+            throw new AssertionError("One or more gift cards have 'Available QTY: 0'. Test failed.");
+        }
+
+        staticWait(5000);
+    }
+
+    @Test
+    public void verifyActionOnZeroAvailableQty() {
+        offOptionalSettings();
+        staticWait(2000);
+        getForSaleBtn();
+        staticWait(1000);
+        click(filterBtn);
+        staticWait(2000);
+        click(statusAvailable);
+        click(endBtn);
+        click(applyBtn);
+        staticWait(5000);
+
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        List<WebElement> allGiftCards = new ArrayList<>();
+
+        int previousCount = 0;
+
+        while (true) {
+            js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+            staticWait(2000);
+
+            List<WebElement> currentGiftCards = getDriver().findElements(giftCardDetails);
+            int currentCount = currentGiftCards.size();
+
+            System.out.println("Currently loaded gift cards: " + currentCount);
+
+            if (currentCount == previousCount) {
+                break;
+            }
+
+            previousCount = currentCount;
+            allGiftCards = currentGiftCards;
+        }
+
+        Log.info("Total gift cards collected: " + allGiftCards.size());
+        boolean zeroQtyFound = false;
+
+        for (WebElement gift : allGiftCards) {
+            String giftText = gift.getText();
+            System.out.println(giftText);
+
+            if (giftText.contains("Available QTY: 0")) {
+                zeroQtyFound = true;
+
+                // Log the issue
+                Log.error("Gift card with zero available quantity found:\n" + giftText, new RuntimeException("Available QTY: 0"));
+
+                // Scroll to the gift card and click
+                try {
+                    js.executeScript("arguments[0].scrollIntoView({block: 'center'});", gift);
+                    staticWait(1000); // allow scroll transition
+                    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+                    wait.until(ExpectedConditions.elementToBeClickable(gift)).click();
+                } catch (ElementClickInterceptedException e) {
+                    js.executeScript("arguments[0].click();", gift); // fallback JS click
                 }
-            } catch (NoSuchElementException e) {
-                System.out.println("Delete button is not present, as expected.");
-            }
 
-            break; // Only handle the first tile with Available QTY: 0
+                staticWait(2000); // Optional: wait for UI to load
+
+                // Check for Delete button
+                try {
+                    WebElement deleteBtn = getDriver().findElement(By.id("deleteButton")); // Use actual locator
+                    boolean isDisplayed = isDisplayed(deleteIcon, 2);
+                    if (isDisplayed) {
+                        throw new AssertionError("Delete button should not be visible for Available QTY: 0");
+                    }
+                } catch (NoSuchElementException e) {
+                    System.out.println("Delete button is not present, as expected.");
+                }
+
+                break; // Only handle the first tile with Available QTY: 0
+            }
+        }
+
+        if (!zeroQtyFound) {
+            throw new AssertionError("No gift card with 'Available QTY: 0' was found.");
         }
     }
 
-    if (!zeroQtyFound) {
-        throw new AssertionError("No gift card with 'Available QTY: 0' was found.");
-    }
-}
     public void verifyActionOnSoldQty1() {
         offOptionalSettings();
         staticWait(2000);
@@ -1945,7 +1971,7 @@ public void verifyActionOnZeroAvailableQty() {
         }
     }
 
-@Test
+    @Test
     public void verifyActionOnSoldQty0() {
         offOptionalSettings();
         staticWait(2000);
@@ -2026,6 +2052,68 @@ public void verifyActionOnZeroAvailableQty() {
             throw new AssertionError("No gift card with 'Sold QTY: 0' was found.");
         }
     }
+
+    public void countOfGiftCards() {
+        List<WebElement> elements = getDriver().findElements(By.xpath("//span[@class='apexcharts-legend-text']"));
+        int count = elements.size();
+        System.out.println("Total QR Code Types: " + count);
+
+// Loop through each legend
+        for (WebElement element : elements) {
+            String txt = element.getText();
+            Log.info("🔹 Legend Text: " + txt);
+
+            element.click();
+            staticWait(1000); // Let donut chart update
+
+            // Get all donut segments
+            List<WebElement> donuts = getDriver().findElements(By.cssSelector(".apexcharts-series.apexcharts-pie-series"));
+
+            int index = 1;
+            for (WebElement donut : donuts) {
+                String selectedAttr = donut.getAttribute("selected");
+                Log.info("  🍩 Donut #" + index + " selected attribute: " + selectedAttr);
+                index++;
+            }
+        }
+    }
+
+
+ 
+//        public void getDonetGraphsColour() {
+//            List<WebElement> DonetGraphs = getDriver().findElements(By.cssSelector("[class=apexcharts-datalabels]"));
+//            for (WebElement graph : DonetGraphs) {
+//                hoverOverElement(graph);       // hover over the WebElement
+//                staticWait(2000);
+//                Assert.assertTrue(isElementDisplayed(donutGraph));
+
+//                 List<WebElement> DonetGraphs = getDriver().findElements(By.cssSelector("[class=apexcharts-datalabels]"));
+//
+//              //  for (int i = 0; i < DonetGraphs.size(); i++)
+//                for(WebElement ele: DonetGraphs)
+//                    By locator = By.cssSelector(ele);
+//                    staticWait(3000);
+//                    hoverOverElement(locator);
+//                    staticWait(2000);
+//                   String donetColour= getText(locator);
+//                   Log.info("donet Colour is :" +donetColour);
+//            }
+//        }
+
+
+    public void donateGraph(String storeFieldTxt) {
+ 
+        Login();
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        clickOnStore();
+        sendKeysInStoreField(storeFieldTxt);
+        selectStore();
+        getContinueButton();
+        countOfGiftCards();
+        // getDonetGraphsColour();
+    }
+
 
     public void getAllFilterFileds(){
         offOptionalSettings();
@@ -2598,6 +2686,7 @@ public void verifyActionOnZeroAvailableQty() {
         List<WebElement> allRecords = getDriver().findElements(allresult);
         String recordText = allRecords.get(0).getText();
         Assert.assertTrue(recordText.contains(Constants.giftCardNo),"Record does not match");
+
 
         // Entering non- existing GC no and Validate
         getFilterIcon();

@@ -3,12 +3,16 @@ package pageEvents;
 import base.BaseTest;
 import logger.Log;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import utils.Constants;
 
 import java.awt.*;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 public class QRCodePage extends BaseTest {
 
@@ -42,47 +46,71 @@ public class QRCodePage extends BaseTest {
     By enterAmount = By.xpath("//input[@name='amount']");
     By viewLink = By.xpath("//i[contains(@class,'fas fa-external')]/..");
     By payNowBtn = By.xpath("//button[text()='Pay Now']");
+    By countinuePay = By.xpath("//button[text()='Continue to pay']");
     By updateBtn = By.xpath("//button[text()='Update']");
     By storeName = By.xpath("//h3[text()='Automation Bill Flow']");
     By authorizePayment = By.xpath("//h5[text()='Authorized Payment Method']");
     By newQrCode = By.xpath("//button[text()='Generate a new QR code']");
     By flexibleAmount = By.xpath("//span[text()='Flexible amount']");
     By fixedAmount = By.xpath("//span[text()='Fixed amount']");
+    By fixedAmoutSec=By.xpath("//span[text()='Fixed amount']/..");
+    By addButn=By.xpath("//button[text()='Add a line']");
+    By validationMsg=By.xpath("//p[text()='Please review the highlighted field(s)']");
     By tickets = By.xpath("//span[text()='Tickets/Events']");
+    By ticketsSection = By.xpath("//span[text()='Tickets/Events']/..");
+    By clickOnClockIcon=By.xpath("(//i[@class='fal fa-clock'])[2]/..");
+    By priceSchedule=By.xpath("//h5[text()='Price schedule']");
+    By datePicker=By.xpath("(//input[@data-field='scheduleDate'])[1]");
+    By currentDate=By.xpath("//td[@class='today active start-date active end-date available']");
+    By monthHeaderText=By.xpath("(//th[@class='month'])[1]");
+    By countinueBtn=By.xpath("//button[text()='Continue']");
+    By newPriceField=By.xpath("(//input[@data-field='price'])[1]");
+
     By donations = By.xpath("//span[text()='Donations']");
     By flexibleAmounteader = By.xpath("//p[text()='Flexible amount']");
-    By editPaymentLink=By.xpath("//h1[normalize-space()='Edit Payment link']");
-    By titleField=By.xpath("//input[@name='description']");
-    By amountDesc=By.xpath("//label[text()='Amount description']/../child::textarea");
-    By editContent=By.xpath("//button[text()='Edit content']");
-    By customizeContent=By.xpath("//h5[text()='Customize content']");
-    By title=By.xpath("(//div[@class='qr-template']/div)[1]");
-    By titleFieldOnPopup=By.xpath("//input[@name='title']");
-    By saveBtnOnFieldOnPopup=By.xpath("//input[@name='title']/../../child::div/button[text()='Save']");
-    By uploadImage=By.xpath("(//div[@class='template-main-image mb-3'])[1]");
-    By content=By.xpath("(//div[@data-field='content'])[1]");
-    By contentPage=By.xpath("//h5[text()='HTML Editor']");
-    By enterInContentPage=By.xpath("//h5[text()='HTML Editor']/../..//p");
-    By addBtn =By.xpath("//span[text()='Add']/..");
-    By saveBtnContentPage=By.xpath("//h5[text()='HTML Editor']/../../child::div//button[text()='Save']");
-    By fieldType=By.xpath("//select[@name='type']");
-        By selectValue=By.xpath("//option[text()='Full name']");
-        By titleNewField=By.xpath("//input[@name='name']");
-        By enableToggle=By.xpath("(//i[@class='far fa-toggle-off custom-check-off '])[4]");
-        By saveBtnOnNewField=By.xpath("(//button[text()='Save'])[2]");
-
-
-
-
-
-
-
-
-
-
-
-
-
+    By editPaymentLink = By.xpath("//h1[normalize-space()='Edit Payment link']");
+    By titleField = By.xpath("//input[@name='description']");
+    By amountDesc = By.xpath("//label[text()='Amount description']/../child::textarea");
+    By editContent = By.xpath("//button[text()='Edit content']");
+    By customizeContent = By.xpath("//h5[text()='Customize content']");
+    By title = By.xpath("(//div[@class='qr-template']/div)[1]");
+    By titleFieldOnPopup = By.xpath("//input[@name='title']");
+    By saveBtnOnFieldOnPopup = By.xpath("//input[@name='title']/../../child::div/button[text()='Save']");
+    By uploadImage = By.xpath("(//div[@class='template-main-image mb-3'])[1]");
+    By content = By.xpath("(//div[@data-field='content'])[1]");
+    By contentPage = By.xpath("//h5[text()='HTML Editor']");
+    By enterInContentPage = By.xpath("//h5[text()='HTML Editor']/../..//p");
+    By addBtn = By.xpath("//span[text()='Add']/..");
+    By saveBtnContentPage = By.xpath("//h5[text()='HTML Editor']/../../child::div//button[text()='Save']");
+    By fieldType = By.xpath("//select[@name='type']");
+    By selectValue = By.xpath("//option[text()='Full name']");
+    By titleNewField = By.xpath("//input[@name='name']");
+    By enableToggle = By.xpath("(//i[@class='far fa-toggle-off custom-check-off '])[4]");
+    By saveBtnOnNewField = By.xpath("(//button[text()='Save'])[2]");
+    By editIcon = By.xpath("//div[@class='-titlediv- flex-grow-1 mx-2']/..//i[@class='fal fa-pencil']");
+    By addButton = By.xpath("//span[text()='Add']");
+    By enterTxt = By.xpath("(//input[@name='name'])[1]");
+    By correctIcon = By.xpath("(//button[@type='submit'])[1]");
+    By deleteIcon = By.xpath("//div[contains(@class,'mb-2 border')]//button[@type='button']/i[@class='far fa-trash']/..");
+    By calender = By.xpath("//input[@name='endDate']");
+    By monthHeader = By.xpath("(//th[@class='month'])[1]");
+    By toggleBtn = By.xpath("((//label[@class='custom-checkbox'])[3]/i)[1]");
+    By saveBtn = By.xpath("//button[text()='Save']");
+    By eyeIcon = By.xpath("(//button[@class='p-0 btn btn-link'])[1]");
+    By viewText = By.xpath("//a[normalize-space()='View']");
+    By linkNotAvailableTxt = By.xpath("//div[normalize-space()='This link is not available.']");
+    By dashboardLink = By.xpath("//span[text()='Return to dashboard']/..");
+    By QrDashboard = By.xpath("//h1");
+    By pencilIcon = By.xpath("(//a[@class='p-0 me-4 btn btn-link'])[1]");
+    By typeOfEntryDropdown = By.xpath("//select[@name='type']/option");
+    By QrCodeView = By.xpath("//span[text()='QR code view']");
+    By ClickCopyIcon = By.xpath("//i[@class='fal fa-copy']/..");
+    By eyeSuccessIcon = By.xpath("//i[@class='far fa-eye text-success']/..");
+    By filterIcon = By.xpath("//button[@class='btn btn-link']");
+    By crossIcon = By.xpath("(//button[@class='btn-close'])[2]");
+    By descriptionTxt=By.xpath("(//textarea[@placeholder='Description'])[2]");
+    By descriptionAmtField=By.xpath("(//input[@class='text-end form-control'])[2]");
+    By QrFilterIcon=By.xpath("//button[@class='btn btn-link']");
 
 
     public void clickOnmanageBusinessMenu() {
@@ -101,6 +129,27 @@ public class QRCodePage extends BaseTest {
 
     public void clickOnPayNowBtn() {
         click(payNowBtn);
+    }
+
+    public void clickOnCrossIcon() {
+        click(crossIcon);
+    }
+
+    public void enterTxtIndescriptionTxtFiled(String descriptionTxtField){
+        staticWait(2000);
+        scrollToTopOfPage();
+        actionEnterText(descriptionTxt,descriptionTxtField);
+    }
+    public void enterTxtIndescriptionAmtField(String descriptionAmtTxtField){
+
+        actionEnterText(descriptionAmtField,descriptionAmtTxtField );
+    }
+
+    public void clickOnCountnuePayBtn() {
+        click(countinuePay);
+    }
+    public void clickOnQrFilterIcon(){
+        click(QrFilterIcon);
     }
 
     public void selectStore(String store) {
@@ -152,58 +201,152 @@ public class QRCodePage extends BaseTest {
     public void clickOnFlexibleAmount() {
         click(flexibleAmount);
     }
-    public void enterAmountDesc(String amountTxt){
-        actionEnterText(amountDesc,amountTxt);
+
+    public void enterAmountDesc(String amountTxt) {
+        actionEnterText(amountDesc, amountTxt);
     }
+
     public void clickOneditContent() {
         click(editContent);
     }
+
     public void clickOncustomizeContent() {
         click(customizeContent);
     }
 
     public void clickOntitle() {
         staticWait(5000);
-        hoverAndClick(title,title);
+        hoverAndClick(title, title);
     }
+
     public void clickOntitleFieldOnPopup(String enterTitleField) {
-        actionEnterText(titleFieldOnPopup,enterTitleField);
+        actionEnterText(titleFieldOnPopup, enterTitleField);
     }
+
     public void clickOnSaveBtnOnFieldOnPopup() {
         click(saveBtnOnFieldOnPopup);
     }
+
     public void clickOncontent() {
         click(content);
-        softAssert.assertTrue(isElementDisplayed(contentPage ));
+        softAssert.assertTrue(isElementDisplayed(contentPage));
     }
+
     public void enterInContentPage(String txtEnterInContentPage) {
-        actionEnterText(enterInContentPage,txtEnterInContentPage);
-     }
+        actionEnterText(enterInContentPage, txtEnterInContentPage);
+    }
 
     public void clickOnsaveBtnContentPage() {
         click(saveBtnContentPage);
-     }
-     public void clickOnAddBtn(){
+    }
+
+    public void clickOnAddBtn() {
         staticWait(3000);
         scrollToElement(addBtn);
         click(addBtn);
-     }
-     public void selectfieldType(){
+    }
+
+    public void selectfieldType() {
         click(fieldType);
         staticWait(2000);
         click(selectValue);
-     }
-     public void entertitleNewField(String titleNewFieldTxt){
-        actionEnterText(titleNewField,titleNewFieldTxt);
-     }
-     public void clickOnToggle(){
+    }
+
+    public void entertitleNewField(String titleNewFieldTxt) {
+        actionEnterText(titleNewField, titleNewFieldTxt);
+    }
+
+    public void clickOnToggle() {
         click(enableToggle);
-     }
-     public void clickOnsaveBtnOnNewField(){
+    }
+
+    public void clickOnsaveBtnOnNewField() {
         click(saveBtnOnNewField);
-     }
+    }
+
+    public void clickOnEditIcon() {
+        staticWait(3000);
+        scrollToElement(editIcon);
+        click(editIcon);
+    }
+
+    public void enterTxtInFlexibleAmtField(String Txt) {
+        actionEnterText(enterTxt, Txt);
+    }
+
+    public void clickOnCorrectIcon() {
+        click(correctIcon);
+    }
+
+    public void clickOndeleteIcon() {
+        click(deleteIcon);
+    }
+
+    public void clickOnSaveBtn() {
+        scrollToElement(saveBtn);
+        staticWait(2000);
+        click(saveBtn);
+    }
+
+    public void clickOnEyeIcon() {
+        click(eyeIcon);
+        String QrCode = getText(QrCodeView);
+        Assert.assertEquals(QrCode, "QR code view");
+    }
+
+    public void ClickOnViewIcon() {
+        click(viewText);
+    }
+
+    public void clickOnCopyIcon() {
+        click(ClickCopyIcon);
+    }
+
+    public void clickEyeIcon() {
+        staticWait(3000);
+        click(eyeSuccessIcon);
+    }
+
+    public void disableTogleButton() {
+        scrollToElement(toggleBtn);
+        if (isEnabled(toggleBtn)) {
+            click(toggleBtn);
+        } else {
+            Log.info("Toggle button is disabled only");
+        }
+    }
+
+    public void clickOnPencilIcon() {
+        scrollToElement(pencilIcon);
+        click(pencilIcon);
+    }
+
+    public void clickOndashboardLink() {
+        scrollToElement(dashboardLink);
+        click(dashboardLink);
+        String dahboardTxt = getText(QrDashboard);
+        Assert.assertEquals(dahboardTxt, "QR Code Dashboard");
+    }
 
 
+    public void clickOnCalenderIcon() {
+        scrollToElement(calender);
+        click(calender);
+        staticWait(2000);
+        String calenderHead = getText(monthHeader);
+        Log.info(calenderHead);
+        Assert.assertTrue(isElementDisplayed(monthHeader));
+    }
+
+    public void enableToggle() {
+        staticWait(2000);
+        scrollToElement(toggleBtn);
+        if (isElementDisabled(toggleBtn)) {
+            click(toggleBtn);
+        } else {
+            Log.info("Toggle button is on");
+        }
+    }
 
 
     public void uploadImageAsAttachment(String relativePath) throws AWTException {
@@ -212,12 +355,29 @@ public class QRCodePage extends BaseTest {
         String absolutePath = Paths.get(projectPath, relativePath).toString();
         uploadImageFile(absolutePath);
     }
+
     public void uploadImageInStoreLogo() throws AWTException {
 
         uploadImageAsAttachment("/src/main/resources/ImageResources/image/BillDummyImg");
     }
 
+    public void clickOnFilterIcon() {
+        click(filterIcon);
+    }
+    public void clickOnfixedAmoutSec() {
+        click(fixedAmoutSec);
+    }
+    public void clickOnaddButn() {
+        click(addButn);
+    }
 
+
+    public void descriptionFields(){
+        List<WebElement> values = getDriver().findElements(By.xpath(" //div[@class='-detail- validator d-flex mb-2 rounded p-1 clone']"));
+             int totalFields = values.size();
+        System.out.println("Total number of form fields: " + totalFields);
+
+     }
 
 
 
@@ -228,6 +388,44 @@ public class QRCodePage extends BaseTest {
         selectStore(Constants.AutomationBillFlow);
         getContinueButton();
     }
+
+    public void clickOnTicketsAndEvents(){
+        click(ticketsSection);
+    }
+    public void clickOnClockIcon(){
+        click(clickOnClockIcon);
+    }
+    public void clickOndatePickerIcon(){
+
+        click(datePicker);
+     }
+    public void clickOnCountinueBtn(){
+        scrollToElement(countinueBtn);
+        click(countinueBtn);
+    }
+    public void enterAmountInNewPriceField(String newPriceTxtField){
+        actionEnterText(newPriceField,newPriceTxtField);
+    }
+    public void clickOncurrentDate(){
+         click(currentDate);
+    }
+
+
+    public void printTypeOfEntryDropdown() {
+        List<WebElement> values = getDriver().findElements(By.xpath("//select[@name='type']/option"));
+        for (WebElement value : values) {
+            String txt = value.getText();
+            Log.info("Type Of Entry Dropdown values are :" + txt);
+        }
+    }
+    public void QrTypeDropdown() {
+        List<WebElement> Types = getDriver().findElements(By.xpath("//select[@name='qrCodeType']/option"));
+        for (WebElement Type : Types) {
+            String txt = Type.getText();
+            Log.info("Qr code Type Dropdown values are :" + txt);
+        }
+    }
+
 
     public void openNewWindow() {
         staticWait(4000);
@@ -318,8 +516,6 @@ public class QRCodePage extends BaseTest {
 
         softAssert.assertTrue(isElementDisplayed(storeName));
         softAssert.assertTrue(isElementDisplayed(authorizePayment));
-
-
     }
 
     public void DirectPayByViewLink(String amount) {
@@ -337,7 +533,6 @@ public class QRCodePage extends BaseTest {
 
     public void createNewQrCode() {
         selectStore();
-        clickOnnewQrCode();
         staticWait(3000);
         softAssert.assertTrue(isElementDisplayed(flexibleAmount));
         softAssert.assertTrue(isElementDisplayed(fixedAmount));
@@ -351,7 +546,7 @@ public class QRCodePage extends BaseTest {
     public void flexibleAmountQrCode(String enterAmount, String enterTitleField, String txtEnterInContentPage) throws AWTException {
         createNewQrCode();
         softAssert.assertTrue(isElementDisplayed(editPaymentLink));
-        String titleLength=getAttribute(titleField,"maxlength");
+        String titleLength = getAttribute(titleField, "maxlength");
         Log.info(titleLength);
         enterAmountDesc(enterAmount);
         clickOneditContent();
@@ -364,16 +559,101 @@ public class QRCodePage extends BaseTest {
         clickOncontent();
         enterInContentPage(txtEnterInContentPage);
         clickOnsaveBtnContentPage();
-     }
+    }
 
-     public void addAdditionalField(String entertitleNewFieldTxt){
-         selectStore();
-         clickOnnewQrCode();
-         clickOnFlexibleAmount();
-         clickOnAddBtn();
-         selectfieldType();
-         entertitleNewField(entertitleNewFieldTxt);
-         clickOnToggle();
-         clickOnsaveBtnOnNewField();
-     }
+    public void addAdditionalField(String entertitleNewFieldTxt) {
+        selectStore();
+        clickOnnewQrCode();
+        clickOnFlexibleAmount();
+        clickOnAddBtn();
+        printTypeOfEntryDropdown();
+        selectfieldType();
+        entertitleNewField(entertitleNewFieldTxt);
+        clickOnToggle();
+        clickOnsaveBtnOnNewField();
+    }
+
+    public void editAdditionalFields(String Txt) {
+        staticWait(3000);
+        clickOnEditIcon();
+        enterTxtInFlexibleAmtField(Txt);
+        clickOnCorrectIcon();
+        clickOndeleteIcon();
+        clickOnCalenderIcon();
+        enableToggle();
+        clickOnSaveBtn();
+        staticWait(4000);
+    }
+
+    public void TemporaryUnavailable() {
+        staticWait(4000);
+        clickOnEyeIcon();
+        ClickOnViewIcon();
+        switchToNewWindow();
+        String linkNotTxt = getText(linkNotAvailableTxt);
+        Assert.assertEquals(linkNotTxt, "This link is not available.");
+    }
+
+    public void paymentThroughByenablingTheToggleBtn(String amt) {
+        selectStore();
+        clickOnnewQrCode();
+        clickOnFlexibleAmount();
+        disableTogleButton();
+        clickOnSaveBtn();
+        clickEyeIcon();
+        WebElement element = getDriver().findElement(By.xpath("//i[@class='fal fa-copy']/.."));
+        element.click();
+        String ele = element.getAttribute("data-content");
+        softAssert.assertTrue(isElementDisplayed(downloadIcon));
+        softAssert.assertTrue(isElementDisplayed(viewLinkIcon));
+        ((JavascriptExecutor) getDriver()).executeScript("window.open()");
+        staticWait(4000);
+        openNewWindow();
+        // Step 5: Open the copied link in the new window
+        getDriver().get(ele);
+        staticWait(3000);
+        enterAmount(amt);
+        clickOnCountnuePayBtn();
+        // switchToParentWindow();
+        //  clickOnCrossIcon();
+        //  clickOnFilterIcon();
+    }
+
+    public void fixedAmountQrCode(String descriptionTxtFiled,String descriptionAmtTxtField) {
+        selectStore();
+        clickOnnewQrCode();
+        clickOnfixedAmoutSec();
+        descriptionFields();
+        clickOnaddButn();
+        descriptionFields();
+        clickOnSaveBtn();
+        String validMsg=getText(validationMsg);
+        Assert.assertEquals(validMsg,"Please review the highlighted field(s)");
+        enterTxtIndescriptionTxtFiled(descriptionTxtFiled);
+        enterTxtIndescriptionAmtField(descriptionAmtTxtField);
+        clickOnSaveBtn();
+    }
+    public void ticketsAndEvents(String newPrice){
+        selectStore();
+        clickOnnewQrCode();
+        clickOnTicketsAndEvents();
+        clickOnClockIcon();
+
+        String PriceScheduleHeader=getText(priceSchedule);
+        Assert.assertEquals(PriceScheduleHeader,"Price schedule");
+
+        clickOndatePickerIcon();
+        clickOncurrentDate();
+        enterAmountInNewPriceField(newPrice);
+        staticWait(4000);
+        clickOnCountinueBtn();
+        clickOnSaveBtn();
+    }
+
+    public void QrFilter(){
+        selectStore();
+        clickOnQrFilterIcon();
+        QrTypeDropdown();
+
+    }
 }

@@ -14,6 +14,7 @@ import java.util.List;
 public class TransactionsPage extends BaseTest {
     PaymentPage payments = new PaymentPage();
     PaymentMethod paymentMethod = new PaymentMethod();
+
     //Locators
     public By transactionRow = By.xpath("//div[contains(@class,'bg-white border')]");
     public By billAmount = By.xpath("//div[@class='display-6 fw-bold pt-2']");
