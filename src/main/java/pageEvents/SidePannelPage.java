@@ -30,7 +30,7 @@ public class SidePannelPage extends BaseTest {
 
     // Methods
     public void getMangeBusinessTab(){
-        click(manageBusinessAcc);
+        clickElementByJS(manageBusinessAcc);
     }
 
     public void getDashboardTab(){

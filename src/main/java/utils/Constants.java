@@ -214,7 +214,11 @@ public interface Constants {
     String memoText ="Memo";
     String startDateText ="Start Date:";
     String endDateText ="Exp. Date:";
-
+    String blockedStatus = "Blocked";
+    String activeStatus = "Active";
+    String systemAlert ="System Alert!";
+    String totalSpentText="Total spent";
+    String messageText ="Type a message";
 
 
 

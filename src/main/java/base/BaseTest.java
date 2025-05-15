@@ -27,6 +27,8 @@ import java.io.File;
 import java.time.Duration;
 import java.util.Set;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
+
 public class BaseTest {
     private static final Logger log = LogManager.getLogger(BaseTest.class); // Logger instance
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
@@ -164,7 +166,7 @@ public class BaseTest {
     public WebElement waitForElementToBeVisible(By locator, int timeout) {
         log.info("Waiting for element to be visible: {}", locator);
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeout));
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return wait.until(visibilityOfElementLocated(locator));
     }
 
     public static void WaitUntilElementVisible(By locator, int tries) {
@@ -174,7 +176,7 @@ public class BaseTest {
                         .withTimeout(Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))))
                         .pollingEvery(Duration.ofMillis(Long.parseLong(PropertyUtils.getPropertyValue("wait"))))
                         .ignoring(TimeoutException.class);
-                fluentWait1.until(ExpectedConditions.visibilityOfElementLocated(locator));
+                fluentWait1.until(visibilityOfElementLocated(locator));
             }
         } catch (Exception e) {
         }
@@ -645,7 +647,7 @@ public class BaseTest {
 
         // Wait for the loader to appear (if necessary)
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(loaderLocator));
+            wait.until(visibilityOfElementLocated(loaderLocator));
             System.out.println("Loader started loading.");
         } catch (Exception e) {
             System.err.println("Loader did not appear within the timeout.");
@@ -785,12 +787,12 @@ public class BaseTest {
             String toolTipId = element.getAttribute("aria-describedby");
             if (toolTipId != null && !toolTipId.isEmpty()) {
                 By toolTipLocator = By.id(toolTipId);
-                WebElement tooltipElement = wait.until(ExpectedConditions.visibilityOfElementLocated(toolTipLocator));
+                WebElement tooltipElement = wait.until(visibilityOfElementLocated(toolTipLocator));
                 return tooltipElement.getText();
             }
 
             // Check for a common class or tag for tooltips (adjust this if needed)
-            WebElement tooltipElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".tooltip, [role='tooltip']")));
+            WebElement tooltipElement = wait.until(visibilityOfElementLocated(By.cssSelector(".tooltip, [role='tooltip']")));
             return tooltipElement.getText();
         } catch (TimeoutException e) {
             return "Tooltip not found or not visible";
@@ -967,7 +969,7 @@ public class BaseTest {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutInSeconds));
         log.info("Checking if element is displayed: {}", locator);
         try {
-            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            WebElement element = wait.until(visibilityOfElementLocated(locator));
             boolean isVisible = element.isDisplayed();
             log.info("Element displayed state: {}", isVisible);
             return true;
@@ -981,6 +983,21 @@ public class BaseTest {
     }
     public List<WebElement> getListOfWebElement(By locator) {
         return (List<WebElement>) getDriver().findElements(locator);
+    }
+    public WebElement getWebElement(By locator ) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+        return wait.until(visibilityOfElementLocated(locator));
+    }
+    public String clickElementFromList(By locator, int index) {
+        List<WebElement> elements = getDriver().findElements(locator);
+        String name  =  elements.get(index).getText();
+        if (!elements.isEmpty() && index < elements.size()) {
+            elements.get(index).click();
+            log.info("Element is clicked at index: " +index);
+        } else {
+            log.warn("Element not found at index: " + index);
+        }
+        return name;
     }
 
 
