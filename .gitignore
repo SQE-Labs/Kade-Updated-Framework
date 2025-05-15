@@ -13,6 +13,6 @@ test-report/
 allure-results/
 debugger.xml
 /logs/
-screenshot/
+/screenshot/
 chaintest
 maven-status
