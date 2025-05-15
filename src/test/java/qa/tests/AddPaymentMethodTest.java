@@ -133,8 +133,6 @@ public class AddPaymentMethodTest extends BaseTest {
         // selecting Credit Card option
 
         paymentMethod.getCreditCardOption();
-
-        switchToFrame(paymentMethod.loginInsitututeFrame);
         payment.getPayThroughCreditCard();
 
         waitForElementToBeClickable(payment.saveBtn,4);

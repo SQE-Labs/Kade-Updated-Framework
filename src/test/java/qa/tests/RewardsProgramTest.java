@@ -129,6 +129,7 @@ public class RewardsProgramTest extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.yonroCustomer));
 
         click(rewardsProgramPage.filterBtn);
+        waitForElementToBeVisible(rewardsProgramPage.partialUsername,4);
         enterText(rewardsProgramPage.partialUsername, Constants.InvalidPartialUsername);
         click(rewardsProgramPage.applyBtn);
         waitForElementInVisible(rewardsProgramPage.applyBtn,20);
