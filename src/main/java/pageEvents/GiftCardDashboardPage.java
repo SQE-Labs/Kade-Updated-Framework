@@ -3,8 +3,11 @@ package pageEvents;
 import base.BaseTest;
 import logger.Log;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.locators.RelativeLocator;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import utils.Constants;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,13 +17,18 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.openqa.selenium.support.locators.RelativeLocator.with;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 
 public class GiftCardDashboardPage extends BaseTest {
+    BillPage bill = new BillPage();
     //WebDriver driver =new ChromeDriver();
     public By systemMsg = By.cssSelector("p.h2");
 
@@ -124,13 +132,71 @@ public class GiftCardDashboardPage extends BaseTest {
     By optionLocator = By.xpath("//select[@name='status']//option");
     By endBtn = By.xpath("//option[2]");
     By applyBtn = By.xpath("//button[normalize-space(text())='Apply']");
+ 
     By storeDropdown = By.xpath("//span[contains(@class,'select2-selection s')]");
     By storeField = By.xpath("//input[@class='select2-search__field']");
     By selectStore = By.xpath("//li[text()='may2025']");
     By donutGraphDark = By.xpath("//div[@class='apexcharts-tooltip apexcharts-theme-dark']");
     By donutGraph = By.xpath("//div[@class='apexcharts-tooltip apexcharts-theme-dark apexcharts-active']");
     By donut = By.cssSelector("[class='apexcharts-series apexcharts-pie-series']");
+ 
 
+    // filter locators
+    By filterIcon = By.xpath("//div[contains(@class,'d-flex flex-wrap px-3')]/button/i");
+    By filterTitle = By.xpath("//h5[text()='Filters']");
+    By filterPopupCrossIcon = By.xpath("//h5[text()='Filters']/../button");
+    By filterLabels = By.xpath("//div[@class='offcanvas-body']//div/label");
+    By userNamePartialfield = By.cssSelector("[name='userName']");
+    By userPhoneEmailtbx = By.xpath("//label[text()='User Phone/Email']");
+    By applyBtnFilter = By.xpath("(//button[text()='Apply'])[1]");
+    By resultUserName = By.xpath("(//img[contains(@class,'profile-image-sm')]/../span)[1]");
+    By allresult = By.xpath("//table[contains(@class,'sortable_table')]//tbody/tr[@data-ref]");
+    By noResultInfoMsg = By.cssSelector(".no-result-icon+p");
+    By userEmailTbx = with(By.tagName("div")).below(userPhoneEmailtbx);
+    By validationMsgForCustomerPopup = By.cssSelector(".no-result-icon+p");
+    By dateFilterLabel = By.xpath("//label[starts-with(text(),'Date')]");
+    By dateFilterInput = with(By.tagName("input")).below(dateFilterLabel);
+    By existingGCDate = By.xpath("//table[@class='table-condensed'][.//th[text()='May 2025']]//td[text()='12']");
+    By dateFilterFiled = By.xpath("(//div[contains(@class,'position-relative mb-3')]/div[@class='input-group'])[1]");
+    By nonExistingGCDate = By.xpath("//table[@class='table-condensed'][.//th[text()='May 2025']]//td[text()='2']");
+    By datefilterTbx = By.xpath("//div[@class='input-group']//input[@name='dateRange']");
+    By validationCrossIcon = By.cssSelector(".btn-close.autoclick-effect");
+    By dropDownFilter = By.xpath("//select[@name='status']");
+    By giftCardStatusTbx = By.xpath("(//label[text()='Gift card status']/following-sibling::div)[1]");
+    By dropdownoptions = By.xpath("//select[@name='status']/option");
+    By minAmountFilterField = By.cssSelector("[name='minAmount']");
+    By maxAmountFilterField = By.cssSelector("[name='maxAmount']");
+    By cardNumberFilterField = By.cssSelector("[name='cardNo']");
+
+public void getFilterIcon(){
+    clickElementByJS(filterIcon);
+}
+public void getFitlerApplyBtn(){
+    click(applyBtnFilter);
+}
+public void getUserPhoneEmailTbxFilter(){
+    click(userEmailTbx);
+}
+public void getDateFilterInput(){
+    click(dateFilterFiled);
+}
+public void getValidationCrossIcon(){
+    click(validationCrossIcon);
+}
+
+public void getExistingGCDate(){
+    click(existingGCDate);
+    click(existingGCDate);
+}
+
+public void getNonExistingGCDate(){
+    click(nonExistingGCDate);
+    click(nonExistingGCDate);
+}
+public void getGiftCardStatusTbx(){
+    click(giftCardStatusTbx);
+}
+ 
 
     public static void LoginAsCustomerNew() {
         Log.info("Starting Login test - Entering username and password");
@@ -2013,6 +2079,7 @@ public class GiftCardDashboardPage extends BaseTest {
     }
 
 
+ 
 //        public void getDonetGraphsColour() {
 //            List<WebElement> DonetGraphs = getDriver().findElements(By.cssSelector("[class=apexcharts-datalabels]"));
 //            for (WebElement graph : DonetGraphs) {
@@ -2035,6 +2102,7 @@ public class GiftCardDashboardPage extends BaseTest {
 
 
     public void donateGraph(String storeFieldTxt) {
+ 
         Login();
         pannel.getMangeBusinessTab();
         pannel.getGiftCardsDashboardTab();
@@ -2047,7 +2115,631 @@ public class GiftCardDashboardPage extends BaseTest {
     }
 
 
+    public void getAllFilterFileds(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+        waitForElementToBeVisible(filterTitle,5);
+        // verify Filter Title
+        Assert.assertTrue(isElementDisplayed(filterTitle),"Filter Title ");
+
+        // Expected filter labels
+        List<String> expectedLabels = Arrays.asList("User Name \"Partial\"", "User Phone/Email", "Date", "Gift card status", "Min Amount", "Max Amount","Card Number \"Partial\"");
+
+        // Locate filter section
+        List<WebElement> filterElements = getDriver().findElements(filterLabels);
+
+        // Extract actual filter text
+        for (String expectedLabel : expectedLabels) {
+            boolean found = filterElements.stream()
+                    .anyMatch(element -> element.getText().trim().equalsIgnoreCase(expectedLabel));
+            Assert.assertTrue(found, "Filter label not found: " + expectedLabel);
+        }
+    }
+
+    public void getRelevantRecordAfterEnteringExistingCardHolderFilter(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+
+        waitForElementToBeClickable(userNamePartialfield,4);
+        enterText(userNamePartialfield,Constants.giftCardCustomer);
+
+        // Click on apply button
+        getFitlerApplyBtn();
+        staticWait(4000);
+        scrollToDown();
+
+        // Verify that applied customer result appears
+        Assert.assertEquals(getText(resultUserName),Constants.giftCardCustomer);
+
+        staticWait(5000);
+
+
+//         Verify all result appears
+        List<WebElement> allRecords = getDriver().findElements(allresult);
+
+        for (WebElement record : allRecords) {
+            String detail = record.getText();
+            System.out.println("Gift Card Record for existing user is: " + detail);
+        }
+    }
+
+    public void getNoRecordMsgForInvalidCardHolder(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+
+        waitForElementToBeClickable(userNamePartialfield,4);
+        enterText(userNamePartialfield,Constants.invalidData);
+
+        getFitlerApplyBtn();
+        staticWait(4000);
+        scrollToDown();
+        waitForElementToBeVisible(noResultInfoMsg,3);
+        // Verify the no result info msg
+        Assert.assertTrue(isElementDisplayed(noResultInfoMsg),"No result Info Message");
+    }
+
+    public void verifyRecordsAppearForPhoneFilter(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+
+        waitForElementToBeClickable(userEmailTbx,4);
+
+        // clicking on 'User Email Phone filter
+        getUserPhoneEmailTbxFilter();
+        staticWait(4000);
+
+        //   Select Customer
+        bill.getCustomerPhoneNoField(Constants.giftCardUserPhoneNumber);
+        bill.getGoPhoneNumberButton();
+        staticWait(3000);
+
+        getFitlerApplyBtn();
+        staticWait(3000);
+
+        scrollToDown();
+        staticWait(3000);
+
+        //Verify all result appears
+        List<WebElement> allRecords = getDriver().findElements(allresult);
+
+        for (WebElement record : allRecords) {
+            String detail = record.getText();
+            System.out.println("Record for existing user is: " + detail);
+        }
+    }
+
+
+
+
+
+
+
+    public void verifyRelevantRecordsAppearAfterEnteringUserEmailFilter(){
+    offOptionalSettings();
+    waitForPageLoad();
+
+    staticWait(5000);
+    getFilterIcon();
+
+        waitForElementToBeClickable(userEmailTbx,4);
+
+    // clicking on 'User Email Phone filter
+        getUserPhoneEmailTbxFilter();
+        staticWait(3000);
+//        waitForElementToBeVisible();
+
+        //   Select Customer
+        bill.getCustomerEmailField(Constants.giftCardUserEmail);
+        bill.getEmailGoButton();
+        staticWait(3000);
+
+        getFitlerApplyBtn();
+        staticWait(3000);
+        scrollToDown();
+        //         Verify all result appears
+        List<WebElement> allRecords = getDriver().findElements(allresult);
+
+        for (WebElement record : allRecords) {
+            String detail = record.getText();
+            System.out.println("Record for existing user is: " + detail);
+        }
 }
+    public void verifyInfoMsgForInvalidCustomerEmailInput(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+
+        waitForElementToBeClickable(userEmailTbx,4);
+
+        // clicking on 'User Email Phone filter
+        getUserPhoneEmailTbxFilter();
+        staticWait(3000);
+
+        //   Select Customer
+        bill.getCustomerEmailField(Constants.nonExistingEmailFilterInput);
+        bill.getEmailGoButton();
+        waitForElementToBeVisible(validationMsgForCustomerPopup,3);
+
+        // verify that  validation message appears
+        Assert.assertEquals(getText(validationMsgForCustomerPopup),Constants.noResultText);
+}
+    public void verifyInfoMsgForInvalidCustomerPhoneInput(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+
+        waitForElementToBeClickable(userEmailTbx,5);
+
+        // clicking on 'User Email Phone filter
+        getUserPhoneEmailTbxFilter();
+        staticWait(5000);
+
+        //   Select Customer
+        bill.getCustomerPhoneNoField(Constants.nonExistingPhoneNoFilterInput);
+        bill.getGoPhoneNumberButton();
+
+        waitForElementToBeVisible(validationMsgForCustomerPopup,3);
+
+        // verify that  validation message appears
+        Assert.assertEquals(getText(validationMsgForCustomerPopup),Constants.noResultText);
+    }
+
+    public void verifyGiftCardAppearsForSelectedDate(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+        waitForElementToBeVisible(dateFilterLabel,4);
+
+        getDateFilterInput();
+        staticWait(3000);
+
+        getExistingGCDate();
+        staticWait(3000);
+
+        getFitlerApplyBtn();
+
+        staticWait(4000);
+
+        scrollToDown();
+
+        //Verify all result appears
+        List<WebElement> allRecords = getDriver().findElements(allresult);
+
+        for (WebElement record : allRecords) {
+            String detail = record.getText();
+            System.out.println("Record for existing user is: " + detail);
+        }}
+
+    public void verifyGCResultWhileApplyingNonExistingDateRangeFilter(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+        waitForElementToBeVisible(dateFilterLabel,4);
+
+        getDateFilterInput();
+        staticWait(3000);
+
+        getNonExistingGCDate();
+        getFitlerApplyBtn();
+        staticWait(4000);
+        scrollToDown();
+        waitForElementToBeVisible(noResultInfoMsg,3);
+        // Verify the no result info msg
+        Assert.assertTrue(isElementDisplayed(noResultInfoMsg),"There are no result Info Message");
+    }
+
+    public void verifyValidationOfDateFieldAfterEnteringCharacters(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+        waitForElementToBeVisible(dateFilterLabel,4);
+
+        enterText(datefilterTbx,Constants.invalidDateTooltip);
+        getFitlerApplyBtn();
+        getValidationCrossIcon();
+
+        String validation = getToolTipMessage(datefilterTbx );
+        System.out.println("Invalid date is" + validation);
+    }
+
+    public void getDropDownOptions(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+        waitForElementToBeVisible(dateFilterLabel,4);
+        getGiftCardStatusTbx();
+
+        WebElement dropdown = getDriver().findElement(dropDownFilter);
+
+        List<String> expectedOptions = Arrays.asList("","Active", "Blocked", "Expired", "No Balance","Pending transfer");
+
+        // Find the dropdown options
+        List<WebElement> options = getDriver().findElements(dropdownoptions);
+
+        System.out.println("Verifying dropdown options:");
+
+        // Iterate over the options in the dropdown
+        for (WebElement option : options) {
+            String optionText = option.getText().trim();  // Clean up any extra spaces or newlines
+            optionText = optionText.replaceAll("\\s+", " "); // Replace multiple spaces with a single space
+
+            // Check if the option exists in the expected list
+            if (expectedOptions.contains(optionText)) {
+                System.out.println("Option found: " + optionText);
+            } else {
+                // Fail the test if the option is not expected
+                Assert.fail("Unexpected option: " + optionText);
+            }
+        }
+
+        // Now check if all expected options are present
+        for (String expectedOption : expectedOptions) {
+            boolean optionFound = false;
+            for (WebElement option : options) {
+                String optionText = option.getText().trim();
+                optionText = optionText.replaceAll("\\s+", " ");
+
+                if (optionText.equals(expectedOption)) {
+                    optionFound = true;
+                    break;
+                }}}}
+
+
+    public void verifyRecordAfterApplyActiveFilterDD(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+        waitForElementToBeVisible(dateFilterLabel,4);
+        getGiftCardStatusTbx();
+
+        WebElement dropdown = getDriver().findElement(dropDownFilter);
+        selectDropdownByIndex(dropDownFilter,1);
+
+        getFitlerApplyBtn();
+
+        staticWait(3000);
+        scrollToDown();
+
+        //Verify all result appears
+        List<WebElement> allRecords = getDriver().findElements(allresult);
+
+        for (WebElement record : allRecords) {
+            String detail = record.getText();
+            System.out.println("Record for Active Gift Cards: " + detail);
+
+            // ASSERT: each record should mention "Active"
+            Assert.assertTrue(detail.contains("Active"), "Found non-Active record: " + detail);
+        }}
+
+    public void verifyRecordAfterApplyBlockedFilterDD(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+        waitForElementToBeVisible(dateFilterLabel,4);
+        getGiftCardStatusTbx();
+
+        WebElement dropdown = getDriver().findElement(dropDownFilter);
+        selectDropdownByIndex(dropDownFilter,2);
+
+        getFitlerApplyBtn();
+
+        staticWait(3000);
+        scrollToDown();
+
+        //Verify all result appears
+        List<WebElement> allRecords = getDriver().findElements(allresult);
+        int count =0;
+        for (WebElement record : allRecords) {
+            String detail = record.getText();
+            System.out.println("Record for Blocked Gift Cards: " + detail);
+            // ASSERT: each record should mention "Blocked"
+            Assert.assertTrue(detail.contains("Blocked"), "Found record: " + detail);
+
+            count+=1;
+        }
+        System.out.println("Gift Card Count is "+count);
+        staticWait(3000);
+
+}
+
+    public void verifyRecordAfterApplyExpiredFilterDD(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+        waitForElementToBeVisible(dateFilterLabel,4);
+        getGiftCardStatusTbx();
+
+        WebElement dropdown = getDriver().findElement(dropDownFilter);
+        selectDropdownByIndex(dropDownFilter,3);
+
+        getFitlerApplyBtn();
+
+        staticWait(3000);
+        scrollToDown();
+
+        //Verify all result appears
+        List<WebElement> allRecords = getDriver().findElements(allresult);
+        int count =0;
+        for (WebElement record : allRecords) {
+            String detail = record.getText();
+            System.out.println("Record for Expired Gift Cards: " + detail);
+            count+=1;
+            // ASSERT: each record should mention "Expired"
+            Assert.assertTrue(detail.contains("Expired"), "Found record non Expired : " + detail);
+        }
+        System.out.println("Gift Card Count is "+count);
+        staticWait(3000);
+    }
+
+    public void verifyRecordAfterApplyPendingActivationFilterDD(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+        waitForElementToBeVisible(dateFilterLabel,4);
+        getGiftCardStatusTbx();
+
+        WebElement dropdown = getDriver().findElement(dropDownFilter);
+        selectDropdownByIndex(dropDownFilter,5);
+
+        getFitlerApplyBtn();
+
+        staticWait(3000);
+        scrollToDown();
+
+        //Verify all result appears
+        List<WebElement> allRecords = getDriver().findElements(allresult);
+        int count =0;
+        for (WebElement record : allRecords) {
+            String detail = record.getText();
+            System.out.println("Record for Pending Activation Gift Cards: " + detail);
+            count+=1;
+            // ASSERT: each record should mention "Expired"
+            Assert.assertTrue(detail.contains("Pending transfer"), "Found record non Expired : " + detail);
+
+        }
+        System.out.println("Gift Card Count is "+count);
+        staticWait(3000);
+    }
+
+    public void verifyRecordAfterApplyNoBalanceFilterDD(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+        waitForElementToBeVisible(dateFilterLabel,4);
+        getGiftCardStatusTbx();
+
+        WebElement dropdown = getDriver().findElement(dropDownFilter);
+        selectDropdownByIndex(dropDownFilter,4);
+
+        getFitlerApplyBtn();
+
+        staticWait(3000);
+        scrollToDown();
+
+        //Verify all result appears
+        List<WebElement> allRecords = getDriver().findElements(allresult);
+        int count =0;
+        for (WebElement record : allRecords) {
+            String detail = record.getText();
+            System.out.println("Record for No Balance Gift Cards: " + detail);
+            count+=1;
+            // ASSERT: each record should mention "No Balance"
+            Assert.assertTrue(detail.contains("No Balance"), "Found record non Expired : " + detail);
+        }
+        System.out.println("Gift Card Count is "+count);
+        staticWait(3000);
+    }
+
+    public void verifyRelevantGCAppearsAfterApplyingMinAmountFilter(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+        waitForElementToBeVisible(dateFilterLabel,4);
+
+        actionEnterText(minAmountFilterField,Constants.minAmountOfGC);
+
+        getFitlerApplyBtn();
+        staticWait(3000);
+        scrollToDown();
+
+        //Verify all result appears
+        List<WebElement> allRecords = getDriver().findElements(allresult);
+        int count =0;
+        for (WebElement record : allRecords) {
+            scrollToDown();
+            String detail = record.getText();
+            System.out.println("Record for Min Amount Gift Cards: " + detail);
+            count+=1;
+        }
+        System.out.println("Gift Card Count is "+count);
+        staticWait(3000);
+    }
+
+    public void verifyRelevantGCAppearsAfterApplyingMaxAmountFilter(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+        waitForElementToBeVisible(dateFilterLabel,4);
+
+        actionEnterText(maxAmountFilterField,Constants.maxAmountOfGC);
+
+        getFitlerApplyBtn();
+        staticWait(3000);
+        scrollToDown();
+
+        //Verify all result appears
+        List<WebElement> allRecords = getDriver().findElements(allresult);
+        int count =0;
+        for (WebElement record : allRecords) {
+            scrollToDown();
+            String detail = record.getText();
+            System.out.println("Record for Min Amount Gift Cards: " + detail);
+            count+=1;
+        }
+
+        System.out.println("Gift Card Count is "+count);
+        staticWait(3000);
+    }
+
+    public void verifyRecordAfterApplyingMinAndMaxValueFilterValues(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+        waitForElementToBeVisible(dateFilterLabel,4);
+        actionEnterText(minAmountFilterField,Constants.minAmountOfGC);
+        actionEnterText(maxAmountFilterField,Constants.midValue);
+
+        getFitlerApplyBtn();
+        staticWait(3000);
+        scrollToDown();
+
+        //Verify all result appears
+        List<WebElement> allRecords = getDriver().findElements(allresult);
+        int count =0;
+        for (WebElement record : allRecords) {
+            scrollToDown();
+            String detail = record.getText();
+            System.out.println("Record Are: " + detail);
+
+            // Removing '$' sign
+            Pattern pattern = Pattern.compile("\\$(\\d+)");
+            Matcher matcher = pattern.matcher(detail);
+
+            if (matcher.find()) {
+                int amount = Integer.parseInt(matcher.group(1));
+                Assert.assertTrue(amount >= 100 && amount <= 500,
+                        " Amount out of expected range (100–500): $" + amount);
+            } else {
+                Assert.fail("Amount not found in record: " + detail);
+            }
+            count+=1;
+        }
+
+        System.out.println("Gift Card Count is "+count);
+        staticWait(3000);
+    }
+
+    public void verifyRelevantGCAppearAfterApplyingAnyExistingGCno(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+        waitForElementToBeVisible(dateFilterLabel,4);
+
+        // verify the validation message when less than 4 digit is entered in card no field
+        actionEnterText(cardNumberFilterField,Constants.threeDigit);
+        getFitlerApplyBtn();
+        getValidationCrossIcon();
+        staticWait(2000);
+        String actualLessThan3Msg= getToolTipMessage(cardNumberFilterField);
+        Assert.assertEquals(actualLessThan3Msg,Constants.lessThan3cardNoValidation);
+
+        // Entering valid card no
+        waitForElementToBeClickable(cardNumberFilterField,4);
+        actionEnterText(cardNumberFilterField,Constants.giftCardNo);
+
+        getFitlerApplyBtn();
+        staticWait(3000);
+        scrollToDown();
+
+        List<WebElement> allRecords = getDriver().findElements(allresult);
+        String recordText = allRecords.get(0).getText();
+        Assert.assertTrue(recordText.contains(Constants.giftCardNo),"Record does not match");
+
+
+        // Entering non- existing GC no and Validate
+        getFilterIcon();
+        waitForElementToBeVisible(dateFilterLabel,4);
+        actionEnterText(cardNumberFilterField,Constants.nonexistingGC);
+
+        getFitlerApplyBtn();
+        staticWait(3000);
+        scrollToDown();
+
+        // Verify the validation message
+        waitForElementToBeVisible(noResultInfoMsg,3);
+        // Verify the no result info msg
+        Assert.assertTrue(isElementDisplayed(noResultInfoMsg),"There are no result Info Message");
+}
+    public void verifyInvalidInputofFilterFields(){
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
+        waitForElementToBeVisible(dateFilterLabel,4);
+
+        // verify the validation message when less
+        actionEnterText(maxAmountFilterField,Constants.midValue);
+        actionEnterText(cardNumberFilterField,Constants.nonexistingGC);
+
+        getFitlerApplyBtn();
+        staticWait(3000);
+        scrollToDown();
+
+        // Verify the validation message
+        waitForElementToBeVisible(noResultInfoMsg,3);
+        // Verify the no result info msg
+        Assert.assertTrue(isElementDisplayed(noResultInfoMsg),"There are no result Info Message");
+
+
+
+    }
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -440,6 +440,7 @@ PaymentPage payment=new PaymentPage();
     public void clickOnGetRefNotxt() {
         staticWait(4000);
         click(refNoneTxt);
+
         Assert.assertTrue(isElementDisplayed(refNoPopup));
         referenceTxt = "Kevin123" + requiredString(42);
         staticWait(4000);
@@ -1214,20 +1215,21 @@ PaymentPage payment=new PaymentPage();
         scrollToElement(confirmBtn);
         Assert.assertTrue(isElementDisplayed(confirmBtn));
 
-
         //Click Confirm
         getConfirmButton();
 
         //Verify Message popup and Buttons
-        Assert.assertEquals(messagePopupHeader, "Message");
+        String messagePopupHeaders = getText(messagePopupHeader);
+        Assert.assertEquals(messagePopupHeaders, "Message");
+
         Assert.assertTrue(isElementDisplayed(selectCustomer));
         Assert.assertTrue(isElementDisplayed(continueWithoutBtn));
 
         //Click On Continue Button
         staticWait(4000);
         getContinueWithoutButton();
-
     }
+
     public void deleteBill(){
         clickOnNotPaidLabel();
         staticWait(2000);
@@ -1591,7 +1593,9 @@ PaymentPage payment=new PaymentPage();
         //click on more option section
         clickOnMoreSection();
 
-        Assert.assertEquals(memoNoneTxt, "None");
+        String memoNoneTxts=getText(memoNoneTxt);
+        Assert.assertEquals(memoNoneTxts, "None");
+
         getMemoFieldMessage();
         clickOnMemoButton();
 
@@ -1729,8 +1733,8 @@ PaymentPage payment=new PaymentPage();
         Assert.assertTrue(isElementDisplayed(expireDateTime));
         staticWait(3000);
     }
-    public void verifyBillCreationByAddingRecurringTransactionsDaily(String phoneNumber,String emailID) {
 
+    public void verifyBillCreationByAddingRecurringTransactionsDaily(String phoneNumber,String emailID) {
         Login();
         //Select Store
         clickOnNewBill();
@@ -1745,6 +1749,8 @@ PaymentPage payment=new PaymentPage();
         String amt = "1000.00";
         staticWait(3000);
         actionEnterText(amtTbx, amt);
+
+
 
         //Click on More Option
         clickOnMoreSection();
