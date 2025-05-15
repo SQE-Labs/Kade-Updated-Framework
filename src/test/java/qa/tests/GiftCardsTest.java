@@ -18,7 +18,7 @@ public class GiftCardsTest extends BaseTest {
 
     @Test(priority = 1, enabled = true, description = "GC 01 and GC 02: Verify that user get directed to 'Gift Cards' page, after clicking on 'Gift Cards' tab , on  Left Panel., Verify that appropriate information message appears on 'Gift Cardst' page, when user has no gift card in his account.")
     public void verifyTheInfoMsgWhenNoGiftCard(){
-        Login();
+        LoginAsNewUser();
         pageObjectManager.getSidePannel().getMyStuff();
         pageObjectManager.getSidePannel().getGiftCardTab();
 

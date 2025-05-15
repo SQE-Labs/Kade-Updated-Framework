@@ -75,6 +75,7 @@ public class SecurityAndPasswordPage extends BaseTest {
         return uniqueId + "@yopmail.com";
     }
     public void getCloseAndDeleteAccountbtn(){
+        staticWait(1000);
         click(closeAndDeletebtn);
     }
 

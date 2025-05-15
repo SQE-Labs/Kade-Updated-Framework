@@ -18,7 +18,7 @@ public class SignUpPage extends BaseTest {
   public  By alreadyHaveAnAccountLabel = By.xpath("//p[contains(text(),'Already have an account?')]");
   public  By signInLink = By.xpath("//a[@class='ms-2']");
   public  By checkBox=By.xpath("//i[@class='fal fa-square custom-check-off ']");
-  public  By businessAccountButton = By.xpath("//a[text()='Business Account']");
+  public  By businessAccountButton = By.xpath("//span[text()='Business Account']");
   public  By personalAccountButton = By.xpath("//a[text()='Personal Account']");
   public  By existingPhoneValidation = By.xpath("//p[text()='This phone number is already registered.']");
   public  By existingEmailValidation = By.xpath("//p[text()='This email is already registered.']");
@@ -120,12 +120,73 @@ public void getIdonkKnowPasswordLinkSP(){
 }
 
 
+public void getsignInWithEmailUsingBusinessAccount(){
+    pageObjectManager.getLoginPage().getSignUpLink();
+    getBusinessAccount();
+    getCrossIcon();
+
+    // Clicking on 'Sign In Button
+     getSignInBtn();
+
+    // Clicking on Switch to Email Link
+     getSwitchtoEmailLink();
+    enterText(emailFieldSP, Constants.validAdminEmail);
+     getContinueBtnSP();
+
+    // Clicking on I don't know password link
+    getIdonkKnowPasswordLinkSP();
+
+    // Verify the elements
+    softAssert.assertTrue(isElementDisplayed(securityCodeLabelsignInP),"Security code label");
+    softAssert.assertTrue(isElementDisplayed(informationMessageSP),"Information message");
+    softAssert.assertTrue(isElementDisplayed(newPasswordLabelSP),"new passoword label");
+    softAssert.assertTrue(isElementDisplayed(showPasswordSignInP),"show password");
+    softAssert.assertTrue(isElementDisplayed(signInButtonSignInP),"sign in button ");
+
+    enterText(securityCodeField,Constants.securityCode);
+    enterText(newPasswordFieldSP,Constants.validPassword);
+      getShowPasswordSP();
+      getFinalSignInbtn();
+}
+
+public void creatingNewAccountWithEmailWithBusinessAccount(){
+    pageObjectManager.getLoginPage().getSignUpLink();
+    //Clicking on Business Account Option
+     getBusinessAccount();
+
+    //Click on continue button and verify the Tooltip
+     getContinueButton();
 
 
+    // Click on Use Email Link
+     getUseEmailLink();
 
 
+    // Entering valid email in the Email field
+    enterText(emailBusinessField,  requiredString(4)+ "@yopmail.com");
 
+    // Checking the By providing my information, I consent to receive text/email notifications. checkbox
+     getReceiveTextEmailNotificationCheckBox();
+     getContinueButton();
 
+    // Verify the start Over Link and resent code link
+    softAssert.assertTrue(isElementDisplayed(startOverLink));
+    softAssert.assertTrue(isElementDisplayed(resendCode));
+
+    // Click on start over link and Continue button
+    getStartOverLink();
+    getContinueButton();
+
+    // Enter data in security code field
+    enterText(securityCodeFieldNewAccount, Constants.securityCode);
+    waitForElementToBeClickable(fullname,6);
+
+    //Entering name in the Full name field
+    enterText(fullname, "New Kade Member" + requiredString(4));
+
+    // Clicking on 'Continue' button
+    getBusinessContinuebtn();
+}
 
 
 

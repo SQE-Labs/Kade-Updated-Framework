@@ -7,7 +7,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pageEvents.BillPage;
 import pageEvents.MyStorePage;
+import pageEvents.PaymentPage;
 import pageObjects.PageObjectManager;
 import utils.Constants;
 
@@ -16,6 +18,8 @@ import java.io.File;
 import static base.BaseTest.Login;
 import static java.lang.Float.*;
 import static utils.Constants.*;
+import org.testng.Assert;
+
 
 public class MyStoreTest extends BaseTest {
     // Logger instance for logging messages
@@ -23,6 +27,8 @@ public class MyStoreTest extends BaseTest {
 
     PageObjectManager pageObjectManager = PageObjectManager.getInstance();
     MyStorePage mystore = pageObjectManager.getMyStorePage();
+    BillPage bill = new BillPage();
+    PaymentPage payment = new PaymentPage();
 
     @Test(description = "SC_01(A) Verifying creation of Store without Stripe Payment Account Configuration")
     public void storeCreationWithoutStripeAccount() {
@@ -33,7 +39,7 @@ public class MyStoreTest extends BaseTest {
     }
 
 
-    @Test(enabled = false, description = "SC_01(B) Verifying deletion of Store when Stripe Account is not Registered Yet")
+    @Test(description = "SC_01(B) Verifying deletion of Store when Stripe Account is not Registered Yet")
     public void sc01b_DeletionOfStore() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
@@ -44,6 +50,7 @@ public class MyStoreTest extends BaseTest {
         staticWait(2000);
         if (!isElementDisplayed(mystore.storeLogo)) {
             mystore.getSkipStripeAccountButton();
+            waitForElementToBeVisible(mystore.skipPopUpTitle,4);
 
             String actual = getText(mystore.skipPopUpTitle);
             //Verifying the 'Skip' Pop Up Title
@@ -51,7 +58,7 @@ public class MyStoreTest extends BaseTest {
             //  Click on 'Skip' button
             mystore.getSkipBtnOfStripe();
         }
-        staticWait(5000);
+        waitForElementToBeVisible(mystore.deleteStoreBtn,7);
         scrollToElement(mystore.deleteStoreBtn);
         waitForElementToBeVisible(mystore.deleteStoreBtn,5);
         // click on delete button
@@ -68,8 +75,6 @@ public class MyStoreTest extends BaseTest {
         pageObjectManager.getSidePannel().getSignOut();
         staticWait(3000);
         pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
-
-
 
     }
 
@@ -103,6 +108,7 @@ public class MyStoreTest extends BaseTest {
 
         //Verifying that by-default Visa Payment method is enabled
         String defaultPaymentMthd = getText(mystore.addedVisaMethod);
+        System.out.println(defaultPaymentMthd);
         softAssert.assertEquals(defaultPaymentMthd, Constants.visavalue);
 
 //       Click on 'Change Pay Method' Link
@@ -118,10 +124,11 @@ public class MyStoreTest extends BaseTest {
         mystore.getChangePlanButton();
 
         //Verifying that next bill date is generated
-        softAssert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
+        Assert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
         pageObjectManager.getSidePannel().getSignOut();
         staticWait(3000);
         pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
+        softAssert.assertAll();
 
     }
 
@@ -149,6 +156,7 @@ public class MyStoreTest extends BaseTest {
         mystore.getChangePayMethodLink();//Verifying that other payment methods are available
         softAssert.assertTrue(isElementDisplayed(mystore.newCreditCardBtn), " New credit card button");
         softAssert.assertTrue(isElementDisplayed(mystore.newBankAccountBtn), "new bank account");
+        mystore.getbankAccountOptionForPlan();
 
         // Click on 'Terms' Checkbox
         mystore.getTermsCheckbox();
@@ -159,9 +167,11 @@ public class MyStoreTest extends BaseTest {
 
         //Verifying that next bill date is generated
         softAssert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
+
         pageObjectManager.getSidePannel().getSignOut();
         staticWait(3000);
         pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
+        softAssert.assertAll();
 
     }
 
@@ -177,8 +187,7 @@ public class MyStoreTest extends BaseTest {
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
 
-//        waitForElementToBeInteractable(mystore.configureLink,4);
-        staticWait(3000);
+        waitForElementToBeInteractable(mystore.configureLink,4);
 
         // Click on 'Configure' Link
         mystore.getConfigureLink();
@@ -353,12 +362,12 @@ public class MyStoreTest extends BaseTest {
         mystore.getCreditTerminalOption();
 
     }
-    @Test(enabled = false , description  ="SC_06 Verifying the Configuration of the Store using Payment Processing Sub-Tabs on 'Store Configuration' Page with Venmo & Zelle. ")
+    @Test(description  ="SC_06 Verifying the Configuration of the Store using Payment Processing Sub-Tabs on 'Store Configuration' Page with Venmo & Zelle. ")
     public void verifyConfigurationOfStoreUsingPaymentProcessingSubTab(){
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
-        waitForElementToBeClickable(mystore.configureLink,5);
+        waitForElementToBeClickable(mystore.configureLink,3);
 
         // Click on 'Configure' Link
         mystore.getConfigureLink();
@@ -392,12 +401,6 @@ public class MyStoreTest extends BaseTest {
             scrollToElement(mystore.acceptZelleHeader);
             staticWait(3000);
 
-
-//        if(isElementDisabled(mystore.acceptZelleHeader)) {
-//            System.out.println( "yes i am displayed");
-//            mystore.getAcceptZelleToggleButton();
-//            staticWait(3000);
-//        }
          if(!isToggleEnabled(mystore.acceptZelleToggleBtn)){
             clickElementByJS(mystore.acceptZelleToggleBtn);
         }
@@ -421,27 +424,6 @@ public class MyStoreTest extends BaseTest {
         mystore.getZelleSaveButton();
     }
 
-    @Test(enabled = false, description = "SC_07(A) Verifying the Configuration of the Store using 'Manage Users' Sub-Tab")
-    public void sc07a_VerifyingConfigurationOfStoreUsingManageUsersSubTabs() {
-        Login();
-        pageObjectManager.getSidePannel().getMangeBusinessTab();
-        pageObjectManager.getSidePannel().getMyStoreTab();
-        waitForElementToBeClickable(mystore.configureLink,3);
-
-        // Click on 'Configure' Link
-        mystore.getConfigureLink();
-        waitForElementToBeClickable(mystore.manageUserSubTab,5);
-
-        // click on Manage Sub Tab
-        mystore.getManageUserSubTab();
-
-        // Click on 'Add User' Button
-        mystore.getAddUserBtn();
-
-        //Verifying 'Add User' Pop-Up Title
-        softAssert.assertEquals(getText(mystore.addUserPopUpTitle), Constants.addUserTitle);
-        // need to update  due to UI changes
-    }
 
     @Test(description = "SC_08 Verify deactivating an activated Store")
     public void verifyDeactivatingAnActivatedStore() {
@@ -450,7 +432,6 @@ public class MyStoreTest extends BaseTest {
         pageObjectManager.getSidePannel().getMyStoreTab();
 
         // Click on 'Configure' Link
-
         mystore.getConfigureLink();
         scrollToElement(mystore.activeSubTab);
 
@@ -473,7 +454,7 @@ public class MyStoreTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(description = "SC 09 a Verify that store creation and purchasing the 'Premium' monthly plan subscription for the store, on 'Store Configuration' page.")
+    @Test(description = "SC 09 and Sc 10 Verify that store creation and purchasing the 'Premium' monthly plan subscription for the store, on 'Store Configuration' page.")
     public void verifyingStoreCreationWithPurchasingMonthlyPremiumPlan() {
         Login();
         mystore.getStoreCreation();
@@ -484,7 +465,7 @@ public class MyStoreTest extends BaseTest {
 
         // Verifying the Premium title
         softAssert.assertTrue(isElementDisplayed(mystore.premiumTitle), "Premium Title");
-
+        scrollToElement(mystore.premiumMonthlyBtn);
         // byuing the Premium plan
         mystore.getPremiumMonthlyBtn();
         mystore.getPremiumnMonthlySignUpBtn();
@@ -500,6 +481,8 @@ public class MyStoreTest extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(mystore.newCreditCardBtn), " New credit card button");
         softAssert.assertTrue(isElementDisplayed(mystore.newBankAccountBtn), "new bank account");
 
+        mystore.getbankAccountOptionForPlan();
+
         // Click on 'Terms' Checkbox
         mystore.getTermsCheckbox();
         scrollToElement(mystore.changePlanBtn);
@@ -509,7 +492,9 @@ public class MyStoreTest extends BaseTest {
         mystore.getChangePlanButton();
 
         //Verifying that next bill date is generated
-        softAssert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
+        Assert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
+
+        scrollToElement(mystore.premiumYearlyBtn);
 
         // selecting premium yearly plan
         mystore.getPremiumYearlyBtn();
@@ -522,16 +507,90 @@ public class MyStoreTest extends BaseTest {
         mystore.getTermsCheckbox();
         scrollToElement(mystore.changePlanBtn);
         waitForElementToBeClickable(mystore.changePlanBtn,3);
+
         //  Click on 'Change Plan' Button
         mystore.getChangePlanButton();
+        //Verifying that next bill date is generated
+        Assert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
+
 
         pageObjectManager.getSidePannel().getSignOut();
         staticWait(3000);
         pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
+        softAssert.assertAll();
+
+    }
+
+    @Test(description = "SC_07(A) Verifying the Configuration of the Store using 'Manage Users' Sub-Tab")
+    public void sc07a_VerifyingConfigurationOfStoreUsingManageUsersSubTabs() {
+        Login();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getMyStoreTab();
+        waitForElementToBeClickable(mystore.configureLink,3);
+
+        // Click on 'Configure' Link
+        mystore.getConfigureLink();
+        waitForElementToBeClickable(mystore.manageUserSubTab,5);
+
+        // click on Manage Sub Tab
+        mystore.getManageUserSubTab();
+        waitForElementToBeInteractable(mystore.createUserAndCredetButton,5);
+
+        // Creating  Manager user
+        mystore.createManagerUser();
+
+        // Creating Reader user
+        mystore.creatingReaderProfile();
+
+        // Creating Operator user
+        mystore.creatingOperatorUser();
+
+    }
+
+    @Test(enabled = false , description = "SC_07(B) Verifying the Configuration of the store using Manage User sub tab to invite any existing user to manage store.")
+    public void sc_07b_VerifyingConfigurationOfStoreUsingManageUserSubTabToInviteAnyExistingUserToManageStore() {
+        Login();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getMyStoreTab();
+        waitForElementToBeClickable(mystore.configureLink,3);
+
+        // Click on 'Configure' Link
+        mystore.getConfigureLink();
+        waitForElementToBeClickable(mystore.manageUserSubTab,5);
+
+        // click on Manage Sub Tab
+        mystore.getManageUserSubTab();
+        waitForElementToBeInteractable(mystore.createUserAndCredetButton,5);
+        mystore.getinviteUserButton();
+        waitForElementToBeVisible(mystore.inviteExistingUserPopupTitle,4);
+
+        // Verifying the 'Invite Existing User' PopUp Title
+        Assert.assertEquals(getText(mystore.inviteExistingUserPopupTitle),"Invite users");
+
+        // Enter Email Or Phone Number
+        enterText(mystore.inviteMangeUserEmailOrPhoneField,"saybo@yopmail.com");
+
+        //  Click on the 'User Profile' Drop Down
+        mystore.getUserProfileDropdown();
+
+        // Select profile of 'Manager' User
+        mystore.getmanagerProfileOption();
+
+        // Click on 'Send Invite' Button.
+        mystore.sendInviteButton();
+
+        pageObjectManager.getSidePannel().getSignOut();
+
+        LoginAsCustomer();
+        payment.clickOnBillIcon();
+
+
+
     }
 
 
-// This method is used to delete unwanted stores from the account
+
+// //This method is used to delete unwanted stores from the account
 //    @Test(description = "Delete unwanted store")
 //    public void deleteUnwantedStore(){
 //        pageObjectManager.getAdminPage().ToDeleteStores();

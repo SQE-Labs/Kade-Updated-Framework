@@ -5,94 +5,32 @@ import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import utils.Constants;
+import org.testng.Assert;
 
-import java.awt.*;
-import java.nio.file.Paths;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
+import static pageEvents.TransactionsPage.attentionHeader;
+import static pageEvents.TransactionsPage.okButn;
+
 public class PaymentPage extends BaseTest {
 
 
+    // Payment popup locators
+
+    By countryDropDown = By.id("Field-countryInput");
     /*
     Receive Payment Locators
      */
-    public By paymentPopupTitle = By.xpath("//h5[text()='Receive Payment']");
-    By closeIcon = By.xpath("(//button[@class=\"btn-close\"])[1]");
+
     By cardNumberTbx = By.xpath("//input[@id='Field-numberInput']");
     By expirationDateTbx = By.xpath("//input[@id='Field-expiryInput']");
     By cvcTbx = By.xpath("//input[@id='Field-cvcInput']");
-    By countryDropDown = By.xpath("//select[@id='Field-countryInput']");
-    By processBtn = By.xpath("//button[@type=\"submit\" and contains(text(),'Process')]");
-    By voidBtn = By.xpath("//button[text()='Void']");
-    By paymentLogo = By.xpath("//span[@class='payment-logo-bg me-1']");
-    public By totalPaidAmt = By.xpath("//h4[contains(text(),'Total paid')]");
-    By voidedTag = By.xpath("//h6[text()='VOIDED']");
-    public By changeButton = By.xpath("//div[contains(text(),'Change')]");
+    By autoPaymentCardFrame = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[1]");
+
     public By swipeBtn = By.xpath("//input[@class='slider -pm-none-']");
-    By closeBtn = By.xpath("//a[text()='Close']");
 
-
-    /*
-    Receive Payment popup locators
-     */
-    By balanceDue = By.xpath("//span[text()='Balance Due:']//following-sibling::span");
-    By totalAmount = By.xpath("//span[contains(text(),'Total')]");
-    By receiveAmountTbx = By.xpath("//input[@name='amount']");
-    public By creditCardBtn = By.xpath("//button[text()='Credit Card']");
-    By othersBtn = By.xpath("//button[text()='Other']");
-    public By savedCreditcard = By.xpath("//div[contains(@class,'-paymethodbox-')] //span[contains(text(),'Visa')][1]");
-
-
-    /*
-    Payment Type Panel
-     */
-    public By paymentTypeHeader = By.xpath("//h5[@class='offcanvas-title' and text()='Payment type']");
-    By venmoPaymentType = By.xpath("(//button[@name='payType'])[1]/..");
-    By zellePaymentType = By.xpath("(//button[@name='payType'])[2]/..");
-    By cashPaymentType = By.xpath("//span[text()='Cash']/../../..");
-    By memoTextbox = By.xpath("//textarea[@name='message']");
-    By receivingAmtPaymentTypePanel = By.xpath("//span[@data-field='amount']");
-    public By payNowButton = By.xpath("//button[@type=\"button\" and text()='Pay Now']");
-
-    By rejectButton = By.xpath("//button[text()='Reject']");
-    By rejectReason = By.xpath("(//i[contains(@class,'fal fa-circle custom-check-off')])[1]");
-    By submitButton = By.xpath("//button[text()='Submit']");
-    By rejectToastMessage = By.xpath("//div[@class='toast-message']");
-    By confirmationPopUp = By.xpath("//h5[text()='Confirmation']");
-
-    // By savedCreditcard = By.xpath("//div[contains(@class,'-paymethodbox-')] //span[contains(text(),'Visa')]");
-    public By savedBankAccount = By.xpath("//span[text()='Bank Account 6789'][1]");
-    public By SavedVenmoCard = By.xpath("//span[@class='text-nowrap fs-pn25' and text()='Venmo']");
-    public By iMadeMyPaymentButtonVenmo = By.cssSelector(".text-center.mb-3>button");
-    By personalMessageVenmo = By.xpath("//textarea[@placeholder='Personal message']");
-    By screenshotButton = By.xpath("//button[text()='Do you have a screenshot?']");
-    By confirmVenmoCheckbox = By.xpath("//i[@class='fal fa-square custom-check-off ']");
-    By venmoSubmitButton = By.xpath("//button[text()='Submit']");
-    By checkBtn = By.xpath("//button[@class='btn btn-dark -crop-']");
-    By selectedBankDisplay = By.xpath("//div[@class='-placeholder- link-empty']");
-
-    // Assertion elements of Venmo Card
-    By qrVenmoPopup = By.xpath("//div[@class='fs-4 text-center py-2 ']");
-    By venmoPopup = By.xpath("(//h5[@class='modal-title'])[1]");
-    By copyLink = By.xpath("//span[text()='Copy']");
-    By getUploadedImage = By.xpath("//div[@class='my-2 display-none']/img");
-    By processSuccessMsg = By.xpath("//div[@class='d-flex justify-content-center align-items-center fs-1 text-success py-2']");
-    By rateYourExperienceLink = By.xpath("//div[@class='col-sm fs-4 pb-2']");
-    By viewReceipt = By.xpath("//div[@class='mt-4']/child::div/a[1]");
-    public By closeBlueBtn = By.xpath("//a[text()='Close']");
-    By tapToPayMoreLink = By.partialLinkText("Tap to pay more");
-    //By tapToPayMoreLink=By.xpath("//a[text()='Tap to pay more']");
-    By moreAmountTbx = By.xpath("//input[@lbl-title='Amount']");
-    By updateButton = By.xpath("(//button[contains(text(),'Update')])[2]");
-    By swipeButton = By.xpath("//a[contains(@class,' -updateamount-')]");
-    By savedZellePaymentButton = By.xpath("//div//span[text()='Zelle']");
-    By zellePopup = By.xpath("//h5[@class='modal-title']//span");
-    By zelleCopyLink = By.xpath("//span[text()='Copy']");
-    By paymentType = By.xpath("//div[@class='d-flex flex-column align-items-end']//span[@class='fs-pn25']");
-    By updateAmtBtn = By.xpath("//button[text()='Update']");
 
     // Payment popup locators
 
@@ -122,21 +60,21 @@ public class PaymentPage extends BaseTest {
     public By CashBtn = By.xpath("(//div[contains(@class,'w-100 border')])[3]");
     By venomoCard = By.xpath("(//div[contains(@class,'w-100 border')])[1]");
     By ZelleCard = By.xpath("(//div[contains(@class,'w-100 border')])[2]");
-    public By paidLabel = By.xpath("//div[normalize-space()='Paid']");
-    public By cashIcon = By.xpath("(//span[text()='Cash']/../child::span)[3]");
-    public By crossIcon = By.xpath("(//button[@class='btn-close'])[3]");
-    public By crossIconOnTransactionpage = By.xpath("//button[@class='btn-close']");
-    public By transcationMenu = By.xpath("(//div[text()='Transactions'])[2]");
-    public By paidBill = By.xpath("//div[contains(@class,'bg-white border')][1]");
-    public By amountPaidTime = By.xpath("(//span[@class='fs-pn15'])[4]");
+    By paidLabel = By.xpath("//div[normalize-space()='Paid']");
+    By cashIcon = By.xpath("(//span[text()='Cash']/../child::span)[3]");
+    By crossIcon = By.xpath("(//button[@class='btn-close'])[3]");
+    By crossIconOnTransactionpage = By.xpath("//button[@class='btn-close']");
+    By transcationMenu = By.xpath("(//div[text()='Transactions'])[2]");
+    By paidBill = By.xpath("//div[contains(@class,'bg-white border')][1]");
+    By amountPaidTime = By.xpath("(//span[@class='fs-pn15'])[4]");
     By partialAmountPaidTime = By.xpath("(//span[@class='fs-pn15'])[1]");
-    public By paidlabel = By.xpath("//span[text()='Paid']");
-    public By uniqueId = By.xpath("//span[contains(@class,'badge position-relative bg-light text-dark p-1 px-2 text-truncate f')]");
-    public By refundIcon = By.xpath("//button[text()='Refund']");
-    public By verifyIcon = By.xpath("//button[text()='Verify']");
-    public By creditCardInfoFrame = By.xpath("(//iframe[contains(@name, '__privateStripeFrame')])[1]");
-    public By expiryDate = By.xpath("//input[@name='expiry']");
-    public By cvc = By.xpath("//input[@name='cvc']");
+    By paidlabel = By.xpath("//span[text()='Paid']");
+    By uniqueId = By.xpath("//span[contains(@class,'badge position-relative bg-light text-dark p-1 px-2 text-truncate f')]");
+    By refundIcon = By.xpath("//button[text()='Refund']");
+    By verifyIcon = By.xpath("//button[text()='Verify']");
+    By creditCardInfoFrame = By.xpath("//h5[text()='Credit card information']/../..//iframe");
+    By expiryDate = By.xpath("//input[@name='expiry']");
+    By cvc = By.xpath("//input[@name='cvc']");
     By PaymentProcessBtn = By.xpath("//button[contains(text(),'Process')]");
     By visaIcon = By.xpath("//span[text()='Visa']/..");
     By venmoIcon = By.xpath("(//span[text()='Venmo'])[2]");
@@ -159,12 +97,12 @@ public class PaymentPage extends BaseTest {
     By bill = By.xpath("(//p[text()='A bill received']/../..)[1]");
     By payNowBtn = By.xpath("//button[text()='Pay Now']");
     By storeName = By.xpath("//h4[text()='Automation Bill Flow']");
-    public By visaCardName = By.xpath("(//span[contains(text(),'Visa')])[3]");
     By debitCardName = By.xpath("(//span[contains(text(),'Visa')])[5]");
     By changeBtn = By.xpath("//div[normalize-space()='Change']");
+    By visaCardName = By.xpath("(//span[contains(text(),'Visa')])[3]");
     By creditCards = By.xpath("//span[text()='New Credit Card']/../../../..");
-    By iframeForCard = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[2]");
-    By saveBtn = By.xpath("//button[text()='Save']");
+    By iframeForCard = By.xpath("//div[@class='StripeElement']//div/iframe[contains(@name,'__privateStripeFrame')]");
+    public By saveBtn = By.xpath("//button[text()='Save']");
     By thankTxt = By.xpath("//span[text()='Thank']");
     By youTxt = By.xpath("//span[text()='You!']");
     By rateYourExpTxt = By.xpath("//div[normalize-space()='Rate your experience']");
@@ -182,317 +120,42 @@ public class PaymentPage extends BaseTest {
     By makePayment = By.xpath("//button[text()='I made the payment']");
     By selectCheckBox = By.xpath("(//span[text()='Confirm your payment by checking this box']/../i)[2]");
     By zelleSaveBtn = By.xpath("//button[text()='Submit']");
-    public By payCurrentBalance=By.xpath("//button[text()='Pay the current balance']/..");
-    By okbuttonOfAttentionPopup = By.xpath("//button[@class='btn btn-outline-primary']");
+    By payCurrentBalance = By.xpath("//button[text()='Pay the current balance']/..");
+
+    // Affirm payment button
+    By affirmAccount = By.xpath("//span[text()='Affirm']/../../../..");
+    By processBtnOfAffirm = By.xpath("//button[starts-with(text(),'Process')]");
+    By paymentInformationTitle = By.xpath("//h5[text()='Payment information']");
+    By affirmTestPageTitle = By.xpath("//h1[@class='common-SectionTitle']");
+    By authorizeTestPaymentBtn = By.xpath("//button[starts-with(text(),'Authorize Test Payment')]");
+    public By paymentDetails = By.xpath("//span[starts-with(@class,'payment-logo-bg-sm')]/../../..");
+    By moreDetailsBtn = By.xpath("//button[contains(@class,'btn btn-link w-100')]//i/..");
+    public By moreDetails = By.xpath("//div[@class='card-body collapse show']");
 
 
-    //        public void PaymentsPage() {
-//        }
-//
-//        public void clickCashBtn() {
-//            WebdriverWaits.waitForElementVisible(paymentPopupTitle, 5);
-//            moveToWebElement(cashBtn);
-//            clickElementByJS(cashBtn);
-//        }
-//
-//        public Clickable getCashButton() {
-//            return Clickable.getElementBy(cashPaymentType, "Cash Button");
-//        }
-//
-//        public Clickable getOthersButton() {
-//            return Clickable.getElementBy(othersBtn, "Other button");
-//        }
-//
-//        public Editable getAmountTextbox() {
-//            return Editable.getElementBy(receiveAmountTbx, "Receiving amount textbox");
-//        }
-//
-//        public Clickable getPaidLabel() {
-//            return Clickable.getElementBy(paidLabel, "Paid label on Bill");
-//        }
-//
-//        public boolean isPaidLabelDisplayed() {
-//            WebdriverWaits.waitForElementVisible(paidLabel, 5);
-//            return isWebElementVisible(paidLabel);
-//        }
-//
-//        public Clickable getReceivedPaymentTitle() {
-//            return Clickable.getElementBy(paymentPopupTitle, "Receive Payment Popup Title");
-//        }
-//
-//        public Clickable getCreditCardButton() {
-//            return Clickable.getElementBy(creditCardBtn, "Credit card button");
-//        }
-//
-//
-//        public Editable getCardNumberTextbox() {
-//            return Editable.getElementBy(cardNumberTbx, "Card Number textbox");
-//        }
-//
-//        public Editable getExpirationDateTextbox() {
-//            return Editable.getElementBy(expirationDateTbx, "Expiration Date textbox");
-//        }
-//
-//        public Editable getCvcTextbox() {
-//            return Editable.getElementBy(cvcTbx, "CVC textbox");
-//        }
-//
-//        public void selectCountry(String country) {
-//            selectDropDownByVisibleText_custom(countryDropDown, country);
-//        }
-//
-//        public void clickProcessBtn() {
-//            click(processBtn);
-//        }
-//
-//        public void switchToCreditCardFrame() {
-//            switchToFrame(creditCardInfoFrame);
-//        }
-//
-//        public Clickable getBalanceDue() {
-//            return Clickable.getElementBy(balanceDue, "Balance Due Field");
-//        }
-//
-//        public Clickable getTotalAmount() {
-//            return Clickable.getElementBy(totalAmount, "Total amount element");
-//        }
-//
-//        public Clickable getReceivingAmount() {
-//            return Clickable.getElementBy(receiveAmountTbx, "value");
-//        }
-//
-//        public Clickable getPaymentTypePanelHeader() {
-//            return Clickable.getElementBy(paymentTypeHeader, "Payment Type Header");
-//        }
-//
-//
-//        public Clickable getPaymentLogo() {
-//            return Clickable.getElementBy(paymentLogo, "Payment type logo");
-//        }
-//
-//        public void payByCreditCard() {
-//            switchToCreditCardFrame();
-//            getCardNumberTextbox().setText("4111111111111111");
-//            getExpirationDateTextbox().setText("0230");
-//            getCvcTextbox().setText("123");
-//            selectCountry("Australia");
-//            switchToDefaultWindow();
-//            clickProcessBtn();
-//        }
-//
-//        public void enterAmount(String amount) {
-//            pressKeys(receiveAmountTbx, amount);
-//        }
-//
-//        public Editable getReceivingAmountTextbox() {
-//            return Editable.getElementBy(receiveAmountTbx);
-//        }
-//
-//        public Clickable getReceivingAmountFromPaymentTypePanel() {
-//            return Clickable.getElementBy(receivingAmtPaymentTypePanel, "Receiving Amount Payment Type Panel");
-//        }
-//
-//        public Clickable getChangePaymentMethodButton() {
-//            System.out.println(changeButton);
-//            return Clickable.getElementBy(changeButton, "change Payment Method button");
-//        }
-//
-//        public Clickable getTotalPaidAmount() {
-//            return Clickable.getElementBy(totalPaidAmt, "Total Paid Amount");
-//        }
-//
-//        public Clickable getZelleButton() {
-//            WebdriverWaits.waitForElementVisible(paymentPopupTitle, 5);
-//            return Clickable.getElementBy(zellePaymentType);
-//        }
-//
-//        public Clickable getCloseReceivedPopupButton() {
-//            return Clickable.getElementBy(closeIcon, "Close Received Button");
-//        }
-//
-//        public Clickable getVenmoButton() {
-//            return Clickable.getElementBy(venmoPaymentType);
-//        }
-//
-//        public Clickable getCreditCardBtn() {
-//            return Clickable.getElementBy(creditCardBtn);
-//        }
-//
-//        public Clickable getVoidButton() {
-//            return Clickable.getElementBy(voidBtn, "Void Button");
-//        }
-//
-//        public Clickable getVoidedTag() {
-//            return Clickable.getElementBy(voidedTag, "Voided Tag");
-//        }
-//
-//        public Clickable getMomoTextbox() {
-//            return Clickable.getElementBy(memoTextbox, "Memo Textbox");
-//        }
-//
-//        public Clickable getPayNowButton() {
-//            return Clickable.getElementBy(payNowButton, "Pay Now Button");
-//        }
-//
-//
-//        public Clickable getSavedCreditCard() {
-//            return Clickable.getElementBy(savedCreditcard, "Saved Credit card");
-//        }
-//
-//        public void swipeToPay() {
-//            Actions actions = new Actions(getDriver());
-//            WebElement elm = getDriver().findElement(swipeBtn);
-//            actions.moveToElement(elm).moveByOffset(-100, 0).clickAndHold().moveByOffset(200, 0).release().perform();
-//        }
-//
-//        public Clickable getCloseButton() {
-//            return Clickable.getElementBy(closeBtn, "Close Button");
-//        }
-//
-//        public Clickable getSavedBankAccount() {
-//            return Clickable.getElementBy(savedBankAccount, "Saved Bank Account Card");
-//        }
-//
-//        public Clickable getSavedVenmoCard() {
-//            return Clickable.getElementBy(SavedVenmoCard, "Venmo Card");
-//        }
-//
-//        public Clickable getIMadeMyPaymentButton() {
-//            return Clickable.getElementBy(iMadeMyPaymentButtonVenmo);
-//        }
-//
-//        public Editable getVenmoPaymentText() {
-//            return Editable.getElementBy(personalMessageVenmo);
-//        }
-//
-//        public Clickable getScreenshotButton() {
-//            return Clickable.getElementBy(screenshotButton);
-//        }
-//
-//        // For Attaching image for Venmo payment Screenshot
-//        public void uploadImageAsAttachment(String relativePath) throws AWTException {
-//            String projectPath = System.getProperty("user.dir");
-//            String absolutePath = Paths.get(projectPath, relativePath).toString();
-//            uploadImageFile(absolutePath);
-//        }
-//
-//        public void uploadVenmoImageScreenshot() throws AWTException {
-//            uploadImageAsAttachment("src/main/resources/image/BillDummyImg.jpg");
-//        }
-//
-//        public Clickable getCheckButton() {
-//            return Clickable.getElementBy(checkBtn, "Check Button");
-//        }
-//
-//        public Clickable getConfirmVenmoCheckbox() {
-//            return Clickable.getElementBy(confirmVenmoCheckbox);
-//        }
-//
-//        public Clickable getVenmoSubmitButton() {
-//            return Clickable.getElementBy(venmoSubmitButton);
-//        }
-//
-//
-//        //Assertion for Venmo
-//        public Clickable getVenmoPopup() {
-//            return Clickable.getElementBy(venmoPopup);
-//        }
-//
-//        public Clickable getVenmoQrCode() {
-//            return Clickable.getElementBy(qrVenmoPopup);
-//        }
-//
-//        public Clickable getCopyLink() {
-//            return Clickable.getElementBy(copyLink);
-//        }
-//
-//        public Clickable getUploadedImage() {
-//            return Clickable.getElementBy(getUploadedImage);
-//        }
-//
-//
-//        public Clickable getRejectButton() {
-//            return Clickable.getElementBy(rejectButton, "Reject Button");
-//        }
-//
-//        public Clickable getRejectReason() {
-//            return Clickable.getElementBy(rejectReason, "Reject Reason");
-//        }
-//
-//        public Clickable getSubmitButton() {
-//            return Clickable.getElementBy(submitButton, "Submit Button");
-//        }
-//
-//        public Editable getRejectToastMessage() {
-//            return Editable.getElementBy(rejectToastMessage, "Reject Toast Message");
-//        }
-//
-//        public Editable getConfirmationPopUpTitle() {
-//            return Editable.getElementBy(confirmationPopUp, "Confirmation Pop Up");
-//        }
-//
-//        public Clickable getSelectedBankDisplay() {
-//            return Clickable.getElementBy(selectedBankDisplay);
-//        }
-//
-//        public Clickable getProcessSuccessMsg() {
-//            return Clickable.getElementBy(processSuccessMsg);
-//        }
-//
-//        public Clickable getRateYourExperienceLink() {
-//            return Clickable.getElementBy(rateYourExperienceLink);
-//        }
-//
-//        public Clickable getViewReceiptLink() {
-//            return Clickable.getElementBy(viewReceipt);
-//        }
-//
-//        public Clickable getBlueCloseButton() {
-//            return Clickable.getElementBy(closeBlueBtn);
-//        }
-//
-//        public Clickable getTapToPayMoreLink() {
-//            return Clickable.getElementBy(tapToPayMoreLink, "Tap To Pay More Link");
-//        }
-//
-//        public Clickable getSwipeToPayButton() {
-//            return Clickable.getElementBy(swipeButton, "Swipe To Pay Button");
-//        }
-//
-//        public Clickable getAmountUpdateButton() {
-//            return Clickable.getElementBy(updateButton, "Amount Update Button");
-//        }
-//
-//        public Editable getMoreAmountField() {
-//            return Editable.getElementBy(moreAmountTbx, "More Amount Field");
-//        }
-//
-//        // Zelle Payment Methods
-//        public Clickable getSavedZelleCard() {
-//            return Clickable.getElementBy(savedZellePaymentButton);
-//        }
-//
-//        public Clickable getZellePopup() {
-//            return Clickable.getElementBy(zellePopup);
-//        }
-//
-//        public Clickable getZelleCopyLink() {
-//            return Clickable.getElementBy(zelleCopyLink);
-//        }
-//
-//        public Clickable  getPaymentType(){
-//            return  Clickable.getElementBy(paymentType, "Payment type on PaymentPage");
-//        }
-//
-//        public Clickable  getUpdateAmountToPayButton(){
-//            return  Clickable.getElementBy(updateAmtBtn, "Update Amount to pay button");
-//        }
+
+
+
+    public void clickOnAffirmButton(){
+        click(affirmAccount);
+    }
+    public void getProcessButtonOfAffirm(){
+        click(processBtnOfAffirm);
+    }
+    public void getAuthorizeTestPaymentBtn(){
+        click(authorizeTestPaymentBtn);
+    }
+    public void getPayemntDetails(){
+        click(paymentDetails);
+    }
+
+    public void getMoreDetailsBtn(){
+        clickElementByJS(moreDetailsBtn);
+    }
+
     public void clickOnProcessPaymentBtn() {
         staticWait(2000);
         click(processPaymentBtn);
-    }
-    public void clickProcessBtn() {
-        click(processBtn);
     }
 
     public void clickOnProcessPayment() {
@@ -557,6 +220,7 @@ public class PaymentPage extends BaseTest {
     }
 
     public void clickOntranscationMenu() {
+        staticWait(2000);
         click(transcationMenu);
     }
 
@@ -564,10 +228,6 @@ public class PaymentPage extends BaseTest {
         click(paidBill);
     }
 
-    public void clickOnNotPaidLabel() {
-        staticWait(3000);
-        click(notPaid);
-    }
 
     public void clickOnDeleteIcon() {
         staticWait(2000);
@@ -591,6 +251,7 @@ public class PaymentPage extends BaseTest {
     }
 
     public void clickOnSignOut() {
+        staticWait(3000);
         click(signOut);
     }
 
@@ -601,11 +262,6 @@ public class PaymentPage extends BaseTest {
     public void enterTxtInRecieveAmountField(String recieveAmountTxt) {
         staticWait(3000);
         actionEnterText(recieveAmountField, recieveAmountTxt);
-    }
-
-
-    public void clickOncrossIconOnPartialPaid() {
-        click(crossIconOnPartialPaid);
     }
 
     public void clickOnBillIcon() {
@@ -625,6 +281,7 @@ public class PaymentPage extends BaseTest {
     public void clickOnchangeBtn() {
         staticWait(5000);
         scrollToDown();
+        staticWait(4000);
         click(changeBtn);
     }
 
@@ -632,7 +289,6 @@ public class PaymentPage extends BaseTest {
         staticWait(4000);
         click(zelleAccount);
     }
-
     public void clickOnVenmoBank() {
         staticWait(4000);
         click(VenmoAccount);
@@ -644,7 +300,7 @@ public class PaymentPage extends BaseTest {
     }
 
     public void switchToFrame() {
-        staticWait(4000);
+        staticWait(3000);
         switchToFrame(iframeForCard);
     }
 
@@ -662,8 +318,8 @@ public class PaymentPage extends BaseTest {
     }
 
     public void clickOnViewReciptLink() {
-        staticWait(3000);
-        scrollToDown();
+        staticWait(2000);
+        scrollToElement(viewReciptTxt);
         click(viewReciptTxt);
     }
 
@@ -683,7 +339,7 @@ public class PaymentPage extends BaseTest {
 
     public void clickOnswipeArrowBtn() {
         staticWait(5000);
-        hoverAndClick(swipeArrowBtn, swipeArrowBtn);
+        click(swipeArrowBtn);
     }
 
     public void swipeCard() {
@@ -702,106 +358,150 @@ public class PaymentPage extends BaseTest {
         click(selectCheckBox);
     }
 
+
     public void zelleSaveBtn() {
         click(zelleSaveBtn);
     }
 
+    public void clickOnRejectBtn() {
+        List<WebElement> elements = getDriver().findElements(By.xpath("//i[@class='fal fa-circle custom-check-off ']"));
+        for (WebElement element : elements) {
+            String resonsName = element.getText();
+            Log.info(resonsName);
+            element.click();
+            ;
+        }
+    }
+
+
+    public void selectStore(String store) {
+        click(By.xpath("//li[contains(text(),'" + store + "')]"));  // Select store
+    }
+
+    public void clickOnNotPaidLabel() {
+        staticWait(3000);
+        hoverAndClick(notPaid, notPaid);
+    }
+
 
     public void paymentPopup(String memoTxt) {
-        softAssert.assertEquals(billHeader, "Bill");
-        softAssert.assertTrue(isElementDisplayed(qrCode));
-        softAssert.assertTrue(isElementDisplayed(shareBtn));
-        softAssert.assertTrue(isElementDisplayed(editIcon));
-        softAssert.assertTrue(isElementDisplayed(processPaymentBtn));
-        softAssert.assertTrue(isElementDisplayed(deleteIconBtn));
-        softAssert.assertTrue(isElementDisplayed(uniqueNumber));
-        softAssert.assertTrue(isElementDisplayed(BillCreatedTime));
-        softAssert.assertTrue(isElementDisplayed(NotPaid));
-        softAssert.assertTrue(isElementDisplayed(tapToAddFile));
+        String billHead=getText(billHeader);
+        Assert.assertEquals(billHead, "Bill");
+
+        Assert.assertTrue(isElementDisplayed(qrCode));
+        Assert.assertTrue(isElementDisplayed(shareBtn));
+        Assert.assertTrue(isElementDisplayed(editIcon));
+        Assert.assertTrue(isElementDisplayed(processPaymentBtn));
+        Assert.assertTrue(isElementDisplayed(deleteIconBtn));
+        Assert.assertTrue(isElementDisplayed(uniqueNumber));
+        Assert.assertTrue(isElementDisplayed(BillCreatedTime));
+        Assert.assertTrue(isElementDisplayed(NotPaid));
+        Assert.assertTrue(isElementDisplayed(tapToAddFile));
+
 
         // Click on Process payment button in Bill popup
         clickOnProcessPaymentBtn();
-
+        staticWait(2000);
         String recievePaymentTxt = getText(totalAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String totalAmt = recievePaymentTxt.replaceAll("[$,]", "");
+        String totalAmt = recievePaymentTxt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + totalAmt); // Output: 1000.00// Remove non-numeric characters
 
         String balanceSAmt = getText(balanceAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String balance = balanceSAmt.replaceAll("[$,]", "");
+        String balance = balanceSAmt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + balance); // Output: 1000.00// Remove non-numeric characters
 
-        softAssert.assertEquals(totalAmt, balance);
-        softAssert.assertTrue(isElementDisplayed(recieveAmtTxtField));
-        softAssert.assertTrue(isElementDisplayed(creditCardButton));
-        softAssert.assertTrue(isElementDisplayed(otherBtn));
+         Assert.assertEquals(totalAmt, balance);
+        Assert.assertTrue(isElementDisplayed(recieveAmtTxtField));
+        Assert.assertTrue(isElementDisplayed(creditCardButton));
+        Assert.assertTrue(isElementDisplayed(otherBtn));
 
         //click on others button.
         clickOnOtherBtn();
 
-        softAssert.assertTrue(isElementDisplayed(paymentTypeText));
-        String getAttMemo = getAttribute(memoTxtField, "placeholder");
-        softAssert.assertEquals(getAttMemo, "Memo");
+        staticWait(2000);
+        Assert.assertTrue(isElementDisplayed(paymentTypeText));
 
-        softAssert.assertTrue(isElementDisplayed(venomoBtn));
-        softAssert.assertTrue(isElementDisplayed(zelleBtn));
-        softAssert.assertTrue(isElementDisplayed(CashBtn));
+         String getAttMemo = getAttribute(memoTxtField, "placeholder");
+        Assert.assertEquals(getAttMemo, "Memo");
+
+        Assert.assertTrue(isElementDisplayed(venomoBtn));
+        Assert.assertTrue(isElementDisplayed(zelleBtn));
+        Assert.assertTrue(isElementDisplayed(CashBtn));
+
 
         enterInMemoField(memoTxt);
         clickOnCashBtn();
 
-        softAssert.assertTrue(isElementDisplayed(paidLabel));
-        softAssert.assertTrue(isElementDisplayed(cashIcon));
+      //  Assert.assertTrue(isElementDisplayed(paidLabel));
+        Assert.assertTrue(isElementDisplayed(cashIcon));
 
         clickOnCrossIcon();
         clickOntranscationMenu();
         clickOnpaidBillSection();
 
-        softAssert.assertTrue(isElementDisplayed(amountPaidTime));
-        softAssert.assertTrue(isElementDisplayed(paidlabel));
-        softAssert.assertTrue(isElementDisplayed(uniqueId));
-        softAssert.assertTrue(isElementDisplayed(refundIcon));
-        softAssert.assertTrue(isElementDisplayed(verifyIcon));
+        Assert.assertTrue(isElementDisplayed(amountPaidTime));
+
+        Assert.assertTrue(isElementDisplayed(paidlabel));
+
+        Assert.assertTrue(isElementDisplayed(uniqueId));
+
+        Assert.assertTrue(isElementDisplayed(refundIcon));
+        Assert.assertTrue(isElementDisplayed(verifyIcon));
 
         clickOncrossIconOnTransactionpage();
 
     }
 
     public void paymentByCreditCard(String cardNumber, String expiryDateTxt, String cvcTxt, String countryName) {
+        staticWait(2000);
+//        softAssert.assertEquals(billHeader, "Bill");
+//        softAssert.assertTrue(isElementDisplayed(qrCode));
+//        softAssert.assertTrue(isElementDisplayed(shareBtn));
+//        softAssert.assertTrue(isElementDisplayed(editIcon));
+//        softAssert.assertTrue(isElementDisplayed(processPaymentBtn));
+//        softAssert.assertTrue(isElementDisplayed(deleteIconBtn));
+//        softAssert.assertTrue(isElementDisplayed(uniqueNumber));
+//        softAssert.assertTrue(isElementDisplayed(BillCreatedTime));
+//        softAssert.assertTrue(isElementDisplayed(NotPaid));
+//        softAssert.assertTrue(isElementDisplayed(tapToAddFile));
 
-        softAssert.assertEquals(billHeader, "Bill");
-        softAssert.assertTrue(isElementDisplayed(qrCode));
-        softAssert.assertTrue(isElementDisplayed(shareBtn));
-        softAssert.assertTrue(isElementDisplayed(editIcon));
-        softAssert.assertTrue(isElementDisplayed(processPaymentBtn));
-        softAssert.assertTrue(isElementDisplayed(deleteIconBtn));
-        softAssert.assertTrue(isElementDisplayed(uniqueNumber));
-        softAssert.assertTrue(isElementDisplayed(BillCreatedTime));
-        softAssert.assertTrue(isElementDisplayed(NotPaid));
-        softAssert.assertTrue(isElementDisplayed(tapToAddFile));
-        enterText(cardNumberTbx,cardNumber);
-        enterText(expirationDateTbx,expiryDateTxt);
-        enterText(cvcTbx,cvcTxt);
-        enterText(countryDropDown,countryName);
+        String billHead=getText(billHeader);
+        Assert.assertEquals(billHead, "Bill");
+
+        Assert.assertTrue(isElementDisplayed(qrCode));
+        Assert.assertTrue(isElementDisplayed(shareBtn));
+        Assert.assertTrue(isElementDisplayed(editIcon));
+        Assert.assertTrue(isElementDisplayed(processPaymentBtn));
+        Assert.assertTrue(isElementDisplayed(deleteIconBtn));
+        Assert.assertTrue(isElementDisplayed(uniqueNumber));
+        Assert.assertTrue(isElementDisplayed(BillCreatedTime));
+        Assert.assertTrue(isElementDisplayed(NotPaid));
+        Assert.assertTrue(isElementDisplayed(tapToAddFile));
 
         // Click on Process payment button in Bill popup
         clickOnProcessPayment();
 
         String recievePaymentTxt = getText(totalAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String totalAmt = recievePaymentTxt.replaceAll("[$,]", "");
+        String totalAmt = recievePaymentTxt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + totalAmt); // Output: 1000.00// Remove non-numeric characters
 
         String balanceSAmt = getText(balanceAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String balance = balanceSAmt.replaceAll("[$,]", "");
+        String balance = balanceSAmt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + balance); // Output: 1000.00// Remove non-numeric characters
 
-        softAssert.assertEquals(totalAmt, balance);
-        softAssert.assertTrue(isElementDisplayed(recieveAmtTxtField));
-        softAssert.assertTrue(isElementDisplayed(creditCardButton));
-        softAssert.assertTrue(isElementDisplayed(otherBtn));
+//        softAssert.assertEquals(totalAmt, balance);
+//        softAssert.assertTrue(isElementDisplayed(recieveAmtTxtField));
+//        softAssert.assertTrue(isElementDisplayed(creditCardButton));
+//        softAssert.assertTrue(isElementDisplayed(otherBtn));
+
+        Assert.assertEquals(totalAmt, balance);
+        Assert.assertTrue(isElementDisplayed(recieveAmtTxtField));
+        Assert.assertTrue(isElementDisplayed(creditCardButton));
+        Assert.assertTrue(isElementDisplayed(otherBtn));
 
         //click on others button.
         clickOncreditCardBtn();
@@ -845,12 +545,12 @@ public class PaymentPage extends BaseTest {
 
         String recievePaymentTxt = getText(totalAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String totalAmt = recievePaymentTxt.replaceAll("[$,]", "");
+        String totalAmt = recievePaymentTxt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + totalAmt); // Output: 1000.00// Remove non-numeric characters
 
         String balanceSAmt = getText(balanceAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String balance = balanceSAmt.replaceAll("[$,]", "");
+        String balance = balanceSAmt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + balance); // Output: 1000.00// Remove non-numeric characters
 
         softAssert.assertEquals(totalAmt, balance);
@@ -876,6 +576,7 @@ public class PaymentPage extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(verifyIcon));
 
         clickOncrossIconOnTransactionpage();
+
     }
 
     public void paymentThroughZelle() {
@@ -895,12 +596,12 @@ public class PaymentPage extends BaseTest {
 
         String recievePaymentTxt = getText(totalAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String totalAmt = recievePaymentTxt.replaceAll("[$,]", "");
+        String totalAmt = recievePaymentTxt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + totalAmt); // Output: 1000.00// Remove non-numeric characters
 
         String balanceSAmt = getText(balanceAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String balance = balanceSAmt.replaceAll("[$,]", "");
+        String balance = balanceSAmt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + balance); // Output: 1000.00// Remove non-numeric characters
 
         softAssert.assertEquals(totalAmt, balance);
@@ -930,6 +631,7 @@ public class PaymentPage extends BaseTest {
     }
 
     public void PaymentByMultipleMode(String partialAmount, String partialAmounts, String totalAmount) {
+        staticWait(2000);
         softAssert.assertEquals(billHeader, "Bill");
         softAssert.assertTrue(isElementDisplayed(qrCode));
         softAssert.assertTrue(isElementDisplayed(shareBtn));
@@ -946,12 +648,12 @@ public class PaymentPage extends BaseTest {
 
         String recievePaymentTxt = getText(totalAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String totalAmt = recievePaymentTxt.replaceAll("[$,]", "");
+        String totalAmt = recievePaymentTxt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + totalAmt); // Output: 1000.00// Remove non-numeric characters
 
         String balanceSAmt = getText(balanceAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String balance = balanceSAmt.replaceAll("[$,]", "");
+        String balance = balanceSAmt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + balance); // Output: 1000.00// Remove non-numeric characters
 
 
@@ -1009,12 +711,12 @@ public class PaymentPage extends BaseTest {
 
         String recievePaymentTxt = getText(totalAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String totalAmt = recievePaymentTxt.replaceAll("[$,]", "");
+        String totalAmt = recievePaymentTxt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + totalAmt); // Output: 1000.00// Remove non-numeric characters
 
         String balanceSAmt = getText(balanceAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String balance = balanceSAmt.replaceAll("[$,]", "");
+        String balance = balanceSAmt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + balance); // Output: 1000.00// Remove non-numeric characters
 
 
@@ -1060,12 +762,12 @@ public class PaymentPage extends BaseTest {
 
         String recievePaymentTxt = getText(totalAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String totalAmt = recievePaymentTxt.replaceAll("[$,]", "");
+        String totalAmt = recievePaymentTxt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + totalAmt); // Output: 1000.00// Remove non-numeric characters
 
         String balanceSAmt = getText(balanceAmt); // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
-        String balance = balanceSAmt.replaceAll("[$,]", "");
+        String balance = balanceSAmt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + balance); // Output: 1000.00// Remove non-numeric characters
 
         softAssert.assertEquals(totalAmt, balance);
@@ -1117,47 +819,42 @@ public class PaymentPage extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(viewReciptTxt));
 
         clickOnViewReciptLink();
-        staticWait(3000);
         softAssert.assertTrue(isElementDisplayed(transactionHeader));
         softAssert.assertTrue(isElementDisplayed(tarnsactionUniqueId));
         softAssert.assertTrue(isElementDisplayed(paymentMethodIcon));
-
 
     }
 
     public void billPayment() {
 
-        staticWait(3000);
-        softAssert.assertTrue(isElementDisplayed(thankTxt),"Thankyou Text");
-        softAssert.assertTrue(isElementDisplayed(youTxt),"you Text");
-        scrollToDown();
-        waitForElementToBeVisible(rateYourExpTxt,3);
-        softAssert.assertTrue(isElementDisplayed(rateYourExpTxt),"Rate your experience");
-        softAssert.assertTrue(isElementDisplayed(viewReciptTxt),"View Receipt Text");
-        staticWait(3000);
-       scrollToElement(viewReciptTxt);
-        clickOnViewReciptLink();
         staticWait(5000);
-        softAssert.assertTrue(isElementDisplayed(transactionHeader), "Transaction Header");
-        softAssert.assertTrue(isElementDisplayed(tarnsactionUniqueId),"Transaction UniqueId");
-        softAssert.assertTrue(isElementDisplayed(paymentMethodIcon),"Payment Method Icon");
+        softAssert.assertTrue(isElementDisplayed(thankTxt));
+        softAssert.assertTrue(isElementDisplayed(youTxt));
+        scrollToDown();
+        softAssert.assertTrue(isElementDisplayed(rateYourExpTxt));
+        softAssert.assertTrue(isElementDisplayed(viewReciptTxt));
+        staticWait(2000);
+        clickOnViewReciptLink();
+        softAssert.assertTrue(isElementDisplayed(transactionHeader));
+        softAssert.assertTrue(isElementDisplayed(tarnsactionUniqueId));
+        softAssert.assertTrue(isElementDisplayed(paymentMethodIcon));
 
     }
 
     public void billPaymentByThroughDebitCard(String cardNameTxt, String expiryDateTxt, String cvcTxt, String countryName) {
+        staticWait(3000);
         clickOnSignOut();
         LoginAsCustomer();
         clickOnBillIcon();
         clickOnBill();
         clickOnPayNowBtn();
-        if(isElementDisplayed(payCurrentBalance)){
-            hoverAndClick(payCurrentBalance,payCurrentBalance);
-        }else{
+        if (isElementDisplayed(payCurrentBalance)) {
+            hoverAndClick(payCurrentBalance, payCurrentBalance);
+        } else {
             Log.info("Nothing to be selected");
         }
         //  softAssert.assertTrue(isElementDisplayed(storeName));
         softAssert.assertTrue(isElementDisplayed(visaCardName));
-        staticWait(3000);
         clickOnchangeBtn();
         clickOncreditCards();
         switchToFrame();
@@ -1170,31 +867,33 @@ public class PaymentPage extends BaseTest {
 
 
     public void paymentThrouhBankAccount() {
+        staticWait(3000);
         clickOnSignOut();
         LoginAsCustomer();
         clickOnBillIcon();
         clickOnBill();
         clickOnPayNowBtn();
-        if(isElementDisplayed(payCurrentBalance)){
-            hoverAndClick(payCurrentBalance,payCurrentBalance);
-        }else{
+        if (isElementDisplayed(payCurrentBalance)) {
+            hoverAndClick(payCurrentBalance, payCurrentBalance);
+        } else {
             Log.info("Nothing to be selected");
         }
-     //   softAssert.assertTrue(isElementDisplayed(storeName));
+        //   softAssert.assertTrue(isElementDisplayed(storeName));
         softAssert.assertTrue(isElementDisplayed(visaCardName));
         clickOnchangeBtn();
         clickOnBankAccountSection();
     }
 
     public void billPaymentByVariousPaymentMethods(String enterTextInAmountField, String cardNameTxt, String expiryDateTxt, String cvcTxt, String countryName) {
+        staticWait(3000);
         clickOnSignOut();
         LoginAsCustomer();
         clickOnBillIcon();
         clickOnBill();
         clickOnPayNowBtn();
-        if(isElementDisplayed(payCurrentBalance)){
-            hoverAndClick(payCurrentBalance,payCurrentBalance);
-        }else{
+        if (isElementDisplayed(payCurrentBalance)) {
+            hoverAndClick(payCurrentBalance, payCurrentBalance);
+        } else {
             Log.info("Nothing to be selected");
         }
         softAssert.assertTrue(isElementDisplayed(storeName));
@@ -1209,22 +908,21 @@ public class PaymentPage extends BaseTest {
         switchToDefaultContent();
         staticWait(10000);
         clickOnSaveBtn();
-
     }
-
 
     public void clickOnZelleAccount() {
         clickOnchangeBtn();
         clickOnZelleBank();
     }
-    public void getPayThroughCreditCard(){
-        //switchToCreditCardFrame();
-        actionEnterText(cardNumberTbx,"4111111111111111");
-        actionEnterText(expirationDateTbx,"0230");
-        actionEnterText(cvcTbx,"123");
-        actionEnterText(countryDropDown,"Australia");
+
+    public void getPayThroughCreditCard() {
+        switchToFrame();
+        scrollToElement(cardNumberTbx);
+        actionEnterText(cardNumberTbx, "4111111111111111");
+        actionEnterText(expirationDateTbx, "0230");
+        actionEnterText(cvcTbx, "123");
+        actionEnterText(countryDropDown, "Australia");
         switchToDefaultWindow();
-        clickProcessBtn();
 
     }
 
@@ -1233,15 +931,23 @@ public class PaymentPage extends BaseTest {
         clickOnVenmoBank();
     }
 
+    public void clickOnVenomoAccount() {
+        clickOnVenmoAccount();
+        clickOnMakePaymentBtn();
+        clickOnCheckBox();
+        zelleSaveBtn();
+    }
+
+
     public void paymentByZelleAccount() {
         clickOnSignOut();
         LoginAsCustomer();
         clickOnBillIcon();
         clickOnBill();
         clickOnPayNowBtn();
-        if(isElementDisplayed(payCurrentBalance)){
-            hoverAndClick(payCurrentBalance,payCurrentBalance);
-        }else{
+        if (isElementDisplayed(payCurrentBalance)) {
+            hoverAndClick(payCurrentBalance, payCurrentBalance);
+        } else {
             Log.info("Nothing to be selected");
         }
 
@@ -1256,15 +962,16 @@ public class PaymentPage extends BaseTest {
 
 
     public void paymentThrouhVenmoAccount() {
+        staticWait(3000);
         clickOnSignOut();
         LoginAsCustomer();
         clickOnBillIcon();
         clickOnBill();
         clickOnPayNowBtn();
-        if(isElementDisplayed(payCurrentBalance)){
-            hoverAndClick(payCurrentBalance,payCurrentBalance);
-        }else{
-             Log.info("Nothing to be selected");
+        if (isElementDisplayed(payCurrentBalance)) {
+            hoverAndClick(payCurrentBalance, payCurrentBalance);
+        } else {
+            Log.info("Nothing to be selected");
         }
         staticWait(4000);
         clickOnVenmoAccount();
@@ -1275,23 +982,34 @@ public class PaymentPage extends BaseTest {
     billPayment();
     }
 
-    public void getOkButtonOfAttentionPopup(){
-        click(okbuttonOfAttentionPopup);
+    public void RejectABill() {
+        staticWait(3000);
+        clickOnSignOut();
+        LoginAsCustomer();
+        clickOnBillIcon();
+        clickOnBill();
+        clickOnRejectBtn();
+
     }
+
     public void billPaymentByThroughDebitCardWithRecurringBill(String cardNameTxt, String expiryDateTxt, String cvcTxt, String countryName) {
+        staticWait(3000);
         clickOnSignOut();
         LoginAsCustomer();
         clickOnBillIcon();
         clickOnBill();
         clickOnPayNowBtn();
-        if(isElementDisplayed(payCurrentBalance)){
-            hoverAndClick(payCurrentBalance,payCurrentBalance);
-        }else{
+        if (isElementDisplayed(notPaid)) {
+            hoverAndClick(notPaid, notPaid);
+        } else {
+            Log.info("Nothing to be selected");
+        }
+        if (isElementDisplayed(attentionHeader)) {
+            hoverAndClick(okButn , okButn );
+        } else {
             Log.info("Nothing to be selected");
         }
         // Clicking on Ok button of Attention popup
-        getOkButtonOfAttentionPopup();
-
         staticWait(3000);
         clickOnchangeBtn();
         clickOncreditCards();
@@ -1300,8 +1018,53 @@ public class PaymentPage extends BaseTest {
         switchToDefaultContent();
         staticWait(10000);
         clickOnSaveBtn();
+    }
+    public void billPaymentThroughAffirmMethod(){
+        staticWait(3000);
+        clickOnSignOut();
+        LoginAsCustomer();
+        clickOnBillIcon();
+        clickOnBill();
+        clickOnPayNowBtn();
+
+        staticWait(3000);
+        clickOnchangeBtn();
+
+        waitForElementToBeVisible(affirmAccount,5);
+
+        // clicking on affirm payment method button
+        clickOnAffirmButton();
+
+        waitForElementToBeVisible(paymentInformationTitle,5);
+        Assert.assertTrue(isElementDisplayed(paymentInformationTitle),"Payment information Title ");
+//        waitForElementToBeVisible(processBtnOfAffirm,5);
+        staticWait(5000);
+
+        // click on 'Process' button
+
+        getProcessButtonOfAffirm();
+
+        waitForPageLoad();
+
+        // verify Affirm test page appears
+        Assert.assertTrue(isElementDisplayed(affirmTestPageTitle),"Affirm Test page title");
+
+        scrollToElement(authorizeTestPaymentBtn);
+        getAuthorizeTestPaymentBtn();
+    }
+    public void getPayThroughCreditCardThroughAutoPayment() {
+        switchToFrame(autoPaymentCardFrame);
+        scrollToElement(cardNumberTbx);
+        actionEnterText(cardNumberTbx, "4111111111111111");
+        actionEnterText(expirationDateTbx, "0230");
+        actionEnterText(cvcTbx, "123");
+        actionEnterText(countryDropDown, "Australia");
+        staticWait(2000);
+        switchToDefaultWindow();
+        scrollToElement(saveBtn);
+
+        waitForElementToBeClickable(saveBtn,4);
+        clickOnSaveBtn();
 
     }
-
-
 }

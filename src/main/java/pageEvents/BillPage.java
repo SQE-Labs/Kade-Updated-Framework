@@ -11,13 +11,14 @@ import java.util.Locale;
 import base.BaseTest;
 import logger.Log;
 import org.openqa.selenium.*;
-import org.testng.annotations.Test;
-import utils.Constants;
+import org.testng.Assert;
+ import utils.Constants;
 
 import static utils.Constants.BillHeader;
 
 
 public class BillPage extends BaseTest {
+    PaymentPage payment = new PaymentPage();
 
     String descriptionTxt;
     String referenceTxt;
@@ -38,12 +39,12 @@ public class BillPage extends BaseTest {
     By customerField = By.xpath("//div[@class='modal-content']//label[text()='Customer']");
     By moreOptionsField = By.xpath("//div[@class='modal-body'] //label[text()='More options']");
     By pageHeader = By.xpath("//h1[@class='header-title mb-0']");
-    By closeIcon = By.cssSelector("button.btn-close");
+    By closeIcon = By.xpath("(//button[@class='btn-close'])[3]");
     By closeBillBtn = By.xpath("//span[text()='Bill']/../../../../.. //button");
     By userNumber = By.xpath("//input[@name='userPhone']");
     public By filterBtn = By.cssSelector(".far.fa-2x.fa-sliders-h-square");
     public By configureAmount = By.xpath("//div[@class='text-center fs-pn25']");
-    public By enteredAmount = By.xpath("//span[@data-field='total']");
+    public By enteredAmount = By.cssSelector("span[data-field='total']");
     public By tapToAddFiles = By.xpath("//div[text()='Tap to add files']/..");
     public By camera = By.xpath("(//button[contains(@class,'btn btn-outline-dark mx-2')]/child::i[contains(@class,'fas fa-camera-retro fs-p50')])[2]/..");
     public By pdfIcon = By.xpath("(//button[contains(@class,'btn btn-outline-dark mx-2')]/child::i[contains(@class,'fas fa-file-pdf fs-p50')])[2]/..");
@@ -79,6 +80,7 @@ public class BillPage extends BaseTest {
     By subTotalBox = By.xpath("//input[@name='subTotal']");
     public By customerNumber = By.xpath("//input[@name='phone']");
     public By emailField = By.xpath("//input[@name='email']");
+    //input[@name='email']
     By createBtn = By.xpath("//button[@class='btn btn-primary fs-p50']");
     By addBillDetails = By.xpath("//button[@class='p-0 btn btn-link collapsed auto-collapse']");
     public By addBillDescription = By.xpath("//textarea[@name='amount_description']");
@@ -88,7 +90,7 @@ public class BillPage extends BaseTest {
     By addMoreRowLink = By.xpath("//button[@class='btn-sm btn btn-link']");
     By toolTipMessage = By.xpath("//div[@class='tooltip-inner']");
     By refNoTextBox = By.xpath("//input[@name='refNo']");
-    By autoGenToggleBtn = By.xpath("(//input[@name='autoGenerate'])[1]");
+    By autoGenToggleBtn = By.xpath("//i[contains(@class,'btn-sm custom-check-off')]");
     By autoGenClass = By.xpath("(//input[@name='autoGenerate'])[1]/../../../..");
     //	By closeIcon = By.xpath("(//button[@class='btn-close'])[2]");
     By customerEmail = By.xpath("(//input[@name='email'])[2]");
@@ -112,7 +114,7 @@ public class BillPage extends BaseTest {
     public By customerNameField = By.xpath("(//div[@class='my-4']/input[@class='form-control'])[2]");
     public By billDoneBtn = By.xpath("(//div[@class='modal-content']//button[@class='btn btn-link w-100 my-3'])[6]");
     public By confirmBtnDisabled = By.xpath("(//button[@disabled='disabled'])[3]");
-    By customerSection = By.xpath("(//div[@class='border p-2 mb-2 rounded-3 position-relative'])");
+    By searcherName = By.xpath("(//div[@data-field='alias'])[2]");
     By discardBtn = By.xpath("(//*[contains(text(),'discard')])[5]/.. //button[text()='Discard']");
     public By confirmBtn = By.xpath("//button[@name='method']");
     public By continueWithoutBtn = By.xpath("//button[text()='Continue without']");
@@ -135,7 +137,7 @@ public class BillPage extends BaseTest {
     By attachedImage = By.xpath("//img[@class='img-thumbnail  bg-black']");
     By notPaidBill = By.xpath("//div[contains(@class, 'row bg-white')][1]");
     By unPaidBill = By.xpath("(//div[contains(@class,'row bg-white ')])[1]/div[2]");
-    public By deleteButton = By.cssSelector(".btn-outline-danger");
+    By deleteButton = By.cssSelector(".btn-outline-danger");
     public By notPaid = By.xpath("//div[contains(@class, 'row bg-white')][1]");
     public By billsection = By.xpath("//*[@id=\"_16U\"]/div[2]");
     public By billLabel = By.xpath("//div[contains(@class,'row bg-white border rounded')]");
@@ -152,7 +154,7 @@ public class BillPage extends BaseTest {
     By itemsDesc1 = By.xpath("(//textarea[@name='detail_description'])[2]");
     By itemsDesc2 = By.xpath("(//textarea[@name='detail_description'])[3]");
     By itemsDesc3 = By.xpath("(//textarea[@name='detail_description'])[4]");
-    By addALineBtn = By.xpath("//button[normalize-space()='Add a line']");
+    By selectCust = By.xpath("//div[contains(text(),'Select or create a new customer')]/../../../../../..");
     By itemPrice1 = By.xpath("(//input[@name='detail_amount'])[2]");
     By itemPrice2 = By.xpath("(//input[@name='detail_amount'])[3]");
     By itemPrice3 = By.xpath("(//input[@name='detail_amount'])[4]");
@@ -185,7 +187,7 @@ public class BillPage extends BaseTest {
     public By repeatLockIcon = By.xpath("(//i[@class='fas fa-lock'])[1]");
     public By expireLockIcon = By.xpath("(//i[@class='fas fa-lock'])[2]");
     public By memoNoneTxt = By.xpath("(//div[contains(@class,'text-nowrap d-flex')]//div[text()='None'])[4]");
-    public By expiryDateSection = By.xpath("(//a[contains(@class, '-activator-button-')])[5]");
+    public By expiryDateSection = By.xpath("//label[text()='Expiration Date:']/../..");
     public By expirationDayPopUp = By.xpath("//h5[text()='Expiration Date']");
     public By refNoneTxt = By.xpath("//label[text()='Ref No.:']/..//div[text()='None']/../../../../..");
     public By DescriptionEnteredText = By.xpath("//label[text()='Description:']/..//div[text()='None']/../../../../..");
@@ -233,7 +235,7 @@ public class BillPage extends BaseTest {
     public By minutesTxt = By.xpath("//option[text()='Minutes']");
 
     By paymentMethodLink = By.xpath("//button[text()='Add payment method']");
-    By customerPermissionCheckbox = By.xpath("((//label[@class='custom-checkbox'])[5]/child::i)[2]");
+    By customerPermissionCheckbox = By.xpath("//label[contains(@class, 'checkbox')]//span[text()=\"I have my customer's permission\"]");
     By customerPrmissionDoneButton = By.xpath("(//button[text()='Continue'])[2]");
     By cardName = By.xpath("//input[@placeholder='1234 1234 1234 1234']");
     By cardIframe = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[2]");
@@ -265,6 +267,10 @@ public class BillPage extends BaseTest {
     By recurringBillText = By.xpath("//a[@class='btn btn-link']");
     public By billTag = By.xpath("//div[contains(@class,'col-5  text-end') ]//div[1]/span");
 
+    // auto payment
+    public By autoPaymentInfoMsg = By.xpath("//div[@class='alert-message']//div[contains(text(),'process this bill')]");
+    public By removeButtonUnderInfoMsg = By.xpath("//div[contains(text(),'process this bill')]/..//button");
+    public By successInfoMsg = By.xpath("//h6[text()='This bill has been processed']");
     /*
     Locators of Bill popup
      */
@@ -285,9 +291,17 @@ public class BillPage extends BaseTest {
     By activeBillAmmount = By.xpath("//span[@class='display-5 display-sm-2 fw-bold']");
     By doneButton = By.xpath(" //div[@id='_3FH']/button[@type='button'][normalize-space()='Done']");
     public By amountTxtField = By.xpath("//label[text()='Amount']");
-    public By btnDisbled = By.xpath("(//button[@disabled='disabled'])[3]");
+    By btnDisabled = By.xpath("(//button[@disabled='disabled'])[3]");
+    By chargeButton = By.xpath("//span[contains(text(),'Charge')]");
 
 
+
+    public void getUseThisToggle(){
+        clickElementByJS(autoGenToggleBtn);
+    }
+    public void getChargeButton(){
+        click(chargeButton);
+    }
 
 
     String amount = "2000.00";
@@ -296,12 +310,17 @@ public class BillPage extends BaseTest {
         click(expireLockIcon);
     }
 
+    public void getRemoveBtnUnderInfoMsg(){
+        click(removeButtonUnderInfoMsg);
+    }
+
     public void clickOnNewBill() {
         Log.info("Clicking on newBillTxt");
         click(newBillTxt);
     }
 
     public void getStoresDropdown() {
+        staticWait(2000);
         click(storesCombobox);
     }
 
@@ -320,7 +339,7 @@ public class BillPage extends BaseTest {
         hoverAndClick(camera, camera);
         staticWait(1000);
         uploadImageInStoreLogo();
-        staticWait(10000);
+        staticWait(5000);
         //  scrollToElement(okIcon);
         hoverAndClick(okIcon, okIcon);
 
@@ -342,25 +361,28 @@ public class BillPage extends BaseTest {
         staticWait(3000);
         click(moreSection);
     }
-    public void clickOnCustomerSec(){
-        click(customerSection);
+
+    public void clickOnIcon() {
+        staticWait(2000);
+        click(closeIcon);
     }
+
 
     public void verifyEnteredMemoText() {
         //Verify not paid label for generated amount
-        softAssert.assertTrue(isElementDisplayed(notPaidLabel));
-        softAssert.assertTrue(isElementDisplayed(uniqueRefNo));
-        softAssert.assertTrue(isElementDisplayed(billTimeOnPopup));
-        softAssert.assertTrue(isElementDisplayed(memoEnteredTxt));
+        Assert.assertTrue(isElementDisplayed(notPaidLabel));
+        Assert.assertTrue(isElementDisplayed(uniqueRefNo));
+        Assert.assertTrue(isElementDisplayed(billTimeOnPopup));
+        Assert.assertTrue(isElementDisplayed(memoEnteredTxt));
     }
 
     public void clickOnExpiryDateSection() {
         staticWait(3000);
-       clickElementByJS(expiryDateSection);
+        click(expiryDateSection);
     }
 
     public void sendTxtInexpireInTxtField(String hrs, int minTxt) {
-        staticWait(3000);
+        staticWait(2000);
         actionEnterText(expireInTxtField, hrs);
         click(expireDropDown);
         staticWait(2000);
@@ -373,7 +395,7 @@ public class BillPage extends BaseTest {
 
         click(shareLinkToCustomer);
         String successMsg = getText(shareLinkSuccessMessage);
-        softAssert.assertEquals(successMsg, "We sent a link to the customer.");
+        Assert.assertEquals(successMsg, "We sent a link to the customer.");
     }
 
     public void clickOnpaymentMethodLink() {
@@ -408,17 +430,17 @@ public class BillPage extends BaseTest {
     public void assertGetRefNotxt() {
         WaitUntilElementVisible(refNoneTxt, 10);
         scrollToElement(refNoneTxt);
-        softAssert.assertTrue(isElementDisplayed(refNoneTxt));
+        Assert.assertTrue(isElementDisplayed(refNoneTxt));
     }
 
     public void assertDescriptionNonetxt() {
-        softAssert.assertTrue(isElementDisplayed(descriptionNoneTxt));
+        Assert.assertTrue(isElementDisplayed(descriptionNoneTxt));
     }
 
     public void clickOnGetRefNotxt() {
         staticWait(4000);
         click(refNoneTxt);
-        softAssert.assertTrue(isElementDisplayed(refNoPopup));
+        Assert.assertTrue(isElementDisplayed(refNoPopup));
         referenceTxt = "Kevin123" + requiredString(42);
         staticWait(4000);
         actionEnterText(enterTxtInRefNo, referenceTxt);
@@ -430,7 +452,7 @@ public class BillPage extends BaseTest {
         staticWait(4000);
         click(descriptionSection);
         Log.info("descriptionSection None text displayed");
-        softAssert.assertTrue(isElementDisplayed(descriptionTitle));
+        Assert.assertTrue(isElementDisplayed(descriptionTitle));
         descriptionTxt = "Kevin123" + requiredString(192);
         staticWait(4000);
         actionEnterText(descriptionTextField, descriptionTxt);
@@ -441,7 +463,7 @@ public class BillPage extends BaseTest {
 
     public void assertEnteredText() {
         Log.info("Validating text");
-        softAssert.assertEquals(referenceTxt, getText(refNoneTxt));
+        Assert.assertEquals(referenceTxt, getText(refNoneTxt));
         Log.info(getText(refNoneTxt));
 
 
@@ -450,7 +472,7 @@ public class BillPage extends BaseTest {
 
     public void assertEnteredTextInDescriptionField() {
         Log.info("Validating text");
-        softAssert.assertEquals(descriptionTxt, getText(DescriptionEnteredText));
+        Assert.assertEquals(descriptionTxt, getText(DescriptionEnteredText));
         Log.info(getText(DescriptionEnteredText));
     }
 
@@ -466,10 +488,10 @@ public class BillPage extends BaseTest {
 
     public void assertingDescription() {
         Log.info("Validating text");
-        softAssert.assertEquals(enteredDescTxt, descriptionTxt);
+        Assert.assertEquals(enteredDescTxt, descriptionTxt);
         Log.info("Validating text : " + enteredDescTxt);
         Log.info("Validating text");
-        softAssert.assertEquals(refGetTxt, referenceTxt);
+        Assert.assertEquals(refGetTxt, referenceTxt);
         Log.info("Validating text : " + refGetTxt);
     }
 
@@ -519,6 +541,7 @@ public class BillPage extends BaseTest {
     }
 
     public void getNewBillButton() {
+        staticWait(2000);
         click(newBillBtn);
 
     }
@@ -554,6 +577,12 @@ public class BillPage extends BaseTest {
         staticWait(3000);
         click(selectACustomerBtn);
     }
+
+    public void selectCust() {
+        staticWait(3000);
+        click(selectCust);
+    }
+
 
     public void getCustomerPhoneNoField(String phone) {
         staticWait(3000);
@@ -770,12 +799,9 @@ public class BillPage extends BaseTest {
         click(documentIcon);
     }
 
-    public void getCloseBillButton() {
-        click(closeBillBtn);
-    }
 
     public void getDeleteButton() {
-        waitForElementToBeClickable(deleteButton, 3);
+        staticWait(2000);
         clickElementByJS(deleteButton);
     }
 
@@ -784,15 +810,7 @@ public class BillPage extends BaseTest {
         hoverAndClick(notPaid, notPaid);
     }
 
-    public void clickOnCreatedBill() {
-        staticWait(5000);
-        clickElementByJS(billsection);
-    }
 
-    public void clickOnBillLabel() {
-        staticWait(3000);
-        hoverAndClick(billLabel, billLabel);
-    }
 
     public void reduceScreenResolution() throws AWTException {
         Robot robot = new Robot();
@@ -809,12 +827,9 @@ public class BillPage extends BaseTest {
     }
 
     public void getDeleteIcon() {
-
+        staticWait(2000);
         click(deleteIcon);
     }
- 
-
-
 
     public void clickOnMemoButton() {
         click(memoBtn);
@@ -823,34 +838,25 @@ public class BillPage extends BaseTest {
     public void getMemoField() {
         String maxLengthValue = getAttribute(memoField, "maxlength");
         Log.info(maxLengthValue);
-        softAssert.assertEquals(maxLengthValue, "200");
+        Assert.assertEquals(maxLengthValue, "200");
         memoTxt = "Memo Text" + requiredString(5);
         staticWait(4000);
         actionEnterText(memoField, memoTxt);
     }
 
 
-    public void getDefaultMemoFieldText() {
-        click(memoFieldText);
-    }
-
     public void getMemoFieldMessage() {
 
-        softAssert.assertEquals(memoFieldMessage, "Customer will not see this memo");
+        Assert.assertEquals(memoFieldMessage, "Customer will not see this memo");
     }
 
     public void getMemoPopUpTitle() {
-        softAssert.assertEquals(memoPopUpTitle, "Memo");
-    }
-
-    public void getAddedMemoText() {
-
-        click(addedMemoText);
+        Assert.assertEquals(memoPopUpTitle, "Memo");
     }
 
     public void getEveryDayFieldValue(String specificNumber) {
         String attValue = getAttribute(everyDayField, "value");
-        softAssert.assertEquals(attValue, "1");
+        Assert.assertEquals(attValue, "1");
         Log.info("Attribute value is fetched");
         staticWait(2000);
         actionEnterText(specificNumbers, specificNumber);
@@ -859,7 +865,7 @@ public class BillPage extends BaseTest {
 
     public void getEveryWeekFieldValue(String specificNumber) {
         String attValue = getAttribute(everyWeekField, "value");
-        softAssert.assertEquals(attValue, "1");
+        Assert.assertEquals(attValue, "1");
         Log.info("Attribute value is fetched");
         staticWait(2000);
         actionEnterText(specificNumbers, specificNumber);
@@ -868,7 +874,7 @@ public class BillPage extends BaseTest {
 
     public void getEveryMonthFieldValue(String specificNumber) {
         String attValue = getAttribute(everyMonthField, "value");
-        softAssert.assertEquals(attValue, "1");
+        Assert.assertEquals(attValue, "1");
         Log.info("Attribute value is fetched");
         staticWait(2000);
         actionEnterText(specificNumbers, specificNumber);
@@ -879,7 +885,8 @@ public class BillPage extends BaseTest {
     public void clickOnRepeatField() {
         staticWait(2000);
         click(paidRepeatField);
-        softAssert.assertEquals(repeatTxt, "Repeat");
+        String repeatText=getText(repeatTxt);
+        Assert.assertEquals(repeatText, "Repeat");
     }
 
     public void closePopup() {
@@ -907,22 +914,22 @@ public class BillPage extends BaseTest {
 
     public void closePaymentpopup() {
         staticWait(3000);
-        if (isElementDisplayed(crossPopUpIcon)) {
+        if (isElementDisplayed(closePopup)) {
             System.out.print(" pop-up showed and clicking");
             staticWait(5000);
-            closePopupOnBillPage();
+            BillClosePopup();
         } else {
             Log.info("No pop-up showed");
         }
     }
 
     public void removeNonNumericValueFromTheValue() {
-        amt = "1000.00";
+      String  amt = "1000.00";
         String text = getText(reccuringAmount);  // Get text (e.g., "Maximum $50,000")
         // Remove the dollar sign and commas using replaceAll()
         String numericValue = text.replaceAll("[$,]", "");
         Log.info("Numeric Value: " + numericValue); // Output: 1000.00// Remove non-numeric characters
-        softAssert.assertEquals(amt, reccuringAmount);
+        Assert.assertEquals(amt, numericValue);
     }
 
     public void validatingEnteredAmount() {
@@ -1021,6 +1028,7 @@ public class BillPage extends BaseTest {
                 List<WebElement> selectedElements = getDriver().findElements(By.xpath("//div[@class='list-group-item']"));
                 for (WebElement selectedElement : selectedElements) {
                     staticWait(2000);
+                    scrollToDown();
                     String selectedTxt = selectedElement.getText();
                     Log.info("Selected: " + selectedTxt);
                 }
@@ -1056,7 +1064,6 @@ public class BillPage extends BaseTest {
             }
         }
     }
-
 
     public void getMonthlyFieldValue() {
         List<WebElement> elements = getDriver().findElements(By.xpath("//div[@class='list-group mb-2']/child::label"));
@@ -1155,18 +1162,17 @@ public class BillPage extends BaseTest {
 
     public void assertUpgradePlan() {
         scrollToElement(repeatUpgradePlan);
-        softAssert.assertTrue(isElementDisplayed(repeatUpgradePlan));
+        Assert.assertTrue(isElementDisplayed(repeatUpgradePlan));
         click(repeatUpgradePlanNotNowBtn);
     }
 
     public void clickOnReccuring() {
-        scrollToElement(reccuringMenu);
+
         staticWait(2000);
+        scrollToElement(reccuringMenu);
         click(reccuringMenu);
         click(reccuringBill);
     }
-
-
 
     public void createBillWithoutCustomer() {
         Login();
@@ -1182,52 +1188,46 @@ public class BillPage extends BaseTest {
 
         // Verify New Bill popup Web Elements
         String billPopupTitle = getText(billPopupHeader);
-        softAssert.assertEquals(billPopupTitle, BillHeader);
-        softAssert.assertTrue(isElementDisplayed(amountTxtField), "Amount");
-        softAssert.assertTrue(isElementDisplayed(addBillDescription), "Description (optional)");
-        softAssert.assertTrue(isElementDisplayed(customerDropdown), "Select or create a new customer");
-        softAssert.assertTrue(isElementDisplayed(moreLabelTxt), "More options");
+        Assert.assertEquals(billPopupTitle, BillHeader);
+        Assert.assertTrue(isElementDisplayed(amountTxtField), "Amount");
+        Assert.assertTrue(isElementDisplayed(addBillDescription), "Description (optional)");
+        Assert.assertTrue(isElementDisplayed(customerDropdown), "Select or create a new customer");
+        Assert.assertTrue(isElementDisplayed(moreLabelTxt), "More options");
+
+
 
         // Verify Default value of Amount tab
         String defaultAmt = getAttribute(amtInput, "value");
-        softAssert.assertEquals(defaultAmt, "$0.00");
+        Assert.assertEquals(defaultAmt, "$0.00");
 
         //Verify Confirm Button is disabled before entering amount
-        softAssert.assertTrue(isElementDisplayed(btnDisbled));
+        scrollToElement(btnDisabled);
+        Assert.assertTrue(isElementDisplayed(btnDisabled));
 
         //Enter amount
         String amt = "2,999.00";
         // Thread.sleep(4000);
         actionEnterText(amtTbx, amt);
 
-        softAssert.assertTrue(isElementDisplayed(taxToggleBtnDisable));
+        Assert.assertTrue(isElementDisplayed(taxToggleBtnDisable));
 
         // Verify Default Confirm button is enabled after entering amount
-        softAssert.assertTrue(isElementDisplayed(btnDisbled));
+        scrollToElement(confirmBtn);
+        Assert.assertTrue(isElementDisplayed(confirmBtn));
+
 
         //Click Confirm
         getConfirmButton();
 
         //Verify Message popup and Buttons
-        softAssert.assertEquals(messagePopupHeader, "Message");
-        softAssert.assertTrue(isElementDisplayed(selectCustomer));
-        softAssert.assertTrue(isElementDisplayed(continueWithoutBtn));
+        String messagePopupHead = getText(messagePopupHeader);
+        Assert.assertEquals(getText(messagePopupHeader), "Message");
+        Assert.assertTrue(isElementDisplayed(selectCustomer));
+        Assert.assertTrue(isElementDisplayed(continueWithoutBtn));
 
         //Click On Continue Button
         staticWait(4000);
         getContinueWithoutButton();
-
-        //Verify toast message : Success message Popup.
-        staticWait(4000);
-        softAssert.assertTrue(isElementDisplayed(successMessage));
-        String toastMessage = "Bill has been created successfully.Click here to open the bill";
-        softAssert.assertEquals(successMessage, toastMessage);
-
-        waitForElementToBeClickable(deleteButton,3);
-
-
-
-
 
     }
     public void deleteBill(){
@@ -1239,7 +1239,6 @@ public class BillPage extends BaseTest {
 
     public void createBillWithCustomer(String phoneNumber,String emailID) {
         Login();
-
         //Select Store
         clickOnNewBill();
         getStoresDropdown();
@@ -1248,33 +1247,39 @@ public class BillPage extends BaseTest {
 
         // Click on New Bill Button
         getNewBillButton();
-        waitForElementToBeVisible(popUpHeader,3);
-
 
         // Verify New Bill popup
-        softAssert.assertEquals(getText(popUpHeader), "Bill","Popup Header for bill");
+      //  Assert.assertEquals(popUpHeader, "Bill");
+        String popupheader=getText(popUpHeader);
+        Assert.assertEquals(popupheader,"Bill");
 
         //Verify Confirm Button is disabled before entering amount
-        softAssert.assertTrue(isElementDisplayed(btnDisbled),"Btn is disabled");
+        scrollToElement(btnDisabled);
+        Assert.assertTrue(isElementDisplayed(btnDisabled));
 
 
         //Enter amount
-
+        String amt = "2,000.00";
         staticWait(3000);
-        actionEnterText(amtTbx, amount);
-        staticWait(2000);
+        scrollToElement(amtTbx);
+        actionEnterText(amtTbx, amt);
+
         //Verify Default Confirm button is enabled after entering amount
-        softAssert.assertTrue(isElementDisplayed(btnDisbled),"Confirm button");
+        scrollToElement(confirmBtn);
+        Assert.assertTrue(isElementDisplayed(confirmBtn));
 
 
         //Click Confirm
         getConfirmButton();
-        waitForElementToBeVisible(messagePopupHeader,3);
 
         //Verify Message popup and Buttons
-        softAssert.assertEquals(messagePopupHeader, "Message", "Message popup header");
-        softAssert.assertTrue(isElementDisplayed(selectCustomer),"Select Customer");
-        softAssert.assertTrue(isElementDisplayed(continueWithoutBtn),"continue button");
+        String messagePopupHeade=getText(messagePopupHeader);
+        Assert.assertEquals(messagePopupHeade, "Message", "Message popup header");
+
+        Assert.assertTrue(isElementDisplayed(selectCustomer));
+
+        Assert.assertTrue(isElementDisplayed(continueWithoutBtn));
+
 
         //click on select customer button.
         getSelectACustomerButton();
@@ -1282,14 +1287,14 @@ public class BillPage extends BaseTest {
         //Verify Customer popup
         String phoneNumberField = "Phone number. Existing or new";
         String phone = getAttribute(customerNumber, "placeholder");
-        staticWait(2000);
-        softAssert.assertTrue(Boolean.parseBoolean(phone), phoneNumberField);
+     //   Assert.assertTrue(Boolean.parseBoolean(phone), phoneNumberField);
+        Assert.assertEquals(phone,phoneNumberField);
         Log.info(phone);
 
-        String emailField = "Email. Existing or new";
-        String email = getAttribute(customerNumber, "placeholder");
-        staticWait(2000);
-        softAssert.assertTrue(Boolean.parseBoolean(email), emailField);
+        String emailFieldTxt = "Email. Existing or new";
+        String email = getAttribute(emailField, "placeholder");
+      //  Assert.assertTrue(Boolean.parseBoolean(email), emailField);
+        Assert.assertEquals(email,emailFieldTxt);
         Log.info(email);
 
 
@@ -1301,19 +1306,20 @@ public class BillPage extends BaseTest {
         //Click Confirm
 
         getConfirmButton();
-        waitForElementToBeVisible(successMessage,3);
 
         //Verify toast message : Success message Popup.
+        Assert.assertTrue(isElementDisplayed(successMessage));
         String toastMessage = "Bill has been created successfully.Click here to open the bill";
-        softAssert.assertEquals(successMessage, toastMessage);
+        String toastMess=getText(successMessage);
+        Assert.assertEquals(toastMess, toastMessage);
 
 
         //Close popup
         closePopupOnBillPage();
 
         //Deleting Created Bill
-        waitForElementToBeClickable(notPaid, 5);
-        clickOnNotPaidLabel();
+//        waitForElementToBeClickable(notPaid, 5);
+//        clickOnNotPaidLabel();
     }
 
     public void verifyCreateBillForSuggestedCustomer(String emailID) {
@@ -1341,28 +1347,23 @@ public class BillPage extends BaseTest {
         getConfirmButton();
 
         //Verify toast message : Success message Popup.
-        waitForElementToBeVisible(successMessage, 5);
-        softAssert.assertTrue(isElementDisplayed(successMessage));
+        waitForElementToBeVisible(successMessage, 10);
+        Assert.assertTrue(isElementDisplayed(successMessage));
 
         String successMsg= getText(successMessage);
 
         String toastMessage = "Bill has been created successfully.Click here to open the bill";
-        softAssert.assertEquals(successMsg, toastMessage);
+        Assert.assertEquals(successMsg, toastMessage);
 
         //Close popup
         closePopup();
-        waitForElementToBeVisible(notPaidLabel,4);
 
         //Verify not paid label for generated amount
-        softAssert.assertTrue(isElementDisplayed(notPaidLabel),"Not Paid Label");
-        softAssert.assertTrue(isElementDisplayed(uniqueRefNo), "Unique Reference No");
-        softAssert.assertTrue(isElementDisplayed(billTimeOnPopup),"Bill Time On Popup");
+        Assert.assertTrue(isElementDisplayed(notPaidLabel),"Not Paid Label");
+        Assert.assertTrue(isElementDisplayed(uniqueRefNo), "Unique Reference No");
+        Assert.assertTrue(isElementDisplayed(billTimeOnPopup),"Bill Time On Popup");
 
         staticWait(3000);
-
-//        //Deleting Created Bill
-//        waitForElementToBeClickable(notPaid, 5);
-//        clickOnNotPaidLabel();
 
 
     }
@@ -1422,22 +1423,22 @@ public class BillPage extends BaseTest {
         getContinueButton();
 
         //Verifying that these buttons appear on Bill Page
-        softAssert.assertTrue(isElementDisplayed(newBillBtn));
-        softAssert.assertTrue(isElementDisplayed(transactionsLink));
-        softAssert.assertTrue(isElementDisplayed(filterBtn));
+        Assert.assertTrue(isElementDisplayed(newBillBtn));
+        Assert.assertTrue(isElementDisplayed(transactionsLink));
+        Assert.assertTrue(isElementDisplayed(filterBtn));
 
         // Click on New Bill Button
         getNewBillButton();
-        staticWait(3000);
 
         //Enter amount
         String amt = "5000001";
-        staticWait(3000);
-        actionEnterText(amtTbx, amt);
         validateEnteredAmount();
         getAmountValue();
 
         staticWait(3000);
+        actionEnterText(amtTbx, amt);
+
+        validatingEnteredAmount();
 
         //Click Confirm
         getConfirmButton();
@@ -1446,10 +1447,11 @@ public class BillPage extends BaseTest {
         staticWait(4000);
         getContinueWithoutButton();
 
+        //Close popup
+        closePaymentpopup();
+
         //Deleting Created Bill
         staticWait(3000);
-
-
     }
 
     public void verifyingBillCreationWithOutConfiguredBillAmount() {
@@ -1463,9 +1465,9 @@ public class BillPage extends BaseTest {
         getContinueButton();
 
         //Verifying that these buttons appear on Bill Page
-        softAssert.assertTrue(isElementDisplayed(newBillBtn));
-        softAssert.assertTrue(isElementDisplayed(transactionsLink));
-        softAssert.assertTrue(isElementDisplayed(filterBtn));
+        Assert.assertTrue(isElementDisplayed(newBillBtn));
+        Assert.assertTrue(isElementDisplayed(transactionsLink));
+        Assert.assertTrue(isElementDisplayed(filterBtn));
 
         // Click on New Bill Button
         getNewBillButton();
@@ -1489,6 +1491,11 @@ public class BillPage extends BaseTest {
         staticWait(4000);
         getContinueWithoutButton();
 
+
+        //Close popup
+        closePaymentpopup();
+
+
         //Deleting Created Bill
         staticWait(3000);
 
@@ -1504,9 +1511,9 @@ public class BillPage extends BaseTest {
         getContinueButton();
 
         //Verifying that these buttons appear on Bill Page
-        softAssert.assertTrue(isElementDisplayed(newBillBtn));
-        softAssert.assertTrue(isElementDisplayed(transactionsLink));
-        softAssert.assertTrue(isElementDisplayed(filterBtn));
+        Assert.assertTrue(isElementDisplayed(newBillBtn));
+        Assert.assertTrue(isElementDisplayed(transactionsLink));
+        Assert.assertTrue(isElementDisplayed(filterBtn));
 
         // Click on New Bill Button
         getNewBillButton();
@@ -1524,9 +1531,6 @@ public class BillPage extends BaseTest {
         //Click On Continue Button
         staticWait(4000);
         getContinueWithoutButton();
-
-//        //Close popup
-//        clickOnCloseIcon(); Bill popup open up after clicking on Continue without btn
     }
 
     public void verifyingBillCreationByAttachingPdfFile() throws InterruptedException, AWTException {
@@ -1539,9 +1543,9 @@ public class BillPage extends BaseTest {
         getContinueButton();
 
         //Verifying that these buttons appear on Bill Page
-        softAssert.assertTrue(isElementDisplayed(newBillBtn));
-        softAssert.assertTrue(isElementDisplayed(transactionsLink));
-        softAssert.assertTrue(isElementDisplayed(filterBtn));
+        Assert.assertTrue(isElementDisplayed(newBillBtn));
+        Assert.assertTrue(isElementDisplayed(transactionsLink));
+        Assert.assertTrue(isElementDisplayed(filterBtn));
 
         // Click on New Bill Button
         getNewBillButton();
@@ -1560,8 +1564,8 @@ public class BillPage extends BaseTest {
         staticWait(4000);
         getContinueWithoutButton();
 
-//        //Close popup
-//        closePopup();
+        //Close popup
+        closePopup();
     }
 
     public void verifyingBillCreationWithAddingMemoField(String emailID) {
@@ -1589,7 +1593,7 @@ public class BillPage extends BaseTest {
         //click on more option section
         clickOnMoreSection();
 
-        softAssert.assertEquals(memoNoneTxt, "None");
+        Assert.assertEquals(memoNoneTxt, "None");
         getMemoFieldMessage();
         clickOnMemoButton();
 
@@ -1603,7 +1607,6 @@ public class BillPage extends BaseTest {
 
         //Close popup
         closePopupOnBillPage();
-
         //Verify not paid label for generated amount
         verifyEnteredMemoText();
     }
@@ -1636,16 +1639,14 @@ public class BillPage extends BaseTest {
         clickOnMoreSection();
 
         //Click on 'Repeat' Field
-        softAssert.assertTrue(isElementDisplayed(repeatLockIcon));
+        Assert.assertTrue(isElementDisplayed(repeatLockIcon));
         clickOnRepeatsection();
         assertUpgradePlan();
 
 
         //Click on 'Expiry' Field
-        softAssert.assertTrue(isElementDisplayed(expireLockIcon));
-//        waitForElementToBeVisible(expiryDateSection,2);
-//        clickOnExpiryDateSection();
-        expirationIcon();
+        Assert.assertTrue(isElementDisplayed(expireLockIcon));
+        clickOnExpiryDateSection();
         assertUpgradePlan();
 
 
@@ -1655,15 +1656,13 @@ public class BillPage extends BaseTest {
         //Close popup
         closePaymentpopup();
 
-        //Verify not paid label for generated amount
-        softAssert.assertTrue(isElementDisplayed(notPaidLabel));
-        softAssert.assertTrue(isElementDisplayed(uniqueRefNo));
-        softAssert.assertTrue(isElementDisplayed(billTimeOnPopup));
-        softAssert.assertTrue(isElementDisplayed(expireDateTime));
+//Verify not paid label for generated amount
+        Assert.assertTrue(isElementDisplayed(notPaidLabel));
+        Assert.assertTrue(isElementDisplayed(uniqueRefNo));
+        Assert.assertTrue(isElementDisplayed(billTimeOnPopup));
+        Assert.assertTrue(isElementDisplayed(expireDateTime));
 
         staticWait(3000);
-
-
 
     }
 
@@ -1688,12 +1687,12 @@ public class BillPage extends BaseTest {
         clickOnExpiryDateSection();
         staticWait(2000);
 
-        softAssert.assertEquals((expirationDayPopUp), "Expiration Date");
-        softAssert.assertTrue(isElementDisplayed(noneTxt));
-        softAssert.assertTrue(isElementDisplayed(dayTxt));
-        softAssert.assertTrue(isElementDisplayed(quterDayTxt));
-        softAssert.assertTrue(isElementDisplayed(oneHourTxt));
-        softAssert.assertTrue(isElementDisplayed(thirtyMinTxt));
+        Assert.assertEquals((expirationDayPopUp), "Expiration Date");
+        Assert.assertTrue(isElementDisplayed(noneTxt));
+        Assert.assertTrue(isElementDisplayed(dayTxt));
+        Assert.assertTrue(isElementDisplayed(quterDayTxt));
+        Assert.assertTrue(isElementDisplayed(oneHourTxt));
+        Assert.assertTrue(isElementDisplayed(thirtyMinTxt));
 
 
         //Click on Expiry Field
@@ -1708,18 +1707,20 @@ public class BillPage extends BaseTest {
         staticWait(4000);
         getContinueWithoutButton();
 
-        //Verify not paid label for generated amount
-        softAssert.assertTrue(isElementDisplayed(notPaidLabel));
-        softAssert.assertTrue(isElementDisplayed(uniqueRefNo));
-        softAssert.assertTrue(isElementDisplayed(billTimeOnPopup));
-        softAssert.assertTrue(isElementDisplayed(expireDateTime));
+        //Close popup
+        closePaymentpopup();
+
+
+//Verify not paid label for generated amount
+        Assert.assertTrue(isElementDisplayed(notPaidLabel));
+        Assert.assertTrue(isElementDisplayed(uniqueRefNo));
+        Assert.assertTrue(isElementDisplayed(billTimeOnPopup));
+        Assert.assertTrue(isElementDisplayed(expireDateTime));
 
         staticWait(3000);
-
-
     }
 
-    public void verifyBillCreationByAddingRecurringTransactionsDaily(String phoneNumber, String emailID) {
+    public void verifyBillCreationByAddingRecurringTransactionsDaily(String phoneNumber,String emailID) {
 
         Login();
         //Select Store
@@ -1736,17 +1737,6 @@ public class BillPage extends BaseTest {
         staticWait(3000);
         actionEnterText(amtTbx, amt);
 
-        //Click On Continue Button
-        staticWait(4000);
-
-        //click on select customer button.
-        clickOnCustomerSec();
-
-        //   Select Customer
-        getCustomerPhoneNoField(phoneNumber);
-        getCustomerEmailField( emailID);
-        getEmailGoButton();
-
         //Click on More Option
         clickOnMoreSection();
         clickOnRepeatField();
@@ -1754,25 +1744,28 @@ public class BillPage extends BaseTest {
         //  bill.activateAfterFirstElement();
         clickOnDoneBtn();
 
+
         //Click Confirm
         staticWait(2000);
         getConfirmButton();
 
-//        waitForElementToBeClickable(crossIcon,3);
-        staticWait(5000);
+        //Click On Continue Button
+        staticWait(4000);
+        getContinueWithoutButton();
 
-//        //Close popup
-        closePopup();
+        clickOnIcon();
+        //Close popup
+        closePopupOnBillPage();
 
-        staticWait(3000);
-        softAssert.assertTrue(isElementDisplayed(reccuringIcon));
-        staticWait(3000);
+        Assert.assertTrue(isElementDisplayed(reccuringIcon));
         clickOnReccuring();
 
         removeNonNumericValueFromTheValue();
 
+
         //Deleting Created Bill
         staticWait(3000);
+
 
     }
 
@@ -1793,50 +1786,58 @@ public class BillPage extends BaseTest {
         staticWait(3000);
         actionEnterText(amtTbx, amt);
 
-        //Click On Continue Button
-        staticWait(4000);
-
         //click on select customer button.
-        clickOnCustomerSec();
+        selectCust();
+
+        //Verify Customer popup
+        String phoneNumberField = "Phone number. Existing or new";
+        String phone = getAttribute(customerNumber, "placeholder");
+        //   Assert.assertTrue(Boolean.parseBoolean(phone), phoneNumberField);
+        Assert.assertEquals(phone,phoneNumberField);
+        Log.info(phone);
+
+        String emailFieldTxt = "Email. Existing or new";
+        String email = getAttribute(emailField, "placeholder");
+        //  Assert.assertTrue(Boolean.parseBoolean(email), emailField);
+        Assert.assertEquals(email,emailFieldTxt);
+        Log.info(email);
+
 
         //   Select Customer
         getCustomerPhoneNoField(phoneNumber);
         getCustomerEmailField( emailID);
         getEmailGoButton();
 
+
         //Click on More Option
         clickOnMoreSection();
         clickOnRepeatField();
         getWeeklyFieldValue();
-
         //  bill.activateAfterFirstElement();
         clickOnDoneBtn();
+
 
         //Click Confirm
         staticWait(2000);
         getConfirmButton();
 
-//        waitForElementToBeClickable(crossIcon,3);
-        staticWait(5000);
+        //Click On Continue Button
+        staticWait(4000);
+        getContinueWithoutButton();
 
-//        //Close popup
-        closePopup();
+        clickOnIcon();
+        //Close popup
+        closePopupOnBillPage();
 
-        staticWait(3000);
-        softAssert.assertTrue(isElementDisplayed(reccuringIcon));
-        staticWait(3000);
+       // Assert.assertTrue(isElementDisplayed(reccuringIcon));
+        scrollToTopOfPage();
         clickOnReccuring();
 
         removeNonNumericValueFromTheValue();
-
-
         //Deleting Created Bill
         staticWait(3000);
-
-
     }
-
-    public void verifyBillCreationByAddingRecurringTransactionsMonthly(String phoneNumber, String emailID) {
+    public void BillCreationByAddingRecurringTransactionsWeekly(String phoneNumber, String emailID) {
 
         Login();
         //Select Store
@@ -1853,16 +1854,70 @@ public class BillPage extends BaseTest {
         staticWait(3000);
         actionEnterText(amtTbx, amt);
 
-        //Click On Continue Button
-        staticWait(4000);
-
         //click on select customer button.
-        clickOnCustomerSec();
+        selectCust();
+
+        //Verify Customer popup
+        String phoneNumberField = "Phone number. Existing or new";
+        String phone = getAttribute(customerNumber, "placeholder");
+        //   Assert.assertTrue(Boolean.parseBoolean(phone), phoneNumberField);
+        Assert.assertEquals(phone,phoneNumberField);
+        Log.info(phone);
+
+        String emailFieldTxt = "Email. Existing or new";
+        String email = getAttribute(emailField, "placeholder");
+        //  Assert.assertTrue(Boolean.parseBoolean(email), emailField);
+        Assert.assertEquals(email,emailFieldTxt);
+        Log.info(email);
+
 
         //   Select Customer
         getCustomerPhoneNoField(phoneNumber);
         getCustomerEmailField( emailID);
         getEmailGoButton();
+
+
+        //Click on More Option
+        clickOnMoreSection();
+        clickOnRepeatField();
+        getWeeklyFieldValue();
+        //  bill.activateAfterFirstElement();
+        clickOnDoneBtn();
+
+        //Click Confirm
+
+        getConfirmButton();
+
+        //Close popup
+        closePopup();
+
+        // Assert.assertTrue(isElementDisplayed(reccuringIcon));
+        staticWait(2000);
+        scrollToTopOfPage();
+        clickOnReccuring();
+
+        removeNonNumericValueFromTheValue();
+        //Deleting Created Bill
+        staticWait(3000);
+    }
+
+
+    public void verifyBillCreationByAddingRecurringTransactionsMonthly(String phone, String Email) {
+
+        Login();
+        //Select Store
+        clickOnNewBill();
+        getStoresDropdown();
+        selectStore(Constants.AutomationBillFlow);
+        getContinueButton();
+
+        //Click on New Bill Button
+        getNewBillButton();
+
+        //Enter amount
+        String amt="1000.00";
+        staticWait(3000);
+        actionEnterText(amtTbx, amt);
 
         //Click on More Option
         clickOnMoreSection();
@@ -1871,84 +1926,74 @@ public class BillPage extends BaseTest {
         //  bill.activateAfterFirstElement();
         clickOnDoneBtn();
 
+
         //Click Confirm
         staticWait(2000);
         getConfirmButton();
 
-//        waitForElementToBeClickable(crossIcon,3);
-        staticWait(5000);
+        //Click On Continue Button
+        staticWait(4000);
+        getContinueWithoutButton();
 
-//        //Close popup
-        closePopup();
+        clickOnIcon();
+        //Close popup
+        closePopupOnBillPage();
 
-        staticWait(3000);
-        softAssert.assertTrue(isElementDisplayed(reccuringIcon));
-        staticWait(3000);
+        Assert.assertTrue(isElementDisplayed(reccuringIcon));
         clickOnReccuring();
-
         removeNonNumericValueFromTheValue();
-
 
         //Deleting Created Bill
         staticWait(3000);
     }
 
-        public void verifyBillCreationByAddingRecurringTransactionsYearly(String phoneNumber, String emailID) {
+    public void verifyBillCreationByAddingRecurringTransactionsYearly(String phone, String Email) {
 
-            Login();
-            //Select Store
-            clickOnNewBill();
-            getStoresDropdown();
-            selectStore(Constants.AutomationBillFlow);
-            getContinueButton();
+        Login();
+        //Select Store
+        clickOnNewBill();
+        getStoresDropdown();
+        selectStore(Constants.AutomationBillFlow);
+        getContinueButton();
 
-            //Click on New Bill Button
-            getNewBillButton();
+        //Click on New Bill Button
+        getNewBillButton();
 
-            //Enter amount
-            String amt = "1000.00";
-            staticWait(3000);
-            actionEnterText(amtTbx, amt);
+        //Enter amount
 
-            //Click On Continue Button
-            staticWait(4000);
+        staticWait(3000);
+        String amt="1000.00";
+        actionEnterText(amtTbx, amt);
 
-            //click on select customer button.
-            clickOnCustomerSec();
+        //Click on More Option
+        clickOnMoreSection();
+        clickOnRepeatField();
+        getYearlyFieldValue();
+        clickOnDoneBtn();
 
-            //   Select Customer
-            getCustomerPhoneNoField(phoneNumber);
-            getCustomerEmailField( emailID);
-            getEmailGoButton();
 
-            //Click on More Option
-            clickOnMoreSection();
-             clickOnRepeatField();
-          getYearlyFieldValue();
-            //  bill.activateAfterFirstElement();
-            clickOnDoneBtn();
+        //Click Confirm
+        staticWait(2000);
+        getConfirmButton();
 
-            //Click Confirm
-            staticWait(2000);
-            getConfirmButton();
+        //Click On Continue Button
+        staticWait(4000);
+        getContinueWithoutButton();
 
-//        waitForElementToBeClickable(crossIcon,3);
-            staticWait(5000);
+        clickOnIcon();
+        //Close popup
+        closePopupOnBillPage();
 
-//        //Close popup
-            closePopup();
+        Assert.assertTrue(isElementDisplayed(reccuringIcon));
+        clickOnReccuring();
 
-            staticWait(3000);
-            softAssert.assertTrue(isElementDisplayed(reccuringIcon));
-            staticWait(3000);
-            clickOnReccuring();
+        removeNonNumericValueFromTheValue();
 
-            removeNonNumericValueFromTheValue();
+        //Deleting Created Bill
+        staticWait(3000);
 
-            //Deleting Created Bill
-            staticWait(3000);
-        }
 
+    }
 
     public void verifyBillCreationByAddingpaymentMethod(String emilId) {
         Login();
@@ -1978,6 +2023,77 @@ public class BillPage extends BaseTest {
 
         //Share bill by adding card details
         clickOnpaymentMethodLink();
+
+    }
+
+    public void createBillWithCustomerAndPayThroughAutoPayment() {
+        String emailId = requiredString(4)+ "@yopmail.com";
+        Login();
+        //Select Store
+        clickOnNewBill();
+        getStoresDropdown();
+        selectStore(Constants.AutomationBillTest);
+        getContinueButton();
+
+        // Click on New Bill Button
+        getNewBillButton();
+
+        // Verify New Bill popup
+        //  Assert.assertEquals(popUpHeader, "Bill");
+        String popupheader = getText(popUpHeader);
+        Assert.assertEquals(popupheader, "Bill");
+
+        //Verify Confirm Button is disabled before entering amount
+        scrollToElement(btnDisabled);
+        Assert.assertTrue(isElementDisplayed(btnDisabled));
+
+        //Enter amount
+        String amt = "1005.00";
+        staticWait(3000);
+        actionEnterText(amtTbx, amt);
+
+        //Select Suggested Customer
+
+        getCustomerButton();
+        getCustomerEmailField(emailId);
+        getEmailGoButton();
+        clickOnEnterNameDoneBtn();
+
+        staticWait(3000);
+        clickOnpaymentMethodLink();
+        ClickOnCustomerPermissionCheckbox();
+        ClickOncustomerPrmissionDoneButton();
+
+        staticWait(5000);
+        payment.getPayThroughCreditCardThroughAutoPayment();
+
+        staticWait(5000);
+
+        // Clicking on use this toggle button
+        getUseThisToggle();
+        scrollToDown();
+
+        // Verify that info message appears
+        Assert.assertTrue(isElementDisplayed(autoPaymentInfoMsg),"Autopayment Info Message");
+        Assert.assertTrue(isElementDisplayed(removeButtonUnderInfoMsg),"Remove Btn ");
+        Assert.assertTrue(isElementDisplayed(chargeButton),"Charge Button");
+
+        // clicking on remove button
+        staticWait(3000);
+        getRemoveBtnUnderInfoMsg();
+
+        // Verify that toggle gets disabled
+        Assert.assertFalse(isElementDisplayed(autoPaymentInfoMsg), "Autopayment method disappears");
+        Assert.assertTrue(!isToggleEnabled(autoGenToggleBtn));
+
+
+        // Clicking on use this toggle button
+        getUseThisToggle();
+        scrollToElement(chargeButton);
+        waitForElementToBeVisible(chargeButton,3);
+        getChargeButton();
+
+        staticWait(3000);
 
     }
 }

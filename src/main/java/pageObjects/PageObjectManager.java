@@ -21,7 +21,10 @@ public class PageObjectManager {
     private RewardPointsPage rewardPointsPage;
     private AdminPage adminPage;
     private TransactionsPage transactionsPage;
+    private SearchPage searchPage;
+    private GiftCardDashboardPage giftCardPage;
     private GiftCardPage giftCardspage;
+    private PaymentPage paymentPage;
 
     // Logger instance for logging messages
     private static final Logger log = LoggerFactory.getLogger(PageObjectManager.class);
@@ -81,8 +84,17 @@ public class PageObjectManager {
         transactionsPage = new TransactionsPage();
         log.debug("Transactions page");
 
+        searchPage= new SearchPage();
+        log.debug("Search page instance created");
+
+        giftCardPage= new GiftCardDashboardPage();
+        log.debug("Gift Card DashBoard page instance created.");
+
         giftCardspage= new GiftCardPage();
         log.debug("Gift Card page");
+
+        paymentPage = new PaymentPage();
+        log.debug("Payment Page");
     }
 
     /**
@@ -175,14 +187,27 @@ public class PageObjectManager {
         log.debug("Reward Points page instance");
         return rewardPointsPage;
     }
+    public SearchPage getSearchPage(){
+        log.debug("Search page instance");
+        return searchPage;
+    }
     public TransactionsPage getTransactionsPage(){
         log.debug("Transactions page");
         return transactionsPage;
+    }
+    public GiftCardDashboardPage getGiftCardPage(){
+        log.debug("Returning Gift Card Dashboard Page");
+        return giftCardPage;
     }
 
     public GiftCardPage getGiftCardspage(){
         log.debug("Gift Card page");
         return giftCardspage;
+    }
+
+    public PaymentPage getPaymentPage(){
+        log.debug("Payment Method");
+        return paymentPage;
     }
 
 }

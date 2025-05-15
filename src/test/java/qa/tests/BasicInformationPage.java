@@ -12,15 +12,16 @@ import org.testng.Assert;
 import utils.Constants;
 
 import java.io.File;
+import java.nio.file.Paths;
 
 
 public class BasicInformationPage extends BaseTest {
 
     public static Logger log = LogManager.getLogger(BasicInformationPage.class);
 
-    private PageObjectManager pageObjectManager = PageObjectManager.getInstance();
+    private final PageObjectManager pageObjectManager = PageObjectManager.getInstance();
 
-    private BasicInfoPage basicInfoPage = pageObjectManager.getbasicInfoPage();
+    private final BasicInfoPage basicInfoPage = pageObjectManager.getbasicInfoPage();
 
     @Test
     public void verifyBasicInformationPageOpens() {
@@ -80,7 +81,8 @@ public class BasicInformationPage extends BaseTest {
         Assert.assertTrue(isElementDisplayed(basicInfoPage.alertMsg));
         pageObjectManager.getLoginPage().getValidationCrossIcon();
         hoverOverElement(basicInfoPage.storePhoneField);
-        Assert.assertEquals(getToolTipMessage(basicInfoPage.storePhoneField),Constants.invalidPhoneToolTip,"After Entering Invalid phone number");
+        String invalidTooltip =getToolTipMessage(basicInfoPage.storePhoneField);
+        Assert.assertEquals(invalidTooltip,Constants.invalidPhoneToolTip,"After Entering Invalid phone number");
     }
 
     @Test
@@ -94,11 +96,17 @@ public class BasicInformationPage extends BaseTest {
 
         WebElement fileInput = getDriver().findElement(By.xpath("//input[@type='file']"));
 
+      //  String userDir = System.getProperty("user.dir");
+      //  String filePath = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "image", "dummy-image.jpg").toString();
+        // fileInput.sendKeys(filePath);
+
         String userDir = System.getProperty("user.dir");
-        String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "image" + File.separator + "dummy-image.jpg";
+        String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator+ "ImageResources"+ File.separator + "image" + File.separator + "BillDummyImg.jpg";
+
         fileInput.sendKeys(filePath);
+        waitForElementToBeClickable(basicInfoPage.checkBtn,10);
         click(basicInfoPage.checkBtn);
-        waitForElementInVisible(basicInfoPage.checkBtn,10);
+
     }
 
     @Test

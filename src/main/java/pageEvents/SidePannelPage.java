@@ -10,7 +10,7 @@ public class SidePannelPage extends BaseTest {
     public By billBtn = By.cssSelector(".sidebar-nav > li:nth-child(5)");
     By transactionsButton=By.cssSelector(".sidebar-nav > li:nth-child(4)");
     public By myStoreBtn=By.cssSelector(".fa-fw.fas.fa-store");
-    By giftCardsDashboardTab=By.xpath("//a[text()='Gift Cards Dashboard']");
+    By giftCardsDashboardTab=By.xpath("//div[text()='Gift Cards Dashboard']");
     By pageHeader=By.xpath("//h1[@class='header-title mb-0']");
     By reportBtn=By.xpath("(//a[@class='sidebar-link'])[11]");
     By signOutBtn = By.xpath("//a[text()='Sign out']");
@@ -23,6 +23,7 @@ public class SidePannelPage extends BaseTest {
     public By myStuff = By.xpath("//a[text()='My Stuff']");
     public By giftCardsTab = By.cssSelector("[href='/Giftcards/GiftCardsSummary']");
     public By securityAndPasswordTab = By.xpath("//a[text()='Security and Password']");
+    public By paymentMethod = By.xpath("//a[text()='Payment Methods']");
 
 
 
@@ -55,6 +56,7 @@ public class SidePannelPage extends BaseTest {
     public void getProfileLink(){
         click(profileLink);
     }
+    public void getGiftCardsDashboardTab(){clickElementByJS(giftCardsDashboardTab);}
     public void getMyStuff(){
         click(myStuff);
     }
@@ -63,5 +65,8 @@ public class SidePannelPage extends BaseTest {
     }
     public void getSecurityAndPasswordTab(){
         click(securityAndPasswordTab);
+    }
+    public void getPaymentMethodTab(){
+        click(paymentMethod);
     }
 }

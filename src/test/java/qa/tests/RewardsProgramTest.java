@@ -3,6 +3,7 @@ package qa.tests;
 import base.BaseTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -24,11 +25,11 @@ public class RewardsProgramTest extends BaseTest {
 
         Login();
         rewardsProgramPage.RewardsProgramPageOpen();
-
-        softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.pageHeading));
+        waitForElementToBeVisible(rewardsProgramPage.pageHeading,5);
+        Assert.assertTrue(isElementDisplayed(rewardsProgramPage.pageHeading));
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void verifyInformationMessageAppears() {
         log.info("Verify that information message appears, when Rewards program is not configured for store.");
 
@@ -48,14 +49,17 @@ public class RewardsProgramTest extends BaseTest {
         click(rewardsProgramPage.settingsBtn);
         waitForElementToBeVisible(rewardsProgramPage.rewardsProgPopupTitle,10);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.rewardsProgPopupTitle));
-        click(rewardsProgramPage.toggleDisabled);
+
+        if(!isDisplayed(rewardsProgramPage.pointsForGiftCard,2)){
+         click(rewardsProgramPage.toggleDisabled);
+        }
         click(rewardsProgramPage.saveChangesBtn);
+
+
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.rewardsProgActivationMsg));
 
 
-        click(rewardsProgramPage.settingsBtn);
-        click(rewardsProgramPage.toggleEnabled);
-        click(rewardsProgramPage.saveChangesBtn);
+
     }
 
     @Test
@@ -125,6 +129,7 @@ public class RewardsProgramTest extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.yonroCustomer));
 
         click(rewardsProgramPage.filterBtn);
+        waitForElementToBeVisible(rewardsProgramPage.partialUsername,4);
         enterText(rewardsProgramPage.partialUsername, Constants.InvalidPartialUsername);
         click(rewardsProgramPage.applyBtn);
         waitForElementInVisible(rewardsProgramPage.applyBtn,20);

@@ -131,8 +131,7 @@ public class SignUpTest extends BaseTest {
 
         // Enter data in security code field
         enterText(signUp.securityCodeFieldNewAccount, Constants.securityCode);
-//        waitForElementToBeClickable(signUp.fullname,5);
-        staticWait(5000);
+        waitForElementToBeClickable(signUp.fullname,6);
 
         //Entering name in the Full name field
         enterText(signUp.fullname, "New Kade Member" + st);
@@ -167,16 +166,16 @@ public class SignUpTest extends BaseTest {
 
         // Entering Invalid security Code
         enterText(signUp.securityCodeFieldNewAccount, Constants.invalidSecurityCode);
-//        staticWait(5000);
-//        enterText(signUp.fullname, st + "New Member");
 
         // ..
         waitForElementToBeVisible(signUp.ContinueButtonBusiness,3);
         signUp.getBusinessContinuebtn();
-        staticWait(3000);
 
         String alertmessage = getText(signUp.securityCodeAlertMessage);
 
+
+//        waitForElementToBeVisible(signUp.fullname,4);/// UI change this field discountinue
+//        enterText(signUp.fullname, st + "New Member");
         signUp.getBusinessContinuebtn();
 
         // Verify the Validation message for Incorrect Security Code
@@ -185,7 +184,7 @@ public class SignUpTest extends BaseTest {
         cleanByJS(signUp.securityCodeFieldNewAccount);
 
         // Entering Valid security Code
-        actionEnterText(signUp.securityCodeFieldNewAccount, Constants.phoneSecurityCode);
+        actionEnterText(signUp.securityCodeFieldNewAccount, Constants.phoneSecurityCodeForLogin);
         waitForElementToBeVisible(signUp.ContinueButtonBusiness,3);
 
         signUp.getBusinessContinuebtn();
@@ -375,35 +374,10 @@ public class SignUpTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test( enabled = false ,description = " CA_TC 4(b): Verify that signing in to the application by email address using Business Account option, with forget password option.")
+    @Test(description = " CA_TC 4(b): Verify that signing in to the application by email address using Business Account option, with forget password option.")
     public void verifyThatSigningInByEmailUsingBusinessAccountOptionWithForgetPasswordoption() {
-        pageObjectManager.getLoginPage().getSignUpLink();
-        signUp.getBusinessAccount();
-        signUp.getCrossIcon();
-        staticWait(3000);
-
-        // Clicking on 'Sign In Button
-        signUp.getSignInBtn();
-
-        // Clicking on Switch to Email Link
-        signUp.getSwitchtoEmailLink();
-        enterText(signUp.emailFieldSP, Constants.validLoginEmail);
-        signUp.getContinueBtnSP();
-
-        // Clicking on I don't know password link
-        signUp.getIdonkKnowPasswordLinkSP();
-
-        // Verify the elements
-        softAssert.assertTrue(isElementDisplayed(signUp.securityCodeLabelsignInP),"Security code label");
-        softAssert.assertTrue(isElementDisplayed(signUp.informationMessageSP),"Information message");
-        softAssert.assertTrue(isElementDisplayed(signUp.newPasswordLabelSP),"new passoword label");
-        softAssert.assertTrue(isElementDisplayed(signUp.showPasswordSignInP),"show password");
-        softAssert.assertTrue(isElementDisplayed(signUp.signInButtonSignInP),"sign in button ");
-
-        enterText(signUp.securityCodeField,Constants.securityCode);
-        enterText(signUp.newPasswordFieldSP,Constants.validPassword);
-        signUp.getShowPasswordSP();
-        signUp.getFinalSignInbtn();
+        signUp.getsignInWithEmailUsingBusinessAccount();
     }
+
 }
 

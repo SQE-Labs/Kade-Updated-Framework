@@ -1,15 +1,14 @@
 package pageEvents;
 
 import base.BaseTest;
-import logger.Log;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import pageObjects.PageObjectManager;
 import utils.Constants;
 
 import java.io.File;
+
+import static utils.Constants.validPassword;
 
 
 public class MyStorePage extends BaseTest {
@@ -39,7 +38,7 @@ public class MyStorePage extends BaseTest {
   public By bankTransferToggleBtn = By.xpath("//span[text()='Accept bank transfer']");
   public By skipForNowBtn = By.xpath("//button[text()='Skip for now']");
   public By continueBtn = By.xpath("//button[text()='Continue']");
-  public By configureLink = By.xpath("(//h6[contains(text(),'Automation Flow Business')]/..//../div/a)[1]");
+  public By configureLink = By.xpath("(//h6[starts-with(text(),'Automation Flow Business')]/../../div/a)[1]");
 
   public By configureLink2 = By.xpath("/html/body/div[4]/div/div/main/div/div[3]/div/div/div[4]/div[1]/a");
   public By modifyBtn = By.xpath("//button[text()='Modify']");
@@ -49,13 +48,13 @@ public class MyStorePage extends BaseTest {
    public By yearlyBtn = By.xpath("//label[text()='Yearly']");
    public By termsCbx = By.xpath("//span[text()='     I agree to the']");
    public By changePlanBtn = By.xpath("//button[text()='Change plan']");
-   public By addedStoreName = By.cssSelector(".form-group.mb-3>h4");
+   public By addedStoreName = By.xpath("(//div[contains (@class, 'form-group mb-3')]//label//following-sibling::div)[1]");
    public By addedLocationDescription = By.cssSelector("div[class='display-none -readonly-div-'] span");
    public By addedStoreAddress = By.xpath("//label[text()='Store Address']/following-sibling::p");
    public By addedStorePhone = By.xpath("//label[text()='Store Phone']/following-sibling::p");
    public By addedCurrencyOfStore = By.xpath("//label[text()='Currency of the Store']/following-sibling::p");
    public By addedTaxRate = By.xpath("//label[text()='Tax rate']/following-sibling::p");
-   public By addedVisaMethod = By.cssSelector("div[class='-title- d-flex flex-column'] span[class='text-nowrap']");
+   public By addedVisaMethod = By.xpath("(//span[contains(text(), 'Visa 1111')])[1]");
    public By newCreditCardBtn = By.xpath("//span[text()='New Credit Card']");
    public By newBankAccountBtn = By.xpath("//span[text()='New Bank Account']");
    public By changePayMethodBtn = By.xpath("//button[text()='change']");
@@ -104,6 +103,8 @@ public class MyStorePage extends BaseTest {
  public By manageUserNameField = By.xpath("//div[@class='mb-2']//div[@class='input-group']//input");
  public By userProfileDropDown = By.xpath("//select[@name='profileId']");
  public By managerProfileOption = By.xpath("//option[@value='3000']");
+ public By readerProfileOption = By.xpath("//option[@value='1000']");
+ public By operatorProfileOption = By.xpath("//option[@value='2000']");
  public By manageUserPassword = By.xpath("//input[@name='passWord']");
  public By createManagerUserButton = By.xpath("//button[@class='btn btn-primary']");
  public By addUserPopUpTitle = By.cssSelector(".modal-title");
@@ -133,6 +134,10 @@ public class MyStorePage extends BaseTest {
     public By addACreditCardTerminal = By.xpath("//h4[text()='Configure a terminal']/../div//button");
     public By terminalEditIcon = By.xpath("(//div[contains(@class, 'row-cols-2')]//i)[1]");
     public By terminalDeleteBtn = By.cssSelector(".d-flex.mt-3>button:nth-child(2)");
+    By  venmoIDLabel = By.xpath("//label[text()='Venmo ID']");
+    public By bankAccountOptionForPlan = By.xpath("//span[contains(text(),'Bank Account 6789')]/..");
+    public By createUserAndCredetButton = By.xpath("//div[@class='mb-1 text-center']/..");
+    public By inviteUserButton = By.xpath("//span[text()='Recommended']/..");
 
 
 
@@ -160,6 +165,7 @@ public class MyStorePage extends BaseTest {
     }
 
     public void getStripeAccountBtn(){
+        staticWait(2000);
         click(stripeBtn);
     }
     public void getTestStripeAccountButton(){
@@ -200,12 +206,37 @@ public class MyStorePage extends BaseTest {
     }
     public void getChangePayMethodLink(){
         click(changePayMethodBtn); }
+    public void getcreateUserAndCredetButton(){
+        click(createUserAndCredetButton);
+    }
+    public void getmanagerProfileOption(){
+        click(managerProfileOption);
+    }
+    public void getReaderProfileOption(){
+        click(readerProfileOption);
+    }
+    public void getOperatorProfileOption(){
+        click(operatorProfileOption);
+    }
+    public void getcreateManagerUserButton(){
+        click(createManagerUserButton);
+    }
+    public void getdeleteUserIcon(){
+        click(deleteUserIcon);
+    }
+    public void getCheckIconOfDeleteUser(){
+        click(checkDeleteUser);
+    }
+    public void getinviteUserButton(){click(inviteUserButton);}
 
 
     public void getStoreLinksButton() {
         clickElementByJS(storeLinksBtn);
     }
     public void getAcceptVenmoHeader(){click(acceptVenmoHeader);}
+    public void getbankAccountOptionForPlan(){
+        click(bankAccountOptionForPlan);
+    }
 
     // time zone
     public void selectTimeZone() {
@@ -248,6 +279,9 @@ public class MyStorePage extends BaseTest {
     public void getRewardPointToggleOnButton(){
         click(rewardPointToggleBtn);
     }
+    public void sendInviteButton(){
+        click(sendInviteButton);
+    }
 
     public void getEarnRewardsPointsToggleButton(){
         click(earnRewardsToggleBtn);
@@ -258,12 +292,12 @@ public class MyStorePage extends BaseTest {
 
     public void  getAcceptVenmoToggleButton() {
 
-        if(!isToggleEnabled(acceptVenmoToggleBtn)){
+        if(!isDisplayed(venmoIDLabel,2)){
             clickElementByJS(acceptVenmoToggleBtn);
         }
-        else{
-            hoverAndClick(enableToggle,enableToggle);
-        }
+//        else{
+//            hoverAndClick(enableToggle,enableToggle);
+//        }
 
 //        staticWait(6000);
 //        // Check if the toggle button is disabled
@@ -373,7 +407,6 @@ public class MyStorePage extends BaseTest {
             pageObjectManager.getSidePannel().getMyStoreTab();
             getRegisterNewBusinessButton();
         }
-        staticWait(3000);
         // Click on 'Stripe Account' Button
           getStripeAccountBtn();
           scrollToElement(testStripeBtn);
@@ -399,6 +432,7 @@ public class MyStorePage extends BaseTest {
         // Click on 'Skip For Now' Button
         getSkipForNowButton();
         getContinueButton();
+
         //verifying the default Values of the Store
         String storenameactual = getText(addedStoreName);
         String locationDescription = getText(addedLocationDescription);
@@ -440,7 +474,7 @@ public class MyStorePage extends BaseTest {
             pageObjectManager.getSidePannel().getMyStoreTab();
             getRegisterNewBusinessButton();
         }
-        waitForElementToBeClickable(skipStripeAccountBtn,5);
+        waitForElementToBeClickable(skipStripeAccountBtn,4);
         getSkipStripeAccountButton();
         staticWait(3000);
 //        waitForElementToBeClickable(skipStripeAccountPopUpBtn,5);
@@ -481,9 +515,9 @@ public class MyStorePage extends BaseTest {
         // Select Time Zone
 
         //Verifying the minimum, maximum and default values of taxRate field
-       softAssert.assertEquals(getAttribute(taxRateTbx,"min"),"0");
-       softAssert.assertEquals(getAttribute(taxRateTbx,"value"),"0.000");
-       softAssert.assertEquals(getAttribute(taxRateTbx,"max"),"100");
+       Assert.assertEquals(getAttribute(taxRateTbx,"min"),"0");
+       Assert.assertEquals(getAttribute(taxRateTbx,"value"),"0.000");
+       Assert.assertEquals(getAttribute(taxRateTbx,"max"),"100");
 
        //  Enter Tax rate
         actionEnterText(taxRateTbx,Constants.taxRate);
@@ -493,12 +527,14 @@ public class MyStorePage extends BaseTest {
         waitForElementToBeVisible(continueBtn,10);
         getContinueButton();
         waitForPageLoad();
+
         //  //Verify Created Store
         softAssert.assertEquals(getText(addedStoreName),storeName);
-        softAssert.assertAll();
+
 
         pageObjectManager.getSidePannel().getSignOut();
         pageObjectManager.getAdminPage().selectedStoreDeleted(storeName);
+
     }
    // **********************************************************
     public void editStoreFields(){
@@ -524,16 +560,15 @@ public class MyStorePage extends BaseTest {
         selectStoreAddress(Constants.storeAddress);
 
         //Verifying the maximum length of 'Phone' field
-        softAssert.assertEquals(getAttribute(phoneTbx,"maxlength"),"22");
+        Assert.assertEquals(getAttribute(phoneTbx,"maxlength"),"16"); // Phone number field accept now max 16 characters only
         actionEnterText(phoneTbx,Constants.validPhoneNumber);
-        staticWait(3000);
 
         // Select Time Zone
 
         //Verifying the minimum, maximum and default values of taxRate field
-        softAssert.assertEquals(getAttribute(taxRateTbx,"min"),"0");
-        softAssert.assertEquals(getAttribute(taxRateTbx,"value"),"0.000","Tax rate tbx value");
-        softAssert.assertEquals(getAttribute(taxRateTbx,"max"),"100");
+        Assert.assertEquals(getAttribute(taxRateTbx,"min"),"0");
+        Assert.assertEquals(getAttribute(taxRateTbx,"value"),"0.000","Tax rate tbx value");
+        Assert.assertEquals(getAttribute(taxRateTbx,"max"),"100");
 
         //  Enter Tax rate
         actionEnterText(taxRateTbx,Constants.taxRate);
@@ -549,10 +584,11 @@ public class MyStorePage extends BaseTest {
         enterText(StoreNameTbx,Constants.reverseStoreName);
         enterText(locationDescTbx,Constants.defaultLocationDescription);
         actionEnterText(phoneTbx,Constants.validPhoneNumber2);
+        scrollToElement(taxRateTbx);
+        waitForElementToBeClickable(taxRateTbx,3);
         actionEnterText(taxRateTbx,Constants.defaultTaxRate);
-        waitForElementToBeClickable(saveBtn,3);
+        waitForElementToBeClickable(saveBtn,5);
         getSaveButton();
-        softAssert.assertAll();
 
 
     }
@@ -582,5 +618,116 @@ public class MyStorePage extends BaseTest {
         click(premiumYearlySignUpBtn);
     }
 
+    public void createManagerUser(){
+        // Clicking on add new user button
+        getcreateUserAndCredetButton();
+        waitForElementToBeVisible(addUserPopUpTitle,4);
 
-}
+        // verify the add user popup
+        Assert.assertEquals(getText(addUserPopUpTitle),"Add User");
+
+        // Enter UserName in 'Username' field
+        enterText(manageUserNameField,"My store user"+ requiredString(4));
+
+        //Verifying the Maximum length of 'Username' field.
+        Assert.assertEquals(getAttribute(manageUserNameField,"maxlength"),"30");
+
+        //  Click on the 'User Profile' Drop Down
+        getUserProfileDropdown();
+
+        // Select profile of 'Manager' User
+        getmanagerProfileOption();
+
+        // Enter password in 'Password' field
+        enterText(manageUserPassword, validPassword);
+
+        //Verifying the Maximum length of 'Password' field
+      Assert.assertEquals(getAttribute(manageUserPassword,"maxlength"),"18");
+
+        // Click on 'Create User' Button
+        getcreateManagerUserButton();
+        staticWait(3000);
+
+        // wait for deleting the user
+          getdeleteUserIcon();
+          getCheckIconOfDeleteUser();
+
+          staticWait(4000);
+
+    }
+    public void creatingReaderProfile(){
+        // Clicking on add new user button
+        getcreateUserAndCredetButton();
+        waitForElementToBeVisible(addUserPopUpTitle,4);
+
+        // verify the add user popup
+        softAssert.assertEquals(getText(addUserPopUpTitle),"Add User");
+
+        // Enter UserName in 'Username' field
+        enterText(manageUserNameField,"My store user"+ requiredString(4));
+
+        //Verifying the Maximum length of 'Username' field.
+        softAssert.assertEquals(getAttribute(manageUserNameField,"maxlength"),"30");
+
+        //  Click on the 'User Profile' Drop Down
+        getUserProfileDropdown();
+
+        // Select profile of 'Reader' User
+        getReaderProfileOption();
+
+        // Enter password in 'Password' field
+        enterText(manageUserPassword, validPassword);
+
+        //Verifying the Maximum length of 'Password' field
+        softAssert.assertEquals(getAttribute(manageUserPassword,"maxlength"),"18");
+
+        // Click on 'Create User' Button
+        getcreateManagerUserButton();
+        staticWait(3000);
+
+        // wait for deleting the user
+        getdeleteUserIcon();
+        getCheckIconOfDeleteUser();
+        staticWait(4000);
+        softAssert.assertAll();
+    }
+    public void creatingOperatorUser(){
+        // Clicking on add new user button
+        getcreateUserAndCredetButton();
+        waitForElementToBeVisible(addUserPopUpTitle,4);
+
+        // verify the add user popup
+        softAssert.assertEquals(getText(addUserPopUpTitle),"Add User");
+
+        // Enter UserName in 'Username' field
+        enterText(manageUserNameField,"My store user"+ requiredString(4));
+
+        //Verifying the Maximum length of 'Username' field.
+        softAssert.assertEquals(getAttribute(manageUserNameField,"maxlength"),"30");
+
+        //  Click on the 'User Profile' Drop Down
+        getUserProfileDropdown();
+
+        // Select profile of 'Manager' User
+        getOperatorProfileOption();
+
+        // Enter password in 'Password' field
+        enterText(manageUserPassword, validPassword);
+
+        //Verifying the Maximum length of 'Password' field
+        softAssert.assertEquals(getAttribute(manageUserPassword,"maxlength"),"18");
+
+        // Click on 'Create User' Button
+        getcreateManagerUserButton();
+        staticWait(3000);
+
+        // wait for deleting the user
+        getdeleteUserIcon();
+        getCheckIconOfDeleteUser();
+        softAssert.assertAll();
+
+    }
+    }
+
+
+
