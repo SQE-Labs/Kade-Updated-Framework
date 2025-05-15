@@ -22,6 +22,7 @@ public class BillTest extends BaseTest {
     @Test(priority = 1, description = "BC_02 Verify that creating a bill by adding amount value only, with Selecting a Customer")
     public void verifyCreateBillBySelectingCustomer() {
         bill.createBillWithCustomer("636045278965", "yonro@yopmail.com");
+        bill.clickOnNotPaidLabel();
          bill.getDeleteButton();
         bill.getDeleteIcon();
 
@@ -43,6 +44,7 @@ public class BillTest extends BaseTest {
     @Test(priority = 5, enabled = true, description = "BC_13 Verify that creating a bill after configuring the bill amount value form the store configuration page.")
     public void verifyingBillCreationWithConfiguredBillAmount() {
         bill.verifyingBillCreationWithConfiguredBilledAmount();
+
         bill.getDeleteButton();
         bill.getDeleteIcon();
     }
@@ -83,9 +85,7 @@ public class BillTest extends BaseTest {
     @Test(priority = 11, enabled = true, description = "BC_15 Verify that creating a bill by adding the custom expiration date' on 'Bills' page..")
     public void verifyBillCreationByAddingExpirationDate() {
         bill.verifyBillCreationByAddingExpirationDate("yonro@yopmail.com","20");
-        bill.clickOnNotPaidLabel();
-        bill.getDeleteButton();
-        bill.getDeleteIcon();
+
     }
 
     @Test(priority = 12, enabled = true, description = "BC_16, BC_10 and BC_17  Verify that creating a store by adding recurring transactions, on Bills page and Verify that creating a 'Daily Recurring bill and Activate after the first payment, on 'Bill' popup.")
