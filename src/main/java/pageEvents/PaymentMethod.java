@@ -39,7 +39,8 @@ public class PaymentMethod extends BaseTest {
     public void getAddPaymentButton(){
         click(addPaymentButton);
     }
-    public void getCreditCardOption(){click(creditCardOption);}
+    public void getCreditCardOption(){click(creditCardOption);
+    staticWait(2000);}
     public void getBankAccountOption(){click(bankAccountOption);}
     public void getCrossIconOfNewP(){click(crossIconAddNewPaymentPopup);}
     public void getTestInsituteBtn(){click(testInsituteBtn);}

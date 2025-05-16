@@ -100,6 +100,7 @@ public class DashboardTest extends BaseTest {
         // Verify the Process Payment of Last 30 days of a store
         dashboard.getDashboardStoreCount();
         dashboard.getFirstStore();
+        waitForElementToBeVisible(dashboard.last30DaysTotalAmount,5);
         softAssert.assertTrue(isElementDisplayed(dashboard.last30DaysTotalAmount));
         System.out.println("Process Payment of Last 30 days is:  " + getText(dashboard.last30DaysTotalAmount));
 
@@ -225,7 +226,7 @@ public class DashboardTest extends BaseTest {
         staticWait(4000);
         transaction.getCrossIconOfCurrentPaidBill();
         staticWait(3000);
-        scrollToDown();
+        scrollToElement(pageObjectManager.getSidePannel().manageBusinessAcc);
 
         staticWait(5000);
 

@@ -363,7 +363,7 @@ public class TransactionsPage extends BaseTest {
         getManualChargeTab();
 
         staticWait(3000);
-         payments.getPayThroughCreditCard();
+         payments.getPayThroughCreditCardForAddingPayment();
          getProcessBtn();
          waitForElementToBeVisible(sendReceiptTitle,5);
 
@@ -443,7 +443,7 @@ public class TransactionsPage extends BaseTest {
         String manualValue = getText(manualServiceFeeValue);
         softAssert.assertEquals(terminalValue, "$3.86");
         staticWait(3000);
-        payments.getPayThroughCreditCard();
+        payments.getPayThroughCreditCardForAddingPayment();
     }
 
 

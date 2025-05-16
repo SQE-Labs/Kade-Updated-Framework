@@ -138,8 +138,11 @@ public class MyStorePage extends BaseTest {
     public By bankAccountOptionForPlan = By.xpath("//span[contains(text(),'Bank Account 6789')]/..");
     public By createUserAndCredetButton = By.xpath("//div[@class='mb-1 text-center']/..");
     public By inviteUserButton = By.xpath("//span[text()='Recommended']/..");
+    By validationCrossIcon = By.cssSelector(".btn-close.autoclick-effect");
 
-
+    public void getValidationCrossIcon(){
+        click(validationCrossIcon);
+    }
 
     // Methods
     public void getTickIconofImg(){
@@ -267,6 +270,7 @@ public class MyStorePage extends BaseTest {
     public void getTipGratuityToggleOnButton(){
         clickElementByJS(tipGratuityToggleBtn);
     }
+
     public void getEnterInPerCentToggleButton(){
         clickElementByJS(enterInPercentToggleBtn);
     }
@@ -585,7 +589,7 @@ public class MyStorePage extends BaseTest {
         enterText(locationDescTbx,Constants.defaultLocationDescription);
         actionEnterText(phoneTbx,Constants.validPhoneNumber2);
         scrollToElement(taxRateTbx);
-        waitForElementToBeClickable(taxRateTbx,3);
+        waitForElementToBeClickable(taxRateTbx,4);
         actionEnterText(taxRateTbx,Constants.defaultTaxRateValue);
         waitForElementToBeClickable(saveBtn,5);
         getSaveButton();

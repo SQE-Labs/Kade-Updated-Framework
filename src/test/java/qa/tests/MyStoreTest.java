@@ -214,6 +214,33 @@ public class MyStoreTest extends BaseTest {
 
         //Verifying the 'Tip Configuration' Pop-up Title
         softAssert.assertEquals(mystore.tipConfigPopUpTitle, Constants.tipConfigurationTitle);
+
+        staticWait(3000);
+        cleanByJS(mystore.tipPercentField1);
+        cleanByJS(mystore.tipPercentField2);
+        cleanByJS(mystore.tipPercentField3);
+
+        // Click on 'Save Changes' button
+        mystore.getSaveChangesButton();
+
+        mystore.getValidationCrossIcon();
+
+        staticWait(3000);
+
+        String tooltip1= getToolTipMessage(mystore.tipPercentField1);
+        Assert.assertEquals(tooltip1, requiredFldValidation);
+
+        String tooltip2= getToolTipMessage(mystore.tipPercentField2);
+        Assert.assertEquals(tooltip2,requiredFldValidation);
+
+        String tooltip3= getToolTipMessage(mystore.tipPercentField3);
+        Assert.assertEquals(tooltip3,requiredFldValidation);
+
+        staticWait(4000);
+
+    // Click on 'Enter in Percentage' Toggle button
+        mystore.getEnterInPerCentToggleButton();
+
         staticWait(3000);
 
         if (!isElementDisplayed(mystore.alertMessage)) {
@@ -245,8 +272,8 @@ public class MyStoreTest extends BaseTest {
         }
 
         //Verifying the Minimum and Maximum Values of 'Reward Points' Field
-        softAssert.assertEquals(getAttribute(mystore.rewardPointsField, "max"), "99999");
-        softAssert.assertEquals(getAttribute(mystore.rewardPointsField, "min"), "100");
+        Assert.assertEquals(getAttribute(mystore.rewardPointsField, "max"), "99999");
+        Assert.assertEquals(getAttribute(mystore.rewardPointsField, "min"), "100");
 
         // Enter Reward Points
         actionEnterText(mystore.rewardPointsField, rewardPoints);
@@ -279,9 +306,10 @@ public class MyStoreTest extends BaseTest {
 
             // Click on 'Save Changes' Button
             mystore.getSaveChangesButton();
+            softAssert.assertAll();
         }
     }
-
+// Failed due to Bug 3020
     @Test(description = "SC_05(B) Verifying the Configuration of the Store using flat value in 'tip or gratuity' field")
     public void verifyingConfigurationsOfStoreUsingFlatValueInTipField() {
 
@@ -304,11 +332,37 @@ public class MyStoreTest extends BaseTest {
             // Click on 'Tip & Gratuity' Toggle Button
             mystore.getTipGratuityToggleOnButton();
         }
+
         // Click on 'Configure' button
         mystore.getTipConfigureBtn();
 
         //Verifying the 'Tip Configuration' Pop-up Title
-        softAssert.assertEquals(mystore.tipConfigPopUpTitle, Constants.tipConfigurationTitle);
+        Assert.assertEquals(getText(mystore.tipConfigPopUpTitle), Constants.tipConfigurationTitle);
+
+
+       staticWait(3000);
+
+        cleanByJS(mystore.tipFlatValueField1);
+        cleanByJS(mystore.tipFlatValueField2);
+        cleanByJS(mystore.tipFlatValueField3);
+        staticWait(3000);
+
+        // Click on 'Save Changes' Button
+        mystore.getSaveChangesButton();
+        mystore.getValidationCrossIcon();
+
+        // Verify that this field is required tooltip appears
+        String tooltip1 = getToolTipMessage(mystore.tipFlatValueField1);
+        softAssert.assertEquals(tooltip1, requiredFldValidation,"This field is required tooltip not appear");
+        staticWait(2000);
+        String tooltip2 = getToolTipMessage(mystore.tipFlatValueField2);
+        softAssert.assertEquals(tooltip2, requiredFldValidation,"This field is required tooltip not appear");
+
+        String tooltip3 = getToolTipMessage(mystore.tipFlatValueField3);
+        softAssert.assertEquals(tooltip3, requiredFldValidation,"This field is required tooltip not appear");
+
+        staticWait(3000);
+
 
         if (getCountOfWebElements(mystore.alertMessage) > 0) {
             // Click on 'Enter in Percentage' Toggle button
@@ -318,6 +372,14 @@ public class MyStoreTest extends BaseTest {
         // Verifying the maximum and minimum values of 'Tip Amount' field
         softAssert.assertEquals(getAttribute(mystore.tipFlatValueField1, "max"), "999.00");
         softAssert.assertEquals(getAttribute(mystore.tipFlatValueField1, "min"), "0.01");
+        // field 2
+
+        softAssert.assertEquals(getAttribute(mystore.tipFlatValueField2, "max"), "999.00");
+        softAssert.assertEquals(getAttribute(mystore.tipFlatValueField2, "min"), "0.01");
+
+        // field 3
+        softAssert.assertEquals(getAttribute(mystore.tipFlatValueField3, "max"), "999.00");
+        softAssert.assertEquals(getAttribute(mystore.tipFlatValueField3, "min"), "0.01");
 
         waitForElementToBeInteractable(mystore.tipFlatValueField1,3);
 
@@ -327,9 +389,10 @@ public class MyStoreTest extends BaseTest {
 
         // Click on 'Save Changes' Button
         mystore.getSaveChangesButton();
-
+        softAssert.assertAll();
     }
 
+    // Failed due to Bug 3020
     @Test(description = "SC_06 Verifying the Configuration of the Store using Payment Processing Sub-Tab with terminal configuration,")
     public void verifyingConfigurationOfStoreUsingPaymentProcessingSubTab() {
         Login();
