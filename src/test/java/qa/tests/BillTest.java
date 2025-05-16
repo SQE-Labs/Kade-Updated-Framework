@@ -11,7 +11,7 @@ public class BillTest extends BaseTest {
 
     BillPage bill = new BillPage();
 
-    @Test(priority = 0, description = "BC_01 and BC_08 Verify that creating a bill by adding amount value only, without Selecting a Customer and Verify that unpaid bill gets deleted")
+    @Test(priority = 0, enabled = true, description = "BC_01 and BC_08 Verify that creating a bill by adding amount value only, without Selecting a Customer and Verify that unpaid bill gets deleted")
     public void verifyCreateBillWithoutSelectingCustomer() {
 
         bill.createBillWithoutCustomer();
@@ -19,7 +19,7 @@ public class BillTest extends BaseTest {
         bill.getDeleteIcon();
     }
 
-    @Test(priority = 1, description = "BC_02 Verify that creating a bill by adding amount value only, with Selecting a Customer")
+    @Test(priority = 1, enabled = true,description = "BC_02 Verify that creating a bill by adding amount value only, with Selecting a Customer")
     public void verifyCreateBillBySelectingCustomer() {
         bill.createBillWithCustomer("636045278965", "yonro@yopmail.com");
         bill.clickOnNotPaidLabel();
@@ -29,14 +29,14 @@ public class BillTest extends BaseTest {
     }
 
     //
-    @Test(priority = 2, description = "BC_03 Bill creation by selecting customers from the suggestion list")
+    @Test(priority = 2, enabled = true,description = "BC_03 Bill creation by selecting customers from the suggestion list")
     public void verifyCreateBillForSuggestedCustomer() {
         bill.verifyCreateBillForSuggestedCustomer("yonro@yopmail.com");
         bill.deleteBill();
     }
 
 
-    @Test(priority = 4, description = "BC_09 Verify that creating a bill by adding 'Ref No.', 'Description' and 'Items' fields")
+    @Test(priority = 4, enabled = true,description = "BC_09 Verify that creating a bill by adding 'Ref No.', 'Description' and 'Items' fields")
     public void verifyBillCreationUsingOptionalFields() {
         bill.verifyBillCreationByOptionalFields("47000.00", "3000.00", "yonro@yopmail.com");
     }
@@ -44,7 +44,6 @@ public class BillTest extends BaseTest {
     @Test(priority = 5, enabled = true, description = "BC_13 Verify that creating a bill after configuring the bill amount value form the store configuration page.")
     public void verifyingBillCreationWithConfiguredBillAmount() {
         bill.verifyingBillCreationWithConfiguredBilledAmount();
-
         bill.getDeleteButton();
         bill.getDeleteIcon();
     }
@@ -59,9 +58,7 @@ public class BillTest extends BaseTest {
 
     @Test(priority = 7, enabled = true, description = "BC_06 Verify that creating a bill by attaching the image file.")
     public void verifyingBillCreationByAttachingImageFile() throws InterruptedException, AWTException {
-
-        bill.createBillByAttachingImageFile();
-
+     bill.createBillByAttachingImageFile();
     }
 
     @Test(priority = 8, enabled = true, description = "BC_07 Verify that creating a bill by attaching the image file.")
@@ -125,8 +122,6 @@ public class BillTest extends BaseTest {
     public void verifyBillCreationByAddingpaymentMethod() {
         bill.verifyBillCreationByAddingpaymentMethod("yonro@yopmail.com");
     }
-
-
 }
 
 
