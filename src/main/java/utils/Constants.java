@@ -50,7 +50,7 @@ public interface Constants {
     String passwordvalidation = "Invalid password, a password must contain at least one upper case letter, one lower case letter and one special character or a number.";
     String validPassword = "Test@123";
     String validLoginEmail = "test1114@yopmail.com";
-    String validAdminEmail = "eti275@yopmal.com";
+    String validAdminEmail = "eti275@yopmail.com";
     String phoneSecurityCodeForLogin = "777777";
     String ForgetPasswordtitle = "Forget password";
     String  TermsOfUser ="User Agreement";
@@ -149,6 +149,7 @@ public interface Constants {
     String defaultTaxRate = "0.000%";
     String currentPlan= "Current plan";
     String visavalue = "Visa 1111";
+    String defaultTaxRateValue = "0.000";
 
     //Store Names
     public static String AutomationBillFlow = "Automation Bill Flow";  // Flow 1 without plan

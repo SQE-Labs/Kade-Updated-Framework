@@ -101,7 +101,8 @@ public class PaymentPage extends BaseTest {
     By changeBtn = By.xpath("//div[normalize-space()='Change']");
     By visaCardName = By.xpath("(//span[contains(text(),'Visa')])[3]");
     By creditCards = By.xpath("//span[text()='New Credit Card']/../../../..");
-    By iframeForCard = By.xpath("//div[@class='StripeElement']//div/iframe[contains(@name,'__privateStripeFrame')]");
+    By iframeForCard = By.xpath("(//div[@class='StripeElement']//div/iframe[contains(@name,'__privateStripeFrame')])[2]");
+    By iframeForCreditCard = By.xpath("//div[@class='StripeElement']//div/iframe[contains(@name,'__privateStripeFrame')]");
     public By saveBtn = By.xpath("//button[text()='Save']");
     By thankTxt = By.xpath("//span[text()='Thank']");
     By youTxt = By.xpath("//span[text()='You!']");
@@ -181,6 +182,7 @@ public class PaymentPage extends BaseTest {
     }
 
     public void clickOnSaveBtn() {
+        waitForElementToBeClickable(saveBtn,4);
         click(saveBtn);
     }
 
@@ -923,7 +925,17 @@ public class PaymentPage extends BaseTest {
         actionEnterText(cvcTbx, "123");
         actionEnterText(countryDropDown, "Australia");
         switchToDefaultWindow();
+    }
 
+
+    public void getPayThroughCreditCardForAddingPayment() {
+        switchToFrame(iframeForCreditCard);
+        scrollToElement(cardNumberTbx);
+        actionEnterText(cardNumberTbx, "4111111111111111");
+        actionEnterText(expirationDateTbx, "0230");
+        actionEnterText(cvcTbx, "123");
+        actionEnterText(countryDropDown, "Australia");
+        switchToDefaultWindow();
     }
 
     public void clickOnVenmoAccount() {

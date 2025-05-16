@@ -51,7 +51,7 @@ public class QRCodePage extends BaseTest {
     By storeName = By.xpath("//h3[text()='Automation Bill Flow']");
     By authorizePayment = By.xpath("//h5[text()='Authorized Payment Method']");
     By newQrCode = By.xpath("//button[text()='Generate a new QR code']");
-    By flexibleAmount = By.xpath("//span[text()='Flexible amount']");
+    By flexibleAmount = By.xpath("//span[text()='Flexible amount']/..");
     By fixedAmount = By.xpath("//span[text()='Fixed amount']");
     By fixedAmoutSec=By.xpath("//span[text()='Fixed amount']/..");
     By addButn=By.xpath("//button[text()='Add a line']");
@@ -220,6 +220,7 @@ public class QRCodePage extends BaseTest {
     }
 
     public void clickOntitleFieldOnPopup(String enterTitleField) {
+        staticWait(3000);
         actionEnterText(titleFieldOnPopup, enterTitleField);
     }
 
@@ -228,6 +229,7 @@ public class QRCodePage extends BaseTest {
     }
 
     public void clickOncontent() {
+        waitForElementToBeClickable(content,3);
         click(content);
         softAssert.assertTrue(isElementDisplayed(contentPage));
     }
@@ -533,6 +535,7 @@ public class QRCodePage extends BaseTest {
 
     public void createNewQrCode() {
         selectStore();
+        clickOnnewQrCode();
         staticWait(3000);
         softAssert.assertTrue(isElementDisplayed(flexibleAmount));
         softAssert.assertTrue(isElementDisplayed(fixedAmount));
@@ -574,7 +577,7 @@ public class QRCodePage extends BaseTest {
     }
 
     public void editAdditionalFields(String Txt) {
-        staticWait(3000);
+        staticWait(5000);
         clickOnEditIcon();
         enterTxtInFlexibleAmtField(Txt);
         clickOnCorrectIcon();
@@ -582,11 +585,11 @@ public class QRCodePage extends BaseTest {
         clickOnCalenderIcon();
         enableToggle();
         clickOnSaveBtn();
-        staticWait(4000);
+        staticWait(5000);
     }
 
     public void TemporaryUnavailable() {
-        staticWait(4000);
+        staticWait(5000);
         clickOnEyeIcon();
         ClickOnViewIcon();
         switchToNewWindow();
