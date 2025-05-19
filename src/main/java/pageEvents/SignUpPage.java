@@ -192,11 +192,6 @@ public void creatingNewAccountWithEmailWithBusinessAccount(){
     getBusinessContinuebtn();
 }
 
-
-
-
-
-
 public void getValidationsOfPersonalAccountPage() {
     getpersonalAccountButton();
     getSignUpBtnPA();

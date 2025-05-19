@@ -141,6 +141,7 @@ public class MyStorePage extends BaseTest {
     By validationCrossIcon = By.cssSelector(".btn-close.autoclick-effect");
 
     public void getValidationCrossIcon(){
+        waitForElementToBeClickable(validationCrossIcon,5);
         click(validationCrossIcon);
     }
 
@@ -483,6 +484,7 @@ public class MyStorePage extends BaseTest {
         staticWait(3000);
 //        waitForElementToBeClickable(skipStripeAccountPopUpBtn,5);
         getSkipBtnOfStripe();
+        staticWait(3000);
         scrollToElement(saveBtn);
         waitForElementToBeClickable(saveBtn,3);
         getSaveButton();
@@ -556,7 +558,7 @@ public class MyStorePage extends BaseTest {
 
         //Verifying maximum length of 'Store Name' field
         Assert.assertEquals(getAttribute(StoreNameTbx,"maxlength"),"100");
-        waitForElementToBeClickable(StoreNameTbx,5);
+        waitForElementToBeClickable(StoreNameTbx,8);
 
         // Enter Store Name
         enterText(StoreNameTbx,Constants.editdefaultStoreName);

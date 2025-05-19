@@ -32,7 +32,7 @@ public class CustomersPage extends BaseTest {
     public By pencilIcon = By.xpath("//i[@class='fas fa-pencil fs-pn15']");
     public By chngeName = By.xpath("//input[@name='userAliasName']");
     public By saveBtn = By.xpath("//button[@class='float-end mt-2 mb-2 btn btn-primary']");
-    public By eyeIcon = By.cssSelector(".far.fa-eye");
+    public By eyeIcon = By.cssSelector("[href='/Stores/userProfile/3790?userid=3436']");
     public By profileHeading = By.xpath("//h1[@class='header-title mb-0']");
     public By messageIcon = By.cssSelector(".fal.fa-paper-plane.fa-2x");
     public By trophieIcon = By.xpath("//a[@class='align-self-center p-0 btn btn-link']");

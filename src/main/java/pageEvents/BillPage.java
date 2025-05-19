@@ -89,7 +89,7 @@ public class BillPage extends BaseTest {
     By addMoreRowLink = By.xpath("//button[@class='btn-sm btn btn-link']");
     By toolTipMessage = By.xpath("//div[@class='tooltip-inner']");
     By refNoTextBox = By.xpath("//input[@name='refNo']");
-    By autoGenToggleBtn = By.xpath("(//input[@name='autoGenerate'])[1]");
+    By autoGenToggleBtn = By.xpath("//input[@name='useCardOnFile']/following-sibling::i[2]");
     public By autoPaymentInfoMsg = By.xpath("//div[@class='alert-message']//div[contains(text(),'process this bill')]");
 
     By autoGenClass = By.xpath("(//input[@name='autoGenerate'])[1]/../../../..");

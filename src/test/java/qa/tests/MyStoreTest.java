@@ -215,7 +215,9 @@ public class MyStoreTest extends BaseTest {
         //Verifying the 'Tip Configuration' Pop-up Title
         softAssert.assertEquals(mystore.tipConfigPopUpTitle, Constants.tipConfigurationTitle);
 
-        staticWait(3000);
+        staticWait(5000);
+        mystore.getEnterInPerCentToggleButton();
+
         cleanByJS(mystore.tipPercentField1);
         cleanByJS(mystore.tipPercentField2);
         cleanByJS(mystore.tipPercentField3);
