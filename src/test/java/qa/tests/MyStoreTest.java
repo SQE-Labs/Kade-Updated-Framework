@@ -18,6 +18,7 @@ import java.io.File;
 import static base.BaseTest.Login;
 import static java.lang.Float.*;
 import static utils.Constants.*;
+
 import org.testng.Assert;
 
 
@@ -30,7 +31,7 @@ public class MyStoreTest extends BaseTest {
     BillPage bill = new BillPage();
     PaymentPage payment = new PaymentPage();
 
-    @Test(description = "SC_01(A) Verifying creation of Store without Stripe Payment Account Configuration")
+    @Test(priority = 0, description = "SC_01(A) Verifying creation of Store without Stripe Payment Account Configuration")
     public void storeCreationWithoutStripeAccount() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
@@ -39,7 +40,7 @@ public class MyStoreTest extends BaseTest {
     }
 
 
-    @Test(description = "SC_01(B) Verifying deletion of Store when Stripe Account is not Registered Yet")
+    @Test(priority = 1, description = "SC_01(B) Verifying deletion of Store when Stripe Account is not Registered Yet")
     public void sc01b_DeletionOfStore() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
@@ -50,7 +51,7 @@ public class MyStoreTest extends BaseTest {
         staticWait(2000);
         if (!isElementDisplayed(mystore.storeLogo)) {
             mystore.getSkipStripeAccountButton();
-            waitForElementToBeVisible(mystore.skipPopUpTitle,4);
+            waitForElementToBeVisible(mystore.skipPopUpTitle, 4);
 
             String actual = getText(mystore.skipPopUpTitle);
             //Verifying the 'Skip' Pop Up Title
@@ -58,16 +59,15 @@ public class MyStoreTest extends BaseTest {
             //  Click on 'Skip' button
             mystore.getSkipBtnOfStripe();
         }
-        waitForElementToBeVisible(mystore.deleteStoreBtn,7);
         scrollToElement(mystore.deleteStoreBtn);
-        waitForElementToBeVisible(mystore.deleteStoreBtn,5);
+        waitForElementToBeVisible(mystore.deleteStoreBtn, 7);
         // click on delete button
         mystore.getDeleteStoreButton();
         mystore.getDeleteStoreIcon();
     }
 
 
-    @Test(description = "SC_02  Verify creation of Store with Stripe Payment Account")
+    @Test(priority = 2, description = "SC_02  Verify creation of Store with Stripe Payment Account")
     public void creationOfStoreWithStripeAccount() {
 
         Login();
@@ -75,15 +75,14 @@ public class MyStoreTest extends BaseTest {
         pageObjectManager.getSidePannel().getSignOut();
         staticWait(3000);
         pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
-
     }
 
-    @Test(description = "SC_03 Verifying modification of existing created Store")
+    @Test(priority = 3, description = "SC_03 Verifying modification of existing created Store")
     public void verifyingModificationOfExistingCreatedStore() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
-        waitForElementToBeVisible(mystore.configureLink,5);
+        waitForElementToBeVisible(mystore.configureLink, 5);
 
         // Click on 'Configure' Link
         mystore.getConfigureLink();
@@ -94,7 +93,7 @@ public class MyStoreTest extends BaseTest {
     }
 
 
-    @Test(description = "SC_04(A) Verifying buying Monthly Business Plan for already created Store")
+    @Test(priority = 4, description = "SC_04(A) Verifying buying Monthly Business Plan for already created Store")
     public void c2verifyingBuyingMonthlyBusinessPlanForAlreadyCreatedStore() {
         Login();
         mystore.getStoreCreation();
@@ -132,7 +131,7 @@ public class MyStoreTest extends BaseTest {
 
     }
 
-    @Test(description = "SC04(b): Verify Store creation with Yearly Business Plan on 'Store Configuration' Page ")
+    @Test(priority = 5, description = "SC04(b): Verify Store creation with Yearly Business Plan on 'Store Configuration' Page ")
     public void verifyStoreCreationWithYearlyBusinessPlan() {
         Login();
         mystore.getStoreCreation();
@@ -140,7 +139,7 @@ public class MyStoreTest extends BaseTest {
 
         //Verifying that 'Current Plan' appears under Essential Free Plan
         String message = getText(mystore.currentPlanMSg);
-        softAssert.assertEquals(message, Constants.currentPlan);
+        Assert.assertEquals(message, Constants.currentPlan);
 
         // select on Business Yearly plan
         mystore.getBusinessYearlyPlan();
@@ -175,19 +174,18 @@ public class MyStoreTest extends BaseTest {
 
     }
 
-    @Test(description = "SC_05(A) Verifying the Configuration of already created Store using Settings Sub-Tabs")
+    @Test(priority = 6, description = "SC_05(A) Verifying the Configuration of already created Store using Settings Sub-Tabs")
     public void verifyingConfigurationsOfStoreUsingSettings() {
         String tipAmountPercent1 = requiredDigits(2);
         String tipAmountPercent2 = requiredDigits(2);
         String tipAmountPercent3 = requiredDigits(2);
         String rewardPoints = requiredDigits(4);
 
-
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
 
-        waitForElementToBeInteractable(mystore.configureLink,4);
+        waitForElementToBeInteractable(mystore.configureLink, 4);
 
         // Click on 'Configure' Link
         mystore.getConfigureLink();
@@ -214,6 +212,33 @@ public class MyStoreTest extends BaseTest {
 
         //Verifying the 'Tip Configuration' Pop-up Title
         softAssert.assertEquals(mystore.tipConfigPopUpTitle, Constants.tipConfigurationTitle);
+
+        staticWait(3000);
+        cleanByJS(mystore.tipPercentField1);
+        cleanByJS(mystore.tipPercentField2);
+        cleanByJS(mystore.tipPercentField3);
+
+        // Click on 'Save Changes' button
+        mystore.getSaveChangesButton();
+
+        mystore.getValidationCrossIcon();
+
+        staticWait(3000);
+
+        String tooltip1 = getToolTipMessage(mystore.tipPercentField1);
+        Assert.assertEquals(tooltip1, requiredFldValidation);
+
+        String tooltip2 = getToolTipMessage(mystore.tipPercentField2);
+        Assert.assertEquals(tooltip2, requiredFldValidation);
+
+        String tooltip3 = getToolTipMessage(mystore.tipPercentField3);
+        Assert.assertEquals(tooltip3, requiredFldValidation);
+
+        staticWait(4000);
+
+        // Click on 'Enter in Percentage' Toggle button
+        mystore.getEnterInPerCentToggleButton();
+
         staticWait(3000);
 
         if (!isElementDisplayed(mystore.alertMessage)) {
@@ -245,8 +270,8 @@ public class MyStoreTest extends BaseTest {
         }
 
         //Verifying the Minimum and Maximum Values of 'Reward Points' Field
-        softAssert.assertEquals(getAttribute(mystore.rewardPointsField, "max"), "99999");
-        softAssert.assertEquals(getAttribute(mystore.rewardPointsField, "min"), "100");
+        Assert.assertEquals(getAttribute(mystore.rewardPointsField, "max"), "99999");
+        Assert.assertEquals(getAttribute(mystore.rewardPointsField, "min"), "100");
 
         // Enter Reward Points
         actionEnterText(mystore.rewardPointsField, rewardPoints);
@@ -279,10 +304,12 @@ public class MyStoreTest extends BaseTest {
 
             // Click on 'Save Changes' Button
             mystore.getSaveChangesButton();
+            softAssert.assertAll();
         }
     }
 
-    @Test(description = "SC_05(B) Verifying the Configuration of the Store using flat value in 'tip or gratuity' field")
+    // Bug Raised and Bug Id is : 3020
+    @Test(priority = 7, description = "SC_05(B) Verifying the Configuration of the Store using flat value in 'tip or gratuity' field")
     public void verifyingConfigurationsOfStoreUsingFlatValueInTipField() {
 
         String value1 = requiredDigits(Float.parseFloat("0.01"), Float.parseFloat("999.00"));
@@ -304,11 +331,37 @@ public class MyStoreTest extends BaseTest {
             // Click on 'Tip & Gratuity' Toggle Button
             mystore.getTipGratuityToggleOnButton();
         }
+
         // Click on 'Configure' button
         mystore.getTipConfigureBtn();
 
         //Verifying the 'Tip Configuration' Pop-up Title
-        softAssert.assertEquals(mystore.tipConfigPopUpTitle, Constants.tipConfigurationTitle);
+        Assert.assertEquals(getText(mystore.tipConfigPopUpTitle), Constants.tipConfigurationTitle);
+
+
+        staticWait(3000);
+
+        cleanByJS(mystore.tipFlatValueField1);
+        cleanByJS(mystore.tipFlatValueField2);
+        cleanByJS(mystore.tipFlatValueField3);
+        staticWait(3000);
+
+        // Click on 'Save Changes' Button
+        mystore.getSaveChangesButton();
+        mystore.getValidationCrossIcon();
+
+        // Verify that this field is required tooltip appears
+        String tooltip1 = getToolTipMessage(mystore.tipFlatValueField1);
+        softAssert.assertEquals(tooltip1, requiredFldValidation, "This field is required tooltip not appear");
+        staticWait(2000);
+        String tooltip2 = getToolTipMessage(mystore.tipFlatValueField2);
+        softAssert.assertEquals(tooltip2, requiredFldValidation, "This field is required tooltip not appear");
+
+        String tooltip3 = getToolTipMessage(mystore.tipFlatValueField3);
+        softAssert.assertEquals(tooltip3, requiredFldValidation, "This field is required tooltip not appear");
+
+        staticWait(3000);
+
 
         if (getCountOfWebElements(mystore.alertMessage) > 0) {
             // Click on 'Enter in Percentage' Toggle button
@@ -318,8 +371,16 @@ public class MyStoreTest extends BaseTest {
         // Verifying the maximum and minimum values of 'Tip Amount' field
         softAssert.assertEquals(getAttribute(mystore.tipFlatValueField1, "max"), "999.00");
         softAssert.assertEquals(getAttribute(mystore.tipFlatValueField1, "min"), "0.01");
+        // field 2
 
-        waitForElementToBeInteractable(mystore.tipFlatValueField1,3);
+        softAssert.assertEquals(getAttribute(mystore.tipFlatValueField2, "max"), "999.00");
+        softAssert.assertEquals(getAttribute(mystore.tipFlatValueField2, "min"), "0.01");
+
+        // field 3
+        softAssert.assertEquals(getAttribute(mystore.tipFlatValueField3, "max"), "999.00");
+        softAssert.assertEquals(getAttribute(mystore.tipFlatValueField3, "min"), "0.01");
+
+        waitForElementToBeInteractable(mystore.tipFlatValueField1, 3);
 
         actionEnterText(mystore.tipFlatValueField1, value1);
         actionEnterText(mystore.tipFlatValueField2, value2);
@@ -327,10 +388,10 @@ public class MyStoreTest extends BaseTest {
 
         // Click on 'Save Changes' Button
         mystore.getSaveChangesButton();
-
+        softAssert.assertAll();
     }
 
-    @Test(description = "SC_06 Verifying the Configuration of the Store using Payment Processing Sub-Tab with terminal configuration,")
+    @Test(priority=13,description = "SC_06 Verifying the Configuration of the Store using Payment Processing Sub-Tab with terminal configuration,")
     public void verifyingConfigurationOfStoreUsingPaymentProcessingSubTab() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
@@ -357,22 +418,22 @@ public class MyStoreTest extends BaseTest {
         //Verifying the 'New Terminal' Pop-Up Title
         Assert.assertEquals(getText(mystore.newTerminalPopUpTitle), Constants.newTerminalTitle);
 
-
         // Select an option and save
         mystore.getCreditTerminalOption();
-
     }
-    @Test(description  ="SC_06 Verifying the Configuration of the Store using Payment Processing Sub-Tabs on 'Store Configuration' Page with Venmo & Zelle. ")
-    public void verifyConfigurationOfStoreUsingPaymentProcessingSubTab(){
+
+
+    @Test(priority = 8, description = "SC_06 Verifying the Configuration of the Store using Payment Processing Sub-Tabs on 'Store Configuration' Page with Venmo & Zelle. ")
+    public void verifyConfigurationOfStoreUsingPaymentProcessingSubTab() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
-        waitForElementToBeClickable(mystore.configureLink,3);
+        waitForElementToBeClickable(mystore.configureLink, 3);
 
         // Click on 'Configure' Link
         mystore.getConfigureLink();
 
-    waitForElementToBeVisible(mystore.paymentProcessingSubTab,5);
+        waitForElementToBeVisible(mystore.paymentProcessingSubTab, 5);
 
         // Click on 'Payment-Processing' Sub-Tab
         mystore.getPaymentProcessingSubTab();
@@ -382,50 +443,49 @@ public class MyStoreTest extends BaseTest {
 
         mystore.getAcceptVenmoToggleButton();
 
-            staticWait(5000);
+        staticWait(5000);
 
-            //Verifying Maximum length of 'VenmoID' field
-            softAssert.assertEquals(getAttribute(mystore.venmoIDField, "maxlength"), "40");
+        //Verifying Maximum length of 'VenmoID' field
+        softAssert.assertEquals(getAttribute(mystore.venmoIDField, "maxlength"), "40");
 
-            // Enter ID in 'Venmo ID" field
-            enterText(mystore.venmoIDField, requiredDigits(4));
+        // Enter ID in 'Venmo ID" field
+        enterText(mystore.venmoIDField, requiredDigits(4));
 
-            //Verifying maximum length of 'Venmo Name' field
-            softAssert.assertEquals(getAttribute(mystore.venmoNameField, "maxlength"), "40");
+        //Verifying maximum length of 'Venmo Name' field
+        softAssert.assertEquals(getAttribute(mystore.venmoNameField, "maxlength"), "40");
 
-            // Enter name in 'Venmo Name' Field
-            enterText(mystore.venmoNameField, requiredString(8));
+        // Enter name in 'Venmo Name' Field
+        enterText(mystore.venmoNameField, requiredString(8));
 
-            // Click on 'Save' Button
-            mystore.getVenmoSaveButton();
-            scrollToElement(mystore.acceptZelleHeader);
-            staticWait(3000);
+        // Click on 'Save' Button
+        mystore.getVenmoSaveButton();
+        scrollToElement(mystore.acceptZelleHeader);
+        staticWait(3000);
 
-         if(!isToggleEnabled(mystore.acceptZelleToggleBtn)){
+        if (!isToggleEnabled(mystore.acceptZelleToggleBtn)) {
             clickElementByJS(mystore.acceptZelleToggleBtn);
-        }
-        else{
-            hoverAndClick(mystore.acceptZelleToggleBtn,mystore.acceptZelleToggleBtn);
+        } else {
+            hoverAndClick(mystore.acceptZelleToggleBtn, mystore.acceptZelleToggleBtn);
         }
 
         //Verifying maximum length of 'Zelle Phone' field
-        softAssert.assertEquals(getAttribute(mystore.zellePhoneField,"maxlength"),"40");
+        softAssert.assertEquals(getAttribute(mystore.zellePhoneField, "maxlength"), "40");
 
         //  Enter Phone Number in 'Zelle Phone' Field
-        enterText(mystore.zellePhoneField,requiredDigits(4));
+        enterText(mystore.zellePhoneField, requiredDigits(4));
 
         // Verifying maximum length of 'Zelle Name' field
-        softAssert.assertEquals(getAttribute(mystore.zelleNameField,"maxlength"),"40");
+        softAssert.assertEquals(getAttribute(mystore.zelleNameField, "maxlength"), "40");
 
         // Enter Zelle Account Name
-        enterText(mystore.zelleNameField,requiredString(8));
+        enterText(mystore.zelleNameField, requiredString(8));
 
         // Click on 'Save' Button
         mystore.getZelleSaveButton();
     }
 
 
-    @Test(description = "SC_08 Verify deactivating an activated Store")
+    @Test(priority = 9, description = "SC_08 Verify deactivating an activated Store")
     public void verifyDeactivatingAnActivatedStore() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
@@ -454,7 +514,9 @@ public class MyStoreTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(description = "SC 09 and Sc 10 Verify that store creation and purchasing the 'Premium' monthly plan subscription for the store, on 'Store Configuration' page.")
+         // Failed due to Bug 3092, 2827
+
+    @Test(priority = 10, description = "SC 09 and Sc 10 Verify that store creation and purchasing the 'Premium' monthly plan subscription for the store, on 'Store Configuration' page.")
     public void verifyingStoreCreationWithPurchasingMonthlyPremiumPlan() {
         Login();
         mystore.getStoreCreation();
@@ -486,7 +548,7 @@ public class MyStoreTest extends BaseTest {
         // Click on 'Terms' Checkbox
         mystore.getTermsCheckbox();
         scrollToElement(mystore.changePlanBtn);
-        waitForElementToBeClickable(mystore.changePlanBtn,3);
+        waitForElementToBeClickable(mystore.changePlanBtn, 3);
 
         //  Click on 'Change Plan' Button
         mystore.getChangePlanButton();
@@ -506,12 +568,12 @@ public class MyStoreTest extends BaseTest {
         // Click on 'Terms' Checkbox
         mystore.getTermsCheckbox();
         scrollToElement(mystore.changePlanBtn);
-        waitForElementToBeClickable(mystore.changePlanBtn,3);
+        waitForElementToBeClickable(mystore.changePlanBtn, 3);
 
         //  Click on 'Change Plan' Button
         mystore.getChangePlanButton();
         //Verifying that next bill date is generated
-        Assert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
+        Assert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date"); // Bug Failed due to 3092, 2827
 
 
         pageObjectManager.getSidePannel().getSignOut();
@@ -521,20 +583,20 @@ public class MyStoreTest extends BaseTest {
 
     }
 
-    @Test(description = "SC_07(A) Verifying the Configuration of the Store using 'Manage Users' Sub-Tab")
+    @Test(priority = 11, description = "SC_07(A) Verifying the Configuration of the Store using 'Manage Users' Sub-Tab")
     public void sc07a_VerifyingConfigurationOfStoreUsingManageUsersSubTabs() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
-        waitForElementToBeClickable(mystore.configureLink,3);
+        waitForElementToBeClickable(mystore.configureLink, 3);
 
         // Click on 'Configure' Link
         mystore.getConfigureLink();
-        waitForElementToBeClickable(mystore.manageUserSubTab,5);
+        waitForElementToBeClickable(mystore.manageUserSubTab, 5);
 
         // click on Manage Sub Tab
         mystore.getManageUserSubTab();
-        waitForElementToBeInteractable(mystore.createUserAndCredetButton,5);
+        waitForElementToBeInteractable(mystore.createUserAndCredetButton, 5);
 
         // Creating  Manager user
         mystore.createManagerUser();
@@ -547,28 +609,28 @@ public class MyStoreTest extends BaseTest {
 
     }
 
-    @Test(enabled = false , description = "SC_07(B) Verifying the Configuration of the store using Manage User sub tab to invite any existing user to manage store.")
+    @Test(priority = 12, enabled = true, description = "SC_07(B) Verifying the Configuration of the store using Manage User sub tab to invite any existing user to manage store.")
     public void sc_07b_VerifyingConfigurationOfStoreUsingManageUserSubTabToInviteAnyExistingUserToManageStore() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
-        waitForElementToBeClickable(mystore.configureLink,3);
+        waitForElementToBeClickable(mystore.configureLink, 3);
 
         // Click on 'Configure' Link
         mystore.getConfigureLink();
-        waitForElementToBeClickable(mystore.manageUserSubTab,5);
+        waitForElementToBeClickable(mystore.manageUserSubTab, 5);
 
         // click on Manage Sub Tab
         mystore.getManageUserSubTab();
-        waitForElementToBeInteractable(mystore.createUserAndCredetButton,5);
+        waitForElementToBeInteractable(mystore.createUserAndCredetButton, 5);
         mystore.getinviteUserButton();
-        waitForElementToBeVisible(mystore.inviteExistingUserPopupTitle,4);
+        waitForElementToBeVisible(mystore.inviteExistingUserPopupTitle, 4);
 
         // Verifying the 'Invite Existing User' PopUp Title
-        Assert.assertEquals(getText(mystore.inviteExistingUserPopupTitle),"Invite users");
+        Assert.assertEquals(getText(mystore.inviteExistingUserPopupTitle), "Invite users");
 
         // Enter Email Or Phone Number
-        enterText(mystore.inviteMangeUserEmailOrPhoneField,"saybo@yopmail.com");
+        enterText(mystore.inviteMangeUserEmailOrPhoneField, "saybo@yopmail.com");
 
         //  Click on the 'User Profile' Drop Down
         mystore.getUserProfileDropdown();
@@ -584,17 +646,7 @@ public class MyStoreTest extends BaseTest {
         LoginAsCustomer();
         payment.clickOnBillIcon();
 
-
-
     }
-
-
-
-// //This method is used to delete unwanted stores from the account
-//    @Test(description = "Delete unwanted store")
-//    public void deleteUnwantedStore(){
-//        pageObjectManager.getAdminPage().ToDeleteStores();
-//    }
 }
 
 

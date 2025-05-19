@@ -1801,7 +1801,6 @@ public class BillPage extends BaseTest {
         staticWait(2000);
         getConfirmButton();
 
-
         //Close popup
         closePopup();
 
@@ -1849,8 +1848,6 @@ public class BillPage extends BaseTest {
         //Click Confirm
         staticWait(2000);
         getConfirmButton();
-
-
         //Close popup
         closePopup();
 

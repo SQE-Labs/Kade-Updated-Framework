@@ -153,6 +153,7 @@ public class GiftCardDashboardPage extends BaseTest {
     By allresult = By.xpath("//table[contains(@class,'sortable_table')]//tbody/tr[@data-ref]");
     By noResultInfoMsg = By.cssSelector(".no-result-icon+p");
     By userEmailTbx = with(By.tagName("div")).below(userPhoneEmailtbx);
+    By userEmailTxtField=By.xpath("(//label[text()='User Phone/Email']/../div)[2]");
     By validationMsgForCustomerPopup = By.cssSelector(".no-result-icon+p");
     By dateFilterLabel = By.xpath("//label[starts-with(text(),'Date')]");
     By dateFilterInput = with(By.tagName("input")).below(dateFilterLabel);
@@ -174,8 +175,13 @@ public void getFilterIcon(){
 public void getFitlerApplyBtn(){
     click(applyBtnFilter);
 }
+
 public void getUserPhoneEmailTbxFilter(){
+    staticWait(3000);
     click(userEmailTbx);
+}
+public void clickOnUserEmailTxtField(){
+    click(userEmailTxtField);
 }
 public void getDateFilterInput(){
     click(dateFilterFiled);
@@ -2233,10 +2239,9 @@ public void getGiftCardStatusTbx(){
     staticWait(5000);
     getFilterIcon();
 
-        waitForElementToBeClickable(userEmailTbx,4);
 
     // clicking on 'User Email Phone filter
-        getUserPhoneEmailTbxFilter();
+        clickOnUserEmailTxtField();
         staticWait(3000);
 //        waitForElementToBeVisible();
 
@@ -2284,10 +2289,8 @@ public void getGiftCardStatusTbx(){
         staticWait(5000);
         getFilterIcon();
 
-        waitForElementToBeClickable(userEmailTbx,5);
-
         // clicking on 'User Email Phone filter
-        getUserPhoneEmailTbxFilter();
+        clickOnUserEmailTxtField();
         staticWait(5000);
 
         //   Select Customer
@@ -2322,10 +2325,14 @@ public void getGiftCardStatusTbx(){
 
         //Verify all result appears
         List<WebElement> allRecords = getDriver().findElements(allresult);
+        String expectedDate = "5/12/2025";
 
         for (WebElement record : allRecords) {
             String detail = record.getText();
             System.out.println("Record for existing user is: " + detail);
+
+            Assert.assertTrue(detail.contains(expectedDate),
+                    "Record does not match the selected date: " + detail);
         }}
 
     public void verifyGCResultWhileApplyingNonExistingDateRangeFilter(){

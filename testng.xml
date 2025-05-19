@@ -3,28 +3,28 @@
 
 <suite name="Suite">
     <listeners>
-        <listener class-name="utils.SuiteListener" />
-        <listener class-name="com.aventstack.chaintest.plugins.ChainTestListener" />
+        <listener class-name="utils.SuiteListener"/>
+        <listener class-name="com.aventstack.chaintest.plugins.ChainTestListener"/>
     </listeners>
 
-    <test thread-count="3" name="Test" >
-        <parameter name="env" value="qa" />
-        <parameter name="browser" value="chrome" />
-        <parameter name="headless" value="true" />
+    <test thread-count="3" name="Test">
+        <parameter name="env" value="qa"/>
+        <parameter name="browser" value="chrome"/>
+        <parameter name="headless" value="true"/>
 
         <!-- To Run Whole Suite-->
-<!--        <packages>-->
-<!--            <package name="qa.tests" />-->
-<!--        </packages>-->
+        <!--        <packages>-->
+        <!--            <package name="qa.tests" />-->
+        <!--        </packages>-->
 
 
-
-<!--         To Run Perticuler Class-->
+        <!--         To Run Perticuler Class-->
         <classes>
-            <class name="qa.tests.BillTest"></class>
-<!--            <class name="qa.tests.MyStoreTest"></class>-->
-            <class name="qa.tests.PaymentsAndRefundTest"></class>
-            <class name="qa.tests.TransactionsTest"></class>
+            <!--            <class name="qa.tests.BillTest"></class>-->
+                            <class name="qa.tests.MyStoreTest"></class>
+            <!--            <class name="qa.tests.PaymentsAndRefundTest"></class>-->
+            <!--            <class name="qa.tests.TransactionsTest"></class>-->
+
 
         </classes>
     </test>

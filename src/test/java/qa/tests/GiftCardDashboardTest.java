@@ -273,8 +273,6 @@ public class GiftCardDashboardTest extends BaseTest {
 
     @Test(priority = 96 & 98, enabled = true, description = "Verify that user is able to set date range from date picker of 'Sale date range' field, on 'Gift Card For Sale' page.")
     public void verifySelectingDateRange (){
-
-
         giftCardPage.verifyDateRange();
 
     }
@@ -409,6 +407,7 @@ public class GiftCardDashboardTest extends BaseTest {
     }
     @Test(priority = 59,enabled = true, description ="Verify that relevant gift cards appear listed after selecting date range( gift card exists) from 'Date' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
     public void verifyGiftCardAppearsForSelectedDate(){
+
         giftCardPage.verifyGiftCardAppearsForSelectedDate();
     }
 

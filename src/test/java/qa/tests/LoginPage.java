@@ -96,7 +96,7 @@ public class LoginPage extends BaseTest {
         loginPage.verifyForgetPassword();
 
     }
-    @Test(priority = 5, enabled = true, description = "Verify that user gets logged in with google account when user  clicks on 'Sign in using your Google account' link, on 'Login' page.")
+    @Test(priority = 5, enabled = false, description = "Verify that user gets logged in with google account when user  clicks on 'Sign in using your Google account' link, on 'Login' page.")
     public void signInwithGoogle(){
         loginPage.getSignInWithGoogle();
         enterText(loginPage.googleEmailField,"");

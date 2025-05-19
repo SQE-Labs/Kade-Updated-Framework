@@ -237,7 +237,6 @@ public class BaseTest {
     }
 
     public static void SendKeys(By element, String value) {
-
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))));
         wait.until(ExpectedConditions.presenceOfElementLocated(element));
         try {
@@ -249,7 +248,7 @@ public class BaseTest {
         }
     }
 
-    /**
+    /*
      * Retrieves the visible text of an element.
      *
      * @param locator - The By locator for the element.

@@ -82,5 +82,4 @@ public class QRCodeTest extends BaseTest {
         QrCode.QrFilter();
     }
 
-
 }
