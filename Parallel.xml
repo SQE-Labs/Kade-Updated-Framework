@@ -7,26 +7,16 @@
         <listener class-name="com.aventstack.chaintest.plugins.ChainTestListener" />
     </listeners>
 
-    <test thread-count="3" name="Test" >
+    <test thread-count="2" name="Test" parallel="classes">
         <parameter name="env" value="qa" />
         <parameter name="browser" value="chrome" />
         <parameter name="headless" value="true" />
 
         <!-- To Run Whole Suite-->
-<!--        <packages>-->
-<!--            <package name="qa.tests" />-->
-<!--        </packages>-->
+        <packages>
+            <package name="qa.tests" />
+        </packages>
 
-
-
-<!--         To Run Perticuler Class-->
-        <classes>
-            <class name="qa.tests.BillTest"></class>
-<!--            <class name="qa.tests.MyStoreTest"></class>-->
-            <class name="qa.tests.PaymentsAndRefundTest"></class>
-            <class name="qa.tests.TransactionsTest"></class>
-
-        </classes>
     </test>
 </suite>
 
