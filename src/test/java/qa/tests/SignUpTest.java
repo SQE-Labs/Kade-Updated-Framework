@@ -131,7 +131,8 @@ public class SignUpTest extends BaseTest {
 
         // Enter data in security code field
         enterText(signUp.securityCodeFieldNewAccount, Constants.securityCode);
-        waitForElementToBeClickable(signUp.fullname,6);
+
+        waitForElementToBeVisible(signUp.fullname,10);
 
         //Entering name in the Full name field
         enterText(signUp.fullname, "New Kade Member" + st);

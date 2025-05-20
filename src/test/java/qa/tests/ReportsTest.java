@@ -56,6 +56,8 @@ public class ReportsTest extends BaseTest {
         Assert.assertTrue(isElementDisplayed(reportsPage.cardBody));
     }
 
+
+// Bug Id is : 2966
     @Test
         public void verifyDownloadedReports() {
             log.info("Verify that reports get downloaded in CSV format");

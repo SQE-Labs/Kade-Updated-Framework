@@ -66,7 +66,6 @@ public class QRCodeTest extends BaseTest {
     @Test(priority = 8, enabled = true, description = "payment Throgh Temporarily Unavailable Toggle button making off")
     public void paymentThroghTemporarilyUnavailable() {
         QrCode.paymentThroughByenablingTheToggleBtn("100.00");
-
     }
     @Test(priority = 9, enabled = true, description = "Create fixed amount create code")
     public void fixedAmountQrCode() {

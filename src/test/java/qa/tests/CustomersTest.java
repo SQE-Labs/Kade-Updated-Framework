@@ -229,7 +229,6 @@ public class CustomersTest extends BaseTest {
 
         Login();
         customersPage.navigateToCustomersPage();
-
         click(customersPage.eyeIcon);
         click(customersPage.trophieIcon);
         click(customersPage.addRewardpts);

@@ -3,8 +3,7 @@ package qa.tests;
 import base.BaseTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageEvents.BillPage;
@@ -12,15 +11,8 @@ import pageEvents.MyStorePage;
 import pageEvents.PaymentPage;
 import pageObjects.PageObjectManager;
 import utils.Constants;
-
-import java.io.File;
-
-import static base.BaseTest.Login;
 import static java.lang.Float.*;
 import static utils.Constants.*;
-
-import org.testng.Assert;
-
 
 public class MyStoreTest extends BaseTest {
     // Logger instance for logging messages
@@ -31,7 +23,7 @@ public class MyStoreTest extends BaseTest {
     BillPage bill = new BillPage();
     PaymentPage payment = new PaymentPage();
 
-    @Test(priority = 0, description = "SC_01(A) Verifying creation of Store without Stripe Payment Account Configuration")
+    @Test(priority = 0, enabled=true,description = "SC_01(A) Verifying creation of Store without Stripe Payment Account Configuration")
     public void storeCreationWithoutStripeAccount() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
@@ -40,7 +32,7 @@ public class MyStoreTest extends BaseTest {
     }
 
 
-    @Test(priority = 1, description = "SC_01(B) Verifying deletion of Store when Stripe Account is not Registered Yet")
+    @Test(priority = 1, enabled=true, description = "SC_01(B) Verifying deletion of Store when Stripe Account is not Registered Yet")
     public void sc01b_DeletionOfStore() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
@@ -67,7 +59,7 @@ public class MyStoreTest extends BaseTest {
     }
 
 
-    @Test(priority = 2, description = "SC_02  Verify creation of Store with Stripe Payment Account")
+    @Test(priority = 2,  enabled=true,description = "SC_02  Verify creation of Store with Stripe Payment Account")
     public void creationOfStoreWithStripeAccount() {
 
         Login();
@@ -77,7 +69,7 @@ public class MyStoreTest extends BaseTest {
         pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
     }
 
-    @Test(priority = 3, description = "SC_03 Verifying modification of existing created Store")
+    @Test(priority = 3,  enabled=true,description = "SC_03 Verifying modification of existing created Store")
     public void verifyingModificationOfExistingCreatedStore() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
@@ -93,7 +85,7 @@ public class MyStoreTest extends BaseTest {
     }
 
 
-    @Test(priority = 4, description = "SC_04(A) Verifying buying Monthly Business Plan for already created Store")
+    @Test(priority = 4,  enabled=true,description = "SC_04(A) Verifying buying Monthly Business Plan for already created Store")
     public void c2verifyingBuyingMonthlyBusinessPlanForAlreadyCreatedStore() {
         Login();
         mystore.getStoreCreation();
@@ -131,7 +123,7 @@ public class MyStoreTest extends BaseTest {
 
     }
 
-    @Test(priority = 5, description = "SC04(b): Verify Store creation with Yearly Business Plan on 'Store Configuration' Page ")
+    @Test(priority = 5,  enabled=true,description = "SC04(b): Verify Store creation with Yearly Business Plan on 'Store Configuration' Page ")
     public void verifyStoreCreationWithYearlyBusinessPlan() {
         Login();
         mystore.getStoreCreation();
@@ -174,7 +166,9 @@ public class MyStoreTest extends BaseTest {
 
     }
 
-    @Test(priority = 6, description = "SC_05(A) Verifying the Configuration of already created Store using Settings Sub-Tabs")
+    // Bug Failed due to 3092, 2827
+
+    @Test(priority = 6, enabled=true, description = "SC_05(A) Verifying the Configuration of already created Store using Settings Sub-Tabs")
     public void verifyingConfigurationsOfStoreUsingSettings() {
         String tipAmountPercent1 = requiredDigits(2);
         String tipAmountPercent2 = requiredDigits(2);
@@ -213,7 +207,9 @@ public class MyStoreTest extends BaseTest {
         //Verifying the 'Tip Configuration' Pop-up Title
         softAssert.assertEquals(mystore.tipConfigPopUpTitle, Constants.tipConfigurationTitle);
 
-        staticWait(3000);
+        staticWait(5000);
+        mystore.getEnterInPerCentToggleButton();
+
         cleanByJS(mystore.tipPercentField1);
         cleanByJS(mystore.tipPercentField2);
         cleanByJS(mystore.tipPercentField3);
@@ -262,7 +258,8 @@ public class MyStoreTest extends BaseTest {
         mystore.getRewardConfigureButton();
 
         //Verifying the 'Rewards Configuration' Pop-Up Title
-        softAssert.assertEquals(getText(mystore.rewardConfigPopUpTitle), Constants.rewardConfigurationpopup);
+        String rewardConfig=getText(mystore.rewardConfigPopUpTitle);
+        softAssert.assertEquals(rewardConfig, Constants.rewardConfigurationpopup);
 
         // Click on 'Reward Point' Toggle button
         if (!isElementDisplayed(mystore.rewardPointsField)) {
@@ -309,7 +306,7 @@ public class MyStoreTest extends BaseTest {
     }
 
     // Bug Raised and Bug Id is : 3020
-    @Test(priority = 7, description = "SC_05(B) Verifying the Configuration of the Store using flat value in 'tip or gratuity' field")
+    @Test(priority = 7,  enabled=true,description = "SC_05(B) Verifying the Configuration of the Store using flat value in 'tip or gratuity' field")
     public void verifyingConfigurationsOfStoreUsingFlatValueInTipField() {
 
         String value1 = requiredDigits(Float.parseFloat("0.01"), Float.parseFloat("999.00"));
@@ -336,7 +333,8 @@ public class MyStoreTest extends BaseTest {
         mystore.getTipConfigureBtn();
 
         //Verifying the 'Tip Configuration' Pop-up Title
-        Assert.assertEquals(getText(mystore.tipConfigPopUpTitle), Constants.tipConfigurationTitle);
+        String tipConfig=getText(mystore.tipConfigPopUpTitle);
+        Assert.assertEquals(tipConfig, Constants.tipConfigurationTitle);
 
 
         staticWait(3000);
@@ -369,7 +367,7 @@ public class MyStoreTest extends BaseTest {
         }
 
         // Verifying the maximum and minimum values of 'Tip Amount' field
-        softAssert.assertEquals(getAttribute(mystore.tipFlatValueField1, "max"), "999.00");
+         softAssert.assertEquals(getAttribute(mystore.tipFlatValueField1, "max"), "999.00");
         softAssert.assertEquals(getAttribute(mystore.tipFlatValueField1, "min"), "0.01");
         // field 2
 
@@ -391,7 +389,7 @@ public class MyStoreTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(priority=13,description = "SC_06 Verifying the Configuration of the Store using Payment Processing Sub-Tab with terminal configuration,")
+    @Test(priority=13, enabled=true,description = "SC_06 Verifying the Configuration of the Store using Payment Processing Sub-Tab with terminal configuration,")
     public void verifyingConfigurationOfStoreUsingPaymentProcessingSubTab() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
@@ -423,7 +421,7 @@ public class MyStoreTest extends BaseTest {
     }
 
 
-    @Test(priority = 8, description = "SC_06 Verifying the Configuration of the Store using Payment Processing Sub-Tabs on 'Store Configuration' Page with Venmo & Zelle. ")
+    @Test(priority = 8, enabled=true, description = "SC_06 Verifying the Configuration of the Store using Payment Processing Sub-Tabs on 'Store Configuration' Page with Venmo & Zelle. ")
     public void verifyConfigurationOfStoreUsingPaymentProcessingSubTab() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
@@ -485,7 +483,7 @@ public class MyStoreTest extends BaseTest {
     }
 
 
-    @Test(priority = 9, description = "SC_08 Verify deactivating an activated Store")
+    @Test(priority = 9, enabled=true, description = "SC_08 Verify deactivating an activated Store")
     public void verifyDeactivatingAnActivatedStore() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
@@ -504,19 +502,24 @@ public class MyStoreTest extends BaseTest {
         mystore.getDeactivateBtn();
 
         //Verifying that store gets Deactivated and success message appears
-        softAssert.assertEquals(getText(mystore.notActiveStoreLabel), Constants.deacticeStatus);
+        String nonActive=getText(mystore.notActiveStoreLabel);
+        Assert.assertEquals(nonActive,Constants.deacticeStatus);
+      //  softAssert.assertEquals(getText(mystore.notActiveStoreLabel), Constants.deacticeStatus);
 
         // click on Activate button
         mystore.getActiveButton();
 
         // Verify the store gets ACTIVE AND INFORMATION MESSAGE APPEARS
-        softAssert.assertEquals(getText(mystore.activeStoreLabel), Constants.activeStoreStatus);
+        String activeStore=getText(mystore.activeStoreLabel);
+        Assert.assertEquals(activeStore,Constants.activeStoreStatus);
+
+        //   softAssert.assertEquals(getText(mystore.activeStoreLabel), Constants.activeStoreStatus);
         softAssert.assertAll();
     }
 
          // Failed due to Bug 3092, 2827
 
-    @Test(priority = 10, description = "SC 09 and Sc 10 Verify that store creation and purchasing the 'Premium' monthly plan subscription for the store, on 'Store Configuration' page.")
+    @Test(priority = 10,  enabled=true,description = "SC 09 and Sc 10 Verify that store creation and purchasing the 'Premium' monthly plan subscription for the store, on 'Store Configuration' page.")
     public void verifyingStoreCreationWithPurchasingMonthlyPremiumPlan() {
         Login();
         mystore.getStoreCreation();
@@ -583,7 +586,7 @@ public class MyStoreTest extends BaseTest {
 
     }
 
-    @Test(priority = 11, description = "SC_07(A) Verifying the Configuration of the Store using 'Manage Users' Sub-Tab")
+    @Test(priority = 11,  enabled=true,description = "SC_07(A) Verifying the Configuration of the Store using 'Manage Users' Sub-Tab")
     public void sc07a_VerifyingConfigurationOfStoreUsingManageUsersSubTabs() {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();

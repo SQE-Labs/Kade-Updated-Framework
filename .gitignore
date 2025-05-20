@@ -14,5 +14,6 @@ allure-results/
 debugger.xml
 /logs/
 chaintest
-screenshot
+screenshot/
 maven-status
+testng.xml

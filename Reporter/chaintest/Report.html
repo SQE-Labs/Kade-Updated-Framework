@@ -19,9 +19,9 @@
         <span class="ms-3 fs-6">Sample</span>
       </div>
       <div>
-        <span class="badge badge-outline text-lg"><i class="bi bi-hourglass me-1"></i> 18m 33s</span>
-        <span class="badge badge-outline text-lg"><i class="bi bi-clock me-1 text-success"></i> 2025-05-19 05:47:46 pm</span>
-        <span class="badge badge-outline text-lg me-3"><i class="bi bi-clock me-1 text-danger"></i> 2025-05-19 06:06:20 pm</span>
+        <span class="badge badge-outline text-lg"><i class="bi bi-hourglass me-1"></i> 28m 56s</span>
+        <span class="badge badge-outline text-lg"><i class="bi bi-clock me-1 text-success"></i> 2025-05-20 01:02:56 pm</span>
+        <span class="badge badge-outline text-lg me-3"><i class="bi bi-clock me-1 text-danger"></i> 2025-05-20 01:31:53 pm</span>
           <button role="button" id="sys-info" class="btn btn-outline-primary smaller" title="View System Info">
             <i class="bi bi-pc-display-horizontal"></i></button>
         <button role="button" id="shortcuts" class="btn btn-outline-primary smaller" title="Shortcuts">
@@ -63,8 +63,8 @@
                 </div>
               </div>
               <div class="card-footer small">
-                <span id="sp2">0</span> Passed,
-                <span id="sf2">1</span> Failed,
+                <span id="sp2">2</span> Passed,
+                <span id="sf2">2</span> Failed,
                 <span id="ss2">0</span> Skipped
               </div>
             </div>
@@ -80,8 +80,8 @@
                   </div>
                 </div>
                 <div class="card-footer small">
-                  <span id="sp3">10</span> Passed,
-                  <span id="sf3">3</span> Failed,
+                  <span id="sp3">32</span> Passed,
+                  <span id="sf3">2</span> Failed,
                   <span id="ss3">0</span> Skipped
                 </div>
               </div>
@@ -114,24 +114,24 @@
             <div class="col-4">
               <h6 class="mb-3 testname fs-6 failed">Suite</h6>
               <div class="small">
-                <span class="badge badge-outline"><i class="bi bi-hourglass me-1"></i> 18m 33s</span>
+                <span class="badge badge-outline"><i class="bi bi-hourglass me-1"></i> 28m 55s</span>
                 <span class="badge text-bg-info"><i class="bi bi-clock me-1"></i>
-                  2025-05-19 05:47:46 pm</span>
+                  2025-05-20 01:02:57 pm</span>
                 <span class="badge text-bg-warning"><i class="bi bi-clock me-1"></i>
-                  2025-05-19 06:06:20 pm</span>
+                  2025-05-20 01:31:53 pm</span>
               </div>
               
             </div>
             <div class="col-8">
-                <div class="card mb-3 result failed">
+                <div class="card mb-3 result passed">
                   <div class="card-body">
                     <div class="d-flex justify-content-between">
                       <div>
-                          <i class="bi bi-exclamation-octagon-fill text-danger"></i>
-                        <span class="fs-6 ms-2">qa.tests.MyStoreTest</span>
+                          <i class="bi bi-check-circle-fill text-success"></i>
+                        <span class="fs-6 ms-2">qa.tests.AddPaymentMethodTest</span>
                       </div>
                       <div>
-                        <span class="badge text-dark bg-light">18m 33s</span>
+                        <span class="badge text-dark bg-light">2m 35s</span>
                       </div>
                     </div>
                     
@@ -140,193 +140,312 @@
       <div class="d-flex justify-content-between mt-3">
         <div>
             <i class="bi bi-check-circle-fill text-success"></i>
-          <span class="fs-6 ms-2">sc07a_VerifyingConfigurationOfStoreUsingManageUsersSubTabs </span>
+          <span class="fs-6 ms-2">verifyThatInformationMsgAppearsWhenNoPaymetMethodIsSelected </span>
         </div>
         <div>
-          <span class="badge text-dark bg-light">55s</span>
+          <span class="badge text-dark bg-light">31s</span>
         </div>
       </div>
-      <p class="desc">SC_07(A) Verifying the Configuration of the Store using 'Manage Users' Sub-Tab</p>
+      <p class="desc">Verify that appropriate information message appears, when no payment method is added, on the 'Payment Method' page.</p>
     </div>
     <div class="leaf passed pb-1 ">
       <div class="d-flex justify-content-between mt-3">
         <div>
             <i class="bi bi-check-circle-fill text-success"></i>
-          <span class="fs-6 ms-2">storeCreationWithoutStripeAccount </span>
+          <span class="fs-6 ms-2">verifyThatAddingCreditCardPaymentMethod </span>
         </div>
         <div>
-          <span class="badge text-dark bg-light">1m 31s</span>
+          <span class="badge text-dark bg-light">39s</span>
         </div>
       </div>
-      <p class="desc">SC_01(A) Verifying creation of Store without Stripe Payment Account Configuration</p>
+      <p class="desc">Verify that adding Credit/Debit card payment method, on 'Payment Method' tab of profile page.</p>
     </div>
     <div class="leaf passed pb-1 ">
       <div class="d-flex justify-content-between mt-3">
         <div>
             <i class="bi bi-check-circle-fill text-success"></i>
-          <span class="fs-6 ms-2">verifyConfigurationOfStoreUsingPaymentProcessingSubTab </span>
+          <span class="fs-6 ms-2">getAddedBankAccountMethod </span>
         </div>
         <div>
-          <span class="badge text-dark bg-light">48s</span>
+          <span class="badge text-dark bg-light">1m 1s</span>
         </div>
       </div>
-      <p class="desc">SC_06 Verifying the Configuration of the Store using Payment Processing Sub-Tabs on 'Store Configuration' Page with Venmo & Zelle. </p>
+      <p class="desc">PM02: Added Bank Account Method</p>
+    </div>
+  </div>
+
+                  </div>
+                </div>
+                <div class="card mb-3 result passed">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <div>
+                          <i class="bi bi-check-circle-fill text-success"></i>
+                        <span class="fs-6 ms-2">qa.tests.BasicInformationPage</span>
+                      </div>
+                      <div>
+                        <span class="badge text-dark bg-light">4m 1s</span>
+                      </div>
+                    </div>
+                    
+  <div class="mt-3 border-top">
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyBasicInformationPageOpens </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">27s</span>
+        </div>
+      </div>
+      <p class="desc"></p>
     </div>
     <div class="leaf passed pb-1 ">
       <div class="d-flex justify-content-between mt-3">
         <div>
             <i class="bi bi-check-circle-fill text-success"></i>
-          <span class="fs-6 ms-2">verifyDeactivatingAnActivatedStore </span>
+          <span class="fs-6 ms-2">verifyInvalidAddressValidation </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">34s</span>
+        </div>
+      </div>
+      <p class="desc"></p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyInvalidPhoneValidation </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">36s</span>
+        </div>
+      </div>
+      <p class="desc"></p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyModifyAndSaveChangesFunctionality </span>
         </div>
         <div>
           <span class="badge text-dark bg-light">35s</span>
         </div>
       </div>
-      <p class="desc">SC_08 Verify deactivating an activated Store</p>
+      <p class="desc"></p>
     </div>
     <div class="leaf passed pb-1 ">
       <div class="d-flex justify-content-between mt-3">
         <div>
             <i class="bi bi-check-circle-fill text-success"></i>
-          <span class="fs-6 ms-2">verifyingConfigurationOfStoreUsingPaymentProcessingSubTab </span>
+          <span class="fs-6 ms-2">verifyStoreLogoChange </span>
         </div>
         <div>
-          <span class="badge text-dark bg-light">1m 0s</span>
+          <span class="badge text-dark bg-light">31s</span>
         </div>
       </div>
-      <p class="desc">SC_06 Verifying the Configuration of the Store using Payment Processing Sub-Tab with terminal configuration,</p>
+      <p class="desc"></p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyStoreLogoChangeWithInvalidFile </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">29s</span>
+        </div>
+      </div>
+      <p class="desc"></p>
+    </div>
+  </div>
+
+                  </div>
+                </div>
+                <div class="card mb-3 result failed">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <div>
+                          <i class="bi bi-exclamation-octagon-fill text-danger"></i>
+                        <span class="fs-6 ms-2">qa.tests.BillTest</span>
+                      </div>
+                      <div>
+                        <span class="badge text-dark bg-light">17m 50s</span>
+                      </div>
+                    </div>
+                    
+  <div class="mt-3 border-top">
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyCreateBillWithoutSelectingCustomer </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">31s</span>
+        </div>
+      </div>
+      <p class="desc">BC_01 and BC_08 Verify that creating a bill by adding amount value only, without Selecting a Customer and Verify that unpaid bill gets deleted</p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyCreateBillBySelectingCustomer </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">59s</span>
+        </div>
+      </div>
+      <p class="desc">BC_02 Verify that creating a bill by adding amount value only, with Selecting a Customer</p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyCreateBillForSuggestedCustomer </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">48s</span>
+        </div>
+      </div>
+      <p class="desc">BC_03 Bill creation by selecting customers from the suggestion list</p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyBillCreationUsingOptionalFields </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">1m 5s</span>
+        </div>
+      </div>
+      <p class="desc">BC_09 Verify that creating a bill by adding 'Ref No.', 'Description' and 'Items' fields</p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyingBillCreationWithConfiguredBillAmount </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">45s</span>
+        </div>
+      </div>
+      <p class="desc">BC_13 Verify that creating a bill after configuring the bill amount value form the store configuration page.</p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyingBillCreationWithoutConfiguredBillAmount </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">40s</span>
+        </div>
+      </div>
+      <p class="desc">BC_12 Verify that creating a bill with default configured bill amount, on 'Bill' popup of 'Bills' page.</p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyingBillCreationByAttachingImageFile </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">31s</span>
+        </div>
+      </div>
+      <p class="desc">BC_06 Verify that creating a bill by attaching the image file.</p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyingBillCreationByAttachingPdfFile </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">55s</span>
+        </div>
+      </div>
+      <p class="desc">BC_07 Verify that creating a bill by attaching the image file.</p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyingBillCreationWithAddingMemoField </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">42s</span>
+        </div>
+      </div>
+      <p class="desc">BC_14 Verify that creating a bill with adding Memo field, on 'Bill' popup.</p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyingBillCreationWithEssentialFreePlan </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">1m 27s</span>
+        </div>
+      </div>
+      <p class="desc">BC_10 Verify that creating a bill, when user has  Essential (Free) plan for his store</p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyBillCreationByAddingExpirationDate </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">54s</span>
+        </div>
+      </div>
+      <p class="desc">BC_15 Verify that creating a bill by adding the custom expiration date' on 'Bills' page..</p>
     </div>
     <div class="leaf failed pb-1 ">
       <div class="d-flex justify-content-between mt-3">
         <div>
             <i class="bi bi-exclamation-octagon-fill text-danger"></i>
-          <span class="fs-6 ms-2">verifyingStoreCreationWithPurchasingMonthlyPremiumPlan </span>
+          <span class="fs-6 ms-2">verifyBillCreationByAddingRecurringTransactionsDaily </span>
         </div>
         <div>
-          <span class="badge text-dark bg-light">1m 59s</span>
+          <span class="badge text-dark bg-light">1m 21s</span>
         </div>
       </div>
-      <p class="desc">SC 09 and Sc 10 Verify that store creation and purchasing the 'Premium' monthly plan subscription for the store, on 'Store Configuration' page.</p>
-        <pre class="py-2 mt-2 mb-4">java.lang.AssertionError: next bill date expected [true] but found [false]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1578)
-	at org.testng.Assert.assertTrue(Assert.java:57)
-	at qa.tests.MyStoreTest.verifyingStoreCreationWithPurchasingMonthlyPremiumPlan(MyStoreTest.java:579)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-	at org.testng.TestRunner.privateRun(TestRunner.java:739)
-	at org.testng.TestRunner.run(TestRunner.java:614)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-	at org.testng.TestNG.runSuites(TestNG.java:1112)
-	at org.testng.TestNG.run(TestNG.java:1079)
-	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
-	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
-</pre>
-        <div class="row mt-3">
-            <div class="embed col-2 mb-1">
-              <img src="resources/6b6fe033-0153-46fa-8203-6765ded81ce2.png" />
-            </div>
-        </div>
-    </div>
-    <div class="leaf passed pb-1 ">
-      <div class="d-flex justify-content-between mt-3">
-        <div>
-            <i class="bi bi-check-circle-fill text-success"></i>
-          <span class="fs-6 ms-2">sc01b_DeletionOfStore </span>
-        </div>
-        <div>
-          <span class="badge text-dark bg-light">58s</span>
-        </div>
-      </div>
-      <p class="desc">SC_01(B) Verifying deletion of Store when Stripe Account is not Registered Yet</p>
-    </div>
-    <div class="leaf passed pb-1 ">
-      <div class="d-flex justify-content-between mt-3">
-        <div>
-            <i class="bi bi-check-circle-fill text-success"></i>
-          <span class="fs-6 ms-2">creationOfStoreWithStripeAccount </span>
-        </div>
-        <div>
-          <span class="badge text-dark bg-light">1m 43s</span>
-        </div>
-      </div>
-      <p class="desc">SC_02  Verify creation of Store with Stripe Payment Account</p>
-    </div>
-    <div class="leaf passed pb-1 ">
-      <div class="d-flex justify-content-between mt-3">
-        <div>
-            <i class="bi bi-check-circle-fill text-success"></i>
-          <span class="fs-6 ms-2">verifyingModificationOfExistingCreatedStore </span>
-        </div>
-        <div>
-          <span class="badge text-dark bg-light">47s</span>
-        </div>
-      </div>
-      <p class="desc">SC_03 Verifying modification of existing created Store</p>
-    </div>
-    <div class="leaf passed pb-1 ">
-      <div class="d-flex justify-content-between mt-3">
-        <div>
-            <i class="bi bi-check-circle-fill text-success"></i>
-          <span class="fs-6 ms-2">c2verifyingBuyingMonthlyBusinessPlanForAlreadyCreatedStore </span>
-        </div>
-        <div>
-          <span class="badge text-dark bg-light">1m 54s</span>
-        </div>
-      </div>
-      <p class="desc">SC_04(A) Verifying buying Monthly Business Plan for already created Store</p>
-    </div>
-    <div class="leaf passed pb-1 ">
-      <div class="d-flex justify-content-between mt-3">
-        <div>
-            <i class="bi bi-check-circle-fill text-success"></i>
-          <span class="fs-6 ms-2">verifyStoreCreationWithYearlyBusinessPlan </span>
-        </div>
-        <div>
-          <span class="badge text-dark bg-light">1m 46s</span>
-        </div>
-      </div>
-      <p class="desc">SC04(b): Verify Store creation with Yearly Business Plan on 'Store Configuration' Page </p>
-    </div>
-    <div class="leaf failed pb-1 ">
-      <div class="d-flex justify-content-between mt-3">
-        <div>
-            <i class="bi bi-exclamation-octagon-fill text-danger"></i>
-          <span class="fs-6 ms-2">verifyingConfigurationsOfStoreUsingSettings </span>
-        </div>
-        <div>
-          <span class="badge text-dark bg-light">51s</span>
-        </div>
-      </div>
-      <p class="desc">SC_05(A) Verifying the Configuration of already created Store using Settings Sub-Tabs</p>
-        <pre class="py-2 mt-2 mb-4">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.cssSelector: .btn-close.autoclick-effect (tried for 10 second(s) with 500 milliseconds interval)
+      <p class="desc">BC_16, BC_10 and BC_17  Verify that creating a store by adding recurring transactions, on Bills page and Verify that creating a 'Daily Recurring bill and Activate after the first payment, on 'Bill' popup.</p>
+        <pre class="py-2 mt-2 mb-4">org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <a class="ms-2 ms-sm-3 btn btn-link" href="/Stores/recurringTransactionDashboard/2938">...</a> is not clickable at point (432, 27). Other element would receive the click: <div id="_X6_FUU" class="modal fade show" tabindex="-1" role="dialog" aria-modal="true" style="display: block;">...</div>
+  (Session info: chrome=136.0.7103.114)
 Build info: version: '4.11.0', revision: '040bc5406b'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.114, chrome: {chromedriverVersion: 136.0.7103.94 (fa0be0b33deb..., userDataDir: C:\Users\SQELAB~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60547}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60547/devtoo..., se:cdpVersion: 136.0.7103.114, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 1adb34474cf5e38214944fd91f1a6191
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
-	at base.BaseTest.waitForElementToBeClickable(BaseTest.java:194)
+Command: [a3fc6ce8e9dc9f2482207f15076e0a8b, clickElement {id=f.0A009A88C3656EDB24E7BCDF38D36BF3.d.253A6E98B5C075AF3CE91B796632B75D.e.358}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.114, chrome: {chromedriverVersion: 136.0.7103.94 (fa0be0b33deb..., userDataDir: C:\Users\SQELAB~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:49466}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:49466/devtoo..., se:cdpVersion: 136.0.7103.114, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (a3fc6ce8e9dc9f2482207f15076e0a8b)] -> xpath: //div[text()='Recurring']/..]
+Session ID: a3fc6ce8e9dc9f2482207f15076e0a8b
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:77)
 	at base.BaseTest.click(BaseTest.java:215)
-	at pageEvents.MyStorePage.getValidationCrossIcon(MyStorePage.java:144)
-	at qa.tests.MyStoreTest.verifyingConfigurationsOfStoreUsingSettings(MyStoreTest.java:224)
+	at pageEvents.BillPage.clickOnReccuring(BillPage.java:1209)
+	at pageEvents.BillPage.verifyBillCreationByAddingRecurringTransactionsDaily(BillPage.java:1809)
+	at qa.tests.BillTest.verifyBillCreationByAddingRecurringTransactionsDaily(BillTest.java:90)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -355,33 +474,206 @@ Session ID: 1adb34474cf5e38214944fd91f1a6191
 </pre>
         <div class="row mt-3">
             <div class="embed col-2 mb-1">
-              <img src="resources/c37d0628-3ae3-4638-890b-c2ad9f997152.png" />
+              <img src="resources/55bf87ee-f2cf-4e9c-809a-6397484d7a40.png" />
             </div>
         </div>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyBillCreationByAddingRecurringTransactionsWeekly </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">1m 39s</span>
+        </div>
+      </div>
+      <p class="desc">BC_18 Verify that creating a 'Weekly Recurring bill and Activate after the first payment, on 'Bill' popup.</p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyBillCreationByAddingRecurringTransactionsMonthly </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">1m 40s</span>
+        </div>
+      </div>
+      <p class="desc">BC_19 Verify that creating a 'Monthly Recurring bill and Activate after the first payment, on 'Bill' popup.</p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyBillCreationByAddingRecurringTransactionsYearly </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">1m 22s</span>
+        </div>
+      </div>
+      <p class="desc">BC_20 Verify that creating a 'Monthly Recurring bill and Activate after the first payment, on 'Bill' popup.</p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyBillCreationByAddingpaymentMethod </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">24s</span>
+        </div>
+      </div>
+      <p class="desc">BC_20 Verify that creating a 'Monthly Recurring bill and Activate after the first payment, on 'Bill' popup.</p>
+    </div>
+  </div>
+
+                  </div>
+                </div>
+                <div class="card mb-3 result failed">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <div>
+                          <i class="bi bi-exclamation-octagon-fill text-danger"></i>
+                        <span class="fs-6 ms-2">qa.tests.CustomersTest</span>
+                      </div>
+                      <div>
+                        <span class="badge text-dark bg-light">4m 27s</span>
+                      </div>
+                    </div>
+                    
+  <div class="mt-3 border-top">
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyAddCustomerWithEmail </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">52s</span>
+        </div>
+      </div>
+      <p class="desc"></p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyAddCustomerWithPhoneNumber </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">28s</span>
+        </div>
+      </div>
+      <p class="desc">[9011017524]</p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyAddCustomerWithPhoneNumber </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">31s</span>
+        </div>
+      </div>
+      <p class="desc">[901101752, Invalid phone number]</p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyAddCustomerWithPhoneNumber </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">31s</span>
+        </div>
+      </div>
+      <p class="desc">[, This field is required.]</p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyAddCustomerWithPhoneNumber </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">31s</span>
+        </div>
+      </div>
+      <p class="desc">[1234567890123456, Invalid phone number]</p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyAddRewardPoints </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">8s</span>
+        </div>
+      </div>
+      <p class="desc"></p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyChangeCustomerName </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">7s</span>
+        </div>
+      </div>
+      <p class="desc"></p>
+    </div>
+    <div class="leaf passed pb-1 ">
+      <div class="d-flex justify-content-between mt-3">
+        <div>
+            <i class="bi bi-check-circle-fill text-success"></i>
+          <span class="fs-6 ms-2">verifyCreateBillAndSearch </span>
+        </div>
+        <div>
+          <span class="badge text-dark bg-light">8s</span>
+        </div>
+      </div>
+      <p class="desc"></p>
     </div>
     <div class="leaf failed pb-1 ">
       <div class="d-flex justify-content-between mt-3">
         <div>
             <i class="bi bi-exclamation-octagon-fill text-danger"></i>
-          <span class="fs-6 ms-2">verifyingConfigurationsOfStoreUsingFlatValueInTipField </span>
+          <span class="fs-6 ms-2">verifyCreateGiftCard </span>
         </div>
         <div>
-          <span class="badge text-dark bg-light">1m 45s</span>
+          <span class="badge text-dark bg-light">3s</span>
         </div>
       </div>
-      <p class="desc">SC_05(B) Verifying the Configuration of the Store using flat value in 'tip or gratuity' field</p>
-        <pre class="py-2 mt-2 mb-4">java.lang.AssertionError: The following asserts failed:
-	This field is required tooltip not appear expected [This field is required.] but found [Tooltip not found or not visible],
-	This field is required tooltip not appear expected [This field is required.] but found [Tooltip not found or not visible],
-	expected [0.01] but found [0.00],
-	expected [0.01] but found [0.00]
-	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:46)
-	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:30)
-	at qa.tests.MyStoreTest.verifyingConfigurationsOfStoreUsingFlatValueInTipField(MyStoreTest.java:391)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+      <p class="desc"></p>
+        <pre class="py-2 mt-2 mb-4">org.openqa.selenium.NoSuchSessionException: invalid session id
+Build info: version: '4.11.0', revision: '040bc5406b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [738bfaa60b5f319f9bd5578637b8d36b, screenshot {}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 136.0.7103.114, chrome: {chromedriverVersion: 136.0.7103.94 (fa0be0b33deb..., userDataDir: C:\Users\SQELAB~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52325}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52325/devtoo..., se:cdpVersion: 136.0.7103.114, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 738bfaa60b5f319f9bd5578637b8d36b
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:591)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:595)
+	at org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:321)
+	at utils.SuiteListener.onTestFailure(SuiteListener.java:39)
+	at org.testng.internal.TestListenerHelper.runTestListeners(TestListenerHelper.java:115)
+	at org.testng.internal.invokers.TestInvoker.runTestResultListener(TestInvoker.java:285)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:774)
 	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
 	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
 	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
@@ -404,11 +696,6 @@ Session ID: 1adb34474cf5e38214944fd91f1a6191
 	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
 	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
 </pre>
-        <div class="row mt-3">
-            <div class="embed col-2 mb-1">
-              <img src="resources/574911aa-b0aa-411e-8d8b-dbc8d655eb80.png" />
-            </div>
-        </div>
     </div>
   </div>
 
@@ -428,16 +715,16 @@ Session ID: 1adb34474cf5e38214944fd91f1a6191
       { result: 'Failed', count: 1, bg: 'rgb(233,80,113)' },
       { result: 'Skipped', count: 0, bg: 'rgb(13, 202, 240)' }
     ];
-      const stats2Annotation = {'total': 1, 'passed': 0};
+      const stats2Annotation = {'total': 4, 'passed': 2};
       const stats2 = [
-        { result: 'Passed', count: 0, bg: 'rgb(140, 197, 83)' },
-        { result: 'Failed', count: 1, bg: 'rgb(233,80,113)' },
+        { result: 'Passed', count: 2, bg: 'rgb(140, 197, 83)' },
+        { result: 'Failed', count: 2, bg: 'rgb(233,80,113)' },
         { result: 'Skipped', count: 0, bg: 'rgb(13, 202, 240)' }
       ];
-      const stats3Annotation = {'total': 13, 'passed': 10};
+      const stats3Annotation = {'total': 34, 'passed': 32};
       const stats3 = [
-        { result: 'Passed', count: 10, bg: 'rgb(140, 197, 83)' },
-        { result: 'Failed', count: 3, bg: 'rgb(233,80,113)' },
+        { result: 'Passed', count: 32, bg: 'rgb(140, 197, 83)' },
+        { result: 'Failed', count: 2, bg: 'rgb(233,80,113)' },
         { result: 'Skipped', count: 0, bg: 'rgb(13, 202, 240)' }
       ];
      
@@ -518,12 +805,12 @@ Session ID: 1adb34474cf5e38214944fd91f1a6191
                   <td>Toggle skipped tests</td>
                 </tr>
                 <tr>
-                  <td>L</td>
-                  <td>Toggle theme (light/dark)</td>
-                </tr>
-                <tr>
                   <td>esc</td>
                   <td>Reset all filters</td>
+                </tr>
+                <tr>
+                  <td>L</td>
+                  <td>Toggle theme (light/dark)</td>
                 </tr>
                 <tr>
                   <td>f</td>

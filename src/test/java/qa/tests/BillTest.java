@@ -15,7 +15,7 @@ public class BillTest extends BaseTest {
     public void verifyCreateBillWithoutSelectingCustomer() {
 
         bill.createBillWithoutCustomer();
-        bill.getDeleteButton();
+         bill.getDeleteButton();
         bill.getDeleteIcon();
     }
 

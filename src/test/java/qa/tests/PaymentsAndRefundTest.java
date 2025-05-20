@@ -98,8 +98,7 @@ public class PaymentsAndRefundTest extends BaseTest {
         bill.createBillWithCustomer("636045278965", "saybo@yopmail.com");
         payment.billPaymentByVariousPaymentMethods("500.00", "4111111111111111", "0930", "794", "Australia");
         payment.swipeCard();
-        payment.clickOnchangeBtn();
-        staticWait(2000);
+        staticWait(3000);
         payment.clickOnZelleAccount();
         payment.clickOnMakePaymentBtn();
         payment.clickOnCheckBox();
@@ -116,7 +115,7 @@ public class PaymentsAndRefundTest extends BaseTest {
 
 
     @Test(priority = 11, enabled = true, description = "PYMT15 : Create Bill for a customer and pay using Zelle.")
-    public void CreateBillForCustomerAndPayUsingZelle() throws AWTException {
+    public void CreateBillForCustomerAndPayUsingZelle()  {
 
         bill.createBillWithCustomer("636045278965", "saybo@yopmail.com");
         payment.paymentByZelleAccount();
