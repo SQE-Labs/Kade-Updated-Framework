@@ -19,7 +19,7 @@ public class RewardsProgramTest extends BaseTest {
 
     private RewardsProgramPage rewardsProgramPage = pageObjectManager.getRewardsProgramPage();
 
-    @Test
+    @Test(priority = 0, enabled = true)
     public void verifyRewardsProgramPageOpens() {
         log.info("Verify that Rewards Program Page Opens");
 
@@ -29,7 +29,7 @@ public class RewardsProgramTest extends BaseTest {
         Assert.assertTrue(isElementDisplayed(rewardsProgramPage.pageHeading));
     }
 
-    @Test(enabled = true)
+    @Test(priority = 1, enabled = true)
     public void verifyInformationMessageAppears() {
         log.info("Verify that information message appears, when Rewards program is not configured for store.");
 
@@ -39,7 +39,7 @@ public class RewardsProgramTest extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.infoMsgRewardsConfig));
     }
 
-    @Test
+    @Test(priority = 3, enabled = true)
     public void verifyRewardsProgramConfigOpens() {
         log.info("Verify that 'Rewards Program Configuration' popup opens up");
 
@@ -62,7 +62,7 @@ public class RewardsProgramTest extends BaseTest {
 
     }
 
-    @Test
+    @Test(priority = 4, enabled = true)
     public void verifyCustProfileOpens() {
         log.info("Verify Customer profile page opens up after clicking on the customer name");
 
@@ -74,7 +74,7 @@ public class RewardsProgramTest extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.rewardsPtsCardTitle));
     }
 
-    @Test
+    @Test(priority = 5, enabled = true)
     public void verifyRewardsPointsDetailPageOpens() {
         log.info("Verify that user gets directed to 'Reward Points Detail' page");
 
@@ -97,7 +97,7 @@ public class RewardsProgramTest extends BaseTest {
         click(rewardsProgramPage.addBtn);
     }
 
-    @Test
+    @Test(priority = 6, enabled = true)
     public void verifyFilterFunctionality() {
         log.info("Verify Filter functionality");
 
@@ -114,7 +114,7 @@ public class RewardsProgramTest extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.maxRewardPts));
     }
 
-    @Test
+    @Test(priority = 7, enabled = true)
     public void verifyUsernameFieldFunc() {
         log.info("Verify relevent record appears on searching using Username");
 
@@ -136,7 +136,7 @@ public class RewardsProgramTest extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.noResultIcon));
     }
 
-    @Test
+    @Test(priority = 8, enabled = true)
     public void verifyUserPhnEmailFieldFunc() {
         log.info("Verify relevant record appears on searching using Customer Phone/Email filter field");
 
@@ -154,7 +154,7 @@ public class RewardsProgramTest extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.yonroCustomer));
     }
 
-    @Test
+    @Test(priority = 9, enabled = true)
     public void verifyUserPhnEmailFieldF() {
         log.info("Verify relevant record appears on searching using Customer Phone/Email filter field for invalid input");
 
@@ -180,7 +180,7 @@ public class RewardsProgramTest extends BaseTest {
         softAssert.assertEquals(getToolTipMessage(rewardsProgramPage.userPhnEmail),Constants.userPhnEmailTooltip,"tool tip");
     }
 
-    @Test
+    @Test(priority = 10, enabled = true)
     public void verifyValidLastVisitDateRng() {
         log.info("Verify relevant record appears after selecting last visit date range");
 
@@ -194,7 +194,7 @@ public class RewardsProgramTest extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.yonroCustomer));
     }
 
-    @Test
+    @Test(priority = 11, enabled = true)
     public void verifyInvalidLastVisitDateRng() {
         log.info("Verify relevant record appears after selecting invalid last visit date range");
 
@@ -213,7 +213,7 @@ public class RewardsProgramTest extends BaseTest {
 
     }
 
-    @Test
+    @Test(priority = 12, enabled = true)
     public void verifyCustomerSinceValidDateRange() {
         log.info("Verify relevant record appears after selecting Customer since date range");
 
@@ -225,7 +225,7 @@ public class RewardsProgramTest extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.yonroCustomer));
     }
 
-    @Test
+    @Test(priority = 13, enabled = true)
     public void verifyCustomerSinceInvalidDateRange() {
         log.info("Verify relevant record appears after selecting invalid Customer since date range");
 
@@ -243,7 +243,7 @@ public class RewardsProgramTest extends BaseTest {
         softAssert.assertEquals(getToolTipMessage(rewardsProgramPage.customerSince),Constants.invalidDateRange,"tool tip");
     }
 
-    @Test
+    @Test(priority = 14, enabled = true)
     public void verifyMinRewardPointsFilter() {
         log.info("Verify that relevant record appears after selecting minimum reward points");
 
@@ -264,7 +264,7 @@ public class RewardsProgramTest extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.noResultIcon));
     }
 
-    @Test
+    @Test(priority = 15, enabled = true)
     public void verifyMaxRewardPointsFilter() {
         log.info("Verify that relevant record appears after selecting maximum reward points");
 
@@ -288,7 +288,7 @@ public class RewardsProgramTest extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.noResultIcon));
     }
 
-    @Test
+    @Test(priority = 16, enabled = true)
     public void verifyMinPaymentsField() {
         log.info("Verify that relevant record appear listed after entering any existing value in 'Min number of payments' field under 'Filter' link");
 
@@ -307,7 +307,7 @@ public class RewardsProgramTest extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.noResultIcon));
     }
 
-    @Test
+    @Test(priority = 17, enabled = true)
     public void verifyMaxPaymentsField() {
         log.info("Verify that relevant record appear listed after entering any existing value in 'Max number of payments' field under 'Filter' link");
 

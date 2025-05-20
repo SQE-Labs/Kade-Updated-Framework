@@ -169,7 +169,6 @@ public class SearchPage extends BaseTest {
     public void verifyUserDirectedToCustomerPageUsingValidIdentity() {
 
                 LoginAsNewUser();
-
                 staticWait(2000);
                 clickonSearch();
                 click(ClickSearchBox);

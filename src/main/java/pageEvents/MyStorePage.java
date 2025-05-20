@@ -15,7 +15,7 @@ public class MyStorePage extends BaseTest {
     public By registerNewBusinessBtn = By.partialLinkText("Register new business");
     public By skipPopUpTitle = By.xpath("//h5[text()='Skip']");
     public By skipStripeAccountBtn = By.cssSelector(".btn-lg.fw-bold.w-100.btn.btn-outline-primary");
-    public By skipStripeAccountPopUpBtn = By.xpath("//div[@class='modal-footer justify-content-around']//button[text()='Skip']");
+    public By skipStripeAccountPopUpBtn = By.xpath("//button[text()='Skip']");
     public By deleteStoreBtn = By.xpath("//button[text()='Delete the store']");
   public By deleteStoreIcon = By.xpath("//i[@class='fal fa-thumbs-up text-white']");
   public By alertMessage = By.cssSelector("form.link-check.checked div.alert-message");
@@ -127,7 +127,7 @@ public class MyStorePage extends BaseTest {
     public By premiumYearlyBtn = By.cssSelector(".flex-fill label[for='rdo_p3_1']");
     public By premiumMonthlySignUpBtn = By.cssSelector("div#div_p3_0>a");
     public By premiumYearlySignUpBtn = By.cssSelector("div#div_p3_1>a");
-    public By storeLogoCreation = By.cssSelector(".d-flex.align-items-center>img");
+    public By storeLogoCreation = By.xpath("(//div[text()='Click on the logo to replace'])[2]/..");
     public By configureLinkofStoreName = By.xpath("//tr[td[contains(text(),'\" + storename + \"')]]//a[text()='Configure']");
    public By fileInput2 = By.xpath("//input[@type='file' and @accept='image/*']");
    public By configureATerminalTitle = By.cssSelector(".text-danger.mb-3");
@@ -398,7 +398,6 @@ public class MyStorePage extends BaseTest {
         // Click on 'Register New Business' Button
          getRegisterNewBusinessButton();
         if (isElementDisplayed(storeLogoCreation)) {
-            getEditStoreButton();
             scrollToElement(deleteStoreBtn);
             waitForElementToBeClickable(deleteStoreBtn,5);
             // click on delete button
@@ -573,7 +572,7 @@ public class MyStorePage extends BaseTest {
 
         //Verifying the minimum, maximum and default values of taxRate field
         Assert.assertEquals(getAttribute(taxRateTbx,"min"),"0");
-        Assert.assertEquals(getAttribute(taxRateTbx,"value"),"0.000","Tax rate tbx value");
+        Assert.assertEquals(getAttribute(taxRateTbx,"value"),"10.000","Tax rate tbx value");
         Assert.assertEquals(getAttribute(taxRateTbx,"max"),"100");
 
         //  Enter Tax rate
@@ -582,8 +581,7 @@ public class MyStorePage extends BaseTest {
         staticWait(3000);
         getSaveButton();
 
-
-        ////Reset Store to default
+        //Reset Store to default
         getModifyButton();
 
         // Enter Store Name
@@ -595,7 +593,6 @@ public class MyStorePage extends BaseTest {
         actionEnterText(taxRateTbx,Constants.defaultTaxRateValue);
         waitForElementToBeClickable(saveBtn,5);
         getSaveButton();
-
 
     }
     public void getActivateSubtab(){

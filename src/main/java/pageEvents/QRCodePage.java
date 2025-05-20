@@ -359,7 +359,6 @@ public class QRCodePage extends BaseTest {
     }
 
     public void uploadImageInStoreLogo() throws AWTException {
-
         uploadImageAsAttachment("/src/main/resources/ImageResources/image/BillDummyImg");
     }
 
