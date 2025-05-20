@@ -98,8 +98,7 @@ public class PaymentsAndRefundTest extends BaseTest {
         bill.createBillWithCustomer("636045278965", "saybo@yopmail.com");
         payment.billPaymentByVariousPaymentMethods("500.00", "4111111111111111", "0930", "794", "Australia");
         payment.swipeCard();
-        payment.clickOnchangeBtn();
-        staticWait(2000);
+        staticWait(3000);
         payment.clickOnZelleAccount();
         payment.clickOnMakePaymentBtn();
         payment.clickOnCheckBox();

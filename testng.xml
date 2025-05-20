@@ -6,20 +6,20 @@
         <listener class-name="com.aventstack.chaintest.plugins.ChainTestListener" />
     </listeners>
 
-    <test thread-count="3" name="Test">
+    <test thread-count="2" name="Test" parallel="classes">
         <parameter name="env" value="qa" />
         <parameter name="browser" value="chrome" />
-        <parameter name="headless" value="false" />
-
+        <parameter name="headless" value="true"></parameter>
 
         <packages>
             <package name="qa.tests" />
         </packages>
 <!--        <classes>-->
 <!--            <class name="qa.tests.MyStoreTest"></class>-->
-<!--            <class name="qa.tests.BillTest"></class>-->
-<!--            <class name="qa.tests.PaymentsAndRefundTest"></class>-->
+<!--            <class name="qa.tests.DashboardTest"></class>-->
+<!--            <class name="qa.tests.CustomersTest"></class>-->
 <!--            <class name="qa.tests.TransactionsTest"></class>-->
+
 
 <!--        </classes>-->
 

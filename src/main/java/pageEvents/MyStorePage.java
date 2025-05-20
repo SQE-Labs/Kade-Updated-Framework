@@ -138,8 +138,12 @@ public class MyStorePage extends BaseTest {
     public By bankAccountOptionForPlan = By.xpath("//span[contains(text(),'Bank Account 6789')]/..");
     public By createUserAndCredetButton = By.xpath("//div[@class='mb-1 text-center']/..");
     public By inviteUserButton = By.xpath("//span[text()='Recommended']/..");
+    By validationCrossIcon = By.cssSelector(".btn-close.autoclick-effect");
 
-
+    public void getValidationCrossIcon(){
+        waitForElementToBeClickable(validationCrossIcon,5);
+        click(validationCrossIcon);
+    }
 
     // Methods
     public void getTickIconofImg(){
@@ -267,6 +271,7 @@ public class MyStorePage extends BaseTest {
     public void getTipGratuityToggleOnButton(){
         clickElementByJS(tipGratuityToggleBtn);
     }
+
     public void getEnterInPerCentToggleButton(){
         clickElementByJS(enterInPercentToggleBtn);
     }
@@ -479,6 +484,7 @@ public class MyStorePage extends BaseTest {
         staticWait(3000);
 //        waitForElementToBeClickable(skipStripeAccountPopUpBtn,5);
         getSkipBtnOfStripe();
+        staticWait(3000);
         scrollToElement(saveBtn);
         waitForElementToBeClickable(saveBtn,3);
         getSaveButton();
@@ -552,7 +558,7 @@ public class MyStorePage extends BaseTest {
 
         //Verifying maximum length of 'Store Name' field
         Assert.assertEquals(getAttribute(StoreNameTbx,"maxlength"),"100");
-        waitForElementToBeClickable(StoreNameTbx,5);
+        waitForElementToBeClickable(StoreNameTbx,8);
 
         // Enter Store Name
         enterText(StoreNameTbx,Constants.editdefaultStoreName);
@@ -585,8 +591,8 @@ public class MyStorePage extends BaseTest {
         enterText(locationDescTbx,Constants.defaultLocationDescription);
         actionEnterText(phoneTbx,Constants.validPhoneNumber2);
         scrollToElement(taxRateTbx);
-        waitForElementToBeClickable(taxRateTbx,3);
-        actionEnterText(taxRateTbx,Constants.defaultTaxRate);
+        waitForElementToBeClickable(taxRateTbx,4);
+        actionEnterText(taxRateTbx,Constants.defaultTaxRateValue);
         waitForElementToBeClickable(saveBtn,5);
         getSaveButton();
 

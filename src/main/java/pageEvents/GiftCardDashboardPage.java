@@ -2322,10 +2322,14 @@ public void getGiftCardStatusTbx(){
 
         //Verify all result appears
         List<WebElement> allRecords = getDriver().findElements(allresult);
+        String expectedDate = "5/12/2025";
 
         for (WebElement record : allRecords) {
             String detail = record.getText();
             System.out.println("Record for existing user is: " + detail);
+
+            Assert.assertTrue(detail.contains(expectedDate),
+                    "Record does not match the selected date: " + detail);
         }}
 
     public void verifyGCResultWhileApplyingNonExistingDateRangeFilter(){
