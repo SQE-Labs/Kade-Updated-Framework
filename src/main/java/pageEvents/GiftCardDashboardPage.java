@@ -2329,10 +2329,7 @@ public void getGiftCardStatusTbx(){
         waitForElementToBeVisible(createButton, 1000);
         click(createButton);
         staticWait(3000);
-
-
-
-
+        click(giftCardDetailCardLink);
     }
 
 
