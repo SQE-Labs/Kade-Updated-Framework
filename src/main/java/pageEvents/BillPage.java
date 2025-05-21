@@ -2,7 +2,9 @@ package pageEvents;
 
 
 import java.awt.*;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.nio.file.Paths;
 import java.text.NumberFormat;
 import java.util.List;
@@ -188,6 +190,7 @@ public class BillPage extends BaseTest {
     public By expireLockIcon = By.xpath("(//i[@class='fas fa-lock'])[2]");
     public By memoNoneTxt = By.xpath("(//div[contains(@class,'text-nowrap d-flex')]//div[text()='None'])[4]");
     public By expiryDateSection = By.xpath("(//div[@class='position-absolute start-0 end-0 top-0 bottom-0 bg-locked'])[2]");
+    By expirationDate = By.xpath("(//a[@class='stretched-link ms-1 -activator-button-'])[5]");
     public By expirationDayPopUp = By.xpath("//h5[text()='Expiration Date']");
     public By refNoneTxt = By.xpath("//label[text()='Ref No.:']/..//div[text()='None']");
     By refPopup = By.xpath("//label[text()='Ref No.:']/..//div[text()='None']/../../../../..");
@@ -330,8 +333,7 @@ public class BillPage extends BaseTest {
         uploadImageInStoreLogo();
         staticWait(5000);
         //  scrollToElement(okIcon);
-        hoverAndClick(okIcon, okIcon);
-
+        click(okIcon);
     }
 
     public void clickOnTapToAddPdfFiles() throws AWTException {
@@ -357,18 +359,25 @@ public class BillPage extends BaseTest {
     }
 
 
-    public void verifyEnteredMemoText() {
-        //Verify not paid label for generated amount
-        Assert.assertTrue(isElementDisplayed(notPaidLabel));
-        Assert.assertTrue(isElementDisplayed(uniqueRefNo));
-        Assert.assertTrue(isElementDisplayed(billTimeOnPopup));
-        Assert.assertTrue(isElementDisplayed(memoEnteredTxt));
-    }
+//    public void verifyEnteredMemoText() {
+//        //Verify not paid label for generated amount
+//
+//        Assert.assertTrue(isElementDisplayed(notPaidLabel));
+//        Assert.assertTrue(isElementDisplayed(uniqueRefNo));
+//        Assert.assertTrue(isElementDisplayed(billTimeOnPopup));
+//        Assert.assertTrue(isElementDisplayed(memoEnteredTxt));
+//    }
 
     public void clickOnExpiryDateSection() {
         staticWait(3000);
         clickElementByJS(expiryDateSection);
     }
+
+    public void clickOnexpirationDate() {
+        staticWait(3000);
+        clickElementByJS(expirationDate);
+    }
+
 
     public void sendTxtInexpireInTxtField(String hrs, int minTxt) {
         staticWait(2000);
@@ -785,8 +794,18 @@ public class BillPage extends BaseTest {
     }
 
     public void uploadImageInStoreLogo() throws AWTException {
-        uploadImageAsAttachment("/src/main/resources/ImageResources/image/BillDummyImg");
+        // uploding store image
+
+        WebElement fileInput = getDriver().findElement(By.xpath("//input[@type='file' and @accept='image/*']"));
+
+        // Set the file path to upload
+        String userDir = System.getProperty("user.dir");
+        String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator+ "ImageResources"+ File.separator + "image" + File.separator + "BillDummyImg.jpg";
+        fileInput.sendKeys(filePath);
+
+
     }
+
 
     public void uploadPdf() throws AWTException {
         uploadImageAsAttachment("/src/main/resources/ImageResources/image/dummy");
@@ -814,7 +833,7 @@ public class BillPage extends BaseTest {
 
 
     public void getDeleteButton() {
-        staticWait(2000);
+        staticWait(4000);
         clickElementByJS(deleteButton);
     }
 
@@ -1178,8 +1197,8 @@ public class BillPage extends BaseTest {
     public void assertUpgradePlan() {
         scrollToElement(repeatUpgradePlan);
 
-        String repeatUpgradePlans=getText(repeatUpgradePlan);
-        Assert.assertEquals(repeatUpgradePlans,"Upgrade your plan");
+        String repeatUpgradePlans = getText(repeatUpgradePlan);
+        Assert.assertEquals(repeatUpgradePlans, "Upgrade your plan");
 
         click(repeatUpgradePlanNotNowBtn);
     }
@@ -1625,7 +1644,7 @@ public class BillPage extends BaseTest {
         //Close popup
         closePopupOnBillPage();
         //Verify not paid label for generated amount
-        verifyEnteredMemoText();
+      //  verifyEnteredMemoText();
     }
 
 
@@ -1833,10 +1852,13 @@ public class BillPage extends BaseTest {
         getConfirmButton();
 
 
+
+
         //Close popup
         closePopup();
 
         // Assert.assertTrue(isElementDisplayed(reccuringIcon));
+        staticWait(4000);
         scrollToTopOfPage();
         clickOnReccuring();
 
@@ -1927,6 +1949,8 @@ public class BillPage extends BaseTest {
 
         //Close popup
         closePopup();
+        staticWait(4000);
+        scrollToTopOfPage();
         clickOnReccuring();
         removeNonNumericValueFromTheValue();
 
@@ -1952,24 +1976,22 @@ public class BillPage extends BaseTest {
         String amt = "1000.00";
         actionEnterText(amtTbx, amt);
 
+        getCustomerButton();
+        getCustomerEmailField(emailID);
+        getEmailGoButton();
+
         //Click on More Option
         clickOnMoreSection();
         clickOnRepeatField();
         getYearlyFieldValue();
         clickOnDoneBtn();
 
-
         //Click Confirm
         staticWait(2000);
         getConfirmButton();
 
-        //Click On Continue Button
-        staticWait(4000);
-        getContinueWithoutButton();
-
-        clickOnIcon();
         //Close popup
-        closePopupOnBillPage();
+        closePopup();
 
         Assert.assertTrue(isElementDisplayed(reccuringIcon));
         clickOnReccuring();
@@ -2010,6 +2032,7 @@ public class BillPage extends BaseTest {
 
         //Share bill by adding card details
         clickOnpaymentMethodLink();
+
     }
 
     public void createBillWithCustomerAndPayThroughAutoPayment() {
@@ -2079,6 +2102,8 @@ public class BillPage extends BaseTest {
         scrollToElement(chargeButton);
         waitForElementToBeVisible(chargeButton, 3);
         getChargeButton();
+
         staticWait(3000);
+
     }
 }

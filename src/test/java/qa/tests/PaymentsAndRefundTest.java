@@ -115,7 +115,7 @@ public class PaymentsAndRefundTest extends BaseTest {
 
 
     @Test(priority = 11, enabled = true, description = "PYMT15 : Create Bill for a customer and pay using Zelle.")
-    public void CreateBillForCustomerAndPayUsingZelle() throws AWTException {
+    public void CreateBillForCustomerAndPayUsingZelle()  {
 
         bill.createBillWithCustomer("636045278965", "saybo@yopmail.com");
         payment.paymentByZelleAccount();
@@ -139,7 +139,5 @@ public class PaymentsAndRefundTest extends BaseTest {
     @Test(priority = 14, enabled = true, description = "Verify that creating a bill and paying through Auto payment method.")
     public void verifyCreatingABillAndPayingThroughAutoPaymentMethod(){
         bill.createBillWithCustomerAndPayThroughAutoPayment();
-
     }
-
 }

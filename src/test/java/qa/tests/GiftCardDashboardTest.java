@@ -83,19 +83,19 @@ public class GiftCardDashboardTest extends BaseTest {
     }
 
 
-    @Test(priority = 11, enabled = true, description = "Verify that 'Customer' popup opens up after clicking on 'Customer' field, on 'Issue a new gift card' popup of 'Gift Cards Dashboard' page.")
+    @Test(priority = 10, enabled = true, description = "Verify that 'Customer' popup opens up after clicking on 'Customer' field, on 'Issue a new gift card' popup of 'Gift Cards Dashboard' page.")
     public void verifyCustomerPopUp() {
         giftCardPage.verifyCustomerPopUp();
 
     }
 
 
-    @Test(priority = 12, enabled = true, description = "Verify that appropriate validation message appears on entering invalid phone number in  'Customer phone/email' field, on 'Create gift card' popup.")
+    @Test(priority = 11, enabled = true, description = "Verify that appropriate validation message appears on entering invalid phone number in  'Customer phone/email' field, on 'Create gift card' popup.")
     public void verifyInvalidCustomerPhoneField() {
         giftCardPage.verifyInvalidCustomerPhoneField();
     }
 
-    @Test(priority = 13, enabled = true, description = "Verify that appropriate validation message appears on entering invalid phone number in  'Customer phone/email' field, on 'Create gift card' popup.")
+    @Test(priority = 12, enabled = true, description = "Verify that appropriate validation message appears on entering invalid phone number in  'Customer phone/email' field, on 'Create gift card' popup.")
     public void verifyInvalidCustomerEmailField() {
         giftCardPage.verifyInvalidCustomerEmailField();
 
@@ -103,21 +103,20 @@ public class GiftCardDashboardTest extends BaseTest {
     }
 
 
-    @Test(priority = 14, enabled = true, description = "Verify that appropriate validation message appears on entering invalid name in  'Customer Name' field, on 'Create gift card' popup.")
+    @Test(priority = 13, enabled = true, description = "Verify that appropriate validation message appears on entering invalid name in  'Customer Name' field, on 'Create gift card' popup.")
     public void verifyInvalidCustomerNameField() {
         giftCardPage.verifyInvalidCustomerNameField();
     }
 
-    @Test(priority = 15, enabled = true, description = "Verify that user is able to create gift card only after entering value in 'Initial amount' field, on 'Create gift card' popup.")
+    @Test(priority = 14, enabled = true, description = "Verify that user is able to create gift card only after entering value in 'Initial amount' field, on 'Create gift card' popup.")
     public void verifyInitialAmountField() {
         giftCardPage.verifyInitialAmountField();
 
     }
 
-    @Test(priority = 16, enabled = true, description = "Verify that value for 'Initial amount' field' cannot be greater than the value set in 'Maximum gift card amount allowed' field during Gift Cards Configuration")
+    @Test(priority = 15, enabled = true, description = "Verify that value for 'Initial amount' field' cannot be greater than the value set in 'Maximum gift card amount allowed' field during Gift Cards Configuration")
     public void verifyInitialAmtEqualsMaxGiftAmount() {
         giftCardPage.verifyInitialAmtEqualsMaxGiftAmount();
-
     }
 
 
@@ -475,7 +474,6 @@ public class GiftCardDashboardTest extends BaseTest {
     public void verifyInformationMsgAppearsAfterEnteringNonExistingCustomerEmail(){
         giftCardPage.verifyInfoMsgForInvalidCustomerEmailInput();
     }
-    // Failed due to 3110 defect
     @Test(priority = 59,enabled = true, description ="Verify that relevant gift cards appear listed after selecting date range( gift card exists) from 'Date' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
     public void verifyGiftCardAppearsForSelectedDate(){
         giftCardPage.verifyGiftCardAppearsForSelectedDate();

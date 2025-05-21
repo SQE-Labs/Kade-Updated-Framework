@@ -161,6 +161,7 @@ public class GiftCardDashboardPage extends BaseTest {
     By allresult = By.xpath("//table[contains(@class,'sortable_table')]//tbody/tr[@data-ref]");
     By noResultInfoMsg = By.cssSelector(".no-result-icon+p");
     By userEmailTbx = with(By.tagName("div")).below(userPhoneEmailtbx);
+    By userEmailTxtField=By.xpath("(//label[text()='User Phone/Email']/../div)[2]");
     By validationMsgForCustomerPopup = By.cssSelector(".no-result-icon+p");
     By dateFilterLabel = By.xpath("//label[starts-with(text(),'Date')]");
     By dateFilterInput = with(By.tagName("input")).below(dateFilterLabel);
@@ -194,8 +195,13 @@ public void getFilterIcon(){
 public void getFitlerApplyBtn(){
     click(applyBtnFilter);
 }
+
 public void getUserPhoneEmailTbxFilter(){
+    staticWait(3000);
     click(userEmailTbx);
+}
+public void clickOnUserEmailTxtField(){
+    click(userEmailTxtField);
 }
 public void getDateFilterInput(){
     click(dateFilterFiled);
@@ -683,17 +689,16 @@ public void getGiftCardStatusTbx(){
         offOptionalSettings();
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
-        waitForElementToBeInteractable(customerField, 10000);
+        waitForElementToBeInteractable(customerField, 10);
         clickElementByJS(customerField);
-        waitForElementToBeVisible(customerEmail, 1000);
+        waitForElementToBeVisible(customerEmail, 10);
         actionEnterText(customerEmail, "beanBliss@yopmail.com");
         clickElementByJS(customerEmailSearchBtn);
-        waitForElementToBeVisible(intialAmount, 1000);
+        waitForElementToBeVisible(intialAmount, 10);
         actionEnterText(intialAmount, "1000");
         scrollToElement(createButton);
-        waitForElementToBeVisible(createButton, 1000);
+        waitForElementToBeVisible(createButton, 10);
         click(createButton);
-
     }
 
 
@@ -701,12 +706,12 @@ public void getGiftCardStatusTbx(){
         String maxConfiguredAmt = offOptionalSettings()[2];
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
-        waitForElementToBeInteractable(customerField, 10000);
+        waitForElementToBeInteractable(customerField, 10);
         clickElementByJS(customerField);
-        waitForElementToBeVisible(customerEmail, 1000);
+        waitForElementToBeVisible(customerEmail, 10);
         actionEnterText(customerEmail, "beanBliss@yopmail.com");
         clickElementByJS(customerEmailSearchBtn);
-        waitForElementToBeVisible(intialAmount, 1000);
+        waitForElementToBeVisible(intialAmount, 10);
         actionEnterText(intialAmount, "100000");
         WebElement element = getWebElement(intialAmount);
         String maxIntialAmt = element.getAttribute("value");
@@ -742,17 +747,17 @@ public void getGiftCardStatusTbx(){
     private void verifyReferenceTooltipFlow() {
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
-        waitForElementToBeVisible(customerField, 1000);
+        waitForElementToBeVisible(customerField, 10);
         clickElementByJS(customerField);
-        waitForElementToBeVisible(customerEmail, 1000);
+        waitForElementToBeVisible(customerEmail, 10);
         actionEnterText(customerEmail, "beanBliss@yopmail.com");
         clickElementByJS(customerEmailSearchBtn);
         staticWait(1000);
-        waitForElementToBeVisible(intialAmount, 1000);
+        waitForElementToBeVisible(intialAmount, 10);
         actionEnterText(intialAmount, "100000");
         staticWait(1000);
         scrollToElement(createButton);
-        waitForElementToBeVisible(createButton, 1000);
+        waitForElementToBeVisible(createButton, 10);
         click(createButton);
         staticWait(1000);
         softAssert.assertEquals(getToolTipMessage(referenceNoField), Constants.referenceNoTooltipMsg);
@@ -762,24 +767,24 @@ public void getGiftCardStatusTbx(){
         offOptionalSettings();
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
-        waitForElementToBeInteractable(customerField, 10000);
+        waitForElementToBeInteractable(customerField, 10);
         clickElementByJS(customerField);
-        waitForElementToBeVisible(customerEmail, 1000);
+        waitForElementToBeVisible(customerEmail, 10);
         actionEnterText(customerEmail, "beanBliss@yopmail.com");
         clickElementByJS(customerEmailSearchBtn);
         staticWait(1000);
-        waitForElementToBeVisible(intialAmount, 1000);
+        waitForElementToBeVisible(intialAmount, 10);
         actionEnterText(intialAmount, "100000");
         scrollToElement(moreOptionsBtn);
         clickElementByJS(moreOptionsBtn);
-        waitForElementToBeVisible(cardNoText, 1000);
+        waitForElementToBeVisible(cardNoText, 10);
         softAssert.assertEquals(getText(cardNoText), Constants.cardNoText);
         softAssert.assertEquals(getText(fundingResourceText), Constants.fundingResourceText);
         softAssert.assertEquals(getText(memoText), Constants.memoText);
         softAssert.assertEquals(getText(startDateText), Constants.startDateText);
         softAssert.assertEquals(getText(endDateText), Constants.endDateText);
         scrollToElement(createButton);
-        waitForElementToBeVisible(createButton, 1000);
+        waitForElementToBeVisible(createButton, 10);
         click(createButton);
 
     }
@@ -788,13 +793,13 @@ public void getGiftCardStatusTbx(){
         offOptionalSettings();
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
-        waitForElementToBeInteractable(customerField, 10000);
+        waitForElementToBeInteractable(customerField, 10);
         clickElementByJS(customerField);
-        waitForElementToBeVisible(customerEmail, 1000);
+        waitForElementToBeVisible(customerEmail, 10);
         actionEnterText(customerEmail, "beanBliss@yopmail.com");
         clickElementByJS(customerEmailSearchBtn);
         staticWait(1000);
-        waitForElementToBeVisible(intialAmount, 1000);
+        waitForElementToBeVisible(intialAmount, 10);
         actionEnterText(intialAmount, "100000");
         scrollToElement(moreOptionsBtn);
         clickElementByJS(moreOptionsBtn);
@@ -862,7 +867,7 @@ public void getGiftCardStatusTbx(){
             clickElementByJS(fundingSourceEnableToggleBtn);
         }
 
-        waitForElementToBeVisible(amountField, 1000);
+        waitForElementToBeVisible(amountField, 10);
         actionEnterText(amountField, "100000");
         click(saveConfiguration);
         staticWait(1000);
@@ -2340,10 +2345,9 @@ public void getGiftCardStatusTbx(){
     staticWait(5000);
     getFilterIcon();
 
-        waitForElementToBeClickable(userEmailTbx,4);
 
     // clicking on 'User Email Phone filter
-        getUserPhoneEmailTbxFilter();
+        clickOnUserEmailTxtField();
         staticWait(3000);
 //        waitForElementToBeVisible();
 
@@ -2391,10 +2395,8 @@ public void getGiftCardStatusTbx(){
         staticWait(5000);
         getFilterIcon();
 
-        waitForElementToBeClickable(userEmailTbx,5);
-
         // clicking on 'User Email Phone filter
-        getUserPhoneEmailTbxFilter();
+        clickOnUserEmailTxtField();
         staticWait(5000);
 
         //   Select Customer
