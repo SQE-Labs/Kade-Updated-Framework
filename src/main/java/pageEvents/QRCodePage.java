@@ -10,11 +10,13 @@ import org.testng.Assert;
 import utils.Constants;
 
 import java.awt.*;
+import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class QRCodePage extends BaseTest {
+    MyStorePage mystore = new MyStorePage();
 
     By manageBusinessMenu = By.xpath("//a[text()='Manage Business']");
     By qrCodeMenu = By.xpath("//div[text()='QR Code Dashboard']/..");
@@ -77,7 +79,7 @@ public class QRCodePage extends BaseTest {
     By titleFieldOnPopup = By.xpath("//input[@name='title']");
     By saveBtnOnFieldOnPopup = By.xpath("//input[@name='title']/../../child::div/button[text()='Save']");
     By uploadImage = By.xpath("(//div[@class='template-main-image mb-3'])[1]");
-    By content = By.xpath("(//div[@data-field='content'])[1]");
+    By content = By.xpath("//div[@class='template-content text-black p-2 mb-3']//a[@class='-remove- stretched-link']/..");
     By contentPage = By.xpath("//h5[text()='HTML Editor']");
     By enterInContentPage = By.xpath("//h5[text()='HTML Editor']/../..//p");
     By addBtn = By.xpath("//span[text()='Add']/..");
@@ -229,9 +231,11 @@ public class QRCodePage extends BaseTest {
     }
 
     public void clickOncontent() {
-        waitForElementToBeClickable(content,3);
+        scrollToElement(content);
+        staticWait(2000);
         click(content);
-        softAssert.assertTrue(isElementDisplayed(contentPage));
+        staticWait(4000);
+        Assert.assertTrue(isElementDisplayed(contentPage));
     }
 
     public void enterInContentPage(String txtEnterInContentPage) {
@@ -359,7 +363,18 @@ public class QRCodePage extends BaseTest {
     }
 
     public void uploadImageInStoreLogo() throws AWTException {
-        uploadImageAsAttachment("/src/main/resources/ImageResources/image/BillDummyImg");
+        // uploding store image
+
+        WebElement fileInput = getDriver().findElement(By.xpath("//input[@type='file' and @accept='image/*']"));
+        // Set the file path to upload
+        String userDir = System.getProperty("user.dir");
+        String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator+ "ImageResources"+ File.separator + "image" + File.separator + "BillDummyImg.jpg";
+        fileInput.sendKeys(filePath);
+        mystore.getTickIconofImg();
+        staticWait(3000);
+
+
+//        uploadImageAsAttachment("/src/main/resources/ImageResources/image/BillDummyImg");
     }
 
     public void clickOnFilterIcon() {
@@ -547,7 +562,7 @@ public class QRCodePage extends BaseTest {
 
     public void flexibleAmountQrCode(String enterAmount, String enterTitleField, String txtEnterInContentPage) throws AWTException {
         createNewQrCode();
-        softAssert.assertTrue(isElementDisplayed(editPaymentLink));
+        Assert.assertTrue(isElementDisplayed(editPaymentLink));
         String titleLength = getAttribute(titleField, "maxlength");
         Log.info(titleLength);
         enterAmountDesc(enterAmount);
@@ -556,7 +571,6 @@ public class QRCodePage extends BaseTest {
         clickOntitle();
         clickOntitleFieldOnPopup(enterTitleField);
         clickOnSaveBtnOnFieldOnPopup();
-        scrollToDown();
         uploadImageInStoreLogo();
         clickOncontent();
         enterInContentPage(txtEnterInContentPage);

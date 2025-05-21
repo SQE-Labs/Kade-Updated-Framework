@@ -40,7 +40,15 @@ public class GiftCardDashboardPage extends BaseTest {
     public By whichStoreContinueBtn = By.cssSelector("button.btn-primary");
     public By storeName = By.cssSelector("h3.text-truncate");
     By continueBtn = By.xpath("//button[@type='submit']");
-
+    public By storeMnager = By.cssSelector("div.fw-bold");
+    public By issuedOn = By.xpath("//span[contains(text(),'Issued on:')]");
+    public By issueBy = By.xpath("//span[contains(text(), 'Issued by:')]");
+    public By editBtn = By.cssSelector("i.far.fa-edit");
+    public By systemAlert = By.cssSelector("div.alert-message>h4");
+    public By clientDetailValidationMsg = By.cssSelector("div.alert-message>p");
+    public By statusBtn = By.cssSelector("span.me-2~div>button.btn~ul.p-1");
+    public By blockBtn = By.cssSelector("span.me-2~div>button.btn-danger");
+    public By activeBtn = By.cssSelector("span.me-2~div>button.btn-success");
     public By infoMessageText = By.cssSelector("div.card-header.pb-0");
     public By configurationBtn = By.cssSelector("button.btn.btn-link");
     public By configurationPopupHeader = By.cssSelector("h5.modal-title");
@@ -100,7 +108,7 @@ public class GiftCardDashboardPage extends BaseTest {
     public By issueNewGiftcardForm = By.cssSelector("div.modal-body");
     public By infoIcon = By.cssSelector("i.fal.fa-info-square");
     public By enableClass = By.cssSelector("label.custom-checkbox.mb-3");
-
+    public By updateButton = By.xpath("//button[text()='Update']");
 
     // Locators for Gift Cards For Sale
 
@@ -125,7 +133,7 @@ public class GiftCardDashboardPage extends BaseTest {
     public By deleteIcon = By.xpath("//button[normalize-space(text())='Delete']");
     public By neverMindIcon = By.xpath("//button[normalize-space(text())='Never mind']");
     public By giftCardDetails = By.xpath("//div[starts-with(@class, 'bg-white mb-2 position-relative ')]");
-
+    public By fundingResourceDropDown = By.cssSelector("select[name='fundSource']");
     By thumbsUp = with(By.tagName("button")).toRightOf(neverMindIcon);
     By filterBtn = with(By.tagName("button")).toLeftOf(addBtn);
     By statusAvailable = By.xpath("//option[text()='Available']");
@@ -139,7 +147,7 @@ public class GiftCardDashboardPage extends BaseTest {
     By donutGraphDark = By.xpath("//div[@class='apexcharts-tooltip apexcharts-theme-dark']");
     By donutGraph = By.xpath("//div[@class='apexcharts-tooltip apexcharts-theme-dark apexcharts-active']");
     By donut = By.cssSelector("[class='apexcharts-series apexcharts-pie-series']");
- 
+    public By giftCardStatus = By.xpath("(//tr/td/a[@class='btn btn-link btn btn-link'])[1]/ancestor::tr/td[last()]");
 
     // filter locators
     By filterIcon = By.xpath("//div[contains(@class,'d-flex flex-wrap px-3')]/button/i");
@@ -168,7 +176,19 @@ public class GiftCardDashboardPage extends BaseTest {
     By minAmountFilterField = By.cssSelector("[name='minAmount']");
     By maxAmountFilterField = By.cssSelector("[name='maxAmount']");
     By cardNumberFilterField = By.cssSelector("[name='cardNo']");
+    public By profileLink = By.cssSelector("div.min-15c>div.d-flex>a.me-1~div>a");
+    public By totalSpentText = By.xpath("//div[contains(@class, 'col') and contains(@class, 'd-flex') and contains(@class, 'flex-column')]//span[contains(text(), 'Total spent')]");
+    public By messageIcon = By.cssSelector("a.p-0>i.fa-paper-plane");
+    public By messageTextBox = By.cssSelector("textarea[id='newMessage']");
+    public By totalAmt = By.cssSelector("h6>span>span.ms-1");
+    public String DateStringGenerator() {
+        LocalDate currentDate = LocalDate.now(); // or any specific date: LocalDate.of(2025, 4, 15)
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDate = currentDate.format(formatter);
 
+        String result = "Issued on: " + formattedDate;
+        return result;
+    }
 public void getFilterIcon(){
     clickElementByJS(filterIcon);
 }
@@ -202,7 +222,67 @@ public void getNonExistingGCDate(){
 public void getGiftCardStatusTbx(){
     click(giftCardStatusTbx);
 }
- 
+
+    public String[] onOptionalSettings() {
+        Login();
+        String storeManagerName = getText(storeMnager);
+        pannel.getMangeBusinessTab();
+        pannel.getGiftCardsDashboardTab();
+        selectStore(1);
+        click(whichStoreContinueBtn);
+        click(configurationBtn);
+
+        if (!isDisplayed(enableClass, 3)) {
+            clickElementByJS(enabledToggleBth);
+        }
+        if (isDisplayed(fundingSourceDisableText, 3)) {
+            clickElementByJS(fundingSourceDiableToggleBtn);
+            setFundingSourceList();
+        }
+        if (isDisplayed(referenceNoDisabledText, 3)) {
+            clickElementByJS(referenceNoEnableToggleBtn);
+        }
+
+        waitForElementToBeVisible(amountField, 1000);
+        actionEnterText(amountField, "100000");
+        WebElement element = getWebElement(amountField);
+        String maxAmountValue = element.getAttribute("value");
+        click(saveConfiguration);
+
+        return new String[]{maxAmountValue, storeManagerName};
+    }
+
+    public void verifyMandatoryFields() {
+        onOptionalSettings();
+        staticWait(1000);
+        clickElementByJS(issueNewGiftCardBtn);
+        waitForElementToBeInteractable(customerField, 10000);
+        clickElementByJS(customerField);
+        waitForElementToBeVisible(customerEmail, 1000);
+        actionEnterText(customerEmail, "beanBliss@yopmail.com");
+        clickElementByJS(customerEmailSearchBtn);
+        staticWait(1000);
+        waitForElementToBeVisible(intialAmount, 1000);
+        actionEnterText(intialAmount, "100000");
+        staticWait(1000);
+        actionEnterText(referenceNoField, "924-124");
+        scrollToElement(moreOptionsBtn);
+        staticWait(1000);
+        clickElementByJS(moreOptionsBtn);
+        selectDropdownByIndex(fundingResourceDropDown, 1);
+        staticWait(1000);
+        scrollToElement(createButton);
+        waitForElementToBeVisible(createButton, 1000);
+        click(createButton);
+        staticWait(3000);
+        scrollToElement(giftCardDetailCardLink);
+        staticWait(3000);
+        click(giftCardDetailCardLink);
+        staticWait(2000);
+        click(infoIcon);
+
+
+    }
 
     public static void LoginAsCustomerNew() {
         Log.info("Starting Login test - Entering username and password");
@@ -245,13 +325,16 @@ public void getGiftCardStatusTbx(){
     }
 
 
-    public String offOptionalSettings() {
+
+    public String[] offOptionalSettings() {
         Login();
+        String storeManagerName = getText(storeMnager);
         pannel.getMangeBusinessTab();
         pannel.getGiftCardsDashboardTab();
-        selectStore(4);
+        selectStore(3);
         click(whichStoreContinueBtn);
         click(configurationBtn);
+
         if (!isDisplayed(enableClass, 3)) {
             clickElementByJS(enabledToggleBth);
         }
@@ -267,7 +350,8 @@ public void getGiftCardStatusTbx(){
         WebElement element = getWebElement(amountField);
         String maxAmountValue = element.getAttribute("value");
         click(saveConfiguration);
-        return maxAmountValue;
+
+        return new String[]{maxAmountValue, storeManagerName};
     }
 
 
@@ -619,7 +703,7 @@ public void getGiftCardStatusTbx(){
 
 
     public void verifyInitialAmtEqualsMaxGiftAmount() {
-        String maxConfiguredAmt = offOptionalSettings();
+        String maxConfiguredAmt = offOptionalSettings()[2];
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
         waitForElementToBeInteractable(customerField, 10);
@@ -2228,6 +2312,26 @@ public void getGiftCardStatusTbx(){
 
 
 
+    public void createGiftCard() {
+        offOptionalSettings();
+        staticWait(1000);
+        clickElementByJS(issueNewGiftCardBtn);
+        waitForElementToBeInteractable(customerField, 10000);
+        clickElementByJS(customerField);
+        waitForElementToBeVisible(customerEmail, 1000);
+        actionEnterText(customerEmail, "beanBliss@yopmail.com");
+        clickElementByJS(customerEmailSearchBtn);
+        staticWait(1000);
+        waitForElementToBeVisible(intialAmount, 1000);
+        actionEnterText(intialAmount, "100000");
+        staticWait(1000);
+        scrollToElement(createButton);
+        waitForElementToBeVisible(createButton, 1000);
+        click(createButton);
+        staticWait(3000);
+        click(giftCardDetailCardLink);
+    }
+
 
 
 
@@ -2732,9 +2836,194 @@ public void getGiftCardStatusTbx(){
 
 
     }
+    public void verifyGiftCardDetailPopUp() {
+        offOptionalSettings();
+        staticWait(1000);
+        clickElementByJS(issueNewGiftCardBtn);
+        waitForElementToBeInteractable(customerField, 10000);
+        clickElementByJS(customerField);
+        waitForElementToBeVisible(customerEmail, 1000);
+        actionEnterText(customerEmail, "beanBliss@yopmail.com");
+        clickElementByJS(customerEmailSearchBtn);
+        staticWait(1000);
+        waitForElementToBeVisible(intialAmount, 1000);
+        actionEnterText(intialAmount, "100000");
+        staticWait(1000);
+        scrollToElement(createButton);
+        waitForElementToBeVisible(createButton, 1000);
+        click(createButton);
+        staticWait(2000);
+        scrollToElement(giftCardDetailCardLink);
+        String giftCardLinkText = getText(giftCardDetailCardLink);
+        click(giftCardDetailCardLink);
+        WebElement element = getWebElement(giftCardHeaderText);
+        String cardNumber = element.getText().split(":")[1].trim();
+        Assert.assertEquals(giftCardLinkText, cardNumber);
+        System.out.println(cardNumber);
+        staticWait(1000);
 
 
     }
+
+
+    public void verifyInfoIcon() {
+        String storeManagerName = offOptionalSettings()[1];
+        String issueByActualText = "Issued on: " + storeManagerName;
+        staticWait(1000);
+        clickElementByJS(issueNewGiftCardBtn);
+        waitForElementToBeInteractable(customerField, 10000);
+        clickElementByJS(customerField);
+        waitForElementToBeVisible(customerEmail, 1000);
+        actionEnterText(customerEmail, "beanBliss@yopmail.com");
+        clickElementByJS(customerEmailSearchBtn);
+        staticWait(1000);
+        waitForElementToBeVisible(intialAmount, 1000);
+        actionEnterText(intialAmount, "100000");
+        staticWait(1000);
+        scrollToElement(createButton);
+        waitForElementToBeVisible(createButton, 1000);
+        click(createButton);
+        staticWait(2000);
+        scrollToElement(giftCardDetailCardLink);
+        click(giftCardDetailCardLink);
+        staticWait(2000);
+        click(infoIcon);
+        WebElement element = getWebElement(giftCardHeaderText);
+        String cardNumber = element.getText().split(":")[1].trim();
+        System.out.println(cardNumber);
+        String issuedOnActualText = getText(issuedOn);
+        String issuedOnexpectedText = DateStringGenerator();
+        Assert.assertEquals(issuedOnActualText, issuedOnexpectedText);
+        Assert.assertEquals(getText(issueBy), issueByActualText);
+
+
+    }
+
+
+    public void verifyEditBtn() {
+        createGiftCard();
+        click(editBtn);
+        Assert.assertEquals(getText(fundingResourceText), Constants.fundingResourceText);
+        Assert.assertEquals(getText(memoText), Constants.memoText);
+        Assert.assertEquals(getText(startDateText), Constants.startDateText);
+        Assert.assertEquals(getText(endDateText), Constants.endDateText);
+
+    }
+
+    public void verifyFundingResourceTextField() {
+        createGiftCard();
+        click(editBtn);
+        WebElement element = getWebElement(fundingResourceField);
+        String dataType = element.getAttribute("type");
+        Assert.assertEquals(dataType, Constants.fundingSourceType);
+    }
+
+    public void verifyFundingResourceAsList() {
+        verifyMandatoryFields();
+        click(editBtn);
+        Assert.assertEquals(getText(fundSourceOption), "HSBC");
+
+    }
+
+    public void verifyReferenceNoFieldMaxLen50() {
+        verifyMandatoryFields();
+        click(editBtn);
+        WebElement element = getWebElement(referenceNoField);
+        String maxLength = element.getAttribute("maxlength");
+        Assert.assertEquals(maxLength, Constants.maxLength);
+    }
+
+    public void verifyMemoFieldMaxLen500() {
+        verifyMandatoryFields();
+        click(editBtn);
+        WebElement element = getWebElement(memoField);
+        String maxLength = element.getAttribute("maxlength");
+        Assert.assertEquals(maxLength, Constants.memoMaxLength);
+    }
+
+    public void verifyPastStartDateIsDisabled() {
+        verifyMandatoryFields();
+        click(editBtn);
+        click(startDate);
+        selectDateTwoDaysAgo();
+
+    }
+
+    public void verifyPastEndDateIsDisabled() {
+        verifyMandatoryFields();
+        click(editBtn);
+        click(endDate);
+        selectDateTwoDaysAgo();
+
+    }
+    public void verifyStatusChange(){
+        createGiftCard();
+        click(activeBtn);
+        click(statusBtn);
+        staticWait(2000);
+        Assert.assertEquals(getText(blockBtn),Constants.blockedStatus);
+        staticWait(2000);
+        click(blockBtn);
+        click(statusBtn);
+        Assert.assertEquals(getText(activeBtn),Constants.activeStatus);
+    }
+    public void verifyUserDirectedToProfilePage(){
+        createGiftCard();
+        click(profileLink);
+        switchToWindow("1");
+        staticWait(3000);
+        Assert.assertEquals(getText(totalSpentText), Constants.totalSpentText);
+
+
+    }
+
+    public void verifyMessageIcon(){
+        createGiftCard();
+        click(profileLink);
+        switchToWindow("1");
+        staticWait(3000);
+        click(messageIcon);
+        String messageText = getAttribute(messageTextBox, "placeholder");
+        Assert.assertEquals(messageText, Constants.messageText);
+
+    }
+
+    public void VerifyActiveGiftCard(){
+        createGiftCard();
+        scrollToElement(filterIcon);
+        staticWait(2000);
+        Assert.assertEquals(getText(giftCardStatus), Constants.activeStatus);
+
+
+    }
+
+    public void verifyStartDateRejectsChar() {
+        verifyMandatoryFields();
+        click(editBtn);
+        click(startDate);
+        actionEnterText(startDate, "vfhfuu");
+        click(updateButton);
+        Assert.assertEquals(getText(systemAlert),Constants.systemAlert);
+        Assert.assertEquals(getText(clientDetailValidationMsg),Constants.ValidationMsg);
+
+
+    }
+    public void verifyEndDateRejectsChar() {
+        verifyMandatoryFields();
+        click(editBtn);
+        click(startDate);
+        actionEnterText(startDate, "bhgisdhvi");
+        click(updateButton);
+        Assert.assertEquals(getText(systemAlert),Constants.systemAlert);
+        Assert.assertEquals(getText(clientDetailValidationMsg),Constants.ValidationMsg);
+
+
+    }
+
+
+
+
+}
 
 
 

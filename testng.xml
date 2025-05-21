@@ -33,14 +33,7 @@
         <packages>
             <package name="qa.tests" />
         </packages>
-<!--        <classes>-->
-<!--            <class name="qa.tests.MyStoreTest"></class>-->
-<!--            <class name="qa.tests.DashboardTest"></class>-->
-<!--            <class name="qa.tests.CustomersTest"></class>-->
-<!--            <class name="qa.tests.TransactionsTest"></class>-->
 
-
-<!--        </classes>-->
 
 
 
