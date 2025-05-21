@@ -53,6 +53,7 @@ public class QRCodeTest extends BaseTest {
     public void addAdditionalField() {
         QrCode.addAdditionalField("I am done");
         QrCode.editAdditionalFields("Updated Header");
+
     QrCode.TemporaryUnavailable();
     }
 

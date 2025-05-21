@@ -45,12 +45,8 @@ public class SearchTest extends BaseTest {
 
     @Test(description = " SP04, SP05 : Verify that user is directed to specific cutomer's page using phone number")
     public void verifyUserDirectedToCustomerPageUsingPhoneNumberoremail () throws IOException, UnsupportedFlavorException {
-        Login();
          search.SearchAndVerify("Valid");
          search.SearchAndVerify("Invalid");
-
-
-
 
         }
     }

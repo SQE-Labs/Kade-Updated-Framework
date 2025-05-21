@@ -1833,8 +1833,6 @@ public class BillPage extends BaseTest {
         getConfirmButton();
 
 
-
-
         //Close popup
         closePopup();
 
@@ -2012,7 +2010,6 @@ public class BillPage extends BaseTest {
 
         //Share bill by adding card details
         clickOnpaymentMethodLink();
-
     }
 
     public void createBillWithCustomerAndPayThroughAutoPayment() {
@@ -2082,8 +2079,6 @@ public class BillPage extends BaseTest {
         scrollToElement(chargeButton);
         waitForElementToBeVisible(chargeButton, 3);
         getChargeButton();
-
         staticWait(3000);
-
     }
 }

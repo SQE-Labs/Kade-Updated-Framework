@@ -194,6 +194,76 @@ public class GiftCardDashboardTest extends BaseTest {
     public void verifyEndDateRejectsCharacters() {
        giftCardPage.verifyEndDateRejectsCharacters();
     }
+    @Test(priority = 30, enabled = true, description = "TC_4_02 Verify that appropriate setting options appears on 'Gift Card Configuration' popup, after clicking on 'Confguration' link, on 'Gift Card Dashboard' page.")
+    public void verifyGiftCardDetailPopUp() {
+        giftCardPage.verifyGiftCardDetailPopUp();
+    }
+
+    @Test(priority = 31, enabled = true, description = "TC_4_02 Verify that appropriate setting options appears on 'Gift Card Configuration' popup, after clicking on 'Confguration' link, on 'Gift Card Dashboard' page.")
+    public void verifyInfoIcon() {
+        giftCardPage.verifyInfoIcon();
+    }
+
+    @Test(priority = 32, enabled = true, description = "Verify that appropriate fields appear after clicking on edit icon below the  <Card No: XXXXX>' label, on 'Gift Card Details' popup ")
+    public void verifyEditBtn() {
+        giftCardPage.verifyEditBtn();
+    }
+
+
+    @Test(priority = 33, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verifyFundingResourceOptional() {
+        giftCardPage.verifyFundingResourceTextField();
+    }
+
+    @Test(priority = 34, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verifyFundingResourceAsList() {
+        giftCardPage.verifyFundingResourceAsList();
+    }
+    @Test(priority = 34, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verifyReferenceNoFieldMaxLen50() {
+        giftCardPage.verifyReferenceNoFieldMaxLen50();
+    }
+    @Test(priority = 35, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verifyMemoFieldMaxLen500() {
+        giftCardPage.verifyMemoFieldMaxLen500();
+    }
+
+    @Test(priority = 36, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verifyPastStartDateIsDisabled() {
+        giftCardPage.verifyPastStartDateIsDisabled();
+    }
+    @Test(priority = 37, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verifyPastEndDateIsDisabled() {
+        giftCardPage.verifyPastEndDateIsDisabled();
+    }
+
+    @Test(priority = 38, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verifyStartDateRejectsChar() {
+        giftCardPage.verifyStartDateRejectsChar();
+    }
+
+    @Test(priority = 39, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verifyEndDateRejectsChar() {
+        giftCardPage.verifyEndDateRejectsChar();
+    }
+    @Test(priority = 40, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verifyStatusChange() {
+        giftCardPage.verifyStatusChange();
+    }
+
+    @Test(priority = 42, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verifyUserDirectedToProfilePage() {
+        giftCardPage.verifyUserDirectedToProfilePage();
+    }
+    @Test(priority = 43, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void verifyMessageIcon() {
+        giftCardPage.verifyMessageIcon();
+    }
+    @Test(priority = 44, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
+    public void VerifyActiveGiftCard() {
+        giftCardPage.VerifyActiveGiftCard();
+    }
+
 
     @Test(priority = 83, enabled = true, description = "Verify that user gets directed to 'Gift Card For Sale' page, after clicking on 'Add' button, on 'Sell Dashboard' page.")
     public void verifyUserDirectsToGiftCardForSalePage() {
@@ -405,6 +475,7 @@ public class GiftCardDashboardTest extends BaseTest {
     public void verifyInformationMsgAppearsAfterEnteringNonExistingCustomerEmail(){
         giftCardPage.verifyInfoMsgForInvalidCustomerEmailInput();
     }
+    // Failed due to 3110 defect
     @Test(priority = 59,enabled = true, description ="Verify that relevant gift cards appear listed after selecting date range( gift card exists) from 'Date' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
     public void verifyGiftCardAppearsForSelectedDate(){
         giftCardPage.verifyGiftCardAppearsForSelectedDate();
