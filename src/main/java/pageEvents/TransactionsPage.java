@@ -91,7 +91,7 @@ public class TransactionsPage extends BaseTest {
 
     // New charge popup locators
     By newChargeAmountField = By.xpath("//input[@lbl-title='Amount']");
-    public By newChargeConfirm = By.xpath("//button[@name='method' and @type= 'submit']");
+    public By newChargeConfirm = By.xpath("//div[normalize-space()='Confirm']/../..");
     By terminal = By.xpath("//h4[text()='Initializing the terminal...']");
     By terminalCancelButton = By.xpath("//div[@class='text-center']/button[text()='Cancel']");
     By manualChargeTab = By.xpath("//div[text()='Manual']");
@@ -132,6 +132,7 @@ public class TransactionsPage extends BaseTest {
     }
 
     public void getNewChargeConfirmBtn() {
+        scrollToElement(newChargeConfirm);
         click(newChargeConfirm);
     }
 
@@ -343,7 +344,7 @@ public class TransactionsPage extends BaseTest {
 
     // TRS 5 a
 
-    public void getManualCharge() {
+    public void getManualCharge(String amount,String description) {
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getTransactionTab();
@@ -353,26 +354,25 @@ public class TransactionsPage extends BaseTest {
 
         // clicking on new charge button
         getNewChargeBtn();
-        waitForElementToBeClickable(newChargeAmountField, 5);
-        actionEnterText(newChargeAmountField, Constants.amount);
-        actionEnterText(descriptionField, Constants.description);
-        getNewChargeConfirmBtn();
+         actionEnterText(newChargeAmountField, amount);
+        actionEnterText(descriptionField, description);
+         getNewChargeConfirmBtn();
         // Making new charge payment manually with Credit Card
 
-        waitForElementToBeClickable(manualChargeTab,5);
-        getManualChargeTab();
+//        waitForElementToBeClickable(manualChargeTab,5);
+//        getManualChargeTab();
 
-        staticWait(3000);
+        staticWait(5000);
          payments.getPayThroughCreditCardForAddingPayment();
          getProcessBtn();
          waitForElementToBeVisible(sendReceiptTitle,5);
 
         // Verify the Send Receipt Popup is Displayed
-        softAssert.assertTrue(isElementDisplayed(sendReceiptTitle));
+        Assert.assertTrue(isElementDisplayed(sendReceiptTitle));
         String text = getText(amountField);
-        softAssert.assertEquals(text, "$" + Constants.amount);
+        Assert.assertEquals(text, "$" + Constants.amount);
         String successMsg = getText(successMessage);
-        softAssert.assertEquals(successMsg, "$" + Constants.terminalSuccessMessage);
+        Assert.assertEquals(successMsg, "$" + Constants.terminalSuccessMessage);
     }
 
     // TRS 5 b
@@ -419,6 +419,7 @@ public class TransactionsPage extends BaseTest {
 
         // clicking on new charge button
         getNewChargeBtn();
+
         waitForElementToBeClickable(newChargeAmountField, 3);
         actionEnterText(newChargeAmountField, Constants.amount);
         actionEnterText(descriptionField, Constants.description);
@@ -432,16 +433,16 @@ public class TransactionsPage extends BaseTest {
         getNewChargeConfirmBtn();
 
         // Waiting for Automatic Terminal Payment
-        softAssert.assertTrue(isElementDisplayed(terminal));
+        Assert.assertTrue(isElementDisplayed(terminal));
         String terminalValue = getText(manualServiceFeeValue);
-        softAssert.assertEquals(terminalValue, "$3.39");
+        Assert.assertEquals(terminalValue, "$3.39");
         staticWait(3000);
         getTerminalCancelButton();
 
         // Paying through credit card after canceling terminal payment
         getManualChargeTab();
         String manualValue = getText(manualServiceFeeValue);
-        softAssert.assertEquals(terminalValue, "$3.86");
+        Assert.assertEquals(terminalValue, "$3.86");
         staticWait(3000);
         payments.getPayThroughCreditCardForAddingPayment();
     }
@@ -569,6 +570,7 @@ public class TransactionsPage extends BaseTest {
         actionEnterText(refundAmountField, refundAmmount);
         staticWait(5000);
         scrollToElement(processRefundButton);
+        staticWait(5000);
         getProcessRefundBtn();
     }
 

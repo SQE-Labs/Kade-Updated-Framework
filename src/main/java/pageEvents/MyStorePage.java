@@ -231,7 +231,10 @@ public class MyStorePage extends BaseTest {
     public void getCheckIconOfDeleteUser(){
         click(checkDeleteUser);
     }
-    public void getinviteUserButton(){click(inviteUserButton);}
+    public void getinviteUserButton(){
+        scrollToElement(inviteUserButton);
+        staticWait(2000);
+        click(inviteUserButton);}
 
 
     public void getStoreLinksButton() {

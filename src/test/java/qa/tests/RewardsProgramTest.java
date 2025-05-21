@@ -144,11 +144,13 @@ public class RewardsProgramTest extends BaseTest {
         rewardsProgramPage.RewardsProgramPageOpen();
 
         click(rewardsProgramPage.filterBtn);
+        staticWait(2000);
         enterText(rewardsProgramPage.userPhnEmail,Constants.phnNoFilterInput);
         click(rewardsProgramPage.applyBtn);
         waitForElementInVisible(rewardsProgramPage.applyBtn,20);
 
         rewardsProgramPage.tryCatchForFilter();
+        staticWait(2000);
         enterText(rewardsProgramPage.userPhnEmail,Constants.EmailFilterInput);
         click(rewardsProgramPage.applyBtn);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.yonroCustomer));
@@ -318,6 +320,4 @@ public class RewardsProgramTest extends BaseTest {
         click(rewardsProgramPage.applyBtn);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.yonroCustomer));
     }
-
-
 }

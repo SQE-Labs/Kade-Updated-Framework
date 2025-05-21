@@ -32,13 +32,11 @@ public class GiftCardDashboardTest extends BaseTest {
     @Test(priority = 1, enabled = true, description = "Verify that user gets directed to 'Gift Cards Dashboard' page, after clicking on any store under 'Which store?' section.")
     public void verifyGiftcardDashboardPage() {
         giftCardPage.verifyGiftcardDashboardPage();
-
     }
 
     @Test(priority = 2, enabled = true, description = "Verify that 'Gift Cards Configuration' popup opens up after clicking on 'Configuration' link, on 'Gift Card Dashboard' page.")
     public void verifyGiftConfigurationPopup() {
         giftCardPage.verifyGiftConfigurationPopup();
-
     }
 
     @Test(priority = 3, enabled = true, description = "TC_04_01 Verify that appropriate setting options appears on 'Gift Card Configuration' popup, after clicking on 'Confguration' link, on 'Gift Card Dashboard' page.")
@@ -56,14 +54,11 @@ public class GiftCardDashboardTest extends BaseTest {
     @Test(priority = 5, enabled = true, description = "TC_4_03 Verify that appropriate setting options appears on 'Gift Card Configuration' popup, after clicking on 'Confguration' link, on 'Gift Card Dashboard' page.")
     public void verifyCardAmountField() {
         giftCardPage.verifyCardAmountField();
-
     }
 
     @Test(priority = 6, enabled = true, description = "Verify Maximum gift card amount allowed' field.")
     public void verifySendAmount() {
         giftCardPage.verifySendAmount();
-
-
     }
 
     @Test(priority = 7, enabled = true, description = "Verify Maximum gift card amount allowed' field.")
@@ -79,14 +74,12 @@ public class GiftCardDashboardTest extends BaseTest {
     @Test(priority = 9, enabled = true, description = "Verify that 'Gift Cards Configuration' popup closes after clicking on 'Cross' icon, without any changes on 'Gift Cards Configuration' popup of 'Gift Cards Dashboard' page")
     public void verifyCrossButton() {
         giftCardPage.verifyCrossButton();
-
     }
 
 
     @Test(priority = 10, enabled = true, description = "Verify that 'Customer' popup opens up after clicking on 'Customer' field, on 'Issue a new gift card' popup of 'Gift Cards Dashboard' page.")
     public void verifyCustomerPopUp() {
         giftCardPage.verifyCustomerPopUp();
-
     }
 
 
@@ -98,8 +91,6 @@ public class GiftCardDashboardTest extends BaseTest {
     @Test(priority = 12, enabled = true, description = "Verify that appropriate validation message appears on entering invalid phone number in  'Customer phone/email' field, on 'Create gift card' popup.")
     public void verifyInvalidCustomerEmailField() {
         giftCardPage.verifyInvalidCustomerEmailField();
-
-
     }
 
 
@@ -249,23 +240,15 @@ public class GiftCardDashboardTest extends BaseTest {
     }
     @Test(priority = 41, enabled = true, description = " 97 Verify that 'Memo' field accepts value up to 500 characters, on 'Gift Card For Sale' page.")
     public void verifyMemoFieldMaximumLimit (){
-
         giftCardPage.verifyMemoFieldMaximumChar();
-
-
     }
-
 
     @Test(priority = 42, enabled = true, description = " 99 Verify that user gets directed to 'Gift Card For Sale' page and all the fields appear pre-filled, after clicking on any sale gift card from 'Sell Dashboard' page" )
     public void verifyPre_filledFieldsOnGiftCardsForSalePage (){
-
         giftCardPage.verifyUserDirectionForSalePage();
-
-
     }
 
-    @Test(priority = 43, enabled = true, description = " 100 Verify that status of the gift card appears 'Ended' after the sale end date, on 'Sell Dashboard' page."
-    )
+    @Test(priority = 43, enabled = true, description = " 100 Verify that status of the gift card appears 'Ended' after the sale end date, on 'Sell Dashboard' page.")
     public void verifyStatusOfGiftCardAfterEndDate (){
         giftCardPage.verifyStatusOfGiftCard();
     }
@@ -285,30 +268,22 @@ public class GiftCardDashboardTest extends BaseTest {
         }
     @Test(priority = 46, enabled = true, description = "Verify that user is able to delete the sale gift card, after clicking on 'Delete' button, on 'Gift Card For Sale' page")
     public void verifyUserAbleToDeleteSaleGiftCard () {
-
         giftCardPage.verifyUserAbleToDeleteSaleGift();
-
         }
 
-    @Test(priority = 47, enabled = true, description = "\"Verify that all the available sale gift cards appear listed on 'Sell Dashboard' page.\n" +
-            "\"")
+    @Test(priority = 47, enabled = true, description = "Verify that all the available sale gift cards appear listed on 'Sell Dashboard' page.")
     public void verifyAllSaleGiftCardsListedOnSellDashboard (){
-
         giftCardPage.verifyListOfGiftCards();
-
     }
 
     @Test(priority = 48, enabled = true, description = "Verify that by-default 'Available' option appears selected in 'Status' dropdown under filter option, on 'Sell Dashboard' page.")
     public void verifyDefaultOptionSelectedInStatusDropdown (){
-
         giftCardPage.verifyGiftCardDetails();
-
     }
 
-    @Test(priority = 49, enabled = true, description = "\"Verify that 'Available' and 'All' options appear after clicking on 'Status' dropdown under filter option, on 'Sell Dashboard' page.\n" +
+    @Test(priority = 49, enabled = true, description = "Verify that 'Available' and 'All' options appear after clicking on 'Status' dropdown under filter option, on 'Sell Dashboard' page.\n" +
             "\"")
     public void verifyAvailableAndAllOptionsInStatusDropdown (){
-
         giftCardPage.verifyAvailableAndAllOptionsInStatus();
 
     }
@@ -360,6 +335,7 @@ public class GiftCardDashboardTest extends BaseTest {
     public void verifyRelevantRecordsAppearAfterEnteringUsingPhoneFilter(){
         giftCardPage.verifyRecordsAppearForPhoneFilter();
     }
+
     @Test(priority = 58, enabled = true, description ="56 Verify that information message appears after entering non existing customer phone number in 'User Phone/Email' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
     public void verifyInformationMsgAppearsAfterEnteringNonExistingCustomerPhoneNumber(){
         giftCardPage.verifyInfoMsgForInvalidCustomerPhoneInput();
@@ -374,9 +350,10 @@ public class GiftCardDashboardTest extends BaseTest {
     public void verifyInformationMsgAppearsAfterEnteringNonExistingCustomerEmail(){
         giftCardPage.verifyInfoMsgForInvalidCustomerEmailInput();
     }
+
+    // Bug ID : 3110
     @Test(priority = 61 ,enabled = true, description ="59 Verify that relevant gift cards appear listed after selecting date range( gift card exists) from 'Date' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
     public void verifyGiftCardAppearsForSelectedDate(){
-
         giftCardPage.verifyGiftCardAppearsForSelectedDate();
     }
 

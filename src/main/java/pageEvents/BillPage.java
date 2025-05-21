@@ -1901,6 +1901,7 @@ public class BillPage extends BaseTest {
         // Assert.assertTrue(isElementDisplayed(reccuringIcon));
         staticWait(2000);
         scrollToTopOfPage();
+        staticWait(2000);
         clickOnReccuring();
 
         removeNonNumericValueFromTheValue();

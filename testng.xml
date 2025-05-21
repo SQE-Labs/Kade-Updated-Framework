@@ -8,16 +8,15 @@
     </listeners>
 
 
-    <test thread-count="3" name="Test">
+    <test thread-count="3" name="Test" >
         <parameter name="env" value="qa"/>
         <parameter name="browser" value="chrome"/>
-        <parameter name="headless" value="true"/>
+        <parameter name="headless" value="false"/>
 
         <!-- To Run Whole Suite-->
         <!--        <packages>-->
         <!--            <package name="qa.tests" />-->
         <!--        </packages>-->
-
 
         <!--         To Run Perticuler Class-->
 <!--        <classes>-->
@@ -25,8 +24,6 @@
 <!--                            <class name="qa.tests.MyStoreTest"></class>-->
             <!--            <class name="qa.tests.PaymentsAndRefundTest"></class>-->
             <!--            <class name="qa.tests.TransactionsTest"></class>-->
-
-
 <!--        </classes>-->
 
 
@@ -38,9 +35,8 @@
 <!--            <class name="qa.tests.DashboardTest"></class>-->
 <!--            <class name="qa.tests.CustomersTest"></class>-->
 <!--            <class name="qa.tests.TransactionsTest"></class>-->
-
-
 <!--        </classes>-->
+
 
 
 

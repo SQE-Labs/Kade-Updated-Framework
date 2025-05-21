@@ -10,9 +10,10 @@
     <test thread-count="2" name="Test" parallel="classes">
         <parameter name="env" value="qa" />
         <parameter name="browser" value="chrome" />
-        <parameter name="headless" value="true" />
+        <parameter name="headless" value="false" />
 
         <!-- To Run Whole Suite-->
+
         <packages>
             <package name="qa.tests" />
         </packages>
