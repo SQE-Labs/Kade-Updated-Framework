@@ -1958,7 +1958,7 @@ public class BillPage extends BaseTest {
         staticWait(3000);
     }
 
-    public void verifyBillCreationByAddingRecurringTransactionsYearly(String phone, String Email) {
+    public void verifyBillCreationByAddingRecurringTransactionsYearly(String phone, String emailID) {
 
         Login();
         //Select Store

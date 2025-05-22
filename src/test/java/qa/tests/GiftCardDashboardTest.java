@@ -12,7 +12,6 @@ import pageEvents.SidePannelPage;
 import pageObjects.PageObjectManager;
 
 
-
 import utils.Constants;
 
 import java.io.File;
@@ -186,13 +185,14 @@ public class GiftCardDashboardTest extends BaseTest {
 
     @Test(priority = 28, enabled = true, description = "Verify that validation message appears on entering character in 'Start Date' or 'Exp. Date' field, on 'Create gift card' popup.")
     public void verifyStartDateRejectsCharacters() {
-       giftCardPage.verifyStartDateRejectsCharacters();
+        giftCardPage.verifyStartDateRejectsCharacters();
     }
 
     @Test(priority = 29, enabled = true, description = "Verify that validation message appears on entering character in 'Start Date' or 'Exp. Date' field, on 'Create gift card' popup.")
     public void verifyEndDateRejectsCharacters() {
-       giftCardPage.verifyEndDateRejectsCharacters();
+        giftCardPage.verifyEndDateRejectsCharacters();
     }
+
     @Test(priority = 30, enabled = true, description = "TC_4_02 Verify that appropriate setting options appears on 'Gift Card Configuration' popup, after clicking on 'Confguration' link, on 'Gift Card Dashboard' page.")
     public void verifyGiftCardDetailPopUp() {
         giftCardPage.verifyGiftCardDetailPopUp();
@@ -218,10 +218,12 @@ public class GiftCardDashboardTest extends BaseTest {
     public void verifyFundingResourceAsList() {
         giftCardPage.verifyFundingResourceAsList();
     }
+
     @Test(priority = 34, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
     public void verifyReferenceNoFieldMaxLen50() {
         giftCardPage.verifyReferenceNoFieldMaxLen50();
     }
+
     @Test(priority = 35, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
     public void verifyMemoFieldMaxLen500() {
         giftCardPage.verifyMemoFieldMaxLen500();
@@ -231,6 +233,7 @@ public class GiftCardDashboardTest extends BaseTest {
     public void verifyPastStartDateIsDisabled() {
         giftCardPage.verifyPastStartDateIsDisabled();
     }
+
     @Test(priority = 37, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
     public void verifyPastEndDateIsDisabled() {
         giftCardPage.verifyPastEndDateIsDisabled();
@@ -245,6 +248,7 @@ public class GiftCardDashboardTest extends BaseTest {
     public void verifyEndDateRejectsChar() {
         giftCardPage.verifyEndDateRejectsChar();
     }
+
     @Test(priority = 40, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
     public void verifyStatusChange() {
         giftCardPage.verifyStatusChange();
@@ -254,10 +258,12 @@ public class GiftCardDashboardTest extends BaseTest {
     public void verifyUserDirectedToProfilePage() {
         giftCardPage.verifyUserDirectedToProfilePage();
     }
+
     @Test(priority = 43, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
     public void verifyMessageIcon() {
         giftCardPage.verifyMessageIcon();
     }
+
     @Test(priority = 44, enabled = true, description = "Verify that 'Funding Source' field appear as text field on ''Gift Card Details' popup ,  when Funding source is set to optional on 'Gift Cards Configuration' popup.")
     public void VerifyActiveGiftCard() {
         giftCardPage.VerifyActiveGiftCard();
@@ -292,7 +298,7 @@ public class GiftCardDashboardTest extends BaseTest {
     }
 
     @Test(priority = 87, enabled = true, description = "Verify that user is allowed to enter maximum value upto 150% of the value entered in 'Maximum Gift Card amount' ")
-    public void verifyUserAllowedToEnterMaximumValueInSalePrice(){
+    public void verifyUserAllowedToEnterMaximumValueInSalePrice() {
 
         giftCardPage.verifyUserAllowedToEnterMaximumValue();
 
@@ -306,240 +312,239 @@ public class GiftCardDashboardTest extends BaseTest {
     }
 
     @Test(priority = 89, enabled = true, description = "Verify that appropriate validation message appears on leaving any mandaory field blank on 'Gift Card For Sale' page")
-    public void verifyValidationOnLeavingBlankAnyFIeld(){
+    public void verifyValidationOnLeavingBlankAnyFIeld() {
 
         giftCardPage.verifyValidationLeavingFieldsBlank();
 
 
     }
 
-    @Test(priority = 90 & 91 , enabled = true, description = "Verify that 'Funding Source' field appear as text field on 'Gift Card For Sale' page. ")
-    public void verifyFundingSrcFieldAppearAsText(){
+    @Test(priority = 90 & 91, enabled = true, description = "Verify that 'Funding Source' field appear as text field on 'Gift Card For Sale' page. ")
+    public void verifyFundingSrcFieldAppearAsText() {
 
-      giftCardPage.validateAddedFundingSource();
+        giftCardPage.validateAddedFundingSource();
 
     }
 
     @Test(priority = 92, enabled = true, description = " Verify that 'Available quantity for sale' field accepts value up to 4 digits, on 'Gift Card For Sale' page.  ")
-    public void verifyAvailableQuantityMaximumLength (){
+    public void verifyAvailableQuantityMaximumLength() {
         giftCardPage.verifyAvailableQuantityFieldLength();
     }
 
     @Test(priority = 93, enabled = true, description = "Verify that user is not able to enter any decimal value in 'Available quantity for sale' field, on 'Gift Card For Sale' page. ")
-    public void verifyAvailableQuantityAcceptsNumerical (){
+    public void verifyAvailableQuantityAcceptsNumerical() {
         giftCardPage.verifyAvailableQuantityFieldLength();
     }
 
     @Test(priority = 94, enabled = true, description = "Verify that 'Reference No' field accepts value up to 30 characters, on 'Gift Card For Sale' page. ")
-    public void verifyRefNoFieldAcceptsChar (){
+    public void verifyRefNoFieldAcceptsChar() {
         giftCardPage.verifyRefNoValidation();
     }
 
     @Test(priority = 95, enabled = true, description = "Verify that by default date range appears as 1 year from current date in 'Sale date range' field, on 'Gift Card For Sale' page.")
-    public void verifyDefaultDateRangeInSaleDateRange (){
+    public void verifyDefaultDateRangeInSaleDateRange() {
         giftCardPage.verifyDefaultDateRange();
     }
 
     @Test(priority = 96 & 98, enabled = true, description = "Verify that user is able to set date range from date picker of 'Sale date range' field, on 'Gift Card For Sale' page.")
-    public void verifySelectingDateRange (){
+    public void verifySelectingDateRange() {
         giftCardPage.verifyDateRange();
 
     }
+
     @Test(priority = 97, enabled = true, description = "Verify that 'Memo' field accepts value up to 500 characters, on 'Gift Card For Sale' page.")
-    public void verifyMemoFieldMaximumLimit (){
+    public void verifyMemoFieldMaximumLimit() {
 
         giftCardPage.verifyMemoFieldMaximumChar();
-
-
     }
 
 
-    @Test(priority = 99, enabled = true, description = "\"Verify that user gets directed to 'Gift Card For Sale' page and all the fields appear pre-filled, after clicking on any sale gift card from 'Sell Dashboard' page\n" +
-            "\""
-            )
-    public void verifyPre_filledFieldsOnGiftCardsForSalePage (){
+    @Test(priority = 99, enabled = true, description = "\"Verify that user gets directed to 'Gift Card For Sale' page and all the fields appear pre-filled, after clicking on any sale gift card from 'Sell Dashboard' page\n" + "\"")
+    public void verifyPre_filledFieldsOnGiftCardsForSalePage() {
 
         giftCardPage.verifyUserDirectionForSalePage();
 
 
     }
 
-    @Test(priority = 100, enabled = true, description = " Verify that status of the gift card appears 'Ended' after the sale end date, on 'Sell Dashboard' page."
-    )
-    public void verifyStatusOfGiftCardAfterEndDate (){
+    @Test(priority = 100, enabled = true, description = " Verify that status of the gift card appears 'Ended' after the sale end date, on 'Sell Dashboard' page.")
+    public void verifyStatusOfGiftCardAfterEndDate() {
         giftCardPage.verifyStatusOfGiftCard();
     }
 
-    @Test(priority = 101, enabled = true, description = "Verify that user is able to update the sale gift card from 'Gift Card For Sale' page. "
-    )
-    public void verifyUserUpdateSaleGiftCard (){
+    @Test(priority = 101, enabled = true, description = "Verify that user is able to update the sale gift card from 'Gift Card For Sale' page. ")
+    public void verifyUserUpdateSaleGiftCard() {
         giftCardPage.verifyUpdateSaleGiftCard();
     }
 
-    @Test(priority = 102, enabled = true, description = "Verify that user is not able to delete the sale gift card, after cancelling the Deletion action, on 'Gift Card For Sale' page"
-    )
-    public void verifyUserNotAbleToDeleteAfterCancelingGiftCard (){
+    @Test(priority = 102, enabled = true, description = "Verify that user is not able to delete the sale gift card, after cancelling the Deletion action, on 'Gift Card For Sale' page")
+    public void verifyUserNotAbleToDeleteAfterCancelingGiftCard() {
 
         giftCardPage.verifyUserNotAbleToDeleteAfterCanceling();
 
-        }
+    }
+
     @Test(priority = 103, enabled = true, description = "Verify that user is able to delete the sale gift card, after clicking on 'Delete' button, on 'Gift Card For Sale' page")
-    public void verifyUserAbleToDeleteSaleGiftCard () {
+    public void verifyUserAbleToDeleteSaleGiftCard() {
 
         giftCardPage.verifyUserAbleToDeleteSaleGift();
 
-        }
+    }
 
-    @Test(priority = 104, enabled = true, description = "\"Verify that all the available sale gift cards appear listed on 'Sell Dashboard' page.\n" +
-            "\"")
-    public void verifyAllSaleGiftCardsListedOnSellDashboard (){
+    @Test(priority = 104, enabled = true, description = "\"Verify that all the available sale gift cards appear listed on 'Sell Dashboard' page.\n" + "\"")
+    public void verifyAllSaleGiftCardsListedOnSellDashboard() {
 
         giftCardPage.verifyListOfGiftCards();
 
     }
 
     @Test(priority = 105, enabled = true, description = "Verify that by-default 'Available' option appears selected in 'Status' dropdown under filter option, on 'Sell Dashboard' page.")
-    public void verifyDefaultOptionSelectedInStatusDropdown (){
+    public void verifyDefaultOptionSelectedInStatusDropdown() {
 
         giftCardPage.verifyGiftCardDetails();
 
     }
 
-    @Test(priority = 106, enabled = true, description = "\"Verify that 'Available' and 'All' options appear after clicking on 'Status' dropdown under filter option, on 'Sell Dashboard' page.\n" +
-            "\"")
-    public void verifyAvailableAndAllOptionsInStatusDropdown (){
+    @Test(priority = 106, enabled = true, description = "\"Verify that 'Available' and 'All' options appear after clicking on 'Status' dropdown under filter option, on 'Sell Dashboard' page.\n" + "\"")
+    public void verifyAvailableAndAllOptionsInStatusDropdown() {
 
         giftCardPage.verifyAvailableAndAllOptionsInStatus();
 
     }
 
 
-    @Test(priority = 107 & 108, enabled = true, description = "Verify that only avaliable sale gift cards appear listed after selecting 'Available' option from 'Status' dropdown of Filter, on 'Sell Dashboard' page." )
-    public void verifyAvailableSaleGiftCardsListed (){
+    @Test(priority = 107 & 108, enabled = true, description = "Verify that only avaliable sale gift cards appear listed after selecting 'Available' option from 'Status' dropdown of Filter, on 'Sell Dashboard' page.")
+    public void verifyAvailableSaleGiftCardsListed() {
         giftCardPage.verifyAvailableSaleGiftCards();
     }
 
     @Test(priority = 114 & 115, enabled = true, description = "Verify that user is not able to delete the sale gift card, if the sale gift card Available QTY is zero, on 'Sell Dashboard' page.\n")
-    public void verifyActionOnZeroAvlQty (){
+    public void verifyActionOnZeroAvlQty() {
 
         giftCardPage.verifyActionOnZeroAvailableQty();
 
     }
 
-    @Test(priority = 116, enabled = true, description = "\"Verify that user is able to delete only those sale gift card which has Sold QTY: Zero, on 'Sell Dashboard' page.\n" +
-            "\"")
-    public void verifyUserAbleToDeleteSaleGiftCardQty0 (){
+    @Test(priority = 116, enabled = true, description = "\"Verify that user is able to delete only those sale gift card which has Sold QTY: Zero, on 'Sell Dashboard' page.\n" + "\"")
+    public void verifyUserAbleToDeleteSaleGiftCardQty0() {
         giftCardPage.verifyActionOnSoldQty0();
 
     }
 
     @Test(priority = 73, enabled = true, description = "TC-73 and TC-74")
-    public void verifyDonateGraph () {
+    public void verifyDonateGraph() {
         giftCardPage.donateGraph("may2025");
     }
 
 
-    @Test (priority = 52,enabled = true,description = "Verify that appropirate fields appears after clicking on 'Filter' link, on 'Gift Cards Dashboard' page.")
-    public void verifyFilterFieldsOfGiftCardDashboard(){
+    @Test(priority = 52, enabled = true, description = "Verify that appropirate fields appears after clicking on 'Filter' link, on 'Gift Cards Dashboard' page.")
+    public void verifyFilterFieldsOfGiftCardDashboard() {
         giftCardPage.getAllFilterFileds();
     }
 
 
     @Test(priority = 53, enabled = true, description = "Verify that relevant gift cards appear listed after entering any existing  card holder name in 'User Name' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
-    public void verifyRelevantGiftCardAppearsWhileAddingExistingCardHolderName(){
+    public void verifyRelevantGiftCardAppearsWhileAddingExistingCardHolderName() {
         giftCardPage.getRelevantRecordAfterEnteringExistingCardHolderFilter();
     }
 
-    @Test(priority = 54, enabled = true,description = "Verify that information message appears after entering non existing card holder name in 'User Name' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
-    public void verifyNoResultInfoMsgAppearsAfterEnteringNonExistingData(){
+    @Test(priority = 54, enabled = true, description = "Verify that information message appears after entering non existing card holder name in 'User Name' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
+    public void verifyNoResultInfoMsgAppearsAfterEnteringNonExistingData() {
         giftCardPage.getNoRecordMsgForInvalidCardHolder();
     }
 
 
     @Test(priority = 55, enabled = true, description = "Verify that relevant gift cards appear listed after entering any existing customer phone number in 'User Phone/Email' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
-    public void verifyRelevantRecordsAppearAfterEnteringUsingPhoneFilter(){
+    public void verifyRelevantRecordsAppearAfterEnteringUsingPhoneFilter() {
         giftCardPage.verifyRecordsAppearForPhoneFilter();
     }
-    @Test(priority = 56, enabled = true, description ="Verify that information message appears after entering non existing customer phone number in 'User Phone/Email' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
-    public void verifyInformationMsgAppearsAfterEnteringNonExistingCustomerPhoneNumber(){
+
+    @Test(priority = 56, enabled = true, description = "Verify that information message appears after entering non existing customer phone number in 'User Phone/Email' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
+    public void verifyInformationMsgAppearsAfterEnteringNonExistingCustomerPhoneNumber() {
         giftCardPage.verifyInfoMsgForInvalidCustomerPhoneInput();
     }
 
     @Test(priority = 57, enabled = true, description = "Verify that relevant gift cards appear listed after entering any existing customer email in 'User Phone/Email' field under 'Filter' link, on 'Gift Cards Dashboard' page.\n")
-    public void verifyRelevantRecordsAppearAfterEnteringUserEmailFilter(){
+    public void verifyRelevantRecordsAppearAfterEnteringUserEmailFilter() {
         giftCardPage.verifyRelevantRecordsAppearAfterEnteringUserEmailFilter();
     }
 
-    @Test(priority = 58,enabled = true, description = "Verify that information message appears after entering non existing customer email in 'User Phone/Email' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
-    public void verifyInformationMsgAppearsAfterEnteringNonExistingCustomerEmail(){
+    @Test(priority = 58, enabled = true, description = "Verify that information message appears after entering non existing customer email in 'User Phone/Email' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
+    public void verifyInformationMsgAppearsAfterEnteringNonExistingCustomerEmail() {
         giftCardPage.verifyInfoMsgForInvalidCustomerEmailInput();
     }
-    @Test(priority = 59,enabled = true, description ="Verify that relevant gift cards appear listed after selecting date range( gift card exists) from 'Date' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
-    public void verifyGiftCardAppearsForSelectedDate(){
+
+    @Test(priority = 59, enabled = true, description = "Verify that relevant gift cards appear listed after selecting date range( gift card exists) from 'Date' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
+    public void verifyGiftCardAppearsForSelectedDate() {
         giftCardPage.verifyGiftCardAppearsForSelectedDate();
     }
 
-    @Test(priority = 60,enabled = true, description ="Verify that information message appears after selecting non-existing date range in  from 'Date' field under 'Filter' link, on 'Gift Cards Dashboard' page.\n")
-    public void verifyGiftCardResultWhileApplyingNonExistingDateRangeFilter(){
+    @Test(priority = 60, enabled = true, description = "Verify that information message appears after selecting non-existing date range in  from 'Date' field under 'Filter' link, on 'Gift Cards Dashboard' page.\n")
+    public void verifyGiftCardResultWhileApplyingNonExistingDateRangeFilter() {
         giftCardPage.verifyGCResultWhileApplyingNonExistingDateRangeFilter();
     }
 
-    @Test(priority = 61,enabled = true, description ="Verify that appropriate validation message appears after entering characters in 'Date' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
-    public void verifyValidationOfDateFieldAfterEnteringCharacters(){
+    @Test(priority = 61, enabled = true, description = "Verify that appropriate validation message appears after entering characters in 'Date' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
+    public void verifyValidationOfDateFieldAfterEnteringCharacters() {
         giftCardPage.verifyValidationOfDateFieldAfterEnteringCharacters();
     }
 
-    @Test(priority = 62&63,enabled = true, description ="Verify that appropriate options appear in 'Gift card status' dropdown, after clicking 'Gift card status' dropdown under 'Filter' link, on 'Gift Cards Dashboard' page. ")
-    public void verifyDropDownGCFilterOptions(){
+    @Test(priority = 62 & 63, enabled = true, description = "Verify that appropriate options appear in 'Gift card status' dropdown, after clicking 'Gift card status' dropdown under 'Filter' link, on 'Gift Cards Dashboard' page. ")
+    public void verifyDropDownGCFilterOptions() {
         giftCardPage.getDropDownOptions();
     }
 
-    @Test(priority = 64,enabled = true, description ="Verify that all the existing active gift cards appear listed, after selecting 'Active' option from 'Gift card status' dropdown field under 'Filter' link, on 'Gift Cards Dashboard' page. ")
-    public void verifyRecordAfterApplyActiveFilterDD(){
+    @Test(priority = 64, enabled = true, description = "Verify that all the existing active gift cards appear listed, after selecting 'Active' option from 'Gift card status' dropdown field under 'Filter' link, on 'Gift Cards Dashboard' page. ")
+    public void verifyRecordAfterApplyActiveFilterDD() {
         giftCardPage.verifyRecordAfterApplyActiveFilterDD();
     }
 
-    @Test(priority = 65,enabled = true, description ="Verify that all the existing blocked gift cards appear listed, after selecting 'Blocked' option from 'Gift card status' dropdown field under 'Filter' link, on 'Gift Cards Dashboard' page. ")
-    public void verifyRecordAfterApplyBlockedFilterDD(){
+    @Test(priority = 65, enabled = true, description = "Verify that all the existing blocked gift cards appear listed, after selecting 'Blocked' option from 'Gift card status' dropdown field under 'Filter' link, on 'Gift Cards Dashboard' page. ")
+    public void verifyRecordAfterApplyBlockedFilterDD() {
         giftCardPage.verifyRecordAfterApplyBlockedFilterDD();
     }
-    @Test(priority = 66,enabled = true, description ="Verify that all the existing expired gift cards appear listed, after selecting 'Expired' option from 'Gift card status' dropdown field under 'Filter' link, on 'Gift Cards Dashboard' page. ")
-    public void verifyRecordAfterApplyExpiredFilterDD(){
+
+    @Test(priority = 66, enabled = true, description = "Verify that all the existing expired gift cards appear listed, after selecting 'Expired' option from 'Gift card status' dropdown field under 'Filter' link, on 'Gift Cards Dashboard' page. ")
+    public void verifyRecordAfterApplyExpiredFilterDD() {
         giftCardPage.verifyRecordAfterApplyExpiredFilterDD();
     }
-    @Test(priority = 67,enabled = true, description ="Verify that all the existing No Balance gift cards appear listed, after selecting 'No Balance' option from 'Gift card status' dropdown field under 'Filter' link, on 'Gift Cards Dashboard' page. ")
-    public void verifyRecordAfterApplyNoBalanceFilterDD(){
+
+    @Test(priority = 67, enabled = true, description = "Verify that all the existing No Balance gift cards appear listed, after selecting 'No Balance' option from 'Gift card status' dropdown field under 'Filter' link, on 'Gift Cards Dashboard' page. ")
+    public void verifyRecordAfterApplyNoBalanceFilterDD() {
         giftCardPage.verifyRecordAfterApplyNoBalanceFilterDD();
 
     }
-    @Test(priority = 68,enabled = true, description ="Verify that all the existing Pending Activation gift cards appear listed, after selecting 'Pending Activation' option from 'Gift card status' dropdown field under 'Filter' link, on 'Gift Cards Dashboard' page.")
-    public void verifyRecordAfterApplyPendingActivationFilterDD(){
+
+    @Test(priority = 68, enabled = true, description = "Verify that all the existing Pending Activation gift cards appear listed, after selecting 'Pending Activation' option from 'Gift card status' dropdown field under 'Filter' link, on 'Gift Cards Dashboard' page.")
+    public void verifyRecordAfterApplyPendingActivationFilterDD() {
         giftCardPage.verifyRecordAfterApplyPendingActivationFilterDD();
     }
 
-    @Test(priority = 69,enabled = true, description ="Verify that relevant gift cards appear listed after entering value in 'Min Amount' under 'Filter' link, on 'Gift Cards Dashboard' page.")
-    public void verifyRelevantGCAppearsAfterApplyingMinAmountFilter(){
+    @Test(priority = 69, enabled = true, description = "Verify that relevant gift cards appear listed after entering value in 'Min Amount' under 'Filter' link, on 'Gift Cards Dashboard' page.")
+    public void verifyRelevantGCAppearsAfterApplyingMinAmountFilter() {
         giftCardPage.verifyRelevantGCAppearsAfterApplyingMinAmountFilter();
     }
 
-    @Test(priority = 70,enabled = true, description ="Verify that relevant gift cards appear listed after entering value in 'Max Amount' under 'Filter' link, on 'Gift Cards Dashboard' page.")
-    public void verifyRelevantGCAppearsAfterApplyingMaxAmountFilter(){
+    @Test(priority = 70, enabled = true, description = "Verify that relevant gift cards appear listed after entering value in 'Max Amount' under 'Filter' link, on 'Gift Cards Dashboard' page.")
+    public void verifyRelevantGCAppearsAfterApplyingMaxAmountFilter() {
         giftCardPage.verifyRelevantGCAppearsAfterApplyingMaxAmountFilter();
     }
 
-    @Test(priority = 71,enabled = true, description ="Verify that relevant gift cards appear listed after entering value in 'Min Amount' and 'Max Amount' 'under 'Filter' link, on 'Gift Cards Dashboard' page.\n")
-    public void verifyRecordAfterApplyingMinAndMaxValueFilterValues(){
+    @Test(priority = 71, enabled = true, description = "Verify that relevant gift cards appear listed after entering value in 'Min Amount' and 'Max Amount' 'under 'Filter' link, on 'Gift Cards Dashboard' page.\n")
+    public void verifyRecordAfterApplyingMinAndMaxValueFilterValues() {
         giftCardPage.verifyRecordAfterApplyingMinAndMaxValueFilterValues();
     }
-    @Test(priority = 72&73&74,enabled = true, description ="Verify that relevant gift cards appear listed after entering any existing gift card number in 'Card Number \"Partial\" field under 'Filter' link, on 'Gift Cards Dashboard' page.")
-    public void verifyRelevantGCAppearAfterApplyingAnyExistingGCno(){
-        giftCardPage. verifyRelevantGCAppearAfterApplyingAnyExistingGCno();
+
+    @Test(priority = 72 & 73 & 74, enabled = true, description = "Verify that relevant gift cards appear listed after entering any existing gift card number in 'Card Number \"Partial\" field under 'Filter' link, on 'Gift Cards Dashboard' page.")
+    public void verifyRelevantGCAppearAfterApplyingAnyExistingGCno() {
+        giftCardPage.verifyRelevantGCAppearAfterApplyingAnyExistingGCno();
     }
-    @Test(priority = 75,enabled = true, description ="Verify that appropirate information message appears after enteriing non-existing data in all the fileds under 'Filter' link, on 'Gift Cards Dashboard' page.")
-    public void verifyInvalidInputofFilterFields(){
-        giftCardPage. verifyInvalidInputofFilterFields();
+
+    @Test(priority = 75, enabled = true, description = "Verify that appropirate information message appears after enteriing non-existing data in all the fileds under 'Filter' link, on 'Gift Cards Dashboard' page.")
+    public void verifyInvalidInputofFilterFields() {
+        giftCardPage.verifyInvalidInputofFilterFields();
     }
-     }
+}
 
 
 
