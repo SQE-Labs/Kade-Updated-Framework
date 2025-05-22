@@ -86,6 +86,7 @@ public class BaseTest {
             ChromeOptions chromeOptions = new ChromeOptions();
             if (headless) {
                 chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
+                chromeOptions.setBrowserVersion("117");
             }
             driver.set(new ChromeDriver(chromeOptions));
             log.info("ChromeDriver initialized.");
