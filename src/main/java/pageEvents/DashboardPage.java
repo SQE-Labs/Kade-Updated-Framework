@@ -220,7 +220,9 @@ public class DashboardPage extends BaseTest {
                 }
             }
 
-        }}}
+        }
+    }
+}
 
 
 
