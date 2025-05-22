@@ -480,6 +480,7 @@ public class PaymentPage extends BaseTest {
         Assert.assertTrue(isElementDisplayed(uniqueNumber));
         Assert.assertTrue(isElementDisplayed(BillCreatedTime));
         Assert.assertTrue(isElementDisplayed(NotPaid));
+        staticWait(3000);
         Assert.assertTrue(isElementDisplayed(tapToAddFile));
 
         // Click on Process payment button in Bill popup

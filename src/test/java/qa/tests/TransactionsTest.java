@@ -60,7 +60,7 @@ public class TransactionsTest extends BaseTest {
 
     @Test(priority = 5, enabled = true,description = "TRS5 (a) :Verify that store manager is able to charge a customer manually, after stripe payment is configured for a store.")
     public void a3chargeManuallyAfterStripeConfigured() {
-        transaction.getManualCharge();
+        transaction.getManualCharge("10000","Without Stripe Account");
 
 
     }
@@ -92,7 +92,6 @@ public class TransactionsTest extends BaseTest {
 
     @Test(priority = 10, enabled = true,description = "TRS7 (b): Verify that store manager is able to refund partial transaction on 'Transaction details' popup of 'Transaction' page.")
     public void verifyThatStoreMangerIsAbleToRefundPartialPayment() {
-
         transaction.getPartialRefund();
     }
 

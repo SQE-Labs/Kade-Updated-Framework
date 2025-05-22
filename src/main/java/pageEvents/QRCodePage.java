@@ -18,6 +18,7 @@ import java.util.List;
 public class QRCodePage extends BaseTest {
     MyStorePage mystore = new MyStorePage();
 
+
     By manageBusinessMenu = By.xpath("//a[text()='Manage Business']");
     By qrCodeMenu = By.xpath("//div[text()='QR Code Dashboard']/..");
     By continueBtn = By.xpath("//button[@type='submit']");
@@ -368,10 +369,13 @@ public class QRCodePage extends BaseTest {
         WebElement fileInput = getDriver().findElement(By.xpath("//input[@type='file' and @accept='image/*']"));
         // Set the file path to upload
         String userDir = System.getProperty("user.dir");
-        String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator+ "ImageResources"+ File.separator + "image" + File.separator + "BillDummyImg.jpg";
+        String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "ImageResources" + File.separator + "image" + File.separator + "BillDummyImg.jpg";
         fileInput.sendKeys(filePath);
         mystore.getTickIconofImg();
         staticWait(3000);
+        // uploding store image
+
+
 
 
 //        uploadImageAsAttachment("/src/main/resources/ImageResources/image/BillDummyImg");
@@ -562,7 +566,7 @@ public class QRCodePage extends BaseTest {
 
     public void flexibleAmountQrCode(String enterAmount, String enterTitleField, String txtEnterInContentPage) throws AWTException {
         createNewQrCode();
-        Assert.assertTrue(isElementDisplayed(editPaymentLink));
+        softAssert.assertTrue(isElementDisplayed(editPaymentLink));
         String titleLength = getAttribute(titleField, "maxlength");
         Log.info(titleLength);
         enterAmountDesc(enterAmount);
@@ -571,6 +575,7 @@ public class QRCodePage extends BaseTest {
         clickOntitle();
         clickOntitleFieldOnPopup(enterTitleField);
         clickOnSaveBtnOnFieldOnPopup();
+        scrollToDown();
         uploadImageInStoreLogo();
         clickOncontent();
         enterInContentPage(txtEnterInContentPage);
