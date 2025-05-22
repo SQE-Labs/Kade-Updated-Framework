@@ -1,0 +1,106 @@
+2025-05-20 13:40:00,816 [info]: Clicking on newBillTxt
+2025-05-20 13:40:25,650 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-20 13:40:38,624 [info]: Clicking on newBillTxt
+2025-05-20 13:41:06,043 [info]: Phone number. Existing or new
+2025-05-20 13:41:06,088 [info]: Email. Existing or new
+2025-05-20 13:41:31,904 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-20 13:41:45,125 [info]: Clicking on newBillTxt
+2025-05-20 13:42:28,395 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-20 13:42:41,493 [info]: Clicking on newBillTxt
+2025-05-20 13:43:10,043 [info]: Validating text
+2025-05-20 13:43:10,123 [info]: Kevin123uhmDSzdaMN6ARk5PXLWuAdh7Z5TilofbA6SFnvQeSL
+2025-05-20 13:43:14,271 [info]: descriptionSection None text displayed
+2025-05-20 13:43:23,691 [info]: Validating text
+2025-05-20 13:43:23,770 [info]: Kevin123FIiOqxqzVq8Pcc7Vgl4JYdjpHnPGD7EqFXK95a79PMPO9WgBZ0cu0EPE1t0q3E5UzhlF9YDS547dOIrRfzJUMMBFQqTgMcCNPjdhP8DU2CiZ87TFLFbRihT064MSOyD2YiAlEbsA2bt8AUD00AKLIIyr0ktqZZj67CZjUEW25X3cIdtiSDOrIgXNJmSeyCHa
+2025-05-20 13:43:56,600 [info]: Clicking on newBillTxt
+2025-05-20 13:44:08,172 [info]: Attempted to enter: 500001
+2025-05-20 13:44:08,172 [info]: Actual field value after restriction: 0.00
+2025-05-20 13:44:08,175 [info]:  Restriction WORKING. Value in field is within limit: 0.0
+2025-05-20 13:44:08,270 [info]: Extracted Number: 50000
+2025-05-20 13:44:11,540 [info]: Field value: 5,000.00
+2025-05-20 13:44:11,541 [info]: Extracted Number: 500000
+2025-05-20 13:44:11,541 [info]: Restriction FAILED. Field allowed more than 50,000: 500000
+2025-05-20 13:44:35,226 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-20 13:44:49,100 [info]: Clicking on newBillTxt
+2025-05-20 13:44:55,936 [info]: Extracted Number: 3000
+2025-05-20 13:44:59,192 [info]: Field value: 300.00
+2025-05-20 13:44:59,192 [info]: Extracted Number: 30000
+2025-05-20 13:44:59,193 [info]: Restriction WORKING. Value in field is within limit: 30000
+2025-05-20 13:45:22,871 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-20 13:45:35,902 [info]: Clicking on newBillTxt
+2025-05-20 13:46:37,873 [info]: Clicking on newBillTxt
+2025-05-20 13:47:23,729 [info]: No pop-up showed
+2025-05-20 13:47:25,731 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-20 13:47:38,992 [info]: Clicking on newBillTxt
+2025-05-20 13:47:57,324 [info]: 200
+2025-05-20 13:48:07,532 [info]: Clicking on By.xpath: (//button[text()='Done'])[5]
+2025-05-20 13:48:16,738 [info]: No pop-up showed
+2025-05-20 13:48:28,434 [info]: Clicking on newBillTxt
+2025-05-20 13:49:04,026 [info]: POPup Not Displayed
+2025-05-20 13:49:17,003 [info]: Clicking on By.xpath: (//div[@class='position-absolute start-0 end-0 top-0 bottom-0 bg-locked'])[2]
+2025-05-20 13:49:48,879 [info]: No pop-up showed
+2025-05-20 13:50:02,560 [info]: Clicking on newBillTxt
+2025-05-20 13:50:26,176 [info]: Clicking on By.xpath: (//div[@class='position-absolute start-0 end-0 top-0 bottom-0 bg-locked'])[2]
+2025-05-20 13:50:57,213 [info]: Clicking on newBillTxt
+2025-05-20 13:51:20,355 [info]: No repeat
+2025-05-20 13:51:22,392 [info]: Daily
+2025-05-20 13:51:26,589 [info]: Attribute value is fetched
+2025-05-20 13:51:28,738 [info]: specificNumberTxt:3
+2025-05-20 13:51:30,777 [info]: Specific number of times
+times total
+2025-05-20 13:51:32,793 [info]: Specific date
+2025-05-20 13:51:34,831 [info]: Selected: Specific number of times
+times total
+2025-05-20 13:51:36,866 [info]: Selected: Specific date
+2025-05-20 13:51:38,893 [info]: Weekly
+2025-05-20 13:51:40,910 [info]: Monthly
+2025-05-20 13:51:42,927 [info]: Yearly
+2025-05-20 13:51:48,932 [info]: Clicking on By.xpath: (//button[text()='Done'])[5]
+2025-05-20 13:52:17,937 [info]: Numeric Value: 1000.00
+2025-05-20 13:52:26,238 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-20 13:52:38,942 [info]: Clicking on newBillTxt
+2025-05-20 13:53:00,983 [info]: No repeat
+2025-05-20 13:53:03,003 [info]: Daily
+2025-05-20 13:53:05,015 [info]: Weekly
+2025-05-20 13:53:09,217 [info]: Attribute value is fetched
+2025-05-20 13:53:11,384 [info]: specificNumberTxt:3
+2025-05-20 13:53:13,419 [info]: Specific number of times
+times total
+2025-05-20 13:53:15,448 [info]: Specific date
+2025-05-20 13:53:17,500 [info]: Selected: Specific number of times
+times total
+2025-05-20 13:53:19,537 [info]: Selected: Specific date
+2025-05-20 13:53:21,551 [info]: Monthly
+2025-05-20 13:53:23,566 [info]: Yearly
+2025-05-20 13:53:29,572 [info]: Clicking on By.xpath: (//button[text()='Done'])[5]
+2025-05-20 13:53:58,733 [info]: Numeric Value: 1000.00
+2025-05-20 13:54:07,023 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-20 13:54:20,292 [info]: Clicking on newBillTxt
+2025-05-20 13:54:43,361 [info]: No repeat
+2025-05-20 13:54:45,376 [info]: Daily
+2025-05-20 13:54:47,394 [info]: Weekly
+2025-05-20 13:54:49,407 [info]: Monthly
+2025-05-20 13:54:53,592 [info]: Attribute value is fetched
+2025-05-20 13:54:55,749 [info]: specificNumberTxt:3
+2025-05-20 13:54:57,792 [info]: Specific number of times
+times total
+2025-05-20 13:54:59,809 [info]: Specific date
+2025-05-20 13:55:01,848 [info]: Selected: Specific number of times
+times total
+2025-05-20 13:55:03,874 [info]: Selected: Specific date
+2025-05-20 13:55:05,891 [info]: Yearly
+2025-05-20 13:55:11,899 [info]: Clicking on By.xpath: (//button[text()='Done'])[5]
+2025-05-20 13:55:37,194 [info]: Numeric Value: 1000.00
+2025-05-20 13:55:45,478 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-20 13:55:59,809 [info]: Clicking on newBillTxt
+2025-05-20 13:56:17,504 [info]: No repeat
+2025-05-20 13:56:19,518 [info]: Daily
+2025-05-20 13:56:21,546 [info]: Weekly
+2025-05-20 13:56:23,567 [info]: Monthly
+2025-05-20 13:56:25,591 [info]: Yearly
+2025-05-20 13:56:29,738 [info]: Specific number of times
+2025-05-20 13:56:31,756 [info]: Specific date
+2025-05-20 13:56:37,758 [info]: Clicking on By.xpath: (//button[text()='Done'])[5]
+2025-05-20 13:57:07,154 [info]: Numeric Value: 1000.00
+2025-05-20 13:57:15,455 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-20 13:57:28,434 [info]: Clicking on newBillTxt

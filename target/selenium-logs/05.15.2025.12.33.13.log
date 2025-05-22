@@ -1,0 +1,587 @@
+2025-05-15 12:33:13,591 [info]: Clicking on newBillTxt
+2025-05-15 12:33:39,734 [info]: Clicking on By.xpath: //button[text()='Different Cell-phone']
+2025-05-15 12:33:54,163 [info]: Clicking on By.xpath: //a[normalize-space()='Sign out']
+2025-05-15 12:34:23,278 [info]: Nothing to be selected
+2025-05-15 12:34:26,061 [info]: Clicking on By.xpath: //a[@class='stretched-link position-absolute h-100 -updateamount-']
+2025-05-15 12:34:31,241 [info]: Clicking on By.xpath: //input[@lbl-title='Amount']
+2025-05-15 12:34:38,471 [info]: Clicking on By.xpath: //input[@name='amount']//following::button[@type='submit' and normalize-space()='Update'][2]
+2025-05-15 12:35:11,711 [info]: Clicking on By.xpath: //a[normalize-space()='My Stuff']
+2025-05-15 12:35:11,849 [info]: Clicking on By.xpath: //div[normalize-space()='Payment History']
+2025-05-15 12:35:39,117 [info]: Clicking on By.xpath: //a[normalize-space()='My Stuff']
+2025-05-15 12:35:39,154 [info]: Clicking on By.xpath: //div[normalize-space()='Payment History']
+2025-05-15 12:35:57,589 [info]: Clicking on newBillTxt
+2025-05-15 12:36:33,802 [info]: Clicking on By.xpath: //a[normalize-space()='Sign out']
+2025-05-15 12:37:02,608 [info]: Nothing to be selected
+2025-05-15 12:37:18,203 [info]: Clicking on By.xpath: //a[normalize-space()='Close']
+2025-05-15 12:37:22,370 [info]: Clicking on By.xpath: //a[normalize-space()='My Stuff']
+2025-05-15 12:37:22,399 [info]: Clicking on By.xpath: //div[normalize-space()='Payment History']
+2025-05-15 12:39:13,619 [info]: Clicking on By.xpath: //a[normalize-space()='My Stuff']
+2025-05-15 12:39:13,657 [info]: Clicking on By.xpath: //div[normalize-space()='Payment History']
+2025-05-15 12:39:31,687 [info]: Clicking on By.xpath: //a[normalize-space()='My Stuff']
+2025-05-15 12:39:31,730 [info]: Clicking on By.xpath: //div[normalize-space()='Payment History']
+2025-05-15 12:39:47,547 [info]: Clicking on newBillTxt
+2025-05-15 12:40:14,610 [info]: Phone number. Existing or new
+2025-05-15 12:40:14,658 [info]: Email. Existing or new
+2025-05-15 12:40:38,591 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-15 12:40:43,003 [info]: Clicking on By.xpath: //span[text()='Accept bank transfer']
+2025-05-15 12:40:43,031 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-15 12:40:44,218 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-15 12:41:10,964 [info]: Clicking on newBillTxt
+2025-05-15 12:41:16,377 [info]: Clicking on By.cssSelector: .fal.fa-circle.custom-check-off
+2025-05-15 12:41:16,641 [info]: Clicking on By.xpath: //button[text()='Update Status']
+2025-05-15 12:41:23,726 [info]: Clicking on By.cssSelector: button[href=".-deleteStore-"]
+2025-05-15 12:41:26,596 [info]: Clicking on By.xpath: //button[text()='Delete Permanently']
+2025-05-15 12:41:37,571 [info]: Phone number. Existing or new
+2025-05-15 12:41:37,626 [info]: Email. Existing or new
+2025-05-15 12:42:11,103 [info]: Numeric Value: 2000.00
+2025-05-15 12:42:11,146 [info]: Numeric Value: 2000.00
+2025-05-15 12:42:36,394 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-15 12:42:40,742 [info]: Clicking on By.xpath: //span[text()='Accept bank transfer']
+2025-05-15 12:42:40,848 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-15 12:42:42,111 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-15 12:42:50,514 [info]: Clicking on newBillTxt
+2025-05-15 12:43:04,329 [info]: Clicking on By.cssSelector: .fal.fa-circle.custom-check-off
+2025-05-15 12:43:04,517 [info]: Clicking on By.xpath: //button[text()='Update Status']
+2025-05-15 12:43:11,485 [info]: Clicking on By.cssSelector: button[href=".-deleteStore-"]
+2025-05-15 12:43:14,331 [info]: Clicking on By.xpath: //button[text()='Delete Permanently']
+2025-05-15 12:43:17,121 [info]: Phone number. Existing or new
+2025-05-15 12:43:17,180 [info]: Email. Existing or new
+2025-05-15 12:43:46,305 [info]: Numeric Value: 2000.00
+2025-05-15 12:43:46,347 [info]: Numeric Value: 2000.00
+2025-05-15 12:44:11,349 [info]: Clicking on newBillTxt
+2025-05-15 12:44:39,124 [info]: Phone number. Existing or new
+2025-05-15 12:44:39,232 [info]: Email. Existing or new
+2025-05-15 12:45:58,771 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-15 12:46:11,236 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-15 12:46:12,425 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-15 12:46:27,063 [info]: Clicking on By.cssSelector: .fal.fa-circle.custom-check-off
+2025-05-15 12:46:27,275 [info]: Clicking on By.xpath: //button[text()='Update Status']
+2025-05-15 12:46:34,110 [info]: Clicking on By.cssSelector: button[href=".-deleteStore-"]
+2025-05-15 12:46:36,924 [info]: Clicking on By.xpath: //button[text()='Delete Permanently']
+2025-05-15 12:47:26,942 [info]: Clicking on By.xpath: (//span[text()='Accept Zelle'])[1]
+2025-05-15 12:48:38,805 [info]: Clicking on newBillTxt
+2025-05-15 12:49:05,567 [info]: Phone number. Existing or new
+2025-05-15 12:49:05,612 [info]: Email. Existing or new
+2025-05-15 12:49:14,208 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-15 12:49:18,534 [info]: Clicking on By.xpath: //span[text()='Accept bank transfer']
+2025-05-15 12:49:18,563 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-15 12:49:19,761 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-15 12:49:36,522 [info]: Numeric Value: 2000.00
+2025-05-15 12:49:36,564 [info]: Numeric Value: 2000.00
+2025-05-15 12:49:50,404 [info]: Clicking on By.cssSelector: .fal.fa-circle.custom-check-off
+2025-05-15 12:49:50,799 [info]: Clicking on By.xpath: //button[text()='Update Status']
+2025-05-15 12:49:57,798 [info]: Clicking on By.cssSelector: button[href=".-deleteStore-"]
+2025-05-15 12:50:00,594 [info]: Clicking on By.xpath: //button[text()='Delete Permanently']
+2025-05-15 12:50:20,195 [info]: Clicking on newBillTxt
+2025-05-15 12:50:47,021 [info]: Phone number. Existing or new
+2025-05-15 12:50:47,067 [info]: Email. Existing or new
+2025-05-15 12:50:58,863 [info]: Clicking on By.xpath: //button[text()='Add new terminal']
+2025-05-15 12:51:02,060 [info]: Clicking on By.xpath: //label[text()='Select your terminal']/../div[4]/label/i[2]
+2025-05-15 12:51:02,128 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-15 12:51:16,290 [info]: Numeric Value: 2000.00
+2025-05-15 12:51:16,333 [info]: Numeric Value: 2000.00
+2025-05-15 12:51:19,710 [info]: 314.75
+2025-05-15 12:51:46,308 [info]: Clicking on By.cssSelector: .custom-checkbox.mb-2>span
+2025-05-15 12:51:48,015 [info]: Clicking on By.xpath: //button[text()='Save changes']
+2025-05-15 12:51:56,632 [info]: Clicking on newBillTxt
+2025-05-15 12:52:23,259 [info]: Phone number. Existing or new
+2025-05-15 12:52:23,304 [info]: Email. Existing or new
+2025-05-15 12:52:27,867 [info]: Clicking on By.xpath: //button[text()='Save changes']
+2025-05-15 12:52:27,909 [info]: Clicking on By.xpath: (//button[@type='button'][text()='Configure'])[2]
+2025-05-15 12:52:29,219 [info]: Clicking on By.xpath: //button[text()='Save changes']
+2025-05-15 12:52:31,317 [info]: Clicking on By.xpath: //button[text()='Store links']
+2025-05-15 12:52:52,219 [info]: Numeric Value: 2000.00
+2025-05-15 12:52:52,267 [info]: Numeric Value: 2000.00
+2025-05-15 12:53:05,220 [info]: Numeric Value: 2000.00
+2025-05-15 12:53:05,220 [info]: Numeric Value: 2000.00
+2025-05-15 12:53:20,017 [info]: Clicking on newBillTxt
+2025-05-15 12:53:26,144 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-15 12:53:30,363 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-15 12:53:47,322 [info]: Phone number. Existing or new
+2025-05-15 12:53:47,376 [info]: Email. Existing or new
+2025-05-15 12:54:39,394 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-15 12:54:43,609 [info]: Clicking on By.xpath: //span[text()='Accept bank transfer']
+2025-05-15 12:54:43,640 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-15 12:54:44,779 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-15 12:54:44,836 [info]: Nothing to be selected
+2025-05-15 12:55:57,990 [info]: Clicking on newBillTxt
+2025-05-15 12:56:24,800 [info]: Phone number. Existing or new
+2025-05-15 12:56:24,866 [info]: Email. Existing or new
+2025-05-15 12:57:22,226 [info]: Nothing to be selected
+2025-05-15 12:58:51,122 [info]: Clicking on newBillTxt
+2025-05-15 12:59:19,412 [info]: Phone number. Existing or new
+2025-05-15 12:59:19,459 [info]: Email. Existing or new
+2025-05-15 13:00:16,958 [info]: Nothing to be selected
+2025-05-15 13:00:19,676 [info]: 100
+2025-05-15 13:01:17,368 [info]: Clicking on newBillTxt
+2025-05-15 13:01:45,019 [info]: Phone number. Existing or new
+2025-05-15 13:01:45,069 [info]: Email. Existing or new
+2025-05-15 13:02:42,199 [info]: Nothing to be selected
+2025-05-15 13:03:28,720 [info]: Clicking on newBillTxt
+2025-05-15 13:03:56,109 [info]: Phone number. Existing or new
+2025-05-15 13:03:56,156 [info]: Email. Existing or new
+2025-05-15 13:04:30,730 [info]: Clicking on newBillTxt
+2025-05-15 13:04:50,716 [info]: Nothing to be selected
+2025-05-15 13:04:58,066 [info]: Phone number. Existing or new
+2025-05-15 13:04:58,115 [info]: Email. Existing or new
+2025-05-15 13:05:51,621 [info]: Clicking on newBillTxt
+2025-05-15 13:05:54,883 [info]: Nothing to be selected
+2025-05-15 13:06:19,302 [info]: Phone number. Existing or new
+2025-05-15 13:06:19,348 [info]: Email. Existing or new
+2025-05-15 13:07:25,522 [info]: Clicking on newBillTxt
+2025-05-15 13:07:51,741 [info]: Phone number. Existing or new
+2025-05-15 13:07:51,786 [info]: Email. Existing or new
+2025-05-15 13:09:25,460 [info]: Clicking on newBillTxt
+2025-05-15 13:10:11,403 [info]: Clicking on By.xpath: //i[contains(@class,'btn-sm custom-check-off')]
+2025-05-15 13:11:29,084 [info]: Clicking on By.cssSelector: .-btn-save-.btn.btn-primary
+2025-05-15 13:12:12,041 [info]: Clicking on By.cssSelector: .-btn-save-.btn.btn-primary
+2025-05-15 13:12:54,846 [info]: Clicking on By.cssSelector: .-btn-save-.btn.btn-primary
+2025-05-15 13:15:29,588 [info]: Clicking on newBillTxt
+2025-05-15 13:15:51,068 [info]: Clicking on By.xpath: //a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']
+2025-05-15 13:15:51,111 [info]: Clicking on By.xpath: //div[text()='Rewards Program']
+2025-05-15 13:15:56,998 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-15 13:16:11,572 [info]: Clicking on newBillTxt
+2025-05-15 13:16:38,667 [info]: Phone number. Existing or new
+2025-05-15 13:16:38,718 [info]: Email. Existing or new
+2025-05-15 13:16:46,584 [info]: Clicking on By.xpath: //a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']
+2025-05-15 13:16:46,627 [info]: Clicking on By.xpath: //div[text()='Rewards Program']
+2025-05-15 13:17:05,009 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-15 13:17:17,360 [info]: Clicking on By.xpath: //a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']
+2025-05-15 13:17:17,394 [info]: Clicking on By.xpath: //div[text()='Rewards Program']
+2025-05-15 13:17:19,459 [info]: Clicking on newBillTxt
+2025-05-15 13:17:33,490 [info]: Clicking on By.xpath: //a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']
+2025-05-15 13:17:33,534 [info]: Clicking on By.xpath: //div[text()='Rewards Program']
+2025-05-15 13:17:52,981 [info]: Clicking on By.xpath: //a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']
+2025-05-15 13:17:53,012 [info]: Clicking on By.xpath: //div[text()='Rewards Program']
+2025-05-15 13:18:02,943 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-15 13:18:16,948 [info]: Clicking on newBillTxt
+2025-05-15 13:18:26,468 [info]: Clicking on By.xpath: //a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']
+2025-05-15 13:18:26,517 [info]: Clicking on By.xpath: //div[text()='Rewards Program']
+2025-05-15 13:18:54,040 [info]: Clicking on newBillTxt
+2025-05-15 13:18:57,830 [info]: Clicking on By.xpath: //a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']
+2025-05-15 13:18:57,925 [info]: Clicking on By.xpath: //div[text()='Rewards Program']
+2025-05-15 13:19:06,830 [info]: Attempted to enter: 500001
+2025-05-15 13:19:06,831 [info]: Actual field value after restriction: 0.00
+2025-05-15 13:19:06,833 [info]:  Restriction WORKING. Value in field is within limit: 0.0
+2025-05-15 13:19:06,900 [info]: Extracted Number: 50000
+2025-05-15 13:19:10,309 [info]: Field value: 5,000.00
+2025-05-15 13:19:10,310 [info]: Extracted Number: 500000
+2025-05-15 13:19:10,310 [info]: Restriction FAILED. Field allowed more than 50,000: 500000
+2025-05-15 13:19:13,648 [info]: Clicking on By.xpath: //a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']
+2025-05-15 13:19:13,692 [info]: Clicking on By.xpath: //div[text()='Rewards Program']
+2025-05-15 13:19:34,126 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-15 13:19:48,320 [info]: Clicking on newBillTxt
+2025-05-15 13:19:56,001 [info]: Extracted Number: 3000
+2025-05-15 13:19:59,291 [info]: Field value: 300.00
+2025-05-15 13:19:59,291 [info]: Extracted Number: 30000
+2025-05-15 13:19:59,294 [info]: Restriction WORKING. Value in field is within limit: 30000
+2025-05-15 13:20:04,015 [info]: Clicking on By.xpath: //a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']
+2025-05-15 13:20:04,069 [info]: Clicking on By.xpath: //div[text()='Rewards Program']
+2025-05-15 13:20:23,173 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-15 13:20:37,072 [info]: Clicking on newBillTxt
+2025-05-15 13:21:03,178 [info]: Clicking on By.xpath: //a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']
+2025-05-15 13:21:03,224 [info]: Clicking on By.xpath: //div[text()='Rewards Program']
+2025-05-15 13:21:41,099 [info]: Clicking on newBillTxt
+2025-05-15 13:21:55,107 [info]: Clicking on By.xpath: //a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']
+2025-05-15 13:21:55,167 [info]: Clicking on By.xpath: //div[text()='Rewards Program']
+2025-05-15 13:22:13,761 [info]: Clicking on By.xpath: //a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']
+2025-05-15 13:22:13,793 [info]: Clicking on By.xpath: //div[text()='Rewards Program']
+2025-05-15 13:22:27,217 [info]: No pop-up showed
+2025-05-15 13:22:29,231 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-15 13:22:30,606 [info]: Clicking on By.xpath: //a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']
+2025-05-15 13:22:30,638 [info]: Clicking on By.xpath: //div[text()='Rewards Program']
+2025-05-15 13:22:44,939 [info]: Clicking on newBillTxt
+2025-05-15 13:22:47,299 [info]: Clicking on By.xpath: //a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']
+2025-05-15 13:22:47,380 [info]: Clicking on By.xpath: //div[text()='Rewards Program']
+2025-05-15 13:23:19,416 [info]: Clicking on By.xpath: //a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']
+2025-05-15 13:23:19,502 [info]: Clicking on By.xpath: //div[text()='Rewards Program']
+2025-05-15 13:23:22,835 [info]: Clicking on newBillTxt
+2025-05-15 13:23:48,461 [info]: Clicking on By.xpath: //a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']
+2025-05-15 13:23:48,491 [info]: Clicking on By.xpath: //div[text()='Rewards Program']
+2025-05-15 13:24:01,588 [info]: POPup Not Displayed
+2025-05-15 13:24:06,918 [info]: Clicking on By.xpath: //a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']
+2025-05-15 13:24:06,953 [info]: Clicking on By.xpath: //div[text()='Rewards Program']
+2025-05-15 13:24:47,220 [info]: No pop-up showed
+2025-05-15 13:24:59,941 [info]: Clicking on By.xpath: (//a[@class='btn btn-link stretched-link align-self-center'])[1]
+2025-05-15 13:25:03,625 [info]: Clicking on newBillTxt
+2025-05-15 13:25:20,826 [info]: Clicking on By.xpath: (//a[text()='This Year']//following-sibling::div/div/a)[1]
+2025-05-15 13:25:36,789 [info]: Clicking on newBillTxt
+2025-05-15 13:25:57,233 [info]: No repeat
+2025-05-15 13:25:59,261 [info]: Daily
+2025-05-15 13:26:03,451 [info]: Attribute value is fetched
+2025-05-15 13:26:05,624 [info]: specificNumberTxt:3
+2025-05-15 13:26:07,660 [info]: Specific number of times
+times total
+2025-05-15 13:26:09,686 [info]: Specific date
+2025-05-15 13:26:11,726 [info]: Selected: Specific number of times
+times total
+2025-05-15 13:26:13,763 [info]: Selected: Specific date
+2025-05-15 13:26:15,786 [info]: Weekly
+2025-05-15 13:26:18,158 [info]: Monthly
+2025-05-15 13:26:20,179 [info]: Yearly
+2025-05-15 13:27:01,429 [info]: Clicking on newBillTxt
+2025-05-15 13:27:14,697 [info]: Phone number. Existing or new
+2025-05-15 13:27:14,742 [info]: Email. Existing or new
+2025-05-15 13:27:28,452 [info]: No repeat
+2025-05-15 13:27:30,483 [info]: Daily
+2025-05-15 13:27:32,502 [info]: Weekly
+2025-05-15 13:27:37,412 [info]: Attribute value is fetched
+2025-05-15 13:27:39,583 [info]: specificNumberTxt:3
+2025-05-15 13:27:41,655 [info]: Specific number of times
+times total
+2025-05-15 13:27:43,682 [info]: Specific date
+2025-05-15 13:27:45,711 [info]: Selected: Specific number of times
+times total
+2025-05-15 13:27:47,773 [info]: Selected: Specific date
+2025-05-15 13:27:49,790 [info]: Monthly
+2025-05-15 13:27:52,100 [info]: Yearly
+2025-05-15 13:28:09,448 [info]: Starting Login test - Entering username and password
+2025-05-15 13:28:10,036 [debug]: User has successfully logged in and landed on the dashboard
+2025-05-15 13:28:12,749 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:28:24,858 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:28:26,228 [info]: Element is clicked at index: 3
+2025-05-15 13:28:40,514 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:28:41,945 [info]: Element is clicked at index: 4
+2025-05-15 13:28:44,357 [info]: Clicking on newBillTxt
+2025-05-15 13:28:58,953 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:29:00,512 [info]: Element is clicked at index: 4
+2025-05-15 13:29:04,580 [info]: No repeat
+2025-05-15 13:29:06,604 [info]: Daily
+2025-05-15 13:29:08,620 [info]: Weekly
+2025-05-15 13:29:10,658 [info]: Monthly
+2025-05-15 13:29:14,887 [info]: Attribute value is fetched
+2025-05-15 13:29:17,061 [info]: specificNumberTxt:3
+2025-05-15 13:29:17,949 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:29:19,106 [info]: Specific number of times
+times total
+2025-05-15 13:29:19,293 [info]: Element is clicked at index: 6
+2025-05-15 13:29:21,123 [info]: Specific date
+2025-05-15 13:29:23,163 [info]: Selected: Specific number of times
+times total
+2025-05-15 13:29:25,197 [info]: Selected: Specific date
+2025-05-15 13:29:27,213 [info]: Yearly
+2025-05-15 13:29:36,495 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:29:38,090 [info]: Element is clicked at index: 6
+2025-05-15 13:30:06,466 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:30:07,994 [info]: Element is clicked at index: 6
+2025-05-15 13:30:08,022 [info]: Clicking on newBillTxt
+2025-05-15 13:30:25,627 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:30:26,268 [info]: No repeat
+2025-05-15 13:30:28,317 [info]: Daily
+2025-05-15 13:30:30,354 [info]: Weekly
+2025-05-15 13:30:32,380 [info]: Monthly
+2025-05-15 13:30:34,409 [info]: Yearly
+2025-05-15 13:30:38,896 [info]: Specific number of times
+2025-05-15 13:30:40,917 [info]: Specific date
+2025-05-15 13:30:46,137 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:30:47,523 [info]: Element is clicked at index: 6
+2025-05-15 13:31:04,430 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:31:05,844 [info]: Element is clicked at index: 6
+2025-05-15 13:31:13,460 [info]: Numeric Value: 1000.00
+2025-05-15 13:31:19,943 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:31:21,369 [info]: Element is clicked at index: 4
+2025-05-15 13:31:21,792 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-15 13:31:28,141 [info]: Clicking on By.cssSelector: div>.modal-content .stretched-link.-selectCustomer-
+2025-05-15 13:31:36,163 [info]: Clicking on newBillTxt
+2025-05-15 13:31:41,397 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:31:42,898 [info]: Element is clicked at index: 4
+2025-05-15 13:31:47,337 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-15 13:31:48,382 [info]: Clicking on By.cssSelector: div>.modal-content .stretched-link.-selectCustomer-
+2025-05-15 13:32:05,671 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:32:07,092 [info]: Element is clicked at index: 4
+2025-05-15 13:32:11,586 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-15 13:32:12,922 [info]: Clicking on By.cssSelector: div>.modal-content .stretched-link.-selectCustomer-
+2025-05-15 13:32:14,071 [info]: Clicking on By.cssSelector: input[name='email']~button.btn
+2025-05-15 13:32:26,419 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:32:32,384 [info]: Element is clicked at index: 4
+2025-05-15 13:32:35,104 [info]: Clicking on newBillTxt
+2025-05-15 13:32:36,705 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-15 13:32:37,631 [info]: Clicking on By.cssSelector: div>.modal-content .stretched-link.-selectCustomer-
+2025-05-15 13:32:52,538 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:32:53,855 [info]: Element is clicked at index: 4
+2025-05-15 13:32:58,637 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-15 13:32:59,844 [info]: Clicking on By.cssSelector: div>.modal-content .stretched-link.-selectCustomer-
+2025-05-15 13:33:01,060 [info]: Clicking on By.cssSelector: input[name='email']~button.btn
+2025-05-15 13:33:02,944 [info]: Phone number. Existing or new
+2025-05-15 13:33:02,995 [info]: Email. Existing or new
+2025-05-15 13:33:15,369 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:33:16,899 [info]: Element is clicked at index: 4
+2025-05-15 13:33:21,246 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-15 13:33:22,579 [info]: Clicking on By.cssSelector: div>.modal-content .stretched-link.-selectCustomer-
+2025-05-15 13:33:23,934 [info]: Clicking on By.cssSelector: input[name='email']~button.btn
+2025-05-15 13:33:32,779 [info]: Numeric Value: 2000.00
+2025-05-15 13:33:32,824 [info]: Numeric Value: 2000.00
+2025-05-15 13:33:36,844 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:33:38,308 [info]: Element is clicked at index: 5
+2025-05-15 13:33:45,382 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-15 13:33:46,776 [info]: Clicking on By.cssSelector: div>.modal-content .stretched-link.-selectCustomer-
+2025-05-15 13:33:48,101 [info]: Clicking on By.cssSelector: input[name='email']~button.btn
+2025-05-15 13:34:08,995 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:34:11,005 [info]: Element is clicked at index: 4
+2025-05-15 13:34:15,905 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-15 13:34:17,071 [info]: Clicking on By.cssSelector: div>.modal-content .stretched-link.-selectCustomer-
+2025-05-15 13:34:18,287 [info]: Clicking on By.cssSelector: input[name='email']~button.btn
+2025-05-15 13:34:21,571 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-15 13:34:36,433 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:34:38,824 [info]: Element is clicked at index: 4
+2025-05-15 13:34:43,494 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-15 13:34:44,940 [info]: Clicking on By.cssSelector: div>.modal-content .stretched-link.-selectCustomer-
+2025-05-15 13:34:46,272 [info]: Clicking on By.cssSelector: input[name='email']~button.btn
+2025-05-15 13:34:49,592 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-15 13:35:14,772 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:35:16,205 [info]: Element is clicked at index: 4
+2025-05-15 13:35:20,513 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-15 13:35:23,234 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-15 13:35:46,933 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:35:48,351 [info]: Element is clicked at index: 4
+2025-05-15 13:35:52,977 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-15 13:35:57,508 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-15 13:36:24,336 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:36:25,832 [info]: Element is clicked at index: 4
+2025-05-15 13:36:30,418 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-15 13:36:33,680 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-15 13:36:42,161 [info]: Clicking on By.cssSelector: .modal-content .stretched-link.-selectCustomer-
+2025-05-15 13:36:48,013 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:36:49,842 [info]: Element is clicked at index: 5
+2025-05-15 13:36:59,250 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-15 13:37:03,116 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-15 13:37:17,997 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:37:19,635 [info]: Element is clicked at index: 5
+2025-05-15 13:37:24,440 [info]: Clicking on By.cssSelector: .modal-content .stretched-link.-selectCustomer-
+2025-05-15 13:37:27,576 [info]: Clicking on By.cssSelector: input[name='readonlyFunds'] ~ i.custom-check-on
+2025-05-15 13:37:29,135 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-15 13:37:31,851 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-15 13:37:39,523 [info]: Clicking on By.xpath: //div[text()='Manual']
+2025-05-15 13:37:48,437 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:37:50,400 [info]: Element is clicked at index: 4
+2025-05-15 13:37:57,151 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-15 13:38:00,073 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-15 13:38:16,349 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:38:17,697 [info]: Element is clicked at index: 4
+2025-05-15 13:38:22,356 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-15 13:38:24,992 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-15 13:38:25,739 [info]: Clicking on newBillTxt
+2025-05-15 13:38:39,144 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:38:40,774 [info]: Element is clicked at index: 4
+2025-05-15 13:38:45,269 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-15 13:38:47,931 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-15 13:38:53,197 [info]: Phone number. Existing or new
+2025-05-15 13:38:53,255 [info]: Email. Existing or new
+2025-05-15 13:39:05,397 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:39:06,960 [info]: Element is clicked at index: 4
+2025-05-15 13:39:11,160 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-15 13:39:13,825 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-15 13:39:28,600 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:39:30,004 [info]: Element is clicked at index: 4
+2025-05-15 13:39:38,566 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:39:50,201 [info]: Nothing to be selected
+2025-05-15 13:39:51,303 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:39:52,667 [info]: Element is clicked at index: 4
+2025-05-15 13:40:00,967 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:40:22,582 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:40:24,421 [info]: Element is clicked at index: 4
+2025-05-15 13:40:32,727 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:40:49,328 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:40:50,927 [info]: Element is clicked at index: 4
+2025-05-15 13:41:00,470 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:41:05,472 [info]: Clicking on newBillTxt
+2025-05-15 13:41:30,082 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:41:31,405 [info]: Element is clicked at index: 4
+2025-05-15 13:41:33,473 [info]: Phone number. Existing or new
+2025-05-15 13:41:33,522 [info]: Email. Existing or new
+2025-05-15 13:41:39,850 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:42:02,022 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:42:03,586 [info]: Element is clicked at index: 4
+2025-05-15 13:42:12,071 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:42:30,627 [info]: Nothing to be selected
+2025-05-15 13:42:34,246 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:42:35,740 [info]: Element is clicked at index: 4
+2025-05-15 13:42:44,391 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:43:00,654 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:43:01,990 [info]: Element is clicked at index: 4
+2025-05-15 13:43:10,423 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:43:34,694 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:43:36,091 [info]: Element is clicked at index: 4
+2025-05-15 13:43:45,283 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:44:03,923 [info]: Clicking on newBillTxt
+2025-05-15 13:44:06,103 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:44:07,841 [info]: Element is clicked at index: 4
+2025-05-15 13:44:16,293 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:44:30,090 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:44:31,537 [info]: Element is clicked at index: 4
+2025-05-15 13:44:39,865 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:44:52,815 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:44:54,401 [info]: Element is clicked at index: 4
+2025-05-15 13:45:03,401 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:45:15,498 [info]: Nothing to be selected
+2025-05-15 13:45:22,340 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:45:23,681 [info]: Element is clicked at index: 4
+2025-05-15 13:45:32,093 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:45:52,043 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:45:53,713 [info]: Element is clicked at index: 4
+2025-05-15 13:46:02,267 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:46:40,900 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:46:42,492 [info]: Element is clicked at index: 4
+2025-05-15 13:46:51,004 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:46:59,303 [info]: Clicking on newBillTxt
+2025-05-15 13:47:10,741 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:47:12,366 [info]: Element is clicked at index: 4
+2025-05-15 13:47:12,495 [info]: Phone number. Existing or new
+2025-05-15 13:47:12,559 [info]: Email. Existing or new
+2025-05-15 13:47:20,722 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:47:26,218 [info]: No repeat
+2025-05-15 13:47:28,248 [info]: Daily
+2025-05-15 13:47:30,274 [info]: Weekly
+2025-05-15 13:47:34,490 [info]: Attribute value is fetched
+2025-05-15 13:47:36,654 [info]: specificNumberTxt:3
+2025-05-15 13:47:38,694 [info]: Specific number of times
+times total
+2025-05-15 13:47:40,715 [info]: Specific date
+2025-05-15 13:47:42,751 [info]: Selected: Specific number of times
+times total
+2025-05-15 13:47:44,779 [info]: Selected: Specific date
+2025-05-15 13:47:46,804 [info]: Monthly
+2025-05-15 13:47:48,824 [info]: Yearly
+2025-05-15 13:47:59,796 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:48:00,232 [info]: No pop-up showed
+2025-05-15 13:48:01,231 [info]: Element is clicked at index: 4
+2025-05-15 13:48:09,725 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:48:21,917 [info]: Clicking on newBillTxt
+2025-05-15 13:48:29,671 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:48:31,049 [info]: Element is clicked at index: 4
+2025-05-15 13:48:39,668 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:48:49,862 [info]: Phone number. Existing or new
+2025-05-15 13:48:49,932 [info]: Email. Existing or new
+2025-05-15 13:49:00,646 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:49:02,262 [info]: Element is clicked at index: 4
+2025-05-15 13:49:10,674 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:49:29,915 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:49:31,438 [info]: Element is clicked at index: 4
+2025-05-15 13:49:39,812 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:49:46,155 [info]: Nothing to be selected
+2025-05-15 13:49:46,513 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:50:02,567 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:50:04,107 [info]: Element is clicked at index: 4
+2025-05-15 13:50:12,424 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i
+2025-05-15 13:50:33,346 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:50:34,909 [info]: Element is clicked at index: 5
+2025-05-15 13:50:50,179 [info]: Clicking on newBillTxt
+2025-05-15 13:50:52,703 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:50:54,216 [info]: Element is clicked at index: 5
+2025-05-15 13:51:17,477 [info]: Phone number. Existing or new
+2025-05-15 13:51:17,540 [info]: Email. Existing or new
+2025-05-15 13:51:17,667 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:51:19,025 [info]: Element is clicked at index: 5
+2025-05-15 13:51:24,974 [info]: Only enters numeric value so expected would be 1000.00 which is max
+2025-05-15 13:51:40,159 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:51:41,518 [info]: Element is clicked at index: 5
+2025-05-15 13:51:47,408 [info]: Only enters numeric value so expected would be 1000.00 which is max
+2025-05-15 13:52:02,553 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:52:04,013 [info]: Element is clicked at index: 5
+2025-05-15 13:52:09,942 [info]: Only enters numeric value so expected would be 1000.00 which is max
+2025-05-15 13:52:14,572 [info]: Nothing to be selected
+2025-05-15 13:52:26,675 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:52:28,707 [info]: Element is clicked at index: 5
+2025-05-15 13:52:40,537 [info]: Clicking on By.xpath: //button[normalize-space()='Save changes']
+2025-05-15 13:52:42,587 [info]: Navigated to Gift Card for sale page
+2025-05-15 13:52:55,368 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:52:56,768 [info]: Element is clicked at index: 5
+2025-05-15 13:53:07,915 [info]: Clicking on By.xpath: //button[normalize-space()='Save changes']
+2025-05-15 13:53:12,363 [info]: Validate tooltip
+2025-05-15 13:53:27,627 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:53:28,936 [info]: Element is clicked at index: 5
+2025-05-15 13:53:31,338 [info]: Clicking on By.cssSelector: input[name='readonlyFunds'] ~ i.custom-check-off
+2025-05-15 13:53:49,795 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:53:51,479 [info]: Element is clicked at index: 5
+2025-05-15 13:54:02,017 [info]: Maximum length is 4
+2025-05-15 13:54:14,138 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:54:15,692 [info]: Element is clicked at index: 5
+2025-05-15 13:54:24,762 [info]: Maximum length is 4
+2025-05-15 13:54:37,966 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:54:39,411 [info]: Element is clicked at index: 5
+2025-05-15 13:54:45,008 [info]: Maximum char limit is : 30
+2025-05-15 13:54:56,863 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:54:58,303 [info]: Element is clicked at index: 5
+2025-05-15 13:55:04,026 [info]: Default date range is: 05/15/2025 - 05/15/2026
+2025-05-15 13:55:16,154 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:55:17,635 [info]: Element is clicked at index: 4
+2025-05-15 13:55:30,556 [info]: Clicking on By.xpath: //div[@class='input-group']//input[@name='saleDateRange']
+2025-05-15 13:55:52,729 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:55:54,297 [info]: Element is clicked at index: 5
+2025-05-15 13:56:02,132 [info]: Maximum char limit is : 500
+2025-05-15 13:56:14,142 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:56:15,694 [info]: Element is clicked at index: 4
+2025-05-15 13:56:28,719 [info]: Clicking on By.xpath: //div[@class='input-group']//input[@name='saleDateRange']
+2025-05-15 13:56:55,634 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:56:57,233 [info]: Element is clicked at index: 4
+2025-05-15 13:57:09,962 [info]: Clicking on By.xpath: //div[@class='input-group']//input[@name='saleDateRange']
+2025-05-15 13:57:38,583 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:57:40,078 [info]: Element is clicked at index: 4
+2025-05-15 13:57:52,743 [info]: Clicking on By.xpath: //div[@class='input-group']//input[@name='saleDateRange']
+2025-05-15 13:58:24,167 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:58:25,688 [info]: Element is clicked at index: 4
+2025-05-15 13:58:38,528 [info]: Clicking on By.xpath: //div[@class='input-group']//input[@name='saleDateRange']
+2025-05-15 13:59:08,393 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:59:09,887 [info]: Element is clicked at index: 4
+2025-05-15 13:59:22,982 [info]: Clicking on By.xpath: //div[@class='input-group']//input[@name='saleDateRange']
+2025-05-15 13:59:56,373 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 13:59:57,775 [info]: Element is clicked at index: 4
+2025-05-15 14:00:11,205 [info]: Total gift cards collected: 65
+2025-05-15 14:00:30,543 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 14:00:32,415 [info]: Element is clicked at index: 4
+2025-05-15 14:00:46,793 [info]: Total gift cards collected: 65
+2025-05-15 14:01:05,514 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 14:01:07,193 [info]: Element is clicked at index: 4
+2025-05-15 14:01:26,533 [info]: Total bills collected: 2597
+2025-05-15 14:01:34,448 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 14:01:35,922 [info]: Element is clicked at index: 4
+2025-05-15 14:01:57,447 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 14:01:59,030 [info]: Element is clicked at index: 4
+2025-05-15 14:02:19,740 [info]: Total gift cards collected: 66
+2025-05-15 14:02:20,004 [error]: Gift card with zero available quantity found:
+Status: Active
+Created on: 5/8/2025 2:51 PM
+Available QTY: 0
+Face value: $453.45
+Sold QTY: 1
+Sale Price: $5.56
+java.lang.RuntimeException: Available QTY: 0
+	at pageEvents.GiftCardDashboardPage.verifyActionOnZeroAvailableQty(GiftCardDashboardPage.java:1837)
+	at qa.tests.GiftCardDashboardTest.verifyActionOnZeroAvlQty(GiftCardDashboardTest.java:358)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.testng.internal.thread.graph.TestNGFutureTask.run(TestNGFutureTask.java:22)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2025-05-15 14:02:55,631 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-15 14:02:56,990 [info]: Element is clicked at index: 4
+2025-05-15 14:03:17,569 [info]: Total gift cards collected: 66
+2025-05-15 14:03:17,587 [info]: Gift card with Sold QTY: 0 found:
+Status: Ended
+Created on: 1:58 PM
+Available QTY: 5
+Face value: $10.00
+Sold QTY: 0
+Sale Price: $15.00
+2025-05-15 14:03:22,605 [info]: Delete button clicked successfully.
+2025-05-15 14:03:56,613 [info]: Switch to window [Terms of Use Page]
+2025-05-15 14:03:56,638 [info]: Get the Current Page Title
+2025-05-15 14:04:00,682 [info]: Switch to window [Privacy Policy]
+2025-05-15 14:04:10,458 [info]: Get the Current Page Title
+2025-05-15 14:04:41,659 [info]: Clicking on By.xpath: //i[@class='fas fa-trash']//..
+2025-05-15 14:04:41,705 [info]: Clicking on By.xpath: //i[contains(@class,'fal fa-thumbs-up')]//..
+2025-05-15 14:04:44,141 [info]: Get the Current Page Title
+2025-05-15 14:05:29,935 [info]: Clicking on By.xpath: //footer[contains(@class,'la-v3-pane-footer-wrapper')]//span[text()='Agree and continue']/..
+2025-05-15 14:05:56,972 [info]: Clicking on By.xpath: //i[@class='fas fa-trash']//..
+2025-05-15 14:05:57,012 [info]: Clicking on By.xpath: //i[contains(@class,'fal fa-thumbs-up')]//..

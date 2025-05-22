@@ -1,0 +1,47 @@
+2025-05-16 11:53:12,081 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-16 11:53:16,662 [info]: Clicking on By.xpath: //span[text()='Accept bank transfer']
+2025-05-16 11:53:16,735 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-16 11:53:18,001 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-16 11:53:51,213 [info]: Clicking on By.cssSelector: .fal.fa-circle.custom-check-off
+2025-05-16 11:53:51,491 [info]: Clicking on By.xpath: //button[text()='Update Status']
+2025-05-16 11:53:58,616 [info]: Clicking on By.cssSelector: button[href=".-deleteStore-"]
+2025-05-16 11:54:01,596 [info]: Clicking on By.xpath: //button[text()='Delete Permanently']
+2025-05-16 11:55:11,961 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-16 11:55:16,490 [info]: Clicking on By.xpath: //span[text()='Accept bank transfer']
+2025-05-16 11:55:16,572 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-16 11:55:17,815 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-16 11:55:40,328 [info]: Clicking on By.cssSelector: .fal.fa-circle.custom-check-off
+2025-05-16 11:55:40,683 [info]: Clicking on By.xpath: //button[text()='Update Status']
+2025-05-16 11:55:47,560 [info]: Clicking on By.cssSelector: button[href=".-deleteStore-"]
+2025-05-16 11:55:50,004 [info]: Clicking on By.xpath: //button[text()='Delete Permanently']
+2025-05-16 11:59:09,993 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-16 11:59:23,328 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-16 11:59:24,602 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-16 11:59:39,285 [info]: Clicking on By.cssSelector: .fal.fa-circle.custom-check-off
+2025-05-16 11:59:39,723 [info]: Clicking on By.xpath: //button[text()='Update Status']
+2025-05-16 11:59:46,584 [info]: Clicking on By.cssSelector: button[href=".-deleteStore-"]
+2025-05-16 11:59:49,782 [info]: Clicking on By.xpath: //button[text()='Delete Permanently']
+2025-05-16 12:00:42,408 [info]: Clicking on By.xpath: (//span[text()='Accept Zelle'])[1]
+2025-05-16 12:02:34,607 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-16 12:02:38,837 [info]: Clicking on By.xpath: //span[text()='Accept bank transfer']
+2025-05-16 12:02:38,877 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-16 12:02:40,114 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-16 12:03:12,268 [info]: Clicking on By.cssSelector: .fal.fa-circle.custom-check-off
+2025-05-16 12:03:12,643 [info]: Clicking on By.xpath: //button[text()='Update Status']
+2025-05-16 12:03:19,518 [info]: Clicking on By.cssSelector: button[href=".-deleteStore-"]
+2025-05-16 12:03:22,558 [info]: Clicking on By.xpath: //button[text()='Delete Permanently']
+2025-05-16 12:04:21,498 [info]: Clicking on By.xpath: //button[text()='Add new terminal']
+2025-05-16 12:04:24,729 [info]: Clicking on By.xpath: //label[text()='Select your terminal']/../div[4]/label/i[2]
+2025-05-16 12:04:24,925 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-16 12:05:19,140 [info]: Clicking on By.xpath: //button[text()='Save changes']
+2025-05-16 12:06:27,194 [info]: Clicking on By.xpath: //button[text()='Save changes']
+2025-05-16 12:07:13,301 [info]: Clicking on By.xpath: //button[text()='Save changes']
+2025-05-16 12:09:37,594 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-16 12:09:42,279 [info]: Clicking on By.xpath: //span[text()='Accept bank transfer']
+2025-05-16 12:09:42,365 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-16 12:09:43,759 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-16 12:14:41,855 [info]: Clicking on newBillTxt
+2025-05-16 12:15:10,874 [info]: Phone number. Existing or new
+2025-05-16 12:15:10,916 [info]: Email. Existing or new
+2025-05-16 12:16:13,131 [info]: Nothing to be selected
+2025-05-16 12:27:15,023 [info]: Clicking on newBillTxt
