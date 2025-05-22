@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QRCodePage extends BaseTest {
+    MyStorePage mystore = new MyStorePage();
 
-    MyStorePage mystore=new MyStorePage();
 
     By manageBusinessMenu = By.xpath("//a[text()='Manage Business']");
     By qrCodeMenu = By.xpath("//div[text()='QR Code Dashboard']/..");
@@ -373,6 +373,12 @@ public class QRCodePage extends BaseTest {
         fileInput.sendKeys(filePath);
         mystore.getTickIconofImg();
         staticWait(3000);
+        // uploding store image
+
+
+
+
+//        uploadImageAsAttachment("/src/main/resources/ImageResources/image/BillDummyImg");
     }
 
     public void clickOnFilterIcon() {
@@ -560,7 +566,7 @@ public class QRCodePage extends BaseTest {
 
     public void flexibleAmountQrCode(String enterAmount, String enterTitleField, String txtEnterInContentPage) throws AWTException {
         createNewQrCode();
-        Assert.assertTrue(isElementDisplayed(editPaymentLink));
+        softAssert.assertTrue(isElementDisplayed(editPaymentLink));
         String titleLength = getAttribute(titleField, "maxlength");
         Log.info(titleLength);
         enterAmountDesc(enterAmount);
@@ -569,6 +575,7 @@ public class QRCodePage extends BaseTest {
         clickOntitle();
         clickOntitleFieldOnPopup(enterTitleField);
         clickOnSaveBtnOnFieldOnPopup();
+        scrollToDown();
         uploadImageInStoreLogo();
         clickOncontent();
         enterInContentPage(txtEnterInContentPage);

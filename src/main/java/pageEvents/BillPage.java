@@ -1204,6 +1204,7 @@ public class BillPage extends BaseTest {
     }
 
     public void clickOnReccuring() {
+
         staticWait(2000);
         scrollToElement(reccuringMenu);
         click(reccuringMenu);
@@ -1643,6 +1644,8 @@ public class BillPage extends BaseTest {
         //Close popup
         closePopupOnBillPage();
 
+        //Verify not paid label for generated amount
+      //  verifyEnteredMemoText();
     }
 
 
@@ -1726,7 +1729,7 @@ public class BillPage extends BaseTest {
         //Click on More Option
         clickOnMoreSection();
 
-        clickOnexpirationDate();
+        clickOnExpiryDateSection();
         staticWait(2000);
 
         String expirationDay = getText(expirationDayPopUp);
@@ -1799,6 +1802,7 @@ public class BillPage extends BaseTest {
         //Click Confirm
         staticWait(2000);
         getConfirmButton();
+
 
         //Close popup
         closePopup();
@@ -1900,7 +1904,6 @@ public class BillPage extends BaseTest {
         // Assert.assertTrue(isElementDisplayed(reccuringIcon));
         staticWait(2000);
         scrollToTopOfPage();
-        staticWait(2000);
         clickOnReccuring();
 
         removeNonNumericValueFromTheValue();

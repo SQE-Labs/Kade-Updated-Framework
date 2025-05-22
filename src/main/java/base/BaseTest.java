@@ -79,15 +79,14 @@ public class BaseTest {
      */
     @BeforeMethod
     @Parameters({"browser", "headless"})
-    public void setupDriver(@Optional("chrome") String browser, @Optional("false") boolean headless) throws MalformedURLException {
+    public void setupDriver(@Optional("chrome") String browser, @Optional("false") boolean headless) {
         softAssert = new SoftAssert();
         log.info("Setting up WebDriver for browser: {}, headless: {}", browser, headless);
         if (browser.equalsIgnoreCase("chrome")) {
-             ChromeOptions chromeOptions = new ChromeOptions();
+            ChromeOptions chromeOptions = new ChromeOptions();
             if (headless) {
                 chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
             }
-            new URL("http://localhost:4444/wd/hub");
             driver.set(new ChromeDriver(chromeOptions));
             log.info("ChromeDriver initialized.");
         } else if (browser.equalsIgnoreCase("firefox")) {
@@ -138,6 +137,9 @@ public class BaseTest {
     public static WebDriver getDriver() {
         return driver.get();
     }
+
+
+    // --------------------- Utility Methods -------------------------------------------------------
 
 
     /**
@@ -237,6 +239,7 @@ public class BaseTest {
     }
 
     public static void SendKeys(By element, String value) {
+
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))));
         wait.until(ExpectedConditions.presenceOfElementLocated(element));
         try {
@@ -248,7 +251,7 @@ public class BaseTest {
         }
     }
 
-    /*
+    /**
      * Retrieves the visible text of an element.
      *
      * @param locator - The By locator for the element.
@@ -270,14 +273,12 @@ public class BaseTest {
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
         staticWait(2000);
     }
-
     public void scrollToTopOfPage() {
         staticWait(2000);
         log.info("Scrolling to the top of the page");
         ((JavascriptExecutor) getDriver()).executeScript("window.scrollTo(0, 0);");
         staticWait(2000);
     }
-
     public static String getCurrentDate() {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date date = new Date();

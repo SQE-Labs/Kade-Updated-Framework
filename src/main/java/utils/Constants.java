@@ -246,7 +246,11 @@ public interface Constants {
     String threeDigit = "311";
     String lessThan3cardNoValidation = "Please enter at least 4 characters.";
     String nonexistingGC ="2172";
-
+    String blockedStatus = "Blocked";
+    String activeStatus = "Active";
+    String systemAlert ="System Alert!";
+    String totalSpentText="Total spent";
+    String messageText ="Type a message";
 
 
 }
