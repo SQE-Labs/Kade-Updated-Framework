@@ -11,7 +11,7 @@
     <test thread-count="3" name="Test" >
         <parameter name="env" value="qa"/>
         <parameter name="browser" value="chrome"/>
-        <parameter name="headless" value="false"/>
+        <parameter name="headless" value="true"/>
 
 
         <packages>
