@@ -13,29 +13,10 @@
         <parameter name="browser" value="chrome"/>
         <parameter name="headless" value="false"/>
 
-        <!-- To Run Whole Suite-->
-        <!--        <packages>-->
-        <!--            <package name="qa.tests" />-->
-        <!--        </packages>-->
-
-        <!--         To Run Perticuler Class-->
-<!--        <classes>-->
-            <!--            <class name="qa.tests.BillTest"></class>-->
-<!--                            <class name="qa.tests.MyStoreTest"></class>-->
-            <!--            <class name="qa.tests.PaymentsAndRefundTest"></class>-->
-            <!--            <class name="qa.tests.TransactionsTest"></class>-->
-<!--        </classes>-->
-
 
         <packages>
             <package name="qa.tests" />
         </packages>
-<!--        <classes>-->
-<!--            <class name="qa.tests.MyStoreTest"></class>-->
-<!--            <class name="qa.tests.DashboardTest"></class>-->
-<!--            <class name="qa.tests.CustomersTest"></class>-->
-<!--            <class name="qa.tests.TransactionsTest"></class>-->
-<!--        </classes>-->
 
 
 
