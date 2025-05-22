@@ -27,6 +27,7 @@ public class SignUpPage extends BaseTest {
   public  By securityCodeLabel = By.xpath("//label[text()='Security Code']");
   public  By securityCodeField = By.xpath("//label[text()='Security Code:']//following-sibling::input");
   public  By continueButton = By.xpath("//button[text()='Continue']");
+  By continueBtn=By.xpath("//button[text()='Continue']");
   public  By setYourPasswordTitle = By.xpath("//h1[text()='Set your password']");
   public  By submitButton = By.xpath("//button[text()='Submit']");
   public  By passwordField = By.cssSelector("[name='password']");
@@ -44,7 +45,7 @@ public class SignUpPage extends BaseTest {
    public By emailBusinessField = By.cssSelector("[name='email']");
    public By fullname= By.cssSelector("[name='name']");
    public By startOverLink = By.cssSelector(".far.fa-edit");
-   public By resendCode = By.xpath("//button[text()='Resend the code']");
+   public By resendCode = By.xpath("//button[contains(text(),'Resend')]/..");
    public By ContinueButtonBusiness = By.xpath("(//button[@type='submit'][text()='Continue'])[2]");
    public By securityCodeSendInfoMsg = By.cssSelector(".p-2.mb-2.fs-pn15");
    public By securityCodeAlertMessage = By.xpath("//p[text()='Invalid security code']");
@@ -92,6 +93,9 @@ public class SignUpPage extends BaseTest {
         public void getSignInLink(){click(signInLink);}
        public void getSubmitButton() {click(submitButton);}
        public void getContinueButton(){click(continueButton);}
+    public void clickOnCountinueBtn(){
+             click(continueBtn);
+    }
        public void getBusinessAccount() {click(businessAccountButton);}
         public void getUseEmailLink(){click(useEmailLink);}
         public void getStartOverLink(){click(startOverLink);}

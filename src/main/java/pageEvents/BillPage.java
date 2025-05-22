@@ -1643,6 +1643,7 @@ public class BillPage extends BaseTest {
 
         //Close popup
         closePopupOnBillPage();
+
         //Verify not paid label for generated amount
       //  verifyEnteredMemoText();
     }
@@ -1807,7 +1808,8 @@ public class BillPage extends BaseTest {
         closePopup();
 
         staticWait(4000);
-         clickOnReccuring();
+        scrollToTopOfPage();
+        clickOnReccuring();
 
         removeNonNumericValueFromTheValue();
 
@@ -1850,10 +1852,6 @@ public class BillPage extends BaseTest {
         //Click Confirm
         staticWait(2000);
         getConfirmButton();
-
-
-
-
         //Close popup
         closePopup();
 
@@ -2000,8 +1998,6 @@ public class BillPage extends BaseTest {
 
         //Deleting Created Bill
         staticWait(3000);
-
-
     }
 
     public void verifyBillCreationByAddingpaymentMethod(String emilId) {

@@ -1,10 +1,8 @@
 package pageEvents;
 
-import base.BaseTest;
-import logger.Log;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.locators.RelativeLocator;
-import org.openqa.selenium.support.ui.Select;
+ import logger.Log;
+ import base.BaseTest;
+ import org.openqa.selenium.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -34,8 +32,7 @@ public class GiftCardDashboardPage extends BaseTest {
 
     SidePannelPage pannel = new SidePannelPage();
     public By giftCardDashBoardHeaderText = By.cssSelector("h1.header-title");
-    public By whichStoreText = By.cssSelector("p.header-subtitle");
-    public By storeDropDown = By.cssSelector("span.select2-selection__rendered[role='textbox']");
+     public By storeDropDown = By.cssSelector("span.select2-selection__rendered[role='textbox']");
     public By storeDropDownList = By.cssSelector("ul.select2-results__options > li");
     public By whichStoreContinueBtn = By.cssSelector("button.btn-primary");
     public By storeName = By.cssSelector("h3.text-truncate");
@@ -51,7 +48,7 @@ public class GiftCardDashboardPage extends BaseTest {
     public By activeBtn = By.cssSelector("span.me-2~div>button.btn-success");
     public By infoMessageText = By.cssSelector("div.card-header.pb-0");
     public By configurationBtn = By.cssSelector("button.btn.btn-link");
-    public By configurationPopupHeader = By.cssSelector("h5.modal-title");
+     public By configurationPopupHeader = By.cssSelector("h5.modal-title");
     public By disabledToggleBtn = By.cssSelector("label.custom-checkbox.mb-3>i.far.fa-toggle-on.fa-rotate-180.custom-check-off");
     public By enabledToggleBth = By.cssSelector("label.custom-checkbox.mb-3>i.far.fa-toggle-on.custom-check-on");
     public By disabledText = By.cssSelector("label.custom-checkbox.mb-3>span.ms-2.fs-6.custom-check-off");
@@ -90,6 +87,7 @@ public class GiftCardDashboardPage extends BaseTest {
     public By createButton = By.cssSelector("button.btn.btn-success.btn-lg.w-100");
     public By referenceNoField = By.cssSelector("input[name='referenceNo']");
     public By moreOptionsBtn = By.cssSelector("div.d-flex.justify-content-between ~ a.p-0.mb-1");
+    By moreOptionSec=By.xpath("//label[text()='More options']/../..");
     public By cardNoText = By.xpath("//label[text()='Card No']");
     public By fundingResourceText = By.xpath("//label[text()='Funding source']");
     public By memoText = By.xpath("//label[text()='Memo']");
@@ -108,7 +106,9 @@ public class GiftCardDashboardPage extends BaseTest {
     public By issueNewGiftcardForm = By.cssSelector("div.modal-body");
     public By infoIcon = By.cssSelector("i.fal.fa-info-square");
     public By enableClass = By.cssSelector("label.custom-checkbox.mb-3");
-    public By updateButton = By.xpath("//button[text()='Update']");
+     public By updateButton = By.xpath("//button[text()='Update']");
+
+
 
     // Locators for Gift Cards For Sale
 
@@ -454,13 +454,13 @@ public class GiftCardDashboardPage extends BaseTest {
 
         if (!isDisplayed((disabledToggleBtn), 3)) {
             click(enabledToggleBth);
-            softAssert.assertEquals(getText(disabledText), Constants.DisabledText);
+            Assert.assertEquals(getText(disabledText), Constants.DisabledText);
             click(disabledToggleBtn);
-            softAssert.assertEquals(getText(enableText), Constants.EnableText);
+            Assert.assertEquals(getText(enableText), Constants.EnableText);
         } else {
-            softAssert.assertEquals(getText(disabledText), Constants.DisabledText);
+            Assert.assertEquals(getText(disabledText), Constants.DisabledText);
             click(disabledToggleBtn);
-            softAssert.assertEquals(getText(enableText), Constants.EnableText);
+            Assert.assertEquals(getText(enableText), Constants.EnableText);
         }
 
         handleSourceFundingToggle();
@@ -468,14 +468,14 @@ public class GiftCardDashboardPage extends BaseTest {
 
     private void handleSourceFundingToggle() {
         if (isDisplayed((fundingSourceDisableText), 3)) {
-            softAssert.assertEquals(getText(fundingSourceDisableText), Constants.sourceFundingDisabledText);
+            Assert.assertEquals(getText(fundingSourceDisableText), Constants.sourceFundingDisabledText);
             click(fundingSourceDiableToggleBtn);
-            softAssert.assertEquals(getText(fundingSourceEnabledText), Constants.getSourceFundingEnabledText);
+            Assert.assertEquals(getText(fundingSourceEnabledText), Constants.getSourceFundingEnabledText);
         } else {
             click(fundingSourceDiableToggleBtn);
-            softAssert.assertEquals(getText(fundingSourceDisableText), Constants.sourceFundingDisabledText);
+            Assert.assertEquals(getText(fundingSourceDisableText), Constants.sourceFundingDisabledText);
             click(fundingSourceEnableToggleBtn);
-            softAssert.assertEquals(getText(fundingSourceEnabledText), Constants.sourceFundingDisabledText);
+            Assert.assertEquals(getText(fundingSourceEnabledText), Constants.sourceFundingDisabledText);
         }
     }
 
@@ -489,11 +489,11 @@ public class GiftCardDashboardPage extends BaseTest {
 
         if (isDisplayed(disabledToggleBtn, 3)) {
             click(disabledToggleBtn);
-            softAssert.assertEquals(isDisplayed(amountCardText, 3), "true");
+            Assert.assertEquals(isDisplayed(amountCardText, 3), "true");
         } else {
             click(enabledToggleBth);
             click(disabledToggleBtn);
-            softAssert.assertEquals(isDisplayed(amountCardText, 3), "true");
+            Assert.assertEquals(isDisplayed(amountCardText, 3), "true");
         }
 
 
@@ -681,7 +681,7 @@ public class GiftCardDashboardPage extends BaseTest {
         offOptionalSettings();
         staticWait(1000);
         clickElementByJS(issueNewGiftCardBtn);
-        waitForElementToBeInteractable(customerField, 10000);
+        waitForElementToBeInteractable(customerField, 10);
         clickElementByJS(customerField);
         waitForElementToBeVisible(customerName, 10000);
         actionEnterText(customerName, "rt");
@@ -807,15 +807,16 @@ public class GiftCardDashboardPage extends BaseTest {
         staticWait(1000);
         waitForElementToBeVisible(intialAmount, 10);
         actionEnterText(intialAmount, "100000");
-        scrollToElement(moreOptionsBtn);
-        clickElementByJS(moreOptionsBtn);
-        staticWait(10000);
+        staticWait(2000);
+        scrollToElement(moreOptionSec);
+        clickElementByJS(moreOptionSec);
+        staticWait(3000);
         actionEnterText(CardNoField, "12");
         scrollToElement(createButton);
         waitForElementToBeVisible(createButton, 1000);
         click(createButton);
-        softAssert.assertEquals(getToolTipMessage(CardNoField), Constants.cardMinLendthMsg);
-        softAssert.assertEquals(getText(validationMsg), Constants.ValidationMsg);
+        Assert.assertEquals(getToolTipMessage(CardNoField), Constants.cardMinLendthMsg);
+        Assert.assertEquals(getText(validationMsg), Constants.ValidationMsg);
 
 
     }
@@ -843,7 +844,7 @@ public class GiftCardDashboardPage extends BaseTest {
         staticWait(10000);
         WebElement element = getWebElement(CardNoField);
         String maxLength = element.getAttribute("maxlength");
-        softAssert.assertEquals(maxLength, Constants.maxLength);
+        Assert.assertEquals(maxLength, Constants.maxLength);
     }
 
     public void verifyMemoAccepts500Values() {
@@ -876,10 +877,13 @@ public class GiftCardDashboardPage extends BaseTest {
         waitForElementToBeVisible(amountField, 10);
         actionEnterText(amountField, "100000");
         click(saveConfiguration);
-        staticWait(1000);
+        staticWait(5000);
         clickElementByJS(issueNewGiftCardBtn);
+        staticWait(2000);
         scrollToElement(moreOptionsBtn);
+        staticWait(2000);
         clickElementByJS(moreOptionsBtn);
+        staticWait(2000);
         WebElement element = getWebElement(fundingResourceField);
         String dataType = element.getAttribute("type");
         softAssert.assertEquals(dataType, Constants.fundingSourceType);
@@ -1192,11 +1196,13 @@ public class GiftCardDashboardPage extends BaseTest {
         waitForElementToBeVisible(amountField, 1000);
         actionEnterText(amountField, "100000");
         click(saveConfiguration);
-        staticWait(1000);
+        staticWait(5000);
         clickElementByJS(issueNewGiftCardBtn);
+        staticWait(2000);
         scrollToElement(moreOptionsBtn);
+        staticWait(2000);
         clickElementByJS(moreOptionsBtn);
-        softAssert.assertEquals(getText(fundSourceOption), "HSBC");
+        Assert.assertEquals(getText(fundSourceOption), "HSBC");
     }
 
 
@@ -2288,7 +2294,7 @@ public class GiftCardDashboardPage extends BaseTest {
         waitForElementToBeClickable(userEmailTbx, 4);
 
         // clicking on 'User Email Phone filter
-        getUserPhoneEmailTbxFilter();
+        clickOnUserEmailTxtField();
         staticWait(4000);
 
         //   Select Customer
@@ -2373,7 +2379,7 @@ public class GiftCardDashboardPage extends BaseTest {
         waitForElementToBeClickable(userEmailTbx, 4);
 
         // clicking on 'User Email Phone filter
-        getUserPhoneEmailTbxFilter();
+        clickOnUserEmailTxtField();
         staticWait(3000);
 
         //   Select Customer

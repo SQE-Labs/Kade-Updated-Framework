@@ -30,16 +30,15 @@ public class DashboardTest extends BaseTest {
         // verifying the sections on the Dashboard Page
 
         //Your Business Section
-        softAssert.assertEquals(getText(dashboard.yourBusinessTitle), Constants.YourBusinessTitle);
-        softAssert.assertEquals(getText(dashboard.processPaymentTitle), Constants.ProcessPayment);
-        softAssert.assertEquals(getText(dashboard.customerTitle), Constants.CustomerTitle);
-        softAssert.assertEquals(getText(dashboard.messageTitle), Constants.MessageTitle);
-        softAssert.assertEquals(getText(dashboard.recentTransactionsTitle), Constants.RecentTransaction);
-        softAssert.assertEquals(getText(dashboard.todayPaymentTitle), Constants.TodaysPaymentTitle);
-        softAssert.assertEquals(getText(dashboard.pymtmethodPopularityTitle), Constants.PaymentMethodPopularityTitle);
-        softAssert.assertEquals(getText(dashboard.customerTitle), Constants.CustomerTitle);
-        softAssert.assertAll();
-    }
+        Assert.assertEquals(getText(dashboard.yourBusinessTitle), Constants.YourBusinessTitle);
+        Assert.assertEquals(getText(dashboard.processPaymentTitle), Constants.ProcessPayment);
+        Assert.assertEquals(getText(dashboard.customerTitle), Constants.CustomerTitle);
+        Assert.assertEquals(getText(dashboard.messageTitle), Constants.MessageTitle);
+        Assert.assertEquals(getText(dashboard.recentTransactionsTitle), Constants.RecentTransaction);
+        Assert.assertEquals(getText(dashboard.todayPaymentTitle), Constants.TodaysPaymentTitle);
+        Assert.assertEquals(getText(dashboard.pymtmethodPopularityTitle), Constants.PaymentMethodPopularityTitle);
+        Assert.assertEquals(getText(dashboard.customerTitle), Constants.CustomerTitle);
+     }
 
     @Test(description = "DC 03, 04, DC 05,06,07: Verify that 'No. of stores' count appears under 'Your Businesses' section, on the 'Dashboard' page.")
     public void verifyCountOfAllStores() {
