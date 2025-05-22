@@ -1,0 +1,12 @@
+2025-04-30 10:03:07,255 [info]: test1114@yopmail.com
+2025-04-30 10:03:17,021 [info]: Clicking on By.cssSelector: .fal.fa-circle.custom-check-off
+2025-04-30 10:03:17,246 [info]: Clicking on By.xpath: //button[text()='Update Status']
+2025-04-30 10:03:24,292 [info]: Clicking on By.cssSelector: button[href=".-deleteStore-"]
+2025-04-30 10:03:32,100 [info]: Clicking on By.xpath: //button[text()='Delete Permanently']
+2025-04-30 10:03:45,798 [info]: Clicking on By.cssSelector: .fal.fa-circle.custom-check-off
+2025-04-30 10:03:46,248 [info]: Clicking on By.xpath: //button[text()='Update Status']
+2025-04-30 10:03:53,190 [info]: Clicking on By.cssSelector: button[href=".-deleteStore-"]
+2025-04-30 10:04:00,610 [info]: Clicking on By.xpath: //button[text()='Delete Permanently']
+2025-04-30 10:04:14,037 [info]: Clicking on By.cssSelector: .fal.fa-circle.custom-check-off
+2025-04-30 10:04:14,361 [info]: Clicking on By.xpath: //button[text()='Update Status']
+2025-04-30 10:04:19,437 [info]: Clicking on By.cssSelector: button[href=".-deleteStore-"]

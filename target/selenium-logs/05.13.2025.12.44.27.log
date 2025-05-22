@@ -1,0 +1,3 @@
+2025-05-13 12:44:27,603 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-13 12:44:29,066 [info]: Element is clicked at index: 4
+2025-05-13 12:44:37,781 [info]: Clicking on By.xpath: //div[contains(@class,'d-flex flex-wrap px-3')]/button/i

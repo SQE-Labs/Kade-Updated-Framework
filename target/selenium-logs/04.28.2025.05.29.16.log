@@ -1,0 +1,2 @@
+2025-04-28 17:29:16,629 [info]: Clicking on By.xpath: (//div[@class='my-3 loaded']//label/i)[14]
+2025-04-28 17:29:27,589 [info]: Clicking on By.xpath: (//span[text()='Accept Zelle'])[1]

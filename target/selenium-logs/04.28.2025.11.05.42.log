@@ -1,0 +1,2 @@
+2025-04-28 11:05:42,174 [info]: Clicking on By.cssSelector: .custom-checkbox.mb-2>span
+2025-04-28 11:05:43,577 [info]: Clicking on By.xpath: //button[text()='Save changes']

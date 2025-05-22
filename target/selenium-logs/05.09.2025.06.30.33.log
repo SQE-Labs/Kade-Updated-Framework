@@ -1,0 +1,3 @@
+2025-05-09 18:30:33,230 [info]: Clicking on newBillTxt
+2025-05-09 18:31:15,142 [info]: Clicking on By.xpath: //i[contains(@class,'btn-sm custom-check-off')]
+2025-05-09 18:31:18,530 [info]: Clicking on By.xpath: //i[contains(@class,'btn-sm custom-check-off')]

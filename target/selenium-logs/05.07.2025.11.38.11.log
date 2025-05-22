@@ -1,0 +1,239 @@
+2025-05-07 11:38:11,575 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-07 11:38:16,941 [info]: Clicking on By.xpath: //span[text()='Accept bank transfer']
+2025-05-07 11:38:17,024 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-07 11:38:18,707 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-07 11:38:53,504 [info]: Clicking on By.cssSelector: .fal.fa-circle.custom-check-off
+2025-05-07 11:38:53,867 [info]: Clicking on By.xpath: //button[text()='Update Status']
+2025-05-07 11:39:01,655 [info]: Clicking on By.cssSelector: button[href=".-deleteStore-"]
+2025-05-07 11:39:04,745 [info]: Clicking on By.xpath: //button[text()='Delete Permanently']
+2025-05-07 11:40:15,361 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-07 11:40:20,509 [info]: Clicking on By.xpath: //span[text()='Accept bank transfer']
+2025-05-07 11:40:20,630 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-07 11:40:21,913 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-07 11:40:45,318 [info]: Clicking on By.cssSelector: .fal.fa-circle.custom-check-off
+2025-05-07 11:40:45,570 [info]: Clicking on By.xpath: //button[text()='Update Status']
+2025-05-07 11:40:52,467 [info]: Clicking on By.cssSelector: button[href=".-deleteStore-"]
+2025-05-07 11:40:55,537 [info]: Clicking on By.xpath: //button[text()='Delete Permanently']
+2025-05-07 11:44:22,262 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-07 11:44:36,098 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-07 11:44:37,609 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-07 11:44:53,317 [info]: Clicking on By.cssSelector: .fal.fa-circle.custom-check-off
+2025-05-07 11:44:53,703 [info]: Clicking on By.xpath: //button[text()='Update Status']
+2025-05-07 11:45:00,672 [info]: Clicking on By.cssSelector: button[href=".-deleteStore-"]
+2025-05-07 11:45:03,681 [info]: Clicking on By.xpath: //button[text()='Delete Permanently']
+2025-05-07 11:45:59,880 [info]: Clicking on By.xpath: (//span[text()='Accept Zelle'])[1]
+2025-05-07 11:47:53,395 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-07 11:47:58,142 [info]: Clicking on By.xpath: //span[text()='Accept bank transfer']
+2025-05-07 11:47:58,240 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-07 11:47:59,738 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-07 11:48:35,088 [info]: Clicking on By.cssSelector: .fal.fa-circle.custom-check-off
+2025-05-07 11:48:35,379 [info]: Clicking on By.xpath: //button[text()='Update Status']
+2025-05-07 11:48:43,259 [info]: Clicking on By.cssSelector: button[href=".-deleteStore-"]
+2025-05-07 11:48:45,728 [info]: Clicking on By.xpath: //button[text()='Delete Permanently']
+2025-05-07 11:49:40,806 [info]: Clicking on By.xpath: //button[text()='Add new terminal']
+2025-05-07 11:49:44,401 [info]: Clicking on By.xpath: //label[text()='Select your terminal']/../div[4]/label/i[2]
+2025-05-07 11:49:44,566 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-07 11:50:37,072 [info]: Clicking on By.cssSelector: .custom-checkbox.mb-2>span
+2025-05-07 11:50:38,830 [info]: Clicking on By.xpath: //button[text()='Save changes']
+2025-05-07 11:51:38,899 [info]: Clicking on By.cssSelector: .custom-checkbox.mb-2>span
+2025-05-07 11:51:39,935 [info]: Clicking on By.xpath: //button[text()='Save changes']
+2025-05-07 11:51:39,980 [info]: Clicking on By.xpath: (//button[@type='button'][text()='Configure'])[2]
+2025-05-07 11:51:41,475 [info]: Clicking on By.xpath: //button[text()='Save changes']
+2025-05-07 11:51:43,618 [info]: Clicking on By.xpath: //button[text()='Store links']
+2025-05-07 11:52:28,928 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-07 11:52:33,614 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-07 11:53:39,086 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-07 11:53:44,020 [info]: Clicking on By.xpath: //span[text()='Accept bank transfer']
+2025-05-07 11:53:44,090 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-07 11:53:45,438 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-07 11:54:46,510 [info]: Clicking on newBillTxt
+2025-05-07 11:55:18,301 [info]: Clicking on newBillTxt
+2025-05-07 11:55:45,930 [info]: Phone number. Existing or new
+2025-05-07 11:55:45,975 [info]: Email. Existing or new
+2025-05-07 11:56:14,042 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-07 11:56:29,139 [info]: Clicking on newBillTxt
+2025-05-07 11:57:12,676 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-07 11:57:28,143 [info]: Clicking on newBillTxt
+2025-05-07 11:58:06,288 [info]: Clicking on newBillTxt
+2025-05-07 11:58:18,963 [info]: Attempted to enter: 500001
+2025-05-07 11:58:18,964 [info]: Actual field value after restriction: 0.00
+2025-05-07 11:58:18,964 [info]:  Restriction WORKING. Value in field is within limit: 0.0
+2025-05-07 11:58:19,013 [info]: Extracted Number: 50000
+2025-05-07 11:58:22,429 [info]: Field value: 5,000.00
+2025-05-07 11:58:22,430 [info]: Extracted Number: 500000
+2025-05-07 11:58:22,431 [info]: Restriction FAILED. Field allowed more than 50,000: 500000
+2025-05-07 11:58:46,706 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-07 11:59:01,231 [info]: Clicking on newBillTxt
+2025-05-07 11:59:08,716 [info]: Extracted Number: 3000
+2025-05-07 11:59:12,121 [info]: Field value: 300.00
+2025-05-07 11:59:12,122 [info]: Extracted Number: 30000
+2025-05-07 11:59:12,122 [info]: Restriction WORKING. Value in field is within limit: 30000
+2025-05-07 11:59:36,616 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-07 11:59:53,893 [info]: Clicking on newBillTxt
+2025-05-07 12:00:55,385 [info]: Clicking on newBillTxt
+2025-05-07 12:01:40,495 [info]: No pop-up showed
+2025-05-07 12:01:42,507 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-07 12:01:58,384 [info]: Clicking on newBillTxt
+2025-05-07 12:02:31,976 [info]: Clicking on newBillTxt
+2025-05-07 12:03:07,367 [info]: POPup Not Displayed
+2025-05-07 12:03:53,712 [info]: No pop-up showed
+2025-05-07 12:04:08,934 [info]: Clicking on newBillTxt
+2025-05-07 12:04:41,955 [info]: Clicking on newBillTxt
+2025-05-07 12:05:00,761 [info]: No repeat
+2025-05-07 12:05:02,806 [info]: Daily
+2025-05-07 12:05:07,226 [info]: Attribute value is fetched
+2025-05-07 12:05:09,456 [info]: specificNumberTxt:3
+2025-05-07 12:05:11,534 [info]: Specific number of times
+times total
+2025-05-07 12:05:13,592 [info]: Specific date
+2025-05-07 12:05:15,666 [info]: Selected: Specific number of times
+times total
+2025-05-07 12:05:17,760 [info]: Selected: Specific date
+2025-05-07 12:05:19,817 [info]: Weekly
+2025-05-07 12:05:21,841 [info]: Monthly
+2025-05-07 12:05:23,902 [info]: Yearly
+2025-05-07 12:06:05,571 [info]: Clicking on newBillTxt
+2025-05-07 12:06:18,555 [info]: Phone number. Existing or new
+2025-05-07 12:06:18,616 [info]: Email. Existing or new
+2025-05-07 12:06:32,971 [info]: No repeat
+2025-05-07 12:06:35,003 [info]: Daily
+2025-05-07 12:06:37,042 [info]: Weekly
+2025-05-07 12:06:41,562 [info]: Attribute value is fetched
+2025-05-07 12:06:43,860 [info]: specificNumberTxt:3
+2025-05-07 12:06:45,930 [info]: Specific number of times
+times total
+2025-05-07 12:06:47,964 [info]: Specific date
+2025-05-07 12:06:50,055 [info]: Selected: Specific number of times
+times total
+2025-05-07 12:06:52,133 [info]: Selected: Specific date
+2025-05-07 12:06:54,203 [info]: Monthly
+2025-05-07 12:06:56,260 [info]: Yearly
+2025-05-07 12:07:46,556 [info]: Clicking on newBillTxt
+2025-05-07 12:08:05,261 [info]: No repeat
+2025-05-07 12:08:07,308 [info]: Daily
+2025-05-07 12:08:09,353 [info]: Weekly
+2025-05-07 12:08:11,401 [info]: Monthly
+2025-05-07 12:08:15,963 [info]: Attribute value is fetched
+2025-05-07 12:08:18,240 [info]: specificNumberTxt:3
+2025-05-07 12:08:20,337 [info]: Specific number of times
+times total
+2025-05-07 12:08:22,401 [info]: Specific date
+2025-05-07 12:08:24,473 [info]: Selected: Specific number of times
+times total
+2025-05-07 12:08:26,585 [info]: Selected: Specific date
+2025-05-07 12:08:28,651 [info]: Yearly
+2025-05-07 12:09:07,117 [info]: Clicking on newBillTxt
+2025-05-07 12:09:26,084 [info]: No repeat
+2025-05-07 12:09:28,132 [info]: Daily
+2025-05-07 12:09:30,182 [info]: Weekly
+2025-05-07 12:09:32,240 [info]: Monthly
+2025-05-07 12:09:34,266 [info]: Yearly
+2025-05-07 12:09:38,753 [info]: Specific number of times
+2025-05-07 12:09:40,808 [info]: Specific date
+2025-05-07 12:10:20,997 [info]: Clicking on newBillTxt
+2025-05-07 12:10:58,757 [info]: Clicking on newBillTxt
+2025-05-07 12:11:26,191 [info]: Phone number. Existing or new
+2025-05-07 12:11:26,327 [info]: Email. Existing or new
+2025-05-07 12:11:58,685 [info]: Numeric Value: 2000.00
+2025-05-07 12:11:58,855 [info]: Numeric Value: 2000.00
+2025-05-07 12:12:35,751 [info]: Clicking on newBillTxt
+2025-05-07 12:13:02,871 [info]: Phone number. Existing or new
+2025-05-07 12:13:02,930 [info]: Email. Existing or new
+2025-05-07 12:13:38,451 [info]: Numeric Value: 2000.00
+2025-05-07 12:13:38,495 [info]: Numeric Value: 2000.00
+2025-05-07 12:14:24,388 [info]: Clicking on newBillTxt
+2025-05-07 12:14:52,128 [info]: Phone number. Existing or new
+2025-05-07 12:14:52,227 [info]: Email. Existing or new
+2025-05-07 12:15:22,312 [info]: Numeric Value: 2000.00
+2025-05-07 12:15:22,360 [info]: Numeric Value: 2000.00
+2025-05-07 12:15:49,230 [info]: Clicking on newBillTxt
+2025-05-07 12:16:16,490 [info]: Phone number. Existing or new
+2025-05-07 12:16:16,579 [info]: Email. Existing or new
+2025-05-07 12:16:46,712 [info]: Numeric Value: 2000.00
+2025-05-07 12:16:46,851 [info]: Numeric Value: 2000.00
+2025-05-07 12:17:14,998 [info]: Clicking on newBillTxt
+2025-05-07 12:17:43,106 [info]: Phone number. Existing or new
+2025-05-07 12:17:43,143 [info]: Email. Existing or new
+2025-05-07 12:18:14,714 [info]: Numeric Value: 2000.00
+2025-05-07 12:18:14,788 [info]: Numeric Value: 2000.00
+2025-05-07 12:18:58,213 [info]: Clicking on newBillTxt
+2025-05-07 12:19:26,677 [info]: Phone number. Existing or new
+2025-05-07 12:19:26,781 [info]: Email. Existing or new
+2025-05-07 12:19:57,984 [info]: Numeric Value: 2000.00
+2025-05-07 12:19:58,086 [info]: Numeric Value: 2000.00
+2025-05-07 12:20:01,536 [info]: 314.75
+2025-05-07 12:20:33,241 [info]: Clicking on newBillTxt
+2025-05-07 12:21:00,203 [info]: Phone number. Existing or new
+2025-05-07 12:21:00,255 [info]: Email. Existing or new
+2025-05-07 12:21:31,221 [info]: Numeric Value: 2000.00
+2025-05-07 12:21:31,422 [info]: Numeric Value: 2000.00
+2025-05-07 12:21:47,973 [info]: Numeric Value: 2000.00
+2025-05-07 12:21:47,974 [info]: Numeric Value: 2000.00
+2025-05-07 12:22:05,268 [info]: Clicking on newBillTxt
+2025-05-07 12:22:33,306 [info]: Phone number. Existing or new
+2025-05-07 12:22:33,364 [info]: Email. Existing or new
+2025-05-07 12:23:29,422 [info]: Nothing to be selected
+2025-05-07 12:25:18,101 [info]: Clicking on newBillTxt
+2025-05-07 12:25:45,100 [info]: Phone number. Existing or new
+2025-05-07 12:25:45,149 [info]: Email. Existing or new
+2025-05-07 12:26:40,588 [info]: Nothing to be selected
+2025-05-07 12:28:06,390 [info]: Clicking on newBillTxt
+2025-05-07 12:28:33,398 [info]: Phone number. Existing or new
+2025-05-07 12:28:33,442 [info]: Email. Existing or new
+2025-05-07 12:29:29,022 [info]: Nothing to be selected
+2025-05-07 12:31:10,163 [info]: Clicking on newBillTxt
+2025-05-07 12:31:37,258 [info]: Phone number. Existing or new
+2025-05-07 12:31:37,297 [info]: Email. Existing or new
+2025-05-07 12:32:34,037 [info]: Nothing to be selected
+2025-05-07 12:33:20,024 [info]: Clicking on newBillTxt
+2025-05-07 12:33:46,587 [info]: Phone number. Existing or new
+2025-05-07 12:33:46,633 [info]: Email. Existing or new
+2025-05-07 12:34:39,441 [info]: Nothing to be selected
+2025-05-07 12:35:39,500 [info]: Clicking on newBillTxt
+2025-05-07 12:36:06,547 [info]: Phone number. Existing or new
+2025-05-07 12:36:06,594 [info]: Email. Existing or new
+2025-05-07 12:37:28,079 [info]: Clicking on newBillTxt
+2025-05-07 12:37:54,792 [info]: Phone number. Existing or new
+2025-05-07 12:37:54,842 [info]: Email. Existing or new
+2025-05-07 12:38:25,518 [info]: Numeric Value: 2000.00
+2025-05-07 12:38:25,553 [info]: Numeric Value: 2000.00
+2025-05-07 12:40:43,725 [info]: Clicking on By.xpath: //div[text()='Manual']
+2025-05-07 12:41:13,753 [info]: Clicking on By.cssSelector: .modal-content .stretched-link.-selectCustomer-
+2025-05-07 12:41:50,320 [info]: Clicking on By.cssSelector: .modal-content .stretched-link.-selectCustomer-
+2025-05-07 12:42:04,594 [info]: Clicking on By.xpath: //div[text()='Manual']
+2025-05-07 12:42:53,316 [info]: Clicking on newBillTxt
+2025-05-07 12:43:20,210 [info]: Phone number. Existing or new
+2025-05-07 12:43:20,254 [info]: Email. Existing or new
+2025-05-07 12:44:16,240 [info]: Nothing to be selected
+2025-05-07 12:46:41,650 [info]: Clicking on newBillTxt
+2025-05-07 12:47:08,212 [info]: Phone number. Existing or new
+2025-05-07 12:47:08,259 [info]: Email. Existing or new
+2025-05-07 12:48:04,911 [info]: Nothing to be selected
+2025-05-07 12:50:34,846 [info]: Clicking on newBillTxt
+2025-05-07 12:51:46,688 [info]: Nothing to be selected
+2025-05-07 12:53:27,672 [info]: Clicking on newBillTxt
+2025-05-07 12:53:39,967 [info]: Phone number. Existing or new
+2025-05-07 12:53:40,014 [info]: Email. Existing or new
+2025-05-07 12:53:53,643 [info]: No repeat
+2025-05-07 12:53:55,671 [info]: Daily
+2025-05-07 12:53:57,686 [info]: Weekly
+2025-05-07 12:54:01,870 [info]: Attribute value is fetched
+2025-05-07 12:54:04,047 [info]: specificNumberTxt:3
+2025-05-07 12:54:06,083 [info]: Specific number of times
+times total
+2025-05-07 12:54:08,111 [info]: Specific date
+2025-05-07 12:54:10,150 [info]: Selected: Specific number of times
+times total
+2025-05-07 12:54:12,175 [info]: Selected: Specific date
+2025-05-07 12:54:14,204 [info]: Monthly
+2025-05-07 12:54:16,228 [info]: Yearly
+2025-05-07 12:54:27,631 [info]: No pop-up showed
+2025-05-07 12:54:50,221 [info]: Clicking on newBillTxt
+2025-05-07 12:55:16,816 [info]: Phone number. Existing or new
+2025-05-07 12:55:16,866 [info]: Email. Existing or new
+2025-05-07 12:56:12,414 [info]: Nothing to be selected
+2025-05-07 12:57:13,170 [info]: Clicking on newBillTxt
+2025-05-07 12:57:40,794 [info]: Phone number. Existing or new
+2025-05-07 12:57:40,831 [info]: Email. Existing or new
+2025-05-07 12:58:37,999 [info]: Nothing to be selected
+2025-05-07 13:06:23,865 [info]: Total bills collected: 2531

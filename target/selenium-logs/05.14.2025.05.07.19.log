@@ -1,0 +1,101 @@
+2025-05-14 17:07:19,872 [info]: Clicking on newBillTxt
+2025-05-14 17:07:53,210 [info]: Clicking on newBillTxt
+2025-05-14 17:08:22,525 [info]: Clicking on newBillTxt
+2025-05-14 17:08:52,535 [info]: Clicking on newBillTxt
+2025-05-14 17:09:10,455 [info]: No repeat
+2025-05-14 17:09:12,487 [info]: Daily
+2025-05-14 17:09:16,724 [info]: Attribute value is fetched
+2025-05-14 17:09:18,909 [info]: specificNumberTxt:3
+2025-05-14 17:09:20,955 [info]: Specific number of times
+times total
+2025-05-14 17:09:22,984 [info]: Specific date
+2025-05-14 17:09:25,027 [info]: Selected: Specific number of times
+times total
+2025-05-14 17:09:27,065 [info]: Selected: Specific date
+2025-05-14 17:09:29,081 [info]: Weekly
+2025-05-14 17:09:31,096 [info]: Monthly
+2025-05-14 17:09:33,121 [info]: Yearly
+2025-05-14 17:10:09,992 [info]: Clicking on newBillTxt
+2025-05-14 17:10:22,065 [info]: Phone number. Existing or new
+2025-05-14 17:10:22,112 [info]: Email. Existing or new
+2025-05-14 17:10:35,707 [info]: No repeat
+2025-05-14 17:10:37,729 [info]: Daily
+2025-05-14 17:10:39,759 [info]: Weekly
+2025-05-14 17:10:43,948 [info]: Attribute value is fetched
+2025-05-14 17:10:46,117 [info]: specificNumberTxt:3
+2025-05-14 17:10:48,165 [info]: Specific number of times
+times total
+2025-05-14 17:10:50,184 [info]: Specific date
+2025-05-14 17:10:52,223 [info]: Selected: Specific number of times
+times total
+2025-05-14 17:10:54,260 [info]: Selected: Specific date
+2025-05-14 17:10:56,275 [info]: Monthly
+2025-05-14 17:10:58,288 [info]: Yearly
+2025-05-14 17:11:44,202 [info]: Clicking on newBillTxt
+2025-05-14 17:12:02,153 [info]: No repeat
+2025-05-14 17:12:04,180 [info]: Daily
+2025-05-14 17:12:06,207 [info]: Weekly
+2025-05-14 17:12:08,232 [info]: Monthly
+2025-05-14 17:12:12,429 [info]: Attribute value is fetched
+2025-05-14 17:12:14,591 [info]: specificNumberTxt:3
+2025-05-14 17:12:16,641 [info]: Specific number of times
+times total
+2025-05-14 17:12:18,658 [info]: Specific date
+2025-05-14 17:12:20,706 [info]: Selected: Specific number of times
+times total
+2025-05-14 17:12:22,733 [info]: Selected: Specific date
+2025-05-14 17:12:24,757 [info]: Yearly
+2025-05-14 17:13:02,135 [info]: Clicking on newBillTxt
+2025-05-14 17:13:20,926 [info]: No repeat
+2025-05-14 17:13:22,951 [info]: Daily
+2025-05-14 17:13:24,978 [info]: Weekly
+2025-05-14 17:13:26,993 [info]: Monthly
+2025-05-14 17:13:29,012 [info]: Yearly
+2025-05-14 17:13:33,227 [info]: Specific number of times
+2025-05-14 17:13:35,254 [info]: Specific date
+2025-05-14 17:14:07,044 [info]: Numeric Value: 1000.00
+2025-05-14 17:14:15,334 [info]: Clicking on By.cssSelector: .btn-outline-danger
+2025-05-14 17:15:47,165 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-14 17:15:48,476 [info]: Element is clicked at index: 4
+2025-05-14 17:15:54,579 [info]: Clicking on By.cssSelector: input[name='readonlyFunds'] ~ i.custom-check-on
+2025-05-14 17:15:57,813 [info]: Clicking on By.cssSelector: input[name='ReferenceNo'] ~ i.custom-check-on
+2025-05-14 17:15:59,318 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-14 17:16:02,147 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-14 17:16:14,603 [info]: Clicking on By.xpath: //div[text()='Gift Cards Dashboard']
+2025-05-14 17:16:16,022 [info]: Element is clicked at index: 4
+2025-05-14 17:16:20,289 [info]: Clicking on By.cssSelector: div.bg-white>button:nth-child(2)
+2025-05-14 17:16:23,063 [info]: Clicking on By.cssSelector: div.d-flex.justify-content-between ~ a.p-0.mb-1
+2025-05-14 17:17:36,167 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-14 17:17:40,479 [info]: Clicking on By.xpath: //span[text()='Accept bank transfer']
+2025-05-14 17:17:40,507 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-14 17:17:41,621 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-14 17:18:12,028 [info]: Clicking on By.cssSelector: .fal.fa-circle.custom-check-off
+2025-05-14 17:18:12,239 [info]: Clicking on By.xpath: //button[text()='Update Status']
+2025-05-14 17:18:19,032 [info]: Clicking on By.cssSelector: button[href=".-deleteStore-"]
+2025-05-14 17:18:21,818 [info]: Clicking on By.xpath: //button[text()='Delete Permanently']
+2025-05-14 17:19:31,100 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-14 17:19:35,585 [info]: Clicking on By.xpath: //span[text()='Accept bank transfer']
+2025-05-14 17:19:35,613 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-14 17:19:36,711 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-14 17:19:58,057 [info]: Clicking on By.cssSelector: .fal.fa-circle.custom-check-off
+2025-05-14 17:19:58,227 [info]: Clicking on By.xpath: //button[text()='Update Status']
+2025-05-14 17:20:05,158 [info]: Clicking on By.cssSelector: button[href=".-deleteStore-"]
+2025-05-14 17:20:07,920 [info]: Clicking on By.xpath: //button[text()='Delete Permanently']
+2025-05-14 17:22:59,478 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-14 17:23:03,902 [info]: Clicking on By.xpath: //span[text()='Accept bank transfer']
+2025-05-14 17:23:03,928 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-14 17:23:05,167 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-14 17:24:31,065 [info]: Clicking on newBillTxt
+2025-05-14 17:24:57,600 [info]: Phone number. Existing or new
+2025-05-14 17:24:57,634 [info]: Email. Existing or new
+2025-05-14 17:25:52,953 [info]: Nothing to be selected
+2025-05-14 17:31:22,937 [info]: 100
+2025-05-14 17:32:19,242 [info]: Clicking on By.xpath: (//a[@class='btn btn-link stretched-link align-self-center'])[1]
+2025-05-14 17:32:37,917 [info]: Clicking on By.xpath: (//a[text()='This Year']//following-sibling::div/div/a)[1]
+2025-05-14 17:32:54,360 [info]: Clicking on By.xpath: //a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']
+2025-05-14 17:32:54,392 [info]: Clicking on By.xpath: //div[text()='Rewards Program']
+2025-05-14 17:33:08,814 [info]: Clicking on By.xpath: //a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']
+2025-05-14 17:33:08,844 [info]: Clicking on By.xpath: //div[text()='Rewards Program']
+2025-05-14 17:36:07,428 [info]: Clicking on By.xpath: //div[text()='Manual']
+2025-05-14 17:36:52,887 [info]: Clicking on By.cssSelector: .modal-content .stretched-link.-selectCustomer-
+2025-05-14 17:37:07,111 [info]: Clicking on By.xpath: //div[text()='Manual']

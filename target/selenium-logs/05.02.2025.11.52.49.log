@@ -1,0 +1,8 @@
+2025-05-02 11:52:49,866 [info]: Clicking on By.xpath: //button[text()='Save']
+2025-05-02 11:52:54,084 [info]: Clicking on By.xpath: //span[text()='Accept bank transfer']
+2025-05-02 11:52:54,119 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-02 11:52:55,301 [info]: Clicking on By.xpath: //button[text()='Continue']
+2025-05-02 11:53:27,703 [info]: Clicking on By.cssSelector: .fal.fa-circle.custom-check-off
+2025-05-02 11:53:27,896 [info]: Clicking on By.xpath: //button[text()='Update Status']
+2025-05-02 11:53:35,044 [info]: Clicking on By.cssSelector: button[href=".-deleteStore-"]
+2025-05-02 11:53:37,829 [info]: Clicking on By.xpath: //button[text()='Delete Permanently']
