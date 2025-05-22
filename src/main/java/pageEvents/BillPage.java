@@ -1642,8 +1642,7 @@ public class BillPage extends BaseTest {
 
         //Close popup
         closePopupOnBillPage();
-        //Verify not paid label for generated amount
-        //   verifyEnteredMemoText();
+
     }
 
 
