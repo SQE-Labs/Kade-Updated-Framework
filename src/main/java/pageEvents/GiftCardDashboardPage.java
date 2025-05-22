@@ -106,6 +106,7 @@ public class GiftCardDashboardPage extends BaseTest {
     public By issueNewGiftcardForm = By.cssSelector("div.modal-body");
     public By infoIcon = By.cssSelector("i.fal.fa-info-square");
     public By enableClass = By.cssSelector("label.custom-checkbox.mb-3");
+    public By updateButton = By.xpath("//button[text()='Update']");
 
 
     // Locators for Gift Cards For Sale
