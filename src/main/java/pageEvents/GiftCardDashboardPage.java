@@ -106,7 +106,8 @@ public class GiftCardDashboardPage extends BaseTest {
     public By issueNewGiftcardForm = By.cssSelector("div.modal-body");
     public By infoIcon = By.cssSelector("i.fal.fa-info-square");
     public By enableClass = By.cssSelector("label.custom-checkbox.mb-3");
-    public By updateButton = By.xpath("//button[text()='Update']");
+    public By updateButton = By.xpath("//button[text()='Update'
+
 
 
     // Locators for Gift Cards For Sale
@@ -139,7 +140,7 @@ public class GiftCardDashboardPage extends BaseTest {
     By optionLocator = By.xpath("//select[@name='status']//option");
     By endBtn = By.xpath("//option[2]");
     By applyBtn = By.xpath("//button[normalize-space(text())='Apply']");
- 
+
     By storeDropdown = By.xpath("//span[contains(@class,'select2-selection s')]");
     By storeField = By.xpath("//input[@class='select2-search__field']");
     By selectStore = By.xpath("//li[text()='may2025']");
@@ -160,7 +161,7 @@ public class GiftCardDashboardPage extends BaseTest {
     By allresult = By.xpath("//table[contains(@class,'sortable_table')]//tbody/tr[@data-ref]");
     By noResultInfoMsg = By.cssSelector(".no-result-icon+p");
     By userEmailTbx = with(By.tagName("div")).below(userPhoneEmailtbx);
-    By userEmailTxtField=By.xpath("(//label[text()='User Phone/Email']/../div)[2]");
+    By userEmailTxtField = By.xpath("(//label[text()='User Phone/Email']/../div)[2]");
     By validationMsgForCustomerPopup = By.cssSelector(".no-result-icon+p");
     By dateFilterLabel = By.xpath("//label[starts-with(text(),'Date')]");
     By dateFilterInput = with(By.tagName("input")).below(dateFilterLabel);
@@ -180,6 +181,7 @@ public class GiftCardDashboardPage extends BaseTest {
     public By messageIcon = By.cssSelector("a.p-0>i.fa-paper-plane");
     public By messageTextBox = By.cssSelector("textarea[id='newMessage']");
     public By totalAmt = By.cssSelector("h6>span>span.ms-1");
+
     public String DateStringGenerator() {
         LocalDate currentDate = LocalDate.now(); // or any specific date: LocalDate.of(2025, 4, 15)
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -188,39 +190,45 @@ public class GiftCardDashboardPage extends BaseTest {
         String result = "Issued on: " + formattedDate;
         return result;
     }
-public void getFilterIcon(){
-    clickElementByJS(filterIcon);
-}
-public void getFitlerApplyBtn(){
-    click(applyBtnFilter);
-}
 
-public void getUserPhoneEmailTbxFilter(){
-    staticWait(3000);
-    click(userEmailTbx);
-}
-public void clickOnUserEmailTxtField(){
-    click(userEmailTxtField);
-}
-public void getDateFilterInput(){
-    click(dateFilterFiled);
-}
-public void getValidationCrossIcon(){
-    click(validationCrossIcon);
-}
+    public void getFilterIcon() {
+        clickElementByJS(filterIcon);
+    }
 
-public void getExistingGCDate(){
-    click(existingGCDate);
-    click(existingGCDate);
-}
+    public void getFitlerApplyBtn() {
+        click(applyBtnFilter);
+    }
 
-public void getNonExistingGCDate(){
-    click(nonExistingGCDate);
-    click(nonExistingGCDate);
-}
-public void getGiftCardStatusTbx(){
-    click(giftCardStatusTbx);
-}
+    public void getUserPhoneEmailTbxFilter() {
+        staticWait(3000);
+        click(userEmailTbx);
+    }
+
+    public void clickOnUserEmailTxtField() {
+        click(userEmailTxtField);
+    }
+
+    public void getDateFilterInput() {
+        click(dateFilterFiled);
+    }
+
+    public void getValidationCrossIcon() {
+        click(validationCrossIcon);
+    }
+
+    public void getExistingGCDate() {
+        click(existingGCDate);
+        click(existingGCDate);
+    }
+
+    public void getNonExistingGCDate() {
+        click(nonExistingGCDate);
+        click(nonExistingGCDate);
+    }
+
+    public void getGiftCardStatusTbx() {
+        click(giftCardStatusTbx);
+    }
 
     public String[] onOptionalSettings() {
         Login();
@@ -322,7 +330,6 @@ public void getGiftCardStatusTbx(){
     public void sendKeysInStoreField(String storeFieldTxt) {
         actionEnterText(storeField, storeFieldTxt);
     }
-
 
 
     public String[] offOptionalSettings() {
@@ -1414,8 +1421,6 @@ public void getGiftCardStatusTbx(){
         staticWait(2000);
         softAssert.assertEquals(getText(validationMsg), Constants.ValidationMsg);
         softAssert.assertEquals(getToolTipMessage(startDate), Constants.invalidDateTooltip);
-
-
     }
 
     public void verifyEndDateRejectsCharacters() {
@@ -2173,7 +2178,6 @@ public void getGiftCardStatusTbx(){
     }
 
 
- 
 //        public void getDonetGraphsColour() {
 //            List<WebElement> DonetGraphs = getDriver().findElements(By.cssSelector("[class=apexcharts-datalabels]"));
 //            for (WebElement graph : DonetGraphs) {
@@ -2196,7 +2200,7 @@ public void getGiftCardStatusTbx(){
 
 
     public void donateGraph(String storeFieldTxt) {
- 
+
         Login();
         pannel.getMangeBusinessTab();
         pannel.getGiftCardsDashboardTab();
@@ -2209,39 +2213,38 @@ public void getGiftCardStatusTbx(){
     }
 
 
-    public void getAllFilterFileds(){
+    public void getAllFilterFileds() {
         offOptionalSettings();
         waitForPageLoad();
 
         staticWait(5000);
         getFilterIcon();
-        waitForElementToBeVisible(filterTitle,5);
+        waitForElementToBeVisible(filterTitle, 5);
         // verify Filter Title
-        Assert.assertTrue(isElementDisplayed(filterTitle),"Filter Title ");
+        Assert.assertTrue(isElementDisplayed(filterTitle), "Filter Title ");
 
         // Expected filter labels
-        List<String> expectedLabels = Arrays.asList("User Name \"Partial\"", "User Phone/Email", "Date", "Gift card status", "Min Amount", "Max Amount","Card Number \"Partial\"");
+        List<String> expectedLabels = Arrays.asList("User Name \"Partial\"", "User Phone/Email", "Date", "Gift card status", "Min Amount", "Max Amount", "Card Number \"Partial\"");
 
         // Locate filter section
         List<WebElement> filterElements = getDriver().findElements(filterLabels);
 
         // Extract actual filter text
         for (String expectedLabel : expectedLabels) {
-            boolean found = filterElements.stream()
-                    .anyMatch(element -> element.getText().trim().equalsIgnoreCase(expectedLabel));
+            boolean found = filterElements.stream().anyMatch(element -> element.getText().trim().equalsIgnoreCase(expectedLabel));
             Assert.assertTrue(found, "Filter label not found: " + expectedLabel);
         }
     }
 
-    public void getRelevantRecordAfterEnteringExistingCardHolderFilter(){
+    public void getRelevantRecordAfterEnteringExistingCardHolderFilter() {
         offOptionalSettings();
         waitForPageLoad();
 
         staticWait(5000);
         getFilterIcon();
 
-        waitForElementToBeClickable(userNamePartialfield,4);
-        enterText(userNamePartialfield,Constants.giftCardCustomer);
+        waitForElementToBeClickable(userNamePartialfield, 4);
+        enterText(userNamePartialfield, Constants.giftCardCustomer);
 
         // Click on apply button
         getFitlerApplyBtn();
@@ -2249,7 +2252,7 @@ public void getGiftCardStatusTbx(){
         scrollToDown();
 
         // Verify that applied customer result appears
-        Assert.assertEquals(getText(resultUserName),Constants.giftCardCustomer);
+        Assert.assertEquals(getText(resultUserName), Constants.giftCardCustomer);
 
         staticWait(5000);
 
@@ -2263,32 +2266,32 @@ public void getGiftCardStatusTbx(){
         }
     }
 
-    public void getNoRecordMsgForInvalidCardHolder(){
+    public void getNoRecordMsgForInvalidCardHolder() {
         offOptionalSettings();
         waitForPageLoad();
 
         staticWait(5000);
         getFilterIcon();
 
-        waitForElementToBeClickable(userNamePartialfield,4);
-        enterText(userNamePartialfield,Constants.invalidData);
+        waitForElementToBeClickable(userNamePartialfield, 4);
+        enterText(userNamePartialfield, Constants.invalidData);
 
         getFitlerApplyBtn();
         staticWait(4000);
         scrollToDown();
-        waitForElementToBeVisible(noResultInfoMsg,3);
+        waitForElementToBeVisible(noResultInfoMsg, 3);
         // Verify the no result info msg
-        Assert.assertTrue(isElementDisplayed(noResultInfoMsg),"No result Info Message");
+        Assert.assertTrue(isElementDisplayed(noResultInfoMsg), "No result Info Message");
     }
 
-    public void verifyRecordsAppearForPhoneFilter(){
+    public void verifyRecordsAppearForPhoneFilter() {
         offOptionalSettings();
         waitForPageLoad();
 
         staticWait(5000);
         getFilterIcon();
 
-        waitForElementToBeClickable(userEmailTbx,4);
+        waitForElementToBeClickable(userEmailTbx, 4);
 
         // clicking on 'User Email Phone filter
         clickOnUserEmailTxtField();
@@ -2315,8 +2318,6 @@ public void getGiftCardStatusTbx(){
     }
 
 
-
-
     public void createGiftCard() {
         offOptionalSettings();
         staticWait(1000);
@@ -2338,17 +2339,15 @@ public void getGiftCardStatusTbx(){
     }
 
 
+    public void verifyRelevantRecordsAppearAfterEnteringUserEmailFilter() {
+        offOptionalSettings();
+        waitForPageLoad();
+
+        staticWait(5000);
+        getFilterIcon();
 
 
-    public void verifyRelevantRecordsAppearAfterEnteringUserEmailFilter(){
-    offOptionalSettings();
-    waitForPageLoad();
-
-    staticWait(5000);
-    getFilterIcon();
-
-
-    // clicking on 'User Email Phone filter
+        // clicking on 'User Email Phone filter
         clickOnUserEmailTxtField();
         staticWait(3000);
 //        waitForElementToBeVisible();
@@ -2368,15 +2367,16 @@ public void getGiftCardStatusTbx(){
             String detail = record.getText();
             System.out.println("Record for existing user is: " + detail);
         }
-}
-    public void verifyInfoMsgForInvalidCustomerEmailInput(){
+    }
+
+    public void verifyInfoMsgForInvalidCustomerEmailInput() {
         offOptionalSettings();
         waitForPageLoad();
 
         staticWait(5000);
         getFilterIcon();
 
-        waitForElementToBeClickable(userEmailTbx,4);
+        waitForElementToBeClickable(userEmailTbx, 4);
 
         // clicking on 'User Email Phone filter
         clickOnUserEmailTxtField();
@@ -2385,12 +2385,13 @@ public void getGiftCardStatusTbx(){
         //   Select Customer
         bill.getCustomerEmailField(Constants.nonExistingEmailFilterInput);
         bill.getEmailGoButton();
-        waitForElementToBeVisible(validationMsgForCustomerPopup,3);
+        waitForElementToBeVisible(validationMsgForCustomerPopup, 3);
 
         // verify that  validation message appears
-        Assert.assertEquals(getText(validationMsgForCustomerPopup),Constants.noResultText);
-}
-    public void verifyInfoMsgForInvalidCustomerPhoneInput(){
+        Assert.assertEquals(getText(validationMsgForCustomerPopup), Constants.noResultText);
+    }
+
+    public void verifyInfoMsgForInvalidCustomerPhoneInput() {
         offOptionalSettings();
         waitForPageLoad();
 
@@ -2405,19 +2406,19 @@ public void getGiftCardStatusTbx(){
         bill.getCustomerPhoneNoField(Constants.nonExistingPhoneNoFilterInput);
         bill.getGoPhoneNumberButton();
 
-        waitForElementToBeVisible(validationMsgForCustomerPopup,3);
+        waitForElementToBeVisible(validationMsgForCustomerPopup, 3);
 
         // verify that  validation message appears
-        Assert.assertEquals(getText(validationMsgForCustomerPopup),Constants.noResultText);
+        Assert.assertEquals(getText(validationMsgForCustomerPopup), Constants.noResultText);
     }
 
-    public void verifyGiftCardAppearsForSelectedDate(){
+    public void verifyGiftCardAppearsForSelectedDate() {
         offOptionalSettings();
         waitForPageLoad();
 
         staticWait(5000);
         getFilterIcon();
-        waitForElementToBeVisible(dateFilterLabel,4);
+        waitForElementToBeVisible(dateFilterLabel, 4);
 
         getDateFilterInput();
         staticWait(3000);
@@ -2439,17 +2440,17 @@ public void getGiftCardStatusTbx(){
             String detail = record.getText();
             System.out.println("Record for existing user is: " + detail);
 
-            Assert.assertTrue(detail.contains(expectedDate),
-                    "Record does not match the selected date: " + detail);
-        }}
+            Assert.assertTrue(detail.contains(expectedDate), "Record does not match the selected date: " + detail);
+        }
+    }
 
-    public void verifyGCResultWhileApplyingNonExistingDateRangeFilter(){
+    public void verifyGCResultWhileApplyingNonExistingDateRangeFilter() {
         offOptionalSettings();
         waitForPageLoad();
 
         staticWait(5000);
         getFilterIcon();
-        waitForElementToBeVisible(dateFilterLabel,4);
+        waitForElementToBeVisible(dateFilterLabel, 4);
 
         getDateFilterInput();
         staticWait(3000);
@@ -2458,39 +2459,39 @@ public void getGiftCardStatusTbx(){
         getFitlerApplyBtn();
         staticWait(4000);
         scrollToDown();
-        waitForElementToBeVisible(noResultInfoMsg,3);
+        waitForElementToBeVisible(noResultInfoMsg, 3);
         // Verify the no result info msg
-        Assert.assertTrue(isElementDisplayed(noResultInfoMsg),"There are no result Info Message");
+        Assert.assertTrue(isElementDisplayed(noResultInfoMsg), "There are no result Info Message");
     }
 
-    public void verifyValidationOfDateFieldAfterEnteringCharacters(){
+    public void verifyValidationOfDateFieldAfterEnteringCharacters() {
         offOptionalSettings();
         waitForPageLoad();
 
         staticWait(5000);
         getFilterIcon();
-        waitForElementToBeVisible(dateFilterLabel,4);
+        waitForElementToBeVisible(dateFilterLabel, 4);
 
-        enterText(datefilterTbx,Constants.invalidDateTooltip);
+        enterText(datefilterTbx, Constants.invalidDateTooltip);
         getFitlerApplyBtn();
         getValidationCrossIcon();
 
-        String validation = getToolTipMessage(datefilterTbx );
+        String validation = getToolTipMessage(datefilterTbx);
         System.out.println("Invalid date is" + validation);
     }
 
-    public void getDropDownOptions(){
+    public void getDropDownOptions() {
         offOptionalSettings();
         waitForPageLoad();
 
         staticWait(5000);
         getFilterIcon();
-        waitForElementToBeVisible(dateFilterLabel,4);
+        waitForElementToBeVisible(dateFilterLabel, 4);
         getGiftCardStatusTbx();
 
         WebElement dropdown = getDriver().findElement(dropDownFilter);
 
-        List<String> expectedOptions = Arrays.asList("","Active", "Blocked", "Expired", "No Balance","Pending transfer");
+        List<String> expectedOptions = Arrays.asList("", "Active", "Blocked", "Expired", "No Balance", "Pending transfer");
 
         // Find the dropdown options
         List<WebElement> options = getDriver().findElements(dropdownoptions);
@@ -2521,20 +2522,23 @@ public void getGiftCardStatusTbx(){
                 if (optionText.equals(expectedOption)) {
                     optionFound = true;
                     break;
-                }}}}
+                }
+            }
+        }
+    }
 
 
-    public void verifyRecordAfterApplyActiveFilterDD(){
+    public void verifyRecordAfterApplyActiveFilterDD() {
         offOptionalSettings();
         waitForPageLoad();
 
         staticWait(5000);
         getFilterIcon();
-        waitForElementToBeVisible(dateFilterLabel,4);
+        waitForElementToBeVisible(dateFilterLabel, 4);
         getGiftCardStatusTbx();
 
         WebElement dropdown = getDriver().findElement(dropDownFilter);
-        selectDropdownByIndex(dropDownFilter,1);
+        selectDropdownByIndex(dropDownFilter, 1);
 
         getFitlerApplyBtn();
 
@@ -2550,19 +2554,20 @@ public void getGiftCardStatusTbx(){
 
             // ASSERT: each record should mention "Active"
             Assert.assertTrue(detail.contains("Active"), "Found non-Active record: " + detail);
-        }}
+        }
+    }
 
-    public void verifyRecordAfterApplyBlockedFilterDD(){
+    public void verifyRecordAfterApplyBlockedFilterDD() {
         offOptionalSettings();
         waitForPageLoad();
 
         staticWait(5000);
         getFilterIcon();
-        waitForElementToBeVisible(dateFilterLabel,4);
+        waitForElementToBeVisible(dateFilterLabel, 4);
         getGiftCardStatusTbx();
 
         WebElement dropdown = getDriver().findElement(dropDownFilter);
-        selectDropdownByIndex(dropDownFilter,2);
+        selectDropdownByIndex(dropDownFilter, 2);
 
         getFitlerApplyBtn();
 
@@ -2571,31 +2576,31 @@ public void getGiftCardStatusTbx(){
 
         //Verify all result appears
         List<WebElement> allRecords = getDriver().findElements(allresult);
-        int count =0;
+        int count = 0;
         for (WebElement record : allRecords) {
             String detail = record.getText();
             System.out.println("Record for Blocked Gift Cards: " + detail);
             // ASSERT: each record should mention "Blocked"
             Assert.assertTrue(detail.contains("Blocked"), "Found record: " + detail);
 
-            count+=1;
+            count += 1;
         }
-        System.out.println("Gift Card Count is "+count);
+        System.out.println("Gift Card Count is " + count);
         staticWait(3000);
 
-}
+    }
 
-    public void verifyRecordAfterApplyExpiredFilterDD(){
+    public void verifyRecordAfterApplyExpiredFilterDD() {
         offOptionalSettings();
         waitForPageLoad();
 
         staticWait(5000);
         getFilterIcon();
-        waitForElementToBeVisible(dateFilterLabel,4);
+        waitForElementToBeVisible(dateFilterLabel, 4);
         getGiftCardStatusTbx();
 
         WebElement dropdown = getDriver().findElement(dropDownFilter);
-        selectDropdownByIndex(dropDownFilter,3);
+        selectDropdownByIndex(dropDownFilter, 3);
 
         getFitlerApplyBtn();
 
@@ -2604,29 +2609,29 @@ public void getGiftCardStatusTbx(){
 
         //Verify all result appears
         List<WebElement> allRecords = getDriver().findElements(allresult);
-        int count =0;
+        int count = 0;
         for (WebElement record : allRecords) {
             String detail = record.getText();
             System.out.println("Record for Expired Gift Cards: " + detail);
-            count+=1;
+            count += 1;
             // ASSERT: each record should mention "Expired"
             Assert.assertTrue(detail.contains("Expired"), "Found record non Expired : " + detail);
         }
-        System.out.println("Gift Card Count is "+count);
+        System.out.println("Gift Card Count is " + count);
         staticWait(3000);
     }
 
-    public void verifyRecordAfterApplyPendingActivationFilterDD(){
+    public void verifyRecordAfterApplyPendingActivationFilterDD() {
         offOptionalSettings();
         waitForPageLoad();
 
         staticWait(5000);
         getFilterIcon();
-        waitForElementToBeVisible(dateFilterLabel,4);
+        waitForElementToBeVisible(dateFilterLabel, 4);
         getGiftCardStatusTbx();
 
         WebElement dropdown = getDriver().findElement(dropDownFilter);
-        selectDropdownByIndex(dropDownFilter,5);
+        selectDropdownByIndex(dropDownFilter, 5);
 
         getFitlerApplyBtn();
 
@@ -2635,30 +2640,30 @@ public void getGiftCardStatusTbx(){
 
         //Verify all result appears
         List<WebElement> allRecords = getDriver().findElements(allresult);
-        int count =0;
+        int count = 0;
         for (WebElement record : allRecords) {
             String detail = record.getText();
             System.out.println("Record for Pending Activation Gift Cards: " + detail);
-            count+=1;
+            count += 1;
             // ASSERT: each record should mention "Expired"
             Assert.assertTrue(detail.contains("Pending transfer"), "Found record non Expired : " + detail);
 
         }
-        System.out.println("Gift Card Count is "+count);
+        System.out.println("Gift Card Count is " + count);
         staticWait(3000);
     }
 
-    public void verifyRecordAfterApplyNoBalanceFilterDD(){
+    public void verifyRecordAfterApplyNoBalanceFilterDD() {
         offOptionalSettings();
         waitForPageLoad();
 
         staticWait(5000);
         getFilterIcon();
-        waitForElementToBeVisible(dateFilterLabel,4);
+        waitForElementToBeVisible(dateFilterLabel, 4);
         getGiftCardStatusTbx();
 
         WebElement dropdown = getDriver().findElement(dropDownFilter);
-        selectDropdownByIndex(dropDownFilter,4);
+        selectDropdownByIndex(dropDownFilter, 4);
 
         getFitlerApplyBtn();
 
@@ -2667,27 +2672,27 @@ public void getGiftCardStatusTbx(){
 
         //Verify all result appears
         List<WebElement> allRecords = getDriver().findElements(allresult);
-        int count =0;
+        int count = 0;
         for (WebElement record : allRecords) {
             String detail = record.getText();
             System.out.println("Record for No Balance Gift Cards: " + detail);
-            count+=1;
+            count += 1;
             // ASSERT: each record should mention "No Balance"
             Assert.assertTrue(detail.contains("No Balance"), "Found record non Expired : " + detail);
         }
-        System.out.println("Gift Card Count is "+count);
+        System.out.println("Gift Card Count is " + count);
         staticWait(3000);
     }
 
-    public void verifyRelevantGCAppearsAfterApplyingMinAmountFilter(){
+    public void verifyRelevantGCAppearsAfterApplyingMinAmountFilter() {
         offOptionalSettings();
         waitForPageLoad();
 
         staticWait(5000);
         getFilterIcon();
-        waitForElementToBeVisible(dateFilterLabel,4);
+        waitForElementToBeVisible(dateFilterLabel, 4);
 
-        actionEnterText(minAmountFilterField,Constants.minAmountOfGC);
+        actionEnterText(minAmountFilterField, Constants.minAmountOfGC);
 
         getFitlerApplyBtn();
         staticWait(3000);
@@ -2695,26 +2700,26 @@ public void getGiftCardStatusTbx(){
 
         //Verify all result appears
         List<WebElement> allRecords = getDriver().findElements(allresult);
-        int count =0;
+        int count = 0;
         for (WebElement record : allRecords) {
             scrollToDown();
             String detail = record.getText();
             System.out.println("Record for Min Amount Gift Cards: " + detail);
-            count+=1;
+            count += 1;
         }
-        System.out.println("Gift Card Count is "+count);
+        System.out.println("Gift Card Count is " + count);
         staticWait(3000);
     }
 
-    public void verifyRelevantGCAppearsAfterApplyingMaxAmountFilter(){
+    public void verifyRelevantGCAppearsAfterApplyingMaxAmountFilter() {
         offOptionalSettings();
         waitForPageLoad();
 
         staticWait(5000);
         getFilterIcon();
-        waitForElementToBeVisible(dateFilterLabel,4);
+        waitForElementToBeVisible(dateFilterLabel, 4);
 
-        actionEnterText(maxAmountFilterField,Constants.maxAmountOfGC);
+        actionEnterText(maxAmountFilterField, Constants.maxAmountOfGC);
 
         getFitlerApplyBtn();
         staticWait(3000);
@@ -2722,27 +2727,27 @@ public void getGiftCardStatusTbx(){
 
         //Verify all result appears
         List<WebElement> allRecords = getDriver().findElements(allresult);
-        int count =0;
+        int count = 0;
         for (WebElement record : allRecords) {
             scrollToDown();
             String detail = record.getText();
             System.out.println("Record for Min Amount Gift Cards: " + detail);
-            count+=1;
+            count += 1;
         }
 
-        System.out.println("Gift Card Count is "+count);
+        System.out.println("Gift Card Count is " + count);
         staticWait(3000);
     }
 
-    public void verifyRecordAfterApplyingMinAndMaxValueFilterValues(){
+    public void verifyRecordAfterApplyingMinAndMaxValueFilterValues() {
         offOptionalSettings();
         waitForPageLoad();
 
         staticWait(5000);
         getFilterIcon();
-        waitForElementToBeVisible(dateFilterLabel,4);
-        actionEnterText(minAmountFilterField,Constants.minAmountOfGC);
-        actionEnterText(maxAmountFilterField,Constants.midValue);
+        waitForElementToBeVisible(dateFilterLabel, 4);
+        actionEnterText(minAmountFilterField, Constants.minAmountOfGC);
+        actionEnterText(maxAmountFilterField, Constants.midValue);
 
         getFitlerApplyBtn();
         staticWait(3000);
@@ -2750,7 +2755,7 @@ public void getGiftCardStatusTbx(){
 
         //Verify all result appears
         List<WebElement> allRecords = getDriver().findElements(allresult);
-        int count =0;
+        int count = 0;
         for (WebElement record : allRecords) {
             scrollToDown();
             String detail = record.getText();
@@ -2762,37 +2767,36 @@ public void getGiftCardStatusTbx(){
 
             if (matcher.find()) {
                 int amount = Integer.parseInt(matcher.group(1));
-                Assert.assertTrue(amount >= 100 && amount <= 500,
-                        " Amount out of expected range (100–500): $" + amount);
+                Assert.assertTrue(amount >= 100 && amount <= 500, " Amount out of expected range (100–500): $" + amount);
             } else {
                 Assert.fail("Amount not found in record: " + detail);
             }
-            count+=1;
+            count += 1;
         }
 
-        System.out.println("Gift Card Count is "+count);
+        System.out.println("Gift Card Count is " + count);
         staticWait(3000);
     }
 
-    public void verifyRelevantGCAppearAfterApplyingAnyExistingGCno(){
+    public void verifyRelevantGCAppearAfterApplyingAnyExistingGCno() {
         offOptionalSettings();
         waitForPageLoad();
 
         staticWait(5000);
         getFilterIcon();
-        waitForElementToBeVisible(dateFilterLabel,4);
+        waitForElementToBeVisible(dateFilterLabel, 4);
 
         // verify the validation message when less than 4 digit is entered in card no field
-        actionEnterText(cardNumberFilterField,Constants.threeDigit);
+        actionEnterText(cardNumberFilterField, Constants.threeDigit);
         getFitlerApplyBtn();
         getValidationCrossIcon();
         staticWait(2000);
-        String actualLessThan3Msg= getToolTipMessage(cardNumberFilterField);
-        Assert.assertEquals(actualLessThan3Msg,Constants.lessThan3cardNoValidation);
+        String actualLessThan3Msg = getToolTipMessage(cardNumberFilterField);
+        Assert.assertEquals(actualLessThan3Msg, Constants.lessThan3cardNoValidation);
 
         // Entering valid card no
-        waitForElementToBeClickable(cardNumberFilterField,4);
-        actionEnterText(cardNumberFilterField,Constants.giftCardNo);
+        waitForElementToBeClickable(cardNumberFilterField, 4);
+        actionEnterText(cardNumberFilterField, Constants.giftCardNo);
 
         getFitlerApplyBtn();
         staticWait(3000);
@@ -2800,47 +2804,48 @@ public void getGiftCardStatusTbx(){
 
         List<WebElement> allRecords = getDriver().findElements(allresult);
         String recordText = allRecords.get(0).getText();
-        Assert.assertTrue(recordText.contains(Constants.giftCardNo),"Record does not match");
+        Assert.assertTrue(recordText.contains(Constants.giftCardNo), "Record does not match");
 
 
         // Entering non- existing GC no and Validate
         getFilterIcon();
-        waitForElementToBeVisible(dateFilterLabel,4);
-        actionEnterText(cardNumberFilterField,Constants.nonexistingGC);
+        waitForElementToBeVisible(dateFilterLabel, 4);
+        actionEnterText(cardNumberFilterField, Constants.nonexistingGC);
 
         getFitlerApplyBtn();
         staticWait(3000);
         scrollToDown();
 
         // Verify the validation message
-        waitForElementToBeVisible(noResultInfoMsg,3);
+        waitForElementToBeVisible(noResultInfoMsg, 3);
         // Verify the no result info msg
-        Assert.assertTrue(isElementDisplayed(noResultInfoMsg),"There are no result Info Message");
-}
-    public void verifyInvalidInputofFilterFields(){
+        Assert.assertTrue(isElementDisplayed(noResultInfoMsg), "There are no result Info Message");
+    }
+
+    public void verifyInvalidInputofFilterFields() {
         offOptionalSettings();
         waitForPageLoad();
 
         staticWait(5000);
         getFilterIcon();
-        waitForElementToBeVisible(dateFilterLabel,4);
+        waitForElementToBeVisible(dateFilterLabel, 4);
 
         // verify the validation message when less
-        actionEnterText(maxAmountFilterField,Constants.midValue);
-        actionEnterText(cardNumberFilterField,Constants.nonexistingGC);
+        actionEnterText(maxAmountFilterField, Constants.midValue);
+        actionEnterText(cardNumberFilterField, Constants.nonexistingGC);
 
         getFitlerApplyBtn();
         staticWait(3000);
         scrollToDown();
 
         // Verify the validation message
-        waitForElementToBeVisible(noResultInfoMsg,3);
+        waitForElementToBeVisible(noResultInfoMsg, 3);
         // Verify the no result info msg
-        Assert.assertTrue(isElementDisplayed(noResultInfoMsg),"There are no result Info Message");
-
+        Assert.assertTrue(isElementDisplayed(noResultInfoMsg), "There are no result Info Message");
 
 
     }
+
     public void verifyGiftCardDetailPopUp() {
         offOptionalSettings();
         staticWait(1000);
@@ -2961,18 +2966,20 @@ public void getGiftCardStatusTbx(){
         selectDateTwoDaysAgo();
 
     }
-    public void verifyStatusChange(){
+
+    public void verifyStatusChange() {
         createGiftCard();
         click(activeBtn);
         click(statusBtn);
         staticWait(2000);
-        Assert.assertEquals(getText(blockBtn),Constants.blockedStatus);
+        Assert.assertEquals(getText(blockBtn), Constants.blockedStatus);
         staticWait(2000);
         click(blockBtn);
         click(statusBtn);
-        Assert.assertEquals(getText(activeBtn),Constants.activeStatus);
+        Assert.assertEquals(getText(activeBtn), Constants.activeStatus);
     }
-    public void verifyUserDirectedToProfilePage(){
+
+    public void verifyUserDirectedToProfilePage() {
         createGiftCard();
         click(profileLink);
         switchToWindow("1");
@@ -2982,7 +2989,7 @@ public void getGiftCardStatusTbx(){
 
     }
 
-    public void verifyMessageIcon(){
+    public void verifyMessageIcon() {
         createGiftCard();
         click(profileLink);
         switchToWindow("1");
@@ -2993,7 +3000,7 @@ public void getGiftCardStatusTbx(){
 
     }
 
-    public void VerifyActiveGiftCard(){
+    public void VerifyActiveGiftCard() {
         createGiftCard();
         scrollToElement(filterIcon);
         staticWait(2000);
@@ -3008,24 +3015,23 @@ public void getGiftCardStatusTbx(){
         click(startDate);
         actionEnterText(startDate, "vfhfuu");
         click(updateButton);
-        Assert.assertEquals(getText(systemAlert),Constants.systemAlert);
-        Assert.assertEquals(getText(clientDetailValidationMsg),Constants.ValidationMsg);
+        Assert.assertEquals(getText(systemAlert), Constants.systemAlert);
+        Assert.assertEquals(getText(clientDetailValidationMsg), Constants.ValidationMsg);
 
 
     }
+
     public void verifyEndDateRejectsChar() {
         verifyMandatoryFields();
         click(editBtn);
         click(startDate);
         actionEnterText(startDate, "bhgisdhvi");
         click(updateButton);
-        Assert.assertEquals(getText(systemAlert),Constants.systemAlert);
-        Assert.assertEquals(getText(clientDetailValidationMsg),Constants.ValidationMsg);
+        Assert.assertEquals(getText(systemAlert), Constants.systemAlert);
+        Assert.assertEquals(getText(clientDetailValidationMsg), Constants.ValidationMsg);
 
 
     }
-
-
 
 
 }
