@@ -1,3 +1,0 @@
-2025-05-05 18:15:40,116 [info]: Clicking on By.xpath: //footer[contains(@class,'la-v3-pane-footer-wrapper')]//span[text()='Agree and continue']/..
-2025-05-05 18:16:08,914 [info]: Clicking on By.xpath: //i[@class='fas fa-trash']//..
-2025-05-05 18:16:09,047 [info]: Clicking on By.xpath: //i[contains(@class,'fal fa-thumbs-up')]//..

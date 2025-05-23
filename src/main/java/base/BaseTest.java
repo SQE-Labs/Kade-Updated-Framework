@@ -1,5 +1,5 @@
 package base;
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import logger.Log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -77,71 +77,43 @@ public class BaseTest {
      * @param browser  - Browser name (chrome, firefox).
      * @param headless - Whether to run in headless mode.
      */
-//    @BeforeMethod
-//    @Parameters({"browser", "headless"})
-//    public void setupDriver(@Optional("chrome") String browser, @Optional("false") boolean headless) {
-//        softAssert = new SoftAssert();
-//        log.info("Setting up WebDriver for browser: {}, headless: {}", browser, headless);
-//        if (browser.equalsIgnoreCase("chrome")) {
-//            ChromeOptions chromeOptions = new ChromeOptions();
-//
-//            if (headless) {
-//                chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
-//            }
-//            driver.set(new ChromeDriver(chromeOptions));
-//            log.info("ChromeDriver initialized.");
-//
-//        } else if (browser.equalsIgnoreCase("firefox")) {
-//            driver.set(new FirefoxDriver());
-//            log.info("FirefoxDriver initialized.");
-//        } else {
-//            ChromeOptions chromeOptions = new ChromeOptions();
-//            if (headless) {
-//                chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
-//            }
-//            driver.set(new ChromeDriver(chromeOptions));
-//            log.info("ChromeDriver initialized.");
-//        }
-//
-//        // Maximize window and load the URL
-//        getDriver().manage().window().maximize();
-//        String url = configReader.getProperty("url");
-//        if (url != null && !url.isEmpty()) {
-//            getDriver().get(url);
-//            log.info("Navigated to URL: {}", url);
-//        } else {
-//            throw new RuntimeException("URL is not defined in the properties file.");
-//        }
-//
-//        // Set implicit wait
-//        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-//        log.info("Implicit wait set to 20 seconds.");
-//    }
-
     @BeforeMethod
     @Parameters({"browser", "headless"})
     public void setupDriver(@Optional("chrome") String browser, @Optional("false") boolean headless) {
         softAssert = new SoftAssert();
         log.info("Setting up WebDriver for browser: {}, headless: {}", browser, headless);
-
         if (browser.equalsIgnoreCase("chrome")) {
-            WebDriverManager.chromedriver().setup(); // EASY fix ✅
-            ChromeOptions options = new ChromeOptions();
+            ChromeOptions chromeOptions = new ChromeOptions();
             if (headless) {
-                options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
-            }
-            driver.set(new ChromeDriver(options));
+                chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
+             }
+            driver.set(new ChromeDriver(chromeOptions));
             log.info("ChromeDriver initialized.");
-
         } else if (browser.equalsIgnoreCase("firefox")) {
-            WebDriverManager.firefoxdriver().setup(); // Also supported ✅
             driver.set(new FirefoxDriver());
             log.info("FirefoxDriver initialized.");
         } else {
-            WebDriverManager.chromedriver().setup(); // fallback ✅
-            driver.set(new ChromeDriver());
-            log.info("Default ChromeDriver initialized.");
+            ChromeOptions chromeOptions = new ChromeOptions();
+            if (headless) {
+                chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
+            }
+            driver.set(new ChromeDriver(chromeOptions));
+            log.info("ChromeDriver initialized.");
         }
+
+        // Maximize window and load the URL
+        getDriver().manage().window().maximize();
+        String url = configReader.getProperty("url");
+        if (url != null && !url.isEmpty()) {
+            getDriver().get(url);
+            log.info("Navigated to URL: {}", url);
+        } else {
+            throw new RuntimeException("URL is not defined in the properties file.");
+        }
+
+        // Set implicit wait
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        log.info("Implicit wait set to 20 seconds.");
     }
 
     /**

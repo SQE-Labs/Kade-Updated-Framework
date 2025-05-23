@@ -1,4 +1,0 @@
-2025-05-01 16:37:08,583 [info]: Clicking on By.xpath: //button[text()='Save']
-2025-05-01 16:37:13,096 [info]: Clicking on By.xpath: //span[text()='Accept bank transfer']
-2025-05-01 16:37:13,179 [info]: Clicking on By.xpath: //button[text()='Continue']
-2025-05-01 16:37:14,553 [info]: Clicking on By.xpath: //button[text()='Continue']

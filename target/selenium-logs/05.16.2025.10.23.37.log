@@ -1,4 +1,0 @@
-2025-05-16 10:23:37,321 [info]: Clicking on By.xpath: //button[text()='Save changes']
-2025-05-16 10:23:37,370 [info]: Clicking on By.xpath: (//button[@type='button'][text()='Configure'])[2]
-2025-05-16 10:23:39,155 [info]: Clicking on By.xpath: //button[text()='Save changes']
-2025-05-16 10:23:41,281 [info]: Clicking on By.xpath: //button[text()='Store links']

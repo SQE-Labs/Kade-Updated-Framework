@@ -1,7 +1,0 @@
-2025-05-16 10:40:47,880 [info]: Clicking on By.xpath: //button[text()='Save changes']
-2025-05-16 10:41:36,103 [info]: Clicking on By.cssSelector: .custom-checkbox.mb-2>span
-2025-05-16 10:41:59,356 [info]: Clicking on By.cssSelector: .custom-checkbox.mb-2>span
-2025-05-16 10:42:00,322 [info]: Clicking on By.xpath: //button[text()='Save changes']
-2025-05-16 10:42:00,383 [info]: Clicking on By.xpath: (//button[@type='button'][text()='Configure'])[2]
-2025-05-16 10:42:01,933 [info]: Clicking on By.xpath: //button[text()='Save changes']
-2025-05-16 10:42:04,073 [info]: Clicking on By.xpath: //button[text()='Store links']

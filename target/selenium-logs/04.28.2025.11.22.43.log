@@ -1,6 +1,0 @@
-2025-04-28 11:22:43,633 [info]: Clicking on By.xpath: (//div[@class='my-3 loaded']//label/i)[14]
-2025-04-28 11:22:54,311 [info]: Clicking on By.xpath: (//span[text()='Accept Zelle'])[1]
-2025-04-28 11:23:54,484 [info]: Clicking on By.xpath: //button[text()='Save']
-2025-04-28 11:23:58,917 [info]: Clicking on By.xpath: //span[text()='Accept bank transfer']
-2025-04-28 11:23:58,947 [info]: Clicking on By.xpath: //button[text()='Continue']
-2025-04-28 11:24:00,193 [info]: Clicking on By.xpath: //button[text()='Continue']
