@@ -1,5 +1,4 @@
 .settings
-/target/
 /test-output
 .project
 .classpath
@@ -17,3 +16,4 @@ chaintest
 screenshot/
 maven-status
 Parallel.xml
+target
