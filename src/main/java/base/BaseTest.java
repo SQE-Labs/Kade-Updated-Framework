@@ -1,5 +1,6 @@
 package base;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import logger.Log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -83,11 +84,12 @@ public class BaseTest {
         softAssert = new SoftAssert();
         log.info("Setting up WebDriver for browser: {}, headless: {}", browser, headless);
         if (browser.equalsIgnoreCase("chrome")) {
+            WebDriverManager.chromedriver().setup();
             ChromeOptions chromeOptions = new ChromeOptions();
             if (headless) {
                 chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
              }
-            driver.set(new ChromeDriver(chromeOptions));
+             driver.set(new ChromeDriver(chromeOptions));
             log.info("ChromeDriver initialized.");
         } else if (browser.equalsIgnoreCase("firefox")) {
             driver.set(new FirefoxDriver());
