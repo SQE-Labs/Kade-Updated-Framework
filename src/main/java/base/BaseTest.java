@@ -87,7 +87,7 @@ public class BaseTest {
             WebDriverManager.chromedriver().setup();
             ChromeOptions chromeOptions = new ChromeOptions();
             if (headless) {
-                chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
+                chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080","--no-sandbox", "--disable-dev-shm-usage");
              }
              driver.set(new ChromeDriver(chromeOptions));
             log.info("ChromeDriver initialized.");
