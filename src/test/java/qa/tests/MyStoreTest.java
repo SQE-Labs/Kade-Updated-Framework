@@ -445,6 +445,7 @@ public class MyStoreTest extends BaseTest {
         staticWait(5000);
 
         //Verifying Maximum length of 'VenmoID' field
+
         Assert.assertEquals(getAttribute(mystore.venmoIDField, "maxlength"), "40");
 
         // Enter ID in 'Venmo ID" field

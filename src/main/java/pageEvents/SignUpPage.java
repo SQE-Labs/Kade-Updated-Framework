@@ -190,6 +190,7 @@ public void creatingNewAccountWithEmailWithBusinessAccount(){
     waitForElementToBeClickable(fullname,6);
 
     //Entering name in the Full name field
+    staticWait(3000);
     enterText(fullname, "New Kade Member" + requiredString(4));
 
     // Clicking on 'Continue' button

@@ -54,6 +54,7 @@ public class SecurityAndPasswordPage extends BaseTest {
 
 
     public void getSecurityAndPasswordPage(){
+        staticWait(6000);
         click(userProfile);
         click(securityAndPasswordTab);
     }

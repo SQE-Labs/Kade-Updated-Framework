@@ -8,8 +8,10 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.*;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
@@ -80,7 +82,7 @@ public class BaseTest {
      */
     @BeforeMethod
     @Parameters({"browser", "headless"})
-    public void setupDriver(@Optional("chrome") String browser, @Optional("false") boolean headless) {
+    public void setupDriver(@Optional("chrome") String browser, @Optional("true") boolean headless) {
         softAssert = new SoftAssert();
         log.info("Setting up WebDriver for browser: {}, headless: {}", browser, headless);
         if (browser.equalsIgnoreCase("chrome")) {
@@ -90,8 +92,10 @@ public class BaseTest {
                 chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080","--no-sandbox", "--disable-dev-shm-usage");
              }
              driver.set(new ChromeDriver(chromeOptions));
-            log.info("ChromeDriver initialized.");
+             log.info("ChromeDriver initialized.");
         } else if (browser.equalsIgnoreCase("firefox")) {
+            WebDriverManager.firefoxdriver().setup();
+
             driver.set(new FirefoxDriver());
             log.info("FirefoxDriver initialized.");
         } else {
@@ -117,6 +121,86 @@ public class BaseTest {
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         log.info("Implicit wait set to 20 seconds.");
     }
+//    @BeforeMethod
+//    @Parameters({"browser", "headless", "executionType"})
+//    public void setupDriver(@Optional("chrome") String browser,
+//                            @Optional("true") boolean headless,
+//                            @Optional("local") String executionType) {
+//
+//        softAssert = new SoftAssert();
+//        log.info("Setting up WebDriver for browser: {}, headless: {}, executionType: {}", browser, headless, executionType);
+//
+//        try {
+//            if (executionType.equalsIgnoreCase("grid")) {
+//                // Remote (Docker/Grid) setup
+//                DesiredCapabilities capabilities = new DesiredCapabilities();
+//
+//                if (browser.equalsIgnoreCase("chrome")) {
+//                    ChromeOptions chromeOptions = new ChromeOptions();
+//                    if (headless) {
+//                        chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080",
+//                                "--no-sandbox", "--disable-dev-shm-usage");
+//                    }
+//                    capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+//                    capabilities.setBrowserName("chrome");
+//
+//                } else if (browser.equalsIgnoreCase("firefox")) {
+//                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+//                    if (headless) {
+//                        firefoxOptions.addArguments("--headless");
+//                    }
+//                    capabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, firefoxOptions);
+//                    capabilities.setBrowserName("firefox");
+//                } else {
+//                    throw new IllegalArgumentException("Unsupported browser: " + browser);
+//                }
+//
+//                driver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities));
+//                log.info("RemoteWebDriver initialized for Grid.");
+//
+//            } else {
+//                // Local WebDriver setup
+//                if (browser.equalsIgnoreCase("chrome")) {
+//                    WebDriverManager.chromedriver().setup();
+//                    ChromeOptions chromeOptions = new ChromeOptions();
+//                    if (headless) {
+//                        chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
+//                    }
+//                    driver.set(new ChromeDriver(chromeOptions));
+//                    log.info("Local ChromeDriver initialized.");
+//
+//                } else if (browser.equalsIgnoreCase("firefox")) {
+//                    WebDriverManager.firefoxdriver().setup();
+//                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+//                    if (headless) {
+//                        firefoxOptions.addArguments("--headless");
+//                    }
+//                    driver.set(new FirefoxDriver(firefoxOptions));
+//                    log.info("Local FirefoxDriver initialized.");
+//
+//                } else {
+//                    throw new IllegalArgumentException("Unsupported browser: " + browser);
+//                }
+//            }
+//
+//            // Common driver settings
+//            getDriver().manage().window().maximize();
+//            String url = configReader.getProperty("url");
+//            if (url != null && !url.isEmpty()) {
+//                getDriver().get(url);
+//                log.info("Navigated to URL: {}", url);
+//            } else {
+//                throw new RuntimeException("URL is not defined in the properties file.");
+//            }
+//
+//            getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+//            log.info("Implicit wait set to 20 seconds.");
+//
+//        } catch (MalformedURLException e) {
+//            throw new RuntimeException("Invalid Selenium Grid URL", e);
+//        }
+//    }
+
 
     /**
      * Tear down the WebDriver after each test method.
