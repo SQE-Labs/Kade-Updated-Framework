@@ -93,6 +93,7 @@ public class BaseTest {
         } else if (browser.equalsIgnoreCase("firefox")) {
             driver.set(new FirefoxDriver());
             log.info("FirefoxDriver initialized.");
+
         } else {
             ChromeOptions chromeOptions = new ChromeOptions();
             if (headless) {
