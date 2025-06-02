@@ -801,30 +801,30 @@ public class TransactionsPage extends BaseTest {
 
 
 //        String fileStatus = ActionEngine.isFileDownloaded("Transactions.xlsx");
-//        System.out.println("fileStatus :" + fileStatus);
-//        staticWait(3000);
-//        if (fileStatus.equalsIgnoreCase("File Present")) {
-//            String deletStatus = ActionEngine.deleteFile("Transactions.xlsx");
-//            System.out.println("deleteStatus :" + deletStatus);
+////        System.out.println("fileStatus :" + fileStatus);
+////        staticWait(3000);
+////        if (fileStatus.equalsIgnoreCase("File Present")) {
+////            String deletStatus = ActionEngine.deleteFile("Transactions.xlsx");
+////            System.out.println("deleteStatus :" + deletStatus);
+////
+////            staticWait(3000);
 //
-//            staticWait(3000);
-
-
-            staticWait(5000);
-            String fileDownloadStatus = ActionEngine.isFileDownloaded("Transactions.xlsx");
-
-                getFilterIcon();
-                getPaymentStatusDropdown();
-                // getClearPaymentField();
-
-                staticWait(3000);
-                getPaymentLinkField();
-                getQrCodeSeletct();
-                getApplyButtonOnPopup();
-
-//            waitForElementToBeVisible(qrCodeSign, 3);
-//            softAssert.assertTrue(isElementDisplayed(qrCodeSign), "Qr Code Sign");
-//            Assert.assertTrue(isElementDisplayed(qrCodeSign));
+//
+//            staticWait(5000);
+//            String fileDownloadStatus = ActionEngine.isFileDownloaded("Transactions.xlsx");
+//
+//                getFilterIcon();
+//                getPaymentStatusDropdown();
+//                // getClearPaymentField();
+//
+//                staticWait(3000);
+//                getPaymentLinkField();
+//                getQrCodeSeletct();
+//                getApplyButtonOnPopup();
+//
+////            waitForElementToBeVisible(qrCodeSign, 3);
+////            softAssert.assertTrue(isElementDisplayed(qrCodeSign), "Qr Code Sign");
+////            Assert.assertTrue(isElementDisplayed(qrCodeSign));
 
                 staticWait(3000);
                 getFilterIcon();

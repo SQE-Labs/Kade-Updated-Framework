@@ -688,7 +688,7 @@ public class BaseTest {
         // Verify the landing page is correct after login
         pageObjectManager.getHomePage().landingPage();
 
-
+        return username;
     }
 
     public static void LoginAsNewUser() {

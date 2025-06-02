@@ -49,9 +49,12 @@ public class MyStoreTest extends BaseTest {
             String actual = getText(mystore.skipPopUpTitle);
             //Verifying the 'Skip' Pop Up Title
             Assert.assertEquals(actual, Constants.skip);
+            waitForElementToBeVisible(mystore.skipStripeAccountPopUpBtn,3);
+
             //  Click on 'Skip' button
             mystore.getSkipBtnOfStripe();
         }
+        staticWait(3000);
         scrollToElement(mystore.deleteStoreBtn);
         waitForElementToBeVisible(mystore.deleteStoreBtn, 7);
         // click on delete button
@@ -615,6 +618,7 @@ public class MyStoreTest extends BaseTest {
     // Bug id =
     @Test(priority = 12, enabled = true, description = "SC_07(B) Verifying the Configuration of the store using Manage User sub tab to invite any existing user to manage store.")
     public void sc_07b_VerifyingConfigurationOfStoreUsingManageUserSubTabToInviteAnyExistingUserToManageStore() {
+        String storename =getText(mystore.store);
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
@@ -632,7 +636,7 @@ public class MyStoreTest extends BaseTest {
         Assert.assertEquals(getText(mystore.inviteExistingUserPopupTitle), "Invite users");
 
         // Enter Email Or Phone Number
-        enterText(mystore.inviteMangeUserEmailOrPhoneField, "saybo@yopmail.com");
+        enterText(mystore.inviteMangeUserEmailOrPhoneField, "6465551113");
 
         //  Click on the 'User Profile' Drop Down
         mystore.getUserProfileDropdown();
@@ -645,8 +649,12 @@ public class MyStoreTest extends BaseTest {
 
         pageObjectManager.getSidePannel().getSignOut();
 
-        LoginAsCustomer();
-        payment.clickOnBillIcon();
+        LoginAsAdmin();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getMyStoreTab();
+        staticWait(3000);
+
+        Assert.assertTrue(isElementDisplayed(mystore.store), "Store name is not displayed after inviting user");
 
         // Need to add assertion
     }

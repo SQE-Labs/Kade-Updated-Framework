@@ -139,6 +139,7 @@ public class MyStorePage extends BaseTest {
     public By createUserAndCredetButton = By.xpath("//div[@class='mb-1 text-center']/..");
     public By inviteUserButton = By.xpath("//span[text()='Recommended']/..");
     By validationCrossIcon = By.cssSelector(".btn-close.autoclick-effect");
+    public By store = By.cssSelector(".d-flex.flex-column>h3");
 
     public void getValidationCrossIcon(){
         waitForElementToBeClickable(validationCrossIcon,5);
