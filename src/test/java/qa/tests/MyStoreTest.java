@@ -49,7 +49,7 @@ public class MyStoreTest extends BaseTest {
             String actual = getText(mystore.skipPopUpTitle);
             //Verifying the 'Skip' Pop Up Title
             Assert.assertEquals(actual, Constants.skip);
-            waitForElementToBeVisible(mystore.skipStripeAccountPopUpBtn,3);
+            waitForElementToBeVisible(mystore.skipStripeAccountPopUpBtn, 3);
 
             //  Click on 'Skip' button
             mystore.getSkipBtnOfStripe();
@@ -615,48 +615,39 @@ public class MyStoreTest extends BaseTest {
 
     }
 
-    // Bug id =
     @Test(priority = 12, enabled = true, description = "SC_07(B) Verifying the Configuration of the store using Manage User sub tab to invite any existing user to manage store.")
     public void sc_07b_VerifyingConfigurationOfStoreUsingManageUserSubTabToInviteAnyExistingUserToManageStore() {
-        String storename =getText(mystore.store);
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
         staticWait(3000);
-        // Click on 'Configure' Link
+
         mystore.getConfigureLink();
+        String storename = getText(mystore.store);
         staticWait(5000);
-        // click on Manage Sub Tab
         mystore.getManageUserSubTab();
         staticWait(5000);
 
         mystore.getinviteUserButton();
         staticWait(4000);
-        // Verifying the 'Invite Existing User' PopUp Title
         Assert.assertEquals(getText(mystore.inviteExistingUserPopupTitle), "Invite users");
 
-        // Enter Email Or Phone Number
         enterText(mystore.inviteMangeUserEmailOrPhoneField, "6465551113");
-
-        //  Click on the 'User Profile' Drop Down
         mystore.getUserProfileDropdown();
-
-        // Select profile of 'Manager' User
         mystore.getmanagerProfileOption();
-
-        // Click on 'Send Invite' Button.
         mystore.sendInviteButton();
 
         pageObjectManager.getSidePannel().getSignOut();
 
         LoginAsAdmin();
+        staticWait(3000);
+        scrollToElement(pageObjectManager.getSidePannel().manageBusinessAcc);
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
         staticWait(3000);
 
-        Assert.assertTrue(isElementDisplayed(mystore.store), "Store name is not displayed after inviting user");
+       Assert.assertEquals(getText(mystore.storeNameCompare),storename);
 
-        // Need to add assertion
     }
 }
 

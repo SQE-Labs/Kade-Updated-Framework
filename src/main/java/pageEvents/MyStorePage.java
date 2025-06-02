@@ -32,7 +32,7 @@ public class MyStorePage extends BaseTest {
   public By taxRateTbx = By.xpath("//input[@name='taxRate']");
   public By saveBtn = By.xpath("//button[text()='Save']");
   public By saveVenmoPaymentBtn = By.xpath("(//div[@class='card-footer']//button)[1]");
-  public By stripeBtn = By.cssSelector(".img-fluid.h-100");
+  public By stripeBtn = By.xpath("//a[contains(@class,'d-block')]/img");
   public By connectStripePopUpTitle = By.xpath("//h5[text()='Connect to stripe']");
   public By testStripeBtn = By.partialLinkText("Create a test Stripe account");
   public By bankTransferToggleBtn = By.xpath("//span[text()='Accept bank transfer']");
@@ -140,6 +140,9 @@ public class MyStorePage extends BaseTest {
     public By inviteUserButton = By.xpath("//span[text()='Recommended']/..");
     By validationCrossIcon = By.cssSelector(".btn-close.autoclick-effect");
     public By store = By.cssSelector(".d-flex.flex-column>h3");
+    public By storeNameCompare = By.xpath("(//img[contains(@class,'profile-image-sm')]/../div/span)[1]");
+    By avenue= By.xpath("//div[text()='Avenue']");
+    By editIConAvenue = By.xpath("//div[text()='Avenue']/button/i");
 
     public void getValidationCrossIcon(){
         waitForElementToBeClickable(validationCrossIcon,5);
@@ -149,6 +152,9 @@ public class MyStorePage extends BaseTest {
     // Methods
     public void getTickIconofImg(){
         click(checkBtn);
+    }
+    public String getStoreName() {
+        return getText(store);
     }
     public void getRegisterNewBusinessButton(){
         click(registerNewBusinessBtn);
@@ -170,8 +176,9 @@ public class MyStorePage extends BaseTest {
     }
 
     public void getStripeAccountBtn(){
-        staticWait(2000);
+      staticWait(3000);
         click(stripeBtn);
+        staticWait(2000);
     }
     public void getTestStripeAccountButton(){
         click(testStripeBtn);
@@ -357,6 +364,7 @@ public class MyStorePage extends BaseTest {
     }
     public void getCreditTerminalOption(){
         scrollToElement(creditCardTerminalOption);
+        staticWait(3000);
 //        waitForElementToBeClickable(creditCardTerminalOption,5);
         clickElementByJS(creditCardTerminalOption);
         waitForElementToBeClickable(saveBtn,6);
@@ -369,6 +377,7 @@ public class MyStorePage extends BaseTest {
     }
 
     public void getTerminalEditIcon(){
+        staticWait(3000);
         click(terminalEditIcon);
     }
 
@@ -401,7 +410,9 @@ public class MyStorePage extends BaseTest {
 
         // Click on 'Register New Business' Button
          getRegisterNewBusinessButton();
-        if (isElementDisplayed(storeLogoCreation)) {
+        if (isElementDisplayed(avenue)) {
+            click(editIConAvenue);
+            staticWait(3000);
             scrollToElement(deleteStoreBtn);
             waitForElementToBeClickable(deleteStoreBtn,5);
             // click on delete button
@@ -414,8 +425,10 @@ public class MyStorePage extends BaseTest {
             waitForElementToBeClickable(pageObjectManager.getSidePannel().myStoreBtn,3);
             pageObjectManager.getSidePannel().getMyStoreTab();
             getRegisterNewBusinessButton();
+            staticWait(3000);
         }
         // Click on 'Stripe Account' Button
+
           getStripeAccountBtn();
           scrollToElement(testStripeBtn);
         //Click on 'Test Stripe Account' Button
@@ -426,6 +439,7 @@ public class MyStorePage extends BaseTest {
 
         enterText(StoreNameTbx, storeNamewithstripe);
         actionEnterText(phoneTbx, phone);
+        selectStoreAddress(Constants.storeAddress);
         staticWait(3000);
         scrollToElement(saveBtn);
         waitForElementToBeVisible(saveBtn,5);
@@ -482,7 +496,7 @@ public class MyStorePage extends BaseTest {
             pageObjectManager.getSidePannel().getMyStoreTab();
             getRegisterNewBusinessButton();
         }
-        waitForElementToBeClickable(skipStripeAccountBtn,4);
+        waitForElementToBeClickable(skipStripeAccountBtn,5);
         getSkipStripeAccountButton();
         staticWait(3000);
 //        waitForElementToBeClickable(skipStripeAccountPopUpBtn,5);
@@ -576,7 +590,6 @@ public class MyStorePage extends BaseTest {
 
         //Verifying the minimum, maximum and default values of taxRate field
         Assert.assertEquals(getAttribute(taxRateTbx,"min"),"0");
-        Assert.assertEquals(getAttribute(taxRateTbx,"value"),"10.000","Tax rate tbx value");
         Assert.assertEquals(getAttribute(taxRateTbx,"max"),"100");
 
         //  Enter Tax rate

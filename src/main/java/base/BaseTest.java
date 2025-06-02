@@ -79,7 +79,7 @@ public class BaseTest {
      */
     @BeforeMethod
     @Parameters({"browser", "headless"})
-    public void setupDriver(@Optional("chrome") String browser, @Optional("false") boolean headless) {
+    public void setupDriver(@Optional("chrome") String browser, @Optional("true") boolean headless) {
         softAssert = new SoftAssert();
         log.info("Setting up WebDriver for browser: {}, headless: {}", browser, headless);
         if (browser.equalsIgnoreCase("chrome")) {
@@ -665,7 +665,7 @@ public class BaseTest {
 
 
     //login method
-    public static void Login() {
+    public  void Login() {
         // Fetch the username and password from the configuration file
         String username = configReader.getProperty("username");
         String password = configReader.getProperty("password");
@@ -687,8 +687,8 @@ public class BaseTest {
 
         // Verify the landing page is correct after login
         pageObjectManager.getHomePage().landingPage();
-
-        return username;
+//
+//        return username;
     }
 
     public static void LoginAsNewUser() {
