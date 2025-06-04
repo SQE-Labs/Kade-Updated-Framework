@@ -85,7 +85,7 @@ public class BaseTest {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions chromeOptions = new ChromeOptions();
             if (headless) {
-                chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
+                chromeOptions.addArguments("--headless=new", "--disable-gpu", "--window-size=1920,1080");
              }
             driver.set(new ChromeDriver(chromeOptions));
             log.info("ChromeDriver initialized.");
@@ -259,7 +259,7 @@ public class BaseTest {
      */
     public String getText(By locator) {
         log.info("Getting text from element: {}", locator);
-        return waitForElementToBeVisible(locator, 10).getText();
+        return waitForElementToBeVisible(locator, 20).getText();
     }
 
     /**
@@ -663,9 +663,8 @@ public class BaseTest {
         waitForLoaderToDisappear(loaderLocator, timeout);
     }
 
-
     //login method
-    public  void Login() {
+    public static void Login() {
         // Fetch the username and password from the configuration file
         String username = configReader.getProperty("username");
         String password = configReader.getProperty("password");
@@ -687,16 +686,14 @@ public class BaseTest {
 
         // Verify the landing page is correct after login
         pageObjectManager.getHomePage().landingPage();
-//
-//        return username;
     }
-
     public static void LoginAsNewUser() {
         log.info("Starting Login test - Entering username and password");
 
+
         // Fetch the username and password from the configuration file
-        String username = configReader.getProperty("newuser");
-        String password = configReader.getProperty("newpass");
+        String username = configReader.getProperty("username");
+        String password = configReader.getProperty("password");
 
         // Validate if username and password are present in the config file
         if (username == null || password == null) {

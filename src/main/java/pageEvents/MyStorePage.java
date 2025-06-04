@@ -30,7 +30,7 @@ public class MyStorePage extends BaseTest {
   public By timeZoneField = By.xpath("//select[@name='timeZone']");
   public By timeZoneOption = By.xpath("//option[text()='(GMT-05:00) Eastern Time (US & Canada)']");
   public By taxRateTbx = By.xpath("//input[@name='taxRate']");
-  public By saveBtn = By.xpath("//button[text()='Save']");
+  public By saveBtn = By.xpath("//div[contains(@class,'d-flex mt-3')]//button");
   public By saveVenmoPaymentBtn = By.xpath("(//div[@class='card-footer']//button)[1]");
   public By stripeBtn = By.xpath("//a[contains(@class,'d-block')]/img");
   public By connectStripePopUpTitle = By.xpath("//h5[text()='Connect to stripe']");
@@ -40,7 +40,8 @@ public class MyStorePage extends BaseTest {
   public By continueBtn = By.xpath("//button[text()='Continue']");
   public By configureLink = By.xpath("(//h6[starts-with(text(),'Automation Flow Business')]/../../div/a)[1]");
 
-  public By configureLink2 = By.xpath("/html/body/div[4]/div/div/main/div/div[3]/div/div/div[4]/div[1]/a");
+
+  public By configureLink2 = By.xpath("(//h6[starts-with(text(),'Automation flow 2')]/../../div/a)[1]");
   public By modifyBtn = By.xpath("//button[text()='Modify']");
   public By plansSubTab = By.partialLinkText("Plans");
   public By currentPlanMSg = By.xpath("//span[@class='text-success me-1']");
@@ -219,6 +220,8 @@ public class MyStorePage extends BaseTest {
     public void getChangePayMethodLink(){
         click(changePayMethodBtn); }
     public void getcreateUserAndCredetButton(){
+        staticWait(2000);
+        scrollToElement(createUserAndCredetButton);
         click(createUserAndCredetButton);
     }
     public void getmanagerProfileOption(){
@@ -482,7 +485,9 @@ public class MyStorePage extends BaseTest {
         // Click on 'Register New Business' Button
         getRegisterNewBusinessButton();
 
-        if (isElementDisplayed(storeLogo)) {
+        if (isElementDisplayed(avenue)) {
+            click(editIConAvenue);
+            staticWait(3000);
             scrollToElement(deleteStoreBtn);
             waitForElementToBeClickable(deleteStoreBtn, 5);
             // click on delete button

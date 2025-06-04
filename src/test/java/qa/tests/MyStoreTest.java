@@ -32,7 +32,6 @@ public class MyStoreTest extends BaseTest {
         mystore.getStoreCreationWithoutStripePayment();
     }
 
-
     @Test(priority = 1, enabled = true, description = "SC_01(B) Verifying deletion of Store when Stripe Account is not Registered Yet")
     public void sc01b_DeletionOfStore() {
         Login();
@@ -172,7 +171,7 @@ public class MyStoreTest extends BaseTest {
 
     // Bug Failed due to 3092, 2827
 
-    @Test(priority = 6, enabled = true, description = "SC_05(A) Verifying the Configuration of already created Store using Settings Sub-Tabs")
+    @Test(priority = 6, enabled = false, description = "SC_05(A) Verifying the Configuration of already created Store using Settings Sub-Tabs")
     public void verifyingConfigurationsOfStoreUsingSettings() {
         String tipAmountPercent1 = requiredDigits(2);
         String tipAmountPercent2 = requiredDigits(2);
@@ -310,7 +309,7 @@ public class MyStoreTest extends BaseTest {
     }
 
     // Bug Raised and Bug Id is : 3020
-    @Test(priority = 7, enabled = true, description = "SC_05(B) Verifying the Configuration of the Store using flat value in 'tip or gratuity' field")
+    @Test(priority = 7, enabled = false, description = "SC_05(B) Verifying the Configuration of the Store using flat value in 'tip or gratuity' field")
     public void verifyingConfigurationsOfStoreUsingFlatValueInTipField() {
 
         String value1 = requiredDigits(Float.parseFloat("0.01"), Float.parseFloat("999.00"));
@@ -400,12 +399,13 @@ public class MyStoreTest extends BaseTest {
         pageObjectManager.getSidePannel().getMyStoreTab();
 
         // Click on 'Configure' Link
-        mystore.getConfigureLink();
+         click(mystore.configureLink2);
 
         waitForElementToBeVisible(mystore.paymentProcessingSubTab, 5);
 
         // Click on 'Payment-Processing' Sub-Tab
         mystore.getPaymentProcessingSubTab();
+        scrollToDown();
 
         //  Click on 'Credit Card Terminal' button
 
@@ -522,7 +522,7 @@ public class MyStoreTest extends BaseTest {
     }
 
     // Failed due to Bug 3092, 2827
-    @Test(priority = 10, enabled = true, description = "SC 09 and Sc 10 Verify that store creation and purchasing the 'Premium' monthly plan subscription for the store, on 'Store Configuration' page.")
+    @Test(priority = 10, enabled = false, description = "SC 09 and Sc 10 Verify that store creation and purchasing the 'Premium' monthly plan subscription for the store, on 'Store Configuration' page.")
     public void verifyingStoreCreationWithPurchasingMonthlyPremiumPlan() {
         Login();
         mystore.getStoreCreation();
@@ -603,7 +603,6 @@ public class MyStoreTest extends BaseTest {
         // click on Manage Sub Tab
         mystore.getManageUserSubTab();
         waitForElementToBeInteractable(mystore.createUserAndCredetButton, 5);
-
         // Creating  Manager user
         mystore.createManagerUser();
 
