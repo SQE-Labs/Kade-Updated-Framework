@@ -34,6 +34,7 @@ public class MyStoreTest extends BaseTest {
 
     @Test(priority = 1, enabled = true, description = "SC_01(B) Verifying deletion of Store when Stripe Account is not Registered Yet")
     public void sc01b_DeletionOfStore() {
+        staticWait(5000);
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();

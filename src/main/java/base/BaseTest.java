@@ -259,7 +259,8 @@ public class BaseTest {
      */
     public String getText(By locator) {
         log.info("Getting text from element: {}", locator);
-        return waitForElementToBeVisible(locator, 20).getText();
+        staticWait(4000);
+        return waitForElementToBeVisible(locator, 10).getText();
     }
 
     /**

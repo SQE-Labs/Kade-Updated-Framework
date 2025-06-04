@@ -24,6 +24,7 @@ public class HomePageEvents extends BaseTest {
 
         // Using BaseTest's reusable method to get text from the "Sign Out" element
         String signOutText = getText(signOut);
+        staticWait(5000);
         
 
         // Log the retrieved text for debugging purposes
