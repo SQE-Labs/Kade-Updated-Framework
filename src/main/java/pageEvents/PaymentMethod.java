@@ -8,10 +8,11 @@ public class PaymentMethod extends BaseTest {
     public By addORModifyPaymentLink = By.xpath("//a[text()='Add or modify payment methods']");
     public By addPaymentButton = By.xpath("//button[text()='Add Payment Method']");
     public By addNewPaymentMethodTitle = By.xpath("//h5[text()='Add new payment method']");
-    public By creditCardOption = By.xpath("(//span[@class='payment-logo-bg me-2'])[1]");
+    public By creditCardOption = By.xpath("(//span[@class='payment-logo-bg me-2'])[1]/..");
     public By bankAccountOption = By.xpath("(//span[@class='payment-logo-bg me-2']//..)[2]");
     public By crossIconAddNewPaymentPopup = By.xpath("//button[@class='btn-close text-reset']");
     public By newPaymentMethodPopupTitle = By.xpath("//h5[text()='New payment method']/..");
+    By nePaymentPopUp=By.xpath("(//h5[text()='New payment method'])[4]");
     public By bankEmailField = By.cssSelector("[name=email]");
     public By fullNameBField = By.cssSelector("[placeholder='First and last name']");
     public By testInsituteBtn = By.xpath("//p[text()='Test Institution']");

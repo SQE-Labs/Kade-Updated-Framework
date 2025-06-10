@@ -146,8 +146,8 @@ public class DashboardTest extends BaseTest {
     @Test(description = "DC09,DC10, DC11 and DC 12: Verify that Recent transactions of all stores appear under 'Recent transactions' section, on 'Dashboard' page.")
     public void verifyThatRecentTransactionForAllStoreAppearsUnderRecentTransactionSection() {
 
-        bill.createBillWithCustomer("636045278965", "saybo@yopmail.com");
-        payment.billPaymentByThroughDebitCard("4111111111111111", "0930", "794", "Australia");
+        bill.createBillWithCustomer("636045278965", "alexnew@yopmail.com");
+        payment.billPaymentByThroughDebitCard("4111111111111111", "1026", "111", "India");
         payment.swipeCard();
         staticWait(3000);
         scrollToElement(payment.viewReciptTxt);

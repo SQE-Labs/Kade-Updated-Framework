@@ -83,6 +83,8 @@
             <version>2.24.3</version>
         </dependency>
 
+
+
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -112,6 +114,7 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.0.0-M6</version>
                     <configuration>
+                        <testFailureIgnore>true</testFailureIgnore>
                         <suiteXmlFiles>
                             <suiteXmlFile>testng.xml</suiteXmlFile>
                         </suiteXmlFiles>

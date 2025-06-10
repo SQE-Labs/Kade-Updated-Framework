@@ -4,25 +4,21 @@ import logger.Log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.*;
+ import org.openqa.selenium.support.ui.*;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import pageObjects.PageObjectManager;
 import utils.ConfigFileReader;
 import utils.PropertyUtils;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
@@ -86,7 +82,7 @@ public class BaseTest {
             ChromeOptions chromeOptions = new ChromeOptions();
             if (headless) {
                 chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
-             }
+            }
             driver.set(new ChromeDriver(chromeOptions));
             log.info("ChromeDriver initialized.");
         } else if (browser.equalsIgnoreCase("firefox")) {
@@ -874,7 +870,38 @@ public class BaseTest {
         }
     }
 
-    public String requiredDigits(int n) {
+
+        public boolean isFileDownloadedOrNot(String fileName) throws InterruptedException   {
+            Thread.sleep(10000);
+            String home = System.getProperty("user.home");
+            String file_with_location = home + "/Downloads/" + fileName;
+            File file = new File(file_with_location.trim());
+            //  String fileTest = file.getName();
+            if (file.exists() && file.length() != 0) {
+                System.out.println(file_with_location + " is present with size greater than 0 ");
+                 return true;
+            } else {
+                System.out.println(file_with_location + " is not present");
+                 return false;
+            }
+        }
+    public String getFileName() {
+         getDriver().navigate().to("chrome://downloads/");
+         WebElement shadowHost1 = getDriver().findElement(By.cssSelector("downloads-manager"));
+        SearchContext shadowRoot1 = shadowHost1.getShadowRoot();
+        WebElement shadowHost3 = shadowRoot1.findElement(By.cssSelector("downloads-item"));
+        SearchContext shadowRoot3 = shadowHost3.getShadowRoot();
+        WebElement element = shadowRoot3.findElement(By.cssSelector("#title-area"));
+        return element.getText();
+    }
+    public String getDownloadFileName() {
+
+         String downloadedFile = getFileName();
+        return downloadedFile;
+    }
+
+
+        public String requiredDigits(int n) {
         String AlphaNumericString = "1234567890";
         StringBuilder s = new StringBuilder(n);
         int y;

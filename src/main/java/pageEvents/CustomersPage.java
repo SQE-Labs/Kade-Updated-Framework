@@ -63,7 +63,7 @@ public class CustomersPage extends BaseTest {
     public By searchField = By.xpath("//input[@placeholder=\"Search by name\"]");
     public By searchBtn = By.xpath("//input[@placeholder='Search by name']/..//button");
     public By alertValidation = By.xpath("//h4[@class=\"alert-heading\"]");
-    public By noResult = By.xpath("//div[@class='no-result-icon']");
+    public By noResult = By.xpath("//p[text()='Customers will appear here when they are created.']");
     public By selectCustomerinFilter = By.xpath("//div[@class='d-flex align-items-center position-relative mb-3 rounded border']");
     public By customerSelection = By.xpath("//div[@class='border rounded-3 mb-1 p-2 position-relative clone']");
     public By customerdisplayed = By.xpath("//div[@class='bg-white mb-2 row position-relative m-0 g-2 border rounded-2 -cust-row-']");
@@ -85,19 +85,33 @@ public class CustomersPage extends BaseTest {
     public By createGiftCardBtn = By.cssSelector(".btn.btn-success.btn-lg.w-100");
 
     public void navigateToCustomersPage() {
+        staticWait(3000);
+        scrollToElement(manageBusinessAcc);
         click(manageBusinessAcc);
+        staticWait(2000);
+        scrollToElement(CustomersBtn);
         click(CustomersBtn);
         click(storesCombobox);
         click(selectStore);
         click(cnt);
     }
 
-    public void applyFilter(String phoneNumber) {
+    public void applyFilter( ) {
+        staticWait(3000);
         click(filter);
         waitForElementToBeInteractable(filterPhoneNumber,20);
-        actionEnterText(filterPhoneNumber, phoneNumber);
+        actionEnterText(filterPhoneNumber, Constants.phnNumberInput);
         click(filterApplyBtn);
     }
+    public void applyFilterToCheckPhoneValidation( ) {
+        staticWait(3000);
+        click(filter);
+        waitForElementToBeInteractable(filterPhoneNumber,20);
+        actionEnterText(filterPhoneNumber, Constants.WrongPhoneNumberInput);
+        click(filterApplyBtn);
+    }
+
+
 
     public void tryCatchFilter() {
         try {

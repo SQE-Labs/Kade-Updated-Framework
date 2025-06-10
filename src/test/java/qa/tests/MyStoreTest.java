@@ -1,6 +1,7 @@
 package qa.tests;
 
 import base.BaseTest;
+import logger.Log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -51,6 +52,8 @@ public class MyStoreTest extends BaseTest {
             Assert.assertEquals(actual, Constants.skip);
             //  Click on 'Skip' button
             mystore.getSkipBtnOfStripe();
+        }else{
+            Log.info("Logo is not displayed");
         }
         scrollToElement(mystore.deleteStoreBtn);
         waitForElementToBeVisible(mystore.deleteStoreBtn, 7);
@@ -64,7 +67,7 @@ public class MyStoreTest extends BaseTest {
     public void creationOfStoreWithStripeAccount() {
 
         Login();
-        mystore.getStoreCreation();
+        mystore.getStoreCreation("123 William Bay Road, William Bay WA, Australia");
         pageObjectManager.getSidePannel().getSignOut();
         staticWait(3000);
         pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
@@ -89,7 +92,7 @@ public class MyStoreTest extends BaseTest {
     @Test(priority = 4, enabled = true, description = "SC_04(A) Verifying buying Monthly Business Plan for already created Store")
     public void c2verifyingBuyingMonthlyBusinessPlanForAlreadyCreatedStore() {
         Login();
-        mystore.getStoreCreation();
+        mystore.getStoreCreation("123 William Bay Road, William Bay WA, Australia");
         mystore.getSubscriptionPlanTab();
         //Verifying that 'Current Plan' appears under Essential Free Plan
         String message = getText(mystore.currentPlanMSg);
@@ -127,7 +130,8 @@ public class MyStoreTest extends BaseTest {
     @Test(priority = 5, enabled = true, description = "SC04(b): Verify Store creation with Yearly Business Plan on 'Store Configuration' Page ")
     public void verifyStoreCreationWithYearlyBusinessPlan() {
         Login();
-        mystore.getStoreCreation();
+        mystore.getStoreCreation("123 William Bay Road, William Bay WA, Australia");
+
         mystore.getSubscriptionPlanTab();
 
         //Verifying that 'Current Plan' appears under Essential Free Plan
@@ -142,12 +146,12 @@ public class MyStoreTest extends BaseTest {
 
         //Verifying that by-default Visa Payment method is enabled
         String defaultPaymentMthd = getText(mystore.addedVisaMethod);
-        softAssert.assertEquals(defaultPaymentMthd, Constants.visavalue);
+        Assert.assertEquals(defaultPaymentMthd, Constants.visavalue);
 
 //       Click on 'Change Pay Method' Link
         mystore.getChangePayMethodLink();//Verifying that other payment methods are available
-        softAssert.assertTrue(isElementDisplayed(mystore.newCreditCardBtn), " New credit card button");
-        softAssert.assertTrue(isElementDisplayed(mystore.newBankAccountBtn), "new bank account");
+        Assert.assertTrue(isElementDisplayed(mystore.newCreditCardBtn), " New credit card button");
+        Assert.assertTrue(isElementDisplayed(mystore.newBankAccountBtn), "new bank account");
         mystore.getbankAccountOptionForPlan();
 
         // Click on 'Terms' Checkbox
@@ -158,14 +162,12 @@ public class MyStoreTest extends BaseTest {
         mystore.getChangePlanButton();
 
         //Verifying that next bill date is generated
-        softAssert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
+        Assert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
 
         pageObjectManager.getSidePannel().getSignOut();
         staticWait(3000);
         pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
-        softAssert.assertAll();
-
-    }
+     }
 
     // Bug Failed due to 3092, 2827
 
@@ -396,17 +398,19 @@ public class MyStoreTest extends BaseTest {
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
 
-        // Click on 'Configure' Link
-        mystore.getConfigureLink();
+         // Click on 'Configure' Link
+        click(mystore.configureLink2);
 
         waitForElementToBeVisible(mystore.paymentProcessingSubTab, 5);
 
         // Click on 'Payment-Processing' Sub-Tab
         mystore.getPaymentProcessingSubTab();
+        scrollToDown();
 
         //  Click on 'Credit Card Terminal' button
 
-        if (isElementDisplayed(mystore.configureATerminalTitle)) {
+        if (isElementDisplayed(mystore.configureATerminalTitle))
+        {
             mystore.getAddaTerminalLink();
         } else {
             mystore.getCreditCardTerminalButton();
@@ -445,6 +449,7 @@ public class MyStoreTest extends BaseTest {
         staticWait(5000);
 
         //Verifying Maximum length of 'VenmoID' field
+
         Assert.assertEquals(getAttribute(mystore.venmoIDField, "maxlength"), "40");
 
         // Enter ID in 'Venmo ID" field
@@ -464,7 +469,7 @@ public class MyStoreTest extends BaseTest {
         if (!isToggleEnabled(mystore.acceptZelleToggleBtn)) {
             clickElementByJS(mystore.acceptZelleToggleBtn);
         } else {
-            hoverAndClick(mystore.acceptZelleToggleBtn, mystore.acceptZelleToggleBtn);
+            Log.info("Toggle button is already On");
         }
 
         //Verifying maximum length of 'Zelle Phone' field
@@ -522,7 +527,7 @@ public class MyStoreTest extends BaseTest {
     @Test(priority = 10, enabled = true, description = "SC 09 and Sc 10 Verify that store creation and purchasing the 'Premium' monthly plan subscription for the store, on 'Store Configuration' page.")
     public void verifyingStoreCreationWithPurchasingMonthlyPremiumPlan() {
         Login();
-        mystore.getStoreCreation();
+        mystore.getStoreCreation("123 William Bay Road, William Bay WA, Australia");
         mystore.getSubscriptionPlanTab();
         //Verifying that 'Current Plan' appears under Essential Free Plan
         String message = getText(mystore.currentPlanMSg);
@@ -645,8 +650,12 @@ public class MyStoreTest extends BaseTest {
 
         pageObjectManager.getSidePannel().getSignOut();
 
-        LoginAsCustomer();
-        payment.clickOnBillIcon();
+        LoginAsAdmin();
+        staticWait(3000);
+        scrollToElement(pageObjectManager.getSidePannel().manageBusinessAcc);
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getMyStoreTab();
+        staticWait(3000);
 
         // Need to add assertion
     }
