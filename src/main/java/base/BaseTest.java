@@ -4,25 +4,21 @@ import logger.Log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.*;
+ import org.openqa.selenium.support.ui.*;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import pageObjects.PageObjectManager;
 import utils.ConfigFileReader;
 import utils.PropertyUtils;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
@@ -79,14 +75,14 @@ public class BaseTest {
      */
     @BeforeMethod
     @Parameters({"browser", "headless"})
-    public void setupDriver(@Optional("chrome") String browser, @Optional("true") boolean headless) {
+    public void setupDriver(@Optional("chrome") String browser, @Optional("false") boolean headless) {
         softAssert = new SoftAssert();
         log.info("Setting up WebDriver for browser: {}, headless: {}", browser, headless);
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions chromeOptions = new ChromeOptions();
             if (headless) {
-                chromeOptions.addArguments("--headless=new", "--disable-gpu", "--window-size=1920,1080");
-             }
+                chromeOptions.addArguments("--headless", "--disable-gpu");
+            }
             driver.set(new ChromeDriver(chromeOptions));
             log.info("ChromeDriver initialized.");
         } else if (browser.equalsIgnoreCase("firefox")) {
@@ -95,14 +91,14 @@ public class BaseTest {
         } else {
             ChromeOptions chromeOptions = new ChromeOptions();
             if (headless) {
-                chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
+                chromeOptions.addArguments("--headless", "--disable-gpu");
             }
             driver.set(new ChromeDriver(chromeOptions));
             log.info("ChromeDriver initialized.");
         }
 
         // Maximize window and load the URL
-        getDriver().manage().window().maximize();
+        getDriver().manage().window().setSize(new Dimension(1920,1080));
         String url = configReader.getProperty("url");
         if (url != null && !url.isEmpty()) {
             getDriver().get(url);
@@ -259,7 +255,6 @@ public class BaseTest {
      */
     public String getText(By locator) {
         log.info("Getting text from element: {}", locator);
-        staticWait(4000);
         return waitForElementToBeVisible(locator, 10).getText();
     }
 
@@ -664,6 +659,7 @@ public class BaseTest {
         waitForLoaderToDisappear(loaderLocator, timeout);
     }
 
+
     //login method
     public static void Login() {
         // Fetch the username and password from the configuration file
@@ -687,14 +683,16 @@ public class BaseTest {
 
         // Verify the landing page is correct after login
         pageObjectManager.getHomePage().landingPage();
+
+
     }
+
     public static void LoginAsNewUser() {
         log.info("Starting Login test - Entering username and password");
 
-
         // Fetch the username and password from the configuration file
-        String username = configReader.getProperty("username");
-        String password = configReader.getProperty("password");
+        String username = configReader.getProperty("newuser");
+        String password = configReader.getProperty("newpass");
 
         // Validate if username and password are present in the config file
         if (username == null || password == null) {

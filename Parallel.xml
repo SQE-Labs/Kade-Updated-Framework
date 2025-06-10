@@ -14,15 +14,9 @@
 
         <!-- To Run Whole Suite-->
 
-<!--        <packages>-->
-<!--            <package name="qa.tests" />-->
-<!--        </packages>-->
-        <classes>
-            <class name="qa.tests.MyStoreTest" />
-            <class name="qa.tests.BillTest" />
-            <class name="qa.tests.PaymentsAndRefundTest" />
-            <class name="qa.tests.TransactionsTest" />
-        </classes>
+        <packages>
+            <package name="qa.tests" />
+        </packages>
 
     </test>
 </suite>

@@ -14,7 +14,7 @@ import static utils.Constants.validPassword;
 public class MyStorePage extends BaseTest {
     public By registerNewBusinessBtn = By.partialLinkText("Register new business");
     public By skipPopUpTitle = By.xpath("//h5[text()='Skip']");
-    public By skipStripeAccountBtn = By.cssSelector(".btn-lg.fw-bold.w-100.btn.btn-outline-primary");
+    public By skipStripeAccountBtn = By.xpath("//button[contains(text(), 'Skip')]");
     public By skipStripeAccountPopUpBtn = By.xpath("//button[text()='Skip']");
     public By deleteStoreBtn = By.xpath("//button[text()='Delete the store']");
   public By deleteStoreIcon = By.xpath("//i[@class='fal fa-thumbs-up text-white']");
@@ -30,7 +30,7 @@ public class MyStorePage extends BaseTest {
   public By timeZoneField = By.xpath("//select[@name='timeZone']");
   public By timeZoneOption = By.xpath("//option[text()='(GMT-05:00) Eastern Time (US & Canada)']");
   public By taxRateTbx = By.xpath("//input[@name='taxRate']");
-  public By saveBtn = By.xpath("//div[contains(@class,'d-flex mt-3')]//button");
+  public By saveBtn = By.xpath("//button[contains(@class,'-btn-save-')and text()='Save']");
   public By saveVenmoPaymentBtn = By.xpath("(//div[@class='card-footer']//button)[1]");
   public By stripeBtn = By.xpath("//a[contains(@class,'d-block')]/img");
   public By connectStripePopUpTitle = By.xpath("//h5[text()='Connect to stripe']");
@@ -443,7 +443,7 @@ public class MyStorePage extends BaseTest {
         enterText(StoreNameTbx, storeNamewithstripe);
         actionEnterText(phoneTbx, phone);
         selectStoreAddress(Constants.storeAddress);
-        staticWait(3000);
+        staticWait(5000);
         scrollToElement(saveBtn);
         waitForElementToBeVisible(saveBtn,5);
         getSaveButton();
@@ -500,13 +500,13 @@ public class MyStorePage extends BaseTest {
             waitForElementToBeClickable(pageObjectManager.getSidePannel().myStoreBtn, 3);
             pageObjectManager.getSidePannel().getMyStoreTab();
             getRegisterNewBusinessButton();
+            staticWait(5000);
         }
-        waitForElementToBeClickable(skipStripeAccountBtn,5);
+        // Click on 'Skip Stripe Account' Button
         getSkipStripeAccountButton();
-        staticWait(3000);
-//        waitForElementToBeClickable(skipStripeAccountPopUpBtn,5);
+        waitForElementToBeClickable(skipStripeAccountPopUpBtn,5);
         getSkipBtnOfStripe();
-        staticWait(3000);
+        staticWait(5000);
         scrollToElement(saveBtn);
         waitForElementToBeClickable(saveBtn,3);
         getSaveButton();
