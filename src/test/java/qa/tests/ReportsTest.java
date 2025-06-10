@@ -1,6 +1,7 @@
 package qa.tests;
 
 import base.BaseTest;
+import logger.Log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -111,7 +112,7 @@ public class ReportsTest extends BaseTest {
     }
 
     @Test
-    public void verifyMonthlyPayConfirmationReport() {
+    public void verifyMonthlyPayConfirmationReport() throws InterruptedException {
         log.info("Verify that monthly reports get generated under 'Monthly Payments Confirmations' tab on 'Reports' page, after every month end.");
 
         Login();
@@ -125,10 +126,9 @@ public class ReportsTest extends BaseTest {
         waitForElementToBeInteractable(reportsPage.year25First,10);
         clickElementByJS(reportsPage.year25First);
         staticWait(5000);
-        String fileStatus = isFileDownloaded(Constants.filenameMonthly);
-        System.out.println("fileStatus :" + fileStatus);
-        Assert.assertEquals(fileStatus,Constants.filePresent);
-    }
+        String downloadFile = getDownloadFileName();
+        Assert.assertTrue(isFileDownloadedOrNot(downloadFile));
+     }
 
     @Test
     public void verifyPaymentReceived() {
@@ -153,21 +153,21 @@ public class ReportsTest extends BaseTest {
         click(reportsPage.payReceived);
         click(reportsPage.todayFilter);
         staticWait(1000);
-        System.out.println(getElementText(reportsPage.printTotalReceivedPay));
-        System.out.println(getElementText(reportsPage.printTotalTaxPay));
-        System.out.println(getElementText(reportsPage.printTotalTip));
+        Log.info(getElementText(reportsPage.printTotalReceivedPay));
+        Log.info(getElementText(reportsPage.printTotalTaxPay));
+        Log.info(getElementText(reportsPage.printTotalTip));
 
         click(reportsPage.yesterdayFilter);
         staticWait(1000);
-        System.out.println(getElementText(reportsPage.printTotalReceivedPay));
-        System.out.println(getElementText(reportsPage.printTotalTaxPay));
-        System.out.println(getElementText(reportsPage.printTotalTip));
+        Log.info(getElementText(reportsPage.printTotalReceivedPay));
+        Log.info(getElementText(reportsPage.printTotalTaxPay));
+        Log.info(getElementText(reportsPage.printTotalTip));
 
         click(reportsPage.lastMonthFilter);
         staticWait(1000);
-        System.out.println(getElementText(reportsPage.printTotalReceivedPay));
-        System.out.println(getElementText(reportsPage.printTotalTaxPay));
-        System.out.println(getElementText(reportsPage.printTotalTip));
+        Log.info(getElementText(reportsPage.printTotalReceivedPay));
+        Log.info(getElementText(reportsPage.printTotalTaxPay));
+        Log.info(getElementText(reportsPage.printTotalTip));
     }
 
     @Test
@@ -182,8 +182,8 @@ public class ReportsTest extends BaseTest {
         waitForElementToBeVisible(reportsPage.applyDateRangePayRec,10);
         enterText(reportsPage.dateRangePayReceived, Constants.dateRange);
         click(reportsPage.applyDateRangePayRec);
-        System.out.println(getElementText(reportsPage.printTotalReceivedPay));
-        System.out.println(getElementText(reportsPage.printTotalTaxPay));
-        System.out.println(getElementText(reportsPage.printTotalTip));
+        Log.info(getElementText(reportsPage.printTotalReceivedPay));
+        Log.info(getElementText(reportsPage.printTotalTaxPay));
+        Log.info(getElementText(reportsPage.printTotalTip));
     }
 }

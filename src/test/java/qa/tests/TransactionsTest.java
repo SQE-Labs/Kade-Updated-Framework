@@ -60,16 +60,13 @@ public class TransactionsTest extends BaseTest {
 
     @Test(priority = 5, enabled = true,description = "TRS5 (a) :Verify that store manager is able to charge a customer manually, after stripe payment is configured for a store.")
     public void a3chargeManuallyAfterStripeConfigured() {
-        transaction.getManualCharge("10000","Without Stripe Account");
-
-
+        transaction.getManualCharge("Without Stripe Account");
     }
 
     @Test(priority = 6, enabled = true,description = "TRS5 (b): Verify that store manager is able to charge a customer when terminal is configured for a store.")
     public void newChargerWithTerminal() {
         Login();
         transaction.getTerminalcharge();
-
     }
 
     @Test(priority = 7, enabled = true,description = "TRS 5 (c): Verify that the store manager can manually do new charge payment, after cancelling the terminal automatic payment deduction process, on 'Transaction' page.")
@@ -122,10 +119,10 @@ public class TransactionsTest extends BaseTest {
 
     }
 
+    // Functionality changed
     @Test(priority = 15, enabled = true,description = "TRS 16 verify That processing payment icon appears, after making bank transfer payment")
     public void verifyProcessingPaymentIcon() {
         transaction.verifyPaymentProcessingIcon();
-
     }
 
     @Test(priority = 16, enabled = true,description = "TRS 09- A Verify that store manager is able to filter the transaction on 'Transactions' page.")
@@ -134,7 +131,7 @@ public class TransactionsTest extends BaseTest {
     }
 
     @Test(priority = 17, enabled = true,description = "TRS 09- A Verify that store manager is able to Download the transactions on 'Transactions' page.")
-    public void verifyThatTransactionsGetsDownloaded() {
+    public void verifyThatTransactionsGetsDownloaded() throws InterruptedException {
         transaction.FilterGetsDownloadTransactions();
 
     }

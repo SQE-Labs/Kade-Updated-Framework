@@ -18,6 +18,7 @@ public class SignUpTest extends BaseTest {
     private PageObjectManager pageObjectManager = PageObjectManager.getInstance();
     private SignUpPage signUp = pageObjectManager.getSignUpPage();
     String st = requiredString(4);
+    SignUpPage SignUp=new SignUpPage();
 
     @Test(priority = 0, description = "CA_TC 1: Verify the elements of 'Create New Account' page after selecting  'Personal Account' option, on 'Login' page..")
     public void VerifyTheSignUpPage() {
@@ -89,6 +90,7 @@ public class SignUpTest extends BaseTest {
 
     @Test(priority = 3,description = "CA_TC 2(a): Verify that creating a new account by email address with  Business Account option.")
     public void verifyCreatingNewAccountByEmailWithBusinessAccount() {
+        String name=requiredString(4);
         pageObjectManager.getLoginPage().getSignUpLink();
         //Clicking on Business Account Option
         signUp.getBusinessAccount();
@@ -143,10 +145,10 @@ public class SignUpTest extends BaseTest {
 
         //Entering name in the Full name field
         staticWait(3000);
-        enterText(signUp.fullname, "New Kade Member" + st);
-
+        actionEnterText(SignUp.fullname, "New kade Member");
+        staticWait(3000);
         // Clicking on 'Continue' button
-        signUp.getBusinessContinuebtn();
+        click(SignUp.ContinueButtonBusiness);
     }
 
     @Test(priority = 4,description = "CA_TC 2(b) : Verify that creating new account by phone number with Business Account option.")

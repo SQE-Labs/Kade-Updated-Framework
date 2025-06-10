@@ -66,8 +66,8 @@ public class QRCodeTest extends BaseTest {
     @Test(priority = 8, enabled = true, description = "payment Throgh Temporarily Unavailable Toggle button making off")
     public void paymentThroghTemporarilyUnavailable() {
         QrCode.paymentThroughByenablingTheToggleBtn("100.00");
-
     }
+
     @Test(priority = 9, enabled = true, description = "Create fixed amount create code")
     public void fixedAmountQrCode() {
         QrCode.fixedAmountQrCode("Nothing to be added","100.00");
@@ -77,10 +77,10 @@ public class QRCodeTest extends BaseTest {
     public void ticketsAndEventsQrCode() {
         QrCode.ticketsAndEvents("200.00");
     }
+
     @Test(priority = 11, enabled = true, description = "Filter Qr Code")
     public void filterQrCode() {
         QrCode.QrFilter();
     }
-
 
 }

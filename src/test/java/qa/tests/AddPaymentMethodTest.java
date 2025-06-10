@@ -144,7 +144,5 @@ public class AddPaymentMethodTest extends BaseTest {
         staticWait(5000);
         paymentMethod.getTrashIcon();
         paymentMethod.getThumbIcon();
-
-
     }
 }

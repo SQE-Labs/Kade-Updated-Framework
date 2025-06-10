@@ -39,11 +39,11 @@ public class SignUpPage extends BaseTest {
           public By securityCodePC = By.xpath("//label[text()='Security Code']//following-sibling::input");
 
           // Locators for Business Account Option
-    public By phoneFieldLabel = By.xpath("//div[@class='mb-3 -row- pt-3']/label[1]");
+    public By phoneFieldLabel = By.xpath("//label[contains(text(),'Mobile phone number')]");
    public By useEmailLink = By.xpath("//button[text()='Use email']");
-   public By mobilePhoneField = By.cssSelector("[name='phone']");
+   public By mobilePhoneField = By.xpath("//input[@name='phone']");
    public By emailBusinessField = By.cssSelector("[name='email']");
-   public By fullname= By.cssSelector("[name='name']");
+   public By fullname= By.xpath("//input[@class='form-control form-control-lg fs-3']");
    public By startOverLink = By.cssSelector(".far.fa-edit");
    public By resendCode = By.xpath("//button[contains(text(),'Resend')]/..");
    public By ContinueButtonBusiness = By.xpath("(//button[@type='submit'][text()='Continue'])[2]");

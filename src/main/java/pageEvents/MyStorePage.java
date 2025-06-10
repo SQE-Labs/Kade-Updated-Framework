@@ -1,6 +1,7 @@
 package pageEvents;
 
 import base.BaseTest;
+import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -12,115 +13,117 @@ import static utils.Constants.validPassword;
 
 
 public class MyStorePage extends BaseTest {
-    public By registerNewBusinessBtn = By.partialLinkText("Register new business");
+    By registerNewBusinessBtn = By.partialLinkText("Register new business");
     public By skipPopUpTitle = By.xpath("//h5[text()='Skip']");
     public By skipStripeAccountBtn = By.xpath("//button[contains(text(), 'Skip')]");
     public By skipStripeAccountPopUpBtn = By.xpath("//button[text()='Skip']");
     public By deleteStoreBtn = By.xpath("//button[text()='Delete the store']");
-  public By deleteStoreIcon = By.xpath("//i[@class='fal fa-thumbs-up text-white']");
-  public By alertMessage = By.cssSelector("form.link-check.checked div.alert-message");
-  public By configureBtnBusinessPlanStore = By.xpath("(//h6[text()='Automation Flow Business']/../..//a)[1]");
-  public By blankFieldWarningMsg = By.xpath("//p[@class='alert-content']");
-  public By storeLogo = By.xpath("//div[@class='display-none -update-div-']//a");
-  public By StoreNameTbx = By.xpath("//input[@name='name']");
-  public By locationDescTbx = By.xpath("//input[@name='description']");
-  public By storeAddressField = By.cssSelector(".form-control.pac-target-input");
-  public By storeAddressOption = By.xpath("(//div[@class='pac-item'])[1]");
-  public By phoneTbx = By.xpath("//input[@name='phone']");
-  public By timeZoneField = By.xpath("//select[@name='timeZone']");
-  public By timeZoneOption = By.xpath("//option[text()='(GMT-05:00) Eastern Time (US & Canada)']");
-  public By taxRateTbx = By.xpath("//input[@name='taxRate']");
-  public By saveBtn = By.xpath("//button[contains(@class,'-btn-save-')and text()='Save']");
-  public By saveVenmoPaymentBtn = By.xpath("(//div[@class='card-footer']//button)[1]");
-  public By stripeBtn = By.xpath("//a[contains(@class,'d-block')]/img");
-  public By connectStripePopUpTitle = By.xpath("//h5[text()='Connect to stripe']");
-  public By testStripeBtn = By.partialLinkText("Create a test Stripe account");
-  public By bankTransferToggleBtn = By.xpath("//span[text()='Accept bank transfer']");
-  public By skipForNowBtn = By.xpath("//button[text()='Skip for now']");
-  public By continueBtn = By.xpath("//button[text()='Continue']");
-  public By configureLink = By.xpath("(//h6[starts-with(text(),'Automation Flow Business')]/../../div/a)[1]");
+    By deleteStoreIcon = By.xpath("//i[@class='fal fa-thumbs-up text-white']");
+    public By alertMessage = By.cssSelector("form.link-check.checked div.alert-message");
+    public By configureBtnBusinessPlanStore = By.xpath("(//h6[text()='Automation Flow Business']/../..//a)[1]");
+    public By blankFieldWarningMsg = By.xpath("//p[@class='alert-content']");
+    public By storeLogo = By.xpath("//div[@class='display-none -update-div-']//a");
+    By editIcon = By.xpath("//div[text()='Avenue']/button");
+    public By StoreNameTbx = By.xpath("//input[@name='name']");
+    public By locationDescTbx = By.xpath("//input[@name='description']");
+    public By storeAddressField = By.cssSelector(".form-control.pac-target-input");
+    public By storeAddressOption = By.xpath("(//div[@class='pac-item'])[1]");
+    public By phoneTbx = By.xpath("//input[@name='phone']");
+    By address = By.xpath("//input[@name='fulladdress']");
+    public By timeZoneField = By.xpath("//select[@name='timeZone']");
+    public By timeZoneOption = By.xpath("//option[text()='(GMT-05:00) Eastern Time (US & Canada)']");
+    public By taxRateTbx = By.xpath("//input[@name='taxRate']");
+    public By saveBtn = By.xpath("//button[text()='Save']");
+    public By saveVenmoPaymentBtn = By.xpath("(//div[@class='card-footer']//button)[1]");
+    public By stripeBtn = By.cssSelector(".img-fluid.h-100");
+    public By connectStripePopUpTitle = By.xpath("//h5[text()='Connect to stripe']");
+    public By testStripeBtn = By.partialLinkText("Create a test Stripe account");
+    public By bankTransferToggleBtn = By.xpath("//span[text()='Accept bank transfer']");
+    public By skipForNowBtn = By.xpath("//button[text()='Skip for now']");
+    public By continueBtn = By.xpath("//button[text()='Continue']");
+    public By configureLink = By.xpath("(//h6[starts-with(text(),'Automation Flow Business')]/../../div/a)[1]");
 
+    public By modifyBtn = By.xpath("//button[text()='Modify']");
+    public By plansSubTab = By.partialLinkText("Plans");
+    public By currentPlanMSg = By.xpath("//span[@class='text-success me-1']");
+    public By configureLink2 = By.xpath("(//h6[starts-with(text(),'Automation flow 2')]/../../div/a)[1]");
 
-  public By configureLink2 = By.xpath("(//h6[starts-with(text(),'Automation flow 2')]/../../div/a)[1]");
-  public By modifyBtn = By.xpath("//button[text()='Modify']");
-  public By plansSubTab = By.partialLinkText("Plans");
-  public By currentPlanMSg = By.xpath("//span[@class='text-success me-1']");
     public By planSignUpBtn = By.partialLinkText("Sign up");
-   public By yearlyBtn = By.xpath("//label[text()='Yearly']");
-   public By termsCbx = By.xpath("//span[text()='     I agree to the']");
-   public By changePlanBtn = By.xpath("//button[text()='Change plan']");
-   public By addedStoreName = By.xpath("(//div[contains (@class, 'form-group mb-3')]//label//following-sibling::div)[1]");
-   public By addedLocationDescription = By.cssSelector("div[class='display-none -readonly-div-'] span");
-   public By addedStoreAddress = By.xpath("//label[text()='Store Address']/following-sibling::p");
-   public By addedStorePhone = By.xpath("//label[text()='Store Phone']/following-sibling::p");
-   public By addedCurrencyOfStore = By.xpath("//label[text()='Currency of the Store']/following-sibling::p");
-   public By addedTaxRate = By.xpath("//label[text()='Tax rate']/following-sibling::p");
-   public By addedVisaMethod = By.xpath("(//span[contains(text(), 'Visa 1111')])[1]");
-   public By newCreditCardBtn = By.xpath("//span[text()='New Credit Card']");
-   public By newBankAccountBtn = By.xpath("//span[text()='New Bank Account']");
-   public By changePayMethodBtn = By.xpath("//button[text()='change']");
-   public By nextBillDate = By.xpath("(//div[@class='d-flex'])[2]");
-   public By configureBtnWithoutStripe = By.xpath("(//h6[text()='Automation Flow 3']/../..//a)[1]");
-   public By settingsSubTab = By.xpath("//div[text()='Settings']");
-   public By maxBillAmountTbx = By.xpath("//input[@name='maxBillAmountThreshold']");
-   public By tipGratuityToggleBtn = By.xpath("//span[@class='ms-2 custom-check-on'][text()='No']");
-   public By tipGratuityToggleOffBtn = By.xpath("//span[@class='ms-2 custom-check-off' and text()='Yes']");
-   public By tipConfigureBtn = By.xpath("//div[@class='checked-d-none']//button[@type='button'][text()='Configure']");
-   public By tipConfigPopUpTitle = By.xpath("//h5[text()='Tip configuration']");
-   public By tipPercentField1 = By.xpath("//input[@name='tipSelections[0].percentage']");
-   public By tipPercentField2 = By.xpath("//input[@name='tipSelections[1].percentage']");
-   public By tipPercentField3 = By.xpath("//input[@name='tipSelections[2].percentage']");
-   public By tipFlatValueField1 = By.xpath("//input[@name='tipSelections[0].amount']");
-   public By tipFlatValueField2 = By.xpath("//input[@name='tipSelections[1].amount']");
-   public By tipFlatValueField3 = By.xpath("//input[@name='tipSelections[2].amount']");
-   public By saveChangesBtn = By.xpath("//button[text()='Save changes']");
-   public By rewardConfigureBtn = By.xpath("(//button[@type='button'][text()='Configure'])[2]");
-   public By rewardConfigPopUpTitle = By.xpath("//h5[text()='Rewards Program Configuration']");
-   public By rewardPointToggleBtn = By.xpath("//span[@class='ms-2 fs-6 custom-check-off']");
-   public By rewardPointToggleOffBtn = By.xpath("//span[@class='ms-2 fs-6 custom-check-on']");
-   public By rewardPointsField = By.xpath("//input[@name='pointsForGiftcard']");
-   public By rewardPtsValue = By.xpath("//input[@name='ponitsValue']");
-   public By checkBtn = By.cssSelector(".btn.btn-dark.-crop-");
-   public By checkDeleteUser = By.xpath("//button[@class='btn btn-link ms-5 -yes-']");
-   public By storeLinksBtn = By.xpath("//button[text()='Store links']");
-   public By websiteURLField = By.xpath("//input[@name='StoreURLTypes[0].url']");
-   public By earnRewardsToggleBtn = By.xpath("//label[@class='custom-checkbox fs-3'][1]");
-   public By earnRewardsToggleOffBtn = By.xpath("//label[text()=' Website']/../..//i[@class='far fa-toggle-on custom-check-on ']");
-   public By enterInPercentToggleBtn = By.cssSelector(".custom-checkbox.mb-2>span");
+    public By yearlyBtn = By.xpath("//label[text()='Yearly']");
+    public By termsCbx = By.xpath("//span[text()='     I agree to the']");
+    public By changePlanBtn = By.xpath("//button[text()='Change plan']");
+    public By addedStoreName = By.xpath("(//div[contains (@class, 'form-group mb-3')]//label//following-sibling::div)[1]");
+    public By addedLocationDescription = By.cssSelector("div[class='display-none -readonly-div-'] span");
+    public By addedStoreAddress = By.xpath("//label[text()='Store Address']/following-sibling::p");
+    public By addedStorePhone = By.xpath("//label[text()='Store Phone']/following-sibling::p");
+    public By addedCurrencyOfStore = By.xpath("//label[text()='Currency of the Store']/following-sibling::p");
+    public By addedTaxRate = By.xpath("//label[text()='Tax rate']/following-sibling::p");
+    public By addedVisaMethod = By.xpath("(//span[contains(text(), 'Visa 1111')])[1]");
+    public By newCreditCardBtn = By.xpath("//span[text()='New Credit Card']");
+    public By newBankAccountBtn = By.xpath("//span[text()='New Bank Account']");
+    public By changePayMethodBtn = By.xpath("//button[text()='change']");
+    public By nextBillDate = By.xpath("(//div[@class='d-flex'])[2]");
+    public By configureBtnWithoutStripe = By.xpath("(//h6[text()='Automation Flow 3']/../..//a)[1]");
+    public By settingsSubTab = By.xpath("//div[text()='Settings']");
+    public By maxBillAmountTbx = By.xpath("//input[@name='maxBillAmountThreshold']");
+    public By tipGratuityToggleBtn = By.xpath("//span[@class='ms-2 custom-check-on'][text()='No']");
+    public By tipGratuityToggleOffBtn = By.xpath("//span[@class='ms-2 custom-check-off' and text()='Yes']");
+    public By tipConfigureBtn = By.xpath("//div[@class='checked-d-none']//button[@type='button'][text()='Configure']");
+    public By tipConfigPopUpTitle = By.xpath("//h5[text()='Tip configuration']");
+    public By tipPercentField1 = By.xpath("//input[@name='tipSelections[0].percentage']");
+    public By tipPercentField2 = By.xpath("//input[@name='tipSelections[1].percentage']");
+    public By tipPercentField3 = By.xpath("//input[@name='tipSelections[2].percentage']");
+    public By tipFlatValueField1 = By.xpath("//input[@name='tipSelections[0].amount']");
+    public By tipFlatValueField2 = By.xpath("//input[@name='tipSelections[1].amount']");
+    public By tipFlatValueField3 = By.xpath("//input[@name='tipSelections[2].amount']");
+    public By saveChangesBtn = By.xpath("//button[text()='Save changes']");
+    public By rewardConfigureBtn = By.xpath("(//button[@type='button'][text()='Configure'])[2]");
+    public By rewardConfigPopUpTitle = By.xpath("//h5[text()='Rewards Program Configuration']");
+    public By rewardPointToggleBtn = By.xpath("//span[@class='ms-2 fs-6 custom-check-off']");
+    public By rewardPointToggleOffBtn = By.xpath("//span[@class='ms-2 fs-6 custom-check-on']");
+    public By rewardPointsField = By.xpath("//input[@name='pointsForGiftcard']");
+    public By rewardPtsValue = By.xpath("//input[@name='ponitsValue']");
+    public By checkBtn = By.cssSelector(".btn.btn-dark.-crop-");
+    public By checkDeleteUser = By.xpath("//button[@class='btn btn-link ms-5 -yes-']");
+    public By storeLinksBtn = By.xpath("//button[text()='Store links']");
+    public By websiteURLField = By.xpath("//input[@name='StoreURLTypes[0].url']");
+    public By earnRewardsToggleBtn = By.xpath("//label[@class='custom-checkbox fs-3'][1]");
+    public By earnRewardsToggleOffBtn = By.xpath("//label[text()=' Website']/../..//i[@class='far fa-toggle-on custom-check-on ']");
+    public By enterInPercentToggleBtn = By.cssSelector(".custom-checkbox.mb-2>span");
     public By paymentProcessingSubTab = By.xpath("//div[text()='Payment Processing']");
-   public By acceptVenmoToggleBtn = By.xpath("(//div[@class='my-3 loaded']//label/i)[14]");
-   public By enableToggle=By.xpath("(//i[@class='far fa-toggle-on custom-check-on '])[8]");
-   public By acceptZelleToggleBtn = By.xpath("(//span[text()='Accept Zelle'])[1]");
-   public By venmoIDField = By.xpath("//label[text()='Venmo ID']/following-sibling::input");
-   public By venmoNameField = By.xpath("//label[text()='Venmo Name']/following-sibling::input");
-   public By zellePhoneField = By.xpath("//input[@name='phoneemail']");
-   public By zelleNameField = By.xpath("//label[text()='Name of the account in Zelle']/following-sibling::input");
+    public By acceptVenmoToggleBtn = By.xpath("(//span[text()='Accept Venmo']/../i)[2]");
+    public By enableToggle = By.xpath("(//i[@class='far fa-toggle-on custom-check-on '])[8]");
+    public By acceptZelleToggleBtn = By.xpath("(//span[text()='Accept Zelle'])[1]");
+    public By venmoIDField = By.xpath("//label[text()='Venmo ID']/following-sibling::input");
+    public By venmoNameField = By.xpath("//label[text()='Venmo Name']/following-sibling::input");
+    public By zellePhoneField = By.xpath("//input[@name='phoneemail']");
+    public By zelleNameField = By.xpath("//label[text()='Name of the account in Zelle']/following-sibling::input");
     public By creditCardTerminalBtn = By.xpath("//a[text()='Credit Card Terminals']");
- public By addNewTerminalBtn = By.xpath("//button[text()='Add new terminal']");
- public By newTerminalPopUpTitle = By.xpath("//h5[text()='New Terminal']");
- public By creditCardTerminalOption = By.xpath("//label[text()='Select your terminal']/../div[4]/label/i[2]");
- public By manageUserSubTab = By.xpath("//div[text()='Manage Users']");
- public By addUserButton = By.xpath("//div[@class='card-footer']//h6");
- public By manageUserNameField = By.xpath("//div[@class='mb-2']//div[@class='input-group']//input");
- public By userProfileDropDown = By.xpath("//select[@name='profileId']");
- public By managerProfileOption = By.xpath("//option[@value='3000']");
- public By readerProfileOption = By.xpath("//option[@value='1000']");
- public By operatorProfileOption = By.xpath("//option[@value='2000']");
- public By manageUserPassword = By.xpath("//input[@name='passWord']");
- public By createManagerUserButton = By.xpath("//button[@class='btn btn-primary']");
- public By addUserPopUpTitle = By.cssSelector(".modal-title");
- public By inviteExistingUserButton = By.xpath("//button[@class='position-relative btn btn-outline-primary']");
- public By inviteExistingUserPopupTitle = By.cssSelector(".modal-title");
- public By inviteMangeUserEmailOrPhoneField = By.xpath("//input[@name='email_phones']");
- public By sendInviteButton = By.xpath("//button[text()='Send Invite']");
- public By activeSubTab = By.xpath("//span[text()='Active']");
- public By deactivateBtn = By.xpath("//button[text()='Deactivate']");
- public By activateButton = By.xpath("//button[text()='Activate']");
- public By notActiveStoreLabel = By.xpath("//h4[@class='me-2 text-danger']");
- public By activeStoreLabel = By.xpath("//h4[@class='me-2 text-success']");
- public By acceptVenmoHeader = By.xpath("//form[@action='/api/Stores/SaveVenmoGatewayApplication' and @style='display: none;']");
- public By acceptZelleHeader = By.xpath("//form[@action='/api/Stores/SaveZelleGatewayApplication']");
- public  By deleteUserIcon = By.xpath("(//h5[text()='Users with access to this store']/../..//button)[2]");
+    public By addNewTerminalBtn = By.xpath("//button[text()='Add new terminal']");
+    public By newTerminalPopUpTitle = By.xpath("//h5[text()='New Terminal']");
+    public By creditCardTerminalOption = By.xpath("//label[text()='Select your terminal']/../div[4]/label/i[2]");
+    public By manageUserSubTab = By.xpath("//div[text()='Manage Users']/../..");
+    public By addUserButton = By.xpath("//div[@class='card-footer']//h6");
+    public By manageUserNameField = By.xpath("//div[@class='mb-2']//div[@class='input-group']//input");
+    public By userProfileDropDown = By.xpath("//select[@name='profileId']");
+    public By managerProfileOption = By.xpath("//option[@value='3000']");
+    public By readerProfileOption = By.xpath("//option[@value='1000']");
+    public By operatorProfileOption = By.xpath("//option[@value='2000']");
+    public By manageUserPassword = By.xpath("//input[@name='passWord']");
+    public By createManagerUserButton = By.xpath("//button[@class='btn btn-primary']");
+    public By addUserPopUpTitle = By.cssSelector(".modal-title");
+    public By inviteExistingUserButton = By.xpath("//button[@class='position-relative btn btn-outline-primary']");
+    public By inviteExistingUserPopupTitle = By.cssSelector(".modal-title");
+    public By inviteMangeUserEmailOrPhoneField = By.xpath("//input[@name='email_phones']");
+    public By sendInviteButton = By.xpath("//button[text()='Send Invite']");
+    public By activeSubTab = By.xpath("//span[text()='Active']");
+    public By deactivateBtn = By.xpath("//button[text()='Deactivate']");
+    public By activateButton = By.xpath("//button[text()='Activate']");
+    public By notActiveStoreLabel = By.xpath("//h4[@class='me-2 text-danger']");
+    public By activeStoreLabel = By.xpath("//h4[@class='me-2 text-success']");
+    public By acceptVenmoHeader = By.xpath("//form[@action='/api/Stores/SaveVenmoGatewayApplication' and @style='display: none;']");
+    public By acceptZelleHeader = By.xpath("//form[@action='/api/Stores/SaveZelleGatewayApplication']");
+    public By deleteUserIcon = By.xpath("(//h5[text()='Users with access to this store']/../..//button)[2]");
     public By saveZellePaymentSettings = By.xpath("//form[@action='/api/Stores/SaveZelleGatewayApplication'] //button[text()='Save']");
     public By editStoreBtn = By.xpath("//i[@class='far fa-edit ms-2']");
     public By premiumTitle = By.xpath("//h4[text()='Premium']");
@@ -130,12 +133,12 @@ public class MyStorePage extends BaseTest {
     public By premiumYearlySignUpBtn = By.cssSelector("div#div_p3_1>a");
     public By storeLogoCreation = By.xpath("(//div[text()='Click on the logo to replace'])[2]/..");
     public By configureLinkofStoreName = By.xpath("//tr[td[contains(text(),'\" + storename + \"')]]//a[text()='Configure']");
-   public By fileInput2 = By.xpath("//input[@type='file' and @accept='image/*']");
-   public By configureATerminalTitle = By.cssSelector(".text-danger.mb-3");
+    public By fileInput2 = By.xpath("//input[@type='file' and @accept='image/*']");
+    public By configureATerminalTitle = By.xpath("//h4[contains(text(),'Configure a terminal')]");
     public By addACreditCardTerminal = By.xpath("//h4[text()='Configure a terminal']/../div//button");
     public By terminalEditIcon = By.xpath("(//div[contains(@class, 'row-cols-2')]//i)[1]");
     public By terminalDeleteBtn = By.cssSelector(".d-flex.mt-3>button:nth-child(2)");
-    By  venmoIDLabel = By.xpath("//label[text()='Venmo ID']");
+    By venmoIDLabel = By.xpath("//label[text()='Venmo ID']");
     public By bankAccountOptionForPlan = By.xpath("//span[contains(text(),'Bank Account 6789')]/..");
     public By createUserAndCredetButton = By.xpath("//div[@class='mb-1 text-center']/..");
     public By inviteUserButton = By.xpath("//span[text()='Recommended']/..");
@@ -145,13 +148,13 @@ public class MyStorePage extends BaseTest {
     By avenue= By.xpath("//div[text()='Avenue']");
     By editIConAvenue = By.xpath("//div[text()='Avenue']/button/i");
 
-    public void getValidationCrossIcon(){
-        waitForElementToBeClickable(validationCrossIcon,5);
+    public void getValidationCrossIcon() {
+        waitForElementToBeClickable(validationCrossIcon, 5);
         click(validationCrossIcon);
     }
 
     // Methods
-    public void getTickIconofImg(){
+    public void getTickIconofImg() {
         click(checkBtn);
     }
     public String getStoreName() {
@@ -161,60 +164,74 @@ public class MyStorePage extends BaseTest {
         click(registerNewBusinessBtn);
     }
 
-    public void getSkipStripeAccountButton(){
+    public void getSkipStripeAccountButton() {
         click(skipStripeAccountBtn);
     }
 
-    public void getSkipBtnOfStripe(){
-        click(skipStripeAccountPopUpBtn);
-    }
-    public void getDeleteStoreButton(){
-    click(deleteStoreBtn);
+    public void getSkipBtnOfStripe() {
+        waitForElementToBeClickable(skipStripeAccountPopUpBtn, 10);
+        hoverAndClick(skipStripeAccountPopUpBtn, skipStripeAccountPopUpBtn);
     }
 
-    public void getDeleteStoreIcon(){
+    public void getDeleteStoreButton() {
+        click(deleteStoreBtn);
+    }
+
+    public void getDeleteStoreIcon() {
         click(deleteStoreIcon);
     }
 
     public void getStripeAccountBtn(){
-      staticWait(3000);
+        staticWait(2000);
         click(stripeBtn);
         staticWait(2000);
     }
-    public void getTestStripeAccountButton(){
+
+    public void getTestStripeAccountButton() {
         click(testStripeBtn);
     }
-    public void getEditStoreButton(){
+
+    public void getEditStoreButton() {
         click(editStoreBtn);
     }
-    public void getSaveButton(){
+
+    public void getSaveButton() {
         clickElementByJS(saveBtn);
     }
-    public void getBankTransferToggleButton(){
+
+    public void getBankTransferToggleButton() {
         clickElementByJS(bankTransferToggleBtn);
     }
-    public void getContinueButton(){
+
+    public void getContinueButton() {
         clickElementByJS(continueBtn);
     }
-    public void getStorelogo(){
+
+    public void getStorelogo() {
         click(storeLogo);
     }
-    public void getSkipForNowButton(){
+
+    public void getSkipForNowButton() {
         click(skipForNowBtn);
     }
-    public void getSubscriptionPlanTab(){
+
+    public void getSubscriptionPlanTab() {
         click(plansSubTab);
     }
-    public void getPlansSignUpButton(){
+
+    public void getPlansSignUpButton() {
         click(planSignUpBtn);
     }
-    public void getTermsCheckbox(){
+
+    public void getTermsCheckbox() {
         click(termsCbx);
     }
-    public void getChangePlanButton(){
+
+    public void getChangePlanButton() {
         click(changePlanBtn);
     }
-    public void getYearlyPlanButton(){
+
+    public void getYearlyPlanButton() {
         click(yearlyBtn);
     }
     public void getChangePayMethodLink(){
@@ -224,19 +241,24 @@ public class MyStorePage extends BaseTest {
         scrollToElement(createUserAndCredetButton);
         click(createUserAndCredetButton);
     }
-    public void getmanagerProfileOption(){
+
+    public void getmanagerProfileOption() {
         click(managerProfileOption);
     }
-    public void getReaderProfileOption(){
+
+    public void getReaderProfileOption() {
         click(readerProfileOption);
     }
-    public void getOperatorProfileOption(){
+
+    public void getOperatorProfileOption() {
         click(operatorProfileOption);
     }
-    public void getcreateManagerUserButton(){
+
+    public void getcreateManagerUserButton() {
         click(createManagerUserButton);
     }
-    public void getdeleteUserIcon(){
+
+    public void getdeleteUserIcon() {
         click(deleteUserIcon);
     }
     public void getCheckIconOfDeleteUser(){
@@ -251,8 +273,12 @@ public class MyStorePage extends BaseTest {
     public void getStoreLinksButton() {
         clickElementByJS(storeLinksBtn);
     }
-    public void getAcceptVenmoHeader(){click(acceptVenmoHeader);}
-    public void getbankAccountOptionForPlan(){
+
+    public void getAcceptVenmoHeader() {
+        click(acceptVenmoHeader);
+    }
+
+    public void getbankAccountOptionForPlan() {
         click(bankAccountOptionForPlan);
     }
 
@@ -311,8 +337,10 @@ public class MyStorePage extends BaseTest {
 
     public void  getAcceptVenmoToggleButton() {
 
-        if(!isDisplayed(venmoIDLabel,2)){
+        if (!isDisplayed(venmoIDLabel, 2)) {
             clickElementByJS(acceptVenmoToggleBtn);
+        } else {
+            Log.info("Toggle button is already On");
         }
 //        else{
 //            hoverAndClick(enableToggle,enableToggle);
@@ -342,6 +370,7 @@ public class MyStorePage extends BaseTest {
 //        }
 
     }
+
     public void getAcceptZelleToggleButton() {
         waitForElementToBeVisible(acceptZelleToggleBtn,2);
         hoverAndClick(acceptZelleToggleBtn,acceptZelleToggleBtn);
@@ -403,7 +432,7 @@ public class MyStorePage extends BaseTest {
 
 
 //*****************************
-    public void getStoreCreation(){
+    public void getStoreCreation(String addressField){
          storeNamewithstripe = "AutoStore" + requiredDigits(4);
          String phone = requiredDigits(10);
 
@@ -412,10 +441,14 @@ public class MyStorePage extends BaseTest {
         pageObjectManager.getSidePannel().getMyStoreTab();
 
         // Click on 'Register New Business' Button
-         getRegisterNewBusinessButton();
-        if (isElementDisplayed(avenue)) {
-            click(editIConAvenue);
-            staticWait(3000);
+        getRegisterNewBusinessButton();
+        if (isElementDisplayed(editIcon)) {
+            staticWait(4000);
+            click(editIcon);
+        } else {
+            Log.info("Edit icon not appears");
+        }
+        if (isElementDisplayed(storeLogoCreation)) {
             scrollToElement(deleteStoreBtn);
             waitForElementToBeClickable(deleteStoreBtn,5);
             // click on delete button
@@ -428,10 +461,8 @@ public class MyStorePage extends BaseTest {
             waitForElementToBeClickable(pageObjectManager.getSidePannel().myStoreBtn,3);
             pageObjectManager.getSidePannel().getMyStoreTab();
             getRegisterNewBusinessButton();
-            staticWait(3000);
         }
         // Click on 'Stripe Account' Button
-
           getStripeAccountBtn();
           scrollToElement(testStripeBtn);
         //Click on 'Test Stripe Account' Button
@@ -441,9 +472,9 @@ public class MyStorePage extends BaseTest {
          getEditStoreButton();
 
         enterText(StoreNameTbx, storeNamewithstripe);
+        actionEnterText(address, addressField);
         actionEnterText(phoneTbx, phone);
-        selectStoreAddress(Constants.storeAddress);
-        staticWait(5000);
+        staticWait(3000);
         scrollToElement(saveBtn);
         waitForElementToBeVisible(saveBtn,5);
         getSaveButton();
@@ -466,12 +497,12 @@ public class MyStorePage extends BaseTest {
         String Currency = getText(addedCurrencyOfStore);
         String Taxrate = getText(addedTaxRate);
 
-      Assert.assertEquals(storenameactual,storeNamewithstripe);
-      Assert.assertEquals(locationDescription, Constants.defaultLocationDescription);
-      Assert.assertEquals(storeAddress, Constants.storeAddress);
-      Assert.assertEquals(storePhoneno, phone);
-      Assert.assertEquals(Currency, Constants.defaultCurrency);
-      Assert.assertEquals(Taxrate, Constants.defaultTaxRate);
+        Assert.assertEquals(storenameactual, storeNamewithstripe);
+        Assert.assertEquals(locationDescription, Constants.defaultLocationDescription);
+        Assert.assertEquals(storeAddress, Constants.storeAddress);
+        Assert.assertEquals(storePhoneno, phone);
+        Assert.assertEquals(Currency, Constants.defaultCurrency);
+        Assert.assertEquals(Taxrate, Constants.defaultTaxRate);
 
       staticWait(3000);
 
@@ -485,9 +516,13 @@ public class MyStorePage extends BaseTest {
         // Click on 'Register New Business' Button
         getRegisterNewBusinessButton();
 
-        if (isElementDisplayed(avenue)) {
-            click(editIConAvenue);
-            staticWait(3000);
+        if (isElementDisplayed(editIcon)) {
+            staticWait(4000);
+            click(editIcon);
+        } else {
+            Log.info("Edit icon not appears");
+        }
+        if (isElementDisplayed(storeLogo)) {
             scrollToElement(deleteStoreBtn);
             waitForElementToBeClickable(deleteStoreBtn, 5);
             // click on delete button
@@ -500,13 +535,13 @@ public class MyStorePage extends BaseTest {
             waitForElementToBeClickable(pageObjectManager.getSidePannel().myStoreBtn, 3);
             pageObjectManager.getSidePannel().getMyStoreTab();
             getRegisterNewBusinessButton();
-            staticWait(5000);
         }
-        // Click on 'Skip Stripe Account' Button
+        waitForElementToBeClickable(skipStripeAccountBtn,4);
         getSkipStripeAccountButton();
-        waitForElementToBeClickable(skipStripeAccountPopUpBtn,5);
+        staticWait(3000);
+//        waitForElementToBeClickable(skipStripeAccountPopUpBtn,5);
         getSkipBtnOfStripe();
-        staticWait(5000);
+        staticWait(3000);
         scrollToElement(saveBtn);
         waitForElementToBeClickable(saveBtn,3);
         getSaveButton();
@@ -583,8 +618,8 @@ public class MyStorePage extends BaseTest {
         waitForElementToBeClickable(StoreNameTbx,8);
 
         // Enter Store Name
-        enterText(StoreNameTbx,Constants.editdefaultStoreName);
-        enterText(locationDescTbx,Constants.defaultLocationDescription);
+        actionEnterText(StoreNameTbx,Constants.editdefaultStoreName);
+        actionEnterText(locationDescTbx,Constants.defaultLocationDescription);
         selectStoreAddress(Constants.storeAddress);
 
         //Verifying the maximum length of 'Phone' field
@@ -594,8 +629,12 @@ public class MyStorePage extends BaseTest {
         // Select Time Zone
 
         //Verifying the minimum, maximum and default values of taxRate field
-        Assert.assertEquals(getAttribute(taxRateTbx,"min"),"0");
-        Assert.assertEquals(getAttribute(taxRateTbx,"max"),"100");
+        scrollToElement(taxRateTbx);
+        Assert.assertEquals(getAttribute(taxRateTbx, "min"), "0");
+        staticWait(3000);
+        String attributeValue = getAttribute(taxRateTbx, "value");
+        Assert.assertEquals(attributeValue, "0.000");
+        Assert.assertEquals(getAttribute(taxRateTbx, "max"), "100");
 
         //  Enter Tax rate
         actionEnterText(taxRateTbx,Constants.taxRate);
@@ -612,7 +651,7 @@ public class MyStorePage extends BaseTest {
         actionEnterText(phoneTbx,Constants.validPhoneNumber2);
         scrollToElement(taxRateTbx);
         waitForElementToBeClickable(taxRateTbx,4);
-        actionEnterText(taxRateTbx,Constants.defaultTaxRateValue);
+        actionEnterText(taxRateTbx,Constants.enterTaxRate);
         waitForElementToBeClickable(saveBtn,5);
         getSaveButton();
 

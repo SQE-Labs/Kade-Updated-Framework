@@ -52,7 +52,7 @@ public class PaymentHistoryPage extends BaseTest {
     public By paymentTileRecord = By.xpath("//div[@class='d-flex px-2 justify-content-between']");
     By payCurrentBalance=By.xpath("//button[text()='Pay the current balance']/..");
     By CustomPayBalance =By.xpath("//input[@name='applyAmount']");
-    By payNowBtns = By.xpath("//button[normalize-space()='Pay now']");
+    By makePaymentBtns = By.xpath("//button[text()='Make payments']");
 
 
     public void getMyStuffandPaymentHistory() {
@@ -175,6 +175,10 @@ public class PaymentHistoryPage extends BaseTest {
         scrollToElement(PaymentTile);
         click(PaymentTiles);
     }
+    public void makePaymentBtn(){
+        scrollToElement(makePaymentBtns);
+        click(makePaymentBtns);
+    }
 
     public String getTransPageId(){
         return getText(transPageId);
@@ -243,21 +247,20 @@ public class PaymentHistoryPage extends BaseTest {
             staticWait(5000);
             clickElementByJS(AmountText);
             staticWait(2000);
-            actionEnterText(AmountText,"200");
+            actionEnterText(AmountText,"5000");
             staticWait(5000);
             clickElementByJS(UpdateBtn);
             pays.swipeToPay();
-            staticWait(3000);
-            getDriver().navigate().to("https://sibtestenv.azurewebsites.net/Users/transactions");
         }
-
+        staticWait(3000);
+        getDriver().navigate().to("https://sibtestenv.azurewebsites.net/Users/transactions");
+           staticWait(3000);
             scrollToElement(Mystuff);
             getMyStuffandPaymentHistory();
             staticWait(2000);
             getTransactionPage();
-
-            clickElementByJS(MakePaymentsBtn);
-            pays.swipeToPay();
+            makePaymentBtn();
+             pays.swipeToPay();
 
     }
 

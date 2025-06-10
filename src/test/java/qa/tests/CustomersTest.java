@@ -116,22 +116,14 @@ public class CustomersTest extends BaseTest {
         Login();
         customersPage.navigateToCustomersPage();
 
-        customersPage.applyFilter(Constants.phnNumberInput);
-        waitForElementInVisible(customersPage.filterApplyBtn,20);
-
-        customersPage.applyFilter(Constants.phnNumberInput2);
+        customersPage.applyFilter();
+        staticWait(3000);
+         customersPage.applyFilter();
+         staticWait(2000);
         waitForElementToBeVisible(customersPage.noResult,5);
         Assert.assertTrue(isElementDisplayed(customersPage.noResult));
 
-//        customersPage.applyFilter(Constants.phnNumberInput3);  Phone field max limit changes to 16
-//        Assert.assertTrue(isElementDisplayed(customersPage.alertValidation));
-//        Assert.assertEquals(getToolTipMessage(customersPage.filterPhonenumberInvalid),Constants.maxPhnFieldCharValidation);
-
-//        actionEnterText(customersPage.filterPhonenumberInvalid," ");
-//        click(customersPage.filterApplyBtn);
-//        waitForElementInVisible(customersPage.filterApplyBtn,20);
-
-        customersPage.applyFilter(Constants.phnNumberInput4);
+        customersPage.applyFilterToCheckPhoneValidation();
         Assert.assertTrue(isElementDisplayed(customersPage.alertValidation));
         Assert.assertEquals(getToolTipMessage(customersPage.filterPhonenumberInvalid),Constants.invalidPhnValidation);
     }

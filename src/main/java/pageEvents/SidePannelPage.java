@@ -30,6 +30,7 @@ public class SidePannelPage extends BaseTest {
 
     // Methods
     public void getMangeBusinessTab(){
+        scrollToElement(manageBusinessAcc);
         click(manageBusinessAcc);
     }
 
@@ -58,9 +59,11 @@ public class SidePannelPage extends BaseTest {
     }
     public void getGiftCardsDashboardTab(){clickElementByJS(giftCardsDashboardTab);}
     public void getMyStuff(){
+        scrollToElement(myStuff);
         click(myStuff);
     }
     public void getGiftCardTab(){
+        scrollToElement(giftCardsTab);
         click(giftCardsTab);
     }
     public void getSecurityAndPasswordTab(){

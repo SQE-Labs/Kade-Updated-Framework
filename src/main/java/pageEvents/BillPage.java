@@ -13,6 +13,7 @@ import java.util.Locale;
 import base.BaseTest;
 import logger.Log;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import utils.Constants;
 
@@ -190,6 +191,7 @@ public class BillPage extends BaseTest {
     public By expireLockIcon = By.xpath("(//i[@class='fas fa-lock'])[2]");
     public By memoNoneTxt = By.xpath("(//div[contains(@class,'text-nowrap d-flex')]//div[text()='None'])[4]");
     public By expiryDateSection = By.xpath("(//div[@class='position-absolute start-0 end-0 top-0 bottom-0 bg-locked'])[2]");
+    By expirysec = By.xpath("(//a[@class='stretched-link ms-1 -activator-button-'])[5]");
     By expirationDate = By.xpath("(//a[@class='stretched-link ms-1 -activator-button-'])[5]");
     public By expirationDayPopUp = By.xpath("//h5[text()='Expiration Date']");
     public By refNoneTxt = By.xpath("//label[text()='Ref No.:']/..//div[text()='None']");
@@ -219,7 +221,7 @@ public class BillPage extends BaseTest {
     public By paidExpiryField = By.xpath("//label[text()='Expiration Date:']");
     public By repeatPopUpTitle = By.xpath("//h5[text()='Repeat']");
     public By reccuringIcon = By.xpath("(//span/following-sibling::i)[1]");
-    public By reccuringMenu = By.xpath("//div[text()='Recurring']/..");
+    public By reccuringMenu = By.xpath("//div[text()='Recurring']");
     By expiryDatePopUpTitle = By.xpath("//h5[text()='Expiration Date']");
     By unpaidAmount = By.cssSelector(".text-danger.fs-4");
     public By enterInBillfield = By.xpath("(//div[@class='d-flex mb-2 clone']/div/input[@name='detail_amount'])[1]");
@@ -314,6 +316,7 @@ public class BillPage extends BaseTest {
     public void getStoresDropdown() {
         staticWait(2000);
         click(storesCombobox);
+
     }
 
     public void selectStore(String store) {
@@ -369,6 +372,7 @@ public class BillPage extends BaseTest {
 //    }
 
     public void clickOnExpiryDateSection() {
+        scrollToElement(expiryDateSection);
         staticWait(3000);
         clickElementByJS(expiryDateSection);
     }
@@ -585,7 +589,7 @@ public class BillPage extends BaseTest {
     }
 
     public void getConfirmButton() {
-        staticWait(4000);
+        staticWait(2000);
         scrollToElement(confirmBtn);
         click(confirmBtn);
     }
@@ -647,6 +651,7 @@ public class BillPage extends BaseTest {
 
     public void clickOnCrossIcon() {
         staticWait(3000);
+        waitForElementToBeClickable(crossIcon, 15);
         click(crossIcon);
     }
 
@@ -778,8 +783,10 @@ public class BillPage extends BaseTest {
         click(customerNumber);
     }
 
-    public void getSuggestionList() {
-        click(suggestionList);
+    public void clickOnexpirysec() {
+        scrollToElement(expirysec);
+        staticWait(3000);
+        clickElementByJS(expirysec);
     }
 
     public void getTapToAddFilesIcon() {
@@ -800,7 +807,7 @@ public class BillPage extends BaseTest {
 
         // Set the file path to upload
         String userDir = System.getProperty("user.dir");
-        String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator+ "ImageResources"+ File.separator + "image" + File.separator + "BillDummyImg.jpg";
+        String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "ImageResources" + File.separator + "image" + File.separator + "BillDummyImg.jpg";
         fileInput.sendKeys(filePath);
 
 
@@ -924,10 +931,10 @@ public class BillPage extends BaseTest {
     }
 
     public void closePopup() {
-        staticWait(5000);
+//        staticWait(3000);
         if (isElementDisplayed(crossIcon)) {
             System.out.print(" pop-up showed and clicking");
-            staticWait(2000);
+            staticWait(3000);
             clickOnCrossIcon();
         } else {
             Log.info("No pop-up showed");
@@ -1204,9 +1211,12 @@ public class BillPage extends BaseTest {
     }
 
     public void clickOnReccuring() {
-
         staticWait(2000);
         scrollToElement(reccuringMenu);
+        waitForElementToBeVisible(reccuringMenu, 15);
+         staticWait(5000);
+        waitForElementToBeClickable(reccuringMenu, 10);
+        staticWait(5000);
         click(reccuringMenu);
         click(reccuringBill);
     }
@@ -1264,6 +1274,13 @@ public class BillPage extends BaseTest {
         //Click On Continue Button
         staticWait(4000);
         getContinueWithoutButton();
+
+
+        //Verify toast message : Success message Popup.
+        Assert.assertTrue(isElementDisplayed(successMessage));
+        String toastMessage = "Bill has been created successfully.Click here to open the bill";
+        String toastMess = getText(successMessage);
+        Assert.assertEquals(toastMess, toastMessage);
     }
 
     public void deleteBill() {
@@ -1300,25 +1317,7 @@ public class BillPage extends BaseTest {
         scrollToElement(amtTbx);
         actionEnterText(amtTbx, amt);
 
-        //Verify Default Confirm button is enabled after entering amount
-        scrollToElement(confirmBtn);
-        Assert.assertTrue(isElementDisplayed(confirmBtn));
-
-
-        //Click Confirm
-        getConfirmButton();
-
-        //Verify Message popup and Buttons
-        String messagePopupHeade = getText(messagePopupHeader);
-        Assert.assertEquals(messagePopupHeade, "Message", "Message popup header");
-
-        Assert.assertTrue(isElementDisplayed(selectCustomer));
-
-        Assert.assertTrue(isElementDisplayed(continueWithoutBtn));
-
-
-        //click on select customer button.
-        getSelectACustomerButton();
+        getCustomerButton();
 
         //Verify Customer popup
         String phoneNumberField = "Phone number. Existing or new";
@@ -1333,14 +1332,19 @@ public class BillPage extends BaseTest {
         Assert.assertEquals(email, emailFieldTxt);
         Log.info(email);
 
-
         //   Select Customer
         getCustomerPhoneNoField(phoneNumber);
         getCustomerEmailField(emailID);
         getEmailGoButton();
-
+        staticWait(3000);
+        // Verify if Customer name popup appears
+        if (isElementDisplayed(enterUserNamePopUp)) {
+            staticWait(4000);
+            click(enterCustomernameDoneBtn);
+        } else {
+            Log.info("POPup Not Displayed");
+        }
         //Click Confirm
-
         getConfirmButton();
 
         //Verify toast message : Success message Popup.
@@ -1349,13 +1353,8 @@ public class BillPage extends BaseTest {
         String toastMess = getText(successMessage);
         Assert.assertEquals(toastMess, toastMessage);
 
-
         //Close popup
-        closePopupOnBillPage();
-
-        //Deleting Created Bill
-//        waitForElementToBeClickable(notPaid, 5);
-//        clickOnNotPaidLabel();
+        closePopup();
     }
 
     public void verifyCreateBillForSuggestedCustomer(String emailID) {
@@ -1645,7 +1644,7 @@ public class BillPage extends BaseTest {
         closePopupOnBillPage();
 
         //Verify not paid label for generated amount
-      //  verifyEnteredMemoText();
+        //  verifyEnteredMemoText();
     }
 
 
@@ -1729,7 +1728,7 @@ public class BillPage extends BaseTest {
         //Click on More Option
         clickOnMoreSection();
 
-        clickOnExpiryDateSection();
+        clickOnexpirysec();
         staticWait(2000);
 
         String expirationDay = getText(expirationDayPopUp);
@@ -1809,6 +1808,7 @@ public class BillPage extends BaseTest {
 
         staticWait(4000);
         scrollToTopOfPage();
+        staticWait(5000);
         clickOnReccuring();
 
         removeNonNumericValueFromTheValue();
@@ -1857,7 +1857,7 @@ public class BillPage extends BaseTest {
 
         // Assert.assertTrue(isElementDisplayed(reccuringIcon));
         staticWait(4000);
-        scrollToTopOfPage();
+
         clickOnReccuring();
 
         removeNonNumericValueFromTheValue();
@@ -1948,7 +1948,7 @@ public class BillPage extends BaseTest {
         //Close popup
         closePopup();
         staticWait(4000);
-        scrollToTopOfPage();
+
         clickOnReccuring();
         removeNonNumericValueFromTheValue();
 

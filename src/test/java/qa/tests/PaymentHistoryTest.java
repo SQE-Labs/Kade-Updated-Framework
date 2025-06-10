@@ -17,22 +17,21 @@ public class PaymentHistoryTest extends BaseTest {
     BillPage bills = new BillPage();
 
 
-    @Test(description = " PH01 : Verify that user get directed to 'Payment History' page, after clicking on 'Payment History' tab")
+    @Test(priority = 1, description = " PH01 : Verify that user get directed to 'Payment History' page, after clicking on 'Payment History' tab")
     public void verifyUserDirectedToPaymentHistoryPageAfterClickingOnPaymentHistoryTab() {
         pay.VerifyPaymentHistoryPage();
     }
 
 
 
-    @Test(description = " PH02 : Verify that appropriate message displayed after clicking on Payment History Tab when no payments are made")
+    @Test(priority = 2,description = " PH02 : Verify that appropriate message displayed after clicking on Payment History Tab when no payments are made")
     public void verifyMessageDisplayedWhenNoPaymentsAreMade() {
-
         pay.VerifyPageNoPayments();
     }
 
 
-    @Test(description = "PH03 , PH04 : Verify that records get updated everytime on 'Payment History' page when user make any transactions")
-    public void verifyRecordsGetUpdatedAfterMakingTransaction() throws IOException, UnsupportedFlavorException {
+    @Test(priority = 3,description = "PH03 , PH04 : Verify that records get updated everytime on 'Payment History' page when user make any transactions")
+    public void verifyRecordsGetUpdatedAfterMakingTransaction()  {
 
         bills.verifyCreateBillForSuggestedCustomer("Saybo@yopmail.com");
         pay.getsignout();
@@ -40,23 +39,21 @@ public class PaymentHistoryTest extends BaseTest {
     }
 
 
-    @Test(description = " PH05 : Verify that appropriate details appears on 'Payments' tiles, on 'Payment History'  page.")
-    public void verifyRequiredDetailsTransaction() throws IOException, UnsupportedFlavorException {
+    @Test(priority = 4,description = " PH05 : Verify that appropriate details appears on 'Payments' tiles, on 'Payment History'  page.")
+    public void verifyRequiredDetailsTransaction()   {
         pay.VerifytheDetails();
     }
 
 
-    @Test(description = " PH06 : Verify that user get directed to '<REF- No>' page i.e Bill detail page, after clicking on any payment, on 'Payment History' page.")
-    public void VerifyUserNavigateToBillDetailPage() throws IOException, UnsupportedFlavorException {
+    @Test(priority = 5,description = " PH06 : Verify that user get directed to '<REF- No>' page i.e Bill detail page, after clicking on any payment, on 'Payment History' page.")
+    public void VerifyUserNavigateToBillDetailPage()   {
         pay.VerifyNavigationToBillpage();
     }
 
-    @Test(description = "PH07 : Verify that 'Partially Paid' label appears and left amount can be paid using 'Make payments' button on 'Transaction Detail' Page")
+    @Test(priority = 6,description = "PH07 : Verify that 'Partially Paid' label appears and left amount can be paid using 'Make payments' button on 'Transaction Detail' Page")
     public void VerifyPartiallyPaidLabelOnTransactionDetailPage(){
         bills.verifyCreateBillForSuggestedCustomer("Saybo@yopmail.com");
         pay.getsignout();
         pay.VerifyPartiallypaidamount();
-
-
     }
 }
