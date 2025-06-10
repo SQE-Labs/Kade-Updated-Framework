@@ -63,7 +63,7 @@ public interface Constants {
     String storeName = "Automation Customer Store";
     String storePhone = "12312312312";
     String taxRate = "10000";
-    String storeAddress = "8 Glover Dr, Dix Hills, NY 11746, USA";
+    String storeAddress = "123 William Bay Rd, William Bay WA 6333, Australia";
     String invalidStoreAddress = "New";
     String addressNotVerifiedToolTip = "Address cannot be verified";
     String invalidStorePhone = "1231";
@@ -86,7 +86,8 @@ public interface Constants {
     String atLeastCharReqMessage = "Please enter at least 6 characters.";
     String invalidPhoneNumber1 = "12312312";
     String invalidPhnValidation = "Invalid phone number";
-    String validPhoneNumber = "1231231231";
+    String validPhoneNumber = "6465551114";
+    //1231231231
     String validPhoneNumber2 = "1231231233";
     String LeastCharReqMessage = "Please enter at least 6 characters.";
     String diffCellNumber = "12334545676";
@@ -122,6 +123,8 @@ public interface Constants {
     String emptyFieldTooltip = "This field is required.";
     String searchInput = "yonro";
     String phnNumberInput = "9011017524";
+    String WrongPhoneNumberInput = "90110175";
+
     String phnNumberInput2 = "1232233223";
     String phnNumberInput3 = "12345678901234567890123";
     String phnNumberInput4 = "1231";
@@ -150,6 +153,7 @@ public interface Constants {
     String currentPlan= "Current plan";
     String visavalue = "Visa 1111";
     String defaultTaxRateValue = "0.000";
+    String enterTaxRate="000";
 
     //Store Names
     public static String AutomationBillFlow = "Automation Bill Flow";  // Flow 1 without plan
@@ -206,9 +210,10 @@ public interface Constants {
     String noActiveStoreInfoMsg="No active store is available in your account!";
     String referenceNoTooltipMsg ="This field is required.";
     String cardNoText ="Card No";
-    String cardMinLendthMsg ="Please enter atleast 4 characters.";
+    String cardMinLendthMsg ="Please enter at least 4 characters.";
     String cardNoDatatype="numeric";
-    String maxLength ="18";
+    String maxLength ="50";
+    String maxLengthOfCardNumber="18";
     String fundingSourceType = "text";
     String invalidDateTooltip= "Invalid date";
     String memoMaxLength ="500";
@@ -219,7 +224,7 @@ public interface Constants {
 
     // Transactions page
     String noPaymentInfoMsg = "There are no payments available yet!";
-    String amount = "1590.01";
+    String amount = "100.00";
     String newChargeDescription = "New charge payment";
     String terminalNotAcceptedAlert= "Your store is not configured to process any credit card";
     String terminalSuccessMessage = "Processed successfully!";
@@ -242,7 +247,7 @@ public interface Constants {
     String minAmountOfGC = "100.00";
     String maxAmountOfGC = "1000.00";
     String midValue = "500.00";
-    String giftCardNo = "3119";
+    String giftCardNo = "93833";
     String threeDigit = "311";
     String lessThan3cardNoValidation = "Please enter at least 4 characters.";
     String nonexistingGC ="2172";

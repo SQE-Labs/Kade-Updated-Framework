@@ -9,8 +9,9 @@
 
     <test thread-count="2" name="Test" parallel="classes">
         <parameter name="env" value="qa" />
+
         <parameter name="browser" value="chrome" />
-        <parameter name="headless" value="false" />
+        <parameter name="headless" value="true" />
 
         <!-- To Run Whole Suite-->
 

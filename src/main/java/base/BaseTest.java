@@ -4,6 +4,7 @@ import logger.Log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -14,6 +15,7 @@ import org.testng.asserts.SoftAssert;
 import pageObjects.PageObjectManager;
 import utils.ConfigFileReader;
 import utils.PropertyUtils;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -74,15 +76,17 @@ public class BaseTest {
      */
     @BeforeMethod
     @Parameters({"browser", "headless"})
-    public void setupDriver(@Optional("chrome") String browser, @Optional("true") boolean headless) {
+    public void setupDriver(@Optional("chrome") String browser, @Optional("false") boolean headless) {
         softAssert = new SoftAssert();
         log.info("Setting up WebDriver for browser: {}, headless: {}", browser, headless);
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions chromeOptions = new ChromeOptions();
             if (headless) {
-                chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
+              //  chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
+                chromeOptions.addArguments("--headless");
             }
             driver.set(new ChromeDriver(chromeOptions));
+
             log.info("ChromeDriver initialized.");
         } else if (browser.equalsIgnoreCase("firefox")) {
             driver.set(new FirefoxDriver());
@@ -90,14 +94,15 @@ public class BaseTest {
         } else {
             ChromeOptions chromeOptions = new ChromeOptions();
             if (headless) {
-                chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
+             //   chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
             }
             driver.set(new ChromeDriver(chromeOptions));
             log.info("ChromeDriver initialized.");
         }
 
         // Maximize window and load the URL
-        getDriver().manage().window().maximize();
+        getDriver().manage().window().setSize(new Dimension(1920, 1080));
+        
         String url = configReader.getProperty("url");
         if (url != null && !url.isEmpty()) {
             getDriver().get(url);
@@ -269,7 +274,7 @@ public class BaseTest {
         staticWait(2000);
     }
     public void scrollToTopOfPage() {
-        staticWait(2000);
+        staticWait(4000);
         log.info("Scrolling to the top of the page");
         ((JavascriptExecutor) getDriver()).executeScript("window.scrollTo(0, 0);");
         staticWait(2000);
@@ -848,13 +853,15 @@ public class BaseTest {
         }
     }
 
+
+
     public static String isFileDownloaded(String fileName) {
         String home = System.getProperty("user.home");
         String file_with_location;
 
         // Determine the Downloads folder based on OS
         if (System.getProperty("os.name").contains("Windows")) {
-            file_with_location = home + "\\Downloads\\" + fileName;
+            file_with_location = home + "/Downloads/" + fileName;
             System.out.println( fileName);
         } else {
             file_with_location = home + "/Downloads/" + fileName;
@@ -869,7 +876,38 @@ public class BaseTest {
         }
     }
 
-    public String requiredDigits(int n) {
+
+        public boolean isFileDownloadedOrNot(String fileName) throws InterruptedException   {
+            Thread.sleep(10000);
+            String home = System.getProperty("user.home");
+            String file_with_location = home + "/Downloads/" + fileName;
+            File file = new File(file_with_location.trim());
+            //  String fileTest = file.getName();
+            if (file.exists() && file.length() != 0) {
+                System.out.println(file_with_location + " is present with size greater than 0 ");
+                 return true;
+            } else {
+                System.out.println(file_with_location + " is not present");
+                 return false;
+            }
+        }
+    public String getFileName() {
+         getDriver().navigate().to("chrome://downloads/");
+         WebElement shadowHost1 = getDriver().findElement(By.cssSelector("downloads-manager"));
+        SearchContext shadowRoot1 = shadowHost1.getShadowRoot();
+        WebElement shadowHost3 = shadowRoot1.findElement(By.cssSelector("downloads-item"));
+        SearchContext shadowRoot3 = shadowHost3.getShadowRoot();
+        WebElement element = shadowRoot3.findElement(By.cssSelector("#title-area"));
+        return element.getText();
+    }
+    public String getDownloadFileName() {
+
+         String downloadedFile = getFileName();
+        return downloadedFile;
+    }
+
+
+        public String requiredDigits(int n) {
         String AlphaNumericString = "1234567890";
         StringBuilder s = new StringBuilder(n);
         int y;

@@ -87,7 +87,7 @@ public class PaymentsAndRefundTest extends BaseTest {
     public void BillPaymentByCustomerThroughBankAccount() {
 
         bill.createBillWithCustomer("636045278965", "saybo@yopmail.com");
-        payment.paymentThrouhBankAccount();
+        payment.paymentThrouhBankAccount( );
         payment.swipeCard();
         payment.billPayment();
     }

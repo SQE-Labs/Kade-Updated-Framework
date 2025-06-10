@@ -286,6 +286,7 @@ public class QRCodePage extends BaseTest {
     }
 
     public void clickOndeleteIcon() {
+        staticWait(3000);
         click(deleteIcon);
     }
 

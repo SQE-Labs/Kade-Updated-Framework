@@ -17,7 +17,7 @@ public class SecurityAndPasswordTest extends BaseTest {
 
     private SecurityAndPasswordPage securityAndPasswordPage = pageObjectManager.getSecurityAndPasswordPage();
 
-    @Test
+    @Test(priority = 0)
     public void verifyUpdateEmailPopupOpens() {
 //        LoginPage login=new LoginPage();
 //
@@ -33,7 +33,7 @@ public class SecurityAndPasswordTest extends BaseTest {
 
     }
 
-    @Test
+    @Test(priority = 1)
     public void verifyInvalidEmailUpdateInput() {
         log.info("Verify for Invalid Email inputs in Update email address popup");
 //        LoginPage login=new LoginPage();
@@ -66,7 +66,7 @@ public class SecurityAndPasswordTest extends BaseTest {
         Assert.assertEquals(getToolTipMessage(securityAndPasswordPage.updateEmailInputField), Constants.sameEmailErrorMessage, "tool tip");
     }
 
-    @Test
+    @Test(priority = 2)
     public void verifyValidEmailUpdateInput() {
         log.info("Verify for Valid Email inputs in Update email address popup");
        Login();
@@ -169,9 +169,6 @@ public class SecurityAndPasswordTest extends BaseTest {
     @Test
     public void verifyAlternatePhoneNumber() {
         log.info("Verify user can update/change phone number using Different phone number option");
-//        LoginPage login=new LoginPage();
-//
-//        login.supenLogin();
 
         Login();
         securityAndPasswordPage.getSecurityAndPasswordPage();
@@ -186,14 +183,15 @@ public class SecurityAndPasswordTest extends BaseTest {
         Assert.assertTrue(isElementDisplayed(securityAndPasswordPage.systemAlertMessage));
         Assert.assertEquals(getToolTipMessage(securityAndPasswordPage.newPhoneInputField), Constants.invalidPhnValidation, "tool tip");
         click(securityAndPasswordPage.closeNewPhonePopup);
-        waitForElementInVisible(securityAndPasswordPage.closeNewPhonePopup, 20);
 
+        staticWait(3000);
         click(securityAndPasswordPage.editPhoneBtn);
         waitForElementToBeVisible(securityAndPasswordPage.newPhoneInputField, 10);
         actionEnterText(securityAndPasswordPage.newPhoneInputField, Constants.validPhoneNumber);
         click(securityAndPasswordPage.sendSecurityCodeForNewPhone);
         staticWait(3000);
-        click(securityAndPasswordPage.differentCellPhone);
+        waitForElementToBeClickable(securityAndPasswordPage.differentCellPhone,10);
+        clickElementByJS(securityAndPasswordPage.differentCellPhone);
         waitForElementToBeVisible(securityAndPasswordPage.newPhoneInputField, 10);
         actionEnterText(securityAndPasswordPage.newPhoneInputField, Constants.validPhoneNumber2);
         click(securityAndPasswordPage.sendSecurityCodeForNewPhone);
