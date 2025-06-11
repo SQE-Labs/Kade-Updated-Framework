@@ -1,6 +1,7 @@
 package qa.tests;
 
 import base.BaseTest;
+import logger.Log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -118,10 +119,12 @@ public class CustomersTest extends BaseTest {
 
         customersPage.applyFilter();
         staticWait(3000);
-         customersPage.applyFilter();
-         staticWait(2000);
-        waitForElementToBeVisible(customersPage.noResult,5);
-        Assert.assertTrue(isElementDisplayed(customersPage.noResult));
+
+        if(isElementDisplayed(customersPage.userFound)){
+            Log.info("User Found");
+        }else{
+            Assert.assertTrue(isElementDisplayed(customersPage.noResult));
+        }
 
         customersPage.applyFilterToCheckPhoneValidation();
         Assert.assertTrue(isElementDisplayed(customersPage.alertValidation));

@@ -64,6 +64,7 @@ public class CustomersPage extends BaseTest {
     public By searchBtn = By.xpath("//input[@placeholder='Search by name']/..//button");
     public By alertValidation = By.xpath("//h4[@class=\"alert-heading\"]");
     public By noResult = By.xpath("//p[text()='Customers will appear here when they are created.']");
+    public By userFound=By.xpath("//div[contains(@class,'bg-white mb-2 position-re')]");
     public By selectCustomerinFilter = By.xpath("//div[@class='d-flex align-items-center position-relative mb-3 rounded border']");
     public By customerSelection = By.xpath("//div[@class='border rounded-3 mb-1 p-2 position-relative clone']");
     public By customerdisplayed = By.xpath("//div[@class='bg-white mb-2 row position-relative m-0 g-2 border rounded-2 -cust-row-']");
