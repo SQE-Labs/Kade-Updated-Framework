@@ -20,7 +20,7 @@ public class ReportsPage extends BaseTest {
     public By monthCardHeader = By.cssSelector(".card-header");
     public By cardBody = By.xpath("//div[@class='card-body max-30c collapse show']");
     public By janDataDownload = By.xpath("(//a[contains(text(),'"+month+"')]//parent::div/div[1]//strong[text()='"+day+"'])[1]");
-    public By firstLinkDownload = By.xpath("(//a[@class='btn btn-link stretched-link align-self-center'])[1]");
+    public By  firstLinkDownload = By.xpath("(//a[@class='btn btn-link stretched-link align-self-center'])[1]");
     public By selectJanuaryMonth = By.xpath("//a[@class='card-header collapsed' and text()='"+month+"']");
     public By topMonth = By.xpath("(//a[@class='card-header'])[1]");
     public By dec24Report = By.xpath("//strong[@class='align-self-center' and text()='"+month2+"']");

@@ -933,7 +933,7 @@ public class PaymentPage extends BaseTest {
         switchToFrame();
         enterCardName(cardNameTxt, expiryDateTxt, cvcTxt, countryName);
         switchToDefaultContent();
-        staticWait(10000);
+        staticWait(5000);
         clickOnSaveBtn();
 
     }

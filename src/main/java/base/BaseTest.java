@@ -15,7 +15,6 @@ import org.testng.asserts.SoftAssert;
 import pageObjects.PageObjectManager;
 import utils.ConfigFileReader;
 import utils.PropertyUtils;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -82,11 +81,9 @@ public class BaseTest {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions chromeOptions = new ChromeOptions();
             if (headless) {
-              //  chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
-                chromeOptions.addArguments("--headless");
+                chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
             }
             driver.set(new ChromeDriver(chromeOptions));
-
             log.info("ChromeDriver initialized.");
         } else if (browser.equalsIgnoreCase("firefox")) {
             driver.set(new FirefoxDriver());
@@ -94,15 +91,14 @@ public class BaseTest {
         } else {
             ChromeOptions chromeOptions = new ChromeOptions();
             if (headless) {
-             //   chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
+                chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
             }
             driver.set(new ChromeDriver(chromeOptions));
             log.info("ChromeDriver initialized.");
         }
 
         // Maximize window and load the URL
-        getDriver().manage().window().setSize(new Dimension(1920, 1080));
-        
+        getDriver().manage().window().maximize();
         String url = configReader.getProperty("url");
         if (url != null && !url.isEmpty()) {
             getDriver().get(url);
@@ -274,7 +270,7 @@ public class BaseTest {
         staticWait(2000);
     }
     public void scrollToTopOfPage() {
-        staticWait(4000);
+        staticWait(2000);
         log.info("Scrolling to the top of the page");
         ((JavascriptExecutor) getDriver()).executeScript("window.scrollTo(0, 0);");
         staticWait(2000);
@@ -853,15 +849,13 @@ public class BaseTest {
         }
     }
 
-
-
     public static String isFileDownloaded(String fileName) {
         String home = System.getProperty("user.home");
         String file_with_location;
 
         // Determine the Downloads folder based on OS
         if (System.getProperty("os.name").contains("Windows")) {
-            file_with_location = home + "/Downloads/" + fileName;
+            file_with_location = home + "\\Downloads\\" + fileName;
             System.out.println( fileName);
         } else {
             file_with_location = home + "/Downloads/" + fileName;

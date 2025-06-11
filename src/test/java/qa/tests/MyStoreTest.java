@@ -49,7 +49,7 @@ public class MyStoreTest extends BaseTest {
 
             String actual = getText(mystore.skipPopUpTitle);
             //Verifying the 'Skip' Pop Up Title
-            Assert.assertEquals(actual, "Skip");
+            Assert.assertEquals(actual, Constants.skip);
             //  Click on 'Skip' button
             mystore.getSkipBtnOfStripe();
         }else{
@@ -96,7 +96,7 @@ public class MyStoreTest extends BaseTest {
         mystore.getSubscriptionPlanTab();
         //Verifying that 'Current Plan' appears under Essential Free Plan
         String message = getText(mystore.currentPlanMSg);
-        Assert.assertEquals(message, Constants.currentPlan);
+        softAssert.assertEquals(message, Constants.currentPlan);
 
         //Click on 'Sign up' button
         mystore.getPlansSignUpButton();
@@ -104,12 +104,12 @@ public class MyStoreTest extends BaseTest {
         //Verifying that by-default Visa Payment method is enabled
         String defaultPaymentMthd = getText(mystore.addedVisaMethod);
         System.out.println(defaultPaymentMthd);
-        Assert.assertEquals(defaultPaymentMthd, Constants.visavalue);
+        softAssert.assertEquals(defaultPaymentMthd, Constants.visavalue);
 
 //       Click on 'Change Pay Method' Link
         mystore.getChangePayMethodLink();//Verifying that other payment methods are available
-        Assert.assertTrue(isElementDisplayed(mystore.newCreditCardBtn), " New credit card button");
-        Assert.assertTrue(isElementDisplayed(mystore.newBankAccountBtn), "new bank account");
+        softAssert.assertTrue(isElementDisplayed(mystore.newCreditCardBtn), " New credit card button");
+        softAssert.assertTrue(isElementDisplayed(mystore.newBankAccountBtn), "new bank account");
 
         // Click on 'Terms' Checkbox
         mystore.getTermsCheckbox();
@@ -124,6 +124,7 @@ public class MyStoreTest extends BaseTest {
         staticWait(3000);
         pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
         softAssert.assertAll();
+
     }
 
     @Test(priority = 5, enabled = true, description = "SC04(b): Verify Store creation with Yearly Business Plan on 'Store Configuration' Page ")
@@ -404,6 +405,7 @@ public class MyStoreTest extends BaseTest {
 
         // Click on 'Payment-Processing' Sub-Tab
         mystore.getPaymentProcessingSubTab();
+        scrollToDown();
 
         //  Click on 'Credit Card Terminal' button
 
@@ -586,6 +588,7 @@ public class MyStoreTest extends BaseTest {
         staticWait(3000);
         pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
         softAssert.assertAll();
+
     }
 
     @Test(priority = 11, enabled = true, description = "SC_07(A) Verifying the Configuration of the Store using 'Manage Users' Sub-Tab")
@@ -611,8 +614,10 @@ public class MyStoreTest extends BaseTest {
 
         // Creating Operator user
         mystore.creatingOperatorUser();
+
     }
 
+    // Bug id =
     @Test(priority = 12, enabled = true, description = "SC_07(B) Verifying the Configuration of the store using Manage User sub tab to invite any existing user to manage store.")
     public void sc_07b_VerifyingConfigurationOfStoreUsingManageUserSubTabToInviteAnyExistingUserToManageStore() {
         Login();
@@ -643,13 +648,14 @@ public class MyStoreTest extends BaseTest {
         // Click on 'Send Invite' Button.
         mystore.sendInviteButton();
 
-        staticWait(4000);
-        scrollToTopOfPage();
-        staticWait(3000);
-         pageObjectManager.getSidePannel().getSignOut();
+        pageObjectManager.getSidePannel().getSignOut();
 
-        LoginAsCustomer();
-        payment.clickOnBillIcon();
+        LoginAsAdmin();
+        staticWait(3000);
+        scrollToElement(pageObjectManager.getSidePannel().manageBusinessAcc);
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getMyStoreTab();
+        staticWait(3000);
 
         // Need to add assertion
     }

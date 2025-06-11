@@ -12,7 +12,7 @@ public class HomePageEvents extends BaseTest {
 	
 	 private static final Logger log = LogManager.getLogger(HomePageEvents.class); // Logger instance
     // Locator for the "Sign Out" element
-    private By signOut = By.xpath("//*[@id='sidebar']/div/div/a[3]");
+    public  By signOut = By.xpath("//*[@id='sidebar']/div/div/a[3]");
     
 
     /**

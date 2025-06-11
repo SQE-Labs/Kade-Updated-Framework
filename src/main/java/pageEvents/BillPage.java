@@ -589,7 +589,7 @@ public class BillPage extends BaseTest {
     }
 
     public void getConfirmButton() {
-        staticWait(4000);
+        staticWait(2000);
         scrollToElement(confirmBtn);
         click(confirmBtn);
     }
@@ -931,10 +931,10 @@ public class BillPage extends BaseTest {
     }
 
     public void closePopup() {
-        staticWait(5000);
+//        staticWait(3000);
         if (isElementDisplayed(crossIcon)) {
             System.out.print(" pop-up showed and clicking");
-            staticWait(6000);
+            staticWait(3000);
             clickOnCrossIcon();
         } else {
             Log.info("No pop-up showed");
@@ -1318,25 +1318,7 @@ public class BillPage extends BaseTest {
         scrollToElement(amtTbx);
         actionEnterText(amtTbx, amt);
 
-        //Verify Default Confirm button is enabled after entering amount
-        scrollToElement(confirmBtn);
-        Assert.assertTrue(isElementDisplayed(confirmBtn));
-
-
-        //Click Confirm
-        getConfirmButton();
-
-        //Verify Message popup and Buttons
-        String messagePopupHeade = getText(messagePopupHeader);
-        Assert.assertEquals(messagePopupHeade, "Message", "Message popup header");
-
-        Assert.assertTrue(isElementDisplayed(selectCustomer));
-
-        Assert.assertTrue(isElementDisplayed(continueWithoutBtn));
-
-
-        //click on select customer button.
-        getSelectACustomerButton();
+        getCustomerButton();
 
         //Verify Customer popup
         String phoneNumberField = "Phone number. Existing or new";
@@ -1351,14 +1333,19 @@ public class BillPage extends BaseTest {
         Assert.assertEquals(email, emailFieldTxt);
         Log.info(email);
 
-
         //   Select Customer
         getCustomerPhoneNoField(phoneNumber);
         getCustomerEmailField(emailID);
         getEmailGoButton();
-
+        staticWait(3000);
+        // Verify if Customer name popup appears
+        if (isElementDisplayed(enterUserNamePopUp)) {
+            staticWait(4000);
+            click(enterCustomernameDoneBtn);
+        } else {
+            Log.info("POPup Not Displayed");
+        }
         //Click Confirm
-
         getConfirmButton();
 
         //Verify toast message : Success message Popup.
@@ -1367,11 +1354,8 @@ public class BillPage extends BaseTest {
         String toastMess = getText(successMessage);
         Assert.assertEquals(toastMess, toastMessage);
 
-
         //Close popup
-        closePopupOnBillPage();
-
-
+        closePopup();
     }
 
     public void verifyCreateBillForSuggestedCustomer(String emailID) {
