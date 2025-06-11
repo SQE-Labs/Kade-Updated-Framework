@@ -1,6 +1,7 @@
 package base;
 
 import logger.Log;
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -15,6 +16,8 @@ import org.testng.asserts.SoftAssert;
 import pageObjects.PageObjectManager;
 import utils.ConfigFileReader;
 import utils.PropertyUtils;
+
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -75,7 +78,7 @@ public class BaseTest {
      */
     @BeforeMethod
     @Parameters({"browser", "headless"})
-    public void setupDriver(@Optional("chrome") String browser, @Optional("false") boolean headless) {
+    public void setupDriver(@Optional("chrome") String browser, @Optional("true") boolean headless) {
         softAssert = new SoftAssert();
         log.info("Setting up WebDriver for browser: {}, headless: {}", browser, headless);
         if (browser.equalsIgnoreCase("chrome")) {
@@ -98,7 +101,7 @@ public class BaseTest {
         }
 
         // Maximize window and load the URL
-        getDriver().manage().window().maximize();
+        getDriver().manage().window().setSize(new Dimension(1920,1080));
         String url = configReader.getProperty("url");
         if (url != null && !url.isEmpty()) {
             getDriver().get(url);
@@ -1044,5 +1047,21 @@ public class BaseTest {
         return (List<WebElement>) getDriver().findElements(locator);
     }
 
-
+    public void takeScreenshot(WebDriver driver, String fileName) {
+        try {
+            File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            File dest = new File("./screenshots/" + fileName + ".png");
+            FileUtils.copyFile(src, dest);
+            System.out.println("Screenshot saved as: " + dest.getAbsolutePath());
+        } catch (IOException e) {
+            System.out.println("Failed to capture screenshot: " + e.getMessage());
+        }
+    }
+    public WebElement waitForElementToBeVisibleAndClickable(By locator, int timeoutSeconds) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutSeconds));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
 }
+
+

@@ -144,7 +144,8 @@ public class SignUpTest extends BaseTest {
        // waitForElementToBeVisible(signUp.fullname,10);
 
         //Entering name in the Full name field
-        staticWait(3000);
+        waitForElementToBeClickable(SignUp.fullname, 7);
+//        staticWait(3000);
         actionEnterText(SignUp.fullname, "New kade Member");
         staticWait(3000);
         // Clicking on 'Continue' button
@@ -204,7 +205,7 @@ public class SignUpTest extends BaseTest {
 
         // Verify the page title
         softAssert.assertTrue(isElementDisplayed(signUp.stripePageTitle));
-        waitForElementToBeClickable(pageObjectManager.getSidePannel().profileLink,4);
+        waitForElementToBeVisible(pageObjectManager.getSidePannel().profileLink,4);
 
         // Clicking on Profile Link
         pageObjectManager.getSidePannel().getProfileLink();
@@ -353,7 +354,7 @@ public class SignUpTest extends BaseTest {
         signUp.getSwitchtoEmailLink();
         signUp.getContinueBtnSP();
         String actual = getToolTipMessage(signUp.emailFieldSP);
-        softAssert.assertEquals(actual, Constants.RequiredField);
+        Assert.assertEquals(actual, Constants.RequiredField);
 
         // entering invalid email
         enterText(signUp.emailFieldSP, Constants.invalidEmail);
@@ -361,28 +362,31 @@ public class SignUpTest extends BaseTest {
         staticWait(3000);
 
         String invalidEmailValidation = getText(signUp.invalidEmailValidation);
-        softAssert.assertEquals(invalidEmailValidation, Constants.invalidEmailValidationMsg);
+        Assert.assertEquals(invalidEmailValidation, Constants.invalidEmailValidationMsg);
 
 //        String tooltip = getToolTipMessage(signUp.emailFieldSP); this funcationality has been changed to validation message
 //        softAssert.assertEquals(tooltip, Constants.emailTooltip);
 
         // Entering valid email address
         enterText(signUp.emailFieldSP, Constants.validLoginEmail);
+        waitForElementToBeVisible(signUp.continueBtnSignInP, 5);
         signUp.getContinueBtnSP();
+        staticWait(8000);
+//        waitForElementToBeVisible(signUp.passwordFieldSignP, 10);
+        enterText(signUp.securityCodeField,Constants.securityCode);
 
         // Validation for Password field
         enterText(signUp.passwordFieldSignP, Constants.invalidData);
         signUp.getsignInButtonSignInP();
 
-        waitForElementToBeInteractable(signUp.passwordFieldSignP, 2);
+        waitForElementToBeInteractable(signUp.passwordFieldSignP, 3);
         String validation = getToolTipMessage(signUp.passwordFieldSignP);
-        softAssert.assertEquals(validation, Constants.passwordvalidation);
+        Assert.assertEquals(validation, Constants.passwordvalidation);
 
         // Entering valid password and signing in to the app.
         signUp.getShowPasswordSP();
         enterText(signUp.passwordFieldSignP, Constants.validPassword);
         signUp.getsignInButtonSignInP();
-        softAssert.assertAll();
     }
 
 
