@@ -221,7 +221,7 @@ public class BillPage extends BaseTest {
     public By paidExpiryField = By.xpath("//label[text()='Expiration Date:']");
     public By repeatPopUpTitle = By.xpath("//h5[text()='Repeat']");
     public By reccuringIcon = By.xpath("(//span/following-sibling::i)[1]");
-    public By reccuringMenu = By.xpath("//div[text()='Recurring']");
+    public By reccuringMenu = By.xpath("//div[contains(@class,'d-flex flex-wrap')]//div[text()='Recurring']/..");
     By expiryDatePopUpTitle = By.xpath("//h5[text()='Expiration Date']");
     By unpaidAmount = By.cssSelector(".text-danger.fs-4");
     public By enterInBillfield = By.xpath("(//div[@class='d-flex mb-2 clone']/div/input[@name='detail_amount'])[1]");
@@ -1216,6 +1216,7 @@ public class BillPage extends BaseTest {
         waitForElementToBeVisible(reccuringMenu, 15);
          staticWait(5000);
         waitForElementToBeClickable(reccuringMenu, 10);
+        scrollToElement(reccuringMenu);
         staticWait(5000);
         click(reccuringMenu);
         click(reccuringBill);

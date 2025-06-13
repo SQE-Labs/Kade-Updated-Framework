@@ -25,7 +25,6 @@ public class BillTest extends BaseTest {
         bill.clickOnNotPaidLabel();
          bill.getDeleteButton();
         bill.getDeleteIcon();
-
     }
 
 
@@ -63,7 +62,6 @@ public class BillTest extends BaseTest {
 
     @Test(priority = 8, enabled = true, description = "BC_07 Verify that creating a bill by attaching the image file.")
     public void verifyingBillCreationByAttachingPdfFile() throws InterruptedException, AWTException {
-
         bill.verifyingBillCreationByAttachingPdfFile();
         bill.getDeleteButton();
         bill.getDeleteIcon();
@@ -82,7 +80,6 @@ public class BillTest extends BaseTest {
     @Test(priority = 11, enabled = true, description = "BC_15 Verify that creating a bill by adding the custom expiration date' on 'Bills' page..")
     public void verifyBillCreationByAddingExpirationDate() {
         bill.verifyBillCreationByAddingExpirationDate("yonro@yopmail.com","20");
-
     }
 
     @Test(priority = 12, enabled = true, description = "BC_16, BC_10 and BC_17  Verify that creating a store by adding recurring transactions, on Bills page and Verify that creating a 'Daily Recurring bill and Activate after the first payment, on 'Bill' popup.")
@@ -109,7 +106,7 @@ public class BillTest extends BaseTest {
         bill.getDeleteIcon();
     }
 
-    @Test(priority = 15, enabled = false, description = "BC_20 Verify that creating a 'Monthly Recurring bill and Activate after the first payment, on 'Bill' popup.")
+    @Test(priority = 15, enabled = true, description = "BC_20 Verify that creating a 'Monthly Recurring bill and Activate after the first payment, on 'Bill' popup.")
     public void verifyBillCreationByAddingRecurringTransactionsYearly() {
         bill.verifyBillCreationByAddingRecurringTransactionsYearly("6356789657", "saybo@yopmail.com");
         bill.clickOnNotPaidLabel();
