@@ -6,9 +6,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.interactions.Actions;
  import org.openqa.selenium.support.ui.*;
 import org.testng.annotations.*;
@@ -89,9 +91,37 @@ public class BaseTest {
             driver.set(new ChromeDriver(chromeOptions));
             log.info("ChromeDriver initialized.");
         } else if (browser.equalsIgnoreCase("firefox")) {
-            driver.set(new FirefoxDriver());
+            FirefoxOptions firefoxOptions = new FirefoxOptions();
+
+            if (headless) {
+                firefoxOptions.addArguments("--headless");
+                firefoxOptions.addArguments("--width=1920");
+                firefoxOptions.addArguments("--height=1080");
+            }
+
+            // Disable geolocation prompt
+            firefoxOptions.addPreference("geo.enabled", false);
+            firefoxOptions.addPreference("geo.prompt.testing", true);
+            firefoxOptions.addPreference("geo.prompt.testing.allow", false);
+
+            // Set zoom level to 100%
+            firefoxOptions.addPreference("layout.css.devPixelsPerPx", "1.0");
+
+            // Set the driver
+            driver.set(new FirefoxDriver(firefoxOptions));
+
+
+            if (!headless) {
+                // Set position to top-left to ensure full window is visible
+                driver.get().manage().window().setPosition(new Point(0, 0));
+
+                // Set window size manually (outer window, so use a bit larger than 1920x1080)
+                driver.get().manage().window().setSize(new Dimension(1920, 1400));
+            }
             log.info("FirefoxDriver initialized.");
-        } else {
+        }
+
+        else {
             ChromeOptions chromeOptions = new ChromeOptions();
             if (headless) {
                 chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");

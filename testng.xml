@@ -15,17 +15,16 @@
 
 
 
-<!--        <classes>-->
-<!--            <class name="qa.tests.AddPaymentMethodTest"/>-->
-<!--            <class name="qa.tests.BillTest"/>-->
-<!--            <class name="qa.tests.TransactionsTest"/>-->
-<!--            <class name="qa.tests.GiftCardsTest"/>-->
-<!--            <class name="qa.tests.MyStoreTest"/>-->
-<!--        </classes>-->
+        <classes>
+            <class name="qa.tests.TransactionsTest"/>
+           <class name="qa.tests.MyStoreTest"/>
+            <class name ="qa.tests.SignUpTest"/>
 
-        <packages>
-            <package name="qa.tests" />
-        </packages>
+        </classes>
+
+<!--        <packages>-->
+<!--            <package name="qa.tests" />-->
+<!--        </packages>-->
 
 
      </test>
