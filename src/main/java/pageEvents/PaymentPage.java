@@ -16,6 +16,8 @@ import static pageEvents.TransactionsPage.okButn;
 
 public class PaymentPage extends BaseTest {
 
+    PaymentMethod payment = new PaymentMethod();
+
 
     // Payment popup locators
 
@@ -62,7 +64,7 @@ public class PaymentPage extends BaseTest {
     By ZelleCard = By.xpath("(//div[contains(@class,'w-100 border')])[2]");
     By paidLabel = By.xpath("//div[normalize-space()='Paid']");
     By cashIcon = By.xpath("(//span[text()='Cash']/../child::span)[3]");
-    By crossIcon = By.xpath("(//button[@class='btn-close'])[3]");
+    By crossIcon = By.xpath("//div[contains (@class, 'modal fade show')]//button[@class='btn-close']");
     By crossIconOnTransactionpage = By.xpath("//button[@class='btn-close']");
     By transcationMenu = By.xpath("(//div[text()='Transactions'])[2]");
     By paidBill = By.xpath("//div[contains(@class,'bg-white border')][1]");
@@ -940,8 +942,8 @@ public class PaymentPage extends BaseTest {
 
 
     public void paymentThrouhBankAccount( ) {
-        staticWait(3000);
-        clickOnSignOut();
+//        staticWait(3000);
+//        clickOnSignOut();
         LoginAsCustomer();
         clickOnBillIcon();
         clickOnBill();
@@ -956,8 +958,9 @@ public class PaymentPage extends BaseTest {
         clickOnchangeBtn();
         staticWait(3000);
         clickOnBankAccountSection();
-       // paymentThrougBankAccount();
-      //  paymentMethodPopUp(email,name, fullNameField, phoneTxt);
+        payment.getBankAccountDetails();
+
+
     }
 
     public void billPaymentByVariousPaymentMethods(String enterTextInAmountField, String cardNameTxt, String expiryDateTxt, String cvcTxt, String countryName) {

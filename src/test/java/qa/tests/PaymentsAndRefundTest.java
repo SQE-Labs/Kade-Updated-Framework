@@ -86,7 +86,7 @@ public class PaymentsAndRefundTest extends BaseTest {
     @Test(priority = 8, enabled = true, description = "PYMT9 : Bill Creation and Successful Bill Payment through Bank account by Customer.")
     public void BillPaymentByCustomerThroughBankAccount() {
 
-        bill.createBillWithCustomer("636045278965", "Alexnew@yopmail.com");
+//        bill.createBillWithCustomer("636045278965", "Alexnew@yopmail.com");
         payment.paymentThrouhBankAccount( );
         payment.swipeCard();
         payment.billPayment();

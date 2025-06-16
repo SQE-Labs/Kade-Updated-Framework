@@ -301,6 +301,7 @@ public class BillPage extends BaseTest {
     By chargeButton = By.xpath("//span[contains(text(),'Charge')]");
     public By removeButtonUnderInfoMsg = By.xpath("//div[contains(text(),'process this bill')]/..//button");
 
+    By doYouHAveCrossICon = By.xpath("(//div[contains(@class,'modal-content')]//button[@class='btn-close'])[1]");
 
     String amount = "2000.00";
 
@@ -931,7 +932,7 @@ public class BillPage extends BaseTest {
     }
 
     public void closePopup() {
-//        staticWait(3000);
+        staticWait(5000);
         if (isElementDisplayed(crossIcon)) {
             System.out.print(" pop-up showed and clicking");
             staticWait(3000);
@@ -1354,8 +1355,12 @@ public class BillPage extends BaseTest {
         String toastMess = getText(successMessage);
         Assert.assertEquals(toastMess, toastMessage);
 
-        //Close popup
-        closePopup();
+        waitForElementToBeVisible(crossIcon,5);
+
+//        //Close popup
+//        closePopup();
+        clickElementByJS(doYouHAveCrossICon);
+
     }
 
     public void verifyCreateBillForSuggestedCustomer(String emailID) {

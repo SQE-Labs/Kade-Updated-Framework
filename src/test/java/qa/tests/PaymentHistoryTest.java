@@ -52,7 +52,7 @@ public class PaymentHistoryTest extends BaseTest {
 
     @Test(priority = 6,description = "PH07 : Verify that 'Partially Paid' label appears and left amount can be paid using 'Make payments' button on 'Transaction Detail' Page")
     public void VerifyPartiallyPaidLabelOnTransactionDetailPage(){
-        bills.verifyCreateBillForSuggestedCustomer("Saybo@yopmail.com");
+        bills.verifyCreateBillForSuggestedCustomer("saybo@yopmail.com");
         pay.getsignout();
         pay.VerifyPartiallypaidamount();
     }

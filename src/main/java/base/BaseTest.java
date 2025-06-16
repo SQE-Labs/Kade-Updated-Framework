@@ -1,29 +1,30 @@
 package base;
 
 import logger.Log;
-import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
+import utils.PropertyUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.interactions.Actions;
- import org.openqa.selenium.support.ui.*;
+import org.openqa.selenium.support.ui.*;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import pageObjects.PageObjectManager;
 import utils.ConfigFileReader;
-import utils.PropertyUtils;
 
-import java.io.IOException;
+
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
@@ -80,7 +81,7 @@ public class BaseTest {
      */
     @BeforeMethod
     @Parameters({"browser", "headless"})
-    public void setupDriver(@Optional("chrome") String browser, @Optional("true") boolean headless) {
+    public void setupDriver(@Optional("chrome") String browser, @Optional("false") boolean headless) {
         softAssert = new SoftAssert();
         log.info("Setting up WebDriver for browser: {}, headless: {}", browser, headless);
         if (browser.equalsIgnoreCase("chrome")) {
@@ -113,15 +114,10 @@ public class BaseTest {
 
             if (!headless) {
                 // Set position to top-left to ensure full window is visible
-                driver.get().manage().window().setPosition(new Point(0, 0));
-
-                // Set window size manually (outer window, so use a bit larger than 1920x1080)
-                driver.get().manage().window().setSize(new Dimension(1920, 1400));
+                driver.get().manage().window().setSize(new Dimension(1920, 1080));
             }
             log.info("FirefoxDriver initialized.");
-        }
-
-        else {
+        } else {
             ChromeOptions chromeOptions = new ChromeOptions();
             if (headless) {
                 chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080");
@@ -303,7 +299,6 @@ public class BaseTest {
         staticWait(2000);
     }
     public void scrollToTopOfPage() {
-        staticWait(2000);
         log.info("Scrolling to the top of the page");
         ((JavascriptExecutor) getDriver()).executeScript("window.scrollTo(0, 0);");
         staticWait(2000);
@@ -357,10 +352,6 @@ public class BaseTest {
     public String getAttribute(By locator, String attribute) {
         log.info("Getting attribute '{}' from element: {}", attribute, locator);
         return waitForElementToBeVisible(locator, 10).getAttribute(attribute);
-    }
-
-    public String getAttributeOfWebElement(WebElement element, String attribute) {
-        return element.getAttribute(attribute);
     }
 
     /**
@@ -1077,21 +1068,25 @@ public class BaseTest {
         return (List<WebElement>) getDriver().findElements(locator);
     }
 
-    public void takeScreenshot(WebDriver driver, String fileName) {
-        try {
-            File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            File dest = new File("./screenshots/" + fileName + ".png");
-            FileUtils.copyFile(src, dest);
-            System.out.println("Screenshot saved as: " + dest.getAbsolutePath());
-        } catch (IOException e) {
-            System.out.println("Failed to capture screenshot: " + e.getMessage());
-        }
-    }
     public WebElement waitForElementToBeVisibleAndClickable(By locator, int timeoutSeconds) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutSeconds));
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
+    public boolean switchToFrameContainingElement(By locator) {
+        List<WebElement> iframes = getDriver().findElements(By.tagName("iframe"));
+        for (WebElement frame : iframes) {
+            getDriver().switchTo().defaultContent();
+            getDriver().switchTo().frame(frame);
+            List<WebElement> elements = getDriver().findElements(locator);
+            if (!elements.isEmpty()) {
+                System.out.println("Switched to correct frame.");
+                return true;
+            }
+        }
+        getDriver().switchTo().defaultContent();
+        System.out.println("Element not found in any frame.");
+        return false;
+    }
 }
-
 
