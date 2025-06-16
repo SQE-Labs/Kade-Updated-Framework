@@ -187,11 +187,11 @@ public class SecurityAndPasswordTest extends BaseTest {
         staticWait(3000);
         click(securityAndPasswordPage.editPhoneBtn);
         waitForElementToBeVisible(securityAndPasswordPage.newPhoneInputField, 10);
+        staticWait(3000);
         actionEnterText(securityAndPasswordPage.newPhoneInputField, Constants.validPhoneNumber);
         click(securityAndPasswordPage.sendSecurityCodeForNewPhone);
         staticWait(3000);
-        waitForElementToBeClickable(securityAndPasswordPage.differentCellPhone,10);
-        clickElementByJS(securityAndPasswordPage.differentCellPhone);
+         clickElementByJS(securityAndPasswordPage.differentCellPhone);
         waitForElementToBeVisible(securityAndPasswordPage.newPhoneInputField, 10);
         actionEnterText(securityAndPasswordPage.newPhoneInputField, Constants.validPhoneNumber2);
         click(securityAndPasswordPage.sendSecurityCodeForNewPhone);
@@ -221,9 +221,7 @@ public class SecurityAndPasswordTest extends BaseTest {
     @Test
     public void verifyDeleteButton() {
         log.info("Verify validation message appears when clicked on delete button");
-//        LoginPage login=new LoginPage();
-//
-//        login.supenLogin();
+
 
         Login();
         securityAndPasswordPage.getSecurityAndPasswordPage();

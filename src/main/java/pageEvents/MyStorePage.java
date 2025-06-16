@@ -200,6 +200,7 @@ public class MyStorePage extends BaseTest {
     }
 
     public void getBankTransferToggleButton() {
+        staticWait(2000);
         clickElementByJS(bankTransferToggleBtn);
     }
 
@@ -293,6 +294,7 @@ public class MyStorePage extends BaseTest {
             cleanByJS(storeAddressField);
             pressKeys(storeAddressField, storeAddressName);
             click(storeAddressField);
+            staticWait(2000);
             click(storeAddressOption);
         }
     public void getConfigureLink(){
@@ -478,8 +480,9 @@ public class MyStorePage extends BaseTest {
         scrollToElement(saveBtn);
         waitForElementToBeVisible(saveBtn,5);
         getSaveButton();
-        waitForElementToBeVisible(bankTransferToggleBtn,10);
+
         scrollToElement(bankTransferToggleBtn);
+        waitForElementToBeVisible(bankTransferToggleBtn,10);
 
         // Click on 'Bank Transfer' toggle button
         getBankTransferToggleButton();

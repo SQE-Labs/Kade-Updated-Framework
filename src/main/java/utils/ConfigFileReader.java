@@ -56,7 +56,7 @@ public class ConfigFileReader {
     }
 
     /**
-     * Reloads the ConfigFileReader singleton instance. 
+     * Reloads the ConfigFileReader singleton instance.
      * Useful for switching environments during runtime.
      */
     public static synchronized void reloadInstance() {

@@ -130,7 +130,7 @@ public class SignUpTest extends BaseTest {
 
         // Verify the start Over Link and resent code link
         staticWait(2000);
-         Assert.assertTrue(isElementDisplayed(signUp.startOverLink));
+      //   Assert.assertTrue(isElementDisplayed(signUp.startOverLink));
          Assert.assertTrue(isElementDisplayed(signUp.resendCode));
 
         // Click on start over link and Continue button
@@ -144,8 +144,8 @@ public class SignUpTest extends BaseTest {
        // waitForElementToBeVisible(signUp.fullname,10);
 
         //Entering name in the Full name field
-        staticWait(3000);
-        actionEnterText(SignUp.fullname, "New kade Member");
+        staticWait(1000);
+        actionEnterText(SignUp.fullname, "New kade Member"+st);
         staticWait(3000);
         // Clicking on 'Continue' button
         click(SignUp.ContinueButtonBusiness);

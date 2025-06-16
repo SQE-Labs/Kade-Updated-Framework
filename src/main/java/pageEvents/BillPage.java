@@ -127,7 +127,7 @@ public class BillPage extends BaseTest {
     public By crossIcon = By.xpath("(//div[contains(@class,'modal-content')]//button[@class='btn-close'])[1]");
     public By countinueWithoutTxt = By.xpath("//div//button[text()='Continue without']");
     public By selectACustomerBtn = By.xpath("(//div[@class='modal-content'])[8]//button[text()='Select a customer']");
-    By whichStorePopup = By.xpath("//p[text()='Which store?']");
+    By  billPopup = By.xpath("//h4[contains(text(),'Do you have a logo?')]");
     By newBusinessCard = By.xpath("div.overflow-hidden.border.border-info");
     public By storesCombobox = By.xpath("//span[@role='combobox']");
     public By messagePopupHeader = By.xpath("//h5[text()='Message']");
@@ -209,6 +209,7 @@ public class BillPage extends BaseTest {
     public By saveBtn = By.cssSelector("button[class='btn btn-primary']");
     public By validationMsg = By.xpath("//p[text()='The amount is larger than acceptable amount (50,000.00) for this store']");
     By paidRepeatField = By.xpath("//div[text()='No repeat']/../../../../..");
+    By repeatSec=By.xpath("(//a[@class='stretched-link ms-1 -activator-button-'])[3]");
     public By repeatUpgradePlan = By.xpath("//h3[text()='Upgrade your plan']");
     By repeatUpgradePlanNotNowBtn = By.xpath("//button[text()='Not now']");
     By repeatTxt = By.xpath("//h5[text()='Repeat']");
@@ -589,7 +590,6 @@ public class BillPage extends BaseTest {
     }
 
     public void getConfirmButton() {
-        staticWait(2000);
         scrollToElement(confirmBtn);
         click(confirmBtn);
     }
@@ -809,13 +809,16 @@ public class BillPage extends BaseTest {
         String userDir = System.getProperty("user.dir");
         String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "ImageResources" + File.separator + "image" + File.separator + "BillDummyImg.jpg";
         fileInput.sendKeys(filePath);
-
-
     }
 
 
-    public void uploadPdf() throws AWTException {
-        uploadImageAsAttachment("/src/main/resources/ImageResources/image/dummy");
+    public void uploadPdf() {
+        WebElement fileInput = getDriver().findElement(By.xpath("//input[@type='file']"));
+
+        // Set the file path to upload
+        String userDir = System.getProperty("user.dir");
+        String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "ImageResources" + File.separator + "image" + File.separator + "dummy.pdf";
+        fileInput.sendKeys(filePath);
     }
 
     public void getCheckButton() {
@@ -925,16 +928,16 @@ public class BillPage extends BaseTest {
 
     public void clickOnRepeatField() {
         staticWait(2000);
-        click(paidRepeatField);
+        clickElementByJS(repeatSec);
         String repeatText = getText(repeatTxt);
         Assert.assertEquals(repeatText, "Repeat");
     }
 
     public void closePopup() {
-//        staticWait(3000);
-        if (isElementDisplayed(crossIcon)) {
-            System.out.print(" pop-up showed and clicking");
-            staticWait(3000);
+        staticWait(5000);
+        if (isElementDisplayed(billPopup)) {
+            Log.info(" pop-up showed and clicking");
+            staticWait(5000);
             clickOnCrossIcon();
         } else {
             Log.info("No pop-up showed");
@@ -955,7 +958,7 @@ public class BillPage extends BaseTest {
 
     public void closePaymentpopup() {
         staticWait(3000);
-        if (isElementDisplayed(closePopup)) {
+        if (isElementDisplayed(billPopup)) {
             System.out.print(" pop-up showed and clicking");
             staticWait(5000);
             BillClosePopup();
@@ -1028,7 +1031,7 @@ public class BillPage extends BaseTest {
 
     public void clickOnCloseIcon() {
         staticWait(3000);
-        if (isElementDisplayed(closeLogoPopupBtn)) {
+        if (isElementDisplayed(billPopup)) {
             System.out.print(" pop-up showed and clicking");
             staticWait(4000);
             getCloseLogoPopupBtn();
@@ -1213,10 +1216,6 @@ public class BillPage extends BaseTest {
     public void clickOnReccuring() {
         staticWait(2000);
         scrollToElement(reccuringMenu);
-        waitForElementToBeVisible(reccuringMenu, 15);
-         staticWait(5000);
-        waitForElementToBeClickable(reccuringMenu, 10);
-        scrollToElement(reccuringMenu);
         staticWait(5000);
         click(reccuringMenu);
         click(reccuringBill);
@@ -1358,6 +1357,67 @@ public class BillPage extends BaseTest {
         closePopup();
     }
 
+    public void createBillWithCustomers(String phoneNumber, String emailID) {
+        Login();
+        //Select Store
+        clickOnNewBill();
+        getStoresDropdown();
+        selectStore(Constants.AutomationBillFlow);
+        getContinueButton();
+
+        // Click on New Bill Button
+        getNewBillButton();
+
+        // Verify New Bill popup
+        //  Assert.assertEquals(popUpHeader, "Bill");
+        String popupheader = getText(popUpHeader);
+        Assert.assertEquals(popupheader, "Bill");
+
+        //Verify Confirm Button is disabled before entering amount
+        scrollToElement(btnDisabled);
+        Assert.assertTrue(isElementDisplayed(btnDisabled));
+
+
+        //Enter amount
+        String amt = "2,000.00";
+        staticWait(3000);
+        scrollToElement(amtTbx);
+        actionEnterText(amtTbx, amt);
+
+        getCustomerButton();
+
+        //Verify Customer popup
+        String phoneNumberField = "Phone number. Existing or new";
+        String phone = getAttribute(customerNumber, "placeholder");
+        //   Assert.assertTrue(Boolean.parseBoolean(phone), phoneNumberField);
+        Assert.assertEquals(phone, phoneNumberField);
+        Log.info(phone);
+
+        String emailFieldTxt = "Email. Existing or new";
+        String email = getAttribute(emailField, "placeholder");
+        //  Assert.assertTrue(Boolean.parseBoolean(email), emailField);
+        Assert.assertEquals(email, emailFieldTxt);
+        Log.info(email);
+
+        //   Select Customer
+        getCustomerPhoneNoField(phoneNumber);
+        getCustomerEmailField(emailID);
+        getEmailGoButton();
+        staticWait(3000);
+        // Verify if Customer name popup appears
+        if (isElementDisplayed(enterUserNamePopUp)) {
+            staticWait(4000);
+            click(enterCustomernameDoneBtn);
+        } else {
+            Log.info("POPup Not Displayed");
+        }
+        //Click Confirm
+        getConfirmButton();
+
+        //Close popup
+        closePopup();
+    }
+
     public void verifyCreateBillForSuggestedCustomer(String emailID) {
 
         Login();
@@ -1400,8 +1460,6 @@ public class BillPage extends BaseTest {
         Assert.assertTrue(isElementDisplayed(billTimeOnPopup), "Bill Time On Popup");
 
         staticWait(3000);
-
-
     }
 
     public void verifyBillCreationByOptionalFields(String amount, String DesAmount, String emailID) {
@@ -1599,7 +1657,7 @@ public class BillPage extends BaseTest {
         getContinueWithoutButton();
 
         //Close popup
-        closePopup();
+      //  closePopup();
     }
 
     public void verifyingBillCreationWithAddingMemoField(String emailID) {
@@ -1802,14 +1860,13 @@ public class BillPage extends BaseTest {
         //Click Confirm
         staticWait(2000);
         getConfirmButton();
+        staticWait(4000);
 
 
         //Close popup
         closePopup();
 
-        staticWait(4000);
-        scrollToTopOfPage();
-        staticWait(5000);
+         staticWait(5000);
         clickOnReccuring();
 
         removeNonNumericValueFromTheValue();
@@ -1853,6 +1910,7 @@ public class BillPage extends BaseTest {
         //Click Confirm
         staticWait(2000);
         getConfirmButton();
+        staticWait(4000);
         //Close popup
         closePopup();
 
@@ -1988,7 +2046,7 @@ public class BillPage extends BaseTest {
         //Click Confirm
         staticWait(2000);
         getConfirmButton();
-
+        staticWait(4000);
         //Close popup
         closePopup();
 

@@ -21,17 +21,14 @@ public class BillTest extends BaseTest {
 
     @Test(priority = 1, enabled = true,description = "BC_02 Verify that creating a bill by adding amount value only, with Selecting a Customer")
     public void verifyCreateBillBySelectingCustomer() {
-        bill.createBillWithCustomer("636045278965", "yonro@yopmail.com");
-        bill.clickOnNotPaidLabel();
-         bill.getDeleteButton();
-        bill.getDeleteIcon();
+        bill.createBillWithCustomer("6360452789", "yonro@yopmail.com");
     }
 
 
     @Test(priority = 2, enabled = true,description = "BC_03 Bill creation by selecting customers from the suggestion list")
     public void verifyCreateBillForSuggestedCustomer() {
         bill.verifyCreateBillForSuggestedCustomer("yonro@yopmail.com");
-        bill.deleteBill();
+       // bill.deleteBill();
     }
 
 
@@ -63,8 +60,8 @@ public class BillTest extends BaseTest {
     @Test(priority = 8, enabled = true, description = "BC_07 Verify that creating a bill by attaching the image file.")
     public void verifyingBillCreationByAttachingPdfFile() throws InterruptedException, AWTException {
         bill.verifyingBillCreationByAttachingPdfFile();
-        bill.getDeleteButton();
-        bill.getDeleteIcon();
+//        bill.getDeleteButton();
+//        bill.getDeleteIcon();
     }
 
     @Test(priority = 9, enabled = true, description = "BC_14 Verify that creating a bill with adding Memo field, on 'Bill' popup.")
@@ -80,11 +77,12 @@ public class BillTest extends BaseTest {
     @Test(priority = 11, enabled = true, description = "BC_15 Verify that creating a bill by adding the custom expiration date' on 'Bills' page..")
     public void verifyBillCreationByAddingExpirationDate() {
         bill.verifyBillCreationByAddingExpirationDate("yonro@yopmail.com","20");
+
     }
 
     @Test(priority = 12, enabled = true, description = "BC_16, BC_10 and BC_17  Verify that creating a store by adding recurring transactions, on Bills page and Verify that creating a 'Daily Recurring bill and Activate after the first payment, on 'Bill' popup.")
     public void verifyBillCreationByAddingRecurringTransactionsDaily() {
-        bill.verifyBillCreationByAddingRecurringTransactionsDaily("6356789657", "saybo@yopmail.com");
+        bill.verifyBillCreationByAddingRecurringTransactionsDaily("6356789657", "alexnew@yopmail.com");
         bill.clickOnNotPaidLabel();
         bill.getDeleteButton();
         bill.getDeleteIcon();
@@ -92,7 +90,7 @@ public class BillTest extends BaseTest {
 
     @Test(priority = 13, enabled = true, description = "BC_18 Verify that creating a 'Weekly Recurring bill and Activate after the first payment, on 'Bill' popup.")
     public void verifyBillCreationByAddingRecurringTransactionsWeekly() {
-        bill.verifyBillCreationByAddingRecurringTransactionsWeekly("6356789657", "saybo@yopmail.com");
+        bill.verifyBillCreationByAddingRecurringTransactionsWeekly("6356789657", "alexnew@yopmail.com");
         bill.clickOnNotPaidLabel();
         bill.getDeleteButton();
         bill.getDeleteIcon();

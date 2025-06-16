@@ -194,7 +194,7 @@ public class SearchPage extends BaseTest {
 
     }
 
-    public void SearchAndVerify(String actiontype) throws IOException, UnsupportedFlavorException {
+    public void SearchAndVerify(String actiontype)   {
                 if (actiontype.equals("Valid"))
                 {
                     verifyUserDirectedToCustomerPageUsingValidIdentity();

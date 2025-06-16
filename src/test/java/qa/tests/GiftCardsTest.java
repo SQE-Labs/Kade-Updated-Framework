@@ -35,7 +35,7 @@ public class GiftCardsTest extends BaseTest {
 
     @Test(priority =2, enabled = true, description = "GC 03 and GC 06 Verify that all the gift card appear listed in Grid View, on 'Gift Cards' Page, when gift card has been issued by store manager., Verify that appropriate details appears on active Gift Card, on 'Gift Cards'  page.")
     public void verifyTheCardsAndInfomationOnGC(){
-        LoginAsCustomer();
+        LoginAsGiftCardUser();
         staticWait(3000);
         scrollToDown();
         scrollToElement(pageObjectManager.getSidePannel().myStuff);
@@ -56,7 +56,7 @@ public class GiftCardsTest extends BaseTest {
     }
     @Test(priority = 3, enabled = true, description = "GC 12, 13 and GC 14, Verify that Gift Card Summary popup opens up, after clicking on any Gift card, on 'Gift Cards' page.")
       public void verifyGCSummaryPopupOpensUpAfterClickingOnGC(){
-        LoginAsCustomer();
+        LoginAsGiftCardUser();
         staticWait(3000);
         scrollToDown();
         scrollToElement(pageObjectManager.getSidePannel().myStuff);
@@ -81,7 +81,7 @@ public class GiftCardsTest extends BaseTest {
     }
     @Test(priority = 4,enabled = true, description = "GC 15: Verify that 'Gift card detail' page opens in a new tab, after clicking on 'Open in a new tab' icon , on Gift Card Summary popup")
     public void verifyGCOpenInNewTab(){
-        LoginAsCustomer();
+        LoginAsGiftCardUser();
         staticWait(3000);
         scrollToDown();
         scrollToElement(pageObjectManager.getSidePannel().myStuff);

@@ -285,7 +285,7 @@ public class TransactionsPage extends BaseTest {
 
     // Trs 01 b
     public void verifyByStoreLabel() {
-        bills.createBillWithCustomer("636045278965", "Saybo@yopmail.com");
+        bills.createBillWithCustomer("636045278965", "alexnew@yopmail.com");
         bills.clickOnNotPaidLabel();
         payments.paymentPopup("Enter Bill Amount");
 
@@ -491,7 +491,7 @@ public class TransactionsPage extends BaseTest {
     public void getFullRefund() {
 
         // Making payment
-        bills.createBillWithCustomer("636045278965", "saybo@yopmail.com");
+        bills.createBillWithCustomer("636045278965", "alexnew@yopmail.com");
         payments.billPaymentByThroughDebitCard("4111111111111111", "0930", "794", "Australia");
         payments.swipeCard();
         payments.billPayment();
@@ -538,7 +538,7 @@ public class TransactionsPage extends BaseTest {
         String refundReferenceNo = requiredDigits(4);
 
         // Making payment
-        bills.createBillWithCustomer("636045278965", "saybo@yopmail.com");
+        bills.createBillWithCustomer("636045278965", "alexnew@yopmail.com");
         payments.billPaymentByThroughDebitCard("4111111111111111", "0930", "794", "Australia");
         payments.swipeCard();
         payments.billPayment();
@@ -609,7 +609,7 @@ public class TransactionsPage extends BaseTest {
 
     // TRS 12
     public void verifyQuestionMarkIcon() {
-        bills.verifyCreateBillForSuggestedCustomer("saybo@yopmail.com");
+        bills.verifyCreateBillForSuggestedCustomer("alexnew@yopmail.com");
         payments.paymentThrouhVenmoAccount();
         pageObjectManager.getSidePannel().getSignOut();
         Login();
@@ -664,7 +664,7 @@ public class TransactionsPage extends BaseTest {
 
     // TRS16 Pending processing icon
     public void verifyPaymentProcessingIcon() {
-        bills.createBillWithCustomer("636045278965", "saybo@yopmail.com");
+        bills.createBillWithCustomer("636045278965", "alexnew@yopmail.com");
         payments.paymentThrouhBankAccount( );
         payments.swipeCard();
         payments.billPayment();
@@ -691,7 +691,7 @@ public class TransactionsPage extends BaseTest {
 
     // TRS 10
     public void verifyTheFailedIcon() {
-        bills.createBillWithCustomer("636045278965", "saybo@yopmail.com");
+        bills.createBillWithCustomer("636045278965", "alexnew@yopmail.com");
 
         payments.paymentThrouhVenmoAccount();
         pageObjectManager.getSidePannel().getSignOut();

@@ -33,7 +33,7 @@ public class PaymentHistoryTest extends BaseTest {
     @Test(priority = 3,description = "PH03 , PH04 : Verify that records get updated everytime on 'Payment History' page when user make any transactions")
     public void verifyRecordsGetUpdatedAfterMakingTransaction()  {
 
-        bills.verifyCreateBillForSuggestedCustomer("Saybo@yopmail.com");
+        bills.verifyCreateBillForSuggestedCustomer("alexnew@yopmail.com");
         pay.getsignout();
         pay.VerifytheTransaction();
     }
@@ -52,7 +52,7 @@ public class PaymentHistoryTest extends BaseTest {
 
     @Test(priority = 6,description = "PH07 : Verify that 'Partially Paid' label appears and left amount can be paid using 'Make payments' button on 'Transaction Detail' Page")
     public void VerifyPartiallyPaidLabelOnTransactionDetailPage(){
-        bills.verifyCreateBillForSuggestedCustomer("Saybo@yopmail.com");
+        bills.verifyCreateBillForSuggestedCustomer("alexnew@yopmail.com");
         pay.getsignout();
         pay.VerifyPartiallypaidamount();
     }

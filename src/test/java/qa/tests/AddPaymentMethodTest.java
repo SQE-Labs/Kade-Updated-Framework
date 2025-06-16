@@ -96,8 +96,6 @@ public class AddPaymentMethodTest extends BaseTest {
         staticWait(5000);
         paymentMethod.getTrashIcon();
         paymentMethod.getThumbIcon();
-
-
     }
 
     @Test(priority = 1, description = "Verify that appropriate information message appears, when no payment method is added, on the 'Payment Method' page.")

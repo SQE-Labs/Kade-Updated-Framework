@@ -75,7 +75,7 @@ public class BaseTest {
      */
     @BeforeMethod
     @Parameters({"browser", "headless"})
-    public void setupDriver(@Optional("chrome") String browser, @Optional("false") boolean headless) {
+    public void setupDriver(@Optional("chrome") String browser, @Optional("true") boolean headless) {
         softAssert = new SoftAssert();
         log.info("Setting up WebDriver for browser: {}, headless: {}", browser, headless);
         if (browser.equalsIgnoreCase("chrome")) {
@@ -98,7 +98,8 @@ public class BaseTest {
         }
 
         // Maximize window and load the URL
-        getDriver().manage().window().maximize();
+        getDriver().manage().window().setSize(new Dimension(1920, 1080));
+
         String url = configReader.getProperty("url");
         if (url != null && !url.isEmpty()) {
             getDriver().get(url);
@@ -772,6 +773,24 @@ public class BaseTest {
 
         // Fetch credentials
         String username = configReader.getProperty("admin");
+        String password = configReader.getProperty("password");
+
+        // Validate credentials
+        if (username == null || password == null) {
+            throw new RuntimeException("Username or password is missing in the configuration file.");
+        }
+
+        // Perform login
+        pageObjectManager.getLoginPage().signIn(username, password);
+
+        // Verify successful login
+        pageObjectManager.getHomePage().landingPage();
+    }
+    public static void LoginAsGiftCardUser() {
+        log.info("Starting Login test");
+
+        // Fetch credentials
+        String username = configReader.getProperty("giftcarduser");
         String password = configReader.getProperty("password");
 
         // Validate credentials

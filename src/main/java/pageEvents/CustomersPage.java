@@ -107,8 +107,9 @@ public class CustomersPage extends BaseTest {
     public void applyFilterToCheckPhoneValidation( ) {
         staticWait(3000);
         click(filter);
-        waitForElementToBeInteractable(filterPhoneNumber,20);
+        waitForElementToBeVisible(filterPhoneNumber,20);
         actionEnterText(filterPhoneNumber, Constants.WrongPhoneNumberInput);
+        scrollToElement(filterApplyBtn);
         click(filterApplyBtn);
     }
 

@@ -44,7 +44,7 @@ public class GiftCardDashboardPage extends BaseTest {
       By clientDetailValidationMsg = By.cssSelector("div.alert-message>p");
       By statusBtn = By.cssSelector("span.me-2~div>button.btn~ul.p-1");
     public By blockBtn = By.cssSelector("span.me-2~div>button.btn-danger");
-    public By activeBtn = By.cssSelector("span.me-2~div>button.btn-success");
+    public By activeBtn = By.xpath("//span[text()='Status:']/..//button[contains(@class,'btn dropdown-toggle')]");
     public By infoMessageText = By.cssSelector("div.card-header.pb-0");
     public By configurationBtn = By.cssSelector("button.btn.btn-link");
     public By configurationPopupHeader = By.cssSelector("h5.modal-title");
@@ -105,6 +105,7 @@ public class GiftCardDashboardPage extends BaseTest {
     By expDate = By.xpath("//input[@name='expDate']");
     public By giftCardDetailCardLink = By.xpath("(//tr/td/a[@class='btn btn-link btn btn-link'])[1]");
     public By giftCardHeaderText = By.cssSelector("h3.text-info");
+    By giftCard=By.xpath("(//tr/td/a[@class='btn btn-link btn btn-link'])[1]/../..");
     public By issueNewGiftcardForm = By.cssSelector("div.modal-body");
     public By infoIcon = By.cssSelector("i.fal.fa-info-square");
     public By enableClass = By.cssSelector("label.custom-checkbox.mb-3");
@@ -2412,6 +2413,7 @@ public class GiftCardDashboardPage extends BaseTest {
         click(createButton);
         staticWait(3000);
         scrollToElement(giftCardDetailCardLink);
+        staticWait(3000);
         click(giftCardDetailCardLink);
     }
 
@@ -3073,8 +3075,6 @@ public class GiftCardDashboardPage extends BaseTest {
         switchToWindow("1");
         staticWait(3000);
         Assert.assertEquals(getText(totalSpentText), Constants.totalSpentText);
-
-
     }
 
     public void verifyMessageIcon() {
@@ -3085,7 +3085,6 @@ public class GiftCardDashboardPage extends BaseTest {
         click(messageIcon);
         String messageText = getAttribute(messageTextBox, "placeholder");
         Assert.assertEquals(messageText, Constants.messageText);
-
     }
 
     public void VerifyActiveGiftCard() {
@@ -3093,8 +3092,6 @@ public class GiftCardDashboardPage extends BaseTest {
         scrollToElement(filterIcon);
         staticWait(2000);
         Assert.assertEquals(getText(giftCardStatus), Constants.activeStatus);
-
-
     }
 
     public void verifyStartDateRejectsChar() {
@@ -3105,8 +3102,6 @@ public class GiftCardDashboardPage extends BaseTest {
         click(updateButton);
         Assert.assertEquals(getText(systemAlert), Constants.systemAlert);
         Assert.assertEquals(getText(clientDetailValidationMsg), Constants.ValidationMsg);
-
-
     }
 
     public void verifyEndDateRejectsChar() {
@@ -3118,8 +3113,6 @@ public class GiftCardDashboardPage extends BaseTest {
         Assert.assertEquals(getText(systemAlert), Constants.systemAlert);
         Assert.assertEquals(getText(clientDetailValidationMsg), Constants.ValidationMsg);
     }
-
-
 }
 
 

@@ -22,8 +22,6 @@ public class MyStoreTest extends BaseTest {
 
     PageObjectManager pageObjectManager = PageObjectManager.getInstance();
     MyStorePage mystore = pageObjectManager.getMyStorePage();
-    BillPage bill = new BillPage();
-    PaymentPage payment = new PaymentPage();
 
     @Test(priority = 0, enabled = true, description = "SC_01(A) Verifying creation of Store without Stripe Payment Account Configuration")
     public void storeCreationWithoutStripeAccount() {

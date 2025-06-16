@@ -55,7 +55,6 @@ public class TransactionsTest extends BaseTest {
     public void newChargePaymentWithoutStripeConfiguration() {
         Login();
         transaction.verifyNewChargeWithoutStripeConfigured();
-
     }
 
     @Test(priority = 5, enabled = true,description = "TRS5 (a) :Verify that store manager is able to charge a customer manually, after stripe payment is configured for a store.")
@@ -106,7 +105,7 @@ public class TransactionsTest extends BaseTest {
     @Test(priority = 13, enabled = true,description = "TRS 15 : Recurring icon appears for RT enable bill transaction, on 'Transaction' page.")
     public void verifyRecurringIconAppearsForRTEnabledBillTransactions() {
 
-        bill.BillCreationByAddingRecurringTransactionsWeekly("6356789657", "saybo@yopmail.com");
+        bill.BillCreationByAddingRecurringTransactionsWeekly("6356789657", "AlexNew@yopmail.com");
         staticWait(3000);
         payment.billPaymentByThroughDebitCardWithRecurringBill("4111111111111111", "0930", "794", "Australia");
         payment.swipeCard();
@@ -133,7 +132,6 @@ public class TransactionsTest extends BaseTest {
     @Test(priority = 17, enabled = true,description = "TRS 09- A Verify that store manager is able to Download the transactions on 'Transactions' page.")
     public void verifyThatTransactionsGetsDownloaded() throws InterruptedException {
         transaction.FilterGetsDownloadTransactions();
-
     }
 }
 
