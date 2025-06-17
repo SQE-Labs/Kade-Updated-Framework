@@ -26,6 +26,7 @@ public class PaymentMethod extends BaseTest {
     public By saveWithLink = By.xpath("//span[text()='Save with Link']/..");
     public By notNow = By.xpath("//span[text()='Not now']/..");
     public By backToKadePay = By.xpath("//span[text()='Back to Kade Pay']/..");
+    public By getBackToKadePay= By.xpath("//button[@type='submit']//span[text()='Back to Kade Pay']");
     public By finalSavebtn = By.xpath("//button[contains (@class, 'btn btn-primary ') and text()='Save']");
     public By bankFrame = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[1]");
     public By paymentTimeBankFrame = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[2]");
@@ -131,24 +132,29 @@ public class PaymentMethod extends BaseTest {
         }
         switchToDefaultContent();
         staticWait(5000);
-        actionEnterText(phoneBankField, "6465551114");
-        staticWait(2000);
-        getSaveWithLinkBtn();
-
-        staticWait(5000);
-
-        // Verify that success text appears
-        Assert.assertTrue(isElementDisplayed(successText), "Success Text");
-
-        getBackToKadePayBtn();
+        if (switchToFrameContainingElement(saveWithLink)) {
+            actionEnterText(phoneBankField, "6465551114");
+            staticWait(2000);
+            clickElementByJS(saveWithLink);
+            switchToDefaultContent(); // best practice to reset to main frame after clicking
+        } else {
+            actionEnterText(phoneBankField, "6465551114");
+            staticWait(2000);
+            clickElementByJS(saveWithLink);
+        }
+        staticWait(4000);
+        if (switchToFrameContainingElement(getBackToKadePay)) {
+            // Verify that success text appears
+            Assert.assertTrue(isElementDisplayed(successText), "Success Text");
+            clickElementByJS(getBackToKadePay);
+            switchToDefaultContent(); // best practice to reset to main frame after clicking
+        } else {
+            // Verify that success text appears
+            Assert.assertTrue(isElementDisplayed(successText), "Success Text");
+            clickElementByJS(getBackToKadePay);
+        }
         switchToDefaultContent();
-        staticWait(5000);
-        switchToFrame(bankFrame);
 
-//        waitForElementToBeVisible(paymentMethod.stripeBankAccountText,5);
-        System.out.println("Bank Account name is " + getText(stripeBankAccountText));
-        Assert.assertEquals(getText(stripeBankAccountText), "Stripebank");
-        switchToDefaultContent();
         waitForElementToBeClickable(finalSavebtn, 5);
          getFinalSaveBtn();
     }

@@ -115,7 +115,7 @@ public class PaymentPage extends BaseTest {
     By transactionHeader = By.xpath("//h1[normalize-space()='Transaction Detail']");
     By tarnsactionUniqueId = By.xpath("(//span[contains(text(),'TR-')])[2]");
     By paymentMethodIcon = By.xpath("//span[contains(@class,'payment-logo-bg-sm')]");
-    By bankAccountSection = By.xpath("(//span[contains(text(),'Bank Account')])/../../../..");
+    By bankAccountSection = By.xpath("(//span[contains(text(),'New Bank Account')])/../../../..");
     By amountField = By.xpath("(//form//input[@name='amount'])[2]");
     By bankAccount=By.xpath("(//span[text()='Bank Account 6789'])[1]");
     By emailField=By.cssSelector("#Field-emailInput");
@@ -301,9 +301,9 @@ public class PaymentPage extends BaseTest {
     }
 
     public void clickOnchangeBtn() {
-        staticWait(5000);
+        staticWait(2000);
         scrollToElement(changeBtn);
-        staticWait(4000);
+        staticWait(2000);
         click(changeBtn);
     }
 
@@ -942,8 +942,8 @@ public class PaymentPage extends BaseTest {
 
 
     public void paymentThrouhBankAccount( ) {
-//        staticWait(3000);
-//        clickOnSignOut();
+        staticWait(3000);
+        clickOnSignOut();
         LoginAsCustomer();
         clickOnBillIcon();
         clickOnBill();
@@ -953,8 +953,6 @@ public class PaymentPage extends BaseTest {
         } else {
             Log.info("Nothing to be selected");
         }
-        //   softAssert.assertTrue(isElementDisplayed(storeName));
-       // softAssert.assertTrue(isElementDisplayed(visaCardName));
         clickOnchangeBtn();
         staticWait(3000);
         clickOnBankAccountSection();

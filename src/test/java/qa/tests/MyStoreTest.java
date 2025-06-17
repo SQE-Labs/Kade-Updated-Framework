@@ -52,7 +52,7 @@ public class MyStoreTest extends BaseTest {
             Assert.assertEquals(actual, Constants.skip);
             //  Click on 'Skip' button
             mystore.getSkipBtnOfStripe();
-        }else{
+        } else {
             Log.info("Logo is not displayed");
         }
         scrollToElement(mystore.deleteStoreBtn);
@@ -167,7 +167,7 @@ public class MyStoreTest extends BaseTest {
         pageObjectManager.getSidePannel().getSignOut();
         staticWait(3000);
         pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
-     }
+    }
 
     // Bug Failed due to 3092, 2827
 
@@ -398,7 +398,7 @@ public class MyStoreTest extends BaseTest {
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
 
-         // Click on 'Configure' Link
+        // Click on 'Configure' Link
         click(mystore.configureLink2);
 
         waitForElementToBeVisible(mystore.paymentProcessingSubTab, 5);
@@ -409,8 +409,7 @@ public class MyStoreTest extends BaseTest {
 
         //  Click on 'Credit Card Terminal' button
 
-        if (isElementDisplayed(mystore.configureATerminalTitle))
-        {
+        if (isElementDisplayed(mystore.configureATerminalTitle)) {
             mystore.getAddaTerminalLink();
         } else {
             mystore.getCreditCardTerminalButton();
@@ -659,7 +658,18 @@ public class MyStoreTest extends BaseTest {
 
         // Need to add assertion
     }
+
+    @Test
+    public void test() {
+        // This is a placeholder for any additional tests you may want to add.
+        // You can implement your test logic here.
+         Log.info("Running MyStoreTest");
+
+         pageObjectManager.getAdminPage().ToDeleteStores();
+
+    }
 }
+
 
 
 

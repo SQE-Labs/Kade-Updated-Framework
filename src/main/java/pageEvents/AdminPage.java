@@ -91,19 +91,19 @@ public class AdminPage extends BaseTest {
         enterText(storeNameField,"AutoStore");
         selectDropdownByVisibleText(selectStatus,"Active");
         getApplyBtn();
-        staticWait(3000);
-       String text = getText(ownerEmail);
+        staticWait(5000);
+        String text = getText(ownerEmail);
         Log.info(text);
         System.out.println(ownerEmail);
 
-        if (text.equals("test1114@yopmail.com")){
+        if (text.equals("tester1114@yopmail.com")){
             List<WebElement> storeElements = getDriver().findElements(By.cssSelector(".ms-2.text-truncate"));
             int elementcount = storeElements.size();
             while (elementcount > 0) {
                 String storename=getText(storeName);
 //           for(WebElement store : storeElements){
                 staticWait(2000);
-               getFirstResult();
+                getFirstResult();
                // store.click();
                 scrollToElement(blockBtn);
                 staticWait(3000);
