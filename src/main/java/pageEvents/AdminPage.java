@@ -20,7 +20,7 @@ public class AdminPage extends BaseTest {
     By blockBtn = By.cssSelector(".fal.fa-circle.custom-check-off");
     By statusTextBox = By.cssSelector(".form-control[maxlength=\"250\"]");
     By updateStatusBtn = By.xpath("//button[text()='Update Status']");
-    By deleteBtn = By.cssSelector("button[href=\".-deleteStore-\"]");
+     By deleteBtn=By.xpath("//button[contains(@class,'btn btn-outline-danger collapsed')]");
     By deleteStoreNameField = By.cssSelector("input[name=\"name\"][required]");
     By clickPermanentDeleteBtn = By.xpath("//button[text()='Delete Permanently']");
     By clickFirstResult = By.cssSelector(".ms-2.text-truncate:nth-child(1)");
@@ -49,7 +49,7 @@ public class AdminPage extends BaseTest {
     }
     public void getDeleteBtn(){
         staticWait(3000);
-        clickElementByJS(deleteBtn);
+        hoverAndClick(deleteBtn,deleteBtn);
     }
     public void getEditDeleteStoreNameBox(){
         click(deleteStoreNameField);
@@ -80,7 +80,7 @@ public class AdminPage extends BaseTest {
         getUpdateStatusBtn();
         scrollToElement(deleteBtn);
         getDeleteBtn();
-        enterText(deleteStoreNameField,"Final Delete");
+        actionEnterText(deleteStoreNameField,"Final Delete");
         getPermanentDeleteBtn();
     }
 

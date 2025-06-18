@@ -1071,9 +1071,6 @@ public class PaymentPage extends BaseTest {
             staticWait(3000);
           //  switchToFrame(bankFrame);
 
-//            waitForElementToBeVisible(LogInWithTestInstitutionLabel, 5);
-//            Assert.assertTrue(isElementDisplayed(LogInWithTestInstitutionLabel), "Log In with Test Insititute");
-
             getAgreeAndContinueBtn();
 
             // wait till bank options

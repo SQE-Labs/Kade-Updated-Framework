@@ -146,7 +146,7 @@ public interface Constants {
     //Store Creation
     String skip = "Skip";
     String ConnectToStripe ="Connect to stripe";
-    String defaultLocationDescription = "Dix Hills";
+    String defaultLocationDescription = "123 William";
     String defaultStoreAddress = "8 Glover Dr, Dix Hills, NY 11746, USA";
     String defaultCurrency = "USD";
     String defaultTaxRate = "0.000%";

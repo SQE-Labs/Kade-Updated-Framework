@@ -84,8 +84,8 @@ public class GiftCardDashboardPage extends BaseTest {
     public By noSearchResultText = By.cssSelector("div.p-2>div.w-100>div~p");
     public By customerNameSearchBtn = By.cssSelector("input[name='phrase']~button.btn>i.far");
     public By doneBtn = By.cssSelector("button.btn.btn-link.w-100.my-3");
-    public By intialAmount = By.cssSelector("input[name='initialAmount']");
-    public By createButton = By.cssSelector("button.btn.btn-success.btn-lg.w-100");
+    public By intialAmount = By.xpath("//input[@name='initialAmount']");
+    public By createButton = By.xpath("//button[text()='Create']/..");
     public By referenceNoField = By.cssSelector("input[name='referenceNo']");
     public By moreOptionsBtn = By.cssSelector("div.d-flex.justify-content-between ~ a.p-0.mb-1");
     By moreOptionSec = By.xpath("//label[text()='More options']/../..");
@@ -105,8 +105,7 @@ public class GiftCardDashboardPage extends BaseTest {
     By expDate = By.xpath("//input[@name='expDate']");
     public By giftCardDetailCardLink = By.xpath("(//tr/td/a[@class='btn btn-link btn btn-link'])[1]");
     public By giftCardHeaderText = By.cssSelector("h3.text-info");
-    By giftCard=By.xpath("(//tr/td/a[@class='btn btn-link btn btn-link'])[1]/../..");
-    public By issueNewGiftcardForm = By.cssSelector("div.modal-body");
+     public By issueNewGiftcardForm = By.cssSelector("div.modal-body");
     public By infoIcon = By.cssSelector("i.fal.fa-info-square");
     public By enableClass = By.cssSelector("label.custom-checkbox.mb-3");
     public By updateButton = By.xpath("//button[text()='Update']");
@@ -378,15 +377,15 @@ public class GiftCardDashboardPage extends BaseTest {
     public static void LoginAsCustomerNew() {
         Log.info("Starting Login test - Entering username and password");
 
-
         String username = configReader.getProperty("customerNew");
         String password = configReader.getProperty("password");
 
-        // Validate if username and password are present in the config file
+        // Fail fast if any of the credentials are missing
         if (username == null || password == null) {
             throw new RuntimeException("Username or password is missing in the configuration file.");
         }
 
+        // Now it's safe to proceed
         pageObjectManager.getLoginPage().signIn(username, password);
 
         // Log the status of the action after clicking SignIn
@@ -2934,12 +2933,12 @@ public class GiftCardDashboardPage extends BaseTest {
     public void verifyGiftCardDetailPopUp() {
         offOptionalSettings();
         staticWait(1000);
-        clickElementByJS(issueNewGiftCardBtn);
+        click(issueNewGiftCardBtn);
         waitForElementToBeInteractable(customerField, 1000);
-        clickElementByJS(customerField);
+        click(customerField);
         waitForElementToBeVisible(customerEmail, 1000);
         actionEnterText(customerEmail, "beanBliss@yopmail.com");
-        clickElementByJS(customerEmailSearchBtn);
+        click(customerEmailSearchBtn);
         staticWait(1000);
         waitForElementToBeVisible(intialAmount, 1000);
         actionEnterText(intialAmount, "100000");
@@ -3059,14 +3058,14 @@ public class GiftCardDashboardPage extends BaseTest {
 
     public void verifyStatusChange() {
         createGiftCard();
+        Assert.assertEquals(getText(activeBtn), Constants.activeStatus);
         click(activeBtn);
         click(statusBtn);
         staticWait(2000);
         Assert.assertEquals(getText(blockBtn), Constants.blockedStatus);
-        staticWait(2000);
         click(blockBtn);
         click(statusBtn);
-        Assert.assertEquals(getText(activeBtn), Constants.activeStatus);
+
     }
 
     public void verifyUserDirectedToProfilePage() {

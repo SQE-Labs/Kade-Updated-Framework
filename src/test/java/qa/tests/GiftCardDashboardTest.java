@@ -1,21 +1,11 @@
 package qa.tests;
 
 import base.BaseTest;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
 import org.testng.annotations.Test;
 import pageEvents.GiftCardDashboardPage;
-import pageEvents.SidePannelPage;
-import pageObjects.PageObjectManager;
+ import pageObjects.PageObjectManager;
 
-
-import utils.Constants;
-
-import java.io.File;
-import java.io.IOException;
 
 
 public class GiftCardDashboardTest extends BaseTest {

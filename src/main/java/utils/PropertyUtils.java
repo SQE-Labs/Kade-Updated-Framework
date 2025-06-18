@@ -12,7 +12,7 @@ public class PropertyUtils{
 public static String getPropertyValue(String key) {
 
     //1. load data from properties file
-    String propFilePath = System.getProperty("user.dir") + "/src/main/java/Config/Config.Properties";
+    String propFilePath = System.getProperty("user.dir") + "/src/main/java/resources/config_qa.Properties";
     FileInputStream fis;
     try {
         fis = new FileInputStream(propFilePath);

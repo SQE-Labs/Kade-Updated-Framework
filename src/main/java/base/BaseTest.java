@@ -75,7 +75,7 @@ public class BaseTest {
      */
     @BeforeMethod
     @Parameters({"browser", "headless"})
-    public void setupDriver(@Optional("chrome") String browser, @Optional("true") boolean headless) {
+    public void setupDriver(@Optional("chrome") String browser, @Optional("false") boolean headless) {
         softAssert = new SoftAssert();
         log.info("Setting up WebDriver for browser: {}, headless: {}", browser, headless);
         if (browser.equalsIgnoreCase("chrome")) {
@@ -163,7 +163,7 @@ public class BaseTest {
      */
     public WebElement waitForElementToBeVisible(By locator, int timeout) {
         log.info("Waiting for element to be visible: {}", locator);
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeout));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
@@ -171,8 +171,8 @@ public class BaseTest {
         try {
             for (int i = 0; i < tries; i++) {
                 Wait<WebDriver> fluentWait1 = new FluentWait<WebDriver>(getDriver())
-                        .withTimeout(Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))))
-                        .pollingEvery(Duration.ofMillis(Long.parseLong(PropertyUtils.getPropertyValue("wait"))))
+                        .withTimeout(Duration.ofSeconds(10))
+                        .pollingEvery(Duration.ofMillis(10))
                         .ignoring(TimeoutException.class);
                 fluentWait1.until(ExpectedConditions.visibilityOfElementLocated(locator));
             }
@@ -196,8 +196,8 @@ public class BaseTest {
     public WebElement waitForElementToBeInteractable(By locator, int timeout) {
         log.info("Waiting for element to be interactable: {}", locator);
         Wait<WebDriver> wait = new FluentWait<>(getDriver())
-                .withTimeout(Duration.ofSeconds(timeout))
-                .pollingEvery(Duration.ofMillis(500)) // Default polling interval
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofMillis(10)) // Default polling interval
                 .ignoring(NoSuchElementException.class)
                 .ignoring(ElementNotInteractableException.class);
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
@@ -210,8 +210,7 @@ public class BaseTest {
      */
     public void click(By locator) {
         log.info("Clicking on element: {}", locator);
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))));
-        waitForElementToBeClickable(locator, 10).click();
+         waitForElementToBeClickable(locator, 10).click();
 
     }
 

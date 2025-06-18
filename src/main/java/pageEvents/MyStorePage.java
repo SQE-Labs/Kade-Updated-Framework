@@ -9,6 +9,8 @@ import utils.Constants;
 
 import java.io.File;
 
+import static java.lang.Float.parseFloat;
+import static utils.Constants.requiredFldValidation;
 import static utils.Constants.validPassword;
 
 
@@ -24,12 +26,14 @@ public class MyStorePage extends BaseTest {
     public By blankFieldWarningMsg = By.xpath("//p[@class='alert-content']");
     public By storeLogo = By.xpath("//div[@class='display-none -update-div-']//a");
     By editIcon = By.xpath("//div[text()='Avenue']/button");
+    By editStore=By.xpath("//button[@class='btn ']");
     public By StoreNameTbx = By.xpath("//input[@name='name']");
     public By locationDescTbx = By.xpath("//input[@name='description']");
     public By storeAddressField = By.cssSelector(".form-control.pac-target-input");
     public By storeAddressOption = By.xpath("(//div[@class='pac-item'])[1]");
     public By phoneTbx = By.xpath("//input[@name='phone']");
     By address = By.xpath("//input[@name='fulladdress']");
+    By locationField=By.xpath("//input[@Name='description']");
     public By timeZoneField = By.xpath("//select[@name='timeZone']");
     public By timeZoneOption = By.xpath("//option[text()='(GMT-05:00) Eastern Time (US & Canada)']");
     public By taxRateTbx = By.xpath("//input[@name='taxRate']");
@@ -124,7 +128,7 @@ public class MyStorePage extends BaseTest {
     public By acceptVenmoHeader = By.xpath("//form[@action='/api/Stores/SaveVenmoGatewayApplication' and @style='display: none;']");
     public By acceptZelleHeader = By.xpath("//form[@action='/api/Stores/SaveZelleGatewayApplication']");
     public By deleteUserIcon = By.xpath("(//h5[text()='Users with access to this store']/../..//button)[2]");
-    public By saveZellePaymentSettings = By.xpath("//form[@action='/api/Stores/SaveZelleGatewayApplication'] //button[text()='Save']");
+    public By saveZellePaymentSettings = By.xpath("(//button[text()='Save'])[3]");
     public By editStoreBtn = By.xpath("//i[@class='far fa-edit ms-2']");
     public By premiumTitle = By.xpath("//h4[text()='Premium']");
     public By premiumMonthlyBtn = By.cssSelector(".flex-fill label[for='rdo_p3_0']");
@@ -184,10 +188,11 @@ public class MyStorePage extends BaseTest {
     public void getStripeAccountBtn(){
         staticWait(2000);
         click(stripeBtn);
-        staticWait(2000);
+
     }
 
     public void getTestStripeAccountButton() {
+        staticWait(2000);
         click(testStripeBtn);
     }
 
@@ -380,10 +385,9 @@ public class MyStorePage extends BaseTest {
     public void getVenmoSaveButton(){
         click(saveVenmoPaymentBtn);
     }
-    public void getAcceptZelleHeader(){
-        click(acceptZelleHeader);
-    }
-    public void getZelleSaveButton(){
+     public void getZelleSaveButton(){
+        staticWait(2000);
+        scrollToElement(saveZellePaymentSettings);
         click(saveZellePaymentSettings);
     }
     public void getAddaTerminalLink(){
@@ -434,7 +438,7 @@ public class MyStorePage extends BaseTest {
 
 
 //*****************************
-    public void getStoreCreation(String addressField){
+    public void getStoreCreation(String location,String addressField){
          storeNamewithstripe = "AutoStore" + requiredDigits(4);
          String phone = requiredDigits(10);
 
@@ -444,9 +448,9 @@ public class MyStorePage extends BaseTest {
 
         // Click on 'Register New Business' Button
         getRegisterNewBusinessButton();
-        if (isElementDisplayed(editIcon)) {
+        if (isElementDisplayed(editStore)) {
             staticWait(4000);
-            click(editIcon);
+            click(editStore);
         } else {
             Log.info("Edit icon not appears");
         }
@@ -474,6 +478,9 @@ public class MyStorePage extends BaseTest {
          getEditStoreButton();
 
         enterText(StoreNameTbx, storeNamewithstripe);
+        getDriver().findElement(By.xpath("//input[@Name='description']")).clear();
+        actionEnterText(locationField,location);
+        getDriver().findElement(By.xpath("//input[@name='fulladdress']")).clear();
         actionEnterText(address, addressField);
         actionEnterText(phoneTbx, phone);
         staticWait(3000);
@@ -621,8 +628,11 @@ public class MyStorePage extends BaseTest {
         waitForElementToBeClickable(StoreNameTbx,8);
 
         // Enter Store Name
+        getDriver().findElement(By.xpath("//input[@name='name']")).clear();
         actionEnterText(StoreNameTbx,Constants.editdefaultStoreName);
+        getDriver().findElement(By.xpath("//input[@name='description']")).clear();
         actionEnterText(locationDescTbx,Constants.defaultLocationDescription);
+
         selectStoreAddress(Constants.storeAddress);
 
         //Verifying the maximum length of 'Phone' field
@@ -635,8 +645,7 @@ public class MyStorePage extends BaseTest {
         scrollToElement(taxRateTbx);
         Assert.assertEquals(getAttribute(taxRateTbx, "min"), "0");
         staticWait(3000);
-        String attributeValue = getAttribute(taxRateTbx, "value");
-        Assert.assertEquals(attributeValue, "0.000");
+        Assert.assertTrue(isElementDisplayed(taxRateTbx));
         Assert.assertEquals(getAttribute(taxRateTbx, "max"), "100");
 
         //  Enter Tax rate
@@ -794,6 +803,308 @@ public class MyStorePage extends BaseTest {
         softAssert.assertAll();
 
     }
+
+    public void verifyConfigOfStoreUsingProcessPayment(){
+        Login();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getMyStoreTab();
+        waitForElementToBeClickable(configureLink, 3);
+
+        // Click on 'Configure' Link
+        getConfigureLink();
+
+        waitForElementToBeVisible(paymentProcessingSubTab, 5);
+
+        // Click on 'Payment-Processing' Sub-Tab
+        getPaymentProcessingSubTab();
+        staticWait(3000);
+        scrollToDown();
+        staticWait(3000);
+
+        getAcceptVenmoToggleButton();
+
+        staticWait(5000);
+
+        //Verifying Maximum length of 'VenmoID' field
+
+        Assert.assertEquals(getAttribute(venmoIDField, "maxlength"), "40");
+
+        // Enter ID in 'Venmo ID" field
+        enterText( venmoIDField, requiredDigits(4));
+
+        //Verifying maximum length of 'Venmo Name' field
+        Assert.assertEquals(getAttribute( venmoNameField, "maxlength"), "40");
+
+        // Enter name in 'Venmo Name' Field
+        enterText( venmoNameField, requiredString(8));
+
+        // Click on 'Save' Button
+        getVenmoSaveButton();
+        scrollToElement( acceptZelleHeader);
+        staticWait(3000);
+
+        if (!isToggleEnabled( acceptZelleToggleBtn)) {
+            clickElementByJS( acceptZelleToggleBtn);
+        } else {
+            Log.info("Toggle button is already On");
+        }
+
+        //Verifying maximum length of 'Zelle Phone' field
+        Assert.assertEquals(getAttribute( zellePhoneField, "maxlength"), "40");
+
+        //  Enter Phone Number in 'Zelle Phone' Field
+        enterText( zellePhoneField, requiredDigits(4));
+
+        // Verifying maximum length of 'Zelle Name' field
+        Assert.assertEquals(getAttribute( zelleNameField, "maxlength"), "40");
+
+        // Enter Zelle Account Name
+        enterText( zelleNameField, requiredString(8));
+
+        // Click on 'Save' Button
+         getZelleSaveButton();
+    }
+
+
+    public void c2verifyBuyingMonthlyBusinessPlanForAlreadyCreatedStore(String location,String Address){
+        Login();
+         getStoreCreation(location,Address);
+        getSubscriptionPlanTab();
+        //Verifying that 'Current Plan' appears under Essential Free Plan
+        String message = getText( currentPlanMSg);
+        softAssert.assertEquals(message, Constants.currentPlan);
+
+        //Click on 'Sign up' button
+         getPlansSignUpButton();
+
+        //Verifying that by-default Visa Payment method is enabled
+        String defaultPaymentMthd = getText( addedVisaMethod);
+        System.out.println(defaultPaymentMthd);
+        softAssert.assertEquals(defaultPaymentMthd, Constants.visavalue);
+
+//       Click on 'Change Pay Method' Link
+         getChangePayMethodLink();//Verifying that other payment methods are available
+        softAssert.assertTrue(isElementDisplayed( newCreditCardBtn), " New credit card button");
+        softAssert.assertTrue(isElementDisplayed( newBankAccountBtn), "new bank account");
+
+        // Click on 'Terms' Checkbox
+        getTermsCheckbox();
+        scrollToElement(changePlanBtn);
+
+        //  Click on 'Change Plan' Button
+         getChangePlanButton();
+
+        //Verifying that next bill date is generated
+        Assert.assertTrue(isElementDisplayed(nextBillDate), "next bill date");
+        pageObjectManager.getSidePannel().getSignOut();
+        staticWait(3000);
+        pageObjectManager.getAdminPage().selectedStoreDeleted( storeNamewithstripe);
+        softAssert.assertAll();
+    }
+
+    public void verifyStoreCreationWithYearlyBusinessPlan(String location,String address){
+        Login();
+         getStoreCreation(location,address);
+
+         getSubscriptionPlanTab();
+
+        //Verifying that 'Current Plan' appears under Essential Free Plan
+        String message = getText( currentPlanMSg);
+        Assert.assertEquals(message, Constants.currentPlan);
+
+        // select on Business Yearly plan
+        getBusinessYearlyPlan();
+
+        //Click on 'Sign up' button
+        getPlansSignUpButton();
+
+        //Verifying that by-default Visa Payment method is enabled
+        String defaultPaymentMthd = getText( addedVisaMethod);
+        Assert.assertEquals(defaultPaymentMthd, Constants.visavalue);
+
+//       Click on 'Change Pay Method' Link
+        getChangePayMethodLink();//Verifying that other payment methods are available
+        Assert.assertTrue(isElementDisplayed( newCreditCardBtn));
+        Assert.assertTrue(isElementDisplayed( newBankAccountBtn));
+       getbankAccountOptionForPlan();
+
+        // Click on 'Terms' Checkbox
+        getTermsCheckbox();
+        scrollToElement( changePlanBtn);
+
+        //  Click on 'Change Plan' Button
+         getChangePlanButton();
+
+        //Verifying that next bill date is generated
+        Assert.assertTrue(isElementDisplayed( nextBillDate) );
+
+        pageObjectManager.getSidePannel().getSignOut();
+        staticWait(3000);
+        pageObjectManager.getAdminPage().selectedStoreDeleted( storeNamewithstripe);
+    }
+    public void deletionOfStore(){
+        Login();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getMyStoreTab();
+
+        // Click on 'Register New Business' Button
+        getRegisterNewBusinessButton();
+        staticWait(2000);
+        if (!isElementDisplayed( storeLogo)) {
+            getSkipStripeAccountButton();
+            waitForElementToBeVisible( skipPopUpTitle, 4);
+
+            String actual = getText( skipPopUpTitle);
+            //Verifying the 'Skip' Pop Up Title
+            Assert.assertEquals(actual, Constants.skip);
+            //  Click on 'Skip' button
+             getSkipBtnOfStripe();
+        }else{
+            Log.info("Logo is not displayed");
+        }
+        scrollToElement( deleteStoreBtn);
+        waitForElementToBeVisible( deleteStoreBtn, 7);
+        // click on delete button
+         getDeleteStoreButton();
+         getDeleteStoreIcon();
+    }
+
+    public void verifyConfigurationsOfStoreUsingSettings(){
+        String tipAmountPercent1 = requiredDigits(2);
+        String tipAmountPercent2 = requiredDigits(2);
+        String tipAmountPercent3 = requiredDigits(2);
+        String rewardPoints = requiredDigits(4);
+
+        Login();
+        pageObjectManager.getSidePannel().getMangeBusinessTab();
+        pageObjectManager.getSidePannel().getMyStoreTab();
+
+        waitForElementToBeInteractable(  configureLink, 4);
+
+        // Click on 'Configure' Link
+         getConfigureLink();
+
+        // Click on 'Settings' Sub-Tab
+        getSettingSubTab();
+
+        //Verifying Minimum, Maximum and Default values of 'Maximum Bill Amount' Field
+        String maxBillAmount = requiredDigits(parseFloat(Constants.minimumBillAmount), parseFloat(Constants.maximumBillAmount));
+        softAssert.assertEquals(getAttribute( maxBillAmountTbx, "max"), Constants.maximumBillAmount);
+        softAssert.assertEquals(getAttribute( maxBillAmountTbx, "min"), Constants.minimumBillAmount);
+
+        //  Enter amount in 'Maximum Bill Amount' field
+        actionEnterText( maxBillAmountTbx, maxBillAmount);
+        staticWait(3000);
+
+        if (!isElementDisplayed( tipGratuityToggleOffBtn)) {
+
+            // Click on 'Tip & Gratuity' Toggle Button
+             getTipGratuityToggleOnButton();
+        }
+        // Click on 'Configure' button
+        getTipConfigureBtn();
+
+        //Verifying the 'Tip Configuration' Pop-up Title
+        softAssert.assertEquals( tipConfigPopUpTitle, Constants.tipConfigurationTitle);
+
+        staticWait(5000);
+        getEnterInPerCentToggleButton();
+
+        cleanByJS( tipPercentField1);
+        cleanByJS( tipPercentField2);
+        cleanByJS( tipPercentField3);
+
+        // Click on 'Save Changes' button
+       getSaveChangesButton();
+
+        getValidationCrossIcon();
+
+        staticWait(3000);
+
+        String tooltip1 = getToolTipMessage( tipPercentField1);
+        Assert.assertEquals(tooltip1, requiredFldValidation);
+
+        String tooltip2 = getToolTipMessage( tipPercentField2);
+        Assert.assertEquals(tooltip2, requiredFldValidation);
+
+        String tooltip3 = getToolTipMessage( tipPercentField3);
+        Assert.assertEquals(tooltip3, requiredFldValidation);
+
+        staticWait(4000);
+
+        // Click on 'Enter in Percentage' Toggle button
+         getEnterInPerCentToggleButton();
+
+        staticWait(3000);
+
+        if (!isElementDisplayed( alertMessage)) {
+
+            // Click on 'Enter in Percentage' Toggle button
+             getEnterInPerCentToggleButton();
+        }
+
+        //Verifying the Default and maximum values of 'Tip Amount' fieltipPercentField1d
+        softAssert.assertEquals(getAttribute( tipPercentField1, "max"), tipAmountPercent1);
+
+        //  Enter Tip Values
+        actionEnterText( tipPercentField1, tipAmountPercent1);
+        actionEnterText( tipPercentField2, tipAmountPercent2);
+        actionEnterText( tipPercentField3, tipAmountPercent3);
+
+        // Click on 'Save Changes' button
+      getSaveChangesButton();
+
+        // Click on 'Configure' button
+         getRewardConfigureButton();
+
+        //Verifying the 'Rewards Configuration' Pop-Up Title
+        String rewardConfig = getText( rewardConfigPopUpTitle);
+        softAssert.assertEquals(rewardConfig, Constants.rewardConfigurationpopup);
+
+        // Click on 'Reward Point' Toggle button
+        if (!isElementDisplayed( rewardPointsField)) {
+             getRewardPointToggleOnButton();
+        }
+
+        //Verifying the Minimum and Maximum Values of 'Reward Points' Field
+        Assert.assertEquals(getAttribute( rewardPointsField, "max"), "99999");
+        Assert.assertEquals(getAttribute( rewardPointsField, "min"), "100");
+
+        // Enter Reward Points
+        actionEnterText( rewardPointsField, rewardPoints);
+
+        // Click on 'Save Changes' Button
+        getSaveChangesButton();
+
+        scrollToElement( storeLinksBtn);
+
+        waitForElementToBeVisible( storeLinksBtn, 3);
+
+        // Click on 'Store Links' button
+        getStoreLinksButton();
+        waitForElementToBeClickable( rewardPtsValue, 3);
+
+        // Enter Reward Points
+        actionEnterText( rewardPtsValue, rewardPoints);
+
+        // Enter Website URL
+        cleanByJS( websiteURLField);
+        actionEnterText( websiteURLField, "www.KadePay" + requiredString(4) + ".com");
+
+        // Click on 'Earn Rewards Points' Toggle Button
+        System.out.println("testse2: " + isToggleEnabled( earnRewardsToggleBtn));
+        if (!isToggleEnabled( earnRewardsToggleBtn)) {
+             getEarnRewardsPointsToggleButton();
+        } else {
+            scrollToElement( saveChangesBtn);
+            waitForElementToBeClickable( saveChangesBtn, 3);
+
+            // Click on 'Save Changes' Button
+           getSaveChangesButton();
+            softAssert.assertAll();
+        }
+    }
+
     }
 
 

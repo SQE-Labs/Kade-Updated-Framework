@@ -127,7 +127,7 @@ public class BillPage extends BaseTest {
     public By crossIcon = By.xpath("(//div[contains(@class,'modal-content')]//button[@class='btn-close'])[1]");
     public By countinueWithoutTxt = By.xpath("//div//button[text()='Continue without']");
     public By selectACustomerBtn = By.xpath("(//div[@class='modal-content'])[8]//button[text()='Select a customer']");
-    By  billPopup = By.xpath("//h4[contains(text(),'Do you have a logo?')]");
+    By billPopup = By.xpath("//h4[contains(text(),'Do you have a logo?')]");
     By newBusinessCard = By.xpath("div.overflow-hidden.border.border-info");
     public By storesCombobox = By.xpath("//span[@role='combobox']");
     public By messagePopupHeader = By.xpath("//h5[text()='Message']");
@@ -209,7 +209,7 @@ public class BillPage extends BaseTest {
     public By saveBtn = By.cssSelector("button[class='btn btn-primary']");
     public By validationMsg = By.xpath("//p[text()='The amount is larger than acceptable amount (50,000.00) for this store']");
     By paidRepeatField = By.xpath("//div[text()='No repeat']/../../../../..");
-    By repeatSec=By.xpath("(//a[@class='stretched-link ms-1 -activator-button-'])[3]");
+    By repeatSec = By.xpath("(//a[@class='stretched-link ms-1 -activator-button-'])[3]");
     public By repeatUpgradePlan = By.xpath("//h3[text()='Upgrade your plan']");
     By repeatUpgradePlanNotNowBtn = By.xpath("//button[text()='Not now']");
     By repeatTxt = By.xpath("//h5[text()='Repeat']");
@@ -1657,7 +1657,7 @@ public class BillPage extends BaseTest {
         getContinueWithoutButton();
 
         //Close popup
-      //  closePopup();
+        //  closePopup();
     }
 
     public void verifyingBillCreationWithAddingMemoField(String emailID) {
@@ -1866,7 +1866,7 @@ public class BillPage extends BaseTest {
         //Close popup
         closePopup();
 
-         staticWait(5000);
+        staticWait(5000);
         clickOnReccuring();
 
         removeNonNumericValueFromTheValue();
@@ -1955,14 +1955,12 @@ public class BillPage extends BaseTest {
         //Click Confirm
 
         getConfirmButton();
-
-
         //Close popup
         closePopup();
 
         // Assert.assertTrue(isElementDisplayed(reccuringIcon));
         staticWait(2000);
-        scrollToTopOfPage();
+
         clickOnReccuring();
 
         removeNonNumericValueFromTheValue();

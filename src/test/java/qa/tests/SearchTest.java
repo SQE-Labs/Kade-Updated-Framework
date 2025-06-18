@@ -1,4 +1,5 @@
 package qa.tests;
+
 import base.BaseTest;
 
 import org.openqa.selenium.By;
@@ -20,11 +21,9 @@ public class SearchTest extends BaseTest {
     SearchPage search = new SearchPage();
 
 
-
     @Test(description = "SP01, SP02: Verify that 'Search' popup appears after clicking on 'Search' tab, on Left Panel.")
 
-    public void verifySearchPopupAppearsAfterClickingSearchTab(
-    ) throws IOException, UnsupportedFlavorException {
+    public void verifySearchPopupAppearsAfterClickingSearchTab() {
 
 
         Login();
@@ -45,13 +44,11 @@ public class SearchTest extends BaseTest {
 
     // Bug Id is : 2991
     @Test(description = " SP04, SP05 : Verify that user is directed to specific cutomer's page using phone number")
-    public void verifyUserDirectedToCustomerPageUsingPhoneNumberoremail ()  {
+    public void verifyUserDirectedToCustomerPageUsingPhoneNumberoremail() {
 //        Login();
-         search.SearchAndVerify("Valid");
-         search.SearchAndVerify("Invalid");
+        search.SearchAndVerify("Valid");
+        search.SearchAndVerify("Invalid");
 
 
-
-
-        }
     }
+}
