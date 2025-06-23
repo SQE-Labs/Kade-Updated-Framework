@@ -40,6 +40,7 @@ public class MyStoreTest extends BaseTest {
 
     @Test(priority = 2, enabled = true, description = "SC_02  Verify creation of Store with Stripe Payment Account")
     public void creationOfStoreWithStripeAccount() {
+
         Login();
         mystore.getStoreCreation("123 William","123 William Bay Road, William Bay WA, Australia");
         pageObjectManager.getSidePannel().getSignOut();
@@ -86,6 +87,7 @@ public class MyStoreTest extends BaseTest {
         String value1 = requiredDigits(Float.parseFloat("0.01"), Float.parseFloat("999.00"));
         String value2 = requiredDigits(Float.parseFloat("0.01"), Float.parseFloat("999.00"));
         String value3 = requiredDigits(Float.parseFloat("0.01"), Float.parseFloat("999.00"));
+
 
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
@@ -326,8 +328,10 @@ public class MyStoreTest extends BaseTest {
 
         // Creating Operator user
         mystore.creatingOperatorUser();
+
     }
 
+    // Bug id =
     @Test(priority = 12, enabled = true, description = "SC_07(B) Verifying the Configuration of the store using Manage User sub tab to invite any existing user to manage store.")
     public void sc_07b_VerifyingConfigurationOfStoreUsingManageUserSubTabToInviteAnyExistingUserToManageStore() {
         Login();
@@ -369,7 +373,18 @@ public class MyStoreTest extends BaseTest {
 
         // Need to add assertion
     }
+
+    @Test(enabled = false)
+    public void test() {
+        // This is a placeholder for any additional tests you may want to add.
+        // You can implement your test logic here.
+         Log.info("Running MyStoreTest");
+
+         pageObjectManager.getAdminPage().ToDeleteStores();
+
+    }
 }
+
 
 
 

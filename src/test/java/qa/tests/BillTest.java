@@ -98,7 +98,7 @@ public class BillTest extends BaseTest {
 
     @Test(priority = 14, enabled = true, description = "BC_19 Verify that creating a 'Monthly Recurring bill and Activate after the first payment, on 'Bill' popup.")
     public void verifyBillCreationByAddingRecurringTransactionsMonthly() {
-        bill.verifyBillCreationByAddingRecurringTransactionsMonthly("6356789657", "saybo@yopmail.com");
+        bill.verifyBillCreationByAddingRecurringTransactionsMonthly("6356789657", "alexnew@yopmail.com");
         bill.clickOnNotPaidLabel();
         bill.getDeleteButton();
         bill.getDeleteIcon();
@@ -106,7 +106,7 @@ public class BillTest extends BaseTest {
 
     @Test(priority = 15, enabled = true, description = "BC_20 Verify that creating a 'Monthly Recurring bill and Activate after the first payment, on 'Bill' popup.")
     public void verifyBillCreationByAddingRecurringTransactionsYearly() {
-        bill.verifyBillCreationByAddingRecurringTransactionsYearly("6356789657", "saybo@yopmail.com");
+        bill.verifyBillCreationByAddingRecurringTransactionsYearly("6356789657", "alexnew@yopmail.com");
         bill.clickOnNotPaidLabel();
         bill.getDeleteButton();
         bill.getDeleteIcon();

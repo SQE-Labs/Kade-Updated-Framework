@@ -262,9 +262,4 @@ public class CustomersTest extends BaseTest {
         actionEnterText(customersPage.initialAmt, Constants.initialAmt);
         click(customersPage.createGiftCardBtn);
     }
-
-
-
-
-
 }

@@ -29,7 +29,8 @@ public interface Constants {
 
 
     // Create New Account Personal Account Option
-    String RequiredField = "This field is required.";
+    String RequiredField = "Please review the highlighted field(s)";
+    String validation="Please review the highlighted field(s)";
     String invalidData = "invalid123";
     String invalidPhoneNumber = "24324";
     String emailandPhoneValidation = "Invalid phone or email. Phone numbers must start with country code starting with +";

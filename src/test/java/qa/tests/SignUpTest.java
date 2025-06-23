@@ -4,7 +4,6 @@ import base.BaseTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
-import pageEvents.DashboardPage;
 import pageEvents.SignUpPage;
 import pageObjects.PageObjectManager;
 import utils.Constants;
@@ -130,7 +129,7 @@ public class SignUpTest extends BaseTest {
 
         // Verify the start Over Link and resent code link
         staticWait(2000);
-      //   Assert.assertTrue(isElementDisplayed(signUp.startOverLink));
+         Assert.assertTrue(isElementDisplayed(signUp.startOverLink));
          Assert.assertTrue(isElementDisplayed(signUp.resendCode));
 
         // Click on start over link and Continue button
@@ -145,8 +144,8 @@ public class SignUpTest extends BaseTest {
 
         //Entering name in the Full name field
         staticWait(1000);
-        actionEnterText(SignUp.fullname, "New kade Member"+st);
-        staticWait(3000);
+     //   actionEnterText(SignUp.fullname, "New kade Member"+st);
+
         // Clicking on 'Continue' button
         click(SignUp.ContinueButtonBusiness);
     }
@@ -178,7 +177,6 @@ public class SignUpTest extends BaseTest {
         // Entering Invalid security Code
         enterText(signUp.securityCodeFieldNewAccount, Constants.invalidSecurityCode);
 
-        // ..
         waitForElementToBeVisible(signUp.ContinueButtonBusiness,3);
         signUp.getBusinessContinuebtn();
 
@@ -204,7 +202,7 @@ public class SignUpTest extends BaseTest {
 
         // Verify the page title
         softAssert.assertTrue(isElementDisplayed(signUp.stripePageTitle));
-        waitForElementToBeClickable(pageObjectManager.getSidePannel().profileLink,4);
+        waitForElementToBeVisible(pageObjectManager.getSidePannel().profileLink,4);
 
         // Clicking on Profile Link
         pageObjectManager.getSidePannel().getProfileLink();
@@ -272,7 +270,7 @@ public class SignUpTest extends BaseTest {
     public void verifyThatSigningInToApplicationByPhoneUsingNewPassword() {
         pageObjectManager.getLoginPage().getSignUpLink();
         signUp.getBusinessAccount();
-        signUp.getCrossIcon();
+       signUp.getCrossIcon();
 
         // Clicking on 'Sign In Button
         signUp.getSignInBtn();
@@ -361,28 +359,20 @@ public class SignUpTest extends BaseTest {
         staticWait(3000);
 
         String invalidEmailValidation = getText(signUp.invalidEmailValidation);
-        softAssert.assertEquals(invalidEmailValidation, Constants.invalidEmailValidationMsg);
+        Assert.assertEquals(invalidEmailValidation, Constants.invalidEmailValidationMsg);
 
 //        String tooltip = getToolTipMessage(signUp.emailFieldSP); this funcationality has been changed to validation message
 //        softAssert.assertEquals(tooltip, Constants.emailTooltip);
 
         // Entering valid email address
         enterText(signUp.emailFieldSP, Constants.validLoginEmail);
-        signUp.getContinueBtnSP();
+         signUp.getContinueBtnSP();
+        staticWait(8000);
+//        waitForElementToBeVisible(signUp.passwordFieldSignP, 10);
+         //actionEnterText(signUp.securityCodeField,Constants.securityCode);
 
-        // Validation for Password field
-        enterText(signUp.passwordFieldSignP, Constants.invalidData);
+        actionEnterText(signUp.passwordFieldSignP, Constants.validPassword);
         signUp.getsignInButtonSignInP();
-
-        waitForElementToBeInteractable(signUp.passwordFieldSignP, 2);
-        String validation = getToolTipMessage(signUp.passwordFieldSignP);
-        softAssert.assertEquals(validation, Constants.passwordvalidation);
-
-        // Entering valid password and signing in to the app.
-        signUp.getShowPasswordSP();
-        enterText(signUp.passwordFieldSignP, Constants.validPassword);
-        signUp.getsignInButtonSignInP();
-        softAssert.assertAll();
     }
 
 

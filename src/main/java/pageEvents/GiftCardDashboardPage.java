@@ -2934,8 +2934,8 @@ public class GiftCardDashboardPage extends BaseTest {
         offOptionalSettings();
         staticWait(1000);
         click(issueNewGiftCardBtn);
-        waitForElementToBeInteractable(customerField, 1000);
-        click(customerField);
+        waitForElementToBeInteractable(customerSec, 1000);
+        clickElementByJS(customerSec);
         waitForElementToBeVisible(customerEmail, 1000);
         actionEnterText(customerEmail, "beanBliss@yopmail.com");
         click(customerEmailSearchBtn);

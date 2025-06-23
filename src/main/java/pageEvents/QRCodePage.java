@@ -54,6 +54,17 @@ public class QRCodePage extends BaseTest {
     By storeName = By.xpath("//h3[text()='Automation Bill Flow']");
     By authorizePayment = By.xpath("//h5[text()='Authorized Payment Method']");
     By newQrCode = By.xpath("//button[text()='Generate a new QR code']");
+
+    // donation QR code
+    By donationQRcode=By.xpath(" //span[text()='Donations']/..");
+    By editPaymentLinkHeader=By.xpath("//h1[normalize-space()='Edit Payment link']");
+    By saveBtnOnEditPayment=By.xpath("//button[text()='Save']");
+    By validationMsgOnEditPayment=By.xpath("//p[text()='Please review the highlighted field(s)']");
+    By titleFieldLength=By.xpath("(//textarea[@placeholder='Suggested title'])[2]");
+    By DonationTitleField=By.xpath("//input[@name='description']");
+    By enterSuggAmount=By.xpath("(//input[@name='items.price'])[2]");
+    By editContent=By.xpath("//button[text()='Edit content']");
+
     By flexibleAmount = By.xpath("//span[text()='Flexible amount']/..");
     By fixedAmount = By.xpath("//span[text()='Fixed amount']");
     By fixedAmoutSec=By.xpath("//span[text()='Fixed amount']/..");
@@ -74,8 +85,7 @@ public class QRCodePage extends BaseTest {
     By editPaymentLink = By.xpath("//h1[normalize-space()='Edit Payment link']");
     By titleField = By.xpath("//input[@name='description']");
     By amountDesc = By.xpath("//label[text()='Amount description']/../child::textarea");
-    By editContent = By.xpath("//button[text()='Edit content']");
-    By customizeContent = By.xpath("//h5[text()='Customize content']");
+     By customizeContent = By.xpath("//h5[text()='Customize content']");
     By title = By.xpath("(//div[@class='qr-template']/div)[1]");
     By titleFieldOnPopup = By.xpath("//input[@name='title']");
     By saveBtnOnFieldOnPopup = By.xpath("//input[@name='title']/../../child::div/button[text()='Save']");
@@ -200,6 +210,33 @@ public class QRCodePage extends BaseTest {
     public void clickOnnewQrCode() {
         click(newQrCode);
     }
+    public void clickOnDonationQrCodeSec() {
+        click(donationQRcode );
+    }
+
+    public void clickOnSaveBtnOnEditPayment() {
+        click(saveBtnOnEditPayment );
+    }
+
+    public void enterInDonationTitleField(String titleTxt) {
+        actionEnterText(DonationTitleField, titleTxt );
+    }
+
+    public void enterInenterSuggAmountField(String enterSuggAmountTxt){
+        actionEnterText(enterSuggAmount,enterSuggAmountTxt);
+    }
+
+    public void enterIntitleFieldLength(String titleFieldTxt){
+        actionEnterText(titleFieldLength,titleFieldTxt);
+    }
+
+
+
+
+
+
+
+
 
     public void clickOnFlexibleAmount() {
         click(flexibleAmount);
@@ -678,4 +715,47 @@ public class QRCodePage extends BaseTest {
         QrTypeDropdown();
 
     }
+    public void donationQRCode(String titleTxt,String enterSuggAmountTxt,String titleFieldTxt, String enterTitleField) throws AWTException {
+        selectStore();
+
+        //click On new QR code button
+        clickOnnewQrCode();
+        staticWait(3000);
+
+        //click On donation QR code section
+        clickOnDonationQrCodeSec();
+
+        waitForElementToBeVisible(editPaymentLinkHeader,10);
+         Assert.assertTrue(isElementDisplayed(editPaymentLinkHeader));
+
+         scrollToElement(saveBtnOnEditPayment);
+        clickOnSaveBtnOnEditPayment();
+
+        Assert.assertEquals(validationMsgOnEditPayment,"Please review the highlighted field(s)");
+
+        String Attvalue=getAttribute(titleFieldLength,"value");
+        Assert.assertEquals(Attvalue,"200");
+
+        enterInDonationTitleField(titleTxt);
+
+        String titleLength=getAttribute(DonationTitleField,"required maxlength");
+        Assert.assertEquals(titleLength,"100");
+
+        // Enter description and amount In Suggested amounts fields.
+        enterIntitleFieldLength(titleFieldTxt);
+        enterInenterSuggAmountField(enterSuggAmountTxt);
+        clickOneditContent();
+        clickOncustomizeContent();
+        clickOntitle();
+        clickOntitleFieldOnPopup(enterTitleField);
+        clickOnSaveBtnOnFieldOnPopup();
+        scrollToDown();
+        uploadImageInStoreLogo();
+        clickOncontent();
+         clickOnsaveBtnContentPage();
+
+
+    }
+
+
 }

@@ -17,6 +17,8 @@ import static pageEvents.TransactionsPage.okButn;
 
 public class PaymentPage extends BaseTest {
 
+    PaymentMethod payment = new PaymentMethod();
+
 
     // Payment popup locators
 
@@ -63,8 +65,8 @@ public class PaymentPage extends BaseTest {
     By ZelleCard = By.xpath("(//div[contains(@class,'w-100 border')])[2]");
     By paidLabel = By.xpath("//div[normalize-space()='Paid']");
     By cashIcon = By.xpath("(//span[text()='Cash']/../child::span)[3]");
-    By crossIcon = By.xpath("(//div[@class='modal-header']//button[@type='button'])[2]");
-    By crossIconOnTransactionpage = By.xpath("//button[@class='btn-close']");
+    By crossIcon = By.xpath("//div[contains (@class, 'modal fade show')]//button[@class='btn-close']");
+     By crossIconOnTransactionpage = By.xpath("//button[@class='btn-close']");
     By transcationMenu = By.xpath("(//div[text()='Transactions'])[2]");
     By paidBill = By.xpath("//div[contains(@class,'bg-white border')][1]");
     By amountPaidTime = By.xpath("(//span[@class='fs-pn15'])[4]");
@@ -114,7 +116,7 @@ public class PaymentPage extends BaseTest {
     By transactionHeader = By.xpath("//h1[normalize-space()='Transaction Detail']");
     By tarnsactionUniqueId = By.xpath("(//span[contains(text(),'TR-')])[2]");
     By paymentMethodIcon = By.xpath("//span[contains(@class,'payment-logo-bg-sm')]");
-    By bankAccountSection = By.xpath("(//span[contains(text(),'Bank Account')])/../../../..");
+    By bankAccountSection = By.xpath("(//span[contains(text(),'New Bank Account')])/../../../..");
     By amountField = By.xpath("(//form//input[@name='amount'])[2]");
     By bankAccount = By.xpath("(//span[text()='Bank Account 6789'])[1]");
     By emailField = By.cssSelector("#Field-emailInput");
@@ -401,7 +403,6 @@ public class PaymentPage extends BaseTest {
         staticWait(4000);
         click(zelleAccount);
     }
-
     public void clickOnVenmoBank() {
         staticWait(4000);
         click(VenmoAccount);
@@ -423,7 +424,6 @@ public class PaymentPage extends BaseTest {
     }
 
     public void swipeToPay() {
-        scrollToElement(swipeBtn);
         staticWait(10000);
         Actions actions = new Actions(getDriver());
         WebElement elm = getDriver().findElement(swipeBtn);
@@ -508,6 +508,7 @@ public class PaymentPage extends BaseTest {
     }
 
 
+
     public void swipeCard() {
         staticWait(5000);
         softAssert.assertTrue(isElementDisplayed(storeName));
@@ -551,7 +552,7 @@ public class PaymentPage extends BaseTest {
 
 
     public void paymentPopup(String memoTxt) {
-        String billHead = getText(billHeader);
+        String billHead=getText(billHeader);
         Assert.assertEquals(billHead, "Bill");
 
         Assert.assertTrue(isElementDisplayed(qrCode));
@@ -562,7 +563,7 @@ public class PaymentPage extends BaseTest {
         Assert.assertTrue(isElementDisplayed(uniqueNumber));
         Assert.assertTrue(isElementDisplayed(BillCreatedTime));
         Assert.assertTrue(isElementDisplayed(NotPaid));
-        // Assert.assertTrue(isElementDisplayed(tapToAddFile));
+       // Assert.assertTrue(isElementDisplayed(tapToAddFile));
 
 
         // Click on Process payment button in Bill popup
@@ -1033,7 +1034,7 @@ public class PaymentPage extends BaseTest {
     }
 
 
-    public void paymentThrouhBankAccount() {
+    public void paymentThrouhBankAccount( ) {
         staticWait(3000);
         clickOnSignOut();
         LoginAsCustomer();
@@ -1109,6 +1110,9 @@ public class PaymentPage extends BaseTest {
 
         // paymentThrougBankAccount();
         //  paymentMethodPopUp(email,name, fullNameField, phoneTxt);
+        payment.getBankAccountDetails();
+
+
     }
 
     public void billPaymentByVariousPaymentMethods(String enterTextInAmountField, String cardNameTxt, String expiryDateTxt, String cvcTxt, String countryName) {
@@ -1154,7 +1158,7 @@ public class PaymentPage extends BaseTest {
 
 
     public void getPayThroughCreditCardForAddingPayment() {
-
+        staticWait(5000);
         switchToFrame(iframeForCreditCard);
         scrollToElement(cardNumberTbx);
         actionEnterText(cardNumberTbx, "4111111111111111");

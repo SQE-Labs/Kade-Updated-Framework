@@ -665,9 +665,8 @@ public class TransactionsPage extends BaseTest {
     // TRS16 Pending processing icon
     public void verifyPaymentProcessingIcon() {
         bills.createBillWithCustomer("636045278965", "alexnew@yopmail.com");
-        payments.paymentThrouhBankAccount( );
-        payments.swipeCard();
-        payments.billPayment();
+        payments.paymentThrouhVenmoAccount( );
+
 
         pageObjectManager.getSidePannel().getSignOut();
         staticWait(5000);

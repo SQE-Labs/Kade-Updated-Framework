@@ -1,20 +1,21 @@
 package base;
 
 import logger.Log;
+import org.openqa.selenium.Dimension;
+ import utils.PropertyUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.interactions.Actions;
- import org.openqa.selenium.support.ui.*;
+import org.openqa.selenium.support.ui.*;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import pageObjects.PageObjectManager;
 import utils.ConfigFileReader;
-import utils.PropertyUtils;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,6 +32,7 @@ public class BaseTest {
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     protected static ConfigFileReader configReader;
     protected static SoftAssert softAssert;
+
 
 
     public static PageObjectManager pageObjectManager = PageObjectManager.getInstance();
@@ -86,7 +88,30 @@ public class BaseTest {
             driver.set(new ChromeDriver(chromeOptions));
             log.info("ChromeDriver initialized.");
         } else if (browser.equalsIgnoreCase("firefox")) {
-            driver.set(new FirefoxDriver());
+            FirefoxOptions firefoxOptions = new FirefoxOptions();
+
+            if (headless) {
+                firefoxOptions.addArguments("--headless");
+                firefoxOptions.addArguments("--width=1920");
+                firefoxOptions.addArguments("--height=1080");
+            }
+
+            // Disable geolocation prompt
+            firefoxOptions.addPreference("geo.enabled", false);
+            firefoxOptions.addPreference("geo.prompt.testing", true);
+            firefoxOptions.addPreference("geo.prompt.testing.allow", false);
+
+            // Set zoom level to 100%
+            firefoxOptions.addPreference("layout.css.devPixelsPerPx", "1.0");
+
+            // Set the driver
+            driver.set(new FirefoxDriver(firefoxOptions));
+
+
+            if (!headless) {
+                // Set position to top-left to ensure full window is visible
+                driver.get().manage().window().setSize(new Dimension(1920, 1080));
+            }
             log.info("FirefoxDriver initialized.");
         } else {
             ChromeOptions chromeOptions = new ChromeOptions();
@@ -100,7 +125,7 @@ public class BaseTest {
         // Maximize window and load the URL
         getDriver().manage().window().setSize(new Dimension(1920, 1080));
 
-        String url = configReader.getProperty("url");
+         String url = configReader.getProperty("url");
         if (url != null && !url.isEmpty()) {
             getDriver().get(url);
             log.info("Navigated to URL: {}", url);
@@ -162,8 +187,8 @@ public class BaseTest {
      * @return The visible WebElement.
      */
     public WebElement waitForElementToBeVisible(By locator, int timeout) {
-        log.info("Waiting for element to be visible: {}", locator);
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        log.info("Waiting for element to be visible:" + locator);
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeout));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
@@ -171,8 +196,8 @@ public class BaseTest {
         try {
             for (int i = 0; i < tries; i++) {
                 Wait<WebDriver> fluentWait1 = new FluentWait<WebDriver>(getDriver())
-                        .withTimeout(Duration.ofSeconds(10))
-                        .pollingEvery(Duration.ofMillis(10))
+                        .withTimeout(Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))))
+                        .pollingEvery(Duration.ofMillis(Long.parseLong(PropertyUtils.getPropertyValue("wait"))))
                         .ignoring(TimeoutException.class);
                 fluentWait1.until(ExpectedConditions.visibilityOfElementLocated(locator));
             }
@@ -188,16 +213,16 @@ public class BaseTest {
      * @return The clickable WebElement.
      */
     public WebElement waitForElementToBeClickable(By locator, int timeout) {
-        log.info("Waiting for element to be clickable: {}", locator);
+        log.info("Waiting for element to be clickable: "+ locator);
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeout));
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
     public WebElement waitForElementToBeInteractable(By locator, int timeout) {
-        log.info("Waiting for element to be interactable: {}", locator);
+        log.info("Waiting for element to be interactable: "+ locator);
         Wait<WebDriver> wait = new FluentWait<>(getDriver())
-                .withTimeout(Duration.ofSeconds(10))
-                .pollingEvery(Duration.ofMillis(10)) // Default polling interval
+                .withTimeout(Duration.ofSeconds(timeout))
+                .pollingEvery(Duration.ofMillis(500)) // Default polling interval
                 .ignoring(NoSuchElementException.class)
                 .ignoring(ElementNotInteractableException.class);
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
@@ -209,14 +234,15 @@ public class BaseTest {
      * @param locator - The By locator for the element.
      */
     public void click(By locator) {
-        log.info("Clicking on element: {}", locator);
-         waitForElementToBeClickable(locator, 10).click();
+        log.info("Clicking on: "+locator+ "button");
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        waitForElementToBeClickable(locator, 10).click();
 
     }
 
 
     public static void clickElementByJS(By element) {
-        Log.info("Clicking on " + element);
+        log.info("Clicking on " + element);
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("arguments[0].click();", getDriver().findElement(element));
     }
@@ -236,7 +262,7 @@ public class BaseTest {
 
     public static void SendKeys(By element, String value) {
 
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Long.parseLong(PropertyUtils.getPropertyValue("wait"))));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.presenceOfElementLocated(element));
         try {
             WebElement ele = getDriver().findElement(element);
@@ -737,6 +763,24 @@ public class BaseTest {
         // Verify the landing page is correct after login
         pageObjectManager.getHomePage().landingPage();
     }
+    public static void LoginAsGiftCardUser() {
+        log.info("Starting Login test");
+
+        // Fetch credentials
+        String username = configReader.getProperty("giftcarduser");
+        String password = configReader.getProperty("password");
+
+        // Validate credentials
+        if (username == null || password == null) {
+            throw new RuntimeException("Username or password is missing in the configuration file.");
+        }
+
+        // Perform login
+        pageObjectManager.getLoginPage().signIn(username, password);
+
+        // Verify successful login
+        pageObjectManager.getHomePage().landingPage();
+    }
 
 
 
@@ -772,24 +816,6 @@ public class BaseTest {
 
         // Fetch credentials
         String username = configReader.getProperty("admin");
-        String password = configReader.getProperty("password");
-
-        // Validate credentials
-        if (username == null || password == null) {
-            throw new RuntimeException("Username or password is missing in the configuration file.");
-        }
-
-        // Perform login
-        pageObjectManager.getLoginPage().signIn(username, password);
-
-        // Verify successful login
-        pageObjectManager.getHomePage().landingPage();
-    }
-    public static void LoginAsGiftCardUser() {
-        log.info("Starting Login test");
-
-        // Fetch credentials
-        String username = configReader.getProperty("giftcarduser");
         String password = configReader.getProperty("password");
 
         // Validate credentials
@@ -1062,5 +1088,25 @@ public class BaseTest {
         return (List<WebElement>) getDriver().findElements(locator);
     }
 
-
+    public WebElement waitForElementToBeVisibleAndClickable(By locator, int timeoutSeconds) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutSeconds));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+    public boolean switchToFrameContainingElement(By locator) {
+        List<WebElement> iframes = getDriver().findElements(By.tagName("iframe"));
+        for (WebElement frame : iframes) {
+            getDriver().switchTo().defaultContent();
+            getDriver().switchTo().frame(frame);
+            List<WebElement> elements = getDriver().findElements(locator);
+            if (!elements.isEmpty()) {
+                System.out.println("Switched to correct frame.");
+                return true;
+            }
+        }
+        getDriver().switchTo().defaultContent();
+        System.out.println("Element not found in any frame.");
+        return false;
+    }
 }
+

@@ -84,7 +84,6 @@ public class GiftCardDashboardTest extends BaseTest {
         giftCardPage.verifyInvalidCustomerEmailField();
     }
 
-
     @Test(priority = 13, enabled = true, description = "Verify that appropriate validation message appears on entering invalid name in  'Customer Name' field, on 'Create gift card' popup.")
     public void verifyInvalidCustomerNameField() {
         giftCardPage.verifyInvalidCustomerNameField();
@@ -95,7 +94,7 @@ public class GiftCardDashboardTest extends BaseTest {
         giftCardPage.verifyInitialAmountField();
     }
 
-    @Test(priority = 15, enabled = false, description = "Verify that value for 'Initial amount' field' cannot be greater than the value set in 'Maximum gift card amount allowed' field during Gift Cards Configuration")
+    @Test(priority = 15, enabled = true, description = "Verify that value for 'Initial amount' field' cannot be greater than the value set in 'Maximum gift card amount allowed' field during Gift Cards Configuration")
     public void verifyInitialAmtEqualsMaxGiftAmount() {
         giftCardPage.verifyInitialAmtEqualsMaxGiftAmount();
     }
@@ -303,19 +302,16 @@ public class GiftCardDashboardTest extends BaseTest {
     @Test(priority = 57, enabled = true, description = "96 AND 98Verify that user is able to set date range from date picker of 'Sale date range' field, on 'Gift Card For Sale' page.")
     public void verifySelectingDateRange() {
         giftCardPage.verifyDateRange();
-
     }
 
     @Test(priority = 58, enabled = true, description = " 97 Verify that 'Memo' field accepts value up to 500 characters, on 'Gift Card For Sale' page.")
     public void verifyMemoFieldMaximumLimit() {
-
         giftCardPage.verifyMemoFieldMaximumChar();
     }
 
 
     @Test(priority = 59, enabled = true, description = " 99 Verify that user gets directed to 'Gift Card For Sale' page and all the fields appear pre-filled, after clicking on any sale gift card from 'Sell Dashboard' page")
     public void verifyPre_filledFieldsOnGiftCardsForSalePage() {
-
         giftCardPage.verifyUserDirectionForSalePage();
     }
 
@@ -334,19 +330,15 @@ public class GiftCardDashboardTest extends BaseTest {
     @Test(priority = 62, enabled = true, description = "Verify that user is not able to delete the sale gift card, after cancelling the Deletion action, on 'Gift Card For Sale' page"
     )
     public void verifyUserNotAbleToDeleteAfterCancelingGiftCard() {
-
         giftCardPage.verifyUserNotAbleToDeleteAfterCanceling();
-
     }
 
     @Test(priority = 63, enabled = true, description = "Verify that user is able to delete the sale gift card, after clicking on 'Delete' button, on 'Gift Card For Sale' page")
     public void verifyUserAbleToDeleteSaleGiftCard() {
-
         giftCardPage.verifyUserAbleToDeleteSaleGift();
-
     }
 
-    @Test(priority = 64, enabled = true, description = "\"Verify that all the available sale gift cards appear listed on 'Sell Dashboard' page.\n" +
+    @Test(priority = 64, enabled = true, description = "Verify that all the available sale gift cards appear listed on 'Sell Dashboard' page." +
             "\"")
     public void verifyAllSaleGiftCardsListedOnSellDashboard() {
         giftCardPage.verifyListOfGiftCards();
@@ -355,22 +347,19 @@ public class GiftCardDashboardTest extends BaseTest {
     @Test(priority = 65, enabled = true, description = "Verify that by-default 'Available' option appears selected in 'Status' dropdown under filter option, on 'Sell Dashboard' page.")
     public void verifyDefaultOptionSelectedInStatusDropdown() {
         giftCardPage.verifyGiftCardDetails();
-
     }
 
-    @Test(priority = 66, enabled = true, description = "\"Verify that 'Available' and 'All' options appear after clicking on 'Status' dropdown under filter option, on 'Sell Dashboard' page.\n" +
-            "\"")
+    @Test(priority = 66, enabled = true, description = "Verify that 'Available' and 'All' options appear after clicking on 'Status' dropdown under filter option, on 'Sell Dashboard' page.")
     public void verifyAvailableAndAllOptionsInStatusDropdown() {
         giftCardPage.verifyAvailableAndAllOptionsInStatus();
     }
-
 
     @Test(priority = 67, enabled = true, description = " 107 & 108 Verify that only avaliable sale gift cards appear listed after selecting 'Available' option from 'Status' dropdown of Filter, on 'Sell Dashboard' page.")
     public void verifyAvailableSaleGiftCardsListed() {
         giftCardPage.verifyAvailableSaleGiftCards();
     }
 
-    @Test(priority = 68, enabled = true, description = "114 & 115Verify that user is not able to delete the sale gift card, if the sale gift card Available QTY is zero, on 'Sell Dashboard' page.\n")
+    @Test(priority = 68, enabled = true, description = "114 & 115Verify that user is not able to delete the sale gift card, if the sale gift card Available QTY is zero, on 'Sell Dashboard' page.")
     public void verifyActionOnZeroAvlQty() {
         giftCardPage.verifyActionOnZeroAvailableQty();
     }
@@ -386,12 +375,10 @@ public class GiftCardDashboardTest extends BaseTest {
         giftCardPage.donateGraph("may2025");
     }
 
-
     @Test(priority = 71, enabled = true, description = "52 Verify that appropirate fields appears after clicking on 'Filter' link, on 'Gift Cards Dashboard' page.")
     public void verifyFilterFieldsOfGiftCardDashboard() {
         giftCardPage.getAllFilterFileds();
     }
-
 
     @Test(priority = 72, enabled = true, description = "53 Verify that relevant gift cards appear listed after entering any existing  card holder name in 'User Name' field under 'Filter' link, on 'Gift Cards Dashboard' page.")
     public void verifyRelevantGiftCardAppearsWhileAddingExistingCardHolderName() {
@@ -461,7 +448,6 @@ public class GiftCardDashboardTest extends BaseTest {
     @Test(priority = 85, enabled = true, description = "67 Verify that all the existing No Balance gift cards appear listed, after selecting 'No Balance' option from 'Gift card status' dropdown field under 'Filter' link, on 'Gift Cards Dashboard' page. ")
     public void verifyRecordAfterApplyNoBalanceFilterDD() {
         giftCardPage.verifyRecordAfterApplyNoBalanceFilterDD();
-
     }
 
     @Test(priority = 86, enabled = true, description = "68 Verify that all the existing Pending Activation gift cards appear listed, after selecting 'Pending Activation' option from 'Gift card status' dropdown field under 'Filter' link, on 'Gift Cards Dashboard' page.")

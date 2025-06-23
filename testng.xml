@@ -13,7 +13,7 @@
 
         <parameter name="browser" value="chrome"/>
         <parameter name="headless" value="true"/>
-        
+
 <!--        <classes>-->
 <!--            <class name="qa.tests.AddPaymentMethodTest"/>-->
 <!--            <class name="qa.tests.BillTest"/>-->

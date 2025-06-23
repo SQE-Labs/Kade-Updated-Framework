@@ -6,11 +6,15 @@ import pageEvents.PaymentPage;
 import pageEvents.QRCodePage;
 
 import java.awt.*;
+import java.util.random.RandomGenerator;
 
 public class QRCodeTest extends BaseTest {
 
     QRCodePage QrCode = new QRCodePage();
     PaymentPage payment = new PaymentPage();
+    String TitleName="Donation "+requiredString(3);
+    String TitleNameTxt="Donation "+requiredString(5);
+    String TitleFieldTxt="Donation "+requiredString(5);
 
     @Test(priority = 0, enabled = true)
     public void typesOfQrCodes() {
@@ -82,5 +86,11 @@ public class QRCodeTest extends BaseTest {
     public void filterQrCode() {
         QrCode.QrFilter();
     }
+
+    @Test(priority = 12, enabled = true, description = "Verify that creating Donation QR Code, after clicking on 'Generate new QR Code' button.")
+    public void VerifyThatCreatingDonationQRCode() throws AWTException {
+        QrCode.donationQRCode(TitleName,"100000",TitleNameTxt,TitleFieldTxt);
+    }
+
 
 }

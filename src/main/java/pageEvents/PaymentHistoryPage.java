@@ -278,9 +278,7 @@ public class PaymentHistoryPage extends BaseTest {
         staticWait(2000);
         getTransactionPage();
         makePaymentBtn();
-
         pays.swipeToPay();
-
     }
 
 }
