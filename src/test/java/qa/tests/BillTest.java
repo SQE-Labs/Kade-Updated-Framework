@@ -114,7 +114,7 @@ public class BillTest extends BaseTest {
 
     @Test(priority = 16, enabled = true, description = "BC_20 Verify that creating a 'Monthly Recurring bill and Activate after the first payment, on 'Bill' popup.")
     public void verifyBillCreationByAddingpaymentMethod() {
-        bill.verifyBillCreationByAddingpaymentMethod("yonro@yopmail.com");
+        bill.verifyBillCreationByAddingpaymentMethod("alexnew@yopmail.com");
     }
 }
 

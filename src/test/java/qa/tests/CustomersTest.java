@@ -128,8 +128,10 @@ public class CustomersTest extends BaseTest {
 
 
         customersPage.applyFilterToCheckPhoneValidation();
-        Assert.assertTrue(isElementDisplayed(customersPage.alertValidation));
-        Assert.assertEquals(getToolTipMessage(customersPage.filterPhonenumberInvalid),Constants.invalidPhnValidation);
+
+
+        Assert.assertTrue(isElementDisplayed(customersPage.validationMsg));
+        Assert.assertEquals(getToolTipMessage(customersPage.validationMsg),Constants.pleaseReviewValidation);
     }
 
     @Test

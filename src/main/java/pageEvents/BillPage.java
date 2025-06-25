@@ -402,6 +402,7 @@ public class BillPage extends BaseTest {
 
     public void clickOnpaymentMethodLink() {
         staticWait(3000);
+        scrollToElement(paymentMethodLink);
         click(paymentMethodLink);
     }
 
@@ -591,6 +592,7 @@ public class BillPage extends BaseTest {
     public void getConfirmButton() {
         staticWait(2000);
         scrollToElement(confirmBtn);
+        waitForElementToBeInteractable(confirmBtn,15);
         click(confirmBtn);
     }
 
@@ -1440,8 +1442,7 @@ public class BillPage extends BaseTest {
         assertEnteredTextInDescriptionField();
         enterInBillTxtField(amount, DesAmount);
 
-        //select customer to share the bill
-        //Select Suggested Customer
+         //Select Suggested Customer
         getCustomerButton();
         getCustomerEmailField(emailID);
         getEmailGoButton();
@@ -2034,6 +2035,7 @@ public class BillPage extends BaseTest {
         //Share bill by adding card details
         clickOnpaymentMethodLink();
 
+         getConfirmButton();
     }
 
     public void createBillWithCustomerAndPayThroughAutoPayment() {

@@ -62,7 +62,7 @@ public class QRCodePage extends BaseTest {
     By validationMsgOnEditPayment=By.xpath("//p[text()='Please review the highlighted field(s)']");
     By titleFieldLength=By.xpath("(//textarea[@placeholder='Suggested title'])[2]");
     By DonationTitleField=By.xpath("//input[@name='description']");
-    By enterSuggAmount=By.xpath("(//input[@name='items.price'])[2]");
+    By enterSuggAmount=By.xpath("//input[@name='items[0].price']");
     By editContent=By.xpath("//button[text()='Edit content']");
 
     By flexibleAmount = By.xpath("//span[text()='Flexible amount']/..");
@@ -75,8 +75,7 @@ public class QRCodePage extends BaseTest {
     By clickOnClockIcon=By.xpath("(//i[@class='fal fa-clock'])[2]/..");
     By priceSchedule=By.xpath("//h5[text()='Price schedule']");
     By datePicker=By.xpath("(//input[@data-field='scheduleDate'])[1]");
-    By currentDate=By.xpath("//td[@class='today active start-date active end-date available']");
-    By monthHeaderText=By.xpath("(//th[@class='month'])[1]");
+     By monthHeaderText=By.xpath("(//th[@class='month'])[1]");
     By countinueBtn=By.xpath("//button[text()='Continue']");
     By newPriceField=By.xpath("(//input[@data-field='price'])[1]");
 
@@ -96,6 +95,9 @@ public class QRCodePage extends BaseTest {
     By addBtn = By.xpath("//span[text()='Add']/..");
     By saveBtnContentPage = By.xpath("//h5[text()='HTML Editor']/../../child::div//button[text()='Save']");
     By fieldType = By.xpath("//select[@name='type']");
+    By saveBtn=By.xpath("(//button[text()='Save'])[4]");
+    By OffToggleBtn=By.xpath("//i[@class='far fa-toggle-on custom-check-on text-danger']");
+    By flexibleAmtSaveBtn=By.xpath("(//button[text()='Save'])[1]");
     By selectValue = By.xpath("//option[text()='Full name']");
     By titleNewField = By.xpath("//input[@name='name']");
     By enableToggle = By.xpath("(//i[@class='far fa-toggle-off custom-check-off '])[4]");
@@ -107,8 +109,9 @@ public class QRCodePage extends BaseTest {
     By deleteIcon = By.xpath("//div[contains(@class,'mb-2 border')]//button[@type='button']/i[@class='far fa-trash']/..");
     By calender = By.xpath("//input[@name='endDate']");
     By monthHeader = By.xpath("(//th[@class='month'])[1]");
+    By currentDate=By.xpath("//td[contains(@class,'today active start-date')]");
     By toggleBtn = By.xpath("((//label[@class='custom-checkbox'])[3]/i)[1]");
-    By saveBtn = By.xpath("//button[text()='Save']");
+    By CustSaveBtn = By.xpath("//button[text()='Save']");
     By eyeIcon = By.xpath("(//button[@class='p-0 btn btn-link'])[1]");
     By viewText = By.xpath("//a[normalize-space()='View']");
     By linkNotAvailableTxt = By.xpath("//div[normalize-space()='This link is not available.']");
@@ -215,6 +218,8 @@ public class QRCodePage extends BaseTest {
     }
 
     public void clickOnSaveBtnOnEditPayment() {
+        staticWait(3000);
+        waitForElementToBeVisible(saveBtnOnEditPayment,20);
         click(saveBtnOnEditPayment );
     }
 
@@ -247,6 +252,8 @@ public class QRCodePage extends BaseTest {
     }
 
     public void clickOneditContent() {
+        scrollToElement(editContent);
+        waitForElementToBeVisible(editContent,15);
         click(editContent);
     }
 
@@ -281,8 +288,15 @@ public class QRCodePage extends BaseTest {
     }
 
     public void clickOnsaveBtnContentPage() {
+        scrollToElement(saveBtnContentPage);
         click(saveBtnContentPage);
     }
+    public void clickOnsaveBtn() {
+        waitForElementToBeVisible(saveBtn,20);
+        scrollToElement(saveBtn);
+        click(saveBtn);
+    }
+
 
     public void clickOnAddBtn() {
         staticWait(3000);
@@ -332,8 +346,23 @@ public class QRCodePage extends BaseTest {
         staticWait(2000);
         click(saveBtn);
     }
+    public void clickOnflexibleAmtSaveBtn() {
+        scrollToElement(flexibleAmtSaveBtn);
+        staticWait(2000);
+        click(flexibleAmtSaveBtn);
+    }
 
+    public void clickOnToggleBtn() {
+        waitForElementToBeVisible(OffToggleBtn,20);
+        if (isElementDisplayed(OffToggleBtn)) {
+            click(OffToggleBtn);
+        } else {
+            Log.info("Toggle button is off");
+        }
+
+    }
     public void clickOnEyeIcon() {
+        scrollToElement(eyeIcon);
         click(eyeIcon);
         String QrCode = getText(QrCodeView);
         Assert.assertEquals(QrCode, "QR code view");
@@ -379,9 +408,9 @@ public class QRCodePage extends BaseTest {
         click(calender);
         staticWait(2000);
         String calenderHead = getText(monthHeader);
-        Log.info(calenderHead);
+        Log.info("Current Month is :" + calenderHead);
         Assert.assertTrue(isElementDisplayed(monthHeader));
-    }
+     }
 
     public void enableToggle() {
         staticWait(2000);
@@ -465,6 +494,7 @@ public class QRCodePage extends BaseTest {
         actionEnterText(newPriceField,newPriceTxtField);
     }
     public void clickOncurrentDate(){
+        scrollToElement(currentDate);
          click(currentDate);
     }
 
@@ -639,8 +669,9 @@ public class QRCodePage extends BaseTest {
         clickOnCorrectIcon();
         clickOndeleteIcon();
         clickOnCalenderIcon();
+        clickOncurrentDate();
         enableToggle();
-        clickOnSaveBtn();
+        clickOnflexibleAmtSaveBtn();
         staticWait(5000);
     }
 
@@ -658,7 +689,7 @@ public class QRCodePage extends BaseTest {
         clickOnnewQrCode();
         clickOnFlexibleAmount();
         disableTogleButton();
-        clickOnSaveBtn();
+        clickOnflexibleAmtSaveBtn();
         clickEyeIcon();
         WebElement element = getDriver().findElement(By.xpath("//i[@class='fal fa-copy']/.."));
         element.click();
@@ -685,12 +716,12 @@ public class QRCodePage extends BaseTest {
         descriptionFields();
         clickOnaddButn();
         descriptionFields();
-        clickOnSaveBtn();
+        clickOnflexibleAmtSaveBtn();
         String validMsg=getText(validationMsg);
         Assert.assertEquals(validMsg,"Please review the highlighted field(s)");
         enterTxtIndescriptionTxtFiled(descriptionTxtFiled);
         enterTxtIndescriptionAmtField(descriptionAmtTxtField);
-        clickOnSaveBtn();
+        clickOnflexibleAmtSaveBtn();
     }
     public void ticketsAndEvents(String newPrice){
         selectStore();
@@ -706,7 +737,7 @@ public class QRCodePage extends BaseTest {
         enterAmountInNewPriceField(newPrice);
         staticWait(4000);
         clickOnCountinueBtn();
-        clickOnSaveBtn();
+        clickOnflexibleAmtSaveBtn();
     }
 
     public void QrFilter(){
@@ -731,14 +762,18 @@ public class QRCodePage extends BaseTest {
          scrollToElement(saveBtnOnEditPayment);
         clickOnSaveBtnOnEditPayment();
 
-        Assert.assertEquals(validationMsgOnEditPayment,"Please review the highlighted field(s)");
+         waitForElementToBeVisible(validationMsgOnEditPayment,15);
+        String validationMsg=getText(validationMsgOnEditPayment);
+        Assert.assertEquals(validationMsg,"Please review the highlighted field(s)");
 
-        String Attvalue=getAttribute(titleFieldLength,"value");
+        scrollToTopOfPage();
+        waitForElementToBeVisible(titleFieldLength,15);
+        String Attvalue=getAttribute(titleFieldLength,"maxlength");
         Assert.assertEquals(Attvalue,"200");
 
         enterInDonationTitleField(titleTxt);
 
-        String titleLength=getAttribute(DonationTitleField,"required maxlength");
+        String titleLength=getAttribute(DonationTitleField,"maxlength");
         Assert.assertEquals(titleLength,"100");
 
         // Enter description and amount In Suggested amounts fields.
@@ -752,10 +787,18 @@ public class QRCodePage extends BaseTest {
         scrollToDown();
         uploadImageInStoreLogo();
         clickOncontent();
-         clickOnsaveBtnContentPage();
+        clickOnsaveBtnContentPage();
+        clickOnsaveBtn();
+        clickOnToggleBtn();
+        clickOnSaveBtnOnEditPayment();
+    }
+
+    public void MakingQRCodeDonation(){
+        selectStore();
+        clickOnEyeIcon();
+
 
 
     }
-
 
 }

@@ -53,6 +53,8 @@ public class QRCodeTest extends BaseTest {
         QrCode.flexibleAmountQrCode("I am done", "Entered in title field", "Content tye text");
     }
 
+    // Bug : Current date is not selecting.
+
     @Test(priority = 7, enabled = true)
     public void addAdditionalField() {
         QrCode.addAdditionalField("I am done");
@@ -87,10 +89,19 @@ public class QRCodeTest extends BaseTest {
         QrCode.QrFilter();
     }
 
+
+    // New scripts writing
+
     @Test(priority = 12, enabled = true, description = "Verify that creating Donation QR Code, after clicking on 'Generate new QR Code' button.")
     public void VerifyThatCreatingDonationQRCode() throws AWTException {
         QrCode.donationQRCode(TitleName,"100000",TitleNameTxt,TitleFieldTxt);
     }
+
+    @Test(priority = 13, enabled = true, description = "Verify that making QR Code Donation payment after clicking on eye icon, on QR Code Dashboard' page.")
+    public void VerifyThatMakingQRCodeDonationQRCode() throws AWTException {
+        QrCode.MakingQRCodeDonation();
+    }
+
 
 
 }
