@@ -12,6 +12,7 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
+import static pageEvents.LoginPage.LoginAsCustomer;
 import static pageEvents.TransactionsPage.attentionHeader;
 import static pageEvents.TransactionsPage.okButn;
 
@@ -66,7 +67,7 @@ public class PaymentPage extends BaseTest {
     By paidLabel = By.xpath("//div[normalize-space()='Paid']");
     By cashIcon = By.xpath("(//span[text()='Cash']/../child::span)[3]");
     By crossIcon = By.xpath("//div[contains (@class, 'modal fade show')]//button[@class='btn-close']");
-     By crossIconOnTransactionpage = By.xpath("//button[@class='btn-close']");
+    By crossIconOnTransactionpage = By.xpath("//button[@class='btn-close']");
     By transcationMenu = By.xpath("(//div[text()='Transactions'])[2]");
     By paidBill = By.xpath("//div[contains(@class,'bg-white border')][1]");
     By amountPaidTime = By.xpath("(//span[@class='fs-pn15'])[4]");
@@ -122,7 +123,7 @@ public class PaymentPage extends BaseTest {
     By emailField = By.cssSelector("#Field-emailInput");
     By nameField = By.cssSelector("#Field-nameInput");
     By bankFrame = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[2]");
-    By frame=By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[3]");
+    By frame = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[3]");
     By header = By.xpath("(//h5[text()='New payment method'])[2]");
     By fullName = By.xpath("//input[@id='Field-nameInput']");
     By testInstitution = By.xpath("//p[text()='Test Institution']");
@@ -143,7 +144,7 @@ public class PaymentPage extends BaseTest {
     By selectCheckBox = By.xpath("(//span[text()='Confirm your payment by checking this box']/../i)[2]");
     By zelleSaveBtn = By.xpath("//button[text()='Submit']");
     By payCurrentBalance = By.xpath("//button[text()='Pay the current balance']/..");
-    By paymentSaveBtn=By.xpath("//button[text()='Save']");
+    By paymentSaveBtn = By.xpath("//button[text()='Save']");
 
     // Affirm payment button
     By affirmAccount = By.xpath("//span[text()='Affirm']/../../../..");
@@ -403,6 +404,7 @@ public class PaymentPage extends BaseTest {
         staticWait(4000);
         click(zelleAccount);
     }
+
     public void clickOnVenmoBank() {
         staticWait(4000);
         click(VenmoAccount);
@@ -508,7 +510,6 @@ public class PaymentPage extends BaseTest {
     }
 
 
-
     public void swipeCard() {
         staticWait(5000);
         softAssert.assertTrue(isElementDisplayed(storeName));
@@ -552,7 +553,7 @@ public class PaymentPage extends BaseTest {
 
 
     public void paymentPopup(String memoTxt) {
-        String billHead=getText(billHeader);
+        String billHead = getText(billHeader);
         Assert.assertEquals(billHead, "Bill");
 
         Assert.assertTrue(isElementDisplayed(qrCode));
@@ -563,7 +564,7 @@ public class PaymentPage extends BaseTest {
         Assert.assertTrue(isElementDisplayed(uniqueNumber));
         Assert.assertTrue(isElementDisplayed(BillCreatedTime));
         Assert.assertTrue(isElementDisplayed(NotPaid));
-       // Assert.assertTrue(isElementDisplayed(tapToAddFile));
+        // Assert.assertTrue(isElementDisplayed(tapToAddFile));
 
 
         // Click on Process payment button in Bill popup
@@ -1034,7 +1035,7 @@ public class PaymentPage extends BaseTest {
     }
 
 
-    public void paymentThrouhBankAccount( ) {
+    public void paymentThrouhBankAccount() {
         staticWait(3000);
         clickOnSignOut();
         LoginAsCustomer();
@@ -1070,7 +1071,7 @@ public class PaymentPage extends BaseTest {
             switchToDefaultContent();
             //  waitForPageLoad();
             staticWait(3000);
-          //  switchToFrame(bankFrame);
+            //  switchToFrame(bankFrame);
 
             getAgreeAndContinueBtn();
 
@@ -1158,7 +1159,7 @@ public class PaymentPage extends BaseTest {
 
 
     public void getPayThroughCreditCardForAddingPayment() {
-        staticWait(5000);
+        waitForElementToBeVisible(iframeForCreditCard, 20);
         switchToFrame(iframeForCreditCard);
         scrollToElement(cardNumberTbx);
         actionEnterText(cardNumberTbx, "4111111111111111");

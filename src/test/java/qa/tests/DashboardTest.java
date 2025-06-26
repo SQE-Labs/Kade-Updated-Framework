@@ -38,7 +38,7 @@ public class DashboardTest extends BaseTest {
         Assert.assertEquals(getText(dashboard.todayPaymentTitle), Constants.TodaysPaymentTitle);
         Assert.assertEquals(getText(dashboard.pymtmethodPopularityTitle), Constants.PaymentMethodPopularityTitle);
         Assert.assertEquals(getText(dashboard.customerTitle), Constants.CustomerTitle);
-     }
+    }
 
     @Test(description = "DC 03, 04, DC 05,06,07: Verify that 'No. of stores' count appears under 'Your Businesses' section, on the 'Dashboard' page.")
     public void verifyCountOfAllStores() {
@@ -99,7 +99,7 @@ public class DashboardTest extends BaseTest {
         // Verify the Process Payment of Last 30 days of a store
         dashboard.getDashboardStoreCount();
         dashboard.getFirstStore();
-        waitForElementToBeVisible(dashboard.last30DaysTotalAmount,5);
+        waitForElementToBeVisible(dashboard.last30DaysTotalAmount, 5);
         softAssert.assertTrue(isElementDisplayed(dashboard.last30DaysTotalAmount));
         System.out.println("Process Payment of Last 30 days is:  " + getText(dashboard.last30DaysTotalAmount));
 

@@ -4,8 +4,7 @@ import base.BaseTest;
 
 import org.testng.annotations.Test;
 import pageEvents.GiftCardDashboardPage;
- import pageObjects.PageObjectManager;
-
+import pageObjects.PageObjectManager;
 
 
 public class GiftCardDashboardTest extends BaseTest {

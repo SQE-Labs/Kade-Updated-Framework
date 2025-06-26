@@ -58,40 +58,40 @@ public class ReportsTest extends BaseTest {
     }
 
 
-// Bug Id is : 2966
+    // Bug Id is : 2966
     @Test
-        public void verifyDownloadedReports() {
-            log.info("Verify that reports get downloaded in CSV format");
+    public void verifyDownloadedReports() {
+        log.info("Verify that reports get downloaded in CSV format");
 
-            Login();
-            reportsPage.openReportsPage();
+        Login();
+        reportsPage.openReportsPage();
 
-            DeleteFile(Constants.fileNameDaily);
-            clickElementByJS(reportsPage.firstLinkDownload);
-            staticWait(2000);
+        DeleteFile(Constants.fileNameDaily);
+        clickElementByJS(reportsPage.firstLinkDownload);
+        staticWait(2000);
 
 
-            String data= getAttribute(reportsPage.dataDownloaded,"data-download");
+        String data = getAttribute(reportsPage.dataDownloaded, "data-download");
 
-            Pattern storeIdPattern = Pattern.compile("storeId=(\\d+)");
-            Pattern datePattern = Pattern.compile("reportdate=(\\d{2})%2f(\\d{2})%2f(\\d{4})");
+        Pattern storeIdPattern = Pattern.compile("storeId=(\\d+)");
+        Pattern datePattern = Pattern.compile("reportdate=(\\d{2})%2f(\\d{2})%2f(\\d{4})");
 
-            Matcher storeIdMatcher = storeIdPattern.matcher(data);
-            Matcher dateMatcher = datePattern.matcher(data);
+        Matcher storeIdMatcher = storeIdPattern.matcher(data);
+        Matcher dateMatcher = datePattern.matcher(data);
 
-            String finalResult = "";
+        String finalResult = "";
 
-            if (storeIdMatcher.find() && dateMatcher.find()) {
-                String storeId = storeIdMatcher.group(1);
-                String month = dateMatcher.group(1);
-                String day = dateMatcher.group(2);
-                String year = dateMatcher.group(3);
+        if (storeIdMatcher.find() && dateMatcher.find()) {
+            String storeId = storeIdMatcher.group(1);
+            String month = dateMatcher.group(1);
+            String day = dateMatcher.group(2);
+            String year = dateMatcher.group(3);
 
-                finalResult = storeId + "-" + year + "-" + month + "-" + day;
-                System.out.println("file downloaded is " + finalResult);  // e.g. 2938-2025-04-26
-            } else {
-                log.error("Failed to extract storeId or reportDate from data: " + data);
-            }
+            finalResult = storeId + "-" + year + "-" + month + "-" + day;
+            System.out.println("file downloaded is " + finalResult);  // e.g. 2938-2025-04-26
+        } else {
+            log.error("Failed to extract storeId or reportDate from data: " + data);
+        }
         // Assuming finalResult is already calculated as "2962-2025-04-26"
         String[] dateParts = finalResult.split("-");
         String downloadedDay = dateParts[3];
@@ -101,8 +101,8 @@ public class ReportsTest extends BaseTest {
         String uiDay = uiDayElement.getText().trim();  // e.g. "26"
 
         // Compare
-         Assert.assertEquals(uiDay, downloadedDay, "Asserting UI day and downloaded report day.");
-         staticWait(5000);
+        Assert.assertEquals(uiDay, downloadedDay, "Asserting UI day and downloaded report day.");
+        staticWait(5000);
 
 //        String fileStatus = isFileDownloaded(Constants.fileNameDaily);
 //
@@ -120,15 +120,15 @@ public class ReportsTest extends BaseTest {
 
         click(reportsPage.monthlyPayConfirmation);
         //click(reportsPage.year24);
-        waitForElementToBeVisible(reportsPage.year25First,10);
+        waitForElementToBeVisible(reportsPage.year25First, 10);
         Assert.assertTrue(isElementDisplayed(reportsPage.year25First));
         DeleteFile(Constants.filenameMonthly);
-        waitForElementToBeInteractable(reportsPage.year25First,10);
+        waitForElementToBeInteractable(reportsPage.year25First, 10);
         clickElementByJS(reportsPage.year25First);
         staticWait(5000);
         String downloadFile = getDownloadFileName();
         Assert.assertTrue(isFileDownloadedOrNot(downloadFile));
-     }
+    }
 
     @Test
     public void verifyPaymentReceived() {
@@ -179,7 +179,7 @@ public class ReportsTest extends BaseTest {
 
         click(reportsPage.payReceived);
         click(reportsPage.customDateFilter);
-        waitForElementToBeVisible(reportsPage.applyDateRangePayRec,10);
+        waitForElementToBeVisible(reportsPage.applyDateRangePayRec, 10);
         enterText(reportsPage.dateRangePayReceived, Constants.dateRange);
         click(reportsPage.applyDateRangePayRec);
         Log.info(getElementText(reportsPage.printTotalReceivedPay));

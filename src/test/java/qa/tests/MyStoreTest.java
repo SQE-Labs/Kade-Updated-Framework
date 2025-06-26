@@ -14,6 +14,8 @@ import pageObjects.PageObjectManager;
 import utils.Constants;
 
 import static java.lang.Float.*;
+import static pageEvents.LoginPage.Login;
+import static pageEvents.LoginPage.LoginAsAdmin;
 import static utils.Constants.*;
 
 public class MyStoreTest extends BaseTest {
@@ -34,7 +36,7 @@ public class MyStoreTest extends BaseTest {
 
     @Test(priority = 1, enabled = true, description = "SC_01(B) Verifying deletion of Store when Stripe Account is not Registered Yet")
     public void sc01b_DeletionOfStore() {
-         mystore.deletionOfStore();
+        mystore.deletionOfStore();
     }
 
 
@@ -42,7 +44,7 @@ public class MyStoreTest extends BaseTest {
     public void creationOfStoreWithStripeAccount() {
 
         Login();
-        mystore.getStoreCreation("123 William","123 William Bay Road, William Bay WA, Australia");
+        mystore.getStoreCreation("123 William", "123 William Bay Road, William Bay WA, Australia");
         pageObjectManager.getSidePannel().getSignOut();
         staticWait(3000);
         pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
@@ -66,18 +68,18 @@ public class MyStoreTest extends BaseTest {
 
     @Test(priority = 4, enabled = true, description = "SC_04(A) Verifying buying Monthly Business Plan for already created Store")
     public void c2verifyingBuyingMonthlyBusinessPlanForAlreadyCreatedStore() {
-         mystore.c2verifyBuyingMonthlyBusinessPlanForAlreadyCreatedStore("123 William","123 William Bay Road, William Bay WA, Australia");
+        mystore.c2verifyBuyingMonthlyBusinessPlanForAlreadyCreatedStore("123 William", "123 William Bay Road, William Bay WA, Australia");
     }
 
     @Test(priority = 5, enabled = true, description = "SC04(b): Verify Store creation with Yearly Business Plan on 'Store Configuration' Page ")
     public void verifyStoreCreationWithYearlyBusinessPlan() {
-         mystore.verifyStoreCreationWithYearlyBusinessPlan("123 William","123 William Bay Road, William Bay WA, Australia");
-     }
+        mystore.verifyStoreCreationWithYearlyBusinessPlan("123 William", "123 William Bay Road, William Bay WA, Australia");
+    }
 
     // Bug Failed due to 3092, 2827
     @Test(priority = 6, enabled = true, description = "SC_05(A) Verifying the Configuration of already created Store using Settings Sub-Tabs")
     public void verifyingConfigurationsOfStoreUsingSettings() {
-         mystore.verifyConfigurationsOfStoreUsingSettings();
+        mystore.verifyConfigurationsOfStoreUsingSettings();
     }
 
     // Bug Raised and Bug Id is : 3020
@@ -170,7 +172,7 @@ public class MyStoreTest extends BaseTest {
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
 
-         // Click on 'Configure' Link
+        // Click on 'Configure' Link
         click(mystore.configureLink2);
 
         waitForElementToBeVisible(mystore.paymentProcessingSubTab, 5);
@@ -181,8 +183,7 @@ public class MyStoreTest extends BaseTest {
 
         //  Click on 'Credit Card Terminal' button
 
-        if (isElementDisplayed(mystore.configureATerminalTitle))
-        {
+        if (isElementDisplayed(mystore.configureATerminalTitle)) {
             mystore.getAddaTerminalLink();
         } else {
             mystore.getCreditCardTerminalButton();
@@ -242,7 +243,7 @@ public class MyStoreTest extends BaseTest {
     @Test(priority = 10, enabled = true, description = "SC 09 and Sc 10 Verify that store creation and purchasing the 'Premium' monthly plan subscription for the store, on 'Store Configuration' page.")
     public void verifyingStoreCreationWithPurchasingMonthlyPremiumPlan() {
         Login();
-        mystore.getStoreCreation("123 William","123 William Bay Road, William Bay WA, Australia");
+        mystore.getStoreCreation("123 William", "123 William Bay Road, William Bay WA, Australia");
         mystore.getSubscriptionPlanTab();
         //Verifying that 'Current Plan' appears under Essential Free Plan
         String message = getText(mystore.currentPlanMSg);
@@ -378,9 +379,9 @@ public class MyStoreTest extends BaseTest {
     public void test() {
         // This is a placeholder for any additional tests you may want to add.
         // You can implement your test logic here.
-         Log.info("Running MyStoreTest");
+        Log.info("Running MyStoreTest");
 
-         pageObjectManager.getAdminPage().ToDeleteStores();
+        pageObjectManager.getAdminPage().ToDeleteStores();
 
     }
 }

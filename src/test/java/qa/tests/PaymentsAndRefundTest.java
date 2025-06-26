@@ -1,9 +1,9 @@
 package qa.tests;
 
 import base.BaseTest;
- import org.testng.annotations.Test;
+import org.testng.annotations.Test;
 import pageEvents.BillPage;
- import pageEvents.PaymentPage;
+import pageEvents.PaymentPage;
 
 import java.awt.*;
 
@@ -84,7 +84,7 @@ public class PaymentsAndRefundTest extends BaseTest {
     public void BillPaymentByCustomerThroughBankAccount() {
 
         bill.createBillWithCustomer("636045278965", "Alexnew@yopmail.com");
-        payment.paymentThrouhBankAccount( );
+        payment.paymentThrouhBankAccount();
         payment.swipeCard();
         payment.billPayment();
     }
@@ -112,7 +112,7 @@ public class PaymentsAndRefundTest extends BaseTest {
 
 
     @Test(priority = 11, enabled = true, description = "PYMT15 : Create Bill for a customer and pay using Zelle.")
-    public void CreateBillForCustomerAndPayUsingZelle()  {
+    public void CreateBillForCustomerAndPayUsingZelle() {
 
         bill.createBillWithCustomer("636045278965", "Alexnew@yopmail.com");
         payment.paymentByZelleAccount();
@@ -124,8 +124,9 @@ public class PaymentsAndRefundTest extends BaseTest {
         bill.createBillWithCustomer("636045278965", "Alexnew@yopmail.com");
         payment.RejectABill();
     }
+
     @Test(priority = 13, enabled = true, description = "PYMT16 Creating bill for customer and pay through affrim payment method.")
-    public void verifyCreatingBillForCustomerPayThroughAffirmPayment(){
+    public void verifyCreatingBillForCustomerPayThroughAffirmPayment() {
         bill.createBillWithCustomer("636045278965", "Alexnew@yopmail.com");
         payment.billPaymentThroughAffirmMethod();
         payment.billPayment();
@@ -134,7 +135,7 @@ public class PaymentsAndRefundTest extends BaseTest {
     }
 
     @Test(priority = 14, enabled = true, description = "Verify that creating a bill and paying through Auto payment method.")
-    public void verifyCreatingABillAndPayingThroughAutoPaymentMethod(){
+    public void verifyCreatingABillAndPayingThroughAutoPaymentMethod() {
         bill.createBillWithCustomerAndPayThroughAutoPayment();
     }
 }

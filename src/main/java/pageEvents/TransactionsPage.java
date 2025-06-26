@@ -175,8 +175,8 @@ public class TransactionsPage extends BaseTest {
     }
 
     public void getProcessRefundBtn() {
-        waitForElementToBeClickable(processRefundButton,15);
-        hoverAndClick(processRefundButton,processRefundButton);
+        waitForElementToBeClickable(processRefundButton, 15);
+        hoverAndClick(processRefundButton, processRefundButton);
     }
 
     public void getVisaPaymentCheckbox() {
@@ -350,8 +350,8 @@ public class TransactionsPage extends BaseTest {
 
     // TRS 5 a
 
-    public void getManualCharge( String description) {
-        String amount="1000.00";
+    public void getManualCharge(String description) {
+        String amount = "1000.00";
         Login();
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getTransactionTab();
@@ -381,7 +381,7 @@ public class TransactionsPage extends BaseTest {
         String text = getText(amountField);
         String number = text.replaceAll("[^\\d.]", "");  // Removes $ and other non-digit/non-dot
         number = number.split("\\.")[0];
-        Assert.assertEquals(number , "1000");
+        Assert.assertEquals(number, "1000");
     }
 
     // TRS 5 b
@@ -430,7 +430,7 @@ public class TransactionsPage extends BaseTest {
         getNewChargeBtn();
 
         staticWait(3000);
-         actionEnterText(newChargeAmountField, Constants.amount);
+        actionEnterText(newChargeAmountField, Constants.amount);
         actionEnterText(descriptionField, Constants.description);
         waitForElementToBeInteractable(selectCustomerbtn, 5);
         getCustomerBtn();
@@ -577,7 +577,7 @@ public class TransactionsPage extends BaseTest {
         getProcessRefundBtn();
         scrollToElement(refundAmountField);
         staticWait(3000);
-         actionEnterText(refundAmountField, refundAmmount);
+        actionEnterText(refundAmountField, refundAmmount);
         staticWait(5000);
         scrollToElement(processRefundButton);
         staticWait(5000);
@@ -665,7 +665,7 @@ public class TransactionsPage extends BaseTest {
     // TRS16 Pending processing icon
     public void verifyPaymentProcessingIcon() {
         bills.createBillWithCustomer("636045278965", "alexnew@yopmail.com");
-        payments.paymentThrouhVenmoAccount( );
+        payments.paymentThrouhVenmoAccount();
 
 
         pageObjectManager.getSidePannel().getSignOut();
@@ -809,8 +809,6 @@ public class TransactionsPage extends BaseTest {
         clickOnDownloadBtn();
 
 
-
-
 //        String fileStatus = ActionEngine.isFileDownloaded("Transactions.xlsx");
 //        System.out.println("fileStatus :" + fileStatus);
 //        staticWait(3000);
@@ -822,7 +820,7 @@ public class TransactionsPage extends BaseTest {
 
 
         staticWait(5000);
-      //  String fileDownloadStatus = ActionEngine.isFileDownloaded("Transactions.xlsx");
+        //  String fileDownloadStatus = ActionEngine.isFileDownloaded("Transactions.xlsx");
 
         getFilterIcon();
         getPaymentStatusDropdown();

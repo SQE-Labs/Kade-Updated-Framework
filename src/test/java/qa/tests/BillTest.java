@@ -4,6 +4,7 @@ package qa.tests;
 import base.BaseTest;
 import org.testng.annotations.Test;
 import pageEvents.BillPage;
+
 import java.awt.*;
 
 
@@ -15,24 +16,24 @@ public class BillTest extends BaseTest {
     public void verifyCreateBillWithoutSelectingCustomer() {
 
         bill.createBillWithoutCustomer();
-         bill.getDeleteButton();
+        bill.getDeleteButton();
         bill.getDeleteIcon();
     }
 
-    @Test(priority = 1, enabled = true,description = "BC_02 Verify that creating a bill by adding amount value only, with Selecting a Customer")
+    @Test(priority = 1, enabled = true, description = "BC_02 Verify that creating a bill by adding amount value only, with Selecting a Customer")
     public void verifyCreateBillBySelectingCustomer() {
         bill.createBillWithCustomer("6360452789", "yonro@yopmail.com");
     }
 
 
-    @Test(priority = 2, enabled = true,description = "BC_03 Bill creation by selecting customers from the suggestion list")
+    @Test(priority = 2, enabled = true, description = "BC_03 Bill creation by selecting customers from the suggestion list")
     public void verifyCreateBillForSuggestedCustomer() {
         bill.verifyCreateBillForSuggestedCustomer("yonro@yopmail.com");
-       // bill.deleteBill();
+        // bill.deleteBill();
     }
 
 
-    @Test(priority = 4, enabled = true,description = "BC_09 Verify that creating a bill by adding 'Ref No.', 'Description' and 'Items' fields")
+    @Test(priority = 4, enabled = true, description = "BC_09 Verify that creating a bill by adding 'Ref No.', 'Description' and 'Items' fields")
     public void verifyBillCreationUsingOptionalFields() {
         bill.verifyBillCreationByOptionalFields("47000.00", "3000.00", "yonro@yopmail.com");
     }
@@ -54,7 +55,7 @@ public class BillTest extends BaseTest {
 
     @Test(priority = 7, enabled = true, description = "BC_06 Verify that creating a bill by attaching the image file.")
     public void verifyingBillCreationByAttachingImageFile() throws InterruptedException, AWTException {
-     bill.createBillByAttachingImageFile();
+        bill.createBillByAttachingImageFile();
     }
 
     @Test(priority = 8, enabled = true, description = "BC_07 Verify that creating a bill by attaching the image file.")
@@ -76,7 +77,7 @@ public class BillTest extends BaseTest {
 
     @Test(priority = 11, enabled = true, description = "BC_15 Verify that creating a bill by adding the custom expiration date' on 'Bills' page..")
     public void verifyBillCreationByAddingExpirationDate() {
-        bill.verifyBillCreationByAddingExpirationDate("yonro@yopmail.com","20");
+        bill.verifyBillCreationByAddingExpirationDate("yonro@yopmail.com", "20");
 
     }
 

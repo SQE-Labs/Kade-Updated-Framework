@@ -84,13 +84,13 @@ public class PageObjectManager {
         transactionsPage = new TransactionsPage();
         log.debug("Transactions page");
 
-        searchPage= new SearchPage();
+        searchPage = new SearchPage();
         log.debug("Search page instance created");
 
-        giftCardPage= new GiftCardDashboardPage();
+        giftCardPage = new GiftCardDashboardPage();
         log.debug("Gift Card DashBoard page instance created.");
 
-        giftCardspage= new GiftCardPage();
+        giftCardspage = new GiftCardPage();
         log.debug("Gift Card page");
 
         paymentPage = new PaymentPage();
@@ -110,6 +110,7 @@ public class PageObjectManager {
         }
         return pageObjectManager;
     }
+
     /**
      * Getter for LoginPageEvents object.
      *
@@ -119,6 +120,7 @@ public class PageObjectManager {
         log.debug("Returning LoginPageEvents instance.");
         return loginPage;
     }
+
     /**
      * Getter for HomePageEvents object.
      *
@@ -128,6 +130,7 @@ public class PageObjectManager {
         log.debug("Returning HomePageEvents instance.");
         return homePage;
     }
+
     public DashboardPage getDashboardPage() {
         log.debug("Returning Dashboard instance.");
         return dashboardPage;
@@ -178,7 +181,7 @@ public class PageObjectManager {
         return reportsPage;
     }
 
-    public AdminPage getAdminPage(){
+    public AdminPage getAdminPage() {
         log.debug("Admin page instance");
         return adminPage;
     }
@@ -187,25 +190,28 @@ public class PageObjectManager {
         log.debug("Reward Points page instance");
         return rewardPointsPage;
     }
-    public SearchPage getSearchPage(){
+
+    public SearchPage getSearchPage() {
         log.debug("Search page instance");
         return searchPage;
     }
-    public TransactionsPage getTransactionsPage(){
+
+    public TransactionsPage getTransactionsPage() {
         log.debug("Transactions page");
         return transactionsPage;
     }
-    public GiftCardDashboardPage getGiftCardPage(){
+
+    public GiftCardDashboardPage getGiftCardPage() {
         log.debug("Returning Gift Card Dashboard Page");
         return giftCardPage;
     }
 
-    public GiftCardPage getGiftCardspage(){
+    public GiftCardPage getGiftCardspage() {
         log.debug("Gift Card page");
         return giftCardspage;
     }
 
-    public PaymentPage getPaymentPage(){
+    public PaymentPage getPaymentPage() {
         log.debug("Payment Method");
         return paymentPage;
     }

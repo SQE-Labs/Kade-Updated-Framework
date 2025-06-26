@@ -25,7 +25,7 @@ public class RewardsProgramTest extends BaseTest {
 
         Login();
         rewardsProgramPage.RewardsProgramPageOpen();
-        waitForElementToBeVisible(rewardsProgramPage.pageHeading,5);
+        waitForElementToBeVisible(rewardsProgramPage.pageHeading, 5);
         Assert.assertTrue(isElementDisplayed(rewardsProgramPage.pageHeading));
     }
 
@@ -47,17 +47,16 @@ public class RewardsProgramTest extends BaseTest {
         rewardsProgramPage.RewardsProgramPageOpen();
 
         click(rewardsProgramPage.settingsBtn);
-        waitForElementToBeVisible(rewardsProgramPage.rewardsProgPopupTitle,10);
+        waitForElementToBeVisible(rewardsProgramPage.rewardsProgPopupTitle, 10);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.rewardsProgPopupTitle));
 
-        if(!isDisplayed(rewardsProgramPage.pointsForGiftCard,2)){
-         click(rewardsProgramPage.toggleDisabled);
+        if (!isDisplayed(rewardsProgramPage.pointsForGiftCard, 2)) {
+            click(rewardsProgramPage.toggleDisabled);
         }
         click(rewardsProgramPage.saveChangesBtn);
 
 
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.rewardsProgActivationMsg));
-
 
 
     }
@@ -92,8 +91,8 @@ public class RewardsProgramTest extends BaseTest {
         softAssert.assertEquals(getToolTipMessage(rewardsProgramPage.memoInputField), Constants.requiredFieldValidation);
         softAssert.assertEquals(getToolTipMessage(rewardsProgramPage.pointsInputField), Constants.requiredFieldValidation);
 
-        actionEnterText(rewardsProgramPage.memoInputField,Constants.Memo);
-        actionEnterText(rewardsProgramPage.pointsInputField,Constants.Points);
+        actionEnterText(rewardsProgramPage.memoInputField, Constants.Memo);
+        actionEnterText(rewardsProgramPage.pointsInputField, Constants.Points);
         click(rewardsProgramPage.addBtn);
     }
 
@@ -105,7 +104,7 @@ public class RewardsProgramTest extends BaseTest {
         rewardsProgramPage.RewardsProgramPageOpen();
 
         click(rewardsProgramPage.filterBtn);
-        waitForElementToBeVisible(rewardsProgramPage.partialUsername,10);
+        waitForElementToBeVisible(rewardsProgramPage.partialUsername, 10);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.partialUsername));
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.userPhnEmail));
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.lastVisit));
@@ -123,16 +122,16 @@ public class RewardsProgramTest extends BaseTest {
 
         click(rewardsProgramPage.filterBtn);
         enterText(rewardsProgramPage.partialUsername, Constants.PartialUsername);
-        waitForElementToBeInteractable(rewardsProgramPage.applyBtn,20);
+        waitForElementToBeInteractable(rewardsProgramPage.applyBtn, 20);
         click(rewardsProgramPage.applyBtn);
-        waitForElementInVisible(rewardsProgramPage.applyBtn,20);
+        waitForElementInVisible(rewardsProgramPage.applyBtn, 20);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.yonroCustomer));
 
         click(rewardsProgramPage.filterBtn);
-        waitForElementToBeVisible(rewardsProgramPage.partialUsername,4);
+        waitForElementToBeVisible(rewardsProgramPage.partialUsername, 4);
         enterText(rewardsProgramPage.partialUsername, Constants.InvalidPartialUsername);
         click(rewardsProgramPage.applyBtn);
-        waitForElementInVisible(rewardsProgramPage.applyBtn,20);
+        waitForElementInVisible(rewardsProgramPage.applyBtn, 20);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.noResultIcon));
     }
 
@@ -145,13 +144,13 @@ public class RewardsProgramTest extends BaseTest {
 
         click(rewardsProgramPage.filterBtn);
         staticWait(2000);
-        enterText(rewardsProgramPage.userPhnEmail,Constants.phnNoFilterInput);
+        enterText(rewardsProgramPage.userPhnEmail, Constants.phnNoFilterInput);
         click(rewardsProgramPage.applyBtn);
-        waitForElementInVisible(rewardsProgramPage.applyBtn,20);
+        waitForElementInVisible(rewardsProgramPage.applyBtn, 20);
 
         rewardsProgramPage.tryCatchForFilter();
         staticWait(2000);
-        enterText(rewardsProgramPage.userPhnEmail,Constants.EmailFilterInput);
+        enterText(rewardsProgramPage.userPhnEmail, Constants.EmailFilterInput);
         click(rewardsProgramPage.applyBtn);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.yonroCustomer));
     }
@@ -164,22 +163,22 @@ public class RewardsProgramTest extends BaseTest {
         rewardsProgramPage.RewardsProgramPageOpen();
 
         click(rewardsProgramPage.filterBtn);
-        enterText(rewardsProgramPage.userPhnEmail,Constants.nonExistingEmailFilterInput);
+        enterText(rewardsProgramPage.userPhnEmail, Constants.nonExistingEmailFilterInput);
         click(rewardsProgramPage.applyBtn);
-        waitForElementInVisible(rewardsProgramPage.applyBtn,20);
+        waitForElementInVisible(rewardsProgramPage.applyBtn, 20);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.noResultIcon));
 
         click(rewardsProgramPage.filterBtn);
-        enterText(rewardsProgramPage.userPhnEmail,Constants.nonExistingPhoneNoFilterInput);
-        waitForElementToBeInteractable(rewardsProgramPage.applyBtn,20);
+        enterText(rewardsProgramPage.userPhnEmail, Constants.nonExistingPhoneNoFilterInput);
+        waitForElementToBeInteractable(rewardsProgramPage.applyBtn, 20);
         click(rewardsProgramPage.applyBtn);
-        waitForElementInVisible(rewardsProgramPage.applyBtn,20);
+        waitForElementInVisible(rewardsProgramPage.applyBtn, 20);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.noResultIcon));
 
         rewardsProgramPage.tryCatchForFilter();
-        enterText(rewardsProgramPage.userPhnEmail,Constants.invalidPhoneNumberFilterInput);
+        enterText(rewardsProgramPage.userPhnEmail, Constants.invalidPhoneNumberFilterInput);
         click(rewardsProgramPage.applyBtn);
-        softAssert.assertEquals(getToolTipMessage(rewardsProgramPage.userPhnEmail),Constants.userPhnEmailTooltip,"tool tip");
+        softAssert.assertEquals(getToolTipMessage(rewardsProgramPage.userPhnEmail), Constants.userPhnEmailTooltip, "tool tip");
     }
 
     @Test(priority = 10, enabled = true)
@@ -189,10 +188,10 @@ public class RewardsProgramTest extends BaseTest {
         Login();
         rewardsProgramPage.RewardsProgramPageOpen();
         click(rewardsProgramPage.filterBtn);
-        waitForElementToBeInteractable(rewardsProgramPage.lastVisit,20);
-        enterText(rewardsProgramPage.lastVisit,Constants.LastVisitFilterInput);
+        waitForElementToBeInteractable(rewardsProgramPage.lastVisit, 20);
+        enterText(rewardsProgramPage.lastVisit, Constants.LastVisitFilterInput);
         click(rewardsProgramPage.applyBtn);
-        waitForElementInVisible(rewardsProgramPage.applyBtn,20);
+        waitForElementInVisible(rewardsProgramPage.applyBtn, 20);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.yonroCustomer));
     }
 
@@ -203,15 +202,15 @@ public class RewardsProgramTest extends BaseTest {
         Login();
         rewardsProgramPage.RewardsProgramPageOpen();
         click(rewardsProgramPage.filterBtn);
-        enterText(rewardsProgramPage.lastVisit,Constants.InvalidLastVisitFilterInput);
+        enterText(rewardsProgramPage.lastVisit, Constants.InvalidLastVisitFilterInput);
         click(rewardsProgramPage.applyBtn);
-        waitForElementInVisible(rewardsProgramPage.applyBtn,20);
+        waitForElementInVisible(rewardsProgramPage.applyBtn, 20);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.noResultIcon));
 
         rewardsProgramPage.tryCatchForFilter();
-        enterText(rewardsProgramPage.lastVisit,Constants.InvalidLastVisitFilterInput2);
+        enterText(rewardsProgramPage.lastVisit, Constants.InvalidLastVisitFilterInput2);
         click(rewardsProgramPage.applyBtn);
-        softAssert.assertEquals(getToolTipMessage(rewardsProgramPage.lastVisit),Constants.invalidDateRange,"tool tip");
+        softAssert.assertEquals(getToolTipMessage(rewardsProgramPage.lastVisit), Constants.invalidDateRange, "tool tip");
 
     }
 
@@ -222,7 +221,7 @@ public class RewardsProgramTest extends BaseTest {
         Login();
         rewardsProgramPage.RewardsProgramPageOpen();
         click(rewardsProgramPage.filterBtn);
-        enterText(rewardsProgramPage.customerSince,Constants.customerSinceDateRange);
+        enterText(rewardsProgramPage.customerSince, Constants.customerSinceDateRange);
         click(rewardsProgramPage.applyBtn);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.yonroCustomer));
     }
@@ -234,15 +233,15 @@ public class RewardsProgramTest extends BaseTest {
         Login();
         rewardsProgramPage.RewardsProgramPageOpen();
         click(rewardsProgramPage.filterBtn);
-        enterText(rewardsProgramPage.customerSince,Constants.InvalidLastVisitFilterInput);
+        enterText(rewardsProgramPage.customerSince, Constants.InvalidLastVisitFilterInput);
         click(rewardsProgramPage.applyBtn);
-        waitForElementInVisible(rewardsProgramPage.applyBtn,20);
+        waitForElementInVisible(rewardsProgramPage.applyBtn, 20);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.noResultIcon));
 
         rewardsProgramPage.tryCatchForFilter();
-        enterText(rewardsProgramPage.customerSince,Constants.InvalidLastVisitFilterInput2);
+        enterText(rewardsProgramPage.customerSince, Constants.InvalidLastVisitFilterInput2);
         click(rewardsProgramPage.applyBtn);
-        softAssert.assertEquals(getToolTipMessage(rewardsProgramPage.customerSince),Constants.invalidDateRange,"tool tip");
+        softAssert.assertEquals(getToolTipMessage(rewardsProgramPage.customerSince), Constants.invalidDateRange, "tool tip");
     }
 
     @Test(priority = 14, enabled = true)
@@ -252,16 +251,16 @@ public class RewardsProgramTest extends BaseTest {
         Login();
         rewardsProgramPage.RewardsProgramPageOpen();
         click(rewardsProgramPage.filterBtn);
-        waitForElementToBeVisible(rewardsProgramPage.minRewardPts,10);
-        actionEnterText(rewardsProgramPage.minRewardPts,Constants.minRewardPointsInput);
+        waitForElementToBeVisible(rewardsProgramPage.minRewardPts, 10);
+        actionEnterText(rewardsProgramPage.minRewardPts, Constants.minRewardPointsInput);
         click(rewardsProgramPage.applyBtn);
-        waitForElementInVisible(rewardsProgramPage.applyBtn,20);
+        waitForElementInVisible(rewardsProgramPage.applyBtn, 20);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.yonroCustomer));
         staticWait(2000);
 
         rewardsProgramPage.tryCatchForFilter();
-        waitForElementToBeInteractable(rewardsProgramPage.minRewardPts,20);
-        actionEnterText(rewardsProgramPage.minRewardPts,Constants.minRewardPointsInput2);
+        waitForElementToBeInteractable(rewardsProgramPage.minRewardPts, 20);
+        actionEnterText(rewardsProgramPage.minRewardPts, Constants.minRewardPointsInput2);
         rewardsProgramPage.tryCatchforApplyBtn();
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.noResultIcon));
     }
@@ -273,18 +272,18 @@ public class RewardsProgramTest extends BaseTest {
         Login();
         rewardsProgramPage.RewardsProgramPageOpen();
         click(rewardsProgramPage.filterBtn);
-        waitForElementToBeInteractable(rewardsProgramPage.maxRewardPts,20);
-        actionEnterText(rewardsProgramPage.maxRewardPts,Constants.maxRewardPointsInput);
+        waitForElementToBeInteractable(rewardsProgramPage.maxRewardPts, 20);
+        actionEnterText(rewardsProgramPage.maxRewardPts, Constants.maxRewardPointsInput);
         click(rewardsProgramPage.applyBtn);
-        waitForElementInVisible(rewardsProgramPage.applyBtn,20);
+        waitForElementInVisible(rewardsProgramPage.applyBtn, 20);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.yonroCustomer));
         staticWait(2000);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.filterBtn));
 
-        waitForElementToBeClickable(rewardsProgramPage.filterBtn,20);
+        waitForElementToBeClickable(rewardsProgramPage.filterBtn, 20);
         rewardsProgramPage.tryCatchForFilter();
-        waitForElementToBeInteractable(rewardsProgramPage.maxRewardPts,20);
-        actionEnterText(rewardsProgramPage.maxRewardPts,Constants.maxRewardPointsInput2);
+        waitForElementToBeInteractable(rewardsProgramPage.maxRewardPts, 20);
+        actionEnterText(rewardsProgramPage.maxRewardPts, Constants.maxRewardPointsInput2);
         click(rewardsProgramPage.applyBtn);
 //        rewardsProgramPage.tryCatchforApplyBtn();
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.noResultIcon));
@@ -297,14 +296,14 @@ public class RewardsProgramTest extends BaseTest {
         Login();
         rewardsProgramPage.RewardsProgramPageOpen();
         click(rewardsProgramPage.filterBtn);
-        actionEnterText(rewardsProgramPage.minPayments,Constants.minPaymentInput);
+        actionEnterText(rewardsProgramPage.minPayments, Constants.minPaymentInput);
         click(rewardsProgramPage.applyBtn);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.yonroCustomer));
         staticWait(2000);
 
         rewardsProgramPage.tryCatchForFilter();
-        waitForElementToBeInteractable(rewardsProgramPage.maxRewardPts,20);
-        actionEnterText(rewardsProgramPage.minPayments,Constants.minPaymentInput2);
+        waitForElementToBeInteractable(rewardsProgramPage.maxRewardPts, 20);
+        actionEnterText(rewardsProgramPage.minPayments, Constants.minPaymentInput2);
         rewardsProgramPage.tryCatchforApplyBtn();
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.noResultIcon));
     }
@@ -316,7 +315,7 @@ public class RewardsProgramTest extends BaseTest {
         Login();
         rewardsProgramPage.RewardsProgramPageOpen();
         click(rewardsProgramPage.filterBtn);
-        actionEnterText(rewardsProgramPage.maxPayments,Constants.minPaymentInput);
+        actionEnterText(rewardsProgramPage.maxPayments, Constants.minPaymentInput);
         click(rewardsProgramPage.applyBtn);
         softAssert.assertTrue(isElementDisplayed(rewardsProgramPage.yonroCustomer));
     }

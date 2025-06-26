@@ -16,21 +16,17 @@ public class GiftCardPage extends BaseTest {
     By crossIcon = By.cssSelector(".btn-close.ms-2");
 
 
-public void getFirstCardLink(){
-    click(firstCardLink);
-}
-public void getCrossIconGCpopup(){
-    click(crossIcon);
-}
+    public void getFirstCardLink() {
+        click(firstCardLink);
+    }
 
-public void getSendArrow(){
-    click(sendArrow);
-}
+    public void getCrossIconGCpopup() {
+        click(crossIcon);
+    }
 
-
-
-
-
+    public void getSendArrow() {
+        click(sendArrow);
+    }
 
 
 }

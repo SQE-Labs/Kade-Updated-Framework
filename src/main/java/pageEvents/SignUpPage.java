@@ -95,6 +95,8 @@ public class SignUpPage extends BaseTest {
     }
 
     public void getSignInLink() {
+        waitForElementToBeVisible(signInLink, 10);
+
         click(signInLink);
     }
 
@@ -107,6 +109,7 @@ public class SignUpPage extends BaseTest {
     }
 
     public void clickOnCountinueBtn() {
+        waitForElementToBeVisible(continueBtn, 10);
         click(continueBtn);
     }
 

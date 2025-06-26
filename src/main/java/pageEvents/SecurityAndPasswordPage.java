@@ -53,7 +53,7 @@ public class SecurityAndPasswordPage extends BaseTest {
     By closeAndDeletebtn = By.cssSelector(".btn.btn-danger");
 
 
-    public void getSecurityAndPasswordPage(){
+    public void getSecurityAndPasswordPage() {
         staticWait(6000);
         click(userProfile);
         click(securityAndPasswordTab);
@@ -75,7 +75,8 @@ public class SecurityAndPasswordPage extends BaseTest {
         String uniqueId = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
         return uniqueId + "@yopmail.com";
     }
-    public void getCloseAndDeleteAccountbtn(){
+
+    public void getCloseAndDeleteAccountbtn() {
         staticWait(1000);
         click(closeAndDeletebtn);
     }

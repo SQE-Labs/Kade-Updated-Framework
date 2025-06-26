@@ -592,7 +592,7 @@ public class BillPage extends BaseTest {
     public void getConfirmButton() {
         staticWait(2000);
         scrollToElement(confirmBtn);
-        waitForElementToBeInteractable(confirmBtn,15);
+        waitForElementToBeInteractable(confirmBtn, 15);
         click(confirmBtn);
     }
 
@@ -814,7 +814,7 @@ public class BillPage extends BaseTest {
 
 
     public void uploadPdf() throws AWTException {
-       // uploadImageAsAttachment("/src/main/resources/ImageResources/image/dummy");
+        // uploadImageAsAttachment("/src/main/resources/ImageResources/image/dummy");
         // uploding store image
 
         WebElement fileInput = getDriver().findElement(By.xpath("//input[@type='file']"));
@@ -1219,11 +1219,11 @@ public class BillPage extends BaseTest {
     }
 
     public void clickOnReccuring() {
-            staticWait(2000);
-            scrollToElement(reccuringMenu);
-            staticWait(5000);
-            click(reccuringMenu);
-            click(reccuringBill);
+        staticWait(2000);
+        scrollToElement(reccuringMenu);
+        staticWait(5000);
+        click(reccuringMenu);
+        click(reccuringBill);
 
 
     }
@@ -1442,7 +1442,7 @@ public class BillPage extends BaseTest {
         assertEnteredTextInDescriptionField();
         enterInBillTxtField(amount, DesAmount);
 
-         //Select Suggested Customer
+        //Select Suggested Customer
         getCustomerButton();
         getCustomerEmailField(emailID);
         getEmailGoButton();
@@ -1560,7 +1560,7 @@ public class BillPage extends BaseTest {
 
         //Enter amount
         String amt = "2,000.00";
-        waitForElementToBeVisible(amtTbx,10);
+        waitForElementToBeVisible(amtTbx, 10);
         actionEnterText(amtTbx, amt);
 
         clickOnTapToAddImageFiles();
@@ -1605,7 +1605,7 @@ public class BillPage extends BaseTest {
         getContinueWithoutButton();
 
         //Close popup
-      //  closePopup();
+        //  closePopup();
     }
 
     public void verifyingBillCreationWithAddingMemoField(String emailID) {
@@ -1998,7 +1998,7 @@ public class BillPage extends BaseTest {
         //Close popup
         closePopup();
 
-         clickOnReccuring();
+        clickOnReccuring();
 
         removeNonNumericValueFromTheValue();
 
@@ -2035,7 +2035,7 @@ public class BillPage extends BaseTest {
         //Share bill by adding card details
         clickOnpaymentMethodLink();
 
-         getConfirmButton();
+        getConfirmButton();
     }
 
     public void createBillWithCustomerAndPayThroughAutoPayment() {

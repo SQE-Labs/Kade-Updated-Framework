@@ -1,5 +1,7 @@
 package pageEvents;
+
 import static org.openqa.selenium.support.locators.RelativeLocator.with;
+
 import base.BaseTest;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -26,7 +28,7 @@ public class PaymentMethod extends BaseTest {
     public By saveWithLink = By.xpath("//span[text()='Save with Link']/..");
     public By notNow = By.xpath("//span[text()='Not now']/..");
     public By backToKadePay = By.xpath("//span[text()='Back to Kade Pay']/..");
-    public By getBackToKadePay= By.xpath("//button[@type='submit']//span[text()='Back to Kade Pay']");
+    public By getBackToKadePay = By.xpath("//button[@type='submit']//span[text()='Back to Kade Pay']");
     public By finalSavebtn = By.xpath("//button[contains (@class, 'btn btn-primary ') and text()='Save']");
     public By bankFrame = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[1]");
     public By paymentTimeBankFrame = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[2]");
@@ -52,7 +54,7 @@ public class PaymentMethod extends BaseTest {
 
     public void getCreditCardOption() {
         click(creditCardOption);
-        staticWait(2000);
+
     }
 
     public void getBankAccountOption() {
@@ -111,7 +113,7 @@ public class PaymentMethod extends BaseTest {
         getTestInsituteBtn();
         switchToDefaultContent(); // go back to default before switching again
 
-  // Switch to the frame that contains the 'Agree and continue' button and click it
+        // Switch to the frame that contains the 'Agree and continue' button and click it
         if (switchToFrameContainingElement(agreeAndContinueBtn)) {
             waitForPageLoad(); // wait until content inside iframe is loaded
             staticWait(2000);  // small buffer wait, optional
@@ -156,7 +158,7 @@ public class PaymentMethod extends BaseTest {
         switchToDefaultContent();
 
         waitForElementToBeClickable(finalSavebtn, 5);
-         getFinalSaveBtn();
+        getFinalSaveBtn();
     }
 }
 

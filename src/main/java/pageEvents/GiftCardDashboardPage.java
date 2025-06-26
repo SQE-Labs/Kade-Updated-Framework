@@ -30,19 +30,19 @@ public class GiftCardDashboardPage extends BaseTest {
     public By systemMsg = By.cssSelector("p.h2");
 
     SidePannelPage pannel = new SidePannelPage();
-      By giftCardDashBoardHeaderText = By.cssSelector("h1.header-title");
-       By storeDropDown = By.cssSelector("span.select2-selection__rendered[role='textbox']");
-      By storeDropDownList = By.cssSelector("ul.select2-results__options > li");
-      By whichStoreContinueBtn = By.cssSelector("button.btn-primary");
-      By storeName = By.cssSelector("h3.text-truncate");
+    By giftCardDashBoardHeaderText = By.cssSelector("h1.header-title");
+    By storeDropDown = By.cssSelector("span.select2-selection__rendered[role='textbox']");
+    By storeDropDownList = By.cssSelector("ul.select2-results__options > li");
+    By whichStoreContinueBtn = By.cssSelector("button.btn-primary");
+    By storeName = By.cssSelector("h3.text-truncate");
     By continueBtn = By.xpath("//button[@type='submit']");
-      By storeMnager = By.cssSelector("div.fw-bold");
-      By issuedOn = By.xpath("//span[contains(text(),'Issued on:')]");
-      By issueBy = By.xpath("//span[contains(text(), 'Issued by:')]");
-      By editBtn = By.cssSelector("i.far.fa-edit");
-      By systemAlert = By.cssSelector("div.alert-message>h4");
-      By clientDetailValidationMsg = By.cssSelector("div.alert-message>p");
-      By statusBtn = By.cssSelector("span.me-2~div>button.btn~ul.p-1");
+    By storeMnager = By.cssSelector("div.fw-bold");
+    By issuedOn = By.xpath("//span[contains(text(),'Issued on:')]");
+    By issueBy = By.xpath("//span[contains(text(), 'Issued by:')]");
+    By editBtn = By.cssSelector("i.far.fa-edit");
+    By systemAlert = By.cssSelector("div.alert-message>h4");
+    By clientDetailValidationMsg = By.cssSelector("div.alert-message>p");
+    By statusBtn = By.cssSelector("span.me-2~div>button.btn~ul.p-1");
     public By blockBtn = By.cssSelector("span.me-2~div>button.btn-danger");
     public By activeBtn = By.xpath("//span[text()='Status:']/..//button[contains(@class,'btn dropdown-toggle')]");
     public By infoMessageText = By.cssSelector("div.card-header.pb-0");
@@ -69,8 +69,8 @@ public class GiftCardDashboardPage extends BaseTest {
     public By issueNewGiftCardBtn = By.xpath("//button[text()='Issue a new gift card']");
     public By giftCardHeader = By.cssSelector("h5.modal-title");
     public By customerField = By.cssSelector("div>.modal-content .stretched-link.-selectCustomer-");
-    By customerSection=By.xpath("//label[text()='Customer']/..");
-    By customerSec=By.xpath("(//a[@class='stretched-link -selectCustomer-'])[2]");
+    By customerSection = By.xpath("//label[text()='Customer']/..");
+    By customerSec = By.xpath("(//a[@class='stretched-link -selectCustomer-'])[2]");
     public By customerTitleText = By.cssSelector("div.modal-content>div.modal-header>h5.modal-title>span.me-1");
     public By customerPhoneNo = By.cssSelector("input[name='phone']");
     public By customerName = By.cssSelector("input[name='phrase']");
@@ -105,7 +105,7 @@ public class GiftCardDashboardPage extends BaseTest {
     By expDate = By.xpath("//input[@name='expDate']");
     public By giftCardDetailCardLink = By.xpath("(//tr/td/a[@class='btn btn-link btn btn-link'])[1]");
     public By giftCardHeaderText = By.cssSelector("h3.text-info");
-     public By issueNewGiftcardForm = By.cssSelector("div.modal-body");
+    public By issueNewGiftcardForm = By.cssSelector("div.modal-body");
     public By infoIcon = By.cssSelector("i.fal.fa-info-square");
     public By enableClass = By.cssSelector("label.custom-checkbox.mb-3");
     public By updateButton = By.xpath("//button[text()='Update']");
@@ -177,7 +177,7 @@ public class GiftCardDashboardPage extends BaseTest {
     By minAmountFilterField = By.cssSelector("[name='minAmount']");
     By maxAmountFilterField = By.cssSelector("[name='maxAmount']");
     By cardNumberFilterField = By.cssSelector("[name='cardNo']");
-    By cardNumber=By.xpath("//a[@class='btn btn-link btn btn-link']");
+    By cardNumber = By.xpath("//a[@class='btn btn-link btn btn-link']");
     public By profileLink = By.cssSelector("div.min-15c>div.d-flex>a.me-1~div>a");
     public By totalSpentText = By.xpath("//div[contains(@class, 'col') and contains(@class, 'd-flex') and contains(@class, 'flex-column')]//span[contains(text(), 'Total spent')]");
     public By messageIcon = By.cssSelector("a.p-0>i.fa-paper-plane");
@@ -318,7 +318,7 @@ public class GiftCardDashboardPage extends BaseTest {
         clickElementByJS(issueNewGiftCardBtn);
         staticWait(3000);
         waitForElementToBeClickable(customerSection, 1000);
-        hoverAndClick(customerSection,customerSection);
+        hoverAndClick(customerSection, customerSection);
         waitForElementToBeVisible(customerEmail, 1000);
         actionEnterText(customerEmail, "beanBliss@yopmail.com");
         clickElementByJS(customerEmailSearchBtn);
@@ -2511,7 +2511,7 @@ public class GiftCardDashboardPage extends BaseTest {
 
         //Verify all result appears
         List<WebElement> allRecords = getDriver().findElements(allresult);
-          String expectedDate = "5/12/2025";
+        String expectedDate = "5/12/2025";
 
         for (WebElement record : allRecords) {
             String detail = record.getText();
@@ -2875,7 +2875,7 @@ public class GiftCardDashboardPage extends BaseTest {
 
         // Entering valid card no
         waitForElementToBeClickable(cardNumberFilterField, 4);
-        String cardNo=getText(cardNumber);
+        String cardNo = getText(cardNumber);
         String[] parts = cardNo.split("-");
         String value = parts[1];
         System.out.println("Extracted value: " + value);
@@ -2887,7 +2887,7 @@ public class GiftCardDashboardPage extends BaseTest {
 
         scrollToElement(allresult);
         List<WebElement> allRecords = getDriver().findElements(allresult);
-          String recordText = allRecords.get(0).getText();
+        String recordText = allRecords.get(0).getText();
         Assert.assertTrue(recordText.contains(value), "Record does not match");
 
 

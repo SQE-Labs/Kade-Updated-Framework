@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 
 public class ReportsPage extends BaseTest {
 
-    String month ="January 2025";
+    String month = "January 2025";
     String month2 = "December - 2024";
     String day = "Sunday";
     public By storesComboBox = By.cssSelector(".select2-selection.select2-selection--single");
@@ -19,11 +19,11 @@ public class ReportsPage extends BaseTest {
     public By NoResultIcon = By.cssSelector(".no-result-icon");
     public By monthCardHeader = By.cssSelector(".card-header");
     public By cardBody = By.xpath("//div[@class='card-body max-30c collapse show']");
-    public By janDataDownload = By.xpath("(//a[contains(text(),'"+month+"')]//parent::div/div[1]//strong[text()='"+day+"'])[1]");
-    public By  firstLinkDownload = By.xpath("(//a[@class='btn btn-link stretched-link align-self-center'])[1]");
-    public By selectJanuaryMonth = By.xpath("//a[@class='card-header collapsed' and text()='"+month+"']");
+    public By janDataDownload = By.xpath("(//a[contains(text(),'" + month + "')]//parent::div/div[1]//strong[text()='" + day + "'])[1]");
+    public By firstLinkDownload = By.xpath("(//a[@class='btn btn-link stretched-link align-self-center'])[1]");
+    public By selectJanuaryMonth = By.xpath("//a[@class='card-header collapsed' and text()='" + month + "']");
     public By topMonth = By.xpath("(//a[@class='card-header'])[1]");
-    public By dec24Report = By.xpath("//strong[@class='align-self-center' and text()='"+month2+"']");
+    public By dec24Report = By.xpath("//strong[@class='align-self-center' and text()='" + month2 + "']");
     public By totalReceivedamt = By.xpath("//div[@class='col-md-4'] //h4[text()='Total Received Amount']");
     public By totalTax = By.xpath("//div[@class='col-md-4'] //h4[text()='Total Tax']");
     public By totalTip = By.xpath("//div[@class='col-md-4'] //h4[text()='Total Tip']");
@@ -40,10 +40,10 @@ public class ReportsPage extends BaseTest {
     public By year24 = By.xpath("//a[text()='2024']");
     public By year25First = By.xpath("(//a[text()='This Year']//following-sibling::div/div/a)[1]");
 
-    public By dec2024 =By.xpath("//a[text()='2024']/following-sibling::div//strong[text()='December - 2024']");
+    public By dec2024 = By.xpath("//a[text()='2024']/following-sibling::div//strong[text()='December - 2024']");
     public By manageBusinessAcc = By.xpath("//a[@class='sidebar-link fw-bold text-black collapsed' and text()='Manage Business']");
     public By reportsTab = By.xpath("//div[text()='Reports']/..");
-    public By dataDownloaded= By.xpath("(//a[@data-download])[1]");
+    public By dataDownloaded = By.xpath("(//a[@data-download])[1]");
 
     public void openReportsPage() {
         staticWait(3000);

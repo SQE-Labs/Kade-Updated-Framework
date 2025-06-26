@@ -10,19 +10,17 @@ import utils.Constants;
 import org.testng.annotations.Test;
 
 
-
-
 public class SignUpTest extends BaseTest {
     private static final Logger log = LogManager.getLogger(SignUpPage.class);
     private PageObjectManager pageObjectManager = PageObjectManager.getInstance();
     private SignUpPage signUp = pageObjectManager.getSignUpPage();
     String st = requiredString(4);
-    SignUpPage SignUp=new SignUpPage();
+    SignUpPage SignUp = new SignUpPage();
 
     @Test(priority = 0, description = "CA_TC 1: Verify the elements of 'Create New Account' page after selecting  'Personal Account' option, on 'Login' page..")
     public void VerifyTheSignUpPage() {
         pageObjectManager.getLoginPage().getSignUpLink();
-        waitForElementToBeVisible(signUp.businessAccountButton,10);
+        waitForElementToBeVisible(signUp.businessAccountButton, 10);
 
         // Verify the Business Account And Personal Account Button
         Assert.assertTrue(isElementDisplayed(signUp.businessAccountButton));
@@ -50,19 +48,19 @@ public class SignUpTest extends BaseTest {
 
         // Verify 'Sign up' button
         Assert.assertTrue(isElementDisplayed(signUp.signUpButton));
-        staticWait(3000);
+
 
         // Clicking on sign in Link
         signUp.getSignInLink();
     }
 
-    @Test(priority = 1,description = "CA_TC 1(b): Verify the validation messages while creating new account with 'Personal Account' option on 'Login' page.")
+    @Test(priority = 1, description = "CA_TC 1(b): Verify the validation messages while creating new account with 'Personal Account' option on 'Login' page.")
     public void verifyValidationMessagesWithPersonalAccountOption() {
         pageObjectManager.getLoginPage().getSignUpLink();
         signUp.getValidationsOfPersonalAccountPage();
     }
 
-    @Test(priority = 2,description = "CA_TC 1(c): Verify that creating new account with 'Personal Account' option.")
+    @Test(priority = 2, description = "CA_TC 1(c): Verify that creating new account with 'Personal Account' option.")
     public void verifyCreatingAccountWithPersonalAccountOption() {
         pageObjectManager.getLoginPage().getSignUpLink();
 
@@ -87,16 +85,16 @@ public class SignUpTest extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(signUp.successMessage));
     }
 
-    @Test(priority = 3,description = "CA_TC 2(a): Verify that creating a new account by email address with  Business Account option.")
+    @Test(priority = 3, description = "CA_TC 2(a): Verify that creating a new account by email address with  Business Account option.")
     public void verifyCreatingNewAccountByEmailWithBusinessAccount() {
-        String name=requiredString(4);
+        String name = requiredString(4);
         pageObjectManager.getLoginPage().getSignUpLink();
         //Clicking on Business Account Option
         signUp.getBusinessAccount();
 
         // Verify Mobile field label and  Use Email Link
-         Assert.assertTrue(isElementDisplayed(signUp.phoneFieldLabel));
-         Assert.assertTrue(isElementDisplayed(signUp.useEmailLink));
+        Assert.assertTrue(isElementDisplayed(signUp.phoneFieldLabel));
+        Assert.assertTrue(isElementDisplayed(signUp.useEmailLink));
 
         // Verify the Receive Text Email Notification CheckBox and Continue button
         Assert.assertTrue(isElementDisplayed(signUp.checkBox));
@@ -104,7 +102,7 @@ public class SignUpTest extends BaseTest {
 
         //Click on continue button and verify the Tooltip
         signUp.clickOnCountinueBtn();
-        staticWait(7000);
+        waitForElementToBeVisible(signUp.mobilePhoneField, 10);
         getToolTipMessage(signUp.mobilePhoneField);
 
         // Click on Use Email Link
@@ -112,9 +110,8 @@ public class SignUpTest extends BaseTest {
 
         // Enter invalid email
         enterText(signUp.emailBusinessField, Constants.invalidEmail);
-        staticWait(2000);
         signUp.clickOnCountinueBtn();
-        staticWait(7000);
+        waitForElementToBeVisible(signUp.emailBusinessField, 10);
         String Actual = getToolTipMessage(signUp.emailBusinessField);
         Assert.assertEquals(Actual, Constants.emailValidation);
 
@@ -124,33 +121,31 @@ public class SignUpTest extends BaseTest {
         // Checking the By providing my information, I consent to receive text/email notifications. checkbox
         signUp.getReceiveTextEmailNotificationCheckBox();
         signUp.getContinueButton();
-        staticWait(7000);
 
 
         // Verify the start Over Link and resent code link
-        staticWait(2000);
-         Assert.assertTrue(isElementDisplayed(signUp.startOverLink));
-         Assert.assertTrue(isElementDisplayed(signUp.resendCode));
+        waitForElementToBeVisible(signUp.startOverLink, 10);
+        Assert.assertTrue(isElementDisplayed(signUp.startOverLink));
+        Assert.assertTrue(isElementDisplayed(signUp.resendCode));
 
         // Click on start over link and Continue button
         signUp.getStartOverLink();
         signUp.getContinueButton();
-        staticWait(4000);
-
+        waitForElementToBeVisible(signUp.securityCodeFieldNewAccount, 10);
         // Enter data in security code field
         enterText(signUp.securityCodeFieldNewAccount, Constants.securityCode);
 
-       // waitForElementToBeVisible(signUp.fullname,10);
+        // waitForElementToBeVisible(signUp.fullname,10);
 
         //Entering name in the Full name field
-        staticWait(1000);
-     //   actionEnterText(SignUp.fullname, "New kade Member"+st);
+        //   actionEnterText(SignUp.fullname, "New kade Member"+st);
 
         // Clicking on 'Continue' button
+        waitForElementToBeVisible(SignUp.ContinueButtonBusiness, 15);
         click(SignUp.ContinueButtonBusiness);
     }
 
-    @Test(priority = 4,description = "CA_TC 2(b) : Verify that creating new account by phone number with Business Account option.")
+    @Test(priority = 4, description = "CA_TC 2(b) : Verify that creating new account by phone number with Business Account option.")
     public void verifyCreateNewAccountByPhoneNumberWithBusinessAccount() {
         pageObjectManager.getLoginPage().getSignUpLink();
         signUp.getBusinessAccount();
@@ -167,17 +162,17 @@ public class SignUpTest extends BaseTest {
         actionEnterText(signUp.securityCodeFieldNewAccount, digit);
 
         //Verify the security code sent to Information message
-        softAssert.assertTrue(isElementDisplayed(signUp.securityCodeSendInfoMsg));
+        Assert.assertTrue(isElementDisplayed(signUp.securityCodeSendInfoMsg));
         signUp.getBusinessContinuebtn();
 
         // Verify the Tooltip message for security field
         String actual = getToolTipMessage(signUp.securityCodeFieldNewAccount);
-        softAssert.assertEquals(actual, Constants.TooltipForLessDigit);
+        Assert.assertEquals(actual, Constants.TooltipForLessDigit);
 
         // Entering Invalid security Code
         enterText(signUp.securityCodeFieldNewAccount, Constants.invalidSecurityCode);
 
-        waitForElementToBeVisible(signUp.ContinueButtonBusiness,3);
+        waitForElementToBeVisible(signUp.ContinueButtonBusiness, 3);
         signUp.getBusinessContinuebtn();
 
         String alertmessage = getText(signUp.securityCodeAlertMessage);
@@ -189,20 +184,20 @@ public class SignUpTest extends BaseTest {
 
         // Verify the Validation message for Incorrect Security Code
         softAssert.assertEquals(alertmessage, Constants.invalidSecurityCodeMsg);
-        staticWait(5000);
+        waitForElementToBeVisible(signUp.securityCodeFieldNewAccount, 15);
         cleanByJS(signUp.securityCodeFieldNewAccount);
 
         // Entering Valid security Code
         actionEnterText(signUp.securityCodeFieldNewAccount, Constants.phoneSecurityCodeForLogin);
-        waitForElementToBeVisible(signUp.ContinueButtonBusiness,3);
+        waitForElementToBeVisible(signUp.ContinueButtonBusiness, 10);
 
         signUp.getBusinessContinuebtn();
 
-        waitForElementToBeVisible(signUp.stripePageTitle,4);
+        waitForElementToBeVisible(signUp.stripePageTitle, 10);
 
         // Verify the page title
         softAssert.assertTrue(isElementDisplayed(signUp.stripePageTitle));
-        waitForElementToBeVisible(pageObjectManager.getSidePannel().profileLink,4);
+        waitForElementToBeVisible(pageObjectManager.getSidePannel().profileLink, 10);
 
         // Clicking on Profile Link
         pageObjectManager.getSidePannel().getProfileLink();
@@ -211,7 +206,7 @@ public class SignUpTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(priority = 5,description = "CA_TC 3 a: Verify that signing in to the application by phone number using Business Account option.")
+    @Test(priority = 5, description = "CA_TC 3 a: Verify that signing in to the application by phone number using Business Account option.")
     public void verifyThatSiginToApplicationByPhoneNumberUsingBusinessAccountOption() {
         pageObjectManager.getLoginPage().getSignUpLink();
         signUp.getBusinessAccount();
@@ -220,7 +215,7 @@ public class SignUpTest extends BaseTest {
         // Clicking on 'Sign In Button
         signUp.getSignInBtn();
 
-        waitForElementToBeVisible(signUp.signInTitle,10);
+        waitForElementToBeVisible(signUp.signInTitle, 10);
 
         // Verify the elements on 'Sign In' page
         softAssert.assertTrue(isElementDisplayed(signUp.signInTitle), "signInTitle");
@@ -230,7 +225,7 @@ public class SignUpTest extends BaseTest {
         softAssert.assertTrue(isElementDisplayed(signUp.googleIconSP), "google icon");
         softAssert.assertTrue(isElementDisplayed(signUp.appleIconSP), "apple icon");
 
-        waitForElementToBeClickable(signUp.continueBtnSignInP, 2);
+        waitForElementToBeClickable(signUp.continueBtnSignInP, 10);
 
         // Validation for Phone Field
         signUp.getContinueBtnSP();
@@ -246,7 +241,7 @@ public class SignUpTest extends BaseTest {
         // Entering valid phone number
         actionEnterText(signUp.phoneFieldSP, Constants.phone);
         signUp.getContinueBtnSP();
-        waitForElementToBeVisible(signUp.changeLinkSP,10);
+        waitForElementToBeVisible(signUp.changeLinkSP, 10);
 
         // Verify the link is displayed
         softAssert.assertTrue(isElementDisplayed(signUp.changeLinkSP), "FAILURE: 'Change' link  is NOT displayed!");
@@ -256,7 +251,7 @@ public class SignUpTest extends BaseTest {
         // Validation for Password field
         enterText(signUp.passwordFieldSignP, Constants.invalidData);
         signUp.getsignInButtonSignInP();
-        waitForElementToBeInteractable(signUp.passwordFieldSignP, 2);
+        waitForElementToBeInteractable(signUp.passwordFieldSignP, 10);
         String validation = getToolTipMessage(signUp.passwordFieldSignP);
         softAssert.assertEquals(validation, Constants.passwordvalidation);
 
@@ -266,55 +261,56 @@ public class SignUpTest extends BaseTest {
         signUp.getsignInButtonSignInP();
         softAssert.assertAll();
     }
-    @Test(priority = 6,description = "CA_TC 3 (b): Verify that signing in to the application by phone number using Business Account option, with forget password option.")
+
+    @Test(priority = 6, description = "CA_TC 3 (b): Verify that signing in to the application by phone number using Business Account option, with forget password option.")
     public void verifyThatSigningInToApplicationByPhoneUsingNewPassword() {
         pageObjectManager.getLoginPage().getSignUpLink();
         signUp.getBusinessAccount();
-       signUp.getCrossIcon();
+        signUp.getCrossIcon();
 
         // Clicking on 'Sign In Button
         signUp.getSignInBtn();
-        waitForElementToBeClickable(signUp.phoneFieldSP,3);
+        waitForElementToBeClickable(signUp.phoneFieldSP, 3);
         // Entering valid phone number
         actionEnterText(signUp.phoneFieldSP, Constants.phone);
         signUp.getContinueBtnSP();
 
         // clicking on I don't know my password link.
         signUp.getIdonkKnowPasswordLinkSP();
-        waitForElementToBeVisible(signUp.securityCodeLabelsignInP,3);
+        waitForElementToBeVisible(signUp.securityCodeLabelsignInP, 3);
 
         // Verify the elements
-        softAssert.assertTrue(isElementDisplayed(signUp.securityCodeLabelsignInP),"Security code label");
-        softAssert.assertTrue(isElementDisplayed(signUp.informationMessageSP),"Information message");
-        softAssert.assertTrue(isElementDisplayed(signUp.newPasswordLabelSP),"new passoword label");
-        softAssert.assertTrue(isElementDisplayed(signUp.showPasswordSignInP),"show password");
-        softAssert.assertTrue(isElementDisplayed(signUp.signInButtonSignInP),"sign in button ");
-        waitForElementToBeInteractable(signUp.finalSignInbtn,5);
+        softAssert.assertTrue(isElementDisplayed(signUp.securityCodeLabelsignInP), "Security code label");
+        softAssert.assertTrue(isElementDisplayed(signUp.informationMessageSP), "Information message");
+        softAssert.assertTrue(isElementDisplayed(signUp.newPasswordLabelSP), "new passoword label");
+        softAssert.assertTrue(isElementDisplayed(signUp.showPasswordSignInP), "show password");
+        softAssert.assertTrue(isElementDisplayed(signUp.signInButtonSignInP), "sign in button ");
+        waitForElementToBeInteractable(signUp.finalSignInbtn, 5);
         staticWait(5000);
 
         // Checking validations
         signUp.getFinalSignInbtn();
         staticWait(5000);
 
-        String securitycode= getToolTipMessage(signUp.securityCodeField);
+        String securitycode = getToolTipMessage(signUp.securityCodeField);
         staticWait(3000);
         String password = getToolTipMessage(signUp.newPasswordFieldSP);
 
-        softAssert.assertEquals(securitycode,Constants.requiredFldValidation);
+        softAssert.assertEquals(securitycode, Constants.requiredFldValidation);
         staticWait(3000);
-        softAssert.assertEquals(password,Constants.requiredFldValidation);
+        softAssert.assertEquals(password, Constants.requiredFldValidation);
         staticWait(3000);
 
         // Enter invalid security code
-        actionEnterText(signUp.securityCodeField,Constants.incompleteSecurityCode);
+        actionEnterText(signUp.securityCodeField, Constants.incompleteSecurityCode);
 //        actionEnterText(signUp.newPasswordFieldSP,Constants.validPassword);
         signUp.getFinalSignInbtn();
 
         String lessthan6 = getToolTipMessage(signUp.securityCodeField);
-        softAssert.assertEquals(lessthan6,Constants.atLeastCharReqMessage);
+        softAssert.assertEquals(lessthan6, Constants.atLeastCharReqMessage);
 
         // entering valid security code
-        enterText(signUp.securityCodeField,Constants.phoneSecurityCodeForLogin);
+        enterText(signUp.securityCodeField, Constants.phoneSecurityCodeForLogin);
         staticWait(3000);
 
 
@@ -326,7 +322,7 @@ public class SignUpTest extends BaseTest {
         staticWait(3000);
         signUp.getFinalSignInbtn();
 
-       waitForElementToBeInteractable(signUp.passwordFieldSignP, 5);
+        waitForElementToBeInteractable(signUp.passwordFieldSignP, 5);
         String validation = getToolTipMessage(signUp.passwordFieldSignP);
         softAssert.assertEquals(validation, Constants.passwordvalidation);
 
@@ -338,7 +334,7 @@ public class SignUpTest extends BaseTest {
 
     }
 
-    @Test(priority = 7,description = " CA_TC 4(a): Verify that signing in to the application by email address using Business Account option.")
+    @Test(priority = 7, description = " CA_TC 4(a): Verify that signing in to the application by email address using Business Account option.")
     public void verifyThatSigningInByEmailUsingBusinessAccountOption() {
         pageObjectManager.getLoginPage().getSignUpLink();
         signUp.getBusinessAccount();
@@ -356,7 +352,7 @@ public class SignUpTest extends BaseTest {
         // entering invalid email
         enterText(signUp.emailFieldSP, Constants.invalidEmail);
         signUp.getContinueBtnSP();
-        staticWait(3000);
+        waitForElementToBeVisible(signUp.invalidEmailValidation, 15);
 
         String invalidEmailValidation = getText(signUp.invalidEmailValidation);
         Assert.assertEquals(invalidEmailValidation, Constants.invalidEmailValidationMsg);
@@ -366,17 +362,17 @@ public class SignUpTest extends BaseTest {
 
         // Entering valid email address
         enterText(signUp.emailFieldSP, Constants.validLoginEmail);
-         signUp.getContinueBtnSP();
-        staticWait(8000);
-//        waitForElementToBeVisible(signUp.passwordFieldSignP, 10);
-         //actionEnterText(signUp.securityCodeField,Constants.securityCode);
+        signUp.getContinueBtnSP();
+        //        waitForElementToBeVisible(signUp.passwordFieldSignP, 10);
+        //actionEnterText(signUp.securityCodeField,Constants.securityCode);
+        waitForElementToBeVisible(signUp.passwordFieldSignP, 15);
 
         actionEnterText(signUp.passwordFieldSignP, Constants.validPassword);
         signUp.getsignInButtonSignInP();
     }
 
 
-    @Test(priority = 8,description = " CA_TC 4(b): Verify that signing in to the application by email address using Business Account option, with forget password option.")
+    @Test(priority = 8, description = " CA_TC 4(b): Verify that signing in to the application by email address using Business Account option, with forget password option.")
     public void verifyThatSigningInByEmailUsingBusinessAccountOptionWithForgetPasswordoption() {
         signUp.getsignInWithEmailUsingBusinessAccount();
     }

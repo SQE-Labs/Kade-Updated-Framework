@@ -2,7 +2,7 @@ package base;
 
 import logger.Log;
 import org.openqa.selenium.Dimension;
- import utils.PropertyUtils;
+import utils.PropertyUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -16,6 +16,7 @@ import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import pageObjects.PageObjectManager;
 import utils.ConfigFileReader;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,7 +33,6 @@ public class BaseTest {
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     protected static ConfigFileReader configReader;
     protected static SoftAssert softAssert;
-
 
 
     public static PageObjectManager pageObjectManager = PageObjectManager.getInstance();
@@ -125,7 +125,7 @@ public class BaseTest {
         // Maximize window and load the URL
         getDriver().manage().window().setSize(new Dimension(1920, 1080));
 
-         String url = configReader.getProperty("url");
+        String url = configReader.getProperty("url");
         if (url != null && !url.isEmpty()) {
             getDriver().get(url);
             log.info("Navigated to URL: {}", url);
@@ -213,13 +213,13 @@ public class BaseTest {
      * @return The clickable WebElement.
      */
     public WebElement waitForElementToBeClickable(By locator, int timeout) {
-        log.info("Waiting for element to be clickable: "+ locator);
+        log.info("Waiting for element to be clickable: " + locator);
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeout));
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
     public WebElement waitForElementToBeInteractable(By locator, int timeout) {
-        log.info("Waiting for element to be interactable: "+ locator);
+        log.info("Waiting for element to be interactable: " + locator);
         Wait<WebDriver> wait = new FluentWait<>(getDriver())
                 .withTimeout(Duration.ofSeconds(timeout))
                 .pollingEvery(Duration.ofMillis(500)) // Default polling interval
@@ -234,7 +234,7 @@ public class BaseTest {
      * @param locator - The By locator for the element.
      */
     public void click(By locator) {
-        log.info("Clicking on: "+locator+ "button");
+        log.info("Clicking on: " + locator + "button");
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         waitForElementToBeClickable(locator, 10).click();
 
@@ -260,7 +260,7 @@ public class BaseTest {
         element.sendKeys(text);
     }
 
-    public static void SendKeys(By element, String value) {
+    public static void sendKeys(By element, String value) {
 
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.presenceOfElementLocated(element));
@@ -295,12 +295,14 @@ public class BaseTest {
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
         staticWait(2000);
     }
+
     public void scrollToTopOfPage() {
         staticWait(2000);
         log.info("Scrolling to the top of the page");
         ((JavascriptExecutor) getDriver()).executeScript("window.scrollTo(0, 0);");
         staticWait(2000);
     }
+
     public static String getCurrentDate() {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date date = new Date();
@@ -686,149 +688,7 @@ public class BaseTest {
     }
 
 
-    //login method
-    public static void Login() {
-        // Fetch the username and password from the configuration file
-        String username = configReader.getProperty("username");
-        String password = configReader.getProperty("password");
 
-        // Validate if username and password are present in the config file
-        if (username == null || password == null) {
-            log.error("Username or password is missing in the configuration file.");
-            throw new RuntimeException("Username or password is missing in the configuration file.");
-        }
-
-        // Log the username and password for debug purposes (considering security)
-        log.debug("Attempting to login with username: {}", username);
-
-        // Perform login action using the provided credentials
-        pageObjectManager.getLoginPage().signIn(username, password);
-
-        // Log the status of the action after clicking SignIn
-        log.debug("User has successfully logged in and landed on the dashboard");
-
-        // Verify the landing page is correct after login
-        pageObjectManager.getHomePage().landingPage();
-
-
-    }
-
-    public static void LoginAsNewUser() {
-        log.info("Starting Login test - Entering username and password");
-
-        // Fetch the username and password from the configuration file
-        String username = configReader.getProperty("newuser");
-        String password = configReader.getProperty("newpass");
-
-        // Validate if username and password are present in the config file
-        if (username == null || password == null) {
-            log.error("Username or password is missing in the configuration file.");
-            throw new RuntimeException("Username or password is missing in the configuration file.");
-        }
-
-        // Log the username and password for debug purposes (considering security)
-        log.debug("Attempting to login with username: {}", username);
-
-        // Perform login action using the provided credentials
-        pageObjectManager.getLoginPage().signIn(username, password);
-
-        // Log the status of the action after clicking SignIn
-        log.debug("User has successfully logged in and landed on the dashboard");
-
-        // Verify the landing page is correct after login
-        pageObjectManager.getHomePage().landingPage();
-    }
-    public static void LoginAsNewUser1() {
-        log.info("Starting Login test - Entering username and password");
-
-        // Fetch the username and password from the configuration file
-        String username = configReader.getProperty("newUserForNoPayment");
-        String password = configReader.getProperty("password");
-
-        // Validate if username and password are present in the config file
-        if (username == null || password == null) {
-            log.error("Username or password is missing in the configuration file.");
-            throw new RuntimeException("Username or password is missing in the configuration file.");
-        }
-
-        // Log the username and password for debug purposes (considering security)
-        log.debug("Attempting to login with username: {}", username);
-
-        // Perform login action using the provided credentials
-        pageObjectManager.getLoginPage().signIn(username, password);
-
-        // Log the status of the action after clicking SignIn
-        log.debug("User has successfully logged in and landed on the dashboard");
-
-        // Verify the landing page is correct after login
-        pageObjectManager.getHomePage().landingPage();
-    }
-    public static void LoginAsGiftCardUser() {
-        log.info("Starting Login test");
-
-        // Fetch credentials
-        String username = configReader.getProperty("giftcarduser");
-        String password = configReader.getProperty("password");
-
-        // Validate credentials
-        if (username == null || password == null) {
-            throw new RuntimeException("Username or password is missing in the configuration file.");
-        }
-
-        // Perform login
-        pageObjectManager.getLoginPage().signIn(username, password);
-
-        // Verify successful login
-        pageObjectManager.getHomePage().landingPage();
-    }
-
-
-
-    //login as customer method
-    public static void LoginAsCustomer() {
-        log.info("Starting Login test - Entering username and password");
-
-        // Fetch the username and password from the configuration file
-        String username = configReader.getProperty("customer");
-        String password = configReader.getProperty("password");
-
-        // Validate if username and password are present in the config file
-        if (username == null || password == null) {
-            log.error("Username or password is missing in the configuration file.");
-            throw new RuntimeException("Username or password is missing in the configuration file.");
-        }
-
-        // Log the username and password for debug purposes (considering security)
-        log.debug("Attempting to login with username: {}", username);
-
-        // Perform login action using the provided credentials
-        pageObjectManager.getLoginPage().signIn(username, password);
-
-        // Log the status of the action after clicking SignIn
-        log.debug("User has successfully logged in and landed on the dashboard");
-
-        // Verify the landing page is correct after login
-        pageObjectManager.getHomePage().landingPage();
-    }
-
-    public static void LoginAsAdmin() {
-        log.info("Starting Login test");
-
-        // Fetch credentials
-        String username = configReader.getProperty("admin");
-        String password = configReader.getProperty("password");
-
-        // Validate credentials
-        if (username == null || password == null) {
-            throw new RuntimeException("Username or password is missing in the configuration file.");
-        }
-
-        // Perform login
-        pageObjectManager.getLoginPage().signIn(username, password);
-
-        // Verify successful login
-        pageObjectManager.getHomePage().landingPage();
-    }
 
     public void setTextByJS(By locator, String input) {
         WebElement inputField = getDriver().findElement(locator);
@@ -900,7 +760,7 @@ public class BaseTest {
         // Determine the Downloads folder based on OS
         if (System.getProperty("os.name").contains("Windows")) {
             file_with_location = home + "\\Downloads\\" + fileName;
-            System.out.println( fileName);
+            System.out.println(fileName);
         } else {
             file_with_location = home + "/Downloads/" + fileName;
         }
@@ -915,37 +775,39 @@ public class BaseTest {
     }
 
 
-        public boolean isFileDownloadedOrNot(String fileName) throws InterruptedException   {
-            Thread.sleep(10000);
-            String home = System.getProperty("user.home");
-            String file_with_location = home + "/Downloads/" + fileName;
-            File file = new File(file_with_location.trim());
-            //  String fileTest = file.getName();
-            if (file.exists() && file.length() != 0) {
-                System.out.println(file_with_location + " is present with size greater than 0 ");
-                 return true;
-            } else {
-                System.out.println(file_with_location + " is not present");
-                 return false;
-            }
+    public boolean isFileDownloadedOrNot(String fileName) throws InterruptedException {
+        Thread.sleep(10000);
+        String home = System.getProperty("user.home");
+        String file_with_location = home + "/Downloads/" + fileName;
+        File file = new File(file_with_location.trim());
+        //  String fileTest = file.getName();
+        if (file.exists() && file.length() != 0) {
+            System.out.println(file_with_location + " is present with size greater than 0 ");
+            return true;
+        } else {
+            System.out.println(file_with_location + " is not present");
+            return false;
         }
+    }
+
     public String getFileName() {
-         getDriver().navigate().to("chrome://downloads/");
-         WebElement shadowHost1 = getDriver().findElement(By.cssSelector("downloads-manager"));
+        getDriver().navigate().to("chrome://downloads/");
+        WebElement shadowHost1 = getDriver().findElement(By.cssSelector("downloads-manager"));
         SearchContext shadowRoot1 = shadowHost1.getShadowRoot();
         WebElement shadowHost3 = shadowRoot1.findElement(By.cssSelector("downloads-item"));
         SearchContext shadowRoot3 = shadowHost3.getShadowRoot();
         WebElement element = shadowRoot3.findElement(By.cssSelector("#title-area"));
         return element.getText();
     }
+
     public String getDownloadFileName() {
 
-         String downloadedFile = getFileName();
+        String downloadedFile = getFileName();
         return downloadedFile;
     }
 
 
-        public String requiredDigits(int n) {
+    public String requiredDigits(int n) {
         String AlphaNumericString = "1234567890";
         StringBuilder s = new StringBuilder(n);
         int y;
@@ -1084,6 +946,7 @@ public class BaseTest {
             return false;
         }
     }
+
     public List<WebElement> getListOfWebElement(By locator) {
         return (List<WebElement>) getDriver().findElements(locator);
     }
@@ -1093,6 +956,7 @@ public class BaseTest {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
+
     public boolean switchToFrameContainingElement(By locator) {
         List<WebElement> iframes = getDriver().findElements(By.tagName("iframe"));
         for (WebElement frame : iframes) {
