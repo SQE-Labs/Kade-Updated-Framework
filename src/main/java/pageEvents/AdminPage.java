@@ -7,10 +7,12 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+import static pageEvents.LoginPage.LoginAsAdmin;
+
 public class AdminPage extends BaseTest {
-    By adminDashboardBtn =By.cssSelector(".sidebar-item.text-danger:nth-child(2)");
-    By adminTransactionBtn =By.cssSelector(".sidebar-item.text-danger:nth-child(3)");
-    By findStoreLink =By.xpath("//a[@href='/Admin/Stores']");
+    By adminDashboardBtn = By.cssSelector(".sidebar-item.text-danger:nth-child(2)");
+    By adminTransactionBtn = By.cssSelector(".sidebar-item.text-danger:nth-child(3)");
+    By findStoreLink = By.xpath("//a[@href='/Admin/Stores']");
     By dashboardPageTitle = By.cssSelector(".header-title.mb-0");
     By filterIcon = By.cssSelector(".ps-1.pt-2>a");
     By findStoreBtn = By.cssSelector("a[href=\"/Admin/Stores\"]");
@@ -20,56 +22,63 @@ public class AdminPage extends BaseTest {
     By blockBtn = By.cssSelector(".fal.fa-circle.custom-check-off");
     By statusTextBox = By.cssSelector(".form-control[maxlength=\"250\"]");
     By updateStatusBtn = By.xpath("//button[text()='Update Status']");
-    By deleteBtn = By.cssSelector("button[href=\".-deleteStore-\"]");
+    By deleteBtn = By.xpath("//button[contains(@class,'btn btn-outline-danger collapsed')]");
     By deleteStoreNameField = By.cssSelector("input[name=\"name\"][required]");
     By clickPermanentDeleteBtn = By.xpath("//button[text()='Delete Permanently']");
     By clickFirstResult = By.cssSelector(".ms-2.text-truncate:nth-child(1)");
     By getStoreName = By.cssSelector(" .d-flex .ms-2.text-truncate:nth-child(1)");
     By ownerEmail = By.xpath("(//span[@class='position-relative'])[1]");
-    By selectStatus=By.cssSelector("#storeStatus");
+    By selectStatus = By.cssSelector("#storeStatus");
     By storeName = By.xpath("(//span[@class='ms-2 text-truncate'])[1]");
 
-    public void getFindStoreLink(){
+    public void getFindStoreLink() {
         click(findStoreLink);
     }
-    public void getFilterIcon(){
+
+    public void getFilterIcon() {
         click(filterIcon);
     }
-    public void getApplyBtn(){
+
+    public void getApplyBtn() {
         click(applyBtn);
     }
-    public void getStoreBtn(){
+
+    public void getStoreBtn() {
         click(clickStore);
     }
-    public void getBlockBtn(){
+
+    public void getBlockBtn() {
         clickElementByJS(blockBtn);
     }
-    public void getUpdateStatusBtn(){
+
+    public void getUpdateStatusBtn() {
         clickElementByJS(updateStatusBtn);
     }
-    public void getDeleteBtn(){
+
+    public void getDeleteBtn() {
         staticWait(3000);
-        clickElementByJS(deleteBtn);
+        hoverAndClick(deleteBtn, deleteBtn);
     }
-    public void getEditDeleteStoreNameBox(){
+
+    public void getEditDeleteStoreNameBox() {
         click(deleteStoreNameField);
     }
-    public void getPermanentDeleteBtn(){
+
+    public void getPermanentDeleteBtn() {
         scrollToElement(clickPermanentDeleteBtn);
         clickElementByJS(clickPermanentDeleteBtn);
     }
-    public void getFirstResult(){
+
+    public void getFirstResult() {
         click(clickFirstResult);
     }
 
 
-
-
-    public void selectedStoreDeleted(String storeName){
+    public void selectedStoreDeleted(String storeName) {
         LoginAsAdmin();
         getFindStoreLink();
         getFilterIcon();
-        enterText(storeNameField,storeName);
+        enterText(storeNameField, storeName);
         System.out.println(storeName);
         getApplyBtn();
         getStoreBtn();
@@ -80,7 +89,7 @@ public class AdminPage extends BaseTest {
         getUpdateStatusBtn();
         scrollToElement(deleteBtn);
         getDeleteBtn();
-        enterText(deleteStoreNameField,"Final Delete");
+        actionEnterText(deleteStoreNameField, "Final Delete");
         getPermanentDeleteBtn();
     }
 
@@ -88,23 +97,23 @@ public class AdminPage extends BaseTest {
         LoginAsAdmin();
         getFindStoreLink();
         getFilterIcon();
-        enterText(storeNameField,"AutoStore");
-        selectDropdownByVisibleText(selectStatus,"Active");
+        enterText(storeNameField, "AutoStore");
+        selectDropdownByVisibleText(selectStatus, "Active");
         getApplyBtn();
-        staticWait(3000);
-       String text = getText(ownerEmail);
+        staticWait(5000);
+        String text = getText(ownerEmail);
         Log.info(text);
         System.out.println(ownerEmail);
 
-        if (text.equals("test1114@yopmail.com")){
+        if (text.equals("tester1114@yopmail.com")) {
             List<WebElement> storeElements = getDriver().findElements(By.cssSelector(".ms-2.text-truncate"));
             int elementcount = storeElements.size();
             while (elementcount > 0) {
-                String storename=getText(storeName);
+                String storename = getText(storeName);
 //           for(WebElement store : storeElements){
                 staticWait(2000);
-               getFirstResult();
-               // store.click();
+                getFirstResult();
+                // store.click();
                 scrollToElement(blockBtn);
                 staticWait(3000);
                 getBlockBtn();
@@ -114,16 +123,16 @@ public class AdminPage extends BaseTest {
                 getDeleteBtn();
                 staticWait(2000);
 
-               enterText(deleteStoreNameField,storename);
-               staticWait(3000);
-               getPermanentDeleteBtn();
-               staticWait(3000);
+                enterText(deleteStoreNameField, storename);
+                staticWait(3000);
+                getPermanentDeleteBtn();
+                staticWait(3000);
 
-               getFilterIcon();
-               enterText(storeNameField,"AutoStore");
-               getApplyBtn();
-               storeElements = getDriver().findElements(By.cssSelector(".ms-2.text-truncate"));
-               elementcount = storeElements.size();
+                getFilterIcon();
+                enterText(storeNameField, "AutoStore");
+                getApplyBtn();
+                storeElements = getDriver().findElements(By.cssSelector(".ms-2.text-truncate"));
+                elementcount = storeElements.size();
             }
         }
 

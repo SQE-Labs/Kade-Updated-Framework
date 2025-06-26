@@ -6,13 +6,13 @@ import org.openqa.selenium.By;
 public class SidePannelPage extends BaseTest {
 
     public By profileLink = By.xpath("//a[@class='btn btn-link p-0 fs-pn15 ']");
-    By validationMessage=By.xpath("//p[@class='alert-content']");
+    By validationMessage = By.xpath("//p[@class='alert-content']");
     public By billBtn = By.cssSelector(".sidebar-nav > li:nth-child(5)");
-    By transactionsButton=By.cssSelector(".sidebar-nav > li:nth-child(4)");
-    public By myStoreBtn=By.cssSelector(".fa-fw.fas.fa-store");
-    By giftCardsDashboardTab=By.xpath("//div[text()='Gift Cards Dashboard']");
-    By pageHeader=By.xpath("//h1[@class='header-title mb-0']");
-    By reportBtn=By.xpath("(//a[@class='sidebar-link'])[11]");
+    By transactionsButton = By.cssSelector(".sidebar-nav > li:nth-child(4)");
+    public By myStoreBtn = By.cssSelector(".fa-fw.fas.fa-store");
+    By giftCardsDashboardTab = By.xpath("//div[text()='Gift Cards Dashboard']");
+    By pageHeader = By.xpath("//h1[@class='header-title mb-0']");
+    By reportBtn = By.xpath("(//a[@class='sidebar-link'])[11]");
     By signOutBtn = By.xpath("//a[text()='Sign out']");
     By qrCodeDashboardBtn = By.xpath("//a[text()='QR Code Dashboard']");
     public By manageBusinessAcc = By.xpath("//li[@class='sidebar-item mb-2 bg-light']/ a[text()='Manage Business']");
@@ -26,50 +26,59 @@ public class SidePannelPage extends BaseTest {
     public By paymentMethod = By.xpath("//a[text()='Payment Methods']");
 
 
-
-
     // Methods
-    public void getMangeBusinessTab(){
+    public void getMangeBusinessTab() {
         scrollToElement(manageBusinessAcc);
         click(manageBusinessAcc);
     }
 
-    public void getDashboardTab(){
+    public void getDashboardTab() {
         click(dashboardTab);
     }
-    public void getSignOut(){
+
+    public void getSignOut() {
         click(signOutBtn);
     }
 
-    public void getMyStoreTab(){
+    public void getMyStoreTab() {
         click(myStoreBtn);
     }
 
-    public void getTransactionTab(){
+    public void getTransactionTab() {
         click(transactionsButton);
     }
-    public void getBillBtn(){
+
+    public void getBillBtn() {
         click(billBtn);
     }
-    public void getSearchTab(){
+
+    public void getSearchTab() {
         click(SearchBtn);
     }
-    public void getProfileLink(){
+
+    public void getProfileLink() {
         click(profileLink);
     }
-    public void getGiftCardsDashboardTab(){clickElementByJS(giftCardsDashboardTab);}
-    public void getMyStuff(){
+
+    public void getGiftCardsDashboardTab() {
+        clickElementByJS(giftCardsDashboardTab);
+    }
+
+    public void getMyStuff() {
         scrollToElement(myStuff);
         click(myStuff);
     }
-    public void getGiftCardTab(){
+
+    public void getGiftCardTab() {
         scrollToElement(giftCardsTab);
         click(giftCardsTab);
     }
-    public void getSecurityAndPasswordTab(){
+
+    public void getSecurityAndPasswordTab() {
         click(securityAndPasswordTab);
     }
-    public void getPaymentMethodTab(){
+
+    public void getPaymentMethodTab() {
         click(paymentMethod);
     }
 }

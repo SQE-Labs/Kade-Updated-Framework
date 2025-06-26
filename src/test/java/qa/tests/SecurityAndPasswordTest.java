@@ -19,9 +19,7 @@ public class SecurityAndPasswordTest extends BaseTest {
 
     @Test(priority = 0)
     public void verifyUpdateEmailPopupOpens() {
-//        LoginPage login=new LoginPage();
-//
-//        login.supenLogin();
+
         log.info("Verify Update Email popup opens");
         staticWait(3000);
         Login();
@@ -36,9 +34,7 @@ public class SecurityAndPasswordTest extends BaseTest {
     @Test(priority = 1)
     public void verifyInvalidEmailUpdateInput() {
         log.info("Verify for Invalid Email inputs in Update email address popup");
-//        LoginPage login=new LoginPage();
-//
-//        login.supenLogin();
+
 
         Login();
         securityAndPasswordPage.getSecurityAndPasswordPage();
@@ -69,7 +65,7 @@ public class SecurityAndPasswordTest extends BaseTest {
     @Test(priority = 2)
     public void verifyValidEmailUpdateInput() {
         log.info("Verify for Valid Email inputs in Update email address popup");
-       Login();
+        Login();
         securityAndPasswordPage.getSecurityAndPasswordPage();
         securityAndPasswordPage.getEmailBtn();
         String randomEmail = securityAndPasswordPage.generateRandomEmail();
@@ -110,10 +106,7 @@ public class SecurityAndPasswordTest extends BaseTest {
     @Test
     public void UpdatePhoneNumber() {
         log.info("Verify user is able to edit phone number");
-        staticWait(3000);
-//        LoginPage login=new LoginPage();
-//
-//        login.supenLogin();
+
         Login();
         securityAndPasswordPage.getSecurityAndPasswordPage();
         click(securityAndPasswordPage.editPhoneBtn);
@@ -132,9 +125,7 @@ public class SecurityAndPasswordTest extends BaseTest {
 
     @Test
     public void verifyAllSecurityCodeScenarios() {
-//        LoginPage login=new LoginPage();
-//
-//        login.supenLogin();
+
         Login();
         securityAndPasswordPage.getSecurityAndPasswordPage();
         click(securityAndPasswordPage.editPhoneBtn);
@@ -184,13 +175,14 @@ public class SecurityAndPasswordTest extends BaseTest {
         Assert.assertEquals(getToolTipMessage(securityAndPasswordPage.newPhoneInputField), Constants.invalidPhnValidation, "tool tip");
         click(securityAndPasswordPage.closeNewPhonePopup);
 
-        staticWait(3000);
+        waitForElementToBeVisible(securityAndPasswordPage.editPhoneBtn, 10);
+
         click(securityAndPasswordPage.editPhoneBtn);
         waitForElementToBeVisible(securityAndPasswordPage.newPhoneInputField, 10);
         actionEnterText(securityAndPasswordPage.newPhoneInputField, Constants.validPhoneNumber);
         click(securityAndPasswordPage.sendSecurityCodeForNewPhone);
-        staticWait(3000);
-        waitForElementToBeClickable(securityAndPasswordPage.differentCellPhone,10);
+        waitForElementToBeVisible(securityAndPasswordPage.differentCellPhone, 10);
+
         clickElementByJS(securityAndPasswordPage.differentCellPhone);
         waitForElementToBeVisible(securityAndPasswordPage.newPhoneInputField, 10);
         actionEnterText(securityAndPasswordPage.newPhoneInputField, Constants.validPhoneNumber2);
@@ -203,9 +195,7 @@ public class SecurityAndPasswordTest extends BaseTest {
     @Test
     public void verifyResetYourPasswordPopupOpens() {
         log.info("verify that 'Chnage password' popup opens up, when user clicks on 'Reset your password' button");
-//        LoginPage login=new LoginPage();
-//
-//        login.supenLogin();
+
 
         Login();
         securityAndPasswordPage.getSecurityAndPasswordPage();
@@ -221,9 +211,6 @@ public class SecurityAndPasswordTest extends BaseTest {
     @Test
     public void verifyDeleteButton() {
         log.info("Verify validation message appears when clicked on delete button");
-//        LoginPage login=new LoginPage();
-//
-//        login.supenLogin();
 
         Login();
         securityAndPasswordPage.getSecurityAndPasswordPage();
@@ -232,6 +219,4 @@ public class SecurityAndPasswordTest extends BaseTest {
         click(securityAndPasswordPage.deletePhoneBtn);
         Assert.assertTrue(isElementDisplayed(securityAndPasswordPage.deletePhoneValidationMsg));
     }
-
-
 }

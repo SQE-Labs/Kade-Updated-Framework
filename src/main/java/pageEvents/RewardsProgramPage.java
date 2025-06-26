@@ -55,7 +55,7 @@ public class RewardsProgramPage extends BaseTest {
 
     public void tryCatchForFilter() {
         try {
-            waitForElementToBeVisible(userPhnEmail,10);
+            waitForElementToBeVisible(userPhnEmail, 10);
         } catch (Exception e) {
             click(filterBtn);
         }
@@ -63,12 +63,11 @@ public class RewardsProgramPage extends BaseTest {
 
     public void tryCatchforApplyBtn() {
         try {
-            waitForElementInVisible(applyBtn,20);
+            waitForElementInVisible(applyBtn, 20);
         } catch (Exception e) {
             click(applyBtn);
         }
     }
-
 
 
 }

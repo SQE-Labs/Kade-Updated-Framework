@@ -18,7 +18,7 @@ public interface Constants {
     String transactionsTitle = "Transactions";
 
     // Dashboard
-    String YourBusinessTitle ="Your Businesses";
+    String YourBusinessTitle = "Your Businesses";
     String ProcessPayment = "Processed Payments";
     String RecentTransaction = "Recent transactions";
     String CustomerTitle = "Customers";
@@ -29,31 +29,32 @@ public interface Constants {
 
 
     // Create New Account Personal Account Option
-    String RequiredField = "This field is required.";
+    String RequiredField = "Please review the highlighted field(s)";
+    String validation = "Please review the highlighted field(s)";
     String invalidData = "invalid123";
     String invalidPhoneNumber = "24324";
     String emailandPhoneValidation = "Invalid phone or email. Phone numbers must start with country code starting with +";
-    String invalidEmail= "test13@d";
+    String invalidEmail = "test13@d";
     String emailValidation = "Please enter a valid email address.";
     String phone = "6465551114";
     String phoneValidation = "This phone number is already registered.";
     String existingEmail = "test@yopmail.com";
-    String existingEmailValidation ="This email is already registered.";
-    String securityCode ="123456";
+    String existingEmailValidation = "This email is already registered.";
+    String securityCode = "123456";
     String validPhonenumber = "6465551111";
     String ValidPhone = "+1 (646) 555 1114";
     String expectedSearchValidation = "Nothing found!";
-    String TooltipForLessDigit ="Please enter at least 6 characters.";
+    String TooltipForLessDigit = "Please enter at least 6 characters.";
     String invalidSecurityCodeMsg = "Invalid security code";
-    String invalidSecurityCode ="332434";
-    String  phoneSecurityCode ="346543";
+    String invalidSecurityCode = "332434";
+    String phoneSecurityCode = "346543";
     String passwordvalidation = "Invalid password, a password must contain at least one upper case letter, one lower case letter and one special character or a number.";
     String validPassword = "Test@123";
     String validLoginEmail = "test1114@yopmail.com";
     String validAdminEmail = "eti275@yopmail.com";
     String phoneSecurityCodeForLogin = "777777";
     String ForgetPasswordtitle = "Forget password";
-    String  TermsOfUser ="User Agreement";
+    String TermsOfUser = "User Agreement";
     String PaymentHistoryTitle = "Payment History";
     String NoPaymentsMessage = "There are no payments available yet!";
     String invalidEmailValidationMsg = "Invalid email";
@@ -145,28 +146,28 @@ public interface Constants {
 
     //Store Creation
     String skip = "Skip";
-    String ConnectToStripe ="Connect to stripe";
-    String defaultLocationDescription = "Dix Hills";
+    String ConnectToStripe = "Connect to stripe";
+    String defaultLocationDescription = "123 William";
     String defaultStoreAddress = "8 Glover Dr, Dix Hills, NY 11746, USA";
     String defaultCurrency = "USD";
     String defaultTaxRate = "0.000%";
-    String currentPlan= "Current plan";
+    String currentPlan = "Current plan";
     String visavalue = "Visa 1111";
     String defaultTaxRateValue = "0.000";
-    String enterTaxRate="000";
+    String enterTaxRate = "000";
 
     //Store Names
     public static String AutomationBillFlow = "Automation Bill Flow";  // Flow 1 without plan
     public static String AutomationBillTest = "Automation Bill Test"; // New Buisness 2 with plan
-    public static String AutomationCustomerStore="Automation Customer Store";
+    public static String AutomationCustomerStore = "Automation Customer Store";
     public static String AutomationFlowBusiness = "Automation Flow Business";
     public static String AutomationQRCode = "Automation QR Code";
     public static String AutomationTransactions = "Automation Transactions";
     public static String AutomationTransactions3 = "Automation Transaction 3";
-    public static String AutomationTransaction2 ="Automation Transaction 2";
+    public static String AutomationTransaction2 = "Automation Transaction 2";
     public static String AutomationPaymentHistory = "Automation Payment History";  // Flow 1 without plan
-    public static String BillHeader="Bill";
-    public static String TerminalChargeStore ="TerminalNewCharges";
+    public static String BillHeader = "Bill";
+    public static String TerminalChargeStore = "TerminalNewCharges";
 
 
     //Verifying Modified Details
@@ -185,48 +186,48 @@ public interface Constants {
     String newTerminalTitle = "New Terminal";
     String addUserTitle = "Add user";
     String deacticeStatus = "Store is NOT active (Deactivated)";
-    String activeStoreStatus ="Store is active and ready to receive payments";
+    String activeStoreStatus = "Store is active and ready to receive payments";
     String loginPageValidation = "Invalid phone number. Phone numbers must start with + and country code";
     String credentialsValidationLP = "Invalid credentials. Check your username and/or password";
 
 
     // Gift Card DashBoard
 
-    String GiftCardHeader ="Gift Cards Dashboard";
-    String infoMessage= "Gift cards is currently disabled.";
+    String GiftCardHeader = "Gift Cards Dashboard";
+    String infoMessage = "Gift cards is currently disabled.";
     String configurationPopupTitle = "Gift Cards Configuration";
-    String DisabledText="Disabled";
-    String EnableText="Enabled";
-    String referenceNoDisabledText ="Reference No. is optional";
-    String referenceNoEnabledText="Reference No. is mandatory";
+    String DisabledText = "Disabled";
+    String EnableText = "Enabled";
+    String referenceNoDisabledText = "Reference No. is optional";
+    String referenceNoEnabledText = "Reference No. is mandatory";
     String sourceFundingDisabledText = "Funding source is optional";
-    String getSourceFundingEnabledText="Funding source is restricted";
-    String ValidationMsg ="Please review the highlighted field(s)";
+    String getSourceFundingEnabledText = "Funding source is restricted";
+    String ValidationMsg = "Please review the highlighted field(s)";
     String giftCardHeaderText = "Issue a new gift card";
     String customerPopupTitle = "Customer";
-    String emailValidationToolTip ="Please enter a valid email address.";
+    String emailValidationToolTip = "Please enter a valid email address.";
     String phoneValidationToolTip = "Invalid phone number";
-    String noResultText ="There are no results";
-    String noActiveStoreInfoMsg="No active store is available in your account!";
-    String referenceNoTooltipMsg ="This field is required.";
-    String cardNoText ="Card No";
-    String cardMinLendthMsg ="Please enter at least 4 characters.";
-    String cardNoDatatype="numeric";
-    String maxLength ="50";
-    String maxLengthOfCardNumber="18";
+    String noResultText = "There are no results";
+    String noActiveStoreInfoMsg = "No active store is available in your account!";
+    String referenceNoTooltipMsg = "This field is required.";
+    String cardNoText = "Card No";
+    String cardMinLendthMsg = "Please enter at least 4 characters.";
+    String cardNoDatatype = "numeric";
+    String maxLength = "50";
+    String maxLengthOfCardNumber = "18";
     String fundingSourceType = "text";
-    String invalidDateTooltip= "Invalid date";
-    String memoMaxLength ="500";
-    String fundingResourceText ="Funding source";
-    String memoText ="Memo";
-    String startDateText ="Start Date:";
-    String endDateText ="Exp. Date:";
+    String invalidDateTooltip = "Invalid date";
+    String memoMaxLength = "500";
+    String fundingResourceText = "Funding source";
+    String memoText = "Memo";
+    String startDateText = "Start Date:";
+    String endDateText = "Exp. Date:";
 
     // Transactions page
     String noPaymentInfoMsg = "There are no payments available yet!";
     String amount = "100.00";
     String newChargeDescription = "New charge payment";
-    String terminalNotAcceptedAlert= "Your store is not configured to process any credit card";
+    String terminalNotAcceptedAlert = "Your store is not configured to process any credit card";
     String terminalSuccessMessage = "Processed successfully!";
 
     // Verify Message
@@ -237,7 +238,7 @@ public interface Constants {
     String GiftCardSummaryURL = "https://sibtestenv.azurewebsites.net/Giftcards/GiftCardsSummary";
     String giftCardDetailURL = "https://sibtestenv.azurewebsites.net/Giftcards/giftcardDetail?Id=2935";
 
-        // payment method
+    // payment method
     String noPaymentInfoMessage = "You don't have any payment method set up";
 
     // Gift Card Dashboard Filters
@@ -250,12 +251,12 @@ public interface Constants {
     String giftCardNo = "93833";
     String threeDigit = "311";
     String lessThan3cardNoValidation = "Please enter at least 4 characters.";
-    String nonexistingGC ="2172";
+    String nonexistingGC = "2172";
     String blockedStatus = "Blocked";
     String activeStatus = "Active";
-    String systemAlert ="System Alert!";
-    String totalSpentText="Total spent";
-    String messageText ="Type a message";
+    String systemAlert = "System Alert!";
+    String totalSpentText = "Total spent";
+    String messageText = "Type a message";
 
 
 }

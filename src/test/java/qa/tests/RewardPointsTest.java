@@ -98,7 +98,7 @@ public class RewardPointsTest extends BaseTest {
 
         click(rewardPointsPage.redeemNowLinkOnCard);
         click(rewardPointsPage.CustomGiftCardToggleBtn);
-        waitForElementToBeVisible(rewardPointsPage.pointsToRedeem,10);
+        waitForElementToBeVisible(rewardPointsPage.pointsToRedeem, 10);
         Assert.assertTrue(isElementDisplayed(rewardPointsPage.pointsToRedeem));
 
         rewardPointsPage.pointsToRedeemSlider();

@@ -57,7 +57,7 @@ public class DashboardPage extends BaseTest {
     public By customerCount = By.cssSelector(" div.apexcharts-tooltip.apexcharts-theme-light div.apexcharts-tooltip-y-group >span");
     public By custGraphLine = By.xpath("(//*[name()='rect' and @class='apexcharts-grid-row'])[4]");
     By lastDEC = By.xpath("(//*[contains(@id,'SvgjsText')])[6]");
-    public By timeUnderRT = By.xpath("//a[@class='text-truncate ms-auto mt-1 stretched-link']");
+    public By timeUnderRT = By.xpath("(//a[@class='text-truncate ms-auto mt-1 stretched-link'])[1]");
     // Methods
 
 

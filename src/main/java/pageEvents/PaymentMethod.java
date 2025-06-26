@@ -1,7 +1,11 @@
 package pageEvents;
+
 import static org.openqa.selenium.support.locators.RelativeLocator.with;
+
 import base.BaseTest;
 import org.openqa.selenium.By;
+import org.testng.Assert;
+import utils.Constants;
 
 public class PaymentMethod extends BaseTest {
     public By PaymentMethodTitle = By.xpath("//h3[text()='Payment Methods']");
@@ -12,19 +16,22 @@ public class PaymentMethod extends BaseTest {
     public By bankAccountOption = By.xpath("(//span[@class='payment-logo-bg me-2']//..)[2]");
     public By crossIconAddNewPaymentPopup = By.xpath("//button[@class='btn-close text-reset']");
     public By newPaymentMethodPopupTitle = By.xpath("//h5[text()='New payment method']/..");
-    By nePaymentPopUp=By.xpath("(//h5[text()='New payment method'])[4]");
+    By nePaymentPopUp = By.xpath("(//h5[text()='New payment method'])[4]");
     public By bankEmailField = By.cssSelector("[name=email]");
     public By fullNameBField = By.cssSelector("[placeholder='First and last name']");
     public By testInsituteBtn = By.xpath("//p[text()='Test Institution']");
     public By LogInWithTestInstitutionLabel = By.xpath("//div[contains(@class,'LightboxModalContent')]//h1[text()='Log in with Test Institution']");
     public By agreeAndContinueBtn = By.xpath("//footer[contains(@class,'la-v3-pane-footer-wrapper')]//span[text()='Agree and continue']/..");
+    public By agreeAndContinueBtnOfPayment = By.xpath("//footer[contains(@class,'la-v3-')]//span[text()='Agree and continue']/..");
     public By successOption = By.xpath("//div[contains(@class, 'la-v3-accountPicker')]//div/p[text()='Success']");
     public By continueAccount = By.xpath("(//span[text()='Connect account']//..)[2]");
     public By saveWithLink = By.xpath("//span[text()='Save with Link']/..");
     public By notNow = By.xpath("//span[text()='Not now']/..");
     public By backToKadePay = By.xpath("//span[text()='Back to Kade Pay']/..");
+    public By getBackToKadePay = By.xpath("//button[@type='submit']//span[text()='Back to Kade Pay']");
     public By finalSavebtn = By.xpath("//button[contains (@class, 'btn btn-primary ') and text()='Save']");
     public By bankFrame = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[1]");
+    public By paymentTimeBankFrame = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[2]");
     public By loginInsitututeFrame = By.xpath("(//iframe[contains(@name, '__privateStripeFrame')])[1]");
     public By successText = By.xpath("//div[contains(@class,'la-v3-successTextWrapper')]//h1");
     public By stripeBankAccountText = By.xpath("//div[contains(@class,'p-PickerItem--singleRow')]//../h3");
@@ -32,42 +39,126 @@ public class PaymentMethod extends BaseTest {
     public By trash = By.xpath("//i[@class='fas fa-trash']//..");
     public By noPaymentInfo = By.xpath("//div[@class='no-result-icon']/../p");
     public By thumbIcon = By.xpath("//i[contains(@class,'fal fa-thumbs-up')]//..");
-
+    public By paymentBankFrame = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[3]");
+    public By connectAccountBtn = By.xpath("//footer[contains(@class,'la-v3-pane-footer-wrapper')]//span[text()='Connect account']");
+    public By phoneBankField = By.xpath("//div[@class='la-v3-LinkAuthForm-phoneNumberField']//input");
     // Methods
-    public void  getAddOrModifyPaymentLink(){
+
+    public void getAddOrModifyPaymentLink() {
         click(addORModifyPaymentLink);
     }
-    public void getAddPaymentButton(){
+
+    public void getAddPaymentButton() {
         click(addPaymentButton);
     }
-    public void getCreditCardOption(){click(creditCardOption);
-    staticWait(2000);}
-    public void getBankAccountOption(){click(bankAccountOption);}
-    public void getCrossIconOfNewP(){click(crossIconAddNewPaymentPopup);}
-    public void getTestInsituteBtn(){click(testInsituteBtn);}
-    public void getAgreeAndContinueBtn(){clickElementByJS(agreeAndContinueBtn);}
-    public void getSuccessOption(){
+
+    public void getCreditCardOption() {
+        click(creditCardOption);
+
+    }
+
+    public void getBankAccountOption() {
+        click(bankAccountOption);
+    }
+
+    public void getCrossIconOfNewP() {
+        click(crossIconAddNewPaymentPopup);
+    }
+
+    public void getTestInsituteBtn() {
+        click(testInsituteBtn);
+    }
+
+    public void getAgreeAndContinueBtn() {
+        clickElementByJS(agreeAndContinueBtn);
+    }
+
+    public void getSuccessOption() {
         click(successOption);
     }
-    public void getConnectAccountBtn(){
+
+    public void getConnectAccountBtn() {
         click(continueAccount);
     }
-    public void getSaveWithLinkBtn(){
+
+    public void getSaveWithLinkBtn() {
         click(saveWithLink);
     }
-    public void getNotNow(){
+
+    public void getNotNow() {
         click(notNow);
     }
-    public void getBackToKadePayBtn(){
+
+    public void getBackToKadePayBtn() {
         click(backToKadePay);
     }
-    public void getFinalSaveBtn(){
+
+    public void getFinalSaveBtn() {
         click(finalSavebtn);
     }
-    public void getTrashIcon(){
+
+    public void getTrashIcon() {
         clickElementByJS(trash);
     }
-    public void getThumbIcon(){
+
+    public void getThumbIcon() {
         clickElementByJS(thumbIcon);
     }
+
+
+    public void getBankAccountDetails() {
+        switchToFrame(paymentTimeBankFrame);
+        actionEnterText(bankEmailField, Constants.validLoginEmail);
+        actionEnterText(fullNameBField, Constants.nameInput);
+        getTestInsituteBtn();
+        switchToDefaultContent(); // go back to default before switching again
+
+        // Switch to the frame that contains the 'Agree and continue' button and click it
+        if (switchToFrameContainingElement(agreeAndContinueBtn)) {
+            waitForPageLoad(); // wait until content inside iframe is loaded
+            staticWait(2000);  // small buffer wait, optional
+            clickElementByJS(agreeAndContinueBtn);
+            switchToDefaultContent(); // best practice to reset to main frame after clicking
+        } else {
+            throw new RuntimeException("'Agree and continue' button not found in any frame.");
+        }
+
+        if (switchToFrameContainingElement(connectAccountBtn)) {
+            getSuccessOption();
+            waitForPageLoad(); // wait until content inside iframe is loaded
+            staticWait(2000);  // small buffer wait, optional
+            clickElementByJS(connectAccountBtn);
+            switchToDefaultContent(); // best practice to reset to main frame after clicking
+        } else {
+            clickElementByJS(connectAccountBtn);
+        }
+        switchToDefaultContent();
+        staticWait(5000);
+        if (switchToFrameContainingElement(saveWithLink)) {
+            actionEnterText(phoneBankField, "6465551114");
+            staticWait(2000);
+            clickElementByJS(saveWithLink);
+            switchToDefaultContent(); // best practice to reset to main frame after clicking
+        } else {
+            actionEnterText(phoneBankField, "6465551114");
+            staticWait(2000);
+            clickElementByJS(saveWithLink);
+        }
+        staticWait(4000);
+        if (switchToFrameContainingElement(getBackToKadePay)) {
+            // Verify that success text appears
+            Assert.assertTrue(isElementDisplayed(successText), "Success Text");
+            clickElementByJS(getBackToKadePay);
+            switchToDefaultContent(); // best practice to reset to main frame after clicking
+        } else {
+            // Verify that success text appears
+            Assert.assertTrue(isElementDisplayed(successText), "Success Text");
+            clickElementByJS(getBackToKadePay);
+        }
+        switchToDefaultContent();
+
+        waitForElementToBeClickable(finalSavebtn, 5);
+        getFinalSaveBtn();
+    }
 }
+

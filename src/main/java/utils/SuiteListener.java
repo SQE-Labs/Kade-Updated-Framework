@@ -56,16 +56,16 @@ public class SuiteListener implements ITestListener, IAnnotationTransformer {
      * transform method allows the modification of annotations before test execution.
      * In this case, it sets the retry logic for failed tests.
      *
-     * @param annotation The test annotation.
-     * @param testClass The test class.
+     * @param annotation      The test annotation.
+     * @param testClass       The test class.
      * @param testConstructor The constructor of the test class.
-     * @param testMethod The test method.
+     * @param testMethod      The test method.
      */
     @Override
     public void transform(ITestAnnotation annotation, Class testClass, Constructor testConstructor, Method testMethod) {
         // Set retry logic for the test method
         //annotation.setRetryAnalyzer(RetryAnalyzer.class);
-       // log.info("Retry logic applied for test: {}", testMethod.getName());
+        // log.info("Retry logic applied for test: {}", testMethod.getName());
     }
 
     // Other listener methods can be overridden as needed:

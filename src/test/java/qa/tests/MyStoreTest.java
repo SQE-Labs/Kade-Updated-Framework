@@ -14,6 +14,8 @@ import pageObjects.PageObjectManager;
 import utils.Constants;
 
 import static java.lang.Float.*;
+import static pageEvents.LoginPage.Login;
+import static pageEvents.LoginPage.LoginAsAdmin;
 import static utils.Constants.*;
 
 public class MyStoreTest extends BaseTest {
@@ -22,8 +24,6 @@ public class MyStoreTest extends BaseTest {
 
     PageObjectManager pageObjectManager = PageObjectManager.getInstance();
     MyStorePage mystore = pageObjectManager.getMyStorePage();
-    BillPage bill = new BillPage();
-    PaymentPage payment = new PaymentPage();
 
     @Test(priority = 0, enabled = true, description = "SC_01(A) Verifying creation of Store without Stripe Payment Account Configuration")
     public void storeCreationWithoutStripeAccount() {
@@ -36,30 +36,7 @@ public class MyStoreTest extends BaseTest {
 
     @Test(priority = 1, enabled = true, description = "SC_01(B) Verifying deletion of Store when Stripe Account is not Registered Yet")
     public void sc01b_DeletionOfStore() {
-        Login();
-        pageObjectManager.getSidePannel().getMangeBusinessTab();
-        pageObjectManager.getSidePannel().getMyStoreTab();
-
-        // Click on 'Register New Business' Button
-        mystore.getRegisterNewBusinessButton();
-        staticWait(2000);
-        if (!isElementDisplayed(mystore.storeLogo)) {
-            mystore.getSkipStripeAccountButton();
-            waitForElementToBeVisible(mystore.skipPopUpTitle, 4);
-
-            String actual = getText(mystore.skipPopUpTitle);
-            //Verifying the 'Skip' Pop Up Title
-            Assert.assertEquals(actual, Constants.skip);
-            //  Click on 'Skip' button
-            mystore.getSkipBtnOfStripe();
-        }else{
-            Log.info("Logo is not displayed");
-        }
-        scrollToElement(mystore.deleteStoreBtn);
-        waitForElementToBeVisible(mystore.deleteStoreBtn, 7);
-        // click on delete button
-        mystore.getDeleteStoreButton();
-        mystore.getDeleteStoreIcon();
+        mystore.deletionOfStore();
     }
 
 
@@ -67,7 +44,7 @@ public class MyStoreTest extends BaseTest {
     public void creationOfStoreWithStripeAccount() {
 
         Login();
-        mystore.getStoreCreation("123 William Bay Road, William Bay WA, Australia");
+        mystore.getStoreCreation("123 William", "123 William Bay Road, William Bay WA, Australia");
         pageObjectManager.getSidePannel().getSignOut();
         staticWait(3000);
         pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
@@ -91,221 +68,18 @@ public class MyStoreTest extends BaseTest {
 
     @Test(priority = 4, enabled = true, description = "SC_04(A) Verifying buying Monthly Business Plan for already created Store")
     public void c2verifyingBuyingMonthlyBusinessPlanForAlreadyCreatedStore() {
-        Login();
-        mystore.getStoreCreation("123 William Bay Road, William Bay WA, Australia");
-        mystore.getSubscriptionPlanTab();
-        //Verifying that 'Current Plan' appears under Essential Free Plan
-        String message = getText(mystore.currentPlanMSg);
-        softAssert.assertEquals(message, Constants.currentPlan);
-
-        //Click on 'Sign up' button
-        mystore.getPlansSignUpButton();
-
-        //Verifying that by-default Visa Payment method is enabled
-        String defaultPaymentMthd = getText(mystore.addedVisaMethod);
-        System.out.println(defaultPaymentMthd);
-        softAssert.assertEquals(defaultPaymentMthd, Constants.visavalue);
-
-//       Click on 'Change Pay Method' Link
-        mystore.getChangePayMethodLink();//Verifying that other payment methods are available
-        softAssert.assertTrue(isElementDisplayed(mystore.newCreditCardBtn), " New credit card button");
-        softAssert.assertTrue(isElementDisplayed(mystore.newBankAccountBtn), "new bank account");
-
-        // Click on 'Terms' Checkbox
-        mystore.getTermsCheckbox();
-        scrollToElement(mystore.changePlanBtn);
-
-        //  Click on 'Change Plan' Button
-        mystore.getChangePlanButton();
-
-        //Verifying that next bill date is generated
-        Assert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
-        pageObjectManager.getSidePannel().getSignOut();
-        staticWait(3000);
-        pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
-        softAssert.assertAll();
-
+        mystore.c2verifyBuyingMonthlyBusinessPlanForAlreadyCreatedStore("123 William", "123 William Bay Road, William Bay WA, Australia");
     }
 
     @Test(priority = 5, enabled = true, description = "SC04(b): Verify Store creation with Yearly Business Plan on 'Store Configuration' Page ")
     public void verifyStoreCreationWithYearlyBusinessPlan() {
-        Login();
-        mystore.getStoreCreation("123 William Bay Road, William Bay WA, Australia");
-
-        mystore.getSubscriptionPlanTab();
-
-        //Verifying that 'Current Plan' appears under Essential Free Plan
-        String message = getText(mystore.currentPlanMSg);
-        Assert.assertEquals(message, Constants.currentPlan);
-
-        // select on Business Yearly plan
-        mystore.getBusinessYearlyPlan();
-
-        //Click on 'Sign up' button
-        mystore.getPlansSignUpButton();
-
-        //Verifying that by-default Visa Payment method is enabled
-        String defaultPaymentMthd = getText(mystore.addedVisaMethod);
-        Assert.assertEquals(defaultPaymentMthd, Constants.visavalue);
-
-//       Click on 'Change Pay Method' Link
-        mystore.getChangePayMethodLink();//Verifying that other payment methods are available
-        Assert.assertTrue(isElementDisplayed(mystore.newCreditCardBtn), " New credit card button");
-        Assert.assertTrue(isElementDisplayed(mystore.newBankAccountBtn), "new bank account");
-        mystore.getbankAccountOptionForPlan();
-
-        // Click on 'Terms' Checkbox
-        mystore.getTermsCheckbox();
-        scrollToElement(mystore.changePlanBtn);
-
-        //  Click on 'Change Plan' Button
-        mystore.getChangePlanButton();
-
-        //Verifying that next bill date is generated
-        Assert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
-
-        pageObjectManager.getSidePannel().getSignOut();
-        staticWait(3000);
-        pageObjectManager.getAdminPage().selectedStoreDeleted(mystore.storeNamewithstripe);
-     }
+        mystore.verifyStoreCreationWithYearlyBusinessPlan("123 William", "123 William Bay Road, William Bay WA, Australia");
+    }
 
     // Bug Failed due to 3092, 2827
-
     @Test(priority = 6, enabled = true, description = "SC_05(A) Verifying the Configuration of already created Store using Settings Sub-Tabs")
     public void verifyingConfigurationsOfStoreUsingSettings() {
-        String tipAmountPercent1 = requiredDigits(2);
-        String tipAmountPercent2 = requiredDigits(2);
-        String tipAmountPercent3 = requiredDigits(2);
-        String rewardPoints = requiredDigits(4);
-
-        Login();
-        pageObjectManager.getSidePannel().getMangeBusinessTab();
-        pageObjectManager.getSidePannel().getMyStoreTab();
-
-        waitForElementToBeInteractable(mystore.configureLink, 4);
-
-        // Click on 'Configure' Link
-        mystore.getConfigureLink();
-
-        // Click on 'Settings' Sub-Tab
-        mystore.getSettingSubTab();
-
-        //Verifying Minimum, Maximum and Default values of 'Maximum Bill Amount' Field
-        String maxBillAmount = requiredDigits(parseFloat(Constants.minimumBillAmount), parseFloat(Constants.maximumBillAmount));
-        softAssert.assertEquals(getAttribute(mystore.maxBillAmountTbx, "max"), Constants.maximumBillAmount);
-        softAssert.assertEquals(getAttribute(mystore.maxBillAmountTbx, "min"), Constants.minimumBillAmount);
-
-        //  Enter amount in 'Maximum Bill Amount' field
-        actionEnterText(mystore.maxBillAmountTbx, maxBillAmount);
-        staticWait(3000);
-
-        if (!isElementDisplayed(mystore.tipGratuityToggleOffBtn)) {
-
-            // Click on 'Tip & Gratuity' Toggle Button
-            mystore.getTipGratuityToggleOnButton();
-        }
-        // Click on 'Configure' button
-        mystore.getTipConfigureBtn();
-
-        //Verifying the 'Tip Configuration' Pop-up Title
-        softAssert.assertEquals(mystore.tipConfigPopUpTitle, Constants.tipConfigurationTitle);
-
-        staticWait(5000);
-        mystore.getEnterInPerCentToggleButton();
-
-        cleanByJS(mystore.tipPercentField1);
-        cleanByJS(mystore.tipPercentField2);
-        cleanByJS(mystore.tipPercentField3);
-
-        // Click on 'Save Changes' button
-        mystore.getSaveChangesButton();
-
-        mystore.getValidationCrossIcon();
-
-        staticWait(3000);
-
-        String tooltip1 = getToolTipMessage(mystore.tipPercentField1);
-        Assert.assertEquals(tooltip1, requiredFldValidation);
-
-        String tooltip2 = getToolTipMessage(mystore.tipPercentField2);
-        Assert.assertEquals(tooltip2, requiredFldValidation);
-
-        String tooltip3 = getToolTipMessage(mystore.tipPercentField3);
-        Assert.assertEquals(tooltip3, requiredFldValidation);
-
-        staticWait(4000);
-
-        // Click on 'Enter in Percentage' Toggle button
-        mystore.getEnterInPerCentToggleButton();
-
-        staticWait(3000);
-
-        if (!isElementDisplayed(mystore.alertMessage)) {
-
-            // Click on 'Enter in Percentage' Toggle button
-            mystore.getEnterInPerCentToggleButton();
-        }
-
-        //Verifying the Default and maximum values of 'Tip Amount' fieltipPercentField1d
-        softAssert.assertEquals(getAttribute(mystore.tipPercentField1, "max"), tipAmountPercent1);
-
-        //  Enter Tip Values
-        actionEnterText(mystore.tipPercentField1, tipAmountPercent1);
-        actionEnterText(mystore.tipPercentField2, tipAmountPercent2);
-        actionEnterText(mystore.tipPercentField3, tipAmountPercent3);
-
-        // Click on 'Save Changes' button
-        mystore.getSaveChangesButton();
-
-        // Click on 'Configure' button
-        mystore.getRewardConfigureButton();
-
-        //Verifying the 'Rewards Configuration' Pop-Up Title
-        String rewardConfig = getText(mystore.rewardConfigPopUpTitle);
-        softAssert.assertEquals(rewardConfig, Constants.rewardConfigurationpopup);
-
-        // Click on 'Reward Point' Toggle button
-        if (!isElementDisplayed(mystore.rewardPointsField)) {
-            mystore.getRewardPointToggleOnButton();
-        }
-
-        //Verifying the Minimum and Maximum Values of 'Reward Points' Field
-        Assert.assertEquals(getAttribute(mystore.rewardPointsField, "max"), "99999");
-        Assert.assertEquals(getAttribute(mystore.rewardPointsField, "min"), "100");
-
-        // Enter Reward Points
-        actionEnterText(mystore.rewardPointsField, rewardPoints);
-
-        // Click on 'Save Changes' Button
-        mystore.getSaveChangesButton();
-
-        scrollToElement(mystore.storeLinksBtn);
-
-        waitForElementToBeVisible(mystore.storeLinksBtn, 3);
-
-        // Click on 'Store Links' button
-        mystore.getStoreLinksButton();
-        waitForElementToBeClickable(mystore.rewardPtsValue, 3);
-
-        // Enter Reward Points
-        actionEnterText(mystore.rewardPtsValue, rewardPoints);
-
-        // Enter Website URL
-        cleanByJS(mystore.websiteURLField);
-        actionEnterText(mystore.websiteURLField, "www.KadePay" + requiredString(4) + ".com");
-
-        // Click on 'Earn Rewards Points' Toggle Button
-        System.out.println("testse2: " + isToggleEnabled(mystore.earnRewardsToggleBtn));
-        if (!isToggleEnabled(mystore.earnRewardsToggleBtn)) {
-            mystore.getEarnRewardsPointsToggleButton();
-        } else {
-            scrollToElement(mystore.saveChangesBtn);
-            waitForElementToBeClickable(mystore.saveChangesBtn, 3);
-
-            // Click on 'Save Changes' Button
-            mystore.getSaveChangesButton();
-            softAssert.assertAll();
-        }
+        mystore.verifyConfigurationsOfStoreUsingSettings();
     }
 
     // Bug Raised and Bug Id is : 3020
@@ -398,7 +172,7 @@ public class MyStoreTest extends BaseTest {
         pageObjectManager.getSidePannel().getMangeBusinessTab();
         pageObjectManager.getSidePannel().getMyStoreTab();
 
-         // Click on 'Configure' Link
+        // Click on 'Configure' Link
         click(mystore.configureLink2);
 
         waitForElementToBeVisible(mystore.paymentProcessingSubTab, 5);
@@ -409,8 +183,7 @@ public class MyStoreTest extends BaseTest {
 
         //  Click on 'Credit Card Terminal' button
 
-        if (isElementDisplayed(mystore.configureATerminalTitle))
-        {
+        if (isElementDisplayed(mystore.configureATerminalTitle)) {
             mystore.getAddaTerminalLink();
         } else {
             mystore.getCreditCardTerminalButton();
@@ -428,64 +201,7 @@ public class MyStoreTest extends BaseTest {
 
     @Test(priority = 8, enabled = true, description = "SC_06 Verifying the Configuration of the Store using Payment Processing Sub-Tabs on 'Store Configuration' Page with Venmo & Zelle. ")
     public void verifyConfigurationOfStoreUsingPaymentProcessingSubTab() {
-        Login();
-        pageObjectManager.getSidePannel().getMangeBusinessTab();
-        pageObjectManager.getSidePannel().getMyStoreTab();
-        waitForElementToBeClickable(mystore.configureLink, 3);
-
-        // Click on 'Configure' Link
-        mystore.getConfigureLink();
-
-        waitForElementToBeVisible(mystore.paymentProcessingSubTab, 5);
-
-        // Click on 'Payment-Processing' Sub-Tab
-        mystore.getPaymentProcessingSubTab();
-        staticWait(3000);
-        scrollToDown();
-        staticWait(3000);
-
-        mystore.getAcceptVenmoToggleButton();
-
-        staticWait(5000);
-
-        //Verifying Maximum length of 'VenmoID' field
-
-        Assert.assertEquals(getAttribute(mystore.venmoIDField, "maxlength"), "40");
-
-        // Enter ID in 'Venmo ID" field
-        enterText(mystore.venmoIDField, requiredDigits(4));
-
-        //Verifying maximum length of 'Venmo Name' field
-        Assert.assertEquals(getAttribute(mystore.venmoNameField, "maxlength"), "40");
-
-        // Enter name in 'Venmo Name' Field
-        enterText(mystore.venmoNameField, requiredString(8));
-
-        // Click on 'Save' Button
-        mystore.getVenmoSaveButton();
-        scrollToElement(mystore.acceptZelleHeader);
-        staticWait(3000);
-
-        if (!isToggleEnabled(mystore.acceptZelleToggleBtn)) {
-            clickElementByJS(mystore.acceptZelleToggleBtn);
-        } else {
-            Log.info("Toggle button is already On");
-        }
-
-        //Verifying maximum length of 'Zelle Phone' field
-        Assert.assertEquals(getAttribute(mystore.zellePhoneField, "maxlength"), "40");
-
-        //  Enter Phone Number in 'Zelle Phone' Field
-        enterText(mystore.zellePhoneField, requiredDigits(4));
-
-        // Verifying maximum length of 'Zelle Name' field
-        Assert.assertEquals(getAttribute(mystore.zelleNameField, "maxlength"), "40");
-
-        // Enter Zelle Account Name
-        enterText(mystore.zelleNameField, requiredString(8));
-
-        // Click on 'Save' Button
-        mystore.getZelleSaveButton();
+        mystore.verifyConfigOfStoreUsingProcessPayment();
     }
 
 
@@ -527,7 +243,7 @@ public class MyStoreTest extends BaseTest {
     @Test(priority = 10, enabled = true, description = "SC 09 and Sc 10 Verify that store creation and purchasing the 'Premium' monthly plan subscription for the store, on 'Store Configuration' page.")
     public void verifyingStoreCreationWithPurchasingMonthlyPremiumPlan() {
         Login();
-        mystore.getStoreCreation("123 William Bay Road, William Bay WA, Australia");
+        mystore.getStoreCreation("123 William", "123 William Bay Road, William Bay WA, Australia");
         mystore.getSubscriptionPlanTab();
         //Verifying that 'Current Plan' appears under Essential Free Plan
         String message = getText(mystore.currentPlanMSg);
@@ -581,8 +297,7 @@ public class MyStoreTest extends BaseTest {
         //  Click on 'Change Plan' Button
         mystore.getChangePlanButton();
         //Verifying that next bill date is generated
-        Assert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date"); // Bug Failed due to 3092, 2827
-
+        Assert.assertTrue(isElementDisplayed(mystore.nextBillDate), "next bill date");
 
         pageObjectManager.getSidePannel().getSignOut();
         staticWait(3000);
@@ -659,7 +374,18 @@ public class MyStoreTest extends BaseTest {
 
         // Need to add assertion
     }
+
+    @Test(enabled = false)
+    public void test() {
+        // This is a placeholder for any additional tests you may want to add.
+        // You can implement your test logic here.
+        Log.info("Running MyStoreTest");
+
+        pageObjectManager.getAdminPage().ToDeleteStores();
+
+    }
 }
+
 
 
 

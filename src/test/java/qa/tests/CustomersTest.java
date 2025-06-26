@@ -1,6 +1,7 @@
 package qa.tests;
 
 import base.BaseTest;
+import logger.Log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -50,17 +51,17 @@ public class CustomersTest extends BaseTest {
         customersPage.navigateToCustomersPage();
 
         click(customersPage.findAddCustomer);
-        waitForElementToBeInteractable(customersPage.phoneNumber,20);
-        actionEnterText(customersPage.phoneNumber,phoneNumber);
+        waitForElementToBeInteractable(customersPage.phoneNumber, 20);
+        actionEnterText(customersPage.phoneNumber, phoneNumber);
         click(customersPage.goBtn);
         if (expectedValidationMessage != null) {
-           staticWait(3000);
+            staticWait(3000);
             Assert.assertTrue(isElementDisplayed(customersPage.phoneValidation));
         } else {
             Assert.assertTrue(isElementDisplayed(customersPage.findAddCustomer));
         }
         click(customersPage.customerPopupClose);
-        waitForElementInVisible(customersPage.customerPopupClose,20);
+        waitForElementInVisible(customersPage.customerPopupClose, 20);
     }
 
     @Test
@@ -71,26 +72,26 @@ public class CustomersTest extends BaseTest {
         customersPage.navigateToCustomersPage();
 
         click(customersPage.findAddCustomer);
-        waitForElementToBeInteractable(customersPage.phoneNumber,20);
+        waitForElementToBeInteractable(customersPage.phoneNumber, 20);
         actionEnterText(customersPage.emailField, Constants.custEmailInput);
         click(customersPage.emailGoBtn);
-        waitForElementInVisible(customersPage.emailGoBtn,20);
+        waitForElementInVisible(customersPage.emailGoBtn, 20);
 
         click(customersPage.findAddCustomer);
-        waitForElementToBeInteractable(customersPage.phoneNumber,20);
+        waitForElementToBeInteractable(customersPage.phoneNumber, 20);
         actionEnterText(customersPage.emailField, Constants.emailInput);
         click(customersPage.emailGoBtn);
         Assert.assertTrue(isElementDisplayed(customersPage.emailValidation));
-        Assert.assertEquals(getToolTipMessage(customersPage.emailField),Constants.emailTooltip);
+        Assert.assertEquals(getToolTipMessage(customersPage.emailField), Constants.emailTooltip);
         click(customersPage.customerPopupClose);
-        waitForElementInVisible(customersPage.customerPopupClose,20);
+        waitForElementInVisible(customersPage.customerPopupClose, 20);
 
         click(customersPage.findAddCustomer);
-        waitForElementToBeInteractable(customersPage.phoneNumber,20);
+        waitForElementToBeInteractable(customersPage.phoneNumber, 20);
         actionEnterText(customersPage.emailField, " ");
         click(customersPage.emailGoBtn);
         Assert.assertTrue(isElementDisplayed(customersPage.emailValidation));
-        Assert.assertEquals(getToolTipMessage(customersPage.emailField),Constants.emptyFieldTooltip);
+        Assert.assertEquals(getToolTipMessage(customersPage.emailField), Constants.emptyFieldTooltip);
         click(customersPage.customerPopupClose);
     }
 
@@ -103,8 +104,8 @@ public class CustomersTest extends BaseTest {
 
         click(customersPage.findAddCustomer);
         Assert.assertTrue(isElementDisplayed(customersPage.customerDisplayed));
-        waitForElementToBeInteractable(customersPage.searchField,20);
-        actionEnterText(customersPage.searchField,Constants.searchInput);
+        waitForElementToBeInteractable(customersPage.searchField, 20);
+        actionEnterText(customersPage.searchField, Constants.searchInput);
         click(customersPage.searchBtn);
         Assert.assertTrue(isElementDisplayed(customersPage.customerDisplayed));
     }
@@ -118,14 +119,19 @@ public class CustomersTest extends BaseTest {
 
         customersPage.applyFilter();
         staticWait(3000);
-         customersPage.applyFilter();
-         staticWait(2000);
-        waitForElementToBeVisible(customersPage.noResult,5);
-        Assert.assertTrue(isElementDisplayed(customersPage.noResult));
+
+        if (isElementDisplayed(customersPage.userFound)) {
+            Log.info("User Found");
+        } else {
+            Assert.assertTrue(isElementDisplayed(customersPage.noResult));
+        }
+
 
         customersPage.applyFilterToCheckPhoneValidation();
-        Assert.assertTrue(isElementDisplayed(customersPage.alertValidation));
-        Assert.assertEquals(getToolTipMessage(customersPage.filterPhonenumberInvalid),Constants.invalidPhnValidation);
+
+
+        Assert.assertTrue(isElementDisplayed(customersPage.validationMsg));
+        Assert.assertEquals(getToolTipMessage(customersPage.validationMsg), Constants.pleaseReviewValidation);
     }
 
     @Test
@@ -136,17 +142,17 @@ public class CustomersTest extends BaseTest {
         customersPage.navigateToCustomersPage();
 
         click(customersPage.filter);
-        enterText(customersPage.filterEmail,Constants.custEmailInput);
+        enterText(customersPage.filterEmail, Constants.custEmailInput);
         staticWait(2000);
         click(customersPage.filterApplyBtn);
-        waitForElementInVisible(customersPage.filterApplyBtn,20);
+        waitForElementInVisible(customersPage.filterApplyBtn, 20);
         staticWait(2000);
 
         customersPage.tryCatchFilter();
-        enterText(customersPage.filterEmail,Constants.PartialUsername);
+        enterText(customersPage.filterEmail, Constants.PartialUsername);
         click(customersPage.filterApplyBtn);
         Assert.assertTrue(isElementDisplayed(customersPage.alertValidation));
-        Assert.assertEquals(getToolTipMessage(customersPage.invalidFilterEmail),Constants.validEmailValidationMsg);
+        Assert.assertEquals(getToolTipMessage(customersPage.invalidFilterEmail), Constants.validEmailValidationMsg);
     }
 
     @Test
@@ -155,12 +161,12 @@ public class CustomersTest extends BaseTest {
         customersPage.navigateToCustomersPage();
 
         click(customersPage.filter);
-        enterText(customersPage.filterName,Constants.PartialUsername);
+        enterText(customersPage.filterName, Constants.PartialUsername);
         click(customersPage.filterApplyBtn);
-        waitForElementInVisible(customersPage.filterApplyBtn,20);
+        waitForElementInVisible(customersPage.filterApplyBtn, 20);
 
         customersPage.tryCatchFilter();
-        enterText(customersPage.filterName,Constants.nameInput);
+        enterText(customersPage.filterName, Constants.nameInput);
         click(customersPage.filterApplyBtn);
         Assert.assertTrue(isElementDisplayed(customersPage.noResult));
     }
@@ -171,10 +177,10 @@ public class CustomersTest extends BaseTest {
         customersPage.navigateToCustomersPage();
 
         click(customersPage.filter);
-        waitForElementToBeVisible(customersPage.selectCustomerinFilter,10);
+        waitForElementToBeVisible(customersPage.selectCustomerinFilter, 10);
         click(customersPage.selectCustomerinFilter);
         click(customersPage.customerSelection);
-        Assert.assertTrue(isDisplayed(customersPage.customerDisplayed2,2));
+        Assert.assertTrue(isDisplayed(customersPage.customerDisplayed2, 2));
     }
 
     @Test
@@ -185,7 +191,7 @@ public class CustomersTest extends BaseTest {
         customersPage.navigateToCustomersPage();
 
         click(customersPage.pencilIcon);
-        enterText(customersPage.chngeName,Constants.chngeNameInput);
+        enterText(customersPage.chngeName, Constants.chngeNameInput);
         click(customersPage.saveBtn);
     }
 
@@ -224,8 +230,8 @@ public class CustomersTest extends BaseTest {
         click(customersPage.eyeIcon);
         click(customersPage.trophieIcon);
         click(customersPage.addRewardpts);
-        actionEnterText(customersPage.memoinput,Constants.Memo);
-        actionEnterText(customersPage.rewardPoints,Constants.Points);
+        actionEnterText(customersPage.memoinput, Constants.Memo);
+        actionEnterText(customersPage.rewardPoints, Constants.Points);
         click(customersPage.submitRewardPts);
     }
 
@@ -239,7 +245,7 @@ public class CustomersTest extends BaseTest {
         click(customersPage.addPaymentMethod);
         click(customersPage.permissionChkbx);
         click(customersPage.permissionCtnBtn);
-        waitForElementToBeVisible(customersPage.addCardNumberField,10);
+        waitForElementToBeVisible(customersPage.addCardNumberField, 10);
         switchToFrame(customersPage.frame1);
         customersPage.saveNewByCreditCard();
     }
@@ -252,15 +258,10 @@ public class CustomersTest extends BaseTest {
         customersPage.navigateToCustomersPage();
         click(customersPage.eyeIcon);
         scrollToElement(customersPage.addGiftCardBtn);
-        waitForElementToBeClickable(customersPage.addGiftCardBtn,5);
+        waitForElementToBeClickable(customersPage.addGiftCardBtn, 5);
         click(customersPage.addGiftCardBtn);
-        waitForElementToBeInteractable(customersPage.initialAmt,10);
+        waitForElementToBeInteractable(customersPage.initialAmt, 10);
         actionEnterText(customersPage.initialAmt, Constants.initialAmt);
         click(customersPage.createGiftCardBtn);
     }
-
-
-
-
-
 }

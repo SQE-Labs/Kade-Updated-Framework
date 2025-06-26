@@ -2,6 +2,7 @@ package utils;
 
 import java.io.InputStream;
 import java.util.Properties;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -56,7 +57,7 @@ public class ConfigFileReader {
     }
 
     /**
-     * Reloads the ConfigFileReader singleton instance. 
+     * Reloads the ConfigFileReader singleton instance.
      * Useful for switching environments during runtime.
      */
     public static synchronized void reloadInstance() {

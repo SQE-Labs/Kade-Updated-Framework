@@ -52,7 +52,7 @@ public class BasicInformationPage extends BaseTest {
     }
 
     @Test
-    public void verifyInvalidAddressValidation(){
+    public void verifyInvalidAddressValidation() {
         log.info("Enter Invalid or Unverified address in the Store Address field of the Store Basic Information page");
 
         Login();
@@ -63,7 +63,7 @@ public class BasicInformationPage extends BaseTest {
         basicInfoPage.getModifyBtn();
         basicInfoPage.invalidInputStoreAddress();
         Assert.assertTrue(isElementDisplayed(basicInfoPage.alertMsg));
-        Assert.assertEquals(getToolTipMessage(basicInfoPage.storeFullAddress),Constants.addressNotVerifiedToolTip,"After Entering Invalid address");
+        Assert.assertEquals(getToolTipMessage(basicInfoPage.storeFullAddress), Constants.addressNotVerifiedToolTip, "After Entering Invalid address");
     }
 
     @Test
@@ -76,13 +76,13 @@ public class BasicInformationPage extends BaseTest {
         basicInfoPage.getCustStoreConfig();
         scrollToElement(basicInfoPage.modifyBtn);
         basicInfoPage.getModifyBtn();
-        waitForElementInVisible(basicInfoPage.modifyBtn,20);
+        waitForElementInVisible(basicInfoPage.modifyBtn, 20);
         basicInfoPage.invalidInputStorePhone();
         Assert.assertTrue(isElementDisplayed(basicInfoPage.alertMsg));
         pageObjectManager.getLoginPage().getValidationCrossIcon();
         hoverOverElement(basicInfoPage.storePhoneField);
-        String invalidTooltip =getToolTipMessage(basicInfoPage.storePhoneField);
-        Assert.assertEquals(invalidTooltip,Constants.invalidPhoneToolTip,"After Entering Invalid phone number");
+        String invalidTooltip = getToolTipMessage(basicInfoPage.storePhoneField);
+        Assert.assertEquals(invalidTooltip, Constants.invalidPhoneToolTip, "After Entering Invalid phone number");
     }
 
     @Test
@@ -96,21 +96,21 @@ public class BasicInformationPage extends BaseTest {
 
         WebElement fileInput = getDriver().findElement(By.xpath("//input[@type='file']"));
 
-      //  String userDir = System.getProperty("user.dir");
-      //  String filePath = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "image", "dummy-image.jpg").toString();
+        //  String userDir = System.getProperty("user.dir");
+        //  String filePath = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "image", "dummy-image.jpg").toString();
         // fileInput.sendKeys(filePath);
 
         String userDir = System.getProperty("user.dir");
-        String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator+ "ImageResources"+ File.separator + "image" + File.separator + "BillDummyImg.jpg";
+        String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "ImageResources" + File.separator + "image" + File.separator + "BillDummyImg.jpg";
 
         fileInput.sendKeys(filePath);
-        waitForElementToBeClickable(basicInfoPage.checkBtn,10);
+        waitForElementToBeClickable(basicInfoPage.checkBtn, 10);
         click(basicInfoPage.checkBtn);
 
     }
 
     @Test
-    public void verifyStoreLogoChangeWithInvalidFile(){
+    public void verifyStoreLogoChangeWithInvalidFile() {
         log.info("Try uploading invalid file format as store logo");
 
         Login();
@@ -120,10 +120,9 @@ public class BasicInformationPage extends BaseTest {
         basicInfoPage.invalidImageUpload();
 
         Assert.assertTrue(isElementDisplayed(basicInfoPage.validationMsg));
-        Assert.assertEquals(getElementText(basicInfoPage.validationMsg),Constants.invalidImageFile,"Invalid Image file");
+        Assert.assertEquals(getElementText(basicInfoPage.validationMsg), Constants.invalidImageFile, "Invalid Image file");
 
     }
-
 
 
 }

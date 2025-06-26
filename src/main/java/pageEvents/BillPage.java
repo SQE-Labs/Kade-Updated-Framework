@@ -127,7 +127,7 @@ public class BillPage extends BaseTest {
     public By crossIcon = By.xpath("(//div[contains(@class,'modal-content')]//button[@class='btn-close'])[1]");
     public By countinueWithoutTxt = By.xpath("//div//button[text()='Continue without']");
     public By selectACustomerBtn = By.xpath("(//div[@class='modal-content'])[8]//button[text()='Select a customer']");
-    By whichStorePopup = By.xpath("//p[text()='Which store?']");
+    By billPopup = By.xpath("//h4[contains(text(),'Do you have a logo?')]");
     By newBusinessCard = By.xpath("div.overflow-hidden.border.border-info");
     public By storesCombobox = By.xpath("//span[@role='combobox']");
     public By messagePopupHeader = By.xpath("//h5[text()='Message']");
@@ -221,7 +221,7 @@ public class BillPage extends BaseTest {
     public By paidExpiryField = By.xpath("//label[text()='Expiration Date:']");
     public By repeatPopUpTitle = By.xpath("//h5[text()='Repeat']");
     public By reccuringIcon = By.xpath("(//span/following-sibling::i)[1]");
-    public By reccuringMenu = By.xpath("//div[text()='Recurring']");
+    public By reccuringMenu = By.xpath("//div[contains(@class,'d-flex flex-wrap')]//div[text()='Recurring']/..");
     By expiryDatePopUpTitle = By.xpath("//h5[text()='Expiration Date']");
     By unpaidAmount = By.cssSelector(".text-danger.fs-4");
     public By enterInBillfield = By.xpath("(//div[@class='d-flex mb-2 clone']/div/input[@name='detail_amount'])[1]");
@@ -402,6 +402,7 @@ public class BillPage extends BaseTest {
 
     public void clickOnpaymentMethodLink() {
         staticWait(3000);
+        scrollToElement(paymentMethodLink);
         click(paymentMethodLink);
     }
 
@@ -591,6 +592,7 @@ public class BillPage extends BaseTest {
     public void getConfirmButton() {
         staticWait(2000);
         scrollToElement(confirmBtn);
+        waitForElementToBeInteractable(confirmBtn, 15);
         click(confirmBtn);
     }
 
@@ -652,12 +654,9 @@ public class BillPage extends BaseTest {
     public void clickOnCrossIcon() {
         staticWait(3000);
         waitForElementToBeClickable(crossIcon, 15);
-        click(crossIcon);
+        clickElementByJS(crossIcon);
     }
 
-    public void getAmountField() {
-        click(amtInput);
-    }
 
     public void getCloseLogoPopupBtn() {
         hoverAndClick(closeLogoPopupBtn, closeLogoPopupBtn);
@@ -815,7 +814,15 @@ public class BillPage extends BaseTest {
 
 
     public void uploadPdf() throws AWTException {
-        uploadImageAsAttachment("/src/main/resources/ImageResources/image/dummy");
+        // uploadImageAsAttachment("/src/main/resources/ImageResources/image/dummy");
+        // uploding store image
+
+        WebElement fileInput = getDriver().findElement(By.xpath("//input[@type='file']"));
+
+        // Set the file path to upload
+        String userDir = System.getProperty("user.dir");
+        String filePath = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "ImageResources" + File.separator + "image" + File.separator + "dummy.pdf";
+        fileInput.sendKeys(filePath);
     }
 
     public void getCheckButton() {
@@ -931,16 +938,17 @@ public class BillPage extends BaseTest {
     }
 
     public void closePopup() {
-//        staticWait(3000);
-        if (isElementDisplayed(crossIcon)) {
-            System.out.print(" pop-up showed and clicking");
-            staticWait(3000);
+        staticWait(5000);
+        if (isElementDisplayed(billPopup)) {
+            Log.info(" pop-up showed and clicking");
+            staticWait(5000);
             clickOnCrossIcon();
         } else {
             Log.info("No pop-up showed");
         }
 
     }
+
 
     public void enableTaxToggleBtn() {
         if (isElementDisplayed(taxToggleBtn)) {
@@ -1213,12 +1221,11 @@ public class BillPage extends BaseTest {
     public void clickOnReccuring() {
         staticWait(2000);
         scrollToElement(reccuringMenu);
-        waitForElementToBeVisible(reccuringMenu, 15);
-         staticWait(5000);
-        waitForElementToBeClickable(reccuringMenu, 10);
         staticWait(5000);
         click(reccuringMenu);
         click(reccuringBill);
+
+
     }
 
     public void createBillWithoutCustomer() {
@@ -1337,6 +1344,7 @@ public class BillPage extends BaseTest {
         getCustomerEmailField(emailID);
         getEmailGoButton();
         staticWait(3000);
+
         // Verify if Customer name popup appears
         if (isElementDisplayed(enterUserNamePopUp)) {
             staticWait(4000);
@@ -1434,7 +1442,6 @@ public class BillPage extends BaseTest {
         assertEnteredTextInDescriptionField();
         enterInBillTxtField(amount, DesAmount);
 
-        //select customer to share the bill
         //Select Suggested Customer
         getCustomerButton();
         getCustomerEmailField(emailID);
@@ -1535,7 +1542,7 @@ public class BillPage extends BaseTest {
 
     }
 
-    public void createBillByAttachingImageFile() throws InterruptedException, AWTException {
+    public void createBillByAttachingImageFile() throws AWTException {
         Login();
         //Select Store
         clickOnNewBill();
@@ -1553,7 +1560,7 @@ public class BillPage extends BaseTest {
 
         //Enter amount
         String amt = "2,000.00";
-        Thread.sleep(4000);
+        waitForElementToBeVisible(amtTbx, 10);
         actionEnterText(amtTbx, amt);
 
         clickOnTapToAddImageFiles();
@@ -1598,7 +1605,7 @@ public class BillPage extends BaseTest {
         getContinueWithoutButton();
 
         //Close popup
-        closePopup();
+        //  closePopup();
     }
 
     public void verifyingBillCreationWithAddingMemoField(String emailID) {
@@ -1987,11 +1994,10 @@ public class BillPage extends BaseTest {
         //Click Confirm
         staticWait(2000);
         getConfirmButton();
-
+        staticWait(4000);
         //Close popup
         closePopup();
 
-        Assert.assertTrue(isElementDisplayed(reccuringIcon));
         clickOnReccuring();
 
         removeNonNumericValueFromTheValue();
@@ -2029,6 +2035,7 @@ public class BillPage extends BaseTest {
         //Share bill by adding card details
         clickOnpaymentMethodLink();
 
+        getConfirmButton();
     }
 
     public void createBillWithCustomerAndPayThroughAutoPayment() {

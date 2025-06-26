@@ -17,18 +17,18 @@ public class LoginPageEvents extends BaseTest {
     private By signInButton = By.xpath("//*[@id='loginAdvDivId']/div[2]/div/button"); // Locator for the Sign-In button
     // Locators
     public By userNameField = By.cssSelector("[name='userName']");
-    By passwordField =By.cssSelector("[name='passWord']");
+    By passwordField = By.cssSelector("[name='passWord']");
     public By forgotPasswordLink = By.linkText("Forgot password?");
     By signUpLink = By.linkText("Sign up");
     By validation = By.xpath("//p[@class='alert-content']");
     public By termsOfUse = By.linkText("Terms Of Use");
     public By popupTitle = By.xpath("//h5[normalize-space()='New Account']");
-    By credentialsValidation  = By.cssSelector(".alert-content");
+    By credentialsValidation = By.cssSelector(".alert-content");
     public By privacyPolicyTitle = By.cssSelector(".mb-3.fs-pn15");
     public By privacyPolicyLink = By.cssSelector(" .p-2.fs-pn25.text-center>a+a");
 
     // Forget Password page locators
-    By continueBtn= By.cssSelector(".btn-lg.btn.btn-primary");
+    By continueBtn = By.cssSelector(".btn-lg.btn.btn-primary");
     By emailPhoneField = By.cssSelector("[name='phone_email']");
     By signInLinkFP = By.cssSelector(".fs-6>a");
     By verifyAccountTitle = By.xpath("//h1[text()='Verify your account']");
@@ -40,11 +40,8 @@ public class LoginPageEvents extends BaseTest {
     By validationCrossIcon = By.cssSelector(".btn-close.autoclick-effect");
     By alreadyHaveAccount = By.cssSelector(".fs-6 ");
     By googleAccount = By.cssSelector("[value='Google']");
-    public By googleEmailField= By.cssSelector(".Xb9hP >[type='email']");
+    public By googleEmailField = By.cssSelector(".Xb9hP >[type='email']");
     By nextBtn = By.xpath("//span[text()='Next']");
-
-
-
 
 
     /**
@@ -55,7 +52,7 @@ public class LoginPageEvents extends BaseTest {
      */
     public void signIn(String username, String password) {
         log.info("Starting the sign-in process.");
-        
+
         // Enter username
         log.info("Entering username: {}", username);
         enterText(usernameTextField, username); // Using BaseTest's reusable method to enter text
@@ -70,55 +67,67 @@ public class LoginPageEvents extends BaseTest {
 
         log.info("Sign-in process completed.");
     }
-    public void getNextButton(){
+
+    public void getNextButton() {
         click(nextBtn);
     }
-    public void getSignUpLink(){
+
+    public void getSignUpLink() {
         click(signUpLink);
     }
-    public void getSignInBtn(){click(signInButton);}
-    public void getForgotPassowrdLink(){
+
+    public void getSignInBtn() {
+        click(signInButton);
+    }
+
+    public void getForgotPassowrdLink() {
         click(forgotPasswordLink);
     }
-    public void getTermsofUseLink(){
+
+    public void getTermsofUseLink() {
         click(termsOfUse);
     }
-    public void getPrivacyPolicylink(){
+
+    public void getPrivacyPolicylink() {
         click(privacyPolicyLink);
     }
-    public void getPrivacyPolicyTitle(){
+
+    public void getPrivacyPolicyTitle() {
         click(privacyPolicyTitle);
     }
-    public void getValidationCrossIcon(){
+
+    public void getValidationCrossIcon() {
         click(validationCrossIcon);
     }
-    public void getSignInWithGoogle(){
+
+    public void getSignInWithGoogle() {
         click(googleAccount);
     }
-    public void getAlreadyHaveAccountLabel(){
-        waitForElementToBeClickable(alreadyHaveAccount,3);
+
+    public void getAlreadyHaveAccountLabel() {
+        waitForElementToBeClickable(alreadyHaveAccount, 3);
         click(alreadyHaveAccount);
     }
 
-    public void verifyLoginPageFields(){
+    public void verifyLoginPageFields() {
 
         // verify field gets highlighted after clicking on Sign In.
         getSignInBtn();
         getToolTipMessage(usernameTextField);
         getToolTipMessage(passwordTextField);
-        String actualAttribute = getAttribute(userNameField,"class");
-        String expectedAttribute="form-control form-control-lg is-invalid";
+        String actualAttribute = getAttribute(userNameField, "class");
+        String expectedAttribute = "form-control form-control-lg is-invalid";
         softAssert.assertEquals(actualAttribute, expectedAttribute);
-        waitForElementToBeInteractable(usernameTextField,3);
+        waitForElementToBeInteractable(usernameTextField, 3);
 
         // verify that tooltip appears on entering invalid Email or PhoneNumber
-        enterText(usernameTextField,"Test@");
-        actionEnterText(passwordField,Constants.invalidData);
+        enterText(usernameTextField, "Test@");
+        actionEnterText(passwordField, Constants.invalidData);
         getSignInBtn();
         getToolTipMessage(usernameTextField);
-        waitForElementToBeInteractable(usernameTextField,3);
+        waitForElementToBeInteractable(usernameTextField, 3);
         cleanByJS(usernameTextField);
-        enterText(usernameTextField,Constants.invalidEmail);
+        enterText(usernameTextField, Constants.invalidEmail);
         getSignInBtn();
 
         // Tooltip and validation message
@@ -127,45 +136,48 @@ public class LoginPageEvents extends BaseTest {
         softAssert.assertAll();
 
     }
-    public void getContinueBtnFP(){
+
+    public void getContinueBtnFP() {
         click(continueBtn);
     }
-    public void getSignInLinkFP(){
+
+    public void getSignInLinkFP() {
         click(signInLinkFP);
     }
-    public void getChangeLinkFP(){
-       click(changeLinkFP);
+
+    public void getChangeLinkFP() {
+        click(changeLinkFP);
     }
 
 
-    public void  verifyForgetPassword(){
+    public void verifyForgetPassword() {
         getContinueBtnFP();
         // verify the validation
         getToolTipMessage(emailPhoneField);
         getAlreadyHaveAccountLabel();
 
         // Enter invalid data
-        enterText(emailPhoneField,Constants.invalidData);
+        enterText(emailPhoneField, Constants.invalidData);
 
-        waitForElementToBeInteractable(emailPhoneField,5);
+        waitForElementToBeInteractable(emailPhoneField, 5);
         getAlreadyHaveAccountLabel();
-        String text= getToolTipMessage(emailPhoneField);
-        softAssert.assertEquals(text,Constants.userPhnEmailTooltip);
+        String text = getToolTipMessage(emailPhoneField);
+        softAssert.assertEquals(text, Constants.userPhnEmailTooltip);
         cleanByJS(emailPhoneField);
-        waitForElementToBeClickable(emailPhoneField,5);
+        waitForElementToBeClickable(emailPhoneField, 5);
 
         // enter invalid email
-        enterText(emailPhoneField,Constants.invalidEmail);
+        enterText(emailPhoneField, Constants.invalidEmail);
         getAlreadyHaveAccountLabel();
         String text2 = getToolTipMessage(emailPhoneField);
-        waitForElementToBeClickable(continueBtn,5);
+        waitForElementToBeClickable(continueBtn, 5);
 //        getContinueBtnFP();
-        softAssert.assertEquals(text2 ,Constants.invalidEmailValidation);
+        softAssert.assertEquals(text2, Constants.invalidEmailValidation);
         cleanByJS(emailPhoneField);
-        waitForElementToBeClickable(emailPhoneField,5);
+        waitForElementToBeClickable(emailPhoneField, 5);
 
         // enter valid email address
-        enterText(emailPhoneField,Constants.validLoginEmail);
+        enterText(emailPhoneField, Constants.validLoginEmail);
         getContinueBtnFP();
         softAssert.assertTrue(isElementDisplayed(verifyAccountTitle));
 
@@ -173,29 +185,28 @@ public class LoginPageEvents extends BaseTest {
         getChangeLinkFP();
 
         // enter valid phone number
-        enterText(emailPhoneField,Constants.phone);
+        enterText(emailPhoneField, Constants.phone);
         getContinueBtnFP();
 
         // click on continue button
         getContinueBtnFP();
-        waitForElementToBeInteractable(securityCodeField,3);
+        waitForElementToBeInteractable(securityCodeField, 3);
         String tooltip = getToolTipMessage(securityCodeField);
         softAssert.assertEquals(tooltip, Constants.requiredFldValidation);
-        enterText(securityCodeField,Constants.phoneSecurityCodeForLogin);
+        enterText(securityCodeField, Constants.phoneSecurityCodeForLogin);
         getContinueBtnFP();
 
-        waitForElementToBeInteractable(pageObjectManager.getSignUpPage().setYourPasswordTitle,5);
+        waitForElementToBeInteractable(pageObjectManager.getSignUpPage().setYourPasswordTitle, 5);
         softAssert.assertTrue(isElementDisplayed(pageObjectManager.getSignUpPage().setYourPasswordTitle));
 
         pageObjectManager.getSignUpPage().getSubmitButton();
 
         getToolTipMessage(pageObjectManager.getSignUpPage().passwordField);
-        enterText(pageObjectManager.getSignUpPage().passwordField,Constants.validPassword);
-        enterText(pageObjectManager.getSignUpPage().confirmPasswordField,Constants.validPassword);
+        enterText(pageObjectManager.getSignUpPage().passwordField, Constants.validPassword);
+        enterText(pageObjectManager.getSignUpPage().confirmPasswordField, Constants.validPassword);
         pageObjectManager.getSignUpPage().getSubmitButton();
         softAssert.assertAll();
     }
-
 
 
 }

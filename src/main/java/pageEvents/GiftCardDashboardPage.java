@@ -30,21 +30,21 @@ public class GiftCardDashboardPage extends BaseTest {
     public By systemMsg = By.cssSelector("p.h2");
 
     SidePannelPage pannel = new SidePannelPage();
-      By giftCardDashBoardHeaderText = By.cssSelector("h1.header-title");
-       By storeDropDown = By.cssSelector("span.select2-selection__rendered[role='textbox']");
-      By storeDropDownList = By.cssSelector("ul.select2-results__options > li");
-      By whichStoreContinueBtn = By.cssSelector("button.btn-primary");
-      By storeName = By.cssSelector("h3.text-truncate");
+    By giftCardDashBoardHeaderText = By.cssSelector("h1.header-title");
+    By storeDropDown = By.cssSelector("span.select2-selection__rendered[role='textbox']");
+    By storeDropDownList = By.cssSelector("ul.select2-results__options > li");
+    By whichStoreContinueBtn = By.cssSelector("button.btn-primary");
+    By storeName = By.cssSelector("h3.text-truncate");
     By continueBtn = By.xpath("//button[@type='submit']");
-      By storeMnager = By.cssSelector("div.fw-bold");
-      By issuedOn = By.xpath("//span[contains(text(),'Issued on:')]");
-      By issueBy = By.xpath("//span[contains(text(), 'Issued by:')]");
-      By editBtn = By.cssSelector("i.far.fa-edit");
-      By systemAlert = By.cssSelector("div.alert-message>h4");
-      By clientDetailValidationMsg = By.cssSelector("div.alert-message>p");
-      By statusBtn = By.cssSelector("span.me-2~div>button.btn~ul.p-1");
+    By storeMnager = By.cssSelector("div.fw-bold");
+    By issuedOn = By.xpath("//span[contains(text(),'Issued on:')]");
+    By issueBy = By.xpath("//span[contains(text(), 'Issued by:')]");
+    By editBtn = By.cssSelector("i.far.fa-edit");
+    By systemAlert = By.cssSelector("div.alert-message>h4");
+    By clientDetailValidationMsg = By.cssSelector("div.alert-message>p");
+    By statusBtn = By.cssSelector("span.me-2~div>button.btn~ul.p-1");
     public By blockBtn = By.cssSelector("span.me-2~div>button.btn-danger");
-    public By activeBtn = By.cssSelector("span.me-2~div>button.btn-success");
+    public By activeBtn = By.xpath("//span[text()='Status:']/..//button[contains(@class,'btn dropdown-toggle')]");
     public By infoMessageText = By.cssSelector("div.card-header.pb-0");
     public By configurationBtn = By.cssSelector("button.btn.btn-link");
     public By configurationPopupHeader = By.cssSelector("h5.modal-title");
@@ -69,8 +69,8 @@ public class GiftCardDashboardPage extends BaseTest {
     public By issueNewGiftCardBtn = By.xpath("//button[text()='Issue a new gift card']");
     public By giftCardHeader = By.cssSelector("h5.modal-title");
     public By customerField = By.cssSelector("div>.modal-content .stretched-link.-selectCustomer-");
-    By customerSection=By.xpath("//label[text()='Customer']/..");
-    By customerSec=By.xpath("(//a[@class='stretched-link -selectCustomer-'])[2]");
+    By customerSection = By.xpath("//label[text()='Customer']/..");
+    By customerSec = By.xpath("(//a[@class='stretched-link -selectCustomer-'])[2]");
     public By customerTitleText = By.cssSelector("div.modal-content>div.modal-header>h5.modal-title>span.me-1");
     public By customerPhoneNo = By.cssSelector("input[name='phone']");
     public By customerName = By.cssSelector("input[name='phrase']");
@@ -84,8 +84,8 @@ public class GiftCardDashboardPage extends BaseTest {
     public By noSearchResultText = By.cssSelector("div.p-2>div.w-100>div~p");
     public By customerNameSearchBtn = By.cssSelector("input[name='phrase']~button.btn>i.far");
     public By doneBtn = By.cssSelector("button.btn.btn-link.w-100.my-3");
-    public By intialAmount = By.cssSelector("input[name='initialAmount']");
-    public By createButton = By.cssSelector("button.btn.btn-success.btn-lg.w-100");
+    public By intialAmount = By.xpath("//input[@name='initialAmount']");
+    public By createButton = By.xpath("//button[text()='Create']/..");
     public By referenceNoField = By.cssSelector("input[name='referenceNo']");
     public By moreOptionsBtn = By.cssSelector("div.d-flex.justify-content-between ~ a.p-0.mb-1");
     By moreOptionSec = By.xpath("//label[text()='More options']/../..");
@@ -177,7 +177,7 @@ public class GiftCardDashboardPage extends BaseTest {
     By minAmountFilterField = By.cssSelector("[name='minAmount']");
     By maxAmountFilterField = By.cssSelector("[name='maxAmount']");
     By cardNumberFilterField = By.cssSelector("[name='cardNo']");
-    By cardNumber=By.xpath("//a[@class='btn btn-link btn btn-link']");
+    By cardNumber = By.xpath("//a[@class='btn btn-link btn btn-link']");
     public By profileLink = By.cssSelector("div.min-15c>div.d-flex>a.me-1~div>a");
     public By totalSpentText = By.xpath("//div[contains(@class, 'col') and contains(@class, 'd-flex') and contains(@class, 'flex-column')]//span[contains(text(), 'Total spent')]");
     public By messageIcon = By.cssSelector("a.p-0>i.fa-paper-plane");
@@ -318,7 +318,7 @@ public class GiftCardDashboardPage extends BaseTest {
         clickElementByJS(issueNewGiftCardBtn);
         staticWait(3000);
         waitForElementToBeClickable(customerSection, 1000);
-        hoverAndClick(customerSection,customerSection);
+        hoverAndClick(customerSection, customerSection);
         waitForElementToBeVisible(customerEmail, 1000);
         actionEnterText(customerEmail, "beanBliss@yopmail.com");
         clickElementByJS(customerEmailSearchBtn);
@@ -377,15 +377,15 @@ public class GiftCardDashboardPage extends BaseTest {
     public static void LoginAsCustomerNew() {
         Log.info("Starting Login test - Entering username and password");
 
-
         String username = configReader.getProperty("customerNew");
         String password = configReader.getProperty("password");
 
-        // Validate if username and password are present in the config file
+        // Fail fast if any of the credentials are missing
         if (username == null || password == null) {
             throw new RuntimeException("Username or password is missing in the configuration file.");
         }
 
+        // Now it's safe to proceed
         pageObjectManager.getLoginPage().signIn(username, password);
 
         // Log the status of the action after clicking SignIn
@@ -2412,6 +2412,7 @@ public class GiftCardDashboardPage extends BaseTest {
         click(createButton);
         staticWait(3000);
         scrollToElement(giftCardDetailCardLink);
+        staticWait(3000);
         click(giftCardDetailCardLink);
     }
 
@@ -2510,7 +2511,7 @@ public class GiftCardDashboardPage extends BaseTest {
 
         //Verify all result appears
         List<WebElement> allRecords = getDriver().findElements(allresult);
-          String expectedDate = "5/12/2025";
+        String expectedDate = "5/12/2025";
 
         for (WebElement record : allRecords) {
             String detail = record.getText();
@@ -2874,7 +2875,7 @@ public class GiftCardDashboardPage extends BaseTest {
 
         // Entering valid card no
         waitForElementToBeClickable(cardNumberFilterField, 4);
-        String cardNo=getText(cardNumber);
+        String cardNo = getText(cardNumber);
         String[] parts = cardNo.split("-");
         String value = parts[1];
         System.out.println("Extracted value: " + value);
@@ -2886,7 +2887,7 @@ public class GiftCardDashboardPage extends BaseTest {
 
         scrollToElement(allresult);
         List<WebElement> allRecords = getDriver().findElements(allresult);
-          String recordText = allRecords.get(0).getText();
+        String recordText = allRecords.get(0).getText();
         Assert.assertTrue(recordText.contains(value), "Record does not match");
 
 
@@ -2932,12 +2933,12 @@ public class GiftCardDashboardPage extends BaseTest {
     public void verifyGiftCardDetailPopUp() {
         offOptionalSettings();
         staticWait(1000);
-        clickElementByJS(issueNewGiftCardBtn);
-        waitForElementToBeInteractable(customerField, 1000);
-        clickElementByJS(customerField);
+        click(issueNewGiftCardBtn);
+        waitForElementToBeInteractable(customerSec, 1000);
+        clickElementByJS(customerSec);
         waitForElementToBeVisible(customerEmail, 1000);
         actionEnterText(customerEmail, "beanBliss@yopmail.com");
-        clickElementByJS(customerEmailSearchBtn);
+        click(customerEmailSearchBtn);
         staticWait(1000);
         waitForElementToBeVisible(intialAmount, 1000);
         actionEnterText(intialAmount, "100000");
@@ -3057,14 +3058,14 @@ public class GiftCardDashboardPage extends BaseTest {
 
     public void verifyStatusChange() {
         createGiftCard();
+        Assert.assertEquals(getText(activeBtn), Constants.activeStatus);
         click(activeBtn);
         click(statusBtn);
         staticWait(2000);
         Assert.assertEquals(getText(blockBtn), Constants.blockedStatus);
-        staticWait(2000);
         click(blockBtn);
         click(statusBtn);
-        Assert.assertEquals(getText(activeBtn), Constants.activeStatus);
+
     }
 
     public void verifyUserDirectedToProfilePage() {
@@ -3073,8 +3074,6 @@ public class GiftCardDashboardPage extends BaseTest {
         switchToWindow("1");
         staticWait(3000);
         Assert.assertEquals(getText(totalSpentText), Constants.totalSpentText);
-
-
     }
 
     public void verifyMessageIcon() {
@@ -3085,7 +3084,6 @@ public class GiftCardDashboardPage extends BaseTest {
         click(messageIcon);
         String messageText = getAttribute(messageTextBox, "placeholder");
         Assert.assertEquals(messageText, Constants.messageText);
-
     }
 
     public void VerifyActiveGiftCard() {
@@ -3093,8 +3091,6 @@ public class GiftCardDashboardPage extends BaseTest {
         scrollToElement(filterIcon);
         staticWait(2000);
         Assert.assertEquals(getText(giftCardStatus), Constants.activeStatus);
-
-
     }
 
     public void verifyStartDateRejectsChar() {
@@ -3105,8 +3101,6 @@ public class GiftCardDashboardPage extends BaseTest {
         click(updateButton);
         Assert.assertEquals(getText(systemAlert), Constants.systemAlert);
         Assert.assertEquals(getText(clientDetailValidationMsg), Constants.ValidationMsg);
-
-
     }
 
     public void verifyEndDateRejectsChar() {
@@ -3118,8 +3112,6 @@ public class GiftCardDashboardPage extends BaseTest {
         Assert.assertEquals(getText(systemAlert), Constants.systemAlert);
         Assert.assertEquals(getText(clientDetailValidationMsg), Constants.ValidationMsg);
     }
-
-
 }
 
 

@@ -6,15 +6,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import utils.Constants;
 
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
+import static pageEvents.LoginPage.LoginAsCustomer;
 import static pageEvents.TransactionsPage.attentionHeader;
 import static pageEvents.TransactionsPage.okButn;
 
 public class PaymentPage extends BaseTest {
+
+    PaymentMethod payment = new PaymentMethod();
 
 
     // Payment popup locators
@@ -62,7 +66,7 @@ public class PaymentPage extends BaseTest {
     By ZelleCard = By.xpath("(//div[contains(@class,'w-100 border')])[2]");
     By paidLabel = By.xpath("//div[normalize-space()='Paid']");
     By cashIcon = By.xpath("(//span[text()='Cash']/../child::span)[3]");
-    By crossIcon = By.xpath("(//button[@class='btn-close'])[3]");
+    By crossIcon = By.xpath("//div[contains (@class, 'modal fade show')]//button[@class='btn-close']");
     By crossIconOnTransactionpage = By.xpath("//button[@class='btn-close']");
     By transcationMenu = By.xpath("(//div[text()='Transactions'])[2]");
     By paidBill = By.xpath("//div[contains(@class,'bg-white border')][1]");
@@ -83,8 +87,8 @@ public class PaymentPage extends BaseTest {
     By deleteIcon = By.xpath("//i[@class='fa fa-trash text-danger']/../.");
     By voided = By.xpath("//h6[text()='VOIDED']");
     By signOut = By.xpath("//a[text()='Sign out']");
-    By attentionPopup=By.xpath("//h4[text()='Attention!']");
-    By okBtn=By.xpath("//button[text()='OK']");
+    By attentionPopup = By.xpath("//h4[text()='Attention!']");
+    By okBtn = By.xpath("//button[text()='OK']");
     By thumbIcon = By.xpath("//div[@class='popover-body p-2']/child::div/child::button[text()='Never mind']/following-sibling::button");
 
 
@@ -113,21 +117,22 @@ public class PaymentPage extends BaseTest {
     By transactionHeader = By.xpath("//h1[normalize-space()='Transaction Detail']");
     By tarnsactionUniqueId = By.xpath("(//span[contains(text(),'TR-')])[2]");
     By paymentMethodIcon = By.xpath("//span[contains(@class,'payment-logo-bg-sm')]");
-    By bankAccountSection = By.xpath("(//span[contains(text(),'Bank Account')])/../../../..");
+    By bankAccountSection = By.xpath("(//span[contains(text(),'New Bank Account')])/../../../..");
     By amountField = By.xpath("(//form//input[@name='amount'])[2]");
-    By bankAccount=By.xpath("(//span[text()='Bank Account 6789'])[1]");
-    By emailField=By.cssSelector("#Field-emailInput");
-    By nameField=By.cssSelector("#Field-nameInput");
-    By bankFrame=By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[5]");
-    By header=By.xpath("(//h5[text()='New payment method'])[2]");
-    By fullName=By.xpath("//input[@id='Field-nameInput']");
-    By testInstitution=By.xpath("//p[text()='Test Institution']");
-    By saveBtnOnNewPaymentPopUp=By.xpath("//button[text()='Save']");
-    By agreeAndCounBtn=By.xpath("//span[text()='Agree and continue']/..");
-    By connectAccount=By.xpath("//span[text()='Connect account']/..");
-    By phoneNumber=By.xpath("//span[text()='Phone number']/..");
-    By saveWithLinkBtn=By.xpath("//span[text()='Save with Link']/..");
-    By backToKadePayBtn=By.xpath("//span[text()='Back to Kade Pay']/..");
+    By bankAccount = By.xpath("(//span[text()='Bank Account 6789'])[1]");
+    By emailField = By.cssSelector("#Field-emailInput");
+    By nameField = By.cssSelector("#Field-nameInput");
+    By bankFrame = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[2]");
+    By frame = By.xpath("(//iframe[contains(@name,'__privateStripeFrame')])[3]");
+    By header = By.xpath("(//h5[text()='New payment method'])[2]");
+    By fullName = By.xpath("//input[@id='Field-nameInput']");
+    By testInstitution = By.xpath("//p[text()='Test Institution']");
+    By saveBtnOnNewPaymentPopUp = By.xpath("//button[text()='Save']");
+    By agreeAndCounBtn = By.xpath("//span[text()='Agree and continue']/..");
+    By connectAccount = By.xpath("//span[text()='Connect account']/..");
+    By phoneNumber = By.xpath("//span[text()='Phone number']/..");
+    By saveWithLinkBtn = By.xpath("//span[text()='Save with Link']/..");
+    By backToKadePayBtn = By.xpath("//span[text()='Back to Kade Pay']/..");
 
 
     By updateBtn = By.xpath("(//button[text()='Update'])[2]");
@@ -139,6 +144,7 @@ public class PaymentPage extends BaseTest {
     By selectCheckBox = By.xpath("(//span[text()='Confirm your payment by checking this box']/../i)[2]");
     By zelleSaveBtn = By.xpath("//button[text()='Submit']");
     By payCurrentBalance = By.xpath("//button[text()='Pay the current balance']/..");
+    By paymentSaveBtn = By.xpath("//button[text()='Save']");
 
     // Affirm payment button
     By affirmAccount = By.xpath("//span[text()='Affirm']/../../../..");
@@ -149,25 +155,114 @@ public class PaymentPage extends BaseTest {
     public By paymentDetails = By.xpath("//span[starts-with(@class,'payment-logo-bg-sm')]/../../..");
     By moreDetailsBtn = By.xpath("//button[contains(@class,'btn btn-link w-100')]//i/..");
     public By moreDetails = By.xpath("//div[@class='card-body collapse show']");
+    public By PaymentMethodTitle = By.xpath("//h3[text()='Payment Methods']");
+    public By addORModifyPaymentLink = By.xpath("//a[text()='Add or modify payment methods']");
+    public By addPaymentButton = By.xpath("//button[text()='Add Payment Method']");
+    public By addNewPaymentMethodTitle = By.xpath("//h5[text()='Add new payment method']");
+    public By creditCardOption = By.xpath("(//span[@class='payment-logo-bg me-2'])[1]/..");
+    public By bankAccountOption = By.xpath("(//span[@class='payment-logo-bg me-2']//..)[2]");
+    public By crossIconAddNewPaymentPopup = By.xpath("//button[@class='btn-close text-reset']");
+    public By newPaymentMethodPopupTitle = By.xpath("//h5[text()='New payment method']");
+    By nePaymentPopUp = By.xpath("(//h5[text()='New payment method'])[4]");
+    public By bankEmailField = By.cssSelector("[name=email]");
+    public By fullNameBField = By.cssSelector("[placeholder='First and last name']");
+    public By testInsituteBtn = By.xpath("//p[text()='Test Institution']");
+    public By LogInWithTestInstitutionLabel = By.xpath("//div[contains(@class,'LightboxModalContent')]//h1[text()='Log in with Test Institution']");
+    public By agreeAndContinueBtn = By.xpath("//span[text()='Agree and continue']/..");
+    public By successOption = By.xpath("//div[contains(@class, 'la-v3-accountPicker')]//div/p[text()='Success']");
+    public By continueAccount = By.xpath("(//span[text()='Connect account']//..)[2]");
+    public By saveWithLink = By.xpath("//span[text()='Save with Link']/..");
+    public By notNow = By.xpath("//span[text()='Not now']/..");
+    public By backToKadePay = By.xpath("//span[text()='Back to Kade Pay']/..");
+    public By finalSavebtn = By.xpath("//button[contains (@class, 'btn btn-primary ') and text()='Save']");
+    public By loginInsitututeFrame = By.xpath("(//iframe[contains(@name, '__privateStripeFrame')])[1]");
+    public By successText = By.xpath("//div[contains(@class,'la-v3-successTextWrapper')]//h1");
+    public By stripeBankAccountText = By.xpath("//div[contains(@class,'p-PickerItem--singleRow')]//../h3");
+    public By visaCardText = By.xpath("//span[normalize-space()='Visa 1111']");
+    public By trash = By.xpath("//i[@class='fas fa-trash']//..");
+    public By noPaymentInfo = By.xpath("//div[@class='no-result-icon']/../p");
+
+    // Methods
+    public void getAddOrModifyPaymentLink() {
+        click(addORModifyPaymentLink);
+    }
+
+    public void getAddPaymentButton() {
+        click(addPaymentButton);
+    }
+
+    public void getCreditCardOption() {
+        click(creditCardOption);
+        staticWait(2000);
+    }
+
+    public void clickOnPaymentSaveBtn() {
+        click(paymentSaveBtn);
+    }
+
+    public void getCrossIconOfNewP() {
+        click(crossIconAddNewPaymentPopup);
+    }
+
+    public void getTestInsituteBtn() {
+        click(testInsituteBtn);
+    }
+
+    public void getAgreeAndContinueBtn() {
+        scrollToElement(agreeAndContinueBtn);
+        click(agreeAndContinueBtn);
+    }
+
+    public void getSuccessOption() {
+        click(successOption);
+    }
+
+    public void getConnectAccountBtn() {
+        click(continueAccount);
+    }
+
+    public void getSaveWithLinkBtn() {
+        click(saveWithLink);
+    }
+
+    public void getNotNow() {
+        click(notNow);
+    }
+
+    public void getBackToKadePayBtn() {
+        click(backToKadePay);
+    }
+
+    public void getFinalSaveBtn() {
+        click(finalSavebtn);
+    }
+
+    public void getTrashIcon() {
+        clickElementByJS(trash);
+    }
+
+    public void getThumbIcon() {
+        clickElementByJS(thumbIcon);
+    }
 
 
-
-
-
-    public void clickOnAffirmButton(){
+    public void clickOnAffirmButton() {
         click(affirmAccount);
     }
-    public void getProcessButtonOfAffirm(){
+
+    public void getProcessButtonOfAffirm() {
         click(processBtnOfAffirm);
     }
-    public void getAuthorizeTestPaymentBtn(){
+
+    public void getAuthorizeTestPaymentBtn() {
         click(authorizeTestPaymentBtn);
     }
-    public void getPayemntDetails(){
+
+    public void getPayemntDetails() {
         click(paymentDetails);
     }
 
-    public void getMoreDetailsBtn(){
+    public void getMoreDetailsBtn() {
         clickElementByJS(moreDetailsBtn);
     }
 
@@ -200,7 +295,7 @@ public class PaymentPage extends BaseTest {
 
     public void clickOnSaveBtn() {
         scrollToElement(saveBtn);
-        waitForElementToBeClickable(saveBtn,4);
+        waitForElementToBeClickable(saveBtn, 4);
         click(saveBtn);
     }
 
@@ -309,6 +404,7 @@ public class PaymentPage extends BaseTest {
         staticWait(4000);
         click(zelleAccount);
     }
+
     public void clickOnVenmoBank() {
         staticWait(4000);
         click(VenmoAccount);
@@ -349,49 +445,50 @@ public class PaymentPage extends BaseTest {
     }
 
 
-    public void clickOnPaymentMethod(String emailFieldTxt){
+    public void clickOnPaymentMethod(String emailFieldTxt) {
         staticWait(3000);
-        actionEnterText(emailField,emailFieldTxt);
+        actionEnterText(emailField, emailFieldTxt);
     }
-    public void enterTxtInnameField(String nameFieldTxt){
+
+    public void enterTxtInnameField(String nameFieldTxt) {
         staticWait(3000);
-        actionEnterText(nameField,nameFieldTxt);
+        actionEnterText(nameField, nameFieldTxt);
     }
-    public void enterTxtInfullNameField(String fullNameFieldTxt){
+
+    public void enterTxtInfullNameField(String fullNameFieldTxt) {
         staticWait(3000);
-        actionEnterText(fullName,fullNameFieldTxt);
+        actionEnterText(fullName, fullNameFieldTxt);
     }
-    public void clickOntestInstitution(){
+
+    public void clickOntestInstitution() {
         staticWait(3000);
         click(testInstitution);
     }
 
-    public void clickOnsaveBtnOnNewPaymentPopUp(){
+    public void clickOnsaveBtnOnNewPaymentPopUp() {
         scrollToElement(saveBtnOnNewPaymentPopUp);
-         click(saveBtnOnNewPaymentPopUp);
+        click(saveBtnOnNewPaymentPopUp);
     }
 
-    public void clickOnagreeAndCounBtn(){
-         click(agreeAndCounBtn);
+    public void clickOnagreeAndCounBtn() {
+        click(agreeAndCounBtn);
     }
 
-    public void clickOnconnectAccount(){
+    public void clickOnconnectAccount() {
         click(connectAccount);
     }
-    public void enterInPhoneTxt(String phoneNum){
-        actionEnterText(phoneNumber,phoneNum);
+
+    public void enterInPhoneTxt(String phoneNum) {
+        actionEnterText(phoneNumber, phoneNum);
     }
 
-    public void clickOnsaveWithLink(){
+    public void clickOnsaveWithLink() {
         click(saveWithLinkBtn);
     }
-    public void clickOnbackToKadePayBtn(){
+
+    public void clickOnbackToKadePayBtn() {
         click(backToKadePayBtn);
     }
-
-
-
-
 
 
     public void enterTextInAmountField(String enterTxtInamountField) {
@@ -408,10 +505,9 @@ public class PaymentPage extends BaseTest {
         click(swipeArrowBtn);
     }
 
-    public void clickOnBankAccount(){
+    public void clickOnBankAccount() {
         click(bankAccount);
     }
-
 
 
     public void swipeCard() {
@@ -457,7 +553,7 @@ public class PaymentPage extends BaseTest {
 
 
     public void paymentPopup(String memoTxt) {
-        String billHead=getText(billHeader);
+        String billHead = getText(billHeader);
         Assert.assertEquals(billHead, "Bill");
 
         Assert.assertTrue(isElementDisplayed(qrCode));
@@ -468,7 +564,7 @@ public class PaymentPage extends BaseTest {
         Assert.assertTrue(isElementDisplayed(uniqueNumber));
         Assert.assertTrue(isElementDisplayed(BillCreatedTime));
         Assert.assertTrue(isElementDisplayed(NotPaid));
-       // Assert.assertTrue(isElementDisplayed(tapToAddFile));
+        // Assert.assertTrue(isElementDisplayed(tapToAddFile));
 
 
         // Click on Process payment button in Bill popup
@@ -484,7 +580,7 @@ public class PaymentPage extends BaseTest {
         String balance = balanceSAmt.replaceAll("[^0-9.]", "");
         Log.info("Numeric Value: " + balance); // Output: 1000.00// Remove non-numeric characters
 
-         Assert.assertEquals(totalAmt, balance);
+        Assert.assertEquals(totalAmt, balance);
         Assert.assertTrue(isElementDisplayed(recieveAmtTxtField));
         Assert.assertTrue(isElementDisplayed(creditCardButton));
         Assert.assertTrue(isElementDisplayed(otherBtn));
@@ -495,7 +591,7 @@ public class PaymentPage extends BaseTest {
         staticWait(2000);
         Assert.assertTrue(isElementDisplayed(paymentTypeText));
 
-         String getAttMemo = getAttribute(memoTxtField, "placeholder");
+        String getAttMemo = getAttribute(memoTxtField, "placeholder");
         Assert.assertEquals(getAttMemo, "Memo");
 
         Assert.assertTrue(isElementDisplayed(venomoBtn));
@@ -506,7 +602,7 @@ public class PaymentPage extends BaseTest {
         enterInMemoField(memoTxt);
         clickOnCashBtn();
 
-      //  Assert.assertTrue(isElementDisplayed(paidLabel));
+        //  Assert.assertTrue(isElementDisplayed(paidLabel));
         Assert.assertTrue(isElementDisplayed(cashIcon));
 
         clickOnCrossIcon();
@@ -539,7 +635,7 @@ public class PaymentPage extends BaseTest {
 //        softAssert.assertTrue(isElementDisplayed(NotPaid));
 //        softAssert.assertTrue(isElementDisplayed(tapToAddFile));
 
-        String billHead=getText(billHeader);
+        String billHead = getText(billHeader);
         Assert.assertEquals(billHead, "Bill");
 
         Assert.assertTrue(isElementDisplayed(qrCode));
@@ -939,7 +1035,7 @@ public class PaymentPage extends BaseTest {
     }
 
 
-    public void paymentThrouhBankAccount( ) {
+    public void paymentThrouhBankAccount() {
         staticWait(3000);
         clickOnSignOut();
         LoginAsCustomer();
@@ -952,12 +1048,72 @@ public class PaymentPage extends BaseTest {
             Log.info("Nothing to be selected");
         }
         //   softAssert.assertTrue(isElementDisplayed(storeName));
-       // softAssert.assertTrue(isElementDisplayed(visaCardName));
+        // softAssert.assertTrue(isElementDisplayed(visaCardName));
         clickOnchangeBtn();
         staticWait(3000);
         clickOnBankAccountSection();
-       // paymentThrougBankAccount();
-      //  paymentMethodPopUp(email,name, fullNameField, phoneTxt);
+
+        staticWait(3000);
+        if (isElementDisplayed(newPaymentMethodPopupTitle)) {
+
+            // Verify that new payment method popup
+            waitForElementToBeVisible(newPaymentMethodPopupTitle, 5);
+            Assert.assertTrue(isElementDisplayed(newPaymentMethodPopupTitle), "New Payment Method Popup Title");
+
+            switchToFrame(bankFrame);
+            waitForElementToBeClickable(bankEmailField, 5);
+
+            // enter email and full name
+            actionEnterText(bankEmailField, Constants.validLoginEmail);
+            actionEnterText(fullNameBField, Constants.nameInput);
+            getTestInsituteBtn();
+            staticWait(5000);
+            switchToDefaultContent();
+            //  waitForPageLoad();
+            staticWait(3000);
+            //  switchToFrame(bankFrame);
+
+            getAgreeAndContinueBtn();
+
+            // wait till bank options
+            staticWait(5000);
+            getSuccessOption();
+            getConnectAccountBtn();
+
+            staticWait(5000);
+
+            getSaveWithLinkBtn();
+
+            staticWait(5000);
+
+            // Verify that success text appears
+            Assert.assertTrue(isElementDisplayed(successText), "Success Text");
+
+            getBackToKadePayBtn();
+            switchToDefaultContent();
+            staticWait(5000);
+            switchToFrame(bankFrame);
+
+//        waitForElementToBeVisible(paymentMethod.stripeBankAccountText,5);
+            System.out.println("Bank Account name is " + getText(stripeBankAccountText));
+            Assert.assertEquals(getText(stripeBankAccountText), "Stripebank");
+            switchToDefaultContent();
+            waitForElementToBeClickable(finalSavebtn, 5);
+            getFinalSaveBtn();
+
+            staticWait(5000);
+            getTrashIcon();
+            getThumbIcon();
+        } else {
+            Log.info("Payment POP up not displayed");
+        }
+
+
+        // paymentThrougBankAccount();
+        //  paymentMethodPopUp(email,name, fullNameField, phoneTxt);
+        payment.getBankAccountDetails();
+
+
     }
 
     public void billPaymentByVariousPaymentMethods(String enterTextInAmountField, String cardNameTxt, String expiryDateTxt, String cvcTxt, String countryName) {
@@ -1003,7 +1159,7 @@ public class PaymentPage extends BaseTest {
 
 
     public void getPayThroughCreditCardForAddingPayment() {
-        staticWait(5000);
+        waitForElementToBeVisible(iframeForCreditCard, 20);
         switchToFrame(iframeForCreditCard);
         scrollToElement(cardNumberTbx);
         actionEnterText(cardNumberTbx, "4111111111111111");
@@ -1011,6 +1167,7 @@ public class PaymentPage extends BaseTest {
         actionEnterText(cvcTbx, "123");
         actionEnterText(countryDropDown, "Australia");
         switchToDefaultWindow();
+        staticWait(5000);
     }
 
     public void clickOnVenmoAccount() {
@@ -1077,23 +1234,24 @@ public class PaymentPage extends BaseTest {
         clickOnRejectBtn();
 
     }
-    public void paymentMethodPopUp(String emailTxtField,String nameTxtField,String fullNameField,String phoneTxt){
-      if(isElementDisplayed(header)) {
-          switchToFrame(bankFrame);
-          clickOnPaymentMethod(emailTxtField);
-          enterTxtInnameField(nameTxtField);
-          enterTxtInfullNameField(fullNameField);
-          clickOntestInstitution();
-          switchToDefaultContent();
-          clickOnagreeAndCounBtn();
-          clickOnconnectAccount();
-          enterInPhoneTxt(phoneTxt);
-          clickOnsaveWithLink();
-          clickOnbackToKadePayBtn();
-          clickOnsaveBtnOnNewPaymentPopUp();
-      }else{
-          Log.info("Do payment");
-      }
+
+    public void paymentMethodPopUp(String emailTxtField, String nameTxtField, String fullNameField, String phoneTxt) {
+        if (isElementDisplayed(header)) {
+            switchToFrame(bankFrame);
+            clickOnPaymentMethod(emailTxtField);
+            enterTxtInnameField(nameTxtField);
+            enterTxtInfullNameField(fullNameField);
+            clickOntestInstitution();
+            switchToDefaultContent();
+            clickOnagreeAndCounBtn();
+            clickOnconnectAccount();
+            enterInPhoneTxt(phoneTxt);
+            clickOnsaveWithLink();
+            clickOnbackToKadePayBtn();
+            clickOnsaveBtnOnNewPaymentPopUp();
+        } else {
+            Log.info("Do payment");
+        }
 
     }
 
@@ -1110,7 +1268,7 @@ public class PaymentPage extends BaseTest {
             Log.info("Nothing to be selected");
         }
         if (isElementDisplayed(attentionHeader)) {
-            hoverAndClick(okButn , okButn );
+            hoverAndClick(okButn, okButn);
         } else {
             Log.info("Nothing to be selected");
         }
@@ -1121,15 +1279,16 @@ public class PaymentPage extends BaseTest {
         switchToFrame();
         enterCardName(cardNameTxt, expiryDateTxt, cvcTxt, countryName);
         switchToDefaultContent();
-        if(isElementDisplayed(attentionPopup)){
+        if (isElementDisplayed(attentionPopup)) {
             click(okBtn);
-        }else{
+        } else {
             Log.info("Countinue");
         }
         staticWait(10000);
         clickOnSaveBtn();
     }
-    public void billPaymentThroughAffirmMethod(){
+
+    public void billPaymentThroughAffirmMethod() {
         staticWait(3000);
         clickOnSignOut();
         LoginAsCustomer();
@@ -1140,13 +1299,13 @@ public class PaymentPage extends BaseTest {
         staticWait(3000);
         clickOnchangeBtn();
 
-        waitForElementToBeVisible(affirmAccount,5);
+        waitForElementToBeVisible(affirmAccount, 5);
 
         // clicking on affirm payment method button
         clickOnAffirmButton();
 
-        waitForElementToBeVisible(paymentInformationTitle,5);
-        Assert.assertTrue(isElementDisplayed(paymentInformationTitle),"Payment information Title ");
+        waitForElementToBeVisible(paymentInformationTitle, 5);
+        Assert.assertTrue(isElementDisplayed(paymentInformationTitle), "Payment information Title ");
 //        waitForElementToBeVisible(processBtnOfAffirm,5);
         staticWait(5000);
 
@@ -1157,11 +1316,12 @@ public class PaymentPage extends BaseTest {
         waitForPageLoad();
 
         // verify Affirm test page appears
-        Assert.assertTrue(isElementDisplayed(affirmTestPageTitle),"Affirm Test page title");
+        Assert.assertTrue(isElementDisplayed(affirmTestPageTitle), "Affirm Test page title");
 
         scrollToElement(authorizeTestPaymentBtn);
         getAuthorizeTestPaymentBtn();
     }
+
     public void getPayThroughCreditCardThroughAutoPayment() {
         switchToFrame(autoPaymentCardFrame);
         scrollToElement(cardNumberTbx);
@@ -1173,12 +1333,12 @@ public class PaymentPage extends BaseTest {
         switchToDefaultWindow();
         scrollToElement(saveBtn);
 
-        waitForElementToBeClickable(saveBtn,4);
+        waitForElementToBeClickable(saveBtn, 4);
         clickOnSaveBtn();
 
     }
 
-    public void paymentThrougBankAccount(){
+    public void paymentThrougBankAccount() {
         //clickOnBankAccount();
         swipeCard();
         billPayment();
